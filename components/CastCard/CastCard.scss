@@ -1,10 +1,7 @@
 @media only screen and (min-width: 2300px) {
   .cast-item {
     .cast-img-box {
-      .ant-image,
-      .el-image {
-        height: 250px !important;
-      }
+      height: 250px !important;
     }
   }
 }
@@ -12,10 +9,7 @@
 @media only screen and (max-width: 520px) {
   .cast-item {
     .cast-img-box {
-      .ant-image,
-      .el-image {
-        height: 250px !important;
-      }
+      height: 250px !important;
     }
   }
 }
@@ -28,17 +22,21 @@
 
   .cast-img-box {
     position: relative;
+    height: 210px;
+    overflow: hidden;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 
     .ant-image,
     .el-image {
-      height: 210px;
+      height: 100%;
       width: 100%;
+      transition: all 0.3s;
 
       img {
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        transition: all 0.3s;
         height: 100%;
+        width: 100%;
+        transition: all 0.3s;
         object-fit: cover;
       }
 

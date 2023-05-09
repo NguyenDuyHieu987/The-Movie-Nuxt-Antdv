@@ -45,7 +45,6 @@
               </div>
             </template>
           </el-image> -->
-
           <img
             class="ant-image"
             v-lazy="getPosterCast(item?.profile_path)"

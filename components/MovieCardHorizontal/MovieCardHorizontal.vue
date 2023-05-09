@@ -484,7 +484,7 @@ onBeforeMount(async () => {
       .then((movieRespone) => {
         if (movieRespone.data.value.data.success == true) {
           isInHistory.value = true;
-          percent.value = movieRespone?.data?.result?.percent;
+          percent.value = movieRespone.data.value.data?.result?.percent;
         }
       })
       .catch((e) => {
