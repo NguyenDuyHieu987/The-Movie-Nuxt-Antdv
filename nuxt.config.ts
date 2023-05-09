@@ -127,7 +127,7 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
     '@pinia/nuxt',
     'nuxt-icon',
-    'nuxt-lazy-load'
+    // 'nuxt-lazy-load'
     // '@/modules/antd'
   ],
   elementPlus: {

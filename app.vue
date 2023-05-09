@@ -53,7 +53,7 @@ onBeforeMount(async () => {
 
     getUserToken({ user_token: getWithExpiry('userAccount')?.user_token })
       .then((accountResponse) => {
-        console.log(accountResponse.data?.result);
+        // console.log(accountResponse.data?.result);
         if (accountResponse.data?.isLogin == true) {
           store.$state.isLogin = true;
           store.$state.userAccount = accountResponse.data?.result;
