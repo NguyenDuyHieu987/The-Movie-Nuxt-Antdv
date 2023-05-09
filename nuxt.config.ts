@@ -161,7 +161,7 @@ export default defineNuxtConfig({
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/googlelogin',
-    { src: '@/plugins/vuelazyload', mode: 'client' },
+    '@/plugins/vuelazyload',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   routeRules: {
