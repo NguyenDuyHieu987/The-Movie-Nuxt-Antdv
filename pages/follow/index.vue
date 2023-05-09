@@ -473,7 +473,7 @@ const getData = () => {
   loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  useAsyncData(`list/get/${store.$state.userAccount?.id}`, () =>
+  useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () =>
     getList(store.$state.userAccount?.id)
   )
     .then((movieRespone) => {
@@ -548,12 +548,17 @@ onBeforeMount(() => {
       dataList.value?.length < total.value
     ) {
       loadMore.value = true;
-      getList(store.$state.userAccount?.id, skip.value)
+      useAsyncData(
+        `list/get/${store.$state.userAccount?.id}/${skip.value}`,
+        () => getList(store.$state.userAccount?.id)
+      )
         .then((movieRespone) => {
-          if (movieRespone.data?.result?.length > 0) {
+          if (movieRespone.data.value.data?.result?.length > 0) {
             setTimeout(() => {
               loadMore.value = false;
-              dataList.value = dataList.value.concat(movieRespone.data?.result);
+              dataList.value = dataList.value.concat(
+                movieRespone.data.value.data?.result
+              );
             }, 2000);
             skip.value += 1;
           }
