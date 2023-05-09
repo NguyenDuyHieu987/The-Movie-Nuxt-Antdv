@@ -24,6 +24,7 @@
     var(--sider-header-background-color2)
   );
   z-index: 10;
+  transition: all 0s;
 
   .ant-layout-header {
     line-height: inherit;

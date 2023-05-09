@@ -56,8 +56,7 @@ const { collapsed } = storeToRefs(store);
   margin-left: var(--sider-width);
   min-height: calc(100vh - var(--header-height));
   margin-top: var(--header-height);
-  transition: all 0.2s;
-  // min-height: 115vh;
+  // transition: all 0.2s;
   overflow: hidden;
 
   &.expand {
