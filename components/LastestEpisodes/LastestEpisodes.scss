@@ -1,0 +1,54 @@
+.lastest-episodes {
+  position: relative;
+  z-index: 1;
+  margin-top: 15px;
+
+  .list-lastest-episodes.skeleton {
+    .ant-skeleton {
+      margin: 7px 7px 0px 0px;
+    }
+  }
+
+  ul,
+  .list-lastest-episodes {
+    // display: flex;
+    // flex-direction: row;
+    overflow: hidden;
+    list-style-type: none;
+    margin-top: 7px;
+    padding: 0px 10px;
+
+    & > li,
+    li + li {
+      margin-top: 7px;
+      margin-right: 7px;
+    }
+
+    li {
+      float: left;
+
+      a {
+        padding: 7px 15px;
+        color: #fff;
+        transition: all 0.5s;
+        border-radius: 3px;
+        white-space: nowrap;
+        vertical-align: middle;
+        display: inline-block;
+        background-image: linear-gradient(
+          to right,
+          #006a88,
+          var(--sider-header-background-color2),
+          var(--sider-header-background-color1)
+        );
+        background-size: 200% 100%;
+
+        &:hover {
+          background-size: 200% 100%;
+          // background-position: -75px center;
+          background-position: 100% center;
+        }
+      }
+    }
+  }
+}

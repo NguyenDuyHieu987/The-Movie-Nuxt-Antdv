@@ -1,0 +1,353 @@
+<template>
+  <el-skeleton
+    :loading="loading"
+    animated
+    class="movie-card-horizontal-item skeleton"
+  >
+    <template #template>
+      <div class="img-box">
+        <el-skeleton-item class="ant-image" variant="image" />
+      </div>
+      <div style="margin-top: 7px">
+        <el-skeleton-item variant="text" />
+        <el-skeleton-item variant="text" style="width: 60%" />
+      </div>
+    </template>
+
+    <template #default>
+      <NuxtLink
+        :to="{
+          path: isEpisodes
+            ? `/info/tv/${item?.id}/${
+                item?.name
+                  ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                  : item?.title?.replace(/\s/g, '+').toLowerCase()
+              }`
+            : `/info/movie/${item?.id}/${
+                item?.name
+                  ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                  : item?.title?.replace(/\s/g, '+').toLowerCase()
+              }`,
+        }"
+        class="movie-card-horizontal-item"
+      >
+        <div class="img-box">
+          <img
+            class="ant-image"
+            v-if="!loading"
+            v-lazy="getBackdrop(dataMovie?.backdrop_path)"
+            :preview="false"
+          />
+
+          <!-- <a-skeleton-image v-else class="ant-image" /> -->
+
+          <div
+            v-if="isInHistory"
+            class="percent-viewed"
+            :style="{ width: percent * 100 + '%' }"
+          ></div>
+          <div v-if="isInHistory" class="viewed-overlay-bar"></div>
+
+          <div v-if="!loading" class="duration-episode-box">
+            <p class="duration-episode">
+              {{
+                isEpisodes
+                  ? dataMovie?.last_episode_to_air?.episode_number
+                    ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
+                    : ''
+                  : dataMovie?.runtime
+                  ? dataMovie?.runtime + ' min'
+                  : ''
+              }}
+            </p>
+          </div>
+
+          <div
+            class="youtub-icon"
+            v-if="!loading"
+            @click.prevent="handleClickTrailerIcon"
+          >
+            <font-awesome-icon icon="fa-brands fa-youtube" />
+          </div>
+
+          <div v-if="!loading" class="release-date-box">
+            <p class="release-date">
+              {{
+                item?.release_date
+                  ? item?.release_date?.slice(0, 4)
+                  : item?.last_air_date?.slice(0, 4)
+                  ? item?.last_air_date?.slice(0, 4)
+                  : item?.first_air_date?.slice(0, 4)
+              }}
+            </p>
+          </div>
+        </div>
+        <a-tooltip
+          :title="
+            getLanguage(item?.original_language, store.$state.allCountries)
+              ?.name
+              ? getLanguage(item?.original_language, store.$state.allCountries)
+                  ?.name
+              : ''
+          "
+        >
+          <div class="info">
+            <!-- <a-skeleton
+                :loading="loading"
+                :active="true"
+                :paragraph="{ rows: 2 }"
+                :title="false"
+              > -->
+            <p class="title">
+              {{ item?.name ? item?.name : item?.title }}
+              <span v-if="isEpisodes">
+                {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
+              </span>
+            </p>
+            <div class="info-bottom">
+              <!-- <p class="genres" v-if="item?.genre_ids">
+                  {{
+                    getAllGenresById(
+                      item?.genre_ids,
+                      store.state?.allGenres
+                    ).join(' • ')
+                  }}
+                </p> -->
+              <p class="genres" v-if="dataMovie?.genres">
+                {{ Array?.from(dataMovie?.genres, (x) => x.name).join(' • ') }}
+              </p>
+            </div>
+            <!-- </a-skeleton> -->
+          </div>
+        </a-tooltip>
+
+        <a-modal
+          v-model:visible="isOenModalTrailer"
+          width="1300px"
+          centered
+          @ok="isOenModalTrailer = false"
+          class="modal-trailer"
+        >
+          <template #title>
+            <p>
+              Trailer:
+              {{ item?.name ? item?.name : item?.title }}
+            </p>
+          </template>
+          <iframe
+            height="650px"
+            width="100%"
+            :src="
+              dataMovie?.videos?.results?.length != 0
+                ? `https://www.youtube.com/embed/${
+                    dataMovie?.videos?.results[
+                      Math.floor(
+                        Math.random() * dataMovie?.videos?.results?.length
+                      )
+                    ]?.key
+                  }`
+                : 'https://www.youtube.com/embed/ndl1W4ltcmg'
+            "
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+          gyroscope; picture-in-picture"
+            allowFullScreen
+            frameBorder="{0}"
+          />
+          <template #footer>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div style="max-width: 70%">
+                <h3 style="display: flex">
+                  <strong> {{ item?.name ? item?.name : item?.title }}</strong>
+                </h3>
+
+                <p
+                  class="genres"
+                  style="
+                    display: flex;
+                    text-align: left;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    display: -webkit-box;
+                  "
+                >
+                  {{ dataMovie?.overview }}
+                </p>
+              </div>
+              <div>
+                <a-button key="back" size="large" @click="handleCancel"
+                  >Đóng
+                </a-button>
+                <NuxtLink
+                  v-if="isEpisodes"
+                  :to="{
+                    path: `/play/tv/${item?.id}/${
+                      item?.name
+                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                        : item?.title?.replace(/\s/g, '+').toLowerCase()
+                    }/tap-1`,
+                  }"
+                  class="btn-play-now"
+                >
+                  <span> Xem ngay</span>
+                </NuxtLink>
+                <NuxtLink
+                  v-else-if="!isEpisodes"
+                  :to="{
+                    path: `/play/movie/${item?.id}/${
+                      item?.name
+                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                        : item?.title?.replace(/\s/g, '+').toLowerCase()
+                    }`,
+                  }"
+                  class="btn-play-now"
+                >
+                  <span> Xem ngay</span>
+                </NuxtLink>
+              </div>
+            </div>
+          </template>
+        </a-modal>
+      </NuxtLink>
+    </template>
+  </el-skeleton>
+</template>
+<script setup>
+import axios from 'axios';
+import {
+  getBackdrop,
+  getTvById,
+  getMovieById,
+  getLanguage,
+  getItemHistory,
+} from '@/services/MovieService';
+
+const props = defineProps({
+  item: {
+    type: Object,
+  },
+  type: {
+    type: String,
+  },
+});
+const store = useStore();
+const dataMovie = ref({});
+const isEpisodes = ref(false);
+const loading = ref(false);
+const isInHistory = ref(false);
+const percent = ref(0);
+const isOenModalTrailer = ref(false);
+
+onBeforeMount(async () => {
+  loading.value = true;
+
+  if (props?.type) {
+    switch (props?.type) {
+      case 'movie':
+        isEpisodes.value = false;
+        await useAsyncData(`movie/short/${props.item?.id}`, () =>
+          getMovieById(props.item?.id)
+        )
+          .then((movieResponed) => {
+            dataMovie.value = movieResponed.data.value.data;
+
+            setTimeout(() => {
+              loading.value = false;
+            }, 1000);
+          })
+          .catch((e) => {
+            loading.value = false;
+            if (axios.isCancel(e)) return;
+          });
+        break;
+      case 'tv':
+        isEpisodes.value = true;
+
+        await useAsyncData(`tv/short/${props.item?.id}`, () =>
+          getTvById(props.item?.id)
+        )
+          .then((tvResponed) => {
+            dataMovie.value = tvResponed.data.value.data;
+
+            setTimeout(() => {
+              loading.value = false;
+            }, 1000);
+          })
+          .catch((e) => {
+            loading.value = false;
+            if (axios.isCancel(e)) return;
+          });
+        break;
+      default:
+        break;
+    }
+  } else {
+    if (props?.item?.media_type == 'tv' || props?.item?.type) {
+      isEpisodes.value = true;
+
+      await useAsyncData(`tv/short/${props.item?.id}`, () =>
+        getTvById(props.item?.id)
+      )
+        .then((tvResponed) => {
+          dataMovie.value = tvResponed.data.value.data;
+
+          setTimeout(() => {
+            loading.value = false;
+          }, 1000);
+        })
+        .catch((e) => {
+          loading.value = false;
+          if (axios.isCancel(e)) return;
+        });
+    } else {
+      isEpisodes.value = false;
+      await useAsyncData(`movie/short/${props.item?.id}`, () =>
+        getMovieById(props.item?.id)
+      )
+        .then((movieResponed) => {
+          dataMovie.value = movieResponed.data.value.data;
+
+          setTimeout(() => {
+            loading.value = false;
+          }, 1000);
+        })
+        .catch((e) => {
+          loading.value = false;
+          if (axios.isCancel(e)) return;
+        });
+    }
+  }
+
+  if (store.$state.isLogin) {
+    await useAsyncData(
+      `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
+      () => getItemHistory(store.$state?.userAccount?.id, props.item?.id)
+    )
+      .then((movieRespone) => {
+        if (movieRespone.data.value.data.success == true) {
+          isInHistory.value = true;
+          percent.value = movieRespone?.data?.result?.percent;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+  }
+});
+
+const handleClickTrailerIcon = () => {
+  isOenModalTrailer.value = true;
+};
+
+const handleCancel = () => {
+  isOenModalTrailer.value = false;
+};
+</script>
+<style lang="scss" src="./MovieCardHorizontalTrailer.scss"></style>

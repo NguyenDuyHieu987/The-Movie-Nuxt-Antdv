@@ -1,0 +1,21 @@
+.like-share {
+  margin-top: 10px;
+  // display: flex;
+  // flex-direction: column;
+
+  // a {
+  //   color: #fff;
+  //   padding: 5px 10px;
+  //   background-color: #0072ca;
+  //   border-radius: 3px;
+  //   transition: all 0.3s;
+
+  //   &:hover {
+  //     background-color: #0072caa6;
+  //   }
+  // }
+
+  a {
+    display: inline-block !important;
+  }
+}

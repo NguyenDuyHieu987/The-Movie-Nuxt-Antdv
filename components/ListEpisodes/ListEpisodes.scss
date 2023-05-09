@@ -1,0 +1,98 @@
+.list-episodes {
+  position: relative;
+  margin-top: 15px;
+  z-index: 1;
+
+  .control-episodes {
+    display: flex;
+    justify-content: center;
+
+    .el-button {
+      height: 36px;
+      background-color: #006999;
+      color: #fff;
+      min-width: 91px;
+
+      &:hover {
+        background-color: #006999bb;
+      }
+
+      &:disabled {
+        background-color: #313131bb;
+        color: #4e4e4e;
+      }
+    }
+  }
+
+  .ul-list,
+  ul {
+    // display: flex;
+    // flex-direction: row;
+    list-style-type: none;
+    margin-top: 7px;
+    padding: 0px 10px;
+    padding-bottom: 7px;
+    overflow: hidden;
+    max-height: 275px;
+    overflow-y: scroll;
+
+    & > li,
+    li + li {
+      margin-top: 7px;
+      margin-right: 7px;
+    }
+
+    li {
+      float: left;
+
+      a {
+        min-width: 75px;
+        max-width: 75px;
+        text-align: center;
+        padding: 8px 23px;
+        color: #fff;
+        transition: all 0.5s;
+        border-radius: 3px;
+        white-space: nowrap;
+        vertical-align: middle;
+        display: inline-block;
+        background-image: linear-gradient(
+          to right,
+          #006a88,
+          var(--sider-header-background-color2),
+          var(--sider-header-background-color1)
+        );
+        background-size: 200% 100%;
+
+        &:hover {
+          background-size: 200% 100%;
+          // background-position: -65px center;
+          background-position: 100% center;
+        }
+      }
+      &.active {
+        a {
+          background-image: none;
+          background-color: #006a88;
+          transition: all 0.7s ease;
+          animation: episode-fade-out 2s infinite linear;
+        }
+
+        @keyframes episode-fade-out {
+          0% {
+            box-shadow: 0 0 0 0 #006a88;
+          }
+          40% {
+            box-shadow: 0 0 0 5px #004b5f;
+          }
+          80% {
+            box-shadow: 0 0 0 5px #003746;
+          }
+          100% {
+            box-shadow: 0 0 0 5px #001d25;
+          }
+        }
+      }
+    }
+  }
+}

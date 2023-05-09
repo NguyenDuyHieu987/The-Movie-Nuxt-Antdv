@@ -1,0 +1,35 @@
+.filter-bar {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .list-input-filter {
+  }
+
+  .ant-select,
+  .el-select {
+    margin-left: 10px;
+    margin-top: 10px;
+    float: right;
+    .ant-select-selector {
+      display: inline-block;
+    }
+  }
+
+  .cancel-filter-btn,
+  .filter-btn {
+    height: auto;
+    float: right;
+    margin-top: 10px;
+    padding: 8px 25px;
+    margin-left: 10px;
+  }
+
+  .filter-btn {
+    background-color: #003b58;
+  }
+
+  .cancel-filter-btn {
+    padding: 8px 30px;
+  }
+}

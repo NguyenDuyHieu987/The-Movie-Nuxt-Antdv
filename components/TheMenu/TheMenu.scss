@@ -1,0 +1,102 @@
+.menu-sider-bar {
+  background-image: linear-gradient(
+    to right,
+    var(--sider-header-background-color3),
+    var(--sider-header-background-color2)
+  ) !important;
+  overflow: hidden;
+  min-height: calc(100% - calc(2 * var(--header-height)));
+
+  .ant-menu-item:hover {
+    background-color: var(--hover-regular-color) !important;
+  }
+
+  .ant-menu-item.ant-menu-item-selected,
+  .ant-menu-submenu-open {
+    background-color: var(--hover-regular-color) !important;
+  }
+
+  .ant-menu-item:not(:last-child) {
+    margin-bottom: 0px;
+  }
+
+  .ant-menu-item {
+    height: 45px !important;
+    line-height: 45px !important;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    margin-left: 3px !important;
+    display: flex;
+    align-items: center;
+  }
+
+  svg.ant-menu-item-icon:not(.material-icons-outlined) {
+    font-size: 1.5rem !important;
+    height: 15px;
+    width: 15px;
+  }
+
+  .ant-menu-item-icon {
+    svg:not(.material-icons-outlined) {
+      font-size: 1.5rem;
+      height: 15px;
+      width: 15px;
+    }
+  }
+
+  .ant-menu-item:has(.material-icons-outlined.ant-menu-item-icon) {
+    .material-icons-outlined.ant-menu-item-icon {
+      min-width: 24px;
+      margin-left: -2px;
+    }
+    .ant-menu-title-content {
+      margin-left: 3px;
+    }
+  }
+
+  .ant-menu-submenu {
+    margin-left: 3px !important;
+
+    .ant-menu-submenu-title {
+      height: 45px;
+      line-height: 45px;
+      border-radius: 100px;
+      border-radius: 100px;
+    }
+
+    .ant-menu-submenu-arrow {
+      color: #fff;
+
+      &::after,
+      &::before {
+        background: #bfbfbf !important;
+      }
+    }
+
+    .ant-menu-item {
+      // padding-left: 24px !important;
+      margin-left: 20px !important;
+      padding-left: 20px !important;
+      .ant-menu-title-content {
+        span {
+          display: -webkit-box;
+          max-width: 90%;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: horizontal;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+
+// .ant-menu-vertical.ant-menu-inline-collapsed {
+//   .ant-menu-item {
+//     border-top-left-radius: 0px;
+//     border-bottom-left-radius: 0px;
+//     margin-left: 0px !important;
+//   }
+//   .ant-menu-submenu {
+//     margin-left: 0px !important;
+//   }
+// }
