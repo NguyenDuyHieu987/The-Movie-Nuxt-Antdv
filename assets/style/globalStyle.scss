@@ -342,52 +342,6 @@ dl {
   }
 }
 
-@media only screen and (min-width: 1700px) {
-  .modal-trailer {
-    iframe {
-      height: 650px;
-    }
-  }
-}
-
-@media only screen and (max-width: 1500px) {
-  .ant-modal.modal-trailer {
-    width: 1000px !important;
-    iframe {
-      height: 550px !important;
-    }
-  }
-
-  .gradient-title-default {
-    font-size: 2.2rem;
-  }
-}
-
-@media only screen and (max-width: 1100px) {
-  .ant-modal.modal-trailer {
-    width: 900px !important;
-    iframe {
-      height: 450px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .ant-modal.modal-trailer {
-    iframe {
-      height: 400px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .ant-modal.modal-trailer {
-    iframe {
-      height: 200px !important;
-    }
-  }
-}
-
 .ant-dropdown {
   border: 0.5px solid var(--border-regular);
   position: fixed !important;
