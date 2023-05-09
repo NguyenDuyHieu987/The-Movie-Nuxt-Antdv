@@ -127,33 +127,33 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
     '@pinia/nuxt',
     'nuxt-icon',
-    // 'nuxt-lazy-load'
+    'nuxt-lazy-load'
     // '@/modules/antd'
   ],
   elementPlus: {
     /** Options */
   },
-  // lazyLoad: {
-  //   // These are the default values
-  //   images: true,
-  //   videos: true,
-  //   audios: true,
-  //   iframes: true,
-  //   native: false,
-  //   directiveOnly: false,
+  lazyLoad: {
+    // These are the default values
+    images: true,
+    videos: true,
+    audios: true,
+    iframes: true,
+    native: false,
+    directiveOnly: false,
     
-  //   // Default image must be in the public folder
-  //   // defaultImage: '/images/default-image.jpg',
+    // Default image must be in the public folder
+    // defaultImage: '/images/default-image.jpg',
   
-  //   // To remove class set value to false
-  //   loadingClass: 'isLoading',
-  //   loadedClass: 'isLoaded',
-  //   appendClass: 'lazyLoad',
+    // To remove class set value to false
+    loadingClass: 'isLoading',
+    loadedClass: 'isLoaded',
+    appendClass: 'lazyLoad',
     
-  //   observerConfig: {
-  //     // See IntersectionObserver documentation
-  //   }
-  // },
+    observerConfig: {
+      // See IntersectionObserver documentation
+    }
+  },
   plugins: [
     '@/plugins/antd',
     '@/plugins/fontawesome',
@@ -161,7 +161,7 @@ export default defineNuxtConfig({
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/googlelogin',
-    '@/plugins/vuelazyload',
+    { src: '@/plugins/vuelazyload', mode: 'client' },
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   routeRules: {
