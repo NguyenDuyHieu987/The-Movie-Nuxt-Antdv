@@ -1,30 +1,27 @@
 <template>
-  <div>
+  <!--   <div
+        v-if="$route.name == 'index' && store.$state.loadingHomePage"
+        class="loading-page"
+      >
+        <div class="loading-page-container">
+          <img src="/images/logo.png" alt="" />
+          <div class="logo"><h2>Phimhay247</h2></div>
+        </div>
+      </div> -->
+
+  <div class="__layout">
     <ClientOnly>
       <vue-progress-bar />
     </ClientOnly>
-
-    <!--   <div
-      v-if="$route.name == 'index' && store.$state.loadingHomePage"
-      class="loading-page"
-    >
-      <div class="loading-page-container">
-        <img src="/images/logo.png" alt="" />
-        <div class="logo"><h2>Phimhay247</h2></div>
-      </div>
-    </div> -->
-
-    <div class="__layout">
-      <NuxtLayout>
-        <NuxtPage>
-          <div id="components-back-top-demo-custom">
-            <a-back-top class="ant-back-top-inner" :visibilityHeight="600">
-              <font-awesome-icon icon="fa-solid fa-chevron-up" />
-            </a-back-top>
-          </div>
-        </NuxtPage>
-      </NuxtLayout>
-    </div>
+    <NuxtLayout>
+      <NuxtPage>
+        <div id="components-back-top-demo-custom">
+          <a-back-top class="ant-back-top-inner" :visibilityHeight="600">
+            <font-awesome-icon icon="fa-solid fa-chevron-up" />
+          </a-back-top>
+        </div>
+      </NuxtPage>
+    </NuxtLayout>
   </div>
 </template>
 

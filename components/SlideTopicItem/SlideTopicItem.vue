@@ -71,7 +71,6 @@ const props = defineProps({
   },
 });
 const store = useStore();
-const loading = ref(false);
 </script>
 
 <style lang="scss" src="./SlideTopicItem.scss"></style>
