@@ -2,7 +2,7 @@
   <div class="home-container">
     <SlideTopicHome :trendings="trendings" />
 
-    <div class="outstanding-stage">
+    <div class="outstanding-section">
       <h2 class="gradient-title-default" v-show="nowPlayings?.length">
         <strong>Phim nổi bật</strong>
         <NuxtLink
@@ -65,7 +65,7 @@
     </div>
 
     <div
-      class="recommend-stage"
+      class="recommend-section"
       v-if="store.$state?.isLogin"
       v-show="recommends?.length"
     >
@@ -90,7 +90,10 @@
           :loading="loadMoreRecommend"
           @click="handleLoadMoreRecommend"
         >
-          <template #icon> <PlusOutlined /> </template>
+          <template #icon>
+            <!-- <i class="fa-light fa-plus"></i> -->
+            <PlusOutlined />
+          </template>
           {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
         </el-button>
       </section>
@@ -114,7 +117,54 @@
       </div>
     </div>
 
-    <div class="tv-stage" v-show="tvAiringTodays?.length">
+    <div class="cartoon-section">
+      <h2 class="gradient-title-default" v-show="cartoons?.length">
+        <strong>Hoạt hình - Anime đặc sắc</strong>
+        <NuxtLink
+          :to="{
+            path: `/discover/genres/hoat-hinh`,
+          }"
+          style="font-size: 1.8rem"
+        >
+          <strong class="view-all">Xem tất cả</strong>
+        </NuxtLink>
+      </h2>
+
+      <carousel
+        v-if="cartoons?.length"
+        class="carousel-group"
+        :items="5"
+        :autoplay="true"
+        :dots="false"
+        :autoplayHoverPause="true"
+        :autoplayTimeout="10000"
+        :margin="7"
+        :autoplaySpeed="500"
+        :nav="false"
+        :responsive="responsiveHorizoltal"
+      >
+        <MovieCardHorizontal
+          v-for="(item, index) in cartoons"
+          :item="item"
+          :index="index"
+          :key="item.id"
+          type="movie"
+        />
+
+        <template #prev>
+          <div class="owl-prev">
+            <Icon name="fa6-solid:chevron-left"></Icon>
+          </div>
+        </template>
+        <template #next>
+          <div class="owl-next">
+            <Icon name="fa6-solid:chevron-right"></Icon>
+          </div>
+        </template>
+      </carousel>
+    </div>
+
+    <div class="tv-section" v-show="tvAiringTodays?.length">
       <h2 class="gradient-title-default">
         <strong>Phim bộ mới</strong>
         <NuxtLink
@@ -170,7 +220,7 @@
       </carousel>
     </div>
 
-    <div class="trailer-stage" v-show="upComings?.length">
+    <div class="trailer-section" v-show="upComings?.length">
       <h2 class="gradient-title-default">
         <strong>Trailer</strong>
 
@@ -195,7 +245,7 @@
       </section>
     </div>
 
-    <div class="theater-stage">
+    <div class="theater-section">
       <h2 class="gradient-title-default" v-show="topRateds?.length">
         <strong>Phim chiếu rạp mới</strong>
         <NuxtLink
@@ -240,6 +290,53 @@
         </template>
       </carousel>
     </div>
+
+    <div class="on-the-air-section">
+      <h2 class="gradient-title-default" v-show="tvOnTheAirs?.length">
+        <strong>TV On the air</strong>
+        <NuxtLink
+          :to="{
+            path: `/discover/tv/ontheair`,
+          }"
+          style="font-size: 1.8rem"
+        >
+          <strong class="view-all">Xem tất cả</strong>
+        </NuxtLink>
+      </h2>
+
+      <carousel
+        v-if="tvOnTheAirs?.length"
+        class="carousel-group"
+        :items="5"
+        :autoplay="true"
+        :dots="false"
+        :autoplayHoverPause="true"
+        :autoplayTimeout="10000"
+        :margin="7"
+        :autoplaySpeed="500"
+        :nav="false"
+        :responsive="responsiveHorizoltal"
+      >
+        <MovieCardHorizontal
+          v-for="(item, index) in tvOnTheAirs"
+          :item="item"
+          :index="index"
+          :key="item.id"
+          type="tv"
+        />
+
+        <template #prev>
+          <div class="owl-prev">
+            <Icon name="fa6-solid:chevron-left"></Icon>
+          </div>
+        </template>
+        <template #next>
+          <div class="owl-next">
+            <Icon name="fa6-solid:chevron-right"></Icon>
+          </div>
+        </template>
+      </carousel>
+    </div>
   </div>
 </template>
 
@@ -258,6 +355,8 @@ import {
   getUpComing,
   getMyRecommend,
   getTrending,
+  getTvOntheAir,
+  getMoviesByGenres,
 } from '@/services/MovieService';
 import { PlusOutlined } from '@ant-design/icons-vue';
 
@@ -270,6 +369,8 @@ const trendings = ref([]);
 const nowPlayings = ref([]);
 const upComings = ref([]);
 const tvAiringTodays = ref([]);
+const tvOnTheAirs = ref([]);
+const cartoons = ref([]);
 const topRateds = ref([]);
 const recommends = ref([]);
 const viewMoreRecommend = ref(false);
@@ -394,6 +495,11 @@ onBeforeMount(async () => {
     await useAsyncData('movie/upcoming/1', () => getUpComing(1)),
     await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1)),
     await useAsyncData('movie/toprated/1', () => getTopRated(1)),
+    await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1)),
+    await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
+      getMoviesByGenres('hoat-hinh', 1, 'views_desc')
+    ),
+
     store.$state?.isLogin
       ? useAsyncData('recommend/get/1', () =>
           getMyRecommend(store.$state.userAccount?.id, 1)
@@ -406,8 +512,11 @@ onBeforeMount(async () => {
       upComings.value = response[2].data.value.data?.results.slice(0, 10);
       tvAiringTodays.value = response[3].data.value.data?.results.slice(0, 10);
       topRateds.value = response[4].data.value.data?.results.slice(0, 10);
+      tvOnTheAirs.value = response[5].data.value.data?.results.slice(0, 10);
+      cartoons.value = response[6].data.value.data?.results.slice(0, 10);
+
       if (store.$state.isLogin) {
-        recommends.value = response[5].data.value.data?.results;
+        recommends.value = response[7].data.value.data?.results;
       }
     })
     .catch((e) => {

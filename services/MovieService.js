@@ -150,7 +150,7 @@ const getDaTaSearch = async (text, page) =>
     `${URL_API}/search/multi?query=${text}&page=${page}&api=hieu987`
   );
 
-const getMoviesByGenres = async (genre_id, page) => {
+const getMoviesByGenres = async (genre_id, page, sort_by = '') => {
   const genre = getGenresNameByShortName(genre_id, ALLGENRES);
 
   // const genreStr = !genres_name.includes('&')
@@ -160,7 +160,9 @@ const getMoviesByGenres = async (genre_id, page) => {
   // const genreStr = genre != '' ? genre.id : '';
 
   return await axios.get(
-    `${URL_API}/discover/all?api=hieu987&with_genres=${genre.id}&page=${page}`
+    `${URL_API}/discover/all?api=hieu987${
+      sort_by.length != 0 ? '&sort_by=' + sort_by : ''
+    }&with_genres=${genre.id}&page=${page}`
   );
 };
 
