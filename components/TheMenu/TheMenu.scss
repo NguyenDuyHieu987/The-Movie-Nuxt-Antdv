@@ -28,6 +28,10 @@
     margin-left: 3px !important;
     display: flex;
     align-items: center;
+
+    .ant-menu-title-content {
+      transition: all 0s;
+    }
   }
 
   svg.ant-menu-item-icon:not(.material-icons-outlined) {
@@ -49,6 +53,7 @@
       min-width: 24px;
       margin-left: -2px;
     }
+
     .ant-menu-title-content {
       margin-left: 3px;
     }
@@ -62,6 +67,10 @@
       line-height: 45px;
       border-radius: 100px;
       border-radius: 100px;
+
+      .ant-menu-title-content {
+        transition: all 0s;
+      }
     }
 
     .ant-menu-submenu-arrow {
@@ -77,6 +86,7 @@
       // padding-left: 24px !important;
       margin-left: 20px !important;
       padding-left: 20px !important;
+
       .ant-menu-title-content {
         span {
           display: -webkit-box;
