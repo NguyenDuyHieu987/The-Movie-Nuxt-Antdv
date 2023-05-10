@@ -474,30 +474,30 @@ dl {
 
   .owl-prev {
     background-image: linear-gradient(90deg, #050505 0, #05050500 100%);
-    left: -20px;
+    left: -10px;
   }
 
   .owl-next {
     background-image: linear-gradient(90deg, #05050500 0, #050505 100%);
-    right: -20px;
+    right: -10px;
   }
 }
 
 @media only screen and (max-width: 900px) {
   .carousel-group {
     .owl-prev {
-      left: -15px;
+      left: -10px;
     }
 
     .owl-next {
-      right: -15px;
+      right: -10px;
     }
   }
 }
 
 .owl-carousel {
   .owl-stage-outer {
-    // clip-path: inset(-100vw 0 -100vw 0);
+    clip-path: inset(-100vw 0 -100vw 0);
     overflow: visible !important;
   }
 }

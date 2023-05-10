@@ -296,6 +296,17 @@ const handleLogout = () => {
     window.localStorage.removeItem('isLogin');
   }
 };
+
+onMounted(() => {
+  const header = document.querySelector('.ant-layout-header.header');
+  window.onscroll = (e) => {
+    if (window.scrollY >= 65) {
+      header.style.backgroundColor = '#000';
+    } else {
+      header.style.backgroundColor = 'transparent';
+    }
+  };
+});
 </script>
 
 <style lang="scss" src="./Header.scss"></style>

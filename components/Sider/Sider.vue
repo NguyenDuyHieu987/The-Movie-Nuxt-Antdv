@@ -83,6 +83,18 @@ import { storeToRefs } from 'pinia';
 
 const store = useStore();
 const { collapsed, isLogin, userAccount } = storeToRefs(store);
+onMounted(() => {
+  const menu = document.querySelector('.sider-bar .ant-layout-sider-children');
+  const sider_header = document.querySelector('.sider-header');
+
+  menu.addEventListener('scroll', (e) => {
+    if (e.target.scrollTop > 0) {
+      sider_header.style.backgroundColor = '#000';
+    } else {
+      sider_header.style.backgroundColor = 'transparent';
+    }
+  });
+});
 </script>
 
 <style lang="scss" src="./Sider.scss"></style>

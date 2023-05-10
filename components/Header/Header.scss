@@ -42,12 +42,13 @@
   top: 0;
   width: 100%;
   z-index: 100;
-  background-image: linear-gradient(
-    to right,
-    var(--sider-header-background-color2),
-    var(--sider-header-background-color3),
-    var(--sider-header-background-color2)
-  );
+  // background-image: linear-gradient(
+  //   to right,
+  //   var(--sider-header-background-color2),
+  //   var(--sider-header-background-color3),
+  //   var(--sider-header-background-color2)
+  // );
+  background-color: transparent;
 
   .ant-input-search .ant-input {
     color: #fff;

@@ -14,7 +14,7 @@
       </div>
     </div> -->
 
-    <div>
+    <div class="app-wrapper">
       <NuxtLayout>
         <NuxtPage>
           <div id="components-back-top-demo-custom">
@@ -106,6 +106,9 @@ onBeforeMount(async () => {
     bottom: 20px !important;
     right: 20px !important;
   }
+}
+.app-wrapper {
+  overflow: hidden;
 }
 
 .loading-page {

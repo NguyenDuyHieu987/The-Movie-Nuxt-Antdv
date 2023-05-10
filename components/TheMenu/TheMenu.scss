@@ -1,9 +1,10 @@
 .menu-sider-bar {
-  background-image: linear-gradient(
-    to right,
-    var(--sider-header-background-color3),
-    var(--sider-header-background-color2)
-  ) !important;
+  // background-image: linear-gradient(
+  //   to right,
+  //   var(--sider-header-background-color3),
+  //   var(--sider-header-background-color2)
+  // ) !important;
+  background-color: transparent !important;
   overflow: hidden;
   min-height: calc(100% - calc(2 * var(--header-height)));
 
