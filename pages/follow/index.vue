@@ -643,9 +643,12 @@ const searchFollow = (e) => {
 
     clearTimeout(debounce.value);
     debounce.value = setTimeout(() => {
-      searchList(store?.state.userAccount?.id, e.target.value)
+      useAsyncData(
+        `list/search/${store.$state.userAccount?.id}/${e.target.value}`,
+        () => searchList(store?.$state.userAccount?.id, e.target.value)
+      )
         .then((movieRespone) => {
-          dataList.value = movieRespone?.data?.results;
+          dataList.value = movieRespone.data.value.data?.results;
           setTimeout(() => {
             loadingSearch.value = false;
           }, 500);

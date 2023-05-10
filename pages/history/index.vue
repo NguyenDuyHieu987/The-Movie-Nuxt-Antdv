@@ -642,9 +642,12 @@ const searchWatchList = (e) => {
 
     clearTimeout(debounce.value);
     debounce.value = setTimeout(() => {
-      searchHistory(store.$state.userAccount?.id, e.target.value)
+      useAsyncData(
+        `history/search/${store.$state.userAccount?.id}/${e.target.value}`,
+        () => searchHistory(store.$state.userAccount?.id, e.target.value)
+      )
         .then((movieRespone) => {
-          dataHistory.value = movieRespone?.data?.results;
+          dataHistory.value = movieRespone.data.value.data?.results;
           setTimeout(() => {
             loadingSearch.value = false;
           }, 500);

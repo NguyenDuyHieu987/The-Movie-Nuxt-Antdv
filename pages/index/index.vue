@@ -299,11 +299,11 @@ onBeforeMount(async () => {
       : null,
   ])
     .then((response) => {
-      trendings.value = response[0].data.value.data?.results;
-      nowPlayings.value = response[1].data.value.data?.results;
-      upComings.value = response[2].data.value.data?.results;
-      tvAiringTodays.value = response[3].data.value.data?.results;
-      topRateds.value = response[4].data.value.data?.results;
+      trendings.value = response[0].data.value.data?.results.slice(0, 10);
+      nowPlayings.value = response[1].data.value.data?.results.slice(0, 10);
+      upComings.value = response[2].data.value.data?.results.slice(0, 10);
+      tvAiringTodays.value = response[3].data.value.data?.results.slice(0, 10);
+      topRateds.value = response[4].data.value.data?.results.slice(0, 10);
       if (store.$state.isLogin) {
         recommends.value = response[5].data.value.data?.results;
       }
