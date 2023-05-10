@@ -16,13 +16,13 @@
 
     <div class="app-wrapper">
       <NuxtLayout>
-        <NuxtPage>
-          <div id="components-back-top-demo-custom">
-            <a-back-top class="ant-back-top-inner" :visibilityHeight="600">
-              <font-awesome-icon icon="fa-solid fa-chevron-up" />
-            </a-back-top>
-          </div>
-        </NuxtPage>
+        <NuxtPage />
+
+        <div id="components-back-top-demo-custom">
+          <a-back-top class="ant-back-top-inner" :visibilityHeight="600">
+            <font-awesome-icon icon="fa-solid fa-chevron-up" />
+          </a-back-top>
+        </div>
       </NuxtLayout>
     </div>
   </div>
