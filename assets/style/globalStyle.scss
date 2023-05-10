@@ -319,12 +319,10 @@ dl {
 .movie-discovered {
   .movie-card-vertical-item,
   .movie-card-horizontal-item {
-    &:hover {
-      .detail-flow {
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%) scale(1.05);
-      }
+    .detail-flow {
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%) scale(1.1);
     }
   }
 }
@@ -332,12 +330,10 @@ dl {
 .owl-carousel {
   .movie-card-vertical-item,
   .movie-card-horizontal-item {
-    &:hover {
-      .detail-flow {
-        top: 50%;
-        right: 0;
-        transform: translateX(-1%) translateY(-50%) scale(1.05);
-      }
+    .detail-flow {
+      top: 50%;
+      right: 12px;
+      transform: translateX(-1%) translateY(-50%) scale(1.1);
     }
   }
 }

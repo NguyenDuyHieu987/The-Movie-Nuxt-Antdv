@@ -362,10 +362,10 @@ onMounted(() => {
       if (detailFlow?.style) {
         // if (rect.left <= 300) {
         if (e.x - x.offsetWidth <= 250) {
-          detailFlow.style.left = '0';
+          detailFlow.style.left = '10px';
           detailFlow.style.right = 'auto';
           detailFlow.style.transform =
-            'translateX(0%) translateY(-50%) scale(1.05)';
+            'translateX(0%) translateY(-50%) scale(1.1)';
         }
 
         // console.log('e: ', e.x);
@@ -374,9 +374,9 @@ onMounted(() => {
 
         if (window.innerWidth - e.x <= x.offsetWidth) {
           detailFlow.style.left = 'auto';
-          detailFlow.style.right = '0';
+          detailFlow.style.right = '10px';
           detailFlow.style.transform =
-            'translateX(0%) translateY(-50%) scale(1.05)';
+            'translateX(0%) translateY(-50%) scale(1.1)';
         }
       }
     });

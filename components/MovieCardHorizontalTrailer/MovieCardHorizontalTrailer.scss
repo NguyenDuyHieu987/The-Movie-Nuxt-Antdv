@@ -1,15 +1,15 @@
 @media only screen and (max-width: 1150px) {
-  .movie-card-horizontal-item {
-    .img-box {
-      transition: all 0.3s;
-      height: 130px !important;
-    }
-  }
 }
 
 @media only screen and (max-width: 1010px) {
   .movie-group.horizontal.trailer {
-    grid-template-columns: repeat(auto-fit, minmax(180px, auto)) !important;
+    grid-template-columns: repeat(auto-fit, minmax(170px, auto)) !important;
+  }
+  .movie-card-horizontal-item-trailer {
+    .img-box {
+      transition: all 0.3s;
+      height: 130px !important;
+    }
   }
 }
 
@@ -18,18 +18,18 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, auto)) !important;
   }
 
-  .movie-card-horizontal-item {
+  .movie-card-horizontal-item-trailer {
     .img-box {
       height: 110px !important;
     }
   }
 }
 
-.movie-card-horizontal-item.skeleton {
+.movie-card-horizontal-item-trailer.skeleton {
   cursor: auto;
 }
 
-.movie-card-horizontal-item {
+.movie-card-horizontal-item-trailer {
   color: #fff;
   cursor: pointer;
   position: relative;
@@ -95,13 +95,6 @@
     margin-top: 10px;
   }
 
-  .detail-flow {
-    height: 0px;
-    width: 0px;
-    overflow: hidden;
-    position: absolute;
-  }
-
   &:hover {
     .img-box {
       border-top-right-radius: 0px;
@@ -132,74 +125,6 @@
 
     .info {
       color: #fff;
-    }
-
-    .detail-flow {
-      height: 345px;
-      width: 330px;
-      transition-delay: 2s;
-      background-color: #000;
-      z-index: 10;
-      border-top-right-radius: 5px;
-      border-top-left-radius: 5px;
-      box-shadow: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
-        0 9px 28px 8px #00000077;
-      transition-duration: 0.15s;
-
-      .backdrop-box {
-        height: 180px;
-
-        .ant-image {
-          img {
-            opacity: 1;
-          }
-        }
-      }
-
-      .bottom-content {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 18px 10px 7px 10px;
-
-        .widget {
-          display: flex;
-          justify-content: space-between;
-
-          .left {
-            display: flex;
-            flex-direction: row;
-            gap: 7px;
-          }
-
-          .ant-btn {
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            &:hover {
-              color: #fff;
-              border: 1px solid #fff;
-            }
-          }
-        }
-
-        .info {
-          padding: 0px;
-
-          .title,
-          .genres {
-            white-space: normal;
-            overflow: visible;
-          }
-
-          .country-imdb {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-          }
-        }
-      }
     }
   }
 
@@ -262,7 +187,9 @@
 
     .title,
     .genres {
-      white-space: nowrap;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
     }
