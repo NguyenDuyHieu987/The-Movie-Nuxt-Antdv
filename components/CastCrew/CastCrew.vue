@@ -136,3 +136,5 @@ const responsiveCarousel = ref({
   },
 });
 </script>
+
+<style lang="scss" scoped src="./CastCrew.scss"></style>
