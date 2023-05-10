@@ -74,10 +74,10 @@
       </h2>
 
       <section
-        class="movie-group horizontal"
+        class="movie-group vertical"
         :class="{ viewmore: viewMoreRecommend }"
       >
-        <MovieCardHorizontal
+        <MovieCardVertical
           v-for="(item, index) in recommends"
           :index="index"
           :key="item.id"
@@ -90,9 +90,7 @@
           :loading="loadMoreRecommend"
           @click="handleLoadMoreRecommend"
         >
-          <template #icon>
-            <i class="fa-light fa-plus"></i>
-          </template>
+          <template #icon> <PlusOutlined /> </template>
           {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
         </el-button>
       </section>
@@ -107,9 +105,10 @@
             :content="!viewMoreRecommend ? 'Hiện thêm' : 'Ẩn bớt'"
             placement="bottom"
           >
-            <!-- <i v-if="!viewMoreRecommend" class="fa-light fa-chevron-down"></i> -->
+            <!-- <i v-if="!viewMoreRecommend" class="fa-light fa-chevron-down"></i>
+            <i v-else class="fa-light fa-chevron-up"></i> -->
             <Icon v-if="!viewMoreRecommend" name="ci:chevron-down" />
-            <i v-else class="fa-light fa-chevron-up"></i>
+            <Icon v-else name="ci:chevron-big-up" />
           </el-tooltip>
         </ClientOnly>
       </div>
@@ -260,6 +259,7 @@ import {
   getMyRecommend,
   getTrending,
 } from '@/services/MovieService';
+import { PlusOutlined } from '@ant-design/icons-vue';
 
 definePageMeta({
   middleware: [function (to, from) {}, 'home-page-loading'],

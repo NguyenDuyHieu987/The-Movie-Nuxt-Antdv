@@ -289,6 +289,22 @@
       </template>
       <NuxtLink :to="{ path: '/pricing' }"> <span>Pricing</span></NuxtLink>
     </a-menu-item>
+    <a-menu-item key="pricing">
+      <template #icon>
+        <!-- <font-awesome-icon icon="fa-solid fa-money-check-dollar" /> -->
+        <!-- <i class="fa-regular fa-money-check-dollar-pen"></i> -->
+        <Icon name="material-symbols:price-change-outline"></Icon>
+      </template>
+      <NuxtLink :to="{ path: '/pricing' }"> <span>Pricing</span></NuxtLink>
+    </a-menu-item>
+    <a-menu-item key="pricing">
+      <template #icon>
+        <!-- <font-awesome-icon icon="fa-solid fa-money-check-dollar" /> -->
+        <!-- <i class="fa-regular fa-money-check-dollar-pen"></i> -->
+        <Icon name="material-symbols:price-change-outline"></Icon>
+      </template>
+      <NuxtLink :to="{ path: '/pricing' }"> <span>Pricing</span></NuxtLink>
+    </a-menu-item>
   </a-menu>
 </template>
 
