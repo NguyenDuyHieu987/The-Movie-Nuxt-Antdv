@@ -190,38 +190,6 @@ dl {
   }
 }
 
-.owl-nav {
-  .owl-prev,
-  .owl-next {
-    position: absolute;
-    top: 50%;
-    background: transparent !important;
-    transform: translateY(-100%);
-
-    i,
-    svg {
-      font-size: 30px;
-      transition: 0.15s all;
-      color: #707070;
-    }
-
-    &:hover {
-      i,
-      svg {
-        font-size: 35px;
-        color: #007ea5;
-      }
-    }
-  }
-  .owl-prev {
-    left: 0;
-  }
-
-  .owl-next {
-    right: 0;
-  }
-}
-
 .gradient-title-default {
   margin-top: 25px;
   margin-bottom: 23px;
@@ -349,23 +317,27 @@ dl {
   .movie-card-vertical-item,
   .movie-card-horizontal-item {
     .detail-flow {
-      // top: 50%;
-      // left: 50%;
-      // transform: translateX(-50%) translateY(-50%) scale(1.1);
       top: 50%;
-      right: 12px;
-      transform: translateX(-1%) translateY(-50%) scale(1.1);
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%) scale(1.1);
     }
   }
 }
 
 .owl-carousel {
+  .owl-item:hover {
+    z-index: 1;
+  }
+
   .movie-card-vertical-item,
   .movie-card-horizontal-item {
     .detail-flow {
+      // top: 50%;
+      // right: 12px;
+      // transform: translateX(-1%) translateY(-50%) scale(1.1);
       top: 50%;
-      right: 12px;
-      transform: translateX(-1%) translateY(-50%) scale(1.1);
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%) scale(1.1);
     }
   }
 }
@@ -464,9 +436,65 @@ dl {
   // overflow: visible !important;
 }
 
-.owl-carousel .owl-stage-outer {
-  clip-path: inset(-100vw 0 -100vw 0);
-  overflow: visible !important;
+.carousel-group {
+  position: relative;
+
+  &:hover {
+    .owl-prev,
+    .owl-next {
+      opacity: 1;
+    }
+  }
+
+  .owl-prev,
+  .owl-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    // background-color: rgba(2, 2, 2, 0.425);
+    opacity: 0;
+    transition: 0.15s all;
+
+    i,
+    svg {
+      font-size: 35px;
+      transition: 0.2s all;
+      color: #d3d3d3;
+    }
+
+    &:hover {
+      i,
+      svg {
+        // font-size: 35px;
+        // color: #007ea5;
+        color: #fff;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .owl-prev {
+    background-image: linear-gradient(90deg, #111111ff 0, #11111100 100%);
+    left: 0px;
+  }
+
+  .owl-next {
+    background-image: linear-gradient(90deg, #11111100 0, #111111ff 100%);
+    right: 0px;
+  }
+}
+
+.owl-carousel {
+  .owl-stage-outer {
+    clip-path: inset(-100vw 0 -100vw 0);
+    overflow: visible !important;
+  }
 }
 
 .ant-layout-sider-children {

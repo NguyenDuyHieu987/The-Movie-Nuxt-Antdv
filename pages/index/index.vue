@@ -29,6 +29,7 @@
         </template>
       </Carousel> -->
 
+      <!-- :navText="[btnPrev, btnNext]" -->
       <carousel
         v-if="nowPlayings?.length"
         class="carousel-group"
@@ -39,7 +40,7 @@
         :autoplayTimeout="10000"
         :margin="7"
         :autoplaySpeed="500"
-        :navText="[btnPrev, btnNext]"
+        :nav="false"
         :responsive="{
           0: {
             items: 2,
@@ -91,16 +92,16 @@
           type="movie"
         />
 
-        <!-- <template #prev>
+        <template #prev>
           <div class="owl-prev">
-            <i class="fa-solid fa-chevron-left"></i>
+            <Icon name="fa6-solid:chevron-left"></Icon>
           </div>
         </template>
         <template #next>
           <div class="owl-next">
-            <i class="fa-solid fa-chevron-right"></i>
+            <Icon name="fa6-solid:chevron-right"></Icon>
           </div>
-        </template> -->
+        </template>
       </carousel>
     </div>
 
@@ -217,14 +218,15 @@
       </h2>
       <carousel
         v-if="topRateds?.length"
+        class="carousel-group"
         :items="4"
         :autoplay="true"
         :dots="false"
         :autoplayHoverPause="true"
-        :autoplayTimeout="5000"
+        :autoplayTimeout="10000"
         :margin="7"
         :autoplaySpeed="500"
-        :navText="[btnPrev, btnNext]"
+        :nav="false"
         :responsive="{
           0: {
             items: 2,
@@ -295,6 +297,17 @@
           :key="item.id"
           type="movie"
         />
+
+        <template #prev>
+          <div class="owl-prev">
+            <Icon name="fa6-solid:chevron-left"></Icon>
+          </div>
+        </template>
+        <template #next>
+          <div class="owl-next">
+            <Icon name="fa6-solid:chevron-right"></Icon>
+          </div>
+        </template>
       </carousel>
     </div>
   </div>

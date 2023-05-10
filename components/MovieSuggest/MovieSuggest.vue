@@ -5,7 +5,7 @@
     </h2>
     <carousel
       v-if="dataSimilar?.length"
-      class="similar-container"
+      class="carousel-group"
       :items="4"
       :autoplay="true"
       :dots="false"
@@ -13,7 +13,7 @@
       :autoplayTimeout="5000"
       :margin="7"
       :autoplaySpeed="500"
-      :navText="[btnPrev, btnNext]"
+      :nav="false"
       :responsive="responsive"
     >
       <MovieCardVertical
@@ -23,6 +23,17 @@
         :item="item"
         :type="item.media_type"
       />
+
+      <template #prev>
+        <div class="owl-prev">
+          <Icon name="fa6-solid:chevron-left"></Icon>
+        </div>
+      </template>
+      <template #next>
+        <div class="owl-next">
+          <Icon name="fa6-solid:chevron-right"></Icon>
+        </div>
+      </template>
     </carousel>
   </div>
 
@@ -32,7 +43,7 @@
     </h2>
     <carousel
       v-if="dataRecommend?.length"
-      class="recommend-container"
+      class="carousel-group"
       :items="4"
       :autoplay="true"
       :dots="false"
@@ -40,7 +51,7 @@
       :autoplayTimeout="5000"
       :margin="7"
       :autoplaySpeed="500"
-      :navText="[btnPrev, btnNext]"
+      :nav="false"
       :responsive="responsive"
     >
       <MovieCardVertical
@@ -50,6 +61,17 @@
         :key="item.id"
         :type="item?.media_type"
       />
+
+      <template #prev>
+        <div class="owl-prev">
+          <Icon name="fa6-solid:chevron-left"></Icon>
+        </div>
+      </template>
+      <template #next>
+        <div class="owl-next">
+          <Icon name="fa6-solid:chevron-right"></Icon>
+        </div>
+      </template>
     </carousel>
   </div>
 </template>
@@ -74,45 +96,59 @@ const randomRecommend = ref(Math.floor(Math.random() * 50) + 1);
 const responsive = ref({
   0: {
     items: 2,
+    slideBy: 2,
   },
   500: {
     items: 2,
+    slideBy: 2,
   },
   520: {
     items: 3,
+    slideBy: 3,
   },
   700: {
     items: 4,
+    slideBy: 4,
   },
   800: {
     items: 3,
+    slideBy: 3,
   },
   900: {
     items: 4,
+    slideBy: 4,
   },
   1175: {
     items: 5,
+    slideBy: 5,
   },
   1300: {
     items: 6,
+    slideBy: 6,
   },
   1400: {
     items: 6,
+    slideBy: 6,
   },
   1550: {
     items: 7,
+    slideBy: 7,
   },
   1700: {
     items: 8,
+    slideBy: 8,
   },
   1900: {
     items: 9,
+    slideBy: 9,
   },
   2000: {
     items: 10,
+    slideBy: 10,
   },
   2200: {
     items: 11,
+    slideBy: 11,
   },
 });
 

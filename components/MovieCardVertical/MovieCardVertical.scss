@@ -322,13 +322,12 @@
     }
 
     .detail-flow {
-      z-index: 1;
+      z-index: 10;
       opacity: 1;
       height: 330px;
       width: 350px;
       transition-delay: 2s;
       background-color: #000;
-      z-index: 10;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
       box-shadow: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
