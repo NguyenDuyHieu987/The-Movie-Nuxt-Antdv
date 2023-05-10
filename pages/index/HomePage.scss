@@ -7,13 +7,12 @@
   }
 
   .recommend-stage {
-    clip-path: inset(-100vw 0 -100vw 0);
-
     .movie-group.horizontal {
       // display: flex;
       // flex-direction: row;
       grid-auto-flow: column;
       transition: all 0.3s;
+      clip-path: inset(-100vw 0 -100vw 0);
 
       .loadmore-btn {
         min-height: 180px;
@@ -31,8 +30,8 @@
       }
 
       &.viewmore {
-        clip-path: none;
         grid-auto-flow: row;
+        clip-path: none;
       }
 
       .movie-card-horizontal-item {
