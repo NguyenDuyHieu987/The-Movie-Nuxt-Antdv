@@ -18,7 +18,7 @@ const URL_API = 'http://127.0.0.1:5000';
 // const URL_API = 'https://api.phimhay247.site';
 
 // const URL_API_IMAGE = API_IMAGE_SERVICE_URL;
-const URL_API_IMAGE = 'http://127.0.0.1:5001';
+const URL_API_IMAGE = 'http://127.0.0.1:5002';
 // const URL_API_IMAGE = 'https://img.api.phimhay247.site';
 
 function emailValidation(email) {
@@ -478,16 +478,16 @@ const getLanguage = (original_language, allCountries) =>
 // const getPoster = (path) => `${TMDB_IMAGE_BASE_URL}/original${path}`;
 const getPosterCast = (path) => `${TMDB_IMAGE_BASE_URL}/original${path}`;
 
-const getPoster = (path) => {
+const getPoster = (path, size = 'full') => {
   return path === null || path === undefined
     ? ''
-    : `${URL_API_IMAGE}/image/poster/${path}?api=hieu987`;
+    : `${URL_API_IMAGE}/image/poster/${path}?size=${size}`;
 };
 
-const getBackdrop = (path) => {
+const getBackdrop = (path, size = 'full') => {
   return path === null || path === undefined
     ? ''
-    : `${URL_API_IMAGE}/image/backdrop/${path}?api=hieu987`;
+    : `${URL_API_IMAGE}/image/backdrop/${path}?size=${size}`;
 };
 
 const getColorImage = async (path) =>

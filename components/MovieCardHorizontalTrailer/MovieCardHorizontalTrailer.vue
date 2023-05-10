@@ -35,7 +35,7 @@
           <img
             class="ant-image"
             v-if="!loading"
-            v-lazy="getBackdrop(dataMovie?.backdrop_path)"
+            v-lazy="getBackdrop(dataMovie?.backdrop_path, '350,')"
             :preview="false"
           />
 
