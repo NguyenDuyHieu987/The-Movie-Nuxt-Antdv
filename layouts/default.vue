@@ -94,4 +94,10 @@ const { collapsed } = storeToRefs(store);
     padding: 15px 15px;
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .body-content {
+    margin-left: 0px;
+  }
+}
 </style>

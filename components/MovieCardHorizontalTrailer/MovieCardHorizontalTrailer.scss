@@ -1,30 +1,3 @@
-@media only screen and (max-width: 1150px) {
-}
-
-@media only screen and (max-width: 1010px) {
-  .movie-group.horizontal.trailer {
-    grid-template-columns: repeat(auto-fit, minmax(170px, auto)) !important;
-  }
-  .movie-card-horizontal-item-trailer {
-    .img-box {
-      transition: all 0.3s;
-      height: 130px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 435px) {
-  .movie-group.horizontal.trailer {
-    grid-template-columns: repeat(auto-fit, minmax(150px, auto)) !important;
-  }
-
-  .movie-card-horizontal-item-trailer {
-    .img-box {
-      height: 110px !important;
-    }
-  }
-}
-
 .movie-card-horizontal-item-trailer.skeleton {
   cursor: auto;
 }
@@ -204,8 +177,55 @@
   }
 }
 
+.ant-modal.modal-trailer {
+  .action {
+    display: flex;
+    gap: 10px;
+
+    .btn-play-now {
+      color: #fff;
+      padding: 9px 23px;
+      background-color: #ba0025;
+      transition: all 0.3s;
+      border-radius: 2px;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: #ba0025ae;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+}
+
+@media only screen and (max-width: 1010px) {
+  .movie-group.horizontal.trailer {
+    grid-template-columns: repeat(auto-fit, minmax(170px, auto));
+  }
+  .movie-card-horizontal-item-trailer {
+    .img-box {
+      transition: all 0.3s;
+      height: 130px;
+    }
+  }
+}
+
+@media only screen and (max-width: 435px) {
+  .movie-group.horizontal.trailer {
+    grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+  }
+
+  .movie-card-horizontal-item-trailer {
+    .img-box {
+      height: 110px;
+    }
+  }
+}
+
 @media only screen and (min-width: 1700px) {
-  .modal-trailer {
+  .ant-modal.modal-trailer {
     iframe {
       height: 650px;
     }
@@ -216,12 +236,8 @@
   .ant-modal.modal-trailer {
     width: 1000px !important;
     iframe {
-      height: 550px !important;
+      height: 550px;
     }
-  }
-
-  .gradient-title-default {
-    font-size: 2.2rem;
   }
 }
 
@@ -229,7 +245,7 @@
   .ant-modal.modal-trailer {
     width: 900px !important;
     iframe {
-      height: 450px !important;
+      height: 450px;
     }
   }
 }
@@ -237,7 +253,7 @@
 @media only screen and (max-width: 900px) {
   .ant-modal.modal-trailer {
     iframe {
-      height: 400px !important;
+      height: 400px;
     }
   }
 }
@@ -245,22 +261,15 @@
 @media only screen and (max-width: 700px) {
   .ant-modal.modal-trailer {
     iframe {
-      height: 200px !important;
+      height: 300px;
     }
   }
 }
 
-.ant-modal.modal-trailer {
-  .btn-play-now {
-    color: #fff;
-    padding: 11px 25px;
-    background-color: #ba0025;
-    transition: all 0.3s;
-    margin-left: 10px;
-    border-radius: 2px;
-
-    &:hover {
-      background-color: #ba0025ae;
+@media only screen and (max-width: 500px) {
+  .ant-modal.modal-trailer {
+    iframe {
+      height: 200px;
     }
   }
 }

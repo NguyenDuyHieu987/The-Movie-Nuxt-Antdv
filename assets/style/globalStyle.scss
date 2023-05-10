@@ -167,29 +167,6 @@ dl {
   }
 }
 
-@media only screen and (max-width: 800px) {
-  html {
-    font-size: 9px;
-  }
-
-  .gradient-title-default {
-    font-size: 2rem !important;
-  }
-
-  .section-title {
-    font-size: 1.8rem !important;
-  }
-
-  .body-content {
-    margin-left: 0px !important;
-  }
-
-  .ant-layout-header.header {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
-}
-
 .gradient-title-default {
   margin-top: 25px;
   margin-bottom: 23px;
@@ -260,8 +237,24 @@ dl {
   }
 }
 
-.owl-carousel .owl-item img {
-  display: inline !important;
+@media only screen and (max-width: 1500px) {
+  .gradient-title-default {
+    font-size: 2.2rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 9px;
+  }
+
+  .gradient-title-default {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
 }
 
 .ant-skeleton-element .ant-skeleton-image {
@@ -480,19 +473,31 @@ dl {
   }
 
   .owl-prev {
-    background-image: linear-gradient(90deg, #111111ff 0, #11111100 100%);
-    left: 0px;
+    background-image: linear-gradient(90deg, #050505 0, #05050500 100%);
+    left: -20px;
   }
 
   .owl-next {
-    background-image: linear-gradient(90deg, #11111100 0, #111111ff 100%);
-    right: 0px;
+    background-image: linear-gradient(90deg, #05050500 0, #050505 100%);
+    right: -20px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .carousel-group {
+    .owl-prev {
+      left: -15px;
+    }
+
+    .owl-next {
+      right: -15px;
+    }
   }
 }
 
 .owl-carousel {
   .owl-stage-outer {
-    clip-path: inset(-100vw 0 -100vw 0);
+    // clip-path: inset(-100vw 0 -100vw 0);
     overflow: visible !important;
   }
 }

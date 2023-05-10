@@ -4,14 +4,8 @@
   }
 }
 
-@media only screen and (max-width: 900px) {
-  .ant-breadcrumb {
-    padding: 15px 15px !important;
-  }
-}
-
 .ant-breadcrumb {
-  padding: 15px 30px !important;
+  padding: 15px 30px;
   // background-color: var(--breadcrumb-background-color);
   background-color: transparent;
   border-bottom: 1px solid var(--border-regular-light);
@@ -26,5 +20,11 @@
 
   & > span:last-child a {
     color: #ffffffea;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .ant-breadcrumb {
+    padding: 15px 15px;
   }
 }
