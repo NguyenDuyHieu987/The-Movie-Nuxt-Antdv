@@ -148,7 +148,8 @@
             :content="!viewMoreRecommend ? 'Hiện thêm' : 'Ẩn bớt'"
             placement="bottom"
           >
-            <i v-if="!viewMoreRecommend" class="fa-light fa-chevron-down"></i>
+            <!-- <i v-if="!viewMoreRecommend" class="fa-light fa-chevron-down"></i> -->
+            <Icon v-if="!viewMoreRecommend" name="ci:chevron-down" />
             <i v-else class="fa-light fa-chevron-up"></i>
           </el-tooltip>
         </ClientOnly>
