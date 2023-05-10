@@ -7,6 +7,8 @@
   }
 
   .recommend-stage {
+    clip-path: inset(-100vw 0 -100vw 0);
+
     .movie-group.horizontal {
       // display: flex;
       // flex-direction: row;
@@ -29,6 +31,7 @@
       }
 
       &.viewmore {
+        clip-path: none;
         grid-auto-flow: row;
       }
 
