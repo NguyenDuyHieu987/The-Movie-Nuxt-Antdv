@@ -8,7 +8,7 @@
   >
     <a-layout-header class="sider-header">
       <div style="display: flex; justify-content: center; align-items: center">
-        <div class="user-image-container" v-if="!collapsed && isLogin">
+        <div class="user-image-container" v-show="!collapsed && isLogin">
           <img
             class="avatar"
             :src="
@@ -19,7 +19,7 @@
           />
         </div>
 
-        <div v-if="isLogin">
+        <div v-show="isLogin">
           <h4 style="color: #fff" v-if="!collapsed">
             {{ userAccount?.username }}
           </h4>
