@@ -22,7 +22,7 @@
                 >
                   <img
                     class="ant-image"
-                    v-lazy="getBackdrop(topicImage, '350,')"
+                    v-lazy="getBackdrop(topicImage, ',250')"
                     :preview="false"
                   />
                   <div class="play-now">
@@ -46,7 +46,7 @@
                 >
                   <img
                     class="ant-image"
-                    v-lazy="getBackdrop(topicImage, '350,')"
+                    v-lazy="getBackdrop(topicImage, ',250')"
                     :preview="false"
                   />
 
@@ -58,7 +58,7 @@
                 <img
                   class="ant-image"
                   v-if="!dataList?.length"
-                  v-lazy="getBackdrop(topicImage, '350,')"
+                  v-lazy="getBackdrop(topicImage, ',250')"
                   :preview="false"
                 />
               </div>
@@ -171,7 +171,7 @@
                 >
                   <img
                     class="ant-image"
-                    v-lazy="getBackdrop(topicImage, '350,')"
+                    v-lazy="getBackdrop(topicImage, ',250')"
                     :preview="false"
                   />
 
@@ -196,7 +196,7 @@
                 >
                   <img
                     class="ant-image"
-                    v-lazy="getBackdrop(topicImage, '350,')"
+                    v-lazy="getBackdrop(topicImage, ',250')"
                     :preview="false"
                   />
 
@@ -208,7 +208,7 @@
                 <img
                   class="ant-image"
                   v-if="!dataList?.length"
-                  v-lazy="getBackdrop(topicImage, '350,')"
+                  v-lazy="getBackdrop(topicImage, ',250')"
                   :preview="false"
                 />
               </div>

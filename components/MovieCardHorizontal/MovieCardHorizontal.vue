@@ -30,7 +30,7 @@
         <div class="img-box">
           <img
             class="ant-image"
-            v-lazy="getBackdrop(dataMovie?.backdrop_path, '350,')"
+            v-lazy="getBackdrop(dataMovie?.backdrop_path, ',250')"
             :preview="false"
           />
 
@@ -118,7 +118,7 @@
         <img
           class="ant-image"
           v-show="!loading"
-          v-lazy="getBackdrop(dataMovie?.backdrop_path, '350,')"
+          v-lazy="getBackdrop(dataMovie?.backdrop_path, ',250')"
           :preview="false"
         />
 
