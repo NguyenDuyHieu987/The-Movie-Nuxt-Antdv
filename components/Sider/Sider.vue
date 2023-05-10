@@ -8,7 +8,7 @@
   >
     <a-layout-header class="sider-header">
       <div style="display: flex; justify-content: center; align-items: center">
-        <div class="user-image-container" v-show="!collapsed && isLogin">
+        <div class="user-image-container" v-if="!collapsed && isLogin">
           <img
             class="avatar"
             :src="
@@ -78,6 +78,7 @@
 <script setup>
 // import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
 import TheMenu from '../TheMenu/TheMenu.vue';
+import { useStore } from '@/store/useStore';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();

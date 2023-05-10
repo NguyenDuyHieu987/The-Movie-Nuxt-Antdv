@@ -304,6 +304,7 @@
   </NuxtLink>
 </template>
 <script setup>
+import { createVNode } from 'vue';
 import {
   PlusOutlined,
   InfoOutlined,
@@ -503,7 +504,7 @@ const handelAddToList = () => {
       cancelText: 'Không',
       centered: true,
       onOk() {
-        router.push({ path: '/login' });
+        navigateTo({ path: '/login' });
       },
       onCancel() {},
       class: 'require-login-confirm',

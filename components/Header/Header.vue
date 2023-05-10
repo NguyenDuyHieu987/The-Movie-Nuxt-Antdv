@@ -227,6 +227,7 @@ import { getDaTaSearch } from '@/services/MovieService';
 import SearchCard from '../SearchCard/SearchCard.vue';
 import { Close } from '@element-plus/icons-vue';
 import axios from 'axios';
+import { useStore } from '@/store/useStore';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();

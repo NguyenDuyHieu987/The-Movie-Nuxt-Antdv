@@ -47,10 +47,10 @@ const layout = computed(() => (route.meta.layout || 'loading') + '-layout');
 
 onBeforeMount(async () => {
   // console.log(getWithExpiry('userAccount')?.user_token);
+  console.log(store.$state);
 
   if (getWithExpiry('userAccount')?.user_token) {
     // if (remember) {
-
     getUserToken({ user_token: getWithExpiry('userAccount')?.user_token })
       .then((accountResponse) => {
         // console.log(accountResponse.data?.result);
