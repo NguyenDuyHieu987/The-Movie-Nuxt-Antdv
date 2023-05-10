@@ -23,6 +23,14 @@
       lazy
     ></el-image>
 
+    <!-- <img
+      class="ant-image"
+      v-lazy="getBackdrop(item?.backdrop_path)"
+      :preview="false"
+      loading="lazy"
+      lazy
+    /> -->
+
     <div class="topic-item-info">
       <div class="topic-item-info-head">
         <img class="pngegg" src="/images/pngegg.png" />

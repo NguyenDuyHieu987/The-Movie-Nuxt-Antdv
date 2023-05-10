@@ -162,6 +162,7 @@ export default defineNuxtConfig({
     '@/plugins/sharenetwork',
     '@/plugins/googlelogin',
     '@/plugins/vuelazyload',
+    '@/plugins/vue3carousel',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   routeRules: {

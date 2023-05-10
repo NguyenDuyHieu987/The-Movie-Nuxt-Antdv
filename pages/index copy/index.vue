@@ -1,7 +1,6 @@
 <template>
   <div class="home-container">
     <SlideTopicHome :trendings="trendings" />
-
     <div class="outstanding-stage">
       <h2 class="gradient-title-default" v-show="nowPlayings?.length">
         <strong>Phim nổi bật</strong>
@@ -14,72 +13,47 @@
           <strong class="view-all">Xem tất cả</strong>
         </NuxtLink>
       </h2>
-
-      <!-- <Carousel v-bind="settings" :breakpoints="breakpoints">
-        <Slide
-          v-for="(item, index) in nowPlayings"
-          :index="index"
-          :key="item.id"
-        >
-          <MovieCardHorizontal :item="item" type="movie" />
-        </Slide>
-
-        <template #addons>
-          <Navigation />
-        </template>
-      </Carousel> -->
-
       <carousel
         v-if="nowPlayings?.length"
         class="carousel-group"
-        :items="5"
+        :items="4"
         :autoplay="true"
         :dots="false"
         :autoplayHoverPause="true"
-        :autoplayTimeout="10000"
+        :autoplayTimeout="5000"
         :margin="7"
         :autoplaySpeed="500"
         :navText="[btnPrev, btnNext]"
         :responsive="{
           0: {
             items: 2,
-            slideBy: 2,
           },
           590: {
             items: 2,
-            slideBy: 2,
           },
           750: {
             items: 3,
-            slideBy: 3,
           },
           800: {
             items: 2,
-            slideBy: 2,
           },
           900: {
             items: 3,
-            slideBy: 3,
           },
           1150: {
             items: 4,
-            slideBy: 4,
           },
           1500: {
             items: 5,
-            slideBy: 5,
           },
           1800: {
             items: 6,
-            slideBy: 6,
           },
           2050: {
             items: 7,
-            slideBy: 7,
           },
           2200: {
             items: 8,
-            slideBy: 8,
           },
         }"
       >
@@ -90,17 +64,6 @@
           :key="item.id"
           type="movie"
         />
-
-        <!-- <template #prev>
-          <div class="owl-prev">
-            <i class="fa-solid fa-chevron-left"></i>
-          </div>
-        </template>
-        <template #next>
-          <div class="owl-next">
-            <i class="fa-solid fa-chevron-right"></i>
-          </div>
-        </template> -->
       </carousel>
     </div>
 
@@ -228,63 +191,48 @@
         :responsive="{
           0: {
             items: 2,
-            slideBy: 2,
           },
           500: {
             items: 2,
-            slideBy: 2,
           },
           520: {
             items: 3,
-            slideBy: 3,
           },
           700: {
             items: 4,
-            slideBy: 4,
           },
           800: {
             items: 3,
-            slideBy: 3,
           },
           900: {
             items: 4,
-            slideBy: 4,
           },
           1000: {
             items: 4,
-            slideBy: 4,
           },
           1150: {
             items: 5,
-            slideBy: 5,
           },
           1300: {
             items: 6,
-            slideBy: 6,
           },
           1400: {
             items: 6,
-            slideBy: 6,
           },
           1550: {
             items: 7,
-            slideBy: 7,
           },
           1700: {
             items: 8,
-            slideBy: 8,
           },
           1900: {
             items: 9,
-            slideBy: 9,
           },
           2000: {
             items: 10,
-            slideBy: 10,
           },
           2200: {
             items: 11,
-            slideBy: 11,
           },
         }"
       >
@@ -332,24 +280,6 @@ const viewMoreRecommend = ref(false);
 const loadMoreRecommend = ref(false);
 const skipRecommend = ref(2);
 
-const settings = ref({
-  itemsToShow: 1,
-  snapAlign: 'center',
-});
-
-const breakpoints = ref({
-  700: {
-    itemsToShow: 3.5,
-    snapAlign: 'center',
-  },
-  // 1024 and up
-  1024: {
-    itemsToShow: 5,
-    itemsToScroll: 5,
-    snapAlign: 'start',
-  },
-});
-
 const btnPrev = ref('<i class="fa-solid fa-chevron-left "></i>');
 const btnNext = ref('<i class="fa-solid fa-chevron-right "></i>');
 
@@ -373,10 +303,10 @@ onBeforeMount(async () => {
   ])
     .then((response) => {
       trendings.value = response[0].data.value.data?.results;
-      nowPlayings.value = response[1].data.value.data?.results;
+      nowPlayings.value = response[1].data.value.data?.results.slice(0, 10);
       upComings.value = response[2].data.value.data?.results.slice(0, 10);
       tvAiringTodays.value = response[3].data.value.data?.results.slice(0, 10);
-      topRateds.value = response[4].data.value.data?.results;
+      topRateds.value = response[4].data.value.data?.results.slice(0, 10);
       if (store.$state.isLogin) {
         recommends.value = response[5].data.value.data?.results;
       }
