@@ -1,7 +1,7 @@
 <template>
   <div class="slide-topic-home">
     <el-carousel
-      :interval="3000"
+      :interval="5000"
       height="80vh"
       loop
       trigger="click"
@@ -25,7 +25,7 @@
     </div>
 
     <el-carousel
-      :interval="3000"
+      :interval="5000"
       type="card"
       height="80vh"
       loop

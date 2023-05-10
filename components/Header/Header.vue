@@ -299,12 +299,21 @@ const handleLogout = () => {
 
 onMounted(() => {
   const header = document.querySelector('.ant-layout-header.header');
-  window.onscroll = (e) => {
-    if (window.scrollY >= 65) {
-      header.style.backgroundColor = '#000';
-    } else {
+  var lastScrollTop = 0;
+  window.onscroll = () => {
+    var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+    if (st > lastScrollTop) {
+      // downscroll code
+      if (window.scrollY >= 65) {
+        header.style.backgroundColor = '#000';
+      } else {
+        header.style.backgroundColor = 'transparent';
+      }
+    } else if (st < lastScrollTop) {
+      // upscroll code
       header.style.backgroundColor = 'transparent';
     }
+    lastScrollTop = st <= 0 ? 0 : st;
   };
 });
 </script>
