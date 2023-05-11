@@ -37,11 +37,13 @@
 }
 
 :root {
-  --background-content-color: #000;
+  --background-content-color: #070707;
+  --background-content-color1: #181818;
   --background-admin-color: #181818;
+  --loading-background: #101010;
 
   --hover-regular-color: #002135;
-  --hover-dropdown-color: #e7e7e7;
+  --hover-dropdown-color: #222222;
   --sider-header-background-color1: #c30061;
   --sider-header-background-color2: #000046;
   --sider-header-background-color3: #1cb5e0;
@@ -49,6 +51,7 @@
   --sider-header-background-color5: #4f006e;
   --sider-header-background-color6: #e82b00;
 
+  --btn-backgroud-color-gray: #1e1e1e;
   --btn-backgroud-color: #004671;
   --btn-backgroud-color-hover: #003b60;
   --input-border-color-focused: #00649d;
@@ -94,7 +97,7 @@ body {
   transition: all 0.1s;
 
   &:hover {
-    background-color: #2f2f2f72;
+    // background-color: #232323;
   }
 }
 
@@ -341,6 +344,15 @@ dl {
 
   .ant-dropdown-menu {
     padding: 0px;
+    background-color: var(--background-content-color1);
+
+    .ant-dropdown-menu-item {
+      color: #d9d9d9;
+    }
+
+    .ant-dropdown-menu-item-active {
+      background-color: var(--hover-dropdown-color);
+    }
   }
 
   .ant-dropdown-menu-item:first-child {

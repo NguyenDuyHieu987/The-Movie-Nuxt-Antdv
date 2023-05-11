@@ -152,6 +152,10 @@
         // color: #fff;
       }
 
+      .login-form-button[disabled] {
+        color: #707070;
+      }
+
       .social-login {
         width: 100%;
         display: flex;
@@ -160,6 +164,8 @@
 
         .el-button {
           padding: 13px 17px;
+          background-color: var(--btn-backgroud-color-gray);
+          color: #e0e0e0;
         }
 
         .facebook-login-btn {
@@ -174,7 +180,6 @@
             font-size: 1.6rem;
             width: 100%;
             margin-left: 0px;
-            color: #3c4043;
           }
 
           .fa-facebook-f {
@@ -200,7 +205,6 @@
             font-size: 1.6rem;
             width: 100%;
             margin-left: 0px;
-            color: #3c4043;
           }
         }
       }

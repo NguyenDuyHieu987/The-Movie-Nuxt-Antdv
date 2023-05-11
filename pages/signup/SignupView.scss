@@ -92,10 +92,20 @@
       }
 
       .ant-input-affix-wrapper {
+        background: transparent;
+
         input,
         .ant-input-prefix {
           color: #d9d9d9;
         }
+
+        &:hover {
+          background: transparent;
+        }
+      }
+
+      .ant-input-affix-wrapper-focused {
+        background: transparent;
       }
 
       .ant-row.ant-form-item {
@@ -118,7 +128,8 @@
             flex-direction: row;
 
             .count-down-button {
-              width: 80px;
+              min-width: 100px;
+              background-color: transparent;
 
               &.disabled {
                 color: #b3b3b3;
@@ -149,6 +160,11 @@
         margin-top: 10px;
         width: 100%;
         // color: #fff;
+      }
+
+      .verify-form-button[disabled] {
+        color: #707070;
+        background-color: transparent;
       }
     }
   }
@@ -252,6 +268,10 @@
         margin-top: 10px;
         width: 100%;
         // color: #fff;
+      }
+
+      .signup-form-button[disabled] {
+        color: #707070;
       }
 
       &::-webkit-scrollbar {

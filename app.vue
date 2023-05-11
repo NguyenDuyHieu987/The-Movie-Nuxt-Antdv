@@ -4,10 +4,7 @@
       <vue-progress-bar />
     </ClientOnly>
 
-    <!--   <div
-      v-if="$route.name == 'index' && store.$state.loadingHomePage"
-      class="loading-page"
-    >
+    <!-- <div v-if="$route.name == 'index' && loadingHomePage" class="loading-page">
       <div class="loading-page-container">
         <img src="/images/logo.png" alt="" />
         <div class="logo"><h2>Phimhay247</h2></div>
@@ -41,13 +38,10 @@ import { QuestionCircleOutlined } from '@ant-design/icons-vue';
 const store = useStore();
 const router = useRouter();
 const route = useRoute();
-const loadingHomePage = ref(false);
+const loadingHomePage = ref(true);
 
-const layout = computed(() => (route.meta.layout || 'loading') + '-layout');
-
-onBeforeMount(async () => {
-  // console.log(getWithExpiry('userAccount')?.user_token);
-  console.log(store.$state);
+onBeforeMount(() => {
+  // console.log(store.$state);
 
   if (getWithExpiry('userAccount')?.user_token) {
     // if (remember) {
@@ -80,11 +74,24 @@ onBeforeMount(async () => {
         if (axios.isCancel(e)) return;
       });
     // }
-  } else {
-    // if (window.localStorage.getItem('userToken') == null) {
-    //   router.push({ path: '/login' });
+
+    // if (store.$state.loadingHomePage == true) {
+    //   navigateTo({ path: to.path });
+    // } else {
+    //   new Promise((resolve) => {
+    //     resolve(
+
+    //       (loadingHomePage.value = false),
+    //       (store.$state.loadingHomePage = true)
+    //     );
+    //   }).then(() => {
+    //     setTimeout(() => {
+    //       loadingHomePage.value = false;
+    //       navigateTo({ path: '/' });
+    //     }, 2000);
+    //   });
     // }
-    // console.log(router);
+  } else {
   }
 });
 
@@ -112,17 +119,14 @@ onBeforeMount(async () => {
 }
 
 .loading-page {
-  position: absolute;
-  top: 0;
-  z-index: 145;
-  background-color: #131313;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow: hidden;
+  background-color: var(--loading-background);
+
   .loading-page-container {
     display: flex;
     flex-direction: column;

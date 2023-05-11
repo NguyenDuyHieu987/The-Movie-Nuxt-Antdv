@@ -211,7 +211,7 @@
                 height="24px"
                 viewBox="0 0 24 24"
                 width="24px"
-                fill="#000000"
+                fill="#fff"
               >
                 <g><rect fill="none" height="24" width="24" /></g>
                 <g>
@@ -233,7 +233,7 @@
                 height="24px"
                 viewBox="0 0 24 24"
                 width="24px"
-                fill="#000000"
+                fill="#fff"
               >
                 <g><rect fill="none" height="24" width="24" /></g>
                 <g>

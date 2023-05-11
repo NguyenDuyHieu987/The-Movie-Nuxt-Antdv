@@ -48,7 +48,13 @@
   //   var(--sider-header-background-color3),
   //   var(--sider-header-background-color2)
   // );
-  background-color: transparent;
+  // background-color: transparent;
+  background: linear-gradient(
+    to bottom,
+    #050505 0,
+    #05050575 70%,
+    #05050500 100%
+  );
 
   .ant-input-search .ant-input {
     color: #fff;
@@ -66,19 +72,19 @@
   }
 
   .ant-input-affix-wrapper {
-    border: 1px solid #000;
+    border: 1px solid var(--border-regular-light);
     height: 40px;
     padding-left: 16px;
     // border-right: 0px;
     transition: all 0s;
 
-    &:hover {
-      border-color: #000;
-    }
+    // &:hover {
+    //   border-color: var(--border-regular-light);
+    // }
   }
 
   .ant-input-search-button {
-    border: 1px solid #000;
+    border: 1px solid var(--border-regular-light);
     transition: all 0s;
 
     &:hover {
@@ -123,6 +129,7 @@
 
         .fa-bell {
           font-size: 1.7rem;
+          color: #919191;
         }
 
         .ant-dropdown-link.dropdown-notification {
@@ -221,6 +228,7 @@
       background: transparent;
       border-bottom: 1px solid var(--border-regular-light);
       font-size: 1.6rem;
+      color: #fff;
     }
 
     .ant-dropdown-menu-item-group {

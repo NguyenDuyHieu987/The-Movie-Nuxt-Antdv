@@ -89,7 +89,9 @@ onMounted(() => {
 
   menu.addEventListener('scroll', (e) => {
     if (e.target.scrollTop > 0) {
-      sider_header.style.backgroundColor = '#000';
+      if (store.$state.isLogin) {
+        sider_header.style.backgroundColor = '#000';
+      }
     } else {
       sider_header.style.backgroundColor = 'transparent';
     }

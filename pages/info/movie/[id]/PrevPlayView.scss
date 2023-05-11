@@ -389,6 +389,8 @@
 
     .hd-brand {
       padding: 5px 50px;
+      color: #fff;
+
       // background-color: #ff2600;
       background-image: linear-gradient(
         to right,
@@ -493,6 +495,8 @@
 
     .hd-brand {
       padding: 5px 50px;
+      color: #fff;
+
       // background-color: #ff2600;
       background-image: linear-gradient(
         to right,
@@ -515,7 +519,8 @@
     color: #fff;
     z-index: 1;
 
-    h2 {
+    h2,
+    h3 {
       color: #fff;
     }
 

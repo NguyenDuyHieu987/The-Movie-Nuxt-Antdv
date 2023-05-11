@@ -20,11 +20,12 @@
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-video-camera" /> -->
         <!-- <i class="fa-regular fa-video"></i> -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
           <path
             d="M557.6 102.3c-11.53-7.406-25.88-8.391-38.28-2.688L416 147V128c0-35.35-28.65-64-64-64H64C28.65 64 0 92.65 0 128v256c0 35.35 28.65 64 64 64h288c35.35 0 64-28.65 64-64v-19.02l103.3 47.36c5.344 2.453 11.03 3.672 16.69 3.672c7.531 0 15.02-2.141 21.59-6.359C569.1 402.3 576 389.7 576 375.1V136C576 122.3 569.1 109.8 557.6 102.3zM368 384c0 8.822-7.178 16-16 16H64c-8.822 0-16-7.178-16-16V128c0-8.822 7.178-16 16-16h288c8.822 0 16 7.178 16 16V384zM528 363.5L416 312.2V199.8l112-51.33V363.5z"
           />
-        </svg>
+        </svg> -->
+        <Icon name="fa6-solid:video"></Icon>
       </template>
       <template #title>Phim lẻ</template>
       <a-menu-item key="all">
@@ -212,11 +213,12 @@
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-globe" /> -->
         <!-- <i class="fa-regular fa-globe"></i> -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <path
             d="M256 16C123.5 16 16 123.5 16 256s107.5 240 240 240s239.1-107.5 239.1-240S388.5 16 256 16zM422 160H373.3c-6.391-27.41-15.39-52.18-26.48-73.1C378.2 103.8 404.2 129.2 422 160zM336 256c0 16.98-1.295 32.82-3.176 48H179.2C177.3 288.8 176 272.1 176 256s1.295-32.82 3.176-48h153.6C334.7 223.2 336 239 336 256zM256 448c-21.79 0-50.87-36.42-67.28-96h134.6C306.9 411.6 277.8 448 256 448zM188.7 160C205.1 100.4 234.2 64 256 64s50.87 36.42 67.28 96H188.7zM165.2 86.9C154.1 107.8 145.1 132.6 138.7 160H89.98C107.8 129.2 133.8 103.8 165.2 86.9zM70.32 208h60.25C128.9 223.5 128 239.6 128 256S128.9 288.5 130.6 304H70.32C66.34 288.6 64 272.6 64 256S66.34 223.4 70.32 208zM89.98 352H138.7c6.391 27.41 15.39 52.18 26.48 73.1C133.8 408.2 107.8 382.8 89.98 352zM346.8 425.1C357.9 404.2 366.9 379.4 373.3 352h48.74C404.2 382.8 378.2 408.2 346.8 425.1zM441.7 304h-60.25c1.68-15.51 2.57-31.56 2.57-48s-.8907-32.49-2.57-48h60.25C445.7 223.4 448 239.4 448 256S445.7 288.6 441.7 304z"
           />
-        </svg>
+        </svg> -->
+        <Icon name="fa6-solid:globe" />
       </template>
       <template #title>Quốc gia</template>
       <a-menu-item
@@ -247,7 +249,7 @@
           height="24px"
           viewBox="0 0 24 24"
           width="24px"
-          fill="#000000"
+          fill="#919191"
         >
           <g><rect fill="none" height="24" width="24" /></g>
           <g>
@@ -281,22 +283,6 @@
       <NuxtLink :to="{ path: '/ranking' }"> <span>Xếp hạng</span></NuxtLink>
     </a-menu-item>
 
-    <a-menu-item key="pricing">
-      <template #icon>
-        <!-- <font-awesome-icon icon="fa-solid fa-money-check-dollar" /> -->
-        <!-- <i class="fa-regular fa-money-check-dollar-pen"></i> -->
-        <Icon name="material-symbols:price-change-outline"></Icon>
-      </template>
-      <NuxtLink :to="{ path: '/pricing' }"> <span>Pricing</span></NuxtLink>
-    </a-menu-item>
-    <a-menu-item key="pricing">
-      <template #icon>
-        <!-- <font-awesome-icon icon="fa-solid fa-money-check-dollar" /> -->
-        <!-- <i class="fa-regular fa-money-check-dollar-pen"></i> -->
-        <Icon name="material-symbols:price-change-outline"></Icon>
-      </template>
-      <NuxtLink :to="{ path: '/pricing' }"> <span>Pricing</span></NuxtLink>
-    </a-menu-item>
     <a-menu-item key="pricing">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-money-check-dollar" /> -->

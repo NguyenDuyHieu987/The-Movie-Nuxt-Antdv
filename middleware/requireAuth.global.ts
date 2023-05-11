@@ -6,7 +6,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons-vue';
 export default defineNuxtRouteMiddleware((to, from) => {
   const store = useStore();
 
-  // if (to.name == 'follow' || to.name == 'history') {
+  if (to.name == 'follow' || to.name == 'history') {
     if (!store.$state.isLogin) {
       Modal.confirm({
         title: 'Bạn cần đăng nhập để sử dụng chức năng này.',
@@ -24,10 +24,9 @@ export default defineNuxtRouteMiddleware((to, from) => {
         },
       });
     }
-  // }
+  }
 
   // to.matched.some((record) => {
-  //   // console.log(record.meta);
   //   if (record.meta.requireAuth) {
   //     if (!store.$state.isLogin) {
   //       Modal.confirm({
@@ -42,9 +41,11 @@ export default defineNuxtRouteMiddleware((to, from) => {
   //           navigateTo('/login');
   //         },
   //         onCancel() {
-  //           navigateTo(from.fullPath);
+  //           navigateTo({path:from.fullPath});
   //         },
   //       });
+  //     }else{
+  //       navigateTo({path:to.fullPath});
   //     }
   //   }
   // });

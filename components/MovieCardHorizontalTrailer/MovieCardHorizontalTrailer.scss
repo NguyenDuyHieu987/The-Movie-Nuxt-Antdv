@@ -178,9 +178,23 @@
 }
 
 .ant-modal.modal-trailer {
+  .ant-modal-content,
+  .ant-modal-header {
+    background: var(--background-content-color1);
+
+    p,
+    span {
+      color: #fff;
+    }
+  }
+
   .action {
     display: flex;
     gap: 10px;
+
+    .ant-btn {
+      background-color: var(--btn-backgroud-color-gray);
+    }
 
     .btn-play-now {
       color: #fff;
