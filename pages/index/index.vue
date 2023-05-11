@@ -376,6 +376,7 @@ const recommends = ref([]);
 const viewMoreRecommend = ref(false);
 const loadMoreRecommend = ref(false);
 const skipRecommend = ref(2);
+const loadSection1 = ref(false);
 
 const responsiveHorizoltal = ref({
   0: {
@@ -492,13 +493,13 @@ onBeforeMount(async () => {
   Promise.all([
     await useAsyncData('trending/all/1', () => getTrending(1)),
     await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1)),
-    await useAsyncData('movie/upcoming/1', () => getUpComing(1)),
-    await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1)),
-    await useAsyncData('movie/toprated/1', () => getTopRated(1)),
-    await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1)),
     await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
       getMoviesByGenres('hoat-hinh', 1, 'views_desc')
     ),
+    await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1)),
+    await useAsyncData('movie/upcoming/1', () => getUpComing(1)),
+    await useAsyncData('movie/toprated/1', () => getTopRated(1)),
+    await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1)),
 
     store.$state?.isLogin
       ? useAsyncData('recommend/get/1', () =>
@@ -509,11 +510,11 @@ onBeforeMount(async () => {
     .then((response) => {
       trendings.value = response[0].data.value.data?.results.slice(0, 11);
       nowPlayings.value = response[1].data.value.data?.results.slice(0, 10);
-      upComings.value = response[2].data.value.data?.results.slice(0, 10);
+      cartoons.value = response[2].data.value.data?.results.slice(0, 10);
       tvAiringTodays.value = response[3].data.value.data?.results.slice(0, 10);
-      topRateds.value = response[4].data.value.data?.results.slice(0, 10);
-      tvOnTheAirs.value = response[5].data.value.data?.results.slice(0, 10);
-      cartoons.value = response[6].data.value.data?.results.slice(0, 10);
+      upComings.value = response[4].data.value.data?.results.slice(0, 10);
+      topRateds.value = response[5].data.value.data?.results.slice(0, 10);
+      tvOnTheAirs.value = response[6].data.value.data?.results.slice(0, 10);
 
       if (store.$state.isLogin) {
         recommends.value = response[7].data.value.data?.results;
@@ -549,6 +550,33 @@ const handleLoadMoreRecommend = async () => {
       if (axios.isCancel(e)) return;
     });
 };
+
+onMounted(() => {
+  // window.onscroll = async () => {
+  //   console.log(window.scrollY);
+  //   if (window.scrollY >= 1000) {
+  //     if (loadSection1.value == false) {
+  //       Promise.all([
+  //         await useAsyncData('movie/upcoming/1', () => getUpComing(1)),
+  //         await useAsyncData('movie/toprated/1', () => getTopRated(1)),
+  //         await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1)),
+  //       ])
+  //         .then((response) => {
+  //           upComings.value = response[0].data.value.data?.results.slice(0, 10);
+  //           topRateds.value = response[1].data.value.data?.results.slice(0, 10);
+  //           tvOnTheAirs.value = response[2].data.value.data?.results.slice(
+  //             0,
+  //             10
+  //           );
+  //           loadSection1.value = true;
+  //         })
+  //         .catch((e) => {
+  //           if (axios.isCancel(e)) return;
+  //         });
+  //     }
+  //   }
+  // };
+});
 </script>
 
 <style lang="scss" src="./HomePage.scss"></style>
