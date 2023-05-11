@@ -1,40 +1,22 @@
 <template>
   <div class="slide-topic-home">
-    <el-carousel
-      :interval="5000"
-      height="80vh"
-      loop
-      trigger="click"
-      :pause-on-hover="true"
-      indicator-position="none"
-      arrow="always"
-      class="topic-home-responsive"
-      @change="handleSwitchCarouelResponsive"
-    >
-      <el-carousel-item
-        v-for="(item, index) in trendings"
-        :key="item.id"
-        :index="index"
-      >
-        <SlideTopicItem :item="item" />
-      </el-carousel-item>
-    </el-carousel>
-
-    <div class="overlay-backdrop">
+    <!-- <div class="overlay-backdrop">
       <img :src="getBackdrop(trendings[0]?.backdrop_path)" />
-    </div>
+    </div> -->
 
     <el-carousel
       :interval="5000"
-      type="card"
-      height="80vh"
+      height="100vh"
       loop
-      trigger="click"
+      direction="vertical"
+      arrow="always"
       :pause-on-hover="true"
+      trigger="click"
       ref="topicHome"
       class="topic-home"
-      @change="handleSwitchCarouel"
     >
+      <!-- @change="handleSwitchCarouel" -->
+
       <el-carousel-item
         v-for="(item, index) in trendings"
         :key="item.id"

@@ -2,7 +2,7 @@
   <div class="home-container">
     <SlideTopicHome :trendings="trendings" />
 
-    <div class="outstanding-section">
+    <div class="home-section outstanding">
       <h2 class="gradient-title-default" v-show="nowPlayings?.length">
         <strong>Phim nổi bật</strong>
         <NuxtLink
@@ -65,7 +65,7 @@
     </div>
 
     <div
-      class="recommend-section"
+      class="home-section recommend"
       v-if="store.$state?.isLogin"
       v-show="recommends?.length"
     >
@@ -117,7 +117,7 @@
       </div>
     </div>
 
-    <div class="cartoon-section">
+    <div class="home-section cartoon">
       <h2 class="gradient-title-default" v-show="cartoons?.length">
         <strong>Hoạt hình - Anime đặc sắc</strong>
         <NuxtLink
@@ -164,7 +164,7 @@
       </carousel>
     </div>
 
-    <div class="tv-section" v-show="tvAiringTodays?.length">
+    <div class="home-section tv-new" v-show="tvAiringTodays?.length">
       <h2 class="gradient-title-default">
         <strong>Phim bộ mới</strong>
         <NuxtLink
@@ -220,7 +220,7 @@
       </carousel>
     </div>
 
-    <div class="trailer-section" v-show="upComings?.length">
+    <div class="home-section trailer" v-show="upComings?.length">
       <h2 class="gradient-title-default">
         <strong>Trailer</strong>
 
@@ -245,7 +245,7 @@
       </section>
     </div>
 
-    <div class="theater-section">
+    <div class="home-section theater">
       <h2 class="gradient-title-default" v-show="topRateds?.length">
         <strong>Phim chiếu rạp mới</strong>
         <NuxtLink
@@ -291,7 +291,7 @@
       </carousel>
     </div>
 
-    <div class="on-the-air-section">
+    <div class="home-section on-the-air">
       <h2 class="gradient-title-default" v-show="tvOnTheAirs?.length">
         <strong>TV On the air</strong>
         <NuxtLink
@@ -361,6 +361,7 @@ import {
 import { PlusOutlined } from '@ant-design/icons-vue';
 
 definePageMeta({
+  layout: 'home',
   middleware: [function (to, from) {}, 'home-page-loading'],
 });
 

@@ -5,11 +5,6 @@
       <Sider />
       <Drawer />
 
-      <a-layout
-        v-show="$route.path == '/follow'"
-        id="topic-follow-column-teleport"
-      ></a-layout>
-
       <a-layout class="main-content">
         <!-- <BreadCrumb /> -->
         <a-layout-content class="container">
@@ -19,11 +14,6 @@
         </a-layout-content>
         <Footer />
       </a-layout>
-
-      <a-layout
-        v-show="$route.path == '/history'"
-        id="topic-history-column-teleport"
-      ></a-layout>
     </a-layout>
   </a-layout>
 </template>
@@ -75,7 +65,7 @@ const { collapsed } = storeToRefs(store);
 
 .ant-layout-content.container {
   // min-height: calc(100vh - 130px);
-  padding: 15px 20px;
+  // padding: 15px 20px;
   // background-color: var(--background-content-color);
   background-color: transparent;
 
@@ -91,7 +81,7 @@ const { collapsed } = storeToRefs(store);
 
 @media only screen and (max-width: 900px) {
   .ant-layout-content.container {
-    padding: 15px 15px;
+    // padding: 15px 15px;
   }
 }
 

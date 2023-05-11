@@ -550,7 +550,7 @@ onBeforeMount(() => {
       loadMore.value = true;
       useAsyncData(
         `list/get/${store.$state.userAccount?.id}/${skip.value}`,
-        () => getList(store.$state.userAccount?.id)
+        () => getList(store.$state.userAccount?.id, skip.value)
       )
         .then((movieRespone) => {
           if (movieRespone.data.value.data?.result?.length > 0) {
