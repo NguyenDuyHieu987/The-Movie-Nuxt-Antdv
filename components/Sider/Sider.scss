@@ -102,7 +102,7 @@
   //   var(--sider-header-background-color3),
   //   var(--sider-header-background-color2)
   // );
-  background-color: transparent;
+  background-color: var(--background-content-color);
   border-bottom: 1px solid var(--border-regular-light);
   padding: 0px;
 }

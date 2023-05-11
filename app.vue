@@ -4,14 +4,21 @@
       <vue-progress-bar />
     </ClientOnly>
 
-    <!-- <div v-if="$route.name == 'index' && loadingHomePage" class="loading-page">
+    <div
+      v-if="
+        $route.name == 'index' &&
+        loadingHomePage &&
+        !store.$state.loadingHomePage
+      "
+      class="loading-page"
+    >
       <div class="loading-page-container">
         <img src="/images/logo.png" alt="" />
         <div class="logo"><h2>Phimhay247</h2></div>
       </div>
-    </div> -->
+    </div>
 
-    <div class="app-wrapper">
+    <div v-else class="app-wrapper">
       <NuxtLayout>
         <NuxtPage />
 
@@ -93,6 +100,13 @@ onBeforeMount(() => {
     // }
   } else {
   }
+
+  setTimeout(() => {
+    if (store.$state.loadingHomePage == false) {
+      store.$state.loadingHomePage == true;
+    }
+    loadingHomePage.value = false;
+  }, 2000);
 });
 
 // router.beforeResolve((to, from, next) => {
