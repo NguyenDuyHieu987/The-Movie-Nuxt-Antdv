@@ -8,7 +8,8 @@
 
   .home-section {
     padding: 0px 20px;
-    overflow: hidden;
+    clip-path: inset(-100vw 0 -100vw 0);
+    overflow: visible;
 
     &.outstanding {
       position: relative;
