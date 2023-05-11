@@ -6,9 +6,8 @@
 
     <div
       v-if="
-        $route.name == 'index' &&
-        loadingHomePage &&
-        !store.$state.loadingHomePage
+        // $route.name == 'index' &&
+        loadingHomePage && !store.$state.loadingHomePage
       "
       class="loading-page"
     >
