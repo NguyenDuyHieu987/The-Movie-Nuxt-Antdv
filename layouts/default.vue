@@ -57,7 +57,7 @@ const { collapsed } = storeToRefs(store);
   margin-left: var(--sider-width);
   margin-top: var(--header-height);
   // transition: all 0.2s;
-  // overflow: hidden;
+  overflow: hidden;
 
   &.expand {
     margin-left: var(--sider-collapsed-width);
@@ -70,7 +70,7 @@ const { collapsed } = storeToRefs(store);
   // height: 100%;
   max-width: 2160px;
   margin: 0px auto;
-  // overflow: hidden;
+  overflow: hidden;
 }
 
 .ant-layout-content.container {
