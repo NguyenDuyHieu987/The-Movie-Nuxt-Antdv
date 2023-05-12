@@ -97,7 +97,7 @@ const { collapsed } = storeToRefs(store);
 
 @media only screen and (max-width: 800px) {
   .body-content {
-    margin-left: 0px;
+    margin-left: 0px !important;
   }
 }
 </style>

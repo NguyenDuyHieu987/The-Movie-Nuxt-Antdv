@@ -275,9 +275,16 @@ dl {
 
 .movie-group.horizontal {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, auto));
+  // grid-template-columns: repeat(auto-fit, minmax(230px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(24%, auto));
   // margin-top: 10px;
   gap: 10px;
+}
+
+.body-content.expand {
+  .movie-group.horizontal {
+    grid-template-columns: repeat(auto-fit, minmax(19%, auto));
+  }
 }
 
 .movie-group,
