@@ -1,341 +1,342 @@
 <template>
   <div class="home-container">
     <SlideTopicHome :trendings="trendings" />
+    <div class="home-content">
+      <div class="home-section outstanding">
+        <h2 class="gradient-title-default" v-show="nowPlayings?.length">
+          <strong>Phim nổi bật</strong>
+          <NuxtLink
+            :to="{
+              path: `/discover/movie/nowplaying`,
+            }"
+            style="font-size: 1.8rem"
+          >
+            <strong class="view-all">Xem tất cả</strong>
+          </NuxtLink>
+        </h2>
 
-    <div class="home-section outstanding">
-      <h2 class="gradient-title-default" v-show="nowPlayings?.length">
-        <strong>Phim nổi bật</strong>
-        <NuxtLink
-          :to="{
-            path: `/discover/movie/nowplaying`,
-          }"
-          style="font-size: 1.8rem"
-        >
-          <strong class="view-all">Xem tất cả</strong>
-        </NuxtLink>
-      </h2>
-
-      <!-- <Carousel v-bind="settings" :breakpoints="breakpoints">
-        <Slide
-          v-for="(item, index) in nowPlayings"
-          :index="index"
-          :key="item.id"
-        >
-          <MovieCardHorizontal :item="item" type="movie" />
-        </Slide>
-
-        <template #addons>
-          <Navigation />
-        </template>
-      </Carousel> -->
-
-      <!-- :navText="[btnPrev, btnNext]" -->
-      <carousel
-        v-if="nowPlayings?.length"
-        class="carousel-group"
-        :items="5"
-        :autoplay="true"
-        :dots="false"
-        :autoplayHoverPause="true"
-        :autoplayTimeout="10000"
-        :margin="7"
-        :autoplaySpeed="500"
-        :nav="false"
-        :responsive="responsiveHorizoltal"
-      >
-        <MovieCardHorizontal
-          v-for="(item, index) in nowPlayings"
-          :item="item"
-          :index="index"
-          :key="item.id"
-          type="movie"
-        />
-
-        <template #prev>
-          <div class="owl-prev">
-            <Icon name="fa6-solid:chevron-left"></Icon>
-          </div>
-        </template>
-        <template #next>
-          <div class="owl-next">
-            <Icon name="fa6-solid:chevron-right"></Icon>
-          </div>
-        </template>
-      </carousel>
-    </div>
-
-    <div
-      class="home-section recommend"
-      v-if="store.$state?.isLogin"
-      v-show="recommends?.length"
-    >
-      <h2 class="gradient-title-default">
-        <strong>Gợi ý cho bạn</strong>
-      </h2>
-
-      <section
-        class="movie-group vertical"
-        :class="{ viewmore: viewMoreRecommend }"
-      >
-        <MovieCardVertical
-          v-for="(item, index) in recommends"
-          :index="index"
-          :key="item.id"
-          :item="item"
-          :type="item.media_type"
-        />
-        <el-button
-          class="loadmore-btn"
-          type="primary"
-          :loading="loadMoreRecommend"
-          @click="handleLoadMoreRecommend"
-        >
-          <template #icon>
-            <!-- <i class="fa-light fa-plus"></i> -->
-            <PlusOutlined />
+        <!-- <Carousel v-bind="settings" :breakpoints="breakpoints">
+          <Slide
+            v-for="(item, index) in nowPlayings"
+            :index="index"
+            :key="item.id"
+          >
+            <MovieCardHorizontal :item="item" type="movie" />
+          </Slide>
+  
+          <template #addons>
+            <Navigation />
           </template>
-          {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
-        </el-button>
-      </section>
+        </Carousel> -->
+
+        <!-- :navText="[btnPrev, btnNext]" -->
+        <carousel
+          v-if="nowPlayings?.length"
+          class="carousel-group"
+          :items="5"
+          :autoplay="true"
+          :dots="false"
+          :autoplayHoverPause="true"
+          :autoplayTimeout="10000"
+          :margin="7"
+          :autoplaySpeed="500"
+          :nav="false"
+          :responsive="responsiveHorizoltal"
+        >
+          <MovieCardHorizontal
+            v-for="(item, index) in nowPlayings"
+            :item="item"
+            :index="index"
+            :key="item.id"
+            type="movie"
+          />
+
+          <template #prev>
+            <div class="owl-prev">
+              <Icon name="fa6-solid:chevron-left"></Icon>
+            </div>
+          </template>
+          <template #next>
+            <div class="owl-next">
+              <Icon name="fa6-solid:chevron-right"></Icon>
+            </div>
+          </template>
+        </carousel>
+      </div>
 
       <div
-        class="viewmore-group"
-        @click="viewMoreRecommend = !viewMoreRecommend"
+        class="home-section recommend"
+        v-if="store.$state?.isLogin"
+        v-show="recommends?.length"
       >
-        <ClientOnly>
-          <el-tooltip
-            :teleported="false"
-            :content="!viewMoreRecommend ? 'Hiện thêm' : 'Ẩn bớt'"
-            placement="bottom"
+        <h2 class="gradient-title-default">
+          <strong>Gợi ý cho bạn</strong>
+        </h2>
+
+        <section
+          class="movie-group vertical"
+          :class="{ viewmore: viewMoreRecommend }"
+        >
+          <MovieCardVertical
+            v-for="(item, index) in recommends"
+            :index="index"
+            :key="item.id"
+            :item="item"
+            :type="item.media_type"
+          />
+          <el-button
+            class="loadmore-btn"
+            type="primary"
+            :loading="loadMoreRecommend"
+            @click="handleLoadMoreRecommend"
           >
-            <!-- <i v-if="!viewMoreRecommend" class="fa-light fa-chevron-down"></i>
-            <i v-else class="fa-light fa-chevron-up"></i> -->
-            <Icon v-if="!viewMoreRecommend" name="ci:chevron-down" />
-            <Icon v-else name="ci:chevron-big-up" />
-          </el-tooltip>
-        </ClientOnly>
+            <template #icon>
+              <!-- <i class="fa-light fa-plus"></i> -->
+              <PlusOutlined />
+            </template>
+            {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
+          </el-button>
+        </section>
+
+        <div
+          class="viewmore-group"
+          @click="viewMoreRecommend = !viewMoreRecommend"
+        >
+          <ClientOnly>
+            <el-tooltip
+              :teleported="false"
+              :content="!viewMoreRecommend ? 'Hiện thêm' : 'Ẩn bớt'"
+              placement="bottom"
+            >
+              <!-- <i v-if="!viewMoreRecommend" class="fa-light fa-chevron-down"></i>
+              <i v-else class="fa-light fa-chevron-up"></i> -->
+              <Icon v-if="!viewMoreRecommend" name="ci:chevron-down" />
+              <Icon v-else name="ci:chevron-big-up" />
+            </el-tooltip>
+          </ClientOnly>
+        </div>
       </div>
-    </div>
 
-    <div class="home-section cartoon">
-      <h2 class="gradient-title-default" v-show="cartoons?.length">
-        <strong>Hoạt hình - Anime đặc sắc</strong>
-        <NuxtLink
-          :to="{
-            path: `/discover/genres/hoat-hinh`,
-          }"
-          style="font-size: 1.8rem"
+      <div class="home-section cartoon">
+        <h2 class="gradient-title-default" v-show="cartoons?.length">
+          <strong>Hoạt hình - Anime đặc sắc</strong>
+          <NuxtLink
+            :to="{
+              path: `/discover/genres/hoat-hinh`,
+            }"
+            style="font-size: 1.8rem"
+          >
+            <strong class="view-all">Xem tất cả</strong>
+          </NuxtLink>
+        </h2>
+
+        <carousel
+          v-if="cartoons?.length"
+          class="carousel-group"
+          :items="5"
+          :autoplay="true"
+          :dots="false"
+          :autoplayHoverPause="true"
+          :autoplayTimeout="10000"
+          :margin="7"
+          :autoplaySpeed="500"
+          :nav="false"
+          :responsive="responsiveHorizoltal"
         >
-          <strong class="view-all">Xem tất cả</strong>
-        </NuxtLink>
-      </h2>
+          <MovieCardHorizontal
+            v-for="(item, index) in cartoons"
+            :item="item"
+            :index="index"
+            :key="item.id"
+            type="movie"
+          />
 
-      <carousel
-        v-if="cartoons?.length"
-        class="carousel-group"
-        :items="5"
-        :autoplay="true"
-        :dots="false"
-        :autoplayHoverPause="true"
-        :autoplayTimeout="10000"
-        :margin="7"
-        :autoplaySpeed="500"
-        :nav="false"
-        :responsive="responsiveHorizoltal"
-      >
-        <MovieCardHorizontal
-          v-for="(item, index) in cartoons"
-          :item="item"
-          :index="index"
-          :key="item.id"
-          type="movie"
-        />
+          <template #prev>
+            <div class="owl-prev">
+              <Icon name="fa6-solid:chevron-left"></Icon>
+            </div>
+          </template>
+          <template #next>
+            <div class="owl-next">
+              <Icon name="fa6-solid:chevron-right"></Icon>
+            </div>
+          </template>
+        </carousel>
+      </div>
 
-        <template #prev>
-          <div class="owl-prev">
-            <Icon name="fa6-solid:chevron-left"></Icon>
-          </div>
-        </template>
-        <template #next>
-          <div class="owl-next">
-            <Icon name="fa6-solid:chevron-right"></Icon>
-          </div>
-        </template>
-      </carousel>
-    </div>
+      <div class="home-section tv-new" v-show="tvAiringTodays?.length">
+        <h2 class="gradient-title-default">
+          <strong>Phim bộ mới</strong>
+          <NuxtLink
+            :to="{
+              path: `/discover/tv/airingtoday`,
+            }"
+            style="font-size: 1.8rem"
+          >
+            <strong class="view-all">Xem tất cả</strong>
+          </NuxtLink>
+        </h2>
 
-    <div class="home-section tv-new" v-show="tvAiringTodays?.length">
-      <h2 class="gradient-title-default">
-        <strong>Phim bộ mới</strong>
-        <NuxtLink
-          :to="{
-            path: `/discover/tv/airingtoday`,
-          }"
-          style="font-size: 1.8rem"
+        <!-- <section class="movie-group vertical">
+          <MovieCardVertical
+            v-for="(item, index) in tvAiringTodays"
+            :index="index"
+            :key="item.id"
+            :item="item"
+            type="tv"
+          />
+        </section> -->
+        <carousel
+          v-if="tvAiringTodays?.length"
+          class="carousel-group"
+          :items="5"
+          :autoplay="true"
+          :dots="false"
+          :autoplayHoverPause="true"
+          :autoplayTimeout="10000"
+          :margin="7"
+          :autoplaySpeed="500"
+          :nav="false"
+          :responsive="responsiveVertical"
         >
-          <strong class="view-all">Xem tất cả</strong>
-        </NuxtLink>
-      </h2>
+          <MovieCardVertical
+            v-for="(item, index) in tvAiringTodays"
+            :index="index"
+            :key="item.id"
+            :item="item"
+            type="tv"
+          />
 
-      <!-- <section class="movie-group vertical">
-        <MovieCardVertical
-          v-for="(item, index) in tvAiringTodays"
-          :index="index"
-          :key="item.id"
-          :item="item"
-          type="tv"
-        />
-      </section> -->
-      <carousel
-        v-if="tvAiringTodays?.length"
-        class="carousel-group"
-        :items="5"
-        :autoplay="true"
-        :dots="false"
-        :autoplayHoverPause="true"
-        :autoplayTimeout="10000"
-        :margin="7"
-        :autoplaySpeed="500"
-        :nav="false"
-        :responsive="responsiveVertical"
-      >
-        <MovieCardVertical
-          v-for="(item, index) in tvAiringTodays"
-          :index="index"
-          :key="item.id"
-          :item="item"
-          type="tv"
-        />
+          <template #prev>
+            <div class="owl-prev">
+              <Icon name="fa6-solid:chevron-left"></Icon>
+            </div>
+          </template>
+          <template #next>
+            <div class="owl-next">
+              <Icon name="fa6-solid:chevron-right"></Icon>
+            </div>
+          </template>
+        </carousel>
+      </div>
 
-        <template #prev>
-          <div class="owl-prev">
-            <Icon name="fa6-solid:chevron-left"></Icon>
-          </div>
-        </template>
-        <template #next>
-          <div class="owl-next">
-            <Icon name="fa6-solid:chevron-right"></Icon>
-          </div>
-        </template>
-      </carousel>
-    </div>
+      <div class="home-section trailer" v-show="upComings?.length">
+        <h2 class="gradient-title-default">
+          <strong>Trailer</strong>
 
-    <div class="home-section trailer" v-show="upComings?.length">
-      <h2 class="gradient-title-default">
-        <strong>Trailer</strong>
+          <NuxtLink
+            :to="{
+              path: `/discover/movie/upcoming`,
+            }"
+            style="font-size: 1.8rem"
+          >
+            <strong class="view-all">Xem tất cả</strong>
+          </NuxtLink>
+        </h2>
 
-        <NuxtLink
-          :to="{
-            path: `/discover/movie/upcoming`,
-          }"
-          style="font-size: 1.8rem"
+        <section class="movie-group horizontal trailer">
+          <MovieCardHorizontalTrailer
+            v-for="(item, index) in upComings"
+            :index="index"
+            :key="item.id"
+            :item="item"
+            type="movie"
+          />
+        </section>
+      </div>
+
+      <div class="home-section theater">
+        <h2 class="gradient-title-default" v-show="topRateds?.length">
+          <strong>Phim chiếu rạp mới</strong>
+          <NuxtLink
+            :to="{
+              path: `/discover/movie/toprated`,
+            }"
+            style="font-size: 1.8rem"
+          >
+            <strong class="view-all">Xem tất cả</strong>
+          </NuxtLink>
+        </h2>
+        <carousel
+          v-if="topRateds?.length"
+          class="carousel-group"
+          :items="4"
+          :autoplay="true"
+          :dots="false"
+          :autoplayHoverPause="true"
+          :autoplayTimeout="10000"
+          :margin="7"
+          :autoplaySpeed="500"
+          :nav="false"
+          :responsive="responsiveVertical"
         >
-          <strong class="view-all">Xem tất cả</strong>
-        </NuxtLink>
-      </h2>
+          <MovieCardVertical
+            v-for="(item, index) in topRateds"
+            :item="item"
+            :index="index"
+            :key="item.id"
+            type="movie"
+          />
 
-      <section class="movie-group horizontal trailer">
-        <MovieCardHorizontalTrailer
-          v-for="(item, index) in upComings"
-          :index="index"
-          :key="item.id"
-          :item="item"
-          type="movie"
-        />
-      </section>
-    </div>
+          <template #prev>
+            <div class="owl-prev">
+              <Icon name="fa6-solid:chevron-left"></Icon>
+            </div>
+          </template>
+          <template #next>
+            <div class="owl-next">
+              <Icon name="fa6-solid:chevron-right"></Icon>
+            </div>
+          </template>
+        </carousel>
+      </div>
 
-    <div class="home-section theater">
-      <h2 class="gradient-title-default" v-show="topRateds?.length">
-        <strong>Phim chiếu rạp mới</strong>
-        <NuxtLink
-          :to="{
-            path: `/discover/movie/toprated`,
-          }"
-          style="font-size: 1.8rem"
+      <div class="home-section on-the-air">
+        <h2 class="gradient-title-default" v-show="tvOnTheAirs?.length">
+          <strong>TV On the air</strong>
+          <NuxtLink
+            :to="{
+              path: `/discover/tv/ontheair`,
+            }"
+            style="font-size: 1.8rem"
+          >
+            <strong class="view-all">Xem tất cả</strong>
+          </NuxtLink>
+        </h2>
+
+        <carousel
+          v-if="tvOnTheAirs?.length"
+          class="carousel-group"
+          :items="5"
+          :autoplay="true"
+          :dots="false"
+          :autoplayHoverPause="true"
+          :autoplayTimeout="10000"
+          :margin="7"
+          :autoplaySpeed="500"
+          :nav="false"
+          :responsive="responsiveHorizoltal"
         >
-          <strong class="view-all">Xem tất cả</strong>
-        </NuxtLink>
-      </h2>
-      <carousel
-        v-if="topRateds?.length"
-        class="carousel-group"
-        :items="4"
-        :autoplay="true"
-        :dots="false"
-        :autoplayHoverPause="true"
-        :autoplayTimeout="10000"
-        :margin="7"
-        :autoplaySpeed="500"
-        :nav="false"
-        :responsive="responsiveVertical"
-      >
-        <MovieCardVertical
-          v-for="(item, index) in topRateds"
-          :item="item"
-          :index="index"
-          :key="item.id"
-          type="movie"
-        />
+          <MovieCardHorizontal
+            v-for="(item, index) in tvOnTheAirs"
+            :item="item"
+            :index="index"
+            :key="item.id"
+            type="tv"
+          />
 
-        <template #prev>
-          <div class="owl-prev">
-            <Icon name="fa6-solid:chevron-left"></Icon>
-          </div>
-        </template>
-        <template #next>
-          <div class="owl-next">
-            <Icon name="fa6-solid:chevron-right"></Icon>
-          </div>
-        </template>
-      </carousel>
-    </div>
-
-    <div class="home-section on-the-air">
-      <h2 class="gradient-title-default" v-show="tvOnTheAirs?.length">
-        <strong>TV On the air</strong>
-        <NuxtLink
-          :to="{
-            path: `/discover/tv/ontheair`,
-          }"
-          style="font-size: 1.8rem"
-        >
-          <strong class="view-all">Xem tất cả</strong>
-        </NuxtLink>
-      </h2>
-
-      <carousel
-        v-if="tvOnTheAirs?.length"
-        class="carousel-group"
-        :items="5"
-        :autoplay="true"
-        :dots="false"
-        :autoplayHoverPause="true"
-        :autoplayTimeout="10000"
-        :margin="7"
-        :autoplaySpeed="500"
-        :nav="false"
-        :responsive="responsiveHorizoltal"
-      >
-        <MovieCardHorizontal
-          v-for="(item, index) in tvOnTheAirs"
-          :item="item"
-          :index="index"
-          :key="item.id"
-          type="tv"
-        />
-
-        <template #prev>
-          <div class="owl-prev">
-            <Icon name="fa6-solid:chevron-left"></Icon>
-          </div>
-        </template>
-        <template #next>
-          <div class="owl-next">
-            <Icon name="fa6-solid:chevron-right"></Icon>
-          </div>
-        </template>
-      </carousel>
+          <template #prev>
+            <div class="owl-prev">
+              <Icon name="fa6-solid:chevron-left"></Icon>
+            </div>
+          </template>
+          <template #next>
+            <div class="owl-next">
+              <Icon name="fa6-solid:chevron-right"></Icon>
+            </div>
+          </template>
+        </carousel>
+      </div>
     </div>
   </div>
 </template>

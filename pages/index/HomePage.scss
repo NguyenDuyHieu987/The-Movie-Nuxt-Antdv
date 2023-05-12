@@ -7,16 +7,16 @@
     align-items: center;
   }
 
+  .home-content {
+    position: relative;
+    z-index: 1;
+    margin-top: -30px;
+    clip-path: inset(-100vh 0 -100vh 0);
+  }
+
   .home-section {
     position: relative;
     padding: 0px 20px;
-    // clip-path: inset(-100vh 0 -100vh 0);
-
-    &.outstanding {
-      position: relative;
-      margin-top: -50px;
-      z-index: 1;
-    }
 
     &.recommend {
       .movie-group.horizontal,

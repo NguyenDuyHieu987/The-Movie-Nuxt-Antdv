@@ -47,7 +47,7 @@ const { collapsed } = storeToRefs(store);
   margin-left: var(--sider-width);
   margin-top: var(--header-height);
   // transition: all 0.2s;
-  overflow: hidden;
+  // overflow: hidden;
 
   &.expand {
     margin-left: var(--sider-collapsed-width);
