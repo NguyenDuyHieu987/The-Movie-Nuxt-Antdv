@@ -26,7 +26,7 @@
       class="center-search-header"
       dropdown-class-name="certain-category-search-dropdown"
       :options="dataSearch"
-      style="width: 40%; min-width: 400px; max-width: 550px"
+      style="width: 40%; min-width: 400px; max-width: 500px"
       :open="isOpenAutoComplete"
       @change="handleChangeInput"
       @focus="isOpenAutoComplete = true"
