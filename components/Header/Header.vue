@@ -4,6 +4,7 @@
       <button class="menu-btn mobile" @click="store.setOpendrawer()">
         <menu-outlined v-if="openDrawer == false" />
         <el-icon v-else><Close /></el-icon>
+        <!-- <Icon v-else name="ic:sharp-close" /> -->
       </button>
       <button
         v-if="collapsed == true"
