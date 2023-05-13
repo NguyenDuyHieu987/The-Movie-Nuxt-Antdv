@@ -77,8 +77,8 @@ const responsiveCarousel = ref({
     slideBy: 6,
   },
   1300: {
-    items: 6,
-    slideBy: 6,
+    items: 7,
+    slideBy: 7,
   },
   1400: {
     items: 7,

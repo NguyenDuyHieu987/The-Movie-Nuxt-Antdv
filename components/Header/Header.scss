@@ -70,10 +70,14 @@
     .ant-input-group {
     }
 
-    .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
+    .ant-input-wrapper {
       transition: all 0.15s;
-      background: var(--search-focus-background);
       border-radius: 20px;
+      background: var(--search-background);
+    }
+
+    .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
+      background: var(--search-focus-background);
     }
 
     .ant-input-affix-wrapper {

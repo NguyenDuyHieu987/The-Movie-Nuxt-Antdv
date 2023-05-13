@@ -278,6 +278,10 @@ const responsiveHorizoltal = ref({
     items: 4,
     slideBy: 4,
   },
+  1300: {
+    items: store.$state.collapsed ? 5 : 4,
+    slideBy: store.$state.collapsed ? 5 : 4,
+  },
   1500: {
     items: 5,
     slideBy: 5,

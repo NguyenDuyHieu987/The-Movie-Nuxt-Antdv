@@ -1,7 +1,7 @@
 @media only screen and (min-width: 1900px) {
   .el-carousel {
     .el-carousel__container {
-      max-height: 1100px;
+      max-height: 100vh;
     }
   }
 }
@@ -9,7 +9,7 @@
 @media only screen and (max-width: 1900px) {
   .el-carousel {
     .el-carousel__container {
-      height: 60vh !important;
+      height: 100vh !important;
     }
   }
 
@@ -23,7 +23,7 @@
 @media only screen and (max-width: 1670px) {
   .el-carousel {
     .el-carousel__container {
-      height: 55vh !important;
+      height: 100vh !important;
     }
   }
 }
@@ -57,7 +57,7 @@
 @media only screen and (max-width: 1150px) {
   .el-carousel {
     .el-carousel__container {
-      height: 450px !important;
+      height: 100vh !important;
     }
   }
 }

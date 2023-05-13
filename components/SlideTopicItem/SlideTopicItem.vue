@@ -121,7 +121,7 @@
           <template #icon>
             <PlusOutlined />
           </template>
-          <span> Thêm</span>
+          <span> Danh sách</span>
         </a-button>
       </div>
     </div>

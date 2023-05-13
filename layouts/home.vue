@@ -59,7 +59,7 @@ const { collapsed } = storeToRefs(store);
   // position: relative;
   width: 100%;
   // height: 100%;
-  max-width: 2160px;
+  // max-width: var(--max-app-width);
   margin: 0px auto;
   // overflow: hidden;
 }
