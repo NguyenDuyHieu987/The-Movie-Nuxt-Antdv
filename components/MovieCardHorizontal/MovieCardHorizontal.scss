@@ -229,10 +229,15 @@
           &:hover {
             color: #fff;
             border-color: var(--border-regular-light);
+            background-color: var(--btn-backgroud-color-gray-hover);
           }
 
           &:focus {
             border-color: var(--border-regular-light);
+          }
+
+          &:active {
+            opacity: 0.8;
           }
         }
       }

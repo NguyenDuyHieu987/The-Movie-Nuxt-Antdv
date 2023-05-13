@@ -150,7 +150,7 @@
                 }"
                 class="btn-play-now"
               >
-                <a-button shape="circle" size="large">
+                <a-button shape="circle" size="large" type="text">
                   <template #icon>
                     <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
                     <Icon name="ic:play-arrow" />
@@ -168,7 +168,7 @@
                 }"
                 class="btn-play-now"
               >
-                <a-button shape="circle" size="large">
+                <a-button shape="circle" size="large" type="text">
                   <template #icon>
                     <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
                     <Icon name="ic:play-arrow" />
@@ -190,6 +190,7 @@
               <a-button
                 shape="circle"
                 size="large"
+                type="text"
                 @click.prevent="handelAddToList"
               >
                 <template #icon>
@@ -215,7 +216,12 @@
                 hashtags="phimhay247.site,vite"
                 style="white-space: nowrap; display: block"
               >
-                <a-button shape="circle" size="large" @click.prevent="">
+                <a-button
+                  shape="circle"
+                  size="large"
+                  type="text"
+                  @click.prevent=""
+                >
                   <template #icon>
                     <font-awesome-icon icon="fa-solid fa-share" />
                   </template>
@@ -246,7 +252,7 @@
                       }`,
                 }"
               >
-                <a-button shape="circle" size="large">
+                <a-button shape="circle" size="large" type="text">
                   <template #icon>
                     <InfoOutlined />
                     <!-- <i class="fa-sharp fa-solid fa-info"></i> -->

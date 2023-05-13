@@ -58,6 +58,7 @@
 
   --btn-backgroud-color-gray: #1e1e1e;
   --btn-backgroud-color-gray1: #252525;
+  --btn-backgroud-color-gray-hover: #303030;
   --btn-backgroud-color: #004671;
   --btn-backgroud-color-hover: #003b60;
   --btn-delete-background-color: #f10606;
@@ -557,6 +558,13 @@ dl {
         // color: #007ea5;
         color: #fff;
         transform: scale(1.2);
+      }
+    }
+
+    &:active {
+      i,
+      svg {
+        opacity: 0.7;
       }
     }
   }
