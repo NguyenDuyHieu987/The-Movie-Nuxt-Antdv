@@ -70,7 +70,7 @@
 
     .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
       transition: all 0.15s;
-      background: var(--background-content-color);
+      background: var(--search-focus-background);
       border-radius: 20px;
     }
 
@@ -167,8 +167,10 @@
       }
     }
 
-    .ant-btn {
+    .ant-btn.search-btn-mobile {
+      background-color: transparent;
       display: none;
+      border: none;
     }
   }
 }
@@ -204,7 +206,13 @@
 
   .logo {
     .menu-btn {
-      display: block;
+      &.mobile {
+        display: block !important;
+      }
+
+      &.desktop {
+        display: none;
+      }
     }
   }
 
@@ -214,6 +222,13 @@
     width: 100% !important;
     .section-title.search {
       margin-top: 0px;
+    }
+
+    .ant-input-group-addon {
+      .ant-input-search-button {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 }

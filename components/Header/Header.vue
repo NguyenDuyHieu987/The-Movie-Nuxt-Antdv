@@ -70,8 +70,14 @@
       <ClientOnly>
         <el-popover trigger="click" placement="bottom" class="popover-search">
           <template #reference>
-            <a-button type="primary" shape="circle" size="large">
-              <template #icon><SearchOutlined /></template>
+            <a-button type="text" shape="circle" class="search-btn-mobile">
+              <template #icon>
+                <!-- <SearchOutlined /> -->
+                <Icon
+                  name="fa6-solid:magnifying-glass"
+                  class="fa-magnifying-glass"
+                />
+              </template>
             </a-button>
           </template>
 
@@ -99,7 +105,6 @@
               </template>
               <a-input-search
                 class="center-search-header-responsive"
-                enter-button
                 placeholder="Nhập tên phim để tìm kiếm..."
                 size="large"
                 allowClear
@@ -107,6 +112,12 @@
                 :loading="loadingSearch"
                 @search="handleSearch"
               >
+                <template #enterButton>
+                  <Icon
+                    name="fa6-solid:magnifying-glass"
+                    class="fa-magnifying-glass"
+                  />
+                </template>
               </a-input-search>
             </a-auto-complete>
           </template>
