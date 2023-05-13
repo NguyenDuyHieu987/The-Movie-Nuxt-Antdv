@@ -24,7 +24,7 @@
     ></el-image> -->
 
     <img
-      class="ant-image"
+      class="el-image"
       v-lazy="getBackdrop(item?.backdrop_path)"
       :preview="false"
       loading="lazy"
@@ -69,7 +69,7 @@
       </div>
 
       <div class="action">
-        <a-button size="large" class="play">
+        <a-button size="large" type="text" class="play">
           <template #icon>
             <Icon name="ic:play-arrow" class="play" />
           </template>
@@ -93,7 +93,7 @@
           </NuxtLink>
         </a-button>
 
-        <a-button size="large" class="info">
+        <a-button size="large" type="text" class="info">
           <template #icon>
             <Icon name="bi:info-circle" class="info" />
           </template>
@@ -117,7 +117,7 @@
           </NuxtLink>
         </a-button>
 
-        <a-button size="large" class="add">
+        <a-button size="large" type="text" class="add">
           <template #icon>
             <PlusOutlined />
           </template>

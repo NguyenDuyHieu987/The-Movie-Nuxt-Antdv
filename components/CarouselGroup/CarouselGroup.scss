@@ -1,0 +1,19 @@
+.carousel-group {
+  .owl-carousel {
+    .owl-dots {
+      position: absolute;
+      top: -55px;
+      right: 0;
+      z-index: -1;
+
+      .owl-dot {
+        span {
+          //   border-radius: 0px;
+        }
+
+        &.active {
+        }
+      }
+    }
+  }
+}

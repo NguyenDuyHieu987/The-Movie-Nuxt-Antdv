@@ -132,120 +132,128 @@
       <div class="bottom-content">
         <div class="widget">
           <div class="left">
-            <ClientOnly>
-              <el-tooltip
-                :teleported="false"
-                content="Xem ngay"
-                placement="top"
+            <a-tooltip
+              :teleported="false"
+              title="Xem ngay"
+              content="Xem ngay"
+              placement="top"
+            >
+              <NuxtLink
+                v-if="isEpisodes"
+                :to="{
+                  path: `/play/tv/${item?.id}/${
+                    item?.name
+                      ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                      : item?.title?.replace(/\s/g, '+').toLowerCase()
+                  }/tap-1`,
+                }"
+                class="btn-play-now"
               >
-                <NuxtLink
-                  v-if="isEpisodes"
-                  :to="{
-                    path: `/play/tv/${item?.id}/${
-                      item?.name
-                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                        : item?.title?.replace(/\s/g, '+').toLowerCase()
-                    }/tap-1`,
-                  }"
-                  class="btn-play-now"
-                >
-                  <a-button shape="circle" size="large">
-                    <template #icon>
-                      <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
-                      <Icon name="ic:play-arrow" />
-                    </template>
-                  </a-button>
-                </NuxtLink>
-                <NuxtLink
-                  v-else
-                  :to="{
-                    path: `/play/movie/${item?.id}/${
-                      item?.name
-                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                        : item?.title?.replace(/\s/g, '+').toLowerCase()
-                    }`,
-                  }"
-                  class="btn-play-now"
-                >
-                  <a-button shape="circle" size="large">
-                    <template #icon>
-                      <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
-                      <Icon name="ic:play-arrow" />
-                    </template>
-                  </a-button>
-                </NuxtLink>
-              </el-tooltip>
-
-              <el-tooltip
-                :teleported="false"
-                content="Thêm vào danh sách"
-                placement="top"
-              >
-                <a-button
-                  shape="circle"
-                  size="large"
-                  @click.prevent="handelAddToList"
-                >
+                <a-button shape="circle" size="large">
                   <template #icon>
-                    <font-awesome-icon
-                      v-if="isAddToList"
-                      icon="fa-solid fa-check"
-                    />
-
-                    <PlusOutlined v-else />
+                    <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
+                    <Icon name="ic:play-arrow" />
                   </template>
                 </a-button>
-              </el-tooltip>
+              </NuxtLink>
+              <NuxtLink
+                v-else
+                :to="{
+                  path: `/play/movie/${item?.id}/${
+                    item?.name
+                      ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                      : item?.title?.replace(/\s/g, '+').toLowerCase()
+                  }`,
+                }"
+                class="btn-play-now"
+              >
+                <a-button shape="circle" size="large">
+                  <template #icon>
+                    <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
+                    <Icon name="ic:play-arrow" />
+                  </template>
+                </a-button>
+              </NuxtLink>
+            </a-tooltip>
 
-              <el-tooltip :teleported="false" content="Chia sẻ" placement="top">
-                <ShareNetwork
-                  network="facebook"
-                  :url="urlShare"
-                  :title="dataMovie?.name ? dataMovie?.name : dataMovie?.title"
-                  hashtags="phimhay247.site,vite"
-                  style="white-space: nowrap; display: block"
-                >
-                  <a-button shape="circle" size="large" @click.prevent="">
-                    <template #icon>
-                      <font-awesome-icon icon="fa-solid fa-share" />
-                    </template>
-                  </a-button>
-                </ShareNetwork>
-              </el-tooltip>
-            </ClientOnly>
+            <a-tooltip
+              :teleported="false"
+              :title="
+                !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
+              "
+              :content="
+                !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
+              "
+              placement="top"
+            >
+              <a-button
+                shape="circle"
+                size="large"
+                @click.prevent="handelAddToList"
+              >
+                <template #icon>
+                  <font-awesome-icon
+                    v-if="isAddToList"
+                    icon="fa-solid fa-check"
+                  />
+
+                  <PlusOutlined v-else />
+                </template>
+              </a-button>
+            </a-tooltip>
+
+            <a-tooltip
+              :teleported="false"
+              title="Chia sẻ"
+              content="Chia sẻ"
+              placement="top"
+            >
+              <ShareNetwork
+                network="facebook"
+                :url="urlShare"
+                :title="dataMovie?.name ? dataMovie?.name : dataMovie?.title"
+                hashtags="phimhay247.site,vite"
+                style="white-space: nowrap; display: block"
+              >
+                <a-button shape="circle" size="large" @click.prevent="">
+                  <template #icon>
+                    <font-awesome-icon icon="fa-solid fa-share" />
+                  </template>
+                </a-button>
+              </ShareNetwork>
+            </a-tooltip>
           </div>
 
           <div class="right">
-            <ClientOnly>
-              <el-tooltip
-                :teleported="false"
-                content="Chi tiết phim"
-                placement="top"
+            <a-tooltip
+              :teleported="false"
+              title="Chi tiết phim"
+              content="Chi tiết phim"
+              placement="top"
+            >
+              <NuxtLink
+                :to="{
+                  path: isEpisodes
+                    ? `/info/tv/${item?.id}/${
+                        item?.name
+                          ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                          : item?.title?.replace(/\s/g, '+').toLowerCase()
+                      }`
+                    : `/info/movie/${item?.id}/${
+                        item?.name
+                          ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                          : item?.title?.replace(/\s/g, '+').toLowerCase()
+                      }`,
+                }"
               >
-                <NuxtLink
-                  :to="{
-                    path: isEpisodes
-                      ? `/info/tv/${item?.id}/${
-                          item?.name
-                            ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                            : item?.title?.replace(/\s/g, '+').toLowerCase()
-                        }`
-                      : `/info/movie/${item?.id}/${
-                          item?.name
-                            ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                            : item?.title?.replace(/\s/g, '+').toLowerCase()
-                        }`,
-                  }"
-                >
-                  <a-button shape="circle" size="large">
-                    <template #icon>
-                      <InfoOutlined />
-                      <!-- <i class="fa-sharp fa-solid fa-info"></i> -->
-                    </template>
-                  </a-button>
-                </NuxtLink>
-              </el-tooltip>
-            </ClientOnly>
+                <a-button shape="circle" size="large">
+                  <template #icon>
+                    <InfoOutlined />
+                    <!-- <i class="fa-sharp fa-solid fa-info"></i> -->
+                  </template>
+                </a-button>
+              </NuxtLink>
+            </a-tooltip>
           </div>
         </div>
         <div class="info">
@@ -362,7 +370,7 @@ onMounted(() => {
 
       if (detailFlow?.style) {
         // if (rect.left <= 300) {
-        if (e.x - x.offsetWidth <= 250) {
+        if (e.x - x.offsetWidth <= 230) {
           detailFlow.style.left = '10px';
           detailFlow.style.right = 'auto';
           detailFlow.style.transform =

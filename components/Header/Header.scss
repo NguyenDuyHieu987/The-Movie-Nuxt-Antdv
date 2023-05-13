@@ -1,40 +1,9 @@
-.logo {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .menu-btn {
-    display: none;
-    padding: 16px 18px;
-    height: 100%;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #fff;
-    // border-right: 0.25px solid var( --border-regular-light);
-    // margin-right: 10px;
-
-    svg {
-      font-size: 1.4em;
-      // cursor: pointer;
-      // margin-right: 10px;
-      // margin-bottom: 3px;
-    }
-    .el-icon {
-      margin-left: -5px;
-      margin-right: -2px;
-      font-size: 3rem;
-    }
-  }
-}
-
 .ant-layout-header.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 0px 0px 20px;
-  border-bottom: 0.25px solid var(--border-regular-light);
+  // border-bottom: 0.25px solid var(--border-regular-light);
   height: var(--header-height);
   line-height: var(--header-height);
   position: fixed;
@@ -49,71 +18,109 @@
   //   var(--sider-header-background-color2)
   // );
   // background-color: transparent;
-  background: linear-gradient(
-    to bottom,
-    #050505 0,
-    #05050575 70%,
-    #05050500 100%
-  );
-  transition: all 0.3s;
+  background: linear-gradient(to bottom, #050505 0, #05050500 100%);
+  transition: all 0.15s;
 
-  .ant-input-search .ant-input {
-    color: #fff;
-    background: transparent;
+  &:has(.menu-btn.desktop) {
+    padding: 0px;
   }
 
-  .ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
-    background: transparent;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-  }
+  .logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  .ant-input-group-addon {
-    background: none;
-  }
+    .menu-btn {
+      padding: 16px 18px;
+      height: 100%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      // border-right: 0.25px solid var( --border-regular-light);
+      // margin-right: 10px;
+      transition: all 0.25s;
 
-  .ant-input-affix-wrapper {
-    border: 1px solid var(--border-regular-light);
-    height: 40px;
-    padding-left: 16px;
-    // border-right: 0px;
-    transition: all 0s;
+      &.mobile {
+        display: none;
+      }
 
-    // &:hover {
-    //   border-color: var(--border-regular-light);
-    // }
-  }
+      &:active {
+        opacity: 0.7;
+      }
 
-  .ant-input-search-button {
-    border: 1px solid var(--border-regular-light);
-    transition: all 0s;
-
-    &:hover {
-      border-color: #00dac8;
+      svg {
+        font-size: 1.3em;
+        // cursor: pointer;
+        // margin-right: 10px;
+        // margin-bottom: 3px;
+      }
+      .el-icon {
+        margin-left: -5px;
+        margin-right: -2px;
+        font-size: 3rem;
+      }
     }
   }
 
-  .ant-input-affix-wrapper-focused {
-    // border-color: #ff004c;
-    border-color: #00dac8;
-
-    &:hover {
-      border-color: #00dac8;
+  .center-search-header {
+    .ant-input-group {
     }
-  }
 
-  .ant-input-search
-    > .ant-input-group
-    > .ant-input-group-addon:last-child
-    .ant-input-search-button {
-    padding-top: 0;
-    padding-bottom: 0;
-    border-radius: 0 20px 20px 0;
-    background: transparent;
-    // border: 1px solid #001628;
-    // border-left: none;
-    box-shadow: none;
-    text-shadow: none;
+    .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
+      transition: all 0.15s;
+      background: var(--background-content-color);
+      border-radius: 20px;
+    }
+
+    .ant-input-affix-wrapper {
+      border: 1px solid var(--border-regular-light);
+      height: 40px;
+      padding-left: 16px;
+      // border-right: none;
+      transition: all 0s;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      background: transparent;
+
+      // &:hover {
+      //   border-color: var(--border-regular-light);
+      // }
+
+      &.ant-input-affix-wrapper-focused {
+        // border-color: #00dac8;
+
+        // &:hover {
+        //   border-color: #00dac8;
+        // }
+      }
+
+      .ant-input {
+        color: #fff;
+        background: transparent;
+      }
+    }
+
+    .ant-input-group-addon {
+      background: none;
+
+      .ant-input-search-button {
+        background: transparent;
+        border: 1px solid var(--border-regular-light);
+        transition: all 0s;
+        border-radius: 0 20px 20px 0;
+        border-left: none;
+
+        svg {
+          font-size: 1.9rem;
+        }
+
+        &:hover {
+          // border-color: #00dac8;
+        }
+      }
+    }
   }
 
   .right-header {

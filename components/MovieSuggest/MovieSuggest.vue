@@ -3,76 +3,36 @@
     <h2 class="gradient-title-default" v-show="dataSimilar?.length">
       <strong>Phim tương tự</strong>
     </h2>
-    <carousel
-      v-if="dataSimilar?.length"
-      class="carousel-group"
-      :items="4"
-      :autoplay="true"
-      :dots="false"
-      :autoplayHoverPause="true"
-      :autoplayTimeout="10000"
-      :margin="7"
-      :autoplaySpeed="500"
-      :nav="false"
-      :responsive="responsive"
-    >
-      <MovieCardVertical
-        v-for="(item, index) in dataSimilar"
-        :index="index"
-        :key="item.id"
-        :item="item"
-        :type="item.media_type"
-      />
 
-      <template #prev>
-        <div class="owl-prev">
-          <Icon name="fa6-solid:chevron-left"></Icon>
-        </div>
+    <CarouselGroup :data="dataSimilar" :responsive="responsive">
+      <template #content>
+        <MovieCardVertical
+          v-for="(item, index) in dataSimilar"
+          :index="index"
+          :key="item.id"
+          :item="item"
+          :type="item.media_type"
+        />
       </template>
-      <template #next>
-        <div class="owl-next">
-          <Icon name="fa6-solid:chevron-right"></Icon>
-        </div>
-      </template>
-    </carousel>
+    </CarouselGroup>
   </div>
 
   <div class="recommend-stage">
     <h2 class="gradient-title-default" v-show="dataRecommend?.length">
       <strong>Có thể bạn quan tâm</strong>
     </h2>
-    <carousel
-      v-if="dataRecommend?.length"
-      class="carousel-group"
-      :items="4"
-      :autoplay="true"
-      :dots="false"
-      :autoplayHoverPause="true"
-      :autoplayTimeout="10000"
-      :margin="7"
-      :autoplaySpeed="500"
-      :nav="false"
-      :responsive="responsive"
-    >
-      <MovieCardVertical
-        v-for="(item, index) in dataRecommend"
-        :item="item"
-        :index="index"
-        :key="item.id"
-        :type="item?.media_type"
-      />
 
-      <template #prev>
-        <div class="owl-prev">
-          <Icon name="fa6-solid:chevron-left"></Icon>
-        </div>
+    <CarouselGroup :data="dataRecommend" :responsive="responsive">
+      <template #content>
+        <MovieCardVertical
+          v-for="(item, index) in dataRecommend"
+          :index="index"
+          :key="item.id"
+          :item="item"
+          :type="item.media_type"
+        />
       </template>
-      <template #next>
-        <div class="owl-next">
-          <Icon name="fa6-solid:chevron-right"></Icon>
-        </div>
-      </template>
-    </carousel>
+    </CarouselGroup>
   </div>
 </template>
 
@@ -81,6 +41,7 @@ import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
 import { getSimilar, getTrending } from '@/services/MovieService';
 import MovieCardVertical from '../MovieCardVertical/MovieCardVertical.vue';
+import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
 
 const props = defineProps({
   movieId: {

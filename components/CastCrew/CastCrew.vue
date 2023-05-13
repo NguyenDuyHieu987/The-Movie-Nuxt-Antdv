@@ -2,71 +2,36 @@
   <div class="cast-crew">
     <a-tabs v-model:activeKey="activeTabCast" v-show="dataCredit?.cast?.length">
       <a-tab-pane key="1" tab="Diễn viên">
-        <carousel
-          v-if="dataCredit?.cast?.length"
-          class="carousel-group"
-          :items="4"
-          :autoplay="true"
-          :dots="false"
-          :autoplayHoverPause="true"
-          :autoplayTimeout="10000"
-          :margin="7"
-          :autoplaySpeed="500"
-          :nav="false"
+        <CarouselGroup
+          :data="dataCredit?.cast?.slice(0, 20)"
           :responsive="responsiveCarousel"
         >
-          <CastCard
-            v-for="(item, index) in dataCredit?.cast"
-            :item="item"
-            :index="index"
-            :key="item.id"
-            :loading="loading"
-          />
-          <template #prev>
-            <div class="owl-prev">
-              <Icon name="fa6-solid:chevron-left"></Icon>
-            </div>
+          <template #content>
+            <CastCard
+              v-for="(item, index) in dataCredit?.cast?.slice(0, 20)"
+              :item="item"
+              :index="index"
+              :key="item.id"
+              :loading="loading"
+            />
           </template>
-          <template #next>
-            <div class="owl-next">
-              <Icon name="fa6-solid:chevron-right"></Icon>
-            </div>
-          </template>
-        </carousel>
+        </CarouselGroup>
       </a-tab-pane>
       <a-tab-pane key="2" tab="Đội ngũ" force-render>
-        <carousel
-          v-if="dataCredit?.crew?.length"
-          class="carousel-group"
-          :items="4"
-          :autoplay="true"
-          :loop="true"
-          :dots="false"
-          :autoplayHoverPause="true"
-          :autoplayTimeout="10000"
-          :margin="7"
-          :autoplaySpeed="500"
-          :nav="false"
+        <CarouselGroup
+          :data="dataCredit?.crew?.slice(0, 20)"
           :responsive="responsiveCarousel"
         >
-          <CastCard
-            v-for="(item, index) in dataCredit?.crew"
-            :item="item"
-            :index="index"
-            :key="item.id"
-            :loading="loading"
-          />
-          <template #prev>
-            <div class="owl-prev">
-              <Icon name="fa6-solid:chevron-left"></Icon>
-            </div>
+          <template #content>
+            <CastCard
+              v-for="(item, index) in dataCredit?.crew?.slice(0, 20)"
+              :item="item"
+              :index="index"
+              :key="item.id"
+              :loading="loading"
+            />
           </template>
-          <template #next>
-            <div class="owl-next">
-              <Icon name="fa6-solid:chevron-right"></Icon>
-            </div>
-          </template>
-        </carousel>
+        </CarouselGroup>
       </a-tab-pane>
     </a-tabs>
   </div>
@@ -74,6 +39,7 @@
 
 <script setup>
 import CastCard from '@/components/CastCard/CastCard.vue';
+import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
 
 defineProps({
   dataCredit: {

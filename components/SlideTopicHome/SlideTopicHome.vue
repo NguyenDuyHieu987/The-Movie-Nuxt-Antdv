@@ -1,8 +1,8 @@
 <template>
   <div class="slide-topic-home">
-    <!-- <div class="overlay-backdrop">
+    <div class="overlay-backdrop">
       <img :src="getBackdrop(trendings[0]?.backdrop_path)" />
-    </div> -->
+    </div>
 
     <el-carousel
       :interval="5000"
@@ -14,9 +14,8 @@
       trigger="click"
       ref="topicHome"
       class="topic-home"
+      @change="handleSwitchCarouel"
     >
-      <!-- @change="handleSwitchCarouel" -->
-
       <el-carousel-item
         v-for="(item, index) in trendings"
         :key="item.id"
@@ -24,6 +23,19 @@
       >
         <SlideTopicItem :item="item" />
       </el-carousel-item>
+
+      <div class="carousel-arrow">
+        <a-button @click="topicHome.prev()" size="large" type="text">
+          <template #icon>
+            <Icon name="fa6-solid:chevron-left"></Icon>
+          </template>
+        </a-button>
+        <a-button @click="topicHome.next()" size="large" type="text">
+          <template #icon>
+            <Icon name="fa6-solid:chevron-right"></Icon>
+          </template>
+        </a-button>
+      </div>
     </el-carousel>
   </div>
 </template>
@@ -39,6 +51,8 @@ const props = defineProps({
     type: Array,
   },
 });
+
+const topicHome = ref();
 
 onBeforeMount(async () => {
   // await useAsyncData('trending/all/1', () => getTrending(1))
@@ -76,26 +90,26 @@ const handleSwitchCarouel = (e) => {
     if (e == index) {
       if (index == 0) {
         img_overlay_backdrop.src = el_carousel_topic_home.querySelectorAll(
-          '.el-carousel__item .el-image img'
+          '.el-carousel__item .el-image'
         )[0].src;
       } else {
         if (img_silde_topic_item_active?.nextElementSibling) {
           img_overlay_backdrop.src =
             img_silde_topic_item_active.nextElementSibling.querySelector(
-              '.el-image img'
+              '.el-image'
             ).src;
         }
       }
     } else {
       if (e == 10) {
         img_overlay_backdrop.src = el_carousel_topic_home.querySelectorAll(
-          '.el-carousel__item .el-image img'
+          '.el-carousel__item .el-image'
         )[10].src;
       } else {
         if (img_silde_topic_item_active?.previousElementSibling) {
           img_overlay_backdrop.src =
             img_silde_topic_item_active.previousElementSibling.querySelector(
-              '.el-image img'
+              '.el-image'
             ).src;
         }
       }

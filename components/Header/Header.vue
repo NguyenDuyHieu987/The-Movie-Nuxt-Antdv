@@ -1,9 +1,17 @@
 <template>
   <a-layout-header class="header">
     <div class="logo">
-      <button class="menu-btn" @click="store.setOpendrawer()">
+      <button class="menu-btn mobile" @click="store.setOpendrawer()">
         <menu-outlined v-if="openDrawer == false" />
         <el-icon v-else><Close /></el-icon>
+      </button>
+      <button
+        v-if="collapsed == true"
+        class="menu-btn desktop"
+        @click="store.setCollapsed()"
+      >
+        <menu-outlined />
+        <!-- <el-icon v-else><Close /></el-icon> -->
       </button>
       <NuxtLink :to="{ path: '/' }">
         <a-tooltip title="Trang chủ">
@@ -17,7 +25,7 @@
       class="center-search-header"
       dropdown-class-name="certain-category-search-dropdown"
       :options="dataSearch"
-      style="width: 40%; min-width: 350px; max-width: 550px"
+      style="width: 40%; min-width: 400px; max-width: 550px"
       :open="isOpenAutoComplete"
       @change="handleChangeInput"
       @focus="isOpenAutoComplete = true"
@@ -41,20 +49,19 @@
         @search="handleSearch"
       >
         <template #enterButton>
-          <ClientOnly>
-            <el-tooltip
-              :teleported="false"
-              title="Tìm kiếm"
-              content="Tìm kiếm"
-              effect="dark"
-            >
-              <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" /> -->
-              <Icon
-                name="fa6-solid:magnifying-glass"
-                class="fa-magnifying-glass"
-              />
-            </el-tooltip>
-          </ClientOnly>
+          <a-tooltip
+            :teleported="false"
+            title="Tìm kiếm"
+            content="Tìm kiếm"
+            effect="dark"
+            placement="bottom"
+          >
+            <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" /> -->
+            <Icon
+              name="fa6-solid:magnifying-glass"
+              class="fa-magnifying-glass"
+            />
+          </a-tooltip>
         </template>
       </a-input-search>
     </a-auto-complete>
@@ -234,7 +241,8 @@ import { useStore } from '@/store/useStore';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();
-const { openDrawer, isLogin, userAccount, role } = storeToRefs(store);
+const { openDrawer, collapsed, isLogin, userAccount, role } =
+  storeToRefs(store);
 const router = useRouter();
 const dataSearch = ref([]);
 const page = ref(1);
@@ -309,13 +317,13 @@ onMounted(() => {
         header.style.background = '#0b0b0bcc';
       } else if (window.scrollY == 0) {
         header.style.background =
-          'linear-gradient(to bottom, #050505 0, #05050575 70%, #05050500 100%)';
+          'linear-gradient(to bottom, #050505 0, #05050500 100%)';
       }
     } else if (st < lastScrollTop) {
       // upscroll code
       if (window.scrollY == 0) {
         header.style.background =
-          'linear-gradient(to bottom, #050505 0, #05050575 70%, #05050500 100%)';
+          'linear-gradient(to bottom, #050505 0, #05050500 100%)';
       }
     }
     lastScrollTop = st <= 0 ? 0 : st;

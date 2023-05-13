@@ -26,18 +26,22 @@
       height: 55vh !important;
     }
   }
-  .ant-carousel {
-    .slick-track {
-      // height: 65vh !important;
-    }
-  }
 }
 
 @media only screen and (max-width: 1500px) {
   .el-carousel {
     .el-carousel__container {
       // height: 520px !important;
-      height: 95vh !important;
+      height: 97vh !important;
+    }
+  }
+  .body-content.expand {
+    .slide-topic-home {
+      .el-carousel {
+        .el-carousel__container {
+          height: 105vh !important;
+        }
+      }
     }
   }
 }
@@ -45,7 +49,7 @@
 @media only screen and (max-width: 1300px) {
   .el-carousel {
     .el-carousel__container {
-      height: 500px !important;
+      height: 95vh !important;
     }
   }
 }
@@ -75,14 +79,24 @@
   }
 }
 
+.body-content.expand {
+  .slide-topic-home {
+    .el-carousel {
+      .el-carousel__container {
+        height: 105vh !important;
+      }
+    }
+  }
+}
+
 .slide-topic-home {
   position: relative;
 
   .overlay-backdrop {
-    position: absolute;
+    position: fixed;
     top: 50%;
-    transform: translateY(-50%);
-    left: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
     // margin-top: calc(var(--header-height) + 150px);
     // height: calc(100vh - (var(--header-height) + 150px));
     height: 120%;
@@ -101,6 +115,7 @@
 
   .el-carousel.topic-home {
     .el-carousel__container {
+      height: 97vh;
       position: relative;
 
       .el-carousel__item {
@@ -149,19 +164,36 @@
       }
     }
 
-    .el-carousel__arrow {
-      background-color: #00000063;
-      padding: 22px;
-      border-radius: 5px;
-      z-index: 10;
+    .carousel-arrow {
+      position: absolute;
+      bottom: 50px;
+      right: 30px;
+      z-index: 1;
 
-      .el-icon {
-        font-weight: bold;
-        font-size: 2rem;
-      }
+      .ant-btn {
+        background: none;
+        border: none;
+        color: #8a8a8a;
+        transition: all 0.25s;
 
-      &:hover {
-        background-color: #00000088;
+        // &:hover ,
+        &:focus {
+          color: #fff;
+          box-shadow: none;
+          outline: none;
+          border-color: none;
+          svg {
+            font-size: 2.4rem;
+          }
+        }
+
+        &:active {
+          opacity: 0.7;
+        }
+
+        svg {
+          font-size: 2.2rem;
+        }
       }
     }
   }

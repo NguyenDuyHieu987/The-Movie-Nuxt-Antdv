@@ -13,7 +13,7 @@
   background: linear-gradient(
     to right,
     #050505 0,
-    #05050575 70%,
+    #05050575 50%,
     #05050500 100%
   );
   z-index: 10;
@@ -69,7 +69,7 @@
     position: sticky;
     bottom: 0;
     z-index: 2;
-    height: var(--header-height);
+    height: calc(var(--header-height) - 5px);
     display: flex;
     align-items: center;
     // background-image: linear-gradient(
@@ -102,7 +102,8 @@
   //   var(--sider-header-background-color3),
   //   var(--sider-header-background-color2)
   // );
-  background-color: var(--background-content-color);
+  background-color: transparent;
+  // background-color: var(--background-content-color);
   border-bottom: 1px solid var(--border-regular-light);
   padding: 0px;
 }
@@ -114,15 +115,14 @@
 
 .trigger-collapse {
   white-space: nowrap;
-  padding: 0px 20px;
-  padding-left: 24px;
+  padding-left: 26px;
   // transition: padding 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: all 0s;
   display: flex;
   align-items: center;
 
   .title-trigger-collapse {
-    margin-left: 10px;
+    margin-left: 13px;
     user-select: none;
     opacity: 1;
     // transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), margin 0.3s,

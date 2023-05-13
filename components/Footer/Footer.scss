@@ -5,7 +5,8 @@
 }
 
 .ant-layout-footer.footer {
-  background-color: transparent;
+  // background-color: transparent;
+  background-color: var(--background-content-color);
   border-top: 1px solid var(--border-regular-light);
   margin-top: auto;
   display: flex;
