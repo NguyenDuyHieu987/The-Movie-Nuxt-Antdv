@@ -16,12 +16,12 @@
 
     <template #prev>
       <div class="owl-prev">
-        <Icon name="fa6-solid:chevron-left"></Icon>
+        <Icon name="bi:chevron-left"></Icon>
       </div>
     </template>
     <template #next>
       <div class="owl-next">
-        <Icon name="fa6-solid:chevron-right"></Icon>
+        <Icon name="bi:chevron-right"></Icon>
       </div>
     </template>
   </carousel>

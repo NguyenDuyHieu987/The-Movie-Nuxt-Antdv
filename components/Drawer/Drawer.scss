@@ -13,7 +13,13 @@
   //   var(--sider-header-background-color3),
   //   var(--sider-header-background-color2)
   // );
-  background-color: #000;
+  background-color: var(--background-content-color);
+  // background: linear-gradient(
+  //   to right,
+  //   #050505 0,
+  //   #05050575 50%,
+  //   #05050500 100%
+  // );
   // overflow: visible;
   // overflow-y: scroll;
 
