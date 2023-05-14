@@ -73,11 +73,12 @@
   --input-border-color-focused: #00649d;
   --input-border-color-hover: #00649d;
 
+  --border-regular: #e3e3e3;
+  --border-regular-btn: #ffffff;
   --border-regular-light: #ffffff4d;
 
-  --breadcrumb-background-color: #000;
-  --border-regular: #e3e3e3;
-  --footer-background-color: #000;
+  --breadcrumb-background-color: #070707;
+  --footer-background-color: #070707;
 
   --header-height: 65px;
   --sider-width: 230px;
@@ -110,8 +111,9 @@ body {
 
 ::-webkit-scrollbar {
   width: 10px;
-  background: #000;
+  background-color: var(--background-content-color);
   transition: all 0.1s;
+  padding: 0px 10px;
 
   &:hover {
     // background-color: #232323;
@@ -120,7 +122,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background: #acacac;
+  background-color: #acacac;
   transition: all 0.1s;
 
   &:active {
@@ -291,15 +293,15 @@ dl {
 
 .movie-group.horizontal {
   display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(230px, auto));
-  grid-template-columns: repeat(auto-fit, minmax(24%, auto));
+  grid-template-columns: repeat(auto-fit, minmax(230px, auto));
+  // grid-template-columns: repeat(auto-fit, minmax(24%, auto));
   // margin-top: 10px;
   gap: 10px;
 }
 
 .body-content.expand {
   .movie-group.horizontal {
-    grid-template-columns: repeat(auto-fit, minmax(19%, auto));
+    // grid-template-columns: repeat(auto-fit, minmax(19%, auto));
   }
 }
 

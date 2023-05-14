@@ -1,12 +1,12 @@
 <template>
   <div class="slide-topic-home">
-    <div class="overlay-backdrop">
+    <!-- <div class="overlay-backdrop">
       <img :src="getBackdrop(trendings[0]?.backdrop_path)" />
-    </div>
+    </div> -->
 
+    <!-- height="100vh" -->
     <el-carousel
       :interval="5000"
-      height="100vh"
       loop
       direction="vertical"
       arrow="always"
@@ -14,8 +14,9 @@
       trigger="click"
       ref="topicHome"
       class="topic-home"
-      @change="handleSwitchCarouel"
     >
+      <!-- @change="handleSwitchCarouel" -->
+
       <el-carousel-item
         v-for="(item, index) in trendings"
         :key="item.id"
@@ -25,12 +26,22 @@
       </el-carousel-item>
 
       <div class="carousel-arrow">
-        <a-button @click="topicHome.prev()" size="large" type="text">
+        <a-button
+          @click="topicHome.prev()"
+          size="large"
+          type="text"
+          shape="circle"
+        >
           <template #icon>
             <Icon name="fa6-solid:chevron-left"></Icon>
           </template>
         </a-button>
-        <a-button @click="topicHome.next()" size="large" type="text">
+        <a-button
+          @click="topicHome.next()"
+          size="large"
+          type="text"
+          shape="circle"
+        >
           <template #icon>
             <Icon name="fa6-solid:chevron-right"></Icon>
           </template>

@@ -3,7 +3,7 @@
   left: 0;
   top: var(--header-height);
   bottom: 0;
-  border-right: 1px solid var(--border-regular);
+  border-right: 1px solid var(--border-regular-light);
   // background-image: linear-gradient(
   //   to right,
   //   var(--sider-header-background-color3),
@@ -18,6 +18,11 @@
   );
   z-index: 10;
   transition: all 0s;
+
+  ::-webkit-scrollbar {
+    width: 7px;
+    background-color: transparent;
+  }
 
   .ant-layout-header {
     line-height: inherit;
@@ -106,11 +111,6 @@
   // background-color: var(--background-content-color);
   border-bottom: 1px solid var(--border-regular-light);
   padding: 0px;
-}
-
-.ant-layout-sider-children::-webkit-scrollbar {
-  // display: none;
-  width: 7px;
 }
 
 .trigger-collapse {

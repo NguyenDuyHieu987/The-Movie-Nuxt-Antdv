@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0px 0px 20px;
+  padding: 0 0px 0px 30px;
   // border-bottom: 0.25px solid var(--border-regular-light);
   height: var(--header-height);
   line-height: var(--header-height);
@@ -32,7 +32,8 @@
     justify-content: center;
 
     .menu-btn {
-      padding: 16px 18px;
+      padding: 16px 20px;
+      padding-left: 30px;
       height: 100%;
       background: transparent;
       border: none;
@@ -114,7 +115,7 @@
       .ant-input-search-button {
         background: transparent;
         border: 1px solid var(--border-regular-light);
-        transition: all 0s;
+        transition: all 0.25s;
         border-radius: 0 20px 20px 0;
         border-left: none;
 
@@ -122,8 +123,10 @@
           font-size: 1.9rem;
         }
 
-        &:hover {
-          // border-color: #00dac8;
+        &:active {
+          svg {
+            opacity: 0.8;
+          }
         }
       }
     }

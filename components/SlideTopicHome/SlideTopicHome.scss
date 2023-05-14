@@ -1,89 +1,8 @@
-@media only screen and (min-width: 1900px) {
-  .el-carousel {
-    .el-carousel__container {
-      max-height: 100vh;
-    }
-  }
-}
-
-@media only screen and (max-width: 1900px) {
-  .el-carousel {
-    .el-carousel__container {
-      height: 100vh !important;
-    }
-  }
-
-  .ant-carousel {
-    .slick-track {
-      // height: 70vh !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 1670px) {
-  .el-carousel {
-    .el-carousel__container {
-      height: 100vh !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 1500px) {
-  .el-carousel {
-    .el-carousel__container {
-      // height: 520px !important;
-      height: 97vh !important;
-    }
-  }
-  .body-content.expand {
-    .slide-topic-home {
-      .el-carousel {
-        .el-carousel__container {
-          height: 105vh !important;
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 1300px) {
-  .el-carousel {
-    .el-carousel__container {
-      height: 95vh !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 1150px) {
-  .el-carousel {
-    .el-carousel__container {
-      height: 100vh !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .el-carousel {
-    .el-carousel__container {
-      height: 400px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .slide-topic-home {
-    .overlay-backdrop {
-      // width: 120% !important;
-      // height: 120% !important;
-    }
-  }
-}
-
 .body-content.expand {
   .slide-topic-home {
     .el-carousel {
       .el-carousel__container {
-        height: 115vh !important;
+        height: 112vh !important;
       }
     }
   }
@@ -93,7 +12,7 @@
   position: relative;
 
   .overlay-backdrop {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -115,7 +34,7 @@
 
   .el-carousel.topic-home {
     .el-carousel__container {
-      height: 97vh;
+      height: 100vh;
       position: relative;
 
       .el-carousel__item {
@@ -131,10 +50,10 @@
     }
 
     .el-carousel__indicators {
-      right: 10px;
+      right: 2%;
       z-index: 2;
       padding: 0px 10px;
-      top: 45%;
+      top: 37%;
 
       .el-carousel__indicator {
         height: 25px;
@@ -165,15 +84,18 @@
 
     .carousel-arrow {
       position: absolute;
-      bottom: 50px;
-      right: 30px;
+      bottom: 300px;
+      right: 5%;
       z-index: 1;
+      display: flex;
+      gap: 10px;
 
       .ant-btn {
         background: none;
         border: none;
         color: #8a8a8a;
         transition: all 0.25s;
+        border: 1px solid var(--border-regular);
 
         // &:hover ,
         &:focus {
@@ -194,6 +116,81 @@
           font-size: 2.2rem;
         }
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  .el-carousel {
+    .el-carousel__container {
+      height: 100vh;
+    }
+  }
+}
+
+@media only screen and (max-width: 1900px) {
+  .el-carousel {
+    .el-carousel__container {
+      height: 100vh;
+    }
+  }
+}
+
+@media only screen and (max-width: 1670px) {
+  .el-carousel {
+    .el-carousel__container {
+      height: 100vh;
+    }
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .el-carousel {
+    .el-carousel__container {
+      height: 97vh;
+    }
+  }
+
+  .body-content.expand {
+    .slide-topic-home {
+      .el-carousel {
+        .el-carousel__container {
+          height: 105vh;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .el-carousel {
+    .el-carousel__container {
+      height: 95vh;
+    }
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .el-carousel {
+    .el-carousel__container {
+      height: 100vh;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .el-carousel {
+    .el-carousel__container {
+      height: 400px;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .slide-topic-home {
+    .overlay-backdrop {
+      // width: 120% ;
+      // height: 120% ;
     }
   }
 }

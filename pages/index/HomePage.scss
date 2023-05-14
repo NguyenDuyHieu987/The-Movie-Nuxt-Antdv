@@ -1,3 +1,11 @@
+.body-content.expand {
+  .home-container {
+    .home-content {
+      margin-top: -12%;
+    }
+  }
+}
+
 .home-container {
   // min-height: calc(100vh - var(--header-height));
 
@@ -10,15 +18,15 @@
   .home-content {
     position: relative;
     z-index: 1;
-    margin-top: -30px;
+    margin-top: -12%;
     clip-path: inset(-100vh 0 -100vh 0);
-    background-color: var(--background-content-color);
-    padding-bottom: 20px;
+    // background-color: var(--background-content-color);
+    padding: 0px 30px;
+    padding-bottom: 50px;
   }
 
   .home-section {
     position: relative;
-    padding: 0px 20px;
 
     &.recommend {
       .movie-group.horizontal,
@@ -103,18 +111,18 @@
 
   .carousel-group {
     .owl-prev {
-      left: -20px;
+      left: -30px;
     }
 
     .owl-next {
-      right: -20px;
+      right: -30px;
     }
   }
 }
 
 @media only screen and (max-width: 900px) {
   .home-container {
-    .home-section {
+    .home-content {
       padding: 0px 15px;
     }
 
