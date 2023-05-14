@@ -11,6 +11,17 @@
     .home-container {
       .home-content {
         margin-top: -12%;
+        padding: 0px var(--padding-home-expand);
+
+        .carousel-group {
+          .owl-prev {
+            left: calc(0px - var(--padding-home-expand));
+          }
+
+          .owl-next {
+            right: calc(0px - var(--padding-home-expand));
+          }
+        }
       }
     }
   }
@@ -36,6 +47,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      &::before {
+        // margin-left: 30px;
+      }
+
       .view-all {
         font-size: 0.8vw;
         -webkit-text-fill-color: transparent;
@@ -121,11 +137,11 @@
 
   .carousel-group {
     .owl-prev {
-      left: -30px;
+      left: calc(0px - var(--padding-home));
     }
 
     .owl-next {
-      right: -30px;
+      right: calc(0px - var(--padding-home));
     }
   }
 }

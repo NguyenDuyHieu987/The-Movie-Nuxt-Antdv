@@ -66,6 +66,20 @@
   }
 }
 
+.body-content {
+  &.expand {
+    .slide-topic-home {
+      .el-carousel {
+        .topic-item {
+          .topic-item-body {
+            left: var(--padding-home-expand);
+          }
+        }
+      }
+    }
+  }
+}
+
 .topic-item {
   position: relative;
   display: block;
@@ -88,7 +102,7 @@
     // top: 50%;
     // transform: translateY(-50%);
     // left: 50px;
-    left: 30px;
+    left: var(--padding-home);
     bottom: 28%;
     color: #fff;
     z-index: 2;

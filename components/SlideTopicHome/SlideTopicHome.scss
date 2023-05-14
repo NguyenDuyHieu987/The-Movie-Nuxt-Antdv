@@ -1,8 +1,10 @@
-.body-content.expand {
-  .slide-topic-home {
-    .el-carousel {
-      .el-carousel__container {
-        height: 112vh !important;
+.body-content {
+  &.expand {
+    .slide-topic-home {
+      .el-carousel {
+        .el-carousel__container {
+          height: 112vh !important;
+        }
       }
     }
   }
