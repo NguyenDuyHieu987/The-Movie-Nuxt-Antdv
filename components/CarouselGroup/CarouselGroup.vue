@@ -4,7 +4,7 @@
     class="carousel-group"
     :items="5"
     :autoplay="true"
-    :dots="true"
+    :dots="false"
     :autoplayHoverPause="true"
     :autoplayTimeout="10000"
     :margin="7"

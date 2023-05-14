@@ -16,6 +16,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
         okType: 'primary',
         cancelText: 'Không',
         centered: true,
+        // closable: true,
+        // closeIcon: createVNode(Close),
         onOk() {
           navigateTo({ path: '/login' });
         },

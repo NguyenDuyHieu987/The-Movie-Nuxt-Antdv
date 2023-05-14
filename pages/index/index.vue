@@ -9,7 +9,7 @@
             :to="{
               path: `/discover/movie/nowplaying`,
             }"
-            style="font-size: 1.8rem"
+            
           >
             <strong class="view-all">Xem tất cả</strong>
           </NuxtLink> -->
@@ -88,7 +88,6 @@
             :to="{
               path: `/discover/genres/hoat-hinh`,
             }"
-            style="font-size: 1.8rem"
           >
             <strong class="view-all">Xem tất cả</strong>
           </NuxtLink>
@@ -114,7 +113,6 @@
             :to="{
               path: `/discover/tv/airingtoday`,
             }"
-            style="font-size: 1.8rem"
           >
             <strong class="view-all">Xem tất cả</strong>
           </NuxtLink>
@@ -141,7 +139,6 @@
             :to="{
               path: `/discover/movie/upcoming`,
             }"
-            style="font-size: 1.8rem"
           >
             <strong class="view-all">Xem tất cả</strong>
           </NuxtLink>
@@ -165,7 +162,6 @@
             :to="{
               path: `/discover/movie/toprated`,
             }"
-            style="font-size: 1.8rem"
           >
             <strong class="view-all">Xem tất cả</strong>
           </NuxtLink>
@@ -191,7 +187,6 @@
             :to="{
               path: `/discover/tv/ontheair`,
             }"
-            style="font-size: 1.8rem"
           >
             <strong class="view-all">Xem tất cả</strong>
           </NuxtLink>
@@ -235,7 +230,7 @@ import {
 import { PlusOutlined } from '@ant-design/icons-vue';
 
 definePageMeta({
-  layout: 'home',
+  // layout: 'home',
   middleware: [function (to, from) {}, 'home-page-loading'],
 });
 
@@ -290,14 +285,14 @@ const responsiveHorizoltal = ref({
     items: 6,
     slideBy: 6,
   },
-  2050: {
-    items: 7,
-    slideBy: 7,
-  },
-  2200: {
-    items: 8,
-    slideBy: 8,
-  },
+  // 2050: {
+  //   items: 7,
+  //   slideBy: 7,
+  // },
+  // 2200: {
+  //   items: 8,
+  //   slideBy: 8,
+  // },
 });
 
 const responsiveVertical = ref({

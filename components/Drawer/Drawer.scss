@@ -21,7 +21,7 @@
   //   #05050500 100%
   // );
   // overflow: visible;
-  // overflow-y: scroll;
+  overflow-y: auto;
 
   & .el-drawer__header {
     margin-bottom: 0px !important;

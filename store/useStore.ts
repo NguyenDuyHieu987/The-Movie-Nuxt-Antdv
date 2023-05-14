@@ -24,7 +24,7 @@ export const useStore = defineStore('store', {
       loadingHomePage: false,
       loadingMisc: false,
       loadingDashBoard: false,
-      userAccount: <any> {},
+      userAccount: <any>{},
       allGenres: [],
       allCountries: [],
       allYears: [],
@@ -40,7 +40,6 @@ export const useStore = defineStore('store', {
   },
   actions: {
     setCollapsed() {
-      
       this.$state.collapsed = !this.$state.collapsed;
     },
     setOpendrawer() {

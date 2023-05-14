@@ -80,6 +80,8 @@
   --breadcrumb-background-color: #070707;
   --footer-background-color: #070707;
 
+  --padding-home: 30px;
+
   --header-height: 65px;
   --sider-width: 230px;
   // --sider-collapsed-width: 75px;
@@ -192,7 +194,8 @@ dl {
 .gradient-title-default {
   margin-top: 25px;
   margin-bottom: 23px;
-  font-size: 2.5rem;
+  // font-size: 2.5rem;
+  font-size: 1.2vw;
   position: relative;
 
   strong {
@@ -227,7 +230,8 @@ dl {
 .section-title {
   margin-top: 25px;
   margin-bottom: 20px;
-  font-size: 2rem;
+  // font-size: 2rem;
+  font-size: 0.7vw;
   position: relative;
 
   &.width-fit {
@@ -294,14 +298,13 @@ dl {
 .movie-group.horizontal {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, auto));
-  // grid-template-columns: repeat(auto-fit, minmax(24%, auto));
   // margin-top: 10px;
   gap: 10px;
 }
 
 .body-content.expand {
   .movie-group.horizontal {
-    // grid-template-columns: repeat(auto-fit, minmax(19%, auto));
+    // grid-template-columns: repeat(auto-fit, minmax(14vw, auto));
   }
 }
 

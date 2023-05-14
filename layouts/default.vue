@@ -61,6 +61,7 @@ const { collapsed } = storeToRefs(store);
 
   &.expand {
     margin-left: var(--sider-collapsed-width);
+    margin-top: 0px;
   }
 }
 
@@ -76,6 +77,7 @@ const { collapsed } = storeToRefs(store);
 .ant-layout-content.container {
   // min-height: calc(100vh - 130px);
   padding: 15px 20px;
+  padding-bottom: 50px;
   // background-color: var(--background-content-color);
   background-color: transparent;
 
@@ -92,6 +94,7 @@ const { collapsed } = storeToRefs(store);
 @media only screen and (max-width: 900px) {
   .ant-layout-content.container {
     padding: 15px 15px;
+    padding-bottom: 30px;
   }
 }
 
