@@ -7,13 +7,16 @@
           :responsive="responsiveCarousel"
         >
           <template #content>
-            <CastCard
+            <SwiperSlide
               v-for="(item, index) in dataCredit?.cast?.slice(0, 20)"
-              :item="item"
-              :index="index"
-              :key="item.id"
-              :loading="loading"
-            />
+            >
+              <CastCard
+                :item="item"
+                :index="index"
+                :key="item.id"
+                :loading="loading"
+              />
+            </SwiperSlide>
           </template>
         </CarouselGroup>
       </a-tab-pane>
@@ -23,13 +26,16 @@
           :responsive="responsiveCarousel"
         >
           <template #content>
-            <CastCard
+            <SwiperSlide
               v-for="(item, index) in dataCredit?.crew?.slice(0, 20)"
-              :item="item"
-              :index="index"
-              :key="item.id"
-              :loading="loading"
-            />
+            >
+              <CastCard
+                :item="item"
+                :index="index"
+                :key="item.id"
+                :loading="loading"
+              />
+            </SwiperSlide>
           </template>
         </CarouselGroup>
       </a-tab-pane>

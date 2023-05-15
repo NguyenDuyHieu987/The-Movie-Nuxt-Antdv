@@ -12,7 +12,7 @@
               item?.name
                 ? item?.name?.replace(/\s/g, '+').toLowerCase()
                 : item?.title?.replace(/\s/g, '+').toLowerCase()
-            }`,
+            }/tap-1`,
     }"
     class="topic-item"
   >
@@ -110,7 +110,7 @@
                       item?.name
                         ? item?.name?.replace(/\s/g, '+').toLowerCase()
                         : item?.title?.replace(/\s/g, '+').toLowerCase()
-                    }`,
+                    }/tap-1`,
             }"
           >
             Chi tiết

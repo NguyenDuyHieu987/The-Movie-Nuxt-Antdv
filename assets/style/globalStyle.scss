@@ -321,53 +321,6 @@ dl {
   }
 }
 
-.carousel {
-  clip-path: inset(-100vw 0 -100vw 0);
-  text-align: left !important;
-
-  .carousel__viewport {
-    clip-path: inset(-100vw 0 -100vw 0);
-    overflow: visible;
-    z-index: 1;
-
-    .carousel__track {
-      z-index: 1;
-
-      .carousel__slide {
-        padding: 4px;
-        z-index: 1;
-      }
-    }
-  }
-
-  .movie-card-vertical-item,
-  .movie-card-horizontal-item {
-    .detail-flow {
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%) scale(1.1);
-    }
-  }
-}
-
-.owl-carousel {
-  .owl-item:hover {
-    z-index: 1;
-  }
-
-  .movie-card-vertical-item,
-  .movie-card-horizontal-item {
-    .detail-flow {
-      // top: 50%;
-      // right: 12px;
-      // transform: translateX(-1%) translateY(-50%) scale(1.1);
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%) scale(1.1);
-    }
-  }
-}
-
 .ant-modal {
   .ant-modal-content {
     background-color: var(--background-content-color1);
@@ -525,81 +478,6 @@ dl {
       background-color: var(--tooltip-background-color);
       padding: 10px 18px;
       // clip-path: inset(0px round 3px);
-    }
-  }
-}
-
-.carousel-group {
-  position: relative;
-
-  &:hover {
-    .owl-prev,
-    .owl-next {
-      opacity: 1;
-    }
-  }
-
-  .owl-prev,
-  .owl-next {
-    position: absolute;
-    // top: 50%;
-    // transform: translateY(-50%);
-    top: 0;
-    bottom: 0;
-    z-index: 2;
-    cursor: pointer;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0px 10px;
-    // background-color: rgba(2, 2, 2, 0.425);
-    opacity: 0;
-    transition: 0.15s all;
-
-    i,
-    svg {
-      font-size: 35px;
-      transition: 0.2s all;
-      color: #d3d3d3;
-    }
-
-    &:hover {
-      i,
-      svg {
-        // font-size: 35px;
-        // color: #007ea5;
-        color: #fff;
-        transform: scale(1.2);
-      }
-    }
-
-    &:active {
-      i,
-      svg {
-        opacity: 0.7;
-      }
-    }
-  }
-
-  .owl-prev {
-    background-image: linear-gradient(90deg, #050505 0, #05050500 100%);
-    left: -10px;
-  }
-
-  .owl-next {
-    background-image: linear-gradient(90deg, #05050500 0, #050505 100%);
-    right: -10px;
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .carousel-group {
-    .owl-prev {
-      left: -10px;
-    }
-
-    .owl-next {
-      right: -10px;
     }
   }
 }

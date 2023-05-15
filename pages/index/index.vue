@@ -18,13 +18,14 @@
         <!-- :navText="[btnPrev, btnNext]" -->
         <CarouselGroup :data="nowPlayings" :responsive="responsiveHorizoltal">
           <template #content>
-            <MovieCardHorizontal
-              v-for="(item, index) in nowPlayings"
-              :item="item"
-              :index="index"
-              :key="item.id"
-              type="movie"
-            />
+            <SwiperSlide v-for="(item, index) in nowPlayings">
+              <MovieCardHorizontal
+                :item="item"
+                :index="index"
+                :key="item.id"
+                type="movie"
+              />
+            </SwiperSlide>
           </template>
         </CarouselGroup>
       </div>
@@ -42,13 +43,14 @@
           class="movie-group vertical"
           :class="{ viewmore: viewMoreRecommend }"
         >
-          <MovieCardVertical
-            v-for="(item, index) in recommends"
-            :index="index"
-            :key="item.id"
-            :item="item"
-            :type="item.media_type"
-          />
+          <SwiperSlide v-for="(item, index) in recommends">
+            <MovieCardVertical
+              :index="index"
+              :key="item.id"
+              :item="item"
+              :type="item.media_type"
+            />
+          </SwiperSlide>
           <el-button
             class="loadmore-btn"
             type="primary"
@@ -95,13 +97,14 @@
 
         <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
           <template #content>
-            <MovieCardHorizontal
-              v-for="(item, index) in cartoons"
-              :item="item"
-              :index="index"
-              :key="item.id"
-              :type="item.media_type"
-            />
+            <SwiperSlide v-for="(item, index) in cartoons">
+              <MovieCardHorizontal
+                :item="item"
+                :index="index"
+                :key="item.id"
+                :type="item.media_type"
+              />
+            </SwiperSlide>
           </template>
         </CarouselGroup>
       </div>
@@ -120,13 +123,14 @@
 
         <CarouselGroup :data="tvAiringTodays" :responsive="responsiveVertical">
           <template #content>
-            <MovieCardVertical
-              v-for="(item, index) in tvAiringTodays"
-              :index="index"
-              :key="item.id"
-              :item="item"
-              type="tv"
-            />
+            <SwiperSlide v-for="(item, index) in tvAiringTodays">
+              <MovieCardVertical
+                :index="index"
+                :key="item.id"
+                :item="item"
+                type="tv"
+              />
+            </SwiperSlide>
           </template>
         </CarouselGroup>
       </div>
@@ -169,13 +173,14 @@
 
         <CarouselGroup :data="topRateds" :responsive="responsiveVertical">
           <template #content>
-            <MovieCardVertical
-              v-for="(item, index) in topRateds"
-              :item="item"
-              :index="index"
-              :key="item.id"
-              type="movie"
-            />
+            <SwiperSlide v-for="(item, index) in topRateds">
+              <MovieCardVertical
+                :item="item"
+                :index="index"
+                :key="item.id"
+                type="movie"
+              />
+            </SwiperSlide>
           </template>
         </CarouselGroup>
       </div>
@@ -194,13 +199,14 @@
 
         <CarouselGroup :data="tvOnTheAirs" :responsive="responsiveHorizoltal">
           <template #content>
-            <MovieCardHorizontal
-              v-for="(item, index) in tvOnTheAirs"
-              :item="item"
-              :index="index"
-              :key="item.id"
-              type="tv"
-            />
+            <SwiperSlide v-for="(item, index) in tvOnTheAirs">
+              <MovieCardHorizontal
+                :item="item"
+                :index="index"
+                :key="item.id"
+                type="tv"
+              />
+            </SwiperSlide>
           </template>
         </CarouselGroup>
       </div>
@@ -248,113 +254,211 @@ const loadMoreRecommend = ref(false);
 const skipRecommend = ref(2);
 const loadSection1 = ref(false);
 
+// const responsiveHorizoltal = ref({
+//   0: {
+//     items: 2,
+//     slideBy: 2,
+//   },
+//   590: {
+//     items: 2,
+//     slideBy: 2,
+//   },
+//   750: {
+//     items: 3,
+//     slideBy: 3,
+//   },
+//   800: {
+//     items: 2,
+//     slideBy: 2,
+//   },
+//   900: {
+//     items: 3,
+//     slideBy: 3,
+//   },
+//   1150: {
+//     items: 4,
+//     slideBy: 4,
+//   },
+//   1300: {
+//     items: store.$state.collapsed ? 5 : 4,
+//     slideBy: store.$state.collapsed ? 5 : 4,
+//   },
+//   1500: {
+//     items: 5,
+//     slideBy: 5,
+//   },
+//   1800: {
+//     items: 6,
+//     slideBy: 6,
+//   },
+//   2050: {
+//     items: 7,
+//     slideBy: 7,
+//   },
+//   2200: {
+//     items: 8,
+//     slideBy: 8,
+//   },
+// });
+
 const responsiveHorizoltal = ref({
   0: {
-    items: 2,
-    slideBy: 2,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
   },
   590: {
-    items: 2,
-    slideBy: 2,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
   },
   750: {
-    items: 3,
-    slideBy: 3,
+    slidesPerView: 3,
+    slidesPerGroup: 3,
   },
   800: {
-    items: 2,
-    slideBy: 2,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
   },
   900: {
-    items: 3,
-    slideBy: 3,
+    slidesPerView: 3,
+    slidesPerGroup: 3,
   },
   1150: {
-    items: 4,
-    slideBy: 4,
+    slidesPerView: 4,
+    slidesPerGroup: 4,
   },
   1300: {
-    items: store.$state.collapsed ? 5 : 4,
-    slideBy: store.$state.collapsed ? 5 : 4,
+    slidesPerView: store.$state.collapsed ? 5 : 4,
+    slidesPerGroup: store.$state.collapsed ? 5 : 4,
   },
   1500: {
-    items: 5,
-    slideBy: 5,
+    slidesPerView: store.$state.collapsed ? 7 : 6,
+    slidesPerGroup: store.$state.collapsed ? 7 : 6,
   },
-  1800: {
-    items: 6,
-    slideBy: 6,
-  },
-  // 2050: {
-  //   items: 7,
-  //   slideBy: 7,
-  // },
-  // 2200: {
-  //   items: 8,
-  //   slideBy: 8,
-  // },
 });
+
+// const responsiveVertical = ref({
+//   0: {
+//     items: 2,
+//     slideBy: 2,
+//   },
+//   500: {
+//     items: 2,
+//     slideBy: 2,
+//   },
+//   520: {
+//     items: 3,
+//     slideBy: 3,
+//   },
+//   700: {
+//     items: 4,
+//     slideBy: 4,
+//   },
+//   800: {
+//     items: 3,
+//     slideBy: 3,
+//   },
+//   900: {
+//     items: 4,
+//     slideBy: 4,
+//   },
+//   1000: {
+//     items: 4,
+//     slideBy: 4,
+//   },
+//   1150: {
+//     items: 5,
+//     slideBy: 5,
+//   },
+//   1300: {
+//     items: 6,
+//     slideBy: 6,
+//   },
+//   1400: {
+//     items: 6,
+//     slideBy: 6,
+//   },
+//   1550: {
+//     items: 7,
+//     slideBy: 7,
+//   },
+//   1700: {
+//     items: 8,
+//     slideBy: 8,
+//   },
+//   1900: {
+//     items: 9,
+//     slideBy: 9,
+//   },
+//   2000: {
+//     items: 10,
+//     slideBy: 10,
+//   },
+//   2200: {
+//     items: 11,
+//     slideBy: 11,
+//   },
+// });
 
 const responsiveVertical = ref({
   0: {
-    items: 2,
-    slideBy: 2,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
   },
   500: {
-    items: 2,
-    slideBy: 2,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
   },
   520: {
-    items: 3,
-    slideBy: 3,
+    slidesPerView: 3,
+    slidesPerGroup: 3,
   },
   700: {
-    items: 4,
-    slideBy: 4,
+    slidesPerView: 4,
+    slidesPerGroup: 4,
   },
   800: {
-    items: 3,
-    slideBy: 3,
+    slidesPerView: 3,
+    slidesPerGroup: 3,
   },
   900: {
-    items: 4,
-    slideBy: 4,
+    slidesPerView: 4,
+    slidesPerGroup: 4,
   },
   1000: {
-    items: 4,
-    slideBy: 4,
+    slidesPerView: 4,
+    slidesPerGroup: 4,
   },
   1150: {
-    items: 5,
-    slideBy: 5,
+    slidesPerView: 5,
+    slidesPerGroup: 5,
   },
   1300: {
-    items: 6,
-    slideBy: 6,
+    slidesPerView: 6,
+    slidesPerGroup: 6,
   },
   1400: {
-    items: 6,
-    slideBy: 6,
+    slidesPerView: 6,
+    slidesPerGroup: 6,
   },
   1550: {
-    items: 7,
-    slideBy: 7,
+    slidesPerView: 7,
+    slidesPerGroup: 7,
   },
   1700: {
-    items: 8,
-    slideBy: 8,
+    slidesPerView: 8,
+    slidesPerGroup: 8,
   },
   1900: {
-    items: 9,
-    slideBy: 9,
+    slidesPerView: 9,
+    slidesPerGroup: 9,
   },
   2000: {
-    items: 10,
-    slideBy: 10,
+    slidesPerView: 10,
+    slidesPerGroup: 10,
   },
   2200: {
-    items: 11,
-    slideBy: 11,
+    slidesPerView: 11,
+    slidesPerGroup: 11,
   },
 });
 

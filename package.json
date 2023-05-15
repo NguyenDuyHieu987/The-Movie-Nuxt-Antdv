@@ -41,6 +41,7 @@
     "nuxt-icon": "^0.3.3",
     "nuxt-lazy-load": "^3.0.4",
     "nuxt-owl-carousel": "^0.0.3",
+    "nuxt-swiper": "^1.1.0",
     "path": "^0.12.7",
     "pbkdf2": "^3.1.2",
     "pinia": "^2.0.33",
@@ -52,9 +53,7 @@
     "vue-lazyload": "^3.0.0",
     "vue-meta": "^2.4.0",
     "vue-owl-carousel": "^2.0.3",
-    "vue-slick-carousel": "^1.0.6",
     "vue-social-sharing": "^4.0.0-alpha4",
-    "vue3-carousel": "^0.3.1",
     "vue3-google-login": "^2.0.15",
     "vuex": "^4.1.0"
   },

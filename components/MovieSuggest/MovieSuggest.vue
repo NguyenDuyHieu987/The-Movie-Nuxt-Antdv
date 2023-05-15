@@ -6,13 +6,14 @@
 
     <CarouselGroup :data="dataSimilar" :responsive="responsive">
       <template #content>
-        <MovieCardVertical
-          v-for="(item, index) in dataSimilar"
-          :index="index"
-          :key="item.id"
-          :item="item"
-          :type="item.media_type"
-        />
+        <SwiperSlide v-for="(item, index) in dataSimilar">
+          <MovieCardVertical
+            :index="index"
+            :key="item.id"
+            :item="item"
+            :type="item.media_type"
+          />
+        </SwiperSlide>
       </template>
     </CarouselGroup>
   </div>
@@ -24,13 +25,14 @@
 
     <CarouselGroup :data="dataRecommend" :responsive="responsive">
       <template #content>
-        <MovieCardVertical
-          v-for="(item, index) in dataRecommend"
-          :index="index"
-          :key="item.id"
-          :item="item"
-          :type="item.media_type"
-        />
+        <SwiperSlide v-for="(item, index) in dataRecommend">
+          <MovieCardVertical
+            :index="index"
+            :key="item.id"
+            :item="item"
+            :type="item.media_type"
+          />
+        </SwiperSlide>
       </template>
     </CarouselGroup>
   </div>

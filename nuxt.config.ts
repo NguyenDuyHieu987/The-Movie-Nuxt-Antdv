@@ -128,7 +128,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-icon',
     // 'nuxt-lazy-load'
-    // '@/modules/antd'
+    'nuxt-swiper',
   ],
   elementPlus: {
     /** Options */
@@ -158,12 +158,11 @@ export default defineNuxtConfig({
     '@/plugins/antd',
     '@/plugins/fontawesome',
     { src: '@/plugins/owlcarousel', mode: 'client' },
-    { src: '@/plugins/slickcarousel', mode: 'client' },
+    // '@/plugins/vue3carousel',
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/googlelogin',
     '@/plugins/vuelazyload',
-    // '@/plugins/vue3carousel',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   routeRules: {

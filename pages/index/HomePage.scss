@@ -14,11 +14,13 @@
         padding: 0px var(--padding-home-expand);
 
         .carousel-group {
-          .owl-prev {
+          .owl-prev,
+          .swiper-button-prev {
             left: calc(0px - var(--padding-home-expand));
           }
 
-          .owl-next {
+          .owl-next,
+          .swiper-button-next {
             right: calc(0px - var(--padding-home-expand));
           }
         }
@@ -136,30 +138,37 @@
   }
 
   .carousel-group {
-    .owl-prev {
+    .owl-prev,
+    .swiper-button-prev {
       left: calc(0px - var(--padding-home));
     }
 
-    .owl-next {
+    .owl-next,
+    .swiper-button-next {
       right: calc(0px - var(--padding-home));
     }
   }
 }
 
 @media only screen and (max-width: 900px) {
-  .home-container {
-    .home-content {
-      padding: 0px 15px;
-      padding-bottom: 30px;
-    }
-
-    .carousel-group {
-      .owl-prev {
-        left: -15px;
+  .body-content:has(.home-container),
+  .body-content.expand:has(.home-container) {
+    .home-container {
+      .home-content {
+        padding: 0px 15px;
+        padding-bottom: 30px;
       }
 
-      .owl-next {
-        right: -15px;
+      .carousel-group {
+        .owl-prev,
+        .swiper-button-prev {
+          left: -15px;
+        }
+
+        .owl-next,
+        .swiper-button-next {
+          right: -15px;
+        }
       }
     }
   }
