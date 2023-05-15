@@ -110,7 +110,7 @@
   .img-box {
     position: relative;
     // height: 260px;
-    height: 15vw;
+    height: 16vw;
 
     .ant-image {
       width: 100%;
@@ -134,7 +134,7 @@
   .img-box {
     position: relative;
     // height: 260px;
-    height: 15vw;
+    height: 16vw;
     overflow: hidden;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -181,6 +181,8 @@
   .detail-flow {
     height: 150px;
     width: 150px;
+    min-height: 150px;
+    min-width: 150px;
     overflow: hidden;
     position: absolute;
     z-index: -1;
@@ -189,7 +191,8 @@
 
     .backdrop-box {
       position: relative;
-      height: 190px;
+      // height: 190px;
+      height: 60%;
       overflow: hidden;
 
       .ant-image {
@@ -363,8 +366,12 @@
     .detail-flow {
       z-index: 10;
       opacity: 1;
-      height: 330px;
-      width: 350px;
+      // height: 330px;
+      // width: 350px;
+      min-height: 330px;
+      min-width: 350px;
+      height: 15.5vw;
+      width: 16vw;
       transition-delay: 2s;
       transition-duration: 0.3s;
       background-color: var(--background-content-color);
@@ -397,8 +404,10 @@
     left: 5px;
     top: 5px;
     transition: all 0.7s;
+
     .duration-episode {
-      font-size: 1.2rem;
+      // font-size: 1.2rem;
+      font-size: 0.6vw;
     }
   }
 
@@ -423,13 +432,15 @@
     transition: all 0.7s;
 
     .release-date {
-      font-size: 1.2rem;
+      // font-size: 1.2rem;
+      font-size: 0.6vw;
     }
   }
 
   .info {
     padding: 10px 0px;
     color: #d0d0d0;
+    font-size: 0.8vw;
 
     .title,
     .genres {

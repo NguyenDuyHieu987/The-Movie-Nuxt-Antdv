@@ -17,7 +17,6 @@
   </a-drawer> -->
 
   <el-drawer
-    v-if="openDrawer"
     v-model="openDrawer"
     direction="ltr"
     placement="left"

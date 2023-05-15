@@ -145,7 +145,8 @@
     top: 5px;
     transition: all 0.7s;
     .duration-episode {
-      font-size: 1.2rem;
+      // font-size: 1.2rem;
+      font-size: 0.6vw;
     }
   }
 
@@ -170,13 +171,15 @@
     transition: all 0.7s;
 
     .release-date {
-      font-size: 1.2rem;
+      // font-size: 1.2rem;
+      font-size: 0.6vw;
     }
   }
 
   .info {
     padding: 10px 0px;
     color: #d0d0d0;
+    font-size: 0.8vw;
 
     .title,
     .genres {
