@@ -152,6 +152,26 @@
   }
 }
 
+@media only screen and (max-width: 1500px) {
+  .body-content:has(.home-container) {
+    .home-container {
+      .home-content {
+        padding: 0px 15px;
+        padding-bottom: 30px;
+      }
+    }
+
+    &.expand {
+      .home-container {
+        .home-content {
+          padding: 0px 30px;
+          padding-bottom: 50px;
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 900px) {
   .body-content:has(.home-container),
   .body-content.expand:has(.home-container) {

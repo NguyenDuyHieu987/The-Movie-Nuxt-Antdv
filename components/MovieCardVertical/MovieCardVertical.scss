@@ -376,6 +376,24 @@
       }
     }
   }
+
+  .movie-card-vertical-item {
+    .duration-episode-box {
+      .duration-episode {
+        font-size: 1.2rem;
+      }
+    }
+
+    .release-date-box {
+      .release-date {
+        font-size: 1.2rem;
+      }
+    }
+
+    .info {
+      font-size: 1.6rem;
+    }
+  }
 }
 
 @media only screen and (max-width: 1550px) {
@@ -398,14 +416,14 @@
   .body-content.expand {
     .movie-card-vertical-item {
       .img-box {
-        height: 24vw;
+        height: 25vw;
       }
     }
   }
 
   .movie-card-vertical-item {
     .img-box {
-      height: 20vw;
+      height: 22vw;
     }
   }
 }
