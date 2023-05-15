@@ -19,6 +19,16 @@
   z-index: 10;
   transition: all 0s;
 
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
+  &:hover {
+    ::-webkit-scrollbar-thumb {
+      background-color: #acacac;
+    }
+  }
+
   ::-webkit-scrollbar {
     width: 7px;
     background-color: transparent;
