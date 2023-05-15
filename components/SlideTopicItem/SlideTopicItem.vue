@@ -69,60 +69,62 @@
       </div>
 
       <div class="action">
-        <a-button size="large" type="text" class="play">
-          <template #icon>
-            <Icon name="ic:play-arrow" class="play" />
-          </template>
-          <NuxtLink
-            :to="{
-              path:
-                item?.media_type == 'movie'
-                  ? `/play/movie/${item?.id}/${
-                      item?.name
-                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                        : item?.title?.replace(/\s/g, '+').toLowerCase()
-                    }`
-                  : `/play/tv/${item?.id}/${
-                      item?.name
-                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                        : item?.title?.replace(/\s/g, '+').toLowerCase()
-                    }/tap-1`,
-            }"
-          >
+        <NuxtLink
+          :to="{
+            path:
+              item?.media_type == 'movie'
+                ? `/play/movie/${item?.id}/${
+                    item?.name
+                      ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                      : item?.title?.replace(/\s/g, '+').toLowerCase()
+                  }`
+                : `/play/tv/${item?.id}/${
+                    item?.name
+                      ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                      : item?.title?.replace(/\s/g, '+').toLowerCase()
+                  }/tap-1`,
+          }"
+        >
+          <a-button size="large" type="text" class="play">
+            <template #icon>
+              <Icon name="ic:play-arrow" class="play" />
+            </template>
             Xem ngay
-          </NuxtLink>
-        </a-button>
+          </a-button>
+        </NuxtLink>
 
-        <a-button size="large" type="text" class="info">
-          <template #icon>
-            <Icon name="bi:info-circle" class="info" />
-          </template>
-          <NuxtLink
-            :to="{
-              path:
-                item?.media_type == 'movie'
-                  ? `/info/movie/${item?.id}/${
-                      item?.name
-                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                        : item?.title?.replace(/\s/g, '+').toLowerCase()
-                    }`
-                  : `/info/tv/${item?.id}/${
-                      item?.name
-                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                        : item?.title?.replace(/\s/g, '+').toLowerCase()
-                    }`,
-            }"
-          >
+        <NuxtLink
+          :to="{
+            path:
+              item?.media_type == 'movie'
+                ? `/info/movie/${item?.id}/${
+                    item?.name
+                      ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                      : item?.title?.replace(/\s/g, '+').toLowerCase()
+                  }`
+                : `/info/tv/${item?.id}/${
+                    item?.name
+                      ? item?.name?.replace(/\s/g, '+').toLowerCase()
+                      : item?.title?.replace(/\s/g, '+').toLowerCase()
+                  }`,
+          }"
+        >
+          <a-button size="large" type="text" class="info">
+            <template #icon>
+              <Icon name="bi:info-circle" class="info" />
+            </template>
             Chi tiết
-          </NuxtLink>
-        </a-button>
+          </a-button>
+        </NuxtLink>
 
-        <a-button size="large" type="text" class="add">
-          <template #icon>
-            <PlusOutlined />
-          </template>
-          <span> Danh sách</span>
-        </a-button>
+        <NuxtLink @click.prevent>
+          <a-button size="large" type="text" class="add">
+            <template #icon>
+              <PlusOutlined />
+            </template>
+            <span> Danh sách</span>
+          </a-button>
+        </NuxtLink>
       </div>
     </div>
   </div>

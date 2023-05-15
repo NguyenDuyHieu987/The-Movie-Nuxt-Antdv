@@ -3,8 +3,6 @@
     <!-- <OwlCarousel
       v-if="data?.length"
       class="carousel-group"
-      :items="6"
-      :slides-per-view="store.$state.collapsed ? 7 : 6"
       :autoplay="true"
       :autoHeight="true"
       :stagePadding="0"
@@ -33,8 +31,6 @@
     <Swiper
       class="carousel-group"
       :modules="[SwiperAutoplay, SwiperNavigation]"
-      :slides-per-view="store.$state.collapsed ? 7 : 6"
-      :slides-per-group="6"
       :breakpoints="responsive"
       :space-between="7"
       effect="creative"
@@ -42,8 +38,6 @@
         prevEl: '.swiper-button-prev',
         nextEl: '.swiper-button-next',
       }"
-      :allow-slide-next="true"
-      :allow-slide-prev="true"
       :autoplay="{
         delay: 10000,
         pauseOnMouseEnter: true,

@@ -303,12 +303,6 @@ dl {
   gap: 10px;
 }
 
-.body-content.expand {
-  .movie-group.horizontal {
-    // grid-template-columns: repeat(auto-fit, minmax(14vw, auto));
-  }
-}
-
 .movie-group,
 .movie-discovered {
   .movie-card-vertical-item,

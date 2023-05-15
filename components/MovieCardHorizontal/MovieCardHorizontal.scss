@@ -1,46 +1,52 @@
-// @media only screen and (min-width: 1150px) and (max-width: 1300px) {
-//   .carousel-group {
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         transition: all 0.3s;
-//         height: 170px !important;
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width: 1700px) {
+  .carousel-group {
+    .movie-card-horizontal-item {
+      .img-box {
+        height: 9vw;
+      }
+    }
+  }
+}
 
-// @media only screen and (max-width: 1150px) {
-//   .carousel-group {
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         transition: all 0.3s;
-//         height: 150px !important;
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width: 1500px) {
+  .carousel-group {
+    .movie-card-horizontal-item {
+      .img-box {
+        height: 10vw;
+      }
+    }
+  }
+}
 
-// @media only screen and (max-width: 1000px) {
-//   .carousel-group {
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         transition: all 0.3s;
-//         height: 130px !important;
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width: 1200px) {
+  .carousel-group {
+    .movie-card-horizontal-item {
+      .img-box {
+        height: 13vw;
+      }
+    }
+  }
+}
 
-// @media only screen and (max-width: 900px) {
-//   .carousel-group {
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         transition: all 0.3s;
-//         height: 150px !important;
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width: 800px) {
+  .carousel-group {
+    .movie-card-horizontal-item {
+      .img-box {
+        height: 17vw;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .carousel-group {
+    .movie-card-horizontal-item {
+      .img-box {
+        height: 26vw;
+      }
+    }
+  }
+}
 
 .movie-card-horizontal-item-skeleton {
   color: #fff;

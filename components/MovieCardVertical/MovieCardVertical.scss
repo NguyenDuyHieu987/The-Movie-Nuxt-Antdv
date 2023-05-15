@@ -1,103 +1,108 @@
-// @media only screen and (max-width: 1350px) {
-//   .movie-group.vertical {
-//     // grid-template-columns: repeat(auto-fit, minmax(160px, auto));
-//   }
+@media only screen and (max-width: 1700px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 17vw !important;
+      }
+    }
+  }
+}
 
-//   .movie-card-vertical-item {
-//     .img-box {
-//       transition: all 0.3s;
-//       height: 270px !important;
-//     }
-//   }
-// }
+@media only screen and (max-width: 1550px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 19vw !important;
+      }
+    }
+  }
 
-// @media only screen and (max-width: 1150px) {
-//   .movie-group.vertical {
-//     // grid-template-columns: repeat(auto-fit, minmax(160px, auto));
-//   }
+  .movie-card-vertical-item {
+    .img-box {
+      height: 16vw !important;
+    }
+  }
+}
 
-//   .movie-card-vertical-item {
-//     .img-box {
-//       transition: all 0.3s;
-//       height: 270px !important;
-//     }
-//   }
-// }
+@media only screen and (max-width: 1400px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 24vw !important;
+      }
+    }
+  }
 
-// @media only screen and (max-width: 1050px) {
-//   .movie-group.vertical {
-//     grid-template-columns: repeat(auto-fit, minmax(150px, auto)) !important;
-//   }
+  .movie-card-vertical-item {
+    .img-box {
+      height: 20vw !important;
+    }
+  }
+}
 
-//   .movie-card-vertical-item {
-//     .img-box {
-//       transition: all 0.3s;
-//       height: 230px !important;
-//     }
-//   }
-// }
+@media only screen and (max-width: 1100px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 25vw !important;
+      }
+    }
+  }
 
-// @media only screen and (max-width: 970px) {
-//   .movie-group.vertical {
-//   }
+  .movie-card-vertical-item {
+    .img-box {
+      height: 21vw !important;
+    }
+  }
+}
 
-//   .movie-card-vertical-item {
-//     .img-box {
-//       transition: all 0.3s;
-//       height: 250px !important;
-//     }
-//   }
-// }
+@media only screen and (max-width: 1000px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 31vw !important;
+      }
+    }
+  }
 
-// @media only screen and (max-width: 800px) {
-//   .movie-group.vertical {
-//     grid-template-columns: repeat(auto-fit, minmax(140px, auto)) !important;
-//   }
+  .movie-card-vertical-item {
+    .img-box {
+      height: 30vw !important;
+    }
+  }
+}
 
-//   .movie-card-vertical-item {
-//     .img-box {
-//       transition: all 0.3s;
-//       height: 250px !important;
-//     }
-//   }
-// }
+@media only screen and (max-width: 800px) {
+  .movie-card-vertical-item {
+    .img-box {
+      height: 33vw !important;
+    }
+  }
+}
 
-// @media only screen and (max-width: 740px) {
-//   .movie-group.vertical {
-//     grid-template-columns: repeat(auto-fit, minmax(160px, auto)) !important;
-//   }
+@media only screen and (max-width: 650px) {
+  .movie-card-vertical-item {
+    .img-box {
+      height: 43vw !important;
+    }
+  }
+}
 
-//   .movie-card-vertical-item {
-//     .img-box {
-//       transition: all 0.3s;
-//       height: 230px !important;
-//     }
-//   }
-// }
+@media only screen and (max-width: 500px) {
+  .movie-card-vertical-item {
+    .img-box {
+      height: 64vw !important;
+    }
+  }
+}
 
-// @media only screen and (max-width: 520px) {
-//   .movie-group.vertical {
-//   }
-
-//   .movie-card-vertical-item {
-//     .img-box {
-//       transition: all 0.3s;
-//       height: 260px !important;
-//     }
-//   }
-// }
-
-// @media only screen and (max-width: 410px) {
-//   .movie-group.vertical {
-//   }
-
-//   .movie-card-vertical-item {
-//     .img-box {
-//       transition: all 0.3s;
-//       height: 230px !important;
-//     }
-//   }
-// }
+.body-content.expand {
+  .movie-card-vertical-item {
+    .img-box {
+      height: 15vw;
+    }
+  }
+}
 
 .movie-card-vertical-item-skeleton {
   color: #fff;
