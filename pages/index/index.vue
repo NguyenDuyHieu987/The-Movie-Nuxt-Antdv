@@ -315,16 +315,16 @@ const responsiveHorizoltal = computed(() => ({
     slidesPerGroup: 3,
   },
   1200: {
-    slidesPerView: store.$state.collapsed ? 5 : 4,
-    slidesPerGroup: store.$state.collapsed ? 5 : 4,
+    slidesPerView: 4,
+    slidesPerGroup: 4,
   },
   1500: {
-    slidesPerView: store.$state.collapsed ? 6 : 5,
-    slidesPerGroup: store.$state.collapsed ? 6 : 5,
+    slidesPerView: 5,
+    slidesPerGroup: 5,
   },
   1700: {
-    slidesPerView: store.$state.collapsed ? 7 : 6,
-    slidesPerGroup: store.$state.collapsed ? 7 : 6,
+    slidesPerView: 6,
+    slidesPerGroup: 6,
   },
 }));
 
@@ -404,29 +404,25 @@ const responsiveVertical = computed(() => ({
     slidesPerView: 4,
     slidesPerGroup: 4,
   },
-  800: {
-    slidesPerView: store.$state.collapsed ? 4 : 3,
-    slidesPerGroup: store.$state.collapsed ? 4 : 3,
-  },
   1000: {
-    slidesPerView: store.$state.collapsed ? 5 : 4,
-    slidesPerGroup: store.$state.collapsed ? 5 : 4,
+    slidesPerView: 4,
+    slidesPerGroup: 4,
   },
   1100: {
-    slidesPerView: store.$state.collapsed ? 6 : 5,
-    slidesPerGroup: store.$state.collapsed ? 6 : 5,
+    slidesPerView: 5,
+    slidesPerGroup: 5,
   },
   1400: {
-    slidesPerView: store.$state.collapsed ? 7 : 6,
-    slidesPerGroup: store.$state.collapsed ? 7 : 6,
+    slidesPerView: 6,
+    slidesPerGroup: 6,
   },
   1550: {
-    slidesPerView: store.$state.collapsed ? 8 : 7,
-    slidesPerGroup: store.$state.collapsed ? 8 : 7,
+    slidesPerView: 7,
+    slidesPerGroup: 7,
   },
   1700: {
-    slidesPerView: store.$state.collapsed ? 9 : 8,
-    slidesPerGroup: store.$state.collapsed ? 9 : 8,
+    slidesPerView: 8,
+    slidesPerGroup: 8,
   },
 }));
 

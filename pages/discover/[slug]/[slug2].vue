@@ -8,34 +8,17 @@
     <h2 class="gradient-title-default">
       <strong>{{ metaHead }}</strong>
 
-      <!-- <el-radio-group
-        class="tabs-search"
+      <el-select
+        ref="select"
         v-model="activeTabSearch"
+        style="width: 170px"
         @change="handleChangeType"
-        v-if="$route.params?.slug == 'search'"
+        placeholder="Sắp xếp theo"
       >
-        <el-radio-button size="large" label="all" border
-          >Tất cả</el-radio-button
-        >
-        <el-radio-button size="large" label="movie" border
-          >Phim lẻ</el-radio-button
-        >
-        <el-radio-button size="large" label="tv" border
-          >Phim bộ</el-radio-button
-        >
-      </el-radio-group> -->
-
-      <a-radio-group
-        class="tabs-search"
-        v-model:value="activeTabSearch"
-        @change="handleChangeType"
-        v-if="$route.params?.slug == 'search'"
-        button-style="solid"
-      >
-        <a-radio-button value="all"> Tất cả</a-radio-button>
-        <a-radio-button value="movie">Phim lẻ </a-radio-button>
-        <a-radio-button value="tv">Phim bộ</a-radio-button>
-      </a-radio-group>
+        <el-option value="all" label="Tất cả" />
+        <el-option value="movie" label="Phim lẻ" />
+        <el-option value="tv" label="Phim bộ" />
+      </el-select>
     </h2>
     <section
       class="movie-discovered"

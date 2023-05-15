@@ -1,49 +1,7 @@
-@media only screen and (max-width: 1700px) {
-  .carousel-group {
-    .movie-card-horizontal-item {
-      .img-box {
-        height: 9vw;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 1500px) {
-  .carousel-group {
-    .movie-card-horizontal-item {
-      .img-box {
-        height: 10vw;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .carousel-group {
-    .movie-card-horizontal-item {
-      .img-box {
-        height: 13vw;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .carousel-group {
-    .movie-card-horizontal-item {
-      .img-box {
-        height: 17vw;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .carousel-group {
-    .movie-card-horizontal-item {
-      .img-box {
-        height: 26vw;
-      }
+.body-content.expand {
+  .movie-card-horizontal-item {
+    .img-box {
+      height: 9vw;
     }
   }
 }
@@ -409,122 +367,63 @@
   }
 }
 
-// @media only screen and (max-width: 1250px) {
-//   .body-content.expand {
-//     .movie-group.horizontal {
-//       grid-template-columns: repeat(auto-fit, minmax(24%, auto));
+@media only screen and (max-width: 1700px) {
+  .body-content.expand {
+    .movie-card-horizontal-item {
+      .img-box {
+        height: 10vw;
+      }
+    }
+  }
+  .movie-card-horizontal-item {
+    .img-box {
+      height: 9vw;
+    }
+  }
+}
 
-//       .movie-card-horizontal-item {
-//         .img-box {
-//           transition: all 0.3s;
-//           height: 160px;
-//         }
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width: 1500px) {
+  .body-content.expand {
+    .movie-card-horizontal-item {
+      .img-box {
+        height: 13vw;
+      }
+    }
+  }
+  .movie-card-horizontal-item {
+    .img-box {
+      height: 11vw;
+    }
+  }
+}
 
-// @media only screen and (max-width: 1130px) {
-//   .movie-group.horizontal {
-//     grid-template-columns: repeat(auto-fit, minmax(32%, auto)) !important;
+@media only screen and (max-width: 1200px) {
+  .body-content.expand {
+    .movie-card-horizontal-item {
+      .img-box {
+        height: 17vw;
+      }
+    }
+  }
+  .movie-card-horizontal-item {
+    .img-box {
+      height: 14vw;
+    }
+  }
+}
 
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         transition: all 0.3s;
-//         height: 160px;
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width: 800px) {
+  .movie-card-horizontal-item {
+    .img-box {
+      height: 18vw;
+    }
+  }
+}
 
-// @media only screen and (max-width: 1010px) {
-//   .body-content.expand {
-//     .movie-group.horizontal {
-//       grid-template-columns: repeat(auto-fit, minmax(32%, auto)) !important;
-
-//       .movie-card-horizontal-item {
-//         .img-box {
-//           transition: all 0.3s;
-//           height: 160px;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (max-width: 930px) {
-//   .movie-group.horizontal {
-//     grid-template-columns: repeat(auto-fit, minmax(49%, auto)) !important;
-
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         transition: all 0.3s;
-//         height: 190px;
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (max-width: 850px) {
-//   .movie-group.horizontal {
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         height: 160px;
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (max-width: 800px) {
-//   .movie-group.horizontal {
-//     grid-template-columns: repeat(auto-fit, minmax(32%, auto)) !important;
-
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         height: 160px;
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (max-width: 650px) {
-//   .movie-group.horizontal {
-//     grid-template-columns: repeat(auto-fit, minmax(48%, auto)) !important;
-
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         height: 180px;
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (max-width: 600px) {
-//   .movie-group.horizontal {
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         height: 160px;
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (max-width: 500px) {
-//   .movie-group.horizontal {
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         height: 140px;
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (max-width: 450px) {
-//   .movie-group.horizontal {
-//     .movie-card-horizontal-item {
-//       .img-box {
-//         height: 130px;
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width: 600px) {
+  .movie-card-horizontal-item {
+    .img-box {
+      height: 26vw;
+    }
+  }
+}

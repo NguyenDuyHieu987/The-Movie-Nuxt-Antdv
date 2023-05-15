@@ -1,105 +1,7 @@
-@media only screen and (max-width: 1700px) {
-  .body-content.expand {
-    .movie-card-vertical-item {
-      .img-box {
-        height: 17vw !important;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 1550px) {
-  .body-content.expand {
-    .movie-card-vertical-item {
-      .img-box {
-        height: 19vw !important;
-      }
-    }
-  }
-
-  .movie-card-vertical-item {
-    .img-box {
-      height: 16vw !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 1400px) {
-  .body-content.expand {
-    .movie-card-vertical-item {
-      .img-box {
-        height: 24vw !important;
-      }
-    }
-  }
-
-  .movie-card-vertical-item {
-    .img-box {
-      height: 20vw !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 1100px) {
-  .body-content.expand {
-    .movie-card-vertical-item {
-      .img-box {
-        height: 25vw !important;
-      }
-    }
-  }
-
-  .movie-card-vertical-item {
-    .img-box {
-      height: 21vw !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .body-content.expand {
-    .movie-card-vertical-item {
-      .img-box {
-        height: 31vw !important;
-      }
-    }
-  }
-
-  .movie-card-vertical-item {
-    .img-box {
-      height: 30vw !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .movie-card-vertical-item {
-    .img-box {
-      height: 33vw !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 650px) {
-  .movie-card-vertical-item {
-    .img-box {
-      height: 43vw !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .movie-card-vertical-item {
-    .img-box {
-      height: 64vw !important;
-    }
-  }
-}
-
 .body-content.expand {
   .movie-card-vertical-item {
     .img-box {
-      height: 15vw;
+      height: 16vw;
     }
   }
 }
@@ -115,7 +17,7 @@
   .img-box {
     position: relative;
     // height: 260px;
-    height: 16vw;
+    height: 15vw;
 
     .ant-image {
       width: 100%;
@@ -139,7 +41,7 @@
   .img-box {
     position: relative;
     // height: 260px;
-    height: 16vw;
+    height: 15vw;
     overflow: hidden;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -462,6 +364,104 @@
       p + p {
         margin-left: 5px;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 1700px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 17vw;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1550px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 20vw;
+      }
+    }
+  }
+
+  .movie-card-vertical-item {
+    .img-box {
+      height: 16vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 24vw;
+      }
+    }
+  }
+
+  .movie-card-vertical-item {
+    .img-box {
+      height: 20vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 29vw;
+      }
+    }
+  }
+
+  .movie-card-vertical-item {
+    .img-box {
+      height: 23vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .body-content.expand {
+    .movie-card-vertical-item {
+      .img-box {
+        // height: 38vw;
+      }
+    }
+  }
+
+  .movie-card-vertical-item {
+    .img-box {
+      // height: 25vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .movie-card-vertical-item {
+    .img-box {
+      height: 33vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .movie-card-vertical-item {
+    .img-box {
+      height: 43vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .movie-card-vertical-item {
+    .img-box {
+      height: 64vw !important;
     }
   }
 }
