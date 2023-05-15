@@ -61,7 +61,6 @@ const { collapsed } = storeToRefs(store);
 
   &.expand {
     margin-left: var(--sider-collapsed-width);
-    margin-top: 0px;
   }
 }
 
