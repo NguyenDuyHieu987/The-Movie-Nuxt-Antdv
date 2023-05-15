@@ -302,34 +302,34 @@ const loadSection1 = ref(false);
 // });
 
 const responsiveHorizoltal = ref({
-  0: {
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-  },
-  590: {
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-  },
-  750: {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
-  },
-  800: {
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-  },
-  900: {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
-  },
-  1150: {
-    slidesPerView: 4,
-    slidesPerGroup: 4,
-  },
-  1300: {
-    slidesPerView: store.$state.collapsed ? 5 : 4,
-    slidesPerGroup: store.$state.collapsed ? 5 : 4,
-  },
+  // 0: {
+  //   slidesPerView: 2,
+  //   slidesPerGroup: 2,
+  // },
+  // 590: {
+  //   slidesPerView: 2,
+  //   slidesPerGroup: 2,
+  // },
+  // 750: {
+  //   slidesPerView: 3,
+  //   slidesPerGroup: 3,
+  // },
+  // 800: {
+  //   slidesPerView: 2,
+  //   slidesPerGroup: 2,
+  // },
+  // 900: {
+  //   slidesPerView: 3,
+  //   slidesPerGroup: 3,
+  // },
+  // 1150: {
+  //   slidesPerView: 4,
+  //   slidesPerGroup: 4,
+  // },
+  // 1300: {
+  //   slidesPerView: store.$state.collapsed ? 5 : 4,
+  //   slidesPerGroup: store.$state.collapsed ? 5 : 4,
+  // },
   1500: {
     slidesPerView: store.$state.collapsed ? 7 : 6,
     slidesPerGroup: store.$state.collapsed ? 7 : 6,
@@ -400,66 +400,66 @@ const responsiveHorizoltal = ref({
 // });
 
 const responsiveVertical = ref({
-  0: {
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-  },
-  500: {
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-  },
-  520: {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
-  },
-  700: {
-    slidesPerView: 4,
-    slidesPerGroup: 4,
-  },
-  800: {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
-  },
-  900: {
-    slidesPerView: 4,
-    slidesPerGroup: 4,
-  },
-  1000: {
-    slidesPerView: 4,
-    slidesPerGroup: 4,
-  },
-  1150: {
-    slidesPerView: 5,
-    slidesPerGroup: 5,
-  },
-  1300: {
-    slidesPerView: 6,
-    slidesPerGroup: 6,
-  },
-  1400: {
-    slidesPerView: 6,
-    slidesPerGroup: 6,
-  },
-  1550: {
-    slidesPerView: 7,
-    slidesPerGroup: 7,
-  },
+  // 0: {
+  //   slidesPerView: 2,
+  //   slidesPerGroup: 2,
+  // },
+  // 500: {
+  //   slidesPerView: 2,
+  //   slidesPerGroup: 2,
+  // },
+  // 520: {
+  //   slidesPerView: 3,
+  //   slidesPerGroup: 3,
+  // },
+  // 700: {
+  //   slidesPerView: 4,
+  //   slidesPerGroup: 4,
+  // },
+  // 800: {
+  //   slidesPerView: 3,
+  //   slidesPerGroup: 3,
+  // },
+  // 900: {
+  //   slidesPerView: 4,
+  //   slidesPerGroup: 4,
+  // },
+  // 1000: {
+  //   slidesPerView: 4,
+  //   slidesPerGroup: 4,
+  // },
+  // 1150: {
+  //   slidesPerView: 5,
+  //   slidesPerGroup: 5,
+  // },
+  // 1300: {
+  //   slidesPerView: 6,
+  //   slidesPerGroup: 6,
+  // },
+  // 1400: {
+  //   slidesPerView: 6,
+  //   slidesPerGroup: 6,
+  // },
+  // 1550: {
+  //   slidesPerView: 7,
+  //   slidesPerGroup: 7,
+  // },
   1700: {
     slidesPerView: 8,
     slidesPerGroup: 8,
   },
-  1900: {
-    slidesPerView: 9,
-    slidesPerGroup: 9,
-  },
-  2000: {
-    slidesPerView: 10,
-    slidesPerGroup: 10,
-  },
-  2200: {
-    slidesPerView: 11,
-    slidesPerGroup: 11,
-  },
+  // 1900: {
+  //   slidesPerView: 9,
+  //   slidesPerGroup: 9,
+  // },
+  // 2000: {
+  //   slidesPerView: 10,
+  //   slidesPerGroup: 10,
+  // },
+  // 2200: {
+  //   slidesPerView: 11,
+  //   slidesPerGroup: 11,
+  // },
 });
 
 useHead({

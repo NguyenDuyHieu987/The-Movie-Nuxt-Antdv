@@ -70,13 +70,13 @@ const { collapsed } = storeToRefs(store);
   // height: 100%;
   max-width: var(--max-app-width);
   margin: 0px auto;
-  // overflow: hidden;
+  overflow: hidden;
 }
 
 .ant-layout-content.container {
   // min-height: calc(100vh - 130px);
   padding: 15px 20px;
-  padding-bottom: 50px;
+  padding-bottom: 70px;
   // background-color: var(--background-content-color);
   background-color: transparent;
 
