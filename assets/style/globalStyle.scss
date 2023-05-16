@@ -88,6 +88,8 @@
   // --sider-collapsed-width: 75px;
   --sider-collapsed-width: 0px;
   --max-app-width: 2190px;
+  --max-width-collapsed-sider: 900px;
+  --card-movie-gap: 7px;
 }
 
 html {
@@ -270,7 +272,7 @@ dl {
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   html {
     font-size: 9px;
   }
@@ -289,22 +291,14 @@ dl {
   height: 100%;
 }
 
-.movie-group.vertical {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, auto));
-  // margin-top: 10px;
-  gap: 10px;
-}
-
-.movie-group.horizontal {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, auto));
-  // margin-top: 10px;
-  gap: 10px;
+.movie-group {
+  display: flex;
+  gap: var(--card-movie-gap);
+  flex-wrap: wrap;
 }
 
 .movie-group,
-.movie-discovered {
+.discover-section {
   .movie-card-vertical-item,
   .movie-card-horizontal-item {
     .detail-flow {
@@ -407,17 +401,33 @@ dl {
 }
 
 .el-skeleton {
-  --el-skeleton-color: rgba(190, 190, 190, 0.2) !important;
-  --el-skeleton-to-color: rgba(129, 129, 129, 0.24) !important;
+  // --el-skeleton-color: rgba(190, 190, 190, 0.2) !important;
+  // --el-skeleton-to-color: rgba(129, 129, 129, 0.24) !important;
+  --el-skeleton-color: rgba(90, 90, 90) !important;
+  --el-skeleton-to-color: rgba(58, 58, 58) !important;
 }
 
 .el-image__wrapper,
 .el-image__error {
   color: #fff;
-  background-color: rgba(190, 190, 190, 0.17) !important;
+  // background-color: rgba(190, 190, 190, 0.17) !important;
+  background-color: rgb(58, 58, 58) !important;
+
+  .el-image__placeholder {
+    background-color: var(--background-content-color) !important;
+  }
 }
 
-.ant-collapse {
+.el-select {
+  border: 1px solid #fff;
+
+  .el-input__wrapper {
+    &.is-focus {
+      box-shadow: none;
+    }
+
+    color: #fff;
+  }
 }
 
 .ant-modal {

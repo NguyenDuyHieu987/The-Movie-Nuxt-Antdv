@@ -1,7 +1,16 @@
-.body-content.expand {
+.movie-group.vertical {
   .movie-card-vertical-item {
-    .img-box {
-      height: 16vw;
+    display: inline-block;
+    width: calc((100% - (7 * var(--card-movie-gap))) / 8);
+  }
+}
+
+.body-content.expand {
+  .home-container {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 16vw;
+      }
     }
   }
 }
@@ -460,7 +469,7 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .movie-card-vertical-item {
     .img-box {
       height: 33vw;

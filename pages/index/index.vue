@@ -2,7 +2,7 @@
   <div class="home-container">
     <SlideTopicHome :trendings="trendings" />
     <div class="home-content">
-      <div class="home-section outstanding">
+      <section class="home-section outstanding">
         <h2 class="gradient-title-default" v-show="nowPlayings?.length">
           <strong>Phim nổi bật</strong>
           <!-- <NuxtLink
@@ -28,7 +28,7 @@
             </SwiperSlide>
           </template>
         </CarouselGroup>
-      </div>
+      </section>
 
       <div
         class="home-section recommend"
@@ -43,14 +43,13 @@
           class="movie-group vertical"
           :class="{ viewmore: viewMoreRecommend }"
         >
-          <SwiperSlide v-for="(item, index) in recommends">
-            <MovieCardVertical
-              :index="index"
-              :key="item.id"
-              :item="item"
-              :type="item.media_type"
-            />
-          </SwiperSlide>
+          <MovieCardVertical
+            v-for="(item, index) in recommends"
+            :index="index"
+            :key="item.id"
+            :item="item"
+            :type="item.media_type"
+          />
           <el-button
             class="loadmore-btn"
             type="primary"
@@ -83,7 +82,7 @@
         </div>
       </div>
 
-      <div class="home-section cartoon">
+      <section class="home-section cartoon">
         <h2 class="gradient-title-default" v-show="cartoons?.length">
           <strong>Hoạt hình - Anime đặc sắc</strong>
           <NuxtLink
@@ -107,9 +106,9 @@
             </SwiperSlide>
           </template>
         </CarouselGroup>
-      </div>
+      </section>
 
-      <div class="home-section tv-new" v-show="tvAiringTodays?.length">
+      <section class="home-section tv-new" v-show="tvAiringTodays?.length">
         <h2 class="gradient-title-default">
           <strong>Phim bộ mới</strong>
           <NuxtLink
@@ -133,9 +132,9 @@
             </SwiperSlide>
           </template>
         </CarouselGroup>
-      </div>
+      </section>
 
-      <div class="home-section trailer" v-show="upComings?.length">
+      <section class="home-section trailer" v-show="upComings?.length">
         <h2 class="gradient-title-default">
           <strong>Trailer</strong>
 
@@ -157,9 +156,9 @@
             type="movie"
           />
         </section>
-      </div>
+      </section>
 
-      <div class="home-section theater">
+      <section class="home-section theater">
         <h2 class="gradient-title-default" v-show="topRateds?.length">
           <strong>Phim chiếu rạp mới</strong>
           <NuxtLink
@@ -183,9 +182,9 @@
             </SwiperSlide>
           </template>
         </CarouselGroup>
-      </div>
+      </section>
 
-      <div class="home-section on-the-air">
+      <section class="home-section on-the-air">
         <h2 class="gradient-title-default" v-show="tvOnTheAirs?.length">
           <strong>TV On the air</strong>
           <NuxtLink
@@ -209,7 +208,7 @@
             </SwiperSlide>
           </template>
         </CarouselGroup>
-      </div>
+      </section>
     </div>
   </div>
 </template>
@@ -310,7 +309,7 @@ const responsiveHorizoltal = computed(() => ({
     slidesPerView: 3,
     slidesPerGroup: 3,
   },
-  800: {
+  900: {
     slidesPerView: 3,
     slidesPerGroup: 3,
   },

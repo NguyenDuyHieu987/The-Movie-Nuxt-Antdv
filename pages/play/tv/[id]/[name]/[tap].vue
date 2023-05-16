@@ -376,10 +376,8 @@ const getData = async () => {
       isEpisodes.value = true;
       dataMovie.value = tvResponed.data.value.data;
 
-      setTimeout(() => {
-        loading.value = false;
-        internalInstance.appContext.config.globalProperties.$Progress.finish();
-      }, 1500);
+      loading.value = false;
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
     })
     .catch((e) => {
       loading.value = false;

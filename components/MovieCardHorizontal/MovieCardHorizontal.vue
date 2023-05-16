@@ -18,7 +18,7 @@
     <el-skeleton :loading="loading" animated>
       <template #template>
         <div class="img-box">
-          <el-skeleton-item class="ant-image" variant="image" />
+          <el-skeleton-item class="ant-image" />
         </div>
         <div style="margin-top: 7px">
           <el-skeleton-item variant="text" />
@@ -28,13 +28,14 @@
 
       <template #default>
         <div class="img-box">
-          <img
+          <el-image
             class="ant-image"
-            v-lazy="getBackdrop(dataMovie?.backdrop_path, ',250')"
+            :src="getBackdrop(dataMovie?.backdrop_path, ',250')"
             :preview="false"
+            :lazy="true"
+            loading="lazy"
           />
 
-          <!-- <a-skeleton-image v-else class="ant-image" /> -->
           <div
             v-if="isInHistory"
             class="percent-viewed"
@@ -115,11 +116,13 @@
     </el-skeleton>
     <div class="detail-flow" v-if="!loading">
       <div class="backdrop-box">
-        <img
+        <el-image
           class="ant-image"
           v-show="!loading"
-          v-lazy="getBackdrop(dataMovie?.backdrop_path, ',250')"
+          :src="getBackdrop(dataMovie?.backdrop_path, ',250')"
           :preview="false"
+          :lazy="true"
+          loading="lazy"
         />
 
         <div
@@ -411,9 +414,7 @@ onBeforeMount(async () => {
           .then((movieResponed) => {
             dataMovie.value = movieResponed.data.value.data;
 
-            setTimeout(() => {
-              loading.value = false;
-            }, 1000);
+            loading.value = false;
           })
           .catch((e) => {
             loading.value = false;
@@ -429,9 +430,7 @@ onBeforeMount(async () => {
           .then((tvResponed) => {
             dataMovie.value = tvResponed.data.value.data;
 
-            setTimeout(() => {
-              loading.value = false;
-            }, 1000);
+            loading.value = false;
           })
           .catch((e) => {
             loading.value = false;
@@ -451,9 +450,7 @@ onBeforeMount(async () => {
         .then((tvResponed) => {
           dataMovie.value = tvResponed.data.value.data;
 
-          setTimeout(() => {
-            loading.value = false;
-          }, 1000);
+          loading.value = false;
         })
         .catch((e) => {
           loading.value = false;
@@ -467,9 +464,7 @@ onBeforeMount(async () => {
         .then((movieResponed) => {
           dataMovie.value = movieResponed.data.value.data;
 
-          setTimeout(() => {
-            loading.value = false;
-          }, 1000);
+          loading.value = false;
         })
         .catch((e) => {
           loading.value = false;

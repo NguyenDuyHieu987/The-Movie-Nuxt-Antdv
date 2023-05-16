@@ -1,27 +1,24 @@
 .movie-group.horizontal.trailer {
-  display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(230px, auto));
-  grid-template-columns: repeat(auto-fit, minmax(14vw, auto));
-  // margin-top: 10px;
-  gap: 10px;
-}
-
-.body-content.expand {
-  .movie-group.horizontal.trailer {
-    grid-template-columns: repeat(auto-fit, minmax(12vw, auto));
-    .movie-card-horizontal-item-trailer {
-      .img-box {
-        // height: ;
-      }
-    }
+  .movie-card-horizontal-item {
+    display: inline-block;
+    width: calc((100% - (5 * var(--card-movie-gap))) / 6);
   }
 }
 
-.movie-card-horizontal-item-trailer.skeleton {
+// .body-content.expand {
+// .movie-group.horizontal.trailer {
+//   .movie-card-horizontal-item {
+//     display: inline-block;
+//     width: calc((100% - (5 * 7px)) / 6);
+//   }
+// }
+// }
+
+.movie-card-horizontal-item-skeleton {
   cursor: auto;
 }
 
-.movie-card-horizontal-item-trailer {
+.movie-card-horizontal-item {
   color: #fff;
   cursor: pointer;
   position: relative;

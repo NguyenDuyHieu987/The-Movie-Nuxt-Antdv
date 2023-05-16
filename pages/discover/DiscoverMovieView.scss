@@ -1,86 +1,86 @@
 @media only screen and (min-width: 2300px) {
-  .movie-discovered.collapse {
+  .discover-section.collapsed {
     grid-template-columns: repeat(9, minmax(10%, auto)) !important;
   }
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(8, minmax(10%, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 2300px) {
-  .movie-discovered.collapse {
+  .discover-section.collapsed {
     grid-template-columns: repeat(9, minmax(10%, auto)) !important;
   }
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(8, minmax(10%, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 2100px) {
-  .movie-discovered.collapse {
+  .discover-section.collapsed {
     grid-template-columns: repeat(8, minmax(10%, auto)) !important;
   }
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(7, minmax(10%, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 2000px) {
-  .movie-discovered.collapse {
+  .discover-section.collapsed {
     grid-template-columns: repeat(6, minmax(13%, auto)) !important;
   }
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(6, minmax(15%, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 1700px) {
-  .movie-discovered.collapse {
+  .discover-section.collapsed {
     grid-template-columns: repeat(6, minmax(230px, auto)) !important;
   }
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(5, minmax(15%, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 1550px) {
-  .movie-discovered.collapse {
+  .discover-section.collapsed {
     grid-template-columns: repeat(5, minmax(230px, auto)) !important;
   }
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(5, minmax(15%, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 1400px) {
-  .movie-discovered.collapse {
+  .discover-section.collapsed {
     grid-template-columns: repeat(5, minmax(230px, auto)) !important;
   }
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(4, minmax(23%, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 1010px) {
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(3, minmax(170px, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 860px) {
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(3, minmax(160px, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 615px) {
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(2, minmax(50%, auto)) !important;
   }
 }
 
 @media only screen and (max-width: 435px) {
-  .movie-discovered {
+  .discover-section {
     grid-template-columns: repeat(2, minmax(150px, auto)) !important;
   }
 
@@ -92,32 +92,20 @@
 }
 
 .discover-container {
-  .movie-discovered {
-    display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(230px, auto));
-    // margin-top: 10px;
-    gap: 10px;
-    // overflow: hidden;
-    grid-template-columns: repeat(4, minmax(23%, auto));
-    .movie-carousel-horizontal-item {
-      float: left;
+  .discover-head {
+    .gradient-title-default {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+  }
+
+  .discover-section {
   }
 
   .ant-radio-group.tabs-search,
   .el-radio-group.tabs-search {
     margin-bottom: 5px !important;
-  }
-
-  // .el-radio-button:not(:last-child),
-  // .ant-radio-button-wrapper:not(:last-child) {
-  //   margin-right: 7px;
-  // }
-
-  .gradient-title-default {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 
   .control-page {

@@ -188,13 +188,37 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .ant-layout-header.header {
     padding-left: 0px;
 
     .logo {
       .menu-btn {
         padding: 16px 15px;
+
+        &.mobile {
+          display: block !important;
+        }
+
+        &.desktop {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .el-popover {
+    left: 50% !important;
+    transform: translateX(-50%);
+    width: 100% !important;
+    .section-title.search {
+      margin-top: 0px;
+    }
+
+    .ant-input-group-addon {
+      .ant-input-search-button {
+        display: flex;
+        align-items: center;
       }
     }
   }
@@ -221,41 +245,6 @@
   // .ant-popover.ant-popover-placement-bottom {
   //   width: 100vw;
   // }
-}
-
-@media only screen and (max-width: 800px) {
-  .ant-layout-header.header {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  .logo {
-    .menu-btn {
-      &.mobile {
-        display: block !important;
-      }
-
-      &.desktop {
-        display: none;
-      }
-    }
-  }
-
-  .el-popover {
-    left: 50% !important;
-    transform: translateX(-50%);
-    width: 100% !important;
-    .section-title.search {
-      margin-top: 0px;
-    }
-
-    .ant-input-group-addon {
-      .ant-input-search-button {
-        display: flex;
-        align-items: center;
-      }
-    }
-  }
 }
 
 .ant-dropdown:has(.dropdown-notification) {

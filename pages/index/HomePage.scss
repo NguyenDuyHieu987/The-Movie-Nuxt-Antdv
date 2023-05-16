@@ -7,6 +7,10 @@
     padding: 0px;
   }
 
+  .carousel-group {
+    overflow: visible;
+  }
+
   &.expand {
     margin-top: 0px;
 
@@ -78,14 +82,12 @@
     }
 
     &.recommend {
-      .movie-group.horizontal,
       .movie-group.vertical {
-        grid-auto-flow: column;
-        transition: all 0.3s;
-        clip-path: inset(-100vh 0 -100vh 0);
+        // grid-auto-flow: column;
+        // clip-path: inset(-100vh 0 -100vh 0);
 
         .loadmore-btn {
-          min-height: 160px;
+          height: 50%;
           background: none;
           border: 1px solid #fff;
           z-index: 1;

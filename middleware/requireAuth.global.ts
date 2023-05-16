@@ -27,7 +27,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
       });
     } else {
       console.log(to.fullPath);
-      navigateTo(to.fullPath);
+      // navigateTo({ path: to.fullPath });
     }
   }
 

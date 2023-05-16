@@ -23,12 +23,12 @@
       lazy
     ></el-image> -->
 
-    <img
+    <el-image
       class="el-image"
-      v-lazy="getBackdrop(item?.backdrop_path)"
+      :src="getBackdrop(item?.backdrop_path)"
       :preview="false"
+      :lazy="true"
       loading="lazy"
-      lazy
     />
 
     <div class="topic-item-body">

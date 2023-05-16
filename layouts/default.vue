@@ -91,15 +91,12 @@ const { collapsed } = storeToRefs(store);
 }
 
 @media only screen and (max-width: 900px) {
+  .body-content {
+    margin-left: 0px !important;
+  }
   .ant-layout-content.container {
     padding: 15px 15px;
     padding-bottom: 30px;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .body-content {
-    margin-left: 0px !important;
   }
 }
 </style>

@@ -162,7 +162,7 @@
   user-select: none;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 900px) {
   .el-popover {
     display: none;
   }
@@ -171,7 +171,7 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .ant-layout-sider.sider-bar {
     width: 0px !important;
     min-width: 0px !important;

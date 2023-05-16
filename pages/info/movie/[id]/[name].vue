@@ -572,12 +572,11 @@ const getData = async () => {
         (item) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       );
 
-      setTimeout(() => {
-        loading.value = false;
-        internalInstance.appContext.config.globalProperties.$Progress.finish();
-      }, 1500);
+      loading.value = false;
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
     })
     .catch((e) => {
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
       if (axios.isCancel(e)) return;
     });
 

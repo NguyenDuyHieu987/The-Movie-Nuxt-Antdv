@@ -28,11 +28,12 @@
 
       <template #default>
         <div class="img-box">
-          <img
+          <el-image
             class="ant-image"
-            v-if="!loading"
-            v-lazy="getPoster(dataMovie?.poster_path)"
+            :src="getPoster(dataMovie?.poster_path)"
             :preview="false"
+            :lazy="true"
+            loading="lazy"
           />
 
           <!-- <a-skeleton-image v-else class="ant-image" /> -->
@@ -116,10 +117,12 @@
 
     <div class="detail-flow" v-if="!loading">
       <div class="backdrop-box">
-        <img
+        <el-image
           class="ant-image"
-          v-lazy="getBackdrop(dataMovie?.backdrop_path, ',250')"
+          :src="getBackdrop(dataMovie?.backdrop_path, ',250')"
           :preview="false"
+          :lazy="true"
+          loading="lazy"
         />
 
         <div
@@ -407,9 +410,7 @@ onBeforeMount(async () => {
           .then((movieResponed) => {
             dataMovie.value = movieResponed.data.value.data;
 
-            setTimeout(() => {
-              loading.value = false;
-            }, 1000);
+            loading.value = false;
           })
           .catch((e) => {
             loading.value = false;
@@ -425,9 +426,7 @@ onBeforeMount(async () => {
           .then((tvResponed) => {
             dataMovie.value = tvResponed.data.value.data;
 
-            setTimeout(() => {
-              loading.value = false;
-            }, 1000);
+            loading.value = false;
           })
           .catch((e) => {
             loading.value = false;
@@ -447,9 +446,7 @@ onBeforeMount(async () => {
         .then((tvResponed) => {
           dataMovie.value = tvResponed.data.value.data;
 
-          setTimeout(() => {
-            loading.value = false;
-          }, 1000);
+          loading.value = false;
         })
         .catch((e) => {
           loading.value = false;
@@ -463,9 +460,7 @@ onBeforeMount(async () => {
         .then((movieResponed) => {
           dataMovie.value = movieResponed.data.value.data;
 
-          setTimeout(() => {
-            loading.value = false;
-          }, 1000);
+          loading.value = false;
         })
         .catch((e) => {
           loading.value = false;

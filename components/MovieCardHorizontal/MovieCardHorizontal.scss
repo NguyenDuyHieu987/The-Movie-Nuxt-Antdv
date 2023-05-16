@@ -1,7 +1,17 @@
-.body-content.expand {
+.movie-group.horizoltal {
   .movie-card-horizontal-item {
-    .img-box {
-      height: 9vw;
+    display: inline-block;
+    width: calc((100% - (5 * var(--card-movie-gap))) / 6);
+    //   margin: 4px;
+  }
+}
+
+.body-content.expand {
+  .home-container {
+    .movie-card-horizontal-item {
+      .img-box {
+        height: 9vw;
+      }
     }
   }
 }
@@ -428,7 +438,7 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .movie-card-horizontal-item {
     .img-box {
       height: 18vw;

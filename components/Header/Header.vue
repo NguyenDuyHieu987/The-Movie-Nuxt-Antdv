@@ -251,11 +251,13 @@ import { Close } from '@element-plus/icons-vue';
 import axios from 'axios';
 import { useStore } from '@/store/useStore';
 import { storeToRefs } from 'pinia';
+import _ from 'lodash';
 
 const store = useStore();
 const { openDrawer, collapsed, isLogin, userAccount, role } =
   storeToRefs(store);
 const router = useRouter();
+const route = useRoute();
 const dataSearch = ref([]);
 const page = ref(1);
 const loadingSearch = ref(false);
@@ -265,39 +267,42 @@ const valueInput = ref('');
 
 const handleChangeInput = (query) => {
   if (query.length > 0) {
-    loadingSearch.value = true;
+    // loadingSearch.value = true;
+
+    // const url = new URL(location);
+    // url.searchParams.set('q', query);
+    // window.history.pushState({}, null, url);
 
     clearTimeout(debounce.value);
     debounce.value = setTimeout(async () => {
-      await useAsyncData(`search/all/${query}`, () =>
-        getDaTaSearch(query, page.value)
-      )
-        .then((movieRespone) => {
-          dataSearch.value = movieRespone.data.value.data?.results;
-          setTimeout(() => {
-            loadingSearch.value = false;
-          }, 500);
-        })
-        .catch((e) => {
-          loadingSearch.value = false;
-          if (axios.isCancel(e)) return;
-        });
+      // await useAsyncData(`search/all/${query}`, () =>
+      //   getDaTaSearch(query, page.value)
+      // )
+      //   .then((movieRespone) => {
+      //     dataSearch.value = movieRespone.data.value.data?.results;
+      //     loadingSearch.value = false;
+      //   })
+      //   .catch((e) => {
+      //     loadingSearch.value = false;
+      //     if (axios.isCancel(e)) return;
+      //   });
+      navigateTo({
+        path: '/search',
+        query: { q: query?.replaceAll(' ', '+').toLowerCase() },
+      });
     }, 500);
   } else if (query.length == 0) {
+    navigateTo({ path: '/' });
     dataSearch.value = [];
   }
 };
 
 const handleSearch = (value) => {
   if (value.length > 0) {
-    navigateTo(`/discover/search/${value?.replaceAll(' ', '+').toLowerCase()}`);
-    //   {
-    //   name: 'discover',
-    //   params: {
-    //     slug: 'search',
-    //     slug2: value?.replaceAll(' ', '+').toLowerCase(),
-    //   },
-    // }
+    navigateTo({
+      path: '/search',
+      query: { q: value?.replaceAll(' ', '+').toLowerCase() },
+    });
 
     valueInput.value = '';
     isOpenAutoComplete.value = false;

@@ -420,9 +420,7 @@ onBeforeMount(async () => {
           .then((movieResponed) => {
             dataMovie.value = movieResponed.data.value.data;
 
-            setTimeout(() => {
-              loading.value = false;
-            }, 1000);
+            loading.value = false;
           })
           .catch((e) => {
             loading.value = false;
@@ -438,9 +436,7 @@ onBeforeMount(async () => {
           .then((tvResponed) => {
             dataMovie.value = tvResponed.data.value.data;
 
-            setTimeout(() => {
-              loading.value = false;
-            }, 1000);
+            loading.value = false;
           })
           .catch((e) => {
             loading.value = false;
@@ -460,9 +456,7 @@ onBeforeMount(async () => {
         .then((tvResponed) => {
           dataMovie.value = tvResponed.data.value.data;
 
-          setTimeout(() => {
-            loading.value = false;
-          }, 1000);
+          loading.value = false;
         })
         .catch((e) => {
           loading.value = false;
@@ -476,9 +470,7 @@ onBeforeMount(async () => {
         .then((movieResponed) => {
           dataMovie.value = movieResponed.data.value.data;
 
-          setTimeout(() => {
-            loading.value = false;
-          }, 1000);
+          loading.value = false;
         })
         .catch((e) => {
           loading.value = false;

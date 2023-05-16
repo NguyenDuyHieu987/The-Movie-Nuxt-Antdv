@@ -56,64 +56,99 @@ const props = defineProps({
 const dataSimilar = ref([]);
 const dataRecommend = ref([]);
 const randomRecommend = ref(Math.floor(Math.random() * 50) + 1);
-const responsive = ref({
+// const responsive = ref({
+//   0: {
+//     items: 2,
+//     slideBy: 2,
+//   },
+//   500: {
+//     items: 2,
+//     slideBy: 2,
+//   },
+//   520: {
+//     items: 3,
+//     slideBy: 3,
+//   },
+//   700: {
+//     items: 4,
+//     slideBy: 4,
+//   },
+//   800: {
+//     items: 3,
+//     slideBy: 3,
+//   },
+//   900: {
+//     items: 4,
+//     slideBy: 4,
+//   },
+//   1175: {
+//     items: 5,
+//     slideBy: 5,
+//   },
+//   1300: {
+//     items: 6,
+//     slideBy: 6,
+//   },
+//   1400: {
+//     items: 6,
+//     slideBy: 6,
+//   },
+//   1550: {
+//     items: 7,
+//     slideBy: 7,
+//   },
+//   1700: {
+//     items: 8,
+//     slideBy: 8,
+//   },
+//   1900: {
+//     items: 9,
+//     slideBy: 9,
+//   },
+//   2000: {
+//     items: 10,
+//     slideBy: 10,
+//   },
+//   2200: {
+//     items: 11,
+//     slideBy: 11,
+//   },
+// });
+
+const responsive = computed(() => ({
   0: {
-    items: 2,
-    slideBy: 2,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
   },
   500: {
-    items: 2,
-    slideBy: 2,
+    slidesPerView: 3,
+    slidesPerGroup: 3,
   },
-  520: {
-    items: 3,
-    slideBy: 3,
+  650: {
+    slidesPerView: 4,
+    slidesPerGroup: 4,
   },
-  700: {
-    items: 4,
-    slideBy: 4,
+  1000: {
+    slidesPerView: 4,
+    slidesPerGroup: 4,
   },
-  800: {
-    items: 3,
-    slideBy: 3,
-  },
-  900: {
-    items: 4,
-    slideBy: 4,
-  },
-  1175: {
-    items: 5,
-    slideBy: 5,
-  },
-  1300: {
-    items: 6,
-    slideBy: 6,
+  1100: {
+    slidesPerView: 5,
+    slidesPerGroup: 5,
   },
   1400: {
-    items: 6,
-    slideBy: 6,
+    slidesPerView: 6,
+    slidesPerGroup: 6,
   },
   1550: {
-    items: 7,
-    slideBy: 7,
+    slidesPerView: 7,
+    slidesPerGroup: 7,
   },
   1700: {
-    items: 8,
-    slideBy: 8,
+    slidesPerView: 8,
+    slidesPerGroup: 8,
   },
-  1900: {
-    items: 9,
-    slideBy: 9,
-  },
-  2000: {
-    items: 10,
-    slideBy: 10,
-  },
-  2200: {
-    items: 11,
-    slideBy: 11,
-  },
-});
+}));
 
 const btnPrev = ref('<i class="fa-solid fa-chevron-left "></i>');
 const btnNext = ref('<i class="fa-solid fa-chevron-right "></i>');
