@@ -521,12 +521,11 @@ const getData = () => {
           });
       }
 
-      // setTimeout(() => {
       internalInstance.appContext.config.globalProperties.$Progress.finish();
       loading.value = false;
-      // }, 500);
     })
     .catch((e) => {
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
       loading.value = false;
       if (axios.isCancel(e)) return;
     });
