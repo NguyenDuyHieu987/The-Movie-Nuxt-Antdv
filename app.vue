@@ -161,18 +161,16 @@ onBeforeMount(() => {
   right: 40px;
 }
 #components-back-top-demo-custom .ant-back-top-inner {
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.72) !important;
   height: 40px;
   width: 43px;
   line-height: 40px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #fff;
-  background-color: #0056785f;
+  background-color: var(--background-content-color1);
   color: #fff;
   text-align: center;
   font-size: 20px;
-  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px 0 #00000014,
-    0 9px 28px 8px #0000000d;
+  box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 0.26) !important;
   transition: all 0.25s;
 
   &:active {

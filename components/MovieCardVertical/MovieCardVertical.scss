@@ -5,6 +5,15 @@
   }
 }
 
+.movie-group.vertical.ranking {
+  .movie-card-vertical-item {
+    width: calc((100% - (7 * var(--card-movie-gap))) / 7);
+    .img-box {
+      height: 13vw;
+    }
+  }
+}
+
 .body-content.expand {
   .home-container {
     .movie-card-vertical-item {
@@ -377,11 +386,51 @@
   }
 }
 
+@media only screen and (max-width: 2000px) {
+  .body-content.expand {
+    .movie-group.vertical.ranking {
+      .movie-card-vertical-item {
+        width: calc((100% - (6 * var(--card-movie-gap))) / 7);
+        .img-box {
+          height: 14vw;
+        }
+      }
+    }
+  }
+
+  .movie-group.vertical.ranking {
+    .movie-card-vertical-item {
+      width: calc((100% - (5 * var(--card-movie-gap))) / 6);
+      .img-box {
+        height: 14vw;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 1700px) {
   .body-content.expand {
     .movie-card-vertical-item {
       .img-box {
         height: 17vw;
+      }
+    }
+
+    .movie-group.vertical.ranking {
+      .movie-card-vertical-item {
+        width: calc((100% - (5 * var(--card-movie-gap))) / 6);
+        .img-box {
+          height: 15vw;
+        }
+      }
+    }
+  }
+
+  .movie-group.vertical.ranking {
+    .movie-card-vertical-item {
+      width: calc((100% - (4 * var(--card-movie-gap))) / 5);
+      .img-box {
+        height: 15vw;
       }
     }
   }
@@ -414,6 +463,15 @@
     }
   }
 
+  .movie-group.vertical.ranking {
+    .movie-card-vertical-item {
+      width: calc((100% - (3 * var(--card-movie-gap))) / 4);
+      .img-box {
+        height: 17vw;
+      }
+    }
+  }
+
   .movie-card-vertical-item {
     .img-box {
       height: 16vw;
@@ -428,11 +486,52 @@
         height: 25vw;
       }
     }
+
+    .movie-group.vertical.ranking {
+      .movie-card-vertical-item {
+        width: calc((100% - (4 * var(--card-movie-gap))) / 5);
+        .img-box {
+          height: 19vw;
+        }
+      }
+    }
   }
 
   .movie-card-vertical-item {
     .img-box {
       height: 22vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .movie-group.vertical.ranking {
+    .movie-card-vertical-item {
+      width: calc((100% - (2 * var(--card-movie-gap))) / 3);
+      .img-box {
+        height: 22vw;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .body-content.expand {
+    .movie-group.vertical.ranking {
+      .movie-card-vertical-item {
+        width: calc((100% - (3 * var(--card-movie-gap))) / 4);
+        .img-box {
+          height: 23vw;
+        }
+      }
+    }
+  }
+
+  .movie-group.vertical.ranking {
+    .movie-card-vertical-item {
+      .img-box {
+        height: 20vw;
+      }
     }
   }
 }
@@ -444,6 +543,24 @@
         height: 29vw;
       }
     }
+
+    .movie-group.vertical {
+      .movie-card-vertical-item {
+        width: calc((100% - (4 * var(--card-movie-gap))) / 5) !important;
+        .img-box {
+          height: 25vw !important;
+        }
+      }
+    }
+  }
+
+  .movie-group.vertical {
+    .movie-card-vertical-item {
+      width: calc((100% - (3 * var(--card-movie-gap))) / 4) !important;
+      .img-box {
+        height: 24vw !important;
+      }
+    }
   }
 
   .movie-card-vertical-item {
@@ -453,23 +570,16 @@
   }
 }
 
-@media only screen and (max-width: 1000px) {
-  .body-content.expand {
+@media only screen and (max-width: 900px) {
+  .movie-group.vertical {
     .movie-card-vertical-item {
+      width: calc((100% - (4 * var(--card-movie-gap))) / 5) !important;
       .img-box {
-        // height: 38vw;
+        height: 24vw !important;
       }
     }
   }
 
-  .movie-card-vertical-item {
-    .img-box {
-      // height: 25vw;
-    }
-  }
-}
-
-@media only screen and (max-width: 900px) {
   .movie-card-vertical-item {
     .img-box {
       height: 33vw;
@@ -477,15 +587,46 @@
   }
 }
 
+@media only screen and (max-width: 800px) {
+  .movie-group.vertical {
+    .movie-card-vertical-item {
+      width: calc((100% - (3 * var(--card-movie-gap))) / 4) !important;
+      .img-box {
+        height: 32vw !important;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 650px) {
   .movie-card-vertical-item {
     .img-box {
-      height: 43vw;
+      height: 43vw !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .movie-group.vertical {
+    .movie-card-vertical-item {
+      width: calc((100% - (2 * var(--card-movie-gap))) / 3) !important;
+      .img-box {
+        height: 40vw !important;
+      }
     }
   }
 }
 
 @media only screen and (max-width: 500px) {
+  .movie-group.vertical {
+    .movie-card-vertical-item {
+      width: calc((100% - (1 * var(--card-movie-gap))) / 2) !important;
+      .img-box {
+        height: 64vw !important;
+      }
+    }
+  }
+
   .movie-card-vertical-item {
     .img-box {
       height: 64vw !important;

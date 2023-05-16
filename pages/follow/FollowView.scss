@@ -128,7 +128,7 @@
   // height: calc(100vh - var(--header-height) + 53px);
   .follow-container {
     .ant-layout {
-      background-color: #000;
+      background-color: var(--background-content-color);
     }
 
     .topic-follow-column-responsive {

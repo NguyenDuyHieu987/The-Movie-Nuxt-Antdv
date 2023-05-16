@@ -6,7 +6,7 @@
           <strong>Trending</strong>
         </h2>
 
-        <section class="movie-group vertical">
+        <section class="movie-group vertical ranking">
           <MovieCardVertical
             v-for="(item, index) in trendings"
             :index="index"

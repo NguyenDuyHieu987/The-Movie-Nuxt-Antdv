@@ -10,14 +10,13 @@
     class="movie-search-item"
   >
     <div class="img-box">
-      <!-- v-if="!loading" -->
-      <img
+      <el-image
         class="ant-image"
-        v-lazy="getPoster(item?.poster_path)"
+        :src="getPoster(item?.poster_path)"
         :preview="false"
+        :lazy="true"
+        loading="lazy"
       />
-
-      <!-- <a-skeleton-image v-else class="ant-image" /> -->
     </div>
 
     <div class="info">

@@ -381,29 +381,38 @@
   .body-content.expand {
     .movie-card-horizontal-item {
       .img-box {
-        height: 10vw;
+        height: 10vw !important;
       }
     }
   }
+
+  .movie-group.horizoltal {
+    .movie-card-horizontal-item {
+      display: inline-block;
+      width: calc((100% - (4 * var(--card-movie-gap))) / 5);
+      //   margin: 4px;
+    }
+  }
+
   .movie-card-horizontal-item {
     .img-box {
-      height: 9vw;
+      height: 9vw !important;
     }
 
     .duration-episode-box {
       .duration-episode {
-        font-size: 1.2rem;
+        font-size: 1.2rem !important;
       }
     }
 
     .release-date-box {
       .release-date {
-        font-size: 1.2rem;
+        font-size: 1.2rem !important;
       }
     }
 
     .info {
-      font-size: 1.6rem;
+      font-size: 1.6rem !important;
     }
   }
 }
@@ -412,13 +421,22 @@
   .body-content.expand {
     .movie-card-horizontal-item {
       .img-box {
-        height: 13vw;
+        height: 13vw !important;
       }
     }
   }
+
+  .movie-group.horizoltal {
+    .movie-card-horizontal-item {
+      display: inline-block;
+      width: calc((100% - (3 * var(--card-movie-gap))) / 4);
+      //   margin: 4px;
+    }
+  }
+
   .movie-card-horizontal-item {
     .img-box {
-      height: 11vw;
+      height: 11vw !important;
     }
   }
 }
@@ -427,13 +445,22 @@
   .body-content.expand {
     .movie-card-horizontal-item {
       .img-box {
-        height: 17vw;
+        height: 17vw !important;
       }
     }
   }
+
+  .movie-group.horizoltal {
+    .movie-card-horizontal-item {
+      display: inline-block;
+      width: calc((100% - (2 * var(--card-movie-gap))) / 3);
+      //   margin: 4px;
+    }
+  }
+
   .movie-card-horizontal-item {
     .img-box {
-      height: 14vw;
+      height: 14vw !important;
     }
   }
 }
@@ -441,7 +468,7 @@
 @media only screen and (max-width: 900px) {
   .movie-card-horizontal-item {
     .img-box {
-      height: 18vw;
+      height: 18vw !important;
     }
   }
 }
@@ -449,7 +476,15 @@
 @media only screen and (max-width: 600px) {
   .movie-card-horizontal-item {
     .img-box {
-      height: 26vw;
+      height: 26vw !important;
+    }
+  }
+
+  .movie-group.horizoltal {
+    .movie-card-horizontal-item {
+      display: inline-block;
+      width: calc((100% - (1 * var(--card-movie-gap))) / 2);
+      //   margin: 4px;
     }
   }
 }

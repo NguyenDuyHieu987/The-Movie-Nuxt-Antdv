@@ -17,17 +17,15 @@
     class="movie-rank-item"
   >
     <div class="img-box">
-      <!-- v-if="!loading" -->
-      <img
+      <el-image
         class="ant-image"
-        v-lazy="getPoster(item?.poster_path)"
+        :src="getPoster(item?.poster_path)"
         :preview="false"
+        :lazy="true"
+        loading="lazy"
       />
-
-      <!-- <a-skeleton-image v-else class="ant-image" /> -->
     </div>
 
-    <!-- <a-tooltip :title="getLanguage(item?.original_language)?.english_name"> -->
     <div class="info">
       <div class="top">
         <p class="title">
@@ -67,7 +65,6 @@
         <span class="views">{{ ViewFormatter(item?.views) }} lượt xem</span>
       </div>
     </div>
-    <!-- </a-tooltip> -->
   </NuxtLink>
 </template>
 

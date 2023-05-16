@@ -12,43 +12,11 @@
     <template #default>
       <div class="cast-item">
         <div class="cast-img-box">
-          <!-- <el-image
+          <el-image
             class="ant-image"
             :src="getPosterCast(item?.profile_path)"
             :preview="false"
-            loading="lazy"
-          >
-            <template #error>
-              <div
-                class="el-image error"
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  font-size: 1.4rem;
-                "
-              >
-                Đang tải<span class="dot">...</span>
-              </div>
-            </template>
-            <template #placeholder>
-              <div
-                class="el-image error"
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  font-size: 1.4rem;
-                "
-              >
-                Đang tải<span class="dot">...</span>
-              </div>
-            </template>
-          </el-image> -->
-          <img
-            class="ant-image"
-            v-lazy="getPosterCast(item?.profile_path)"
-            :preview="false"
+            :lazy="true"
             loading="lazy"
           />
         </div>

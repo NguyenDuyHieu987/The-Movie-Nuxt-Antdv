@@ -45,7 +45,7 @@
       0 9px 28px 8px #00000077;
     // border: 0.5px solid #919191;
     z-index: 1;
-    background-color: #0000002d;
+    background-color: var(--background-content-color);
     overflow: hidden;
     width: 550px;
     min-height: 730px;
@@ -55,7 +55,7 @@
       inset: 3px;
       z-index: 3;
       display: block;
-      background-color: #000000;
+      background-color: var(--background-content-color);
       padding: 40px 70px;
       // overflow-y: scroll;
 

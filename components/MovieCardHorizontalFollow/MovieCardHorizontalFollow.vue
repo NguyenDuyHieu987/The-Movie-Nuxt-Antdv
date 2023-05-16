@@ -37,10 +37,12 @@
         >
           <div class="img-box">
             <!-- v-if="!loading" -->
-            <img
+            <el-image
               class="ant-image"
-              v-lazy="getBackdrop(item?.backdrop_path, ',250')"
+              :src="getBackdrop(item?.backdrop_path, ',250')"
               :preview="false"
+              :lazy="true"
+              loading="lazy"
             />
             <div
               v-show="isInHistory"
