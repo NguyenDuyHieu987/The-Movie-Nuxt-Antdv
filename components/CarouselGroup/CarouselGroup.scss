@@ -3,7 +3,8 @@
   position: relative;
 
   .owl-carousel,
-  .swiper-wrapper .swiper-slide {
+  .swiper-wrapper {
+    .swiper-slide:hover,
     .owl-item:hover {
       z-index: 1;
     }

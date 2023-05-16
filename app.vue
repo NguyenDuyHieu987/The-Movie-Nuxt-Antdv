@@ -144,6 +144,7 @@ onBeforeMount(() => {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    user-select: none;
 
     img {
       width: 64px;

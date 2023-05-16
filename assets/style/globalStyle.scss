@@ -182,6 +182,7 @@ dl {
     font-family: 'Lobster', cursive;
     font-weight: 200;
     font-size: 1.9em;
+    user-select: none;
   }
 
   @keyframes textclip {
@@ -198,7 +199,7 @@ dl {
   margin-top: 25px;
   margin-bottom: 23px;
   // font-size: 2.5rem;
-  font-size: 1.2vw;
+  font-size: 1.1vw;
   position: relative;
 
   strong {
@@ -234,7 +235,7 @@ dl {
   margin-top: 25px;
   margin-bottom: 20px;
   // font-size: 2rem;
-  font-size: 0.7vw;
+  font-size: 0.8vw;
   position: relative;
 
   &.width-fit {
@@ -338,16 +339,22 @@ dl {
 .el-select {
   border: 1px solid #fff;
 
-  .el-input__wrapper {
+  .el-input {
     &.is-focus {
-      box-shadow: none;
+      .el-input__wrapper {
+        box-shadow: 0 0 0 1px #ff0000 !important;
+      }
     }
+  }
 
+  .el-input__wrapper {
+    box-shadow: none;
     color: #fff;
   }
 }
 
 .el-overlay {
+  font-weight: unset;
   margin-top: var(--header-height);
 }
 
@@ -393,6 +400,40 @@ dl {
       .ant-btn:first-child {
         background-color: var(--btn-backgroud-color-gray1);
       }
+    }
+  }
+}
+
+.ant-select {
+  .ant-select-selector {
+    border-color: #fff !important;
+    outline: 1px solid #9b9b9b;
+    box-shadow: none !important;
+    height: 35px !important;
+
+    .ant-select-selection-placeholder,
+    .ant-select-selection-item {
+      font-size: 1.6rem;
+      line-height: 33px;
+    }
+  }
+
+  .ant-select-arrow {
+    color: #fff;
+  }
+}
+
+.ant-select-dropdown {
+  .rc-virtual-list-holder-inner {
+    .ant-select-item {
+      padding: 10px 15px;
+    }
+    .ant-select-item-option-content {
+      font-size: 1.6rem;
+    }
+
+    .ant-select-item-option-selected {
+      background-color: rgb(59, 59, 59);
     }
   }
 }

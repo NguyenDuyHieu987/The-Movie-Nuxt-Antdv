@@ -5,7 +5,7 @@
         >Kết quả tìm kiếm cho: {{ $route.query.q.replaceAll('+', ' ') }}</strong
       >
 
-      <el-select
+      <a-select
         ref="select"
         v-model="activeTabSearch"
         style="width: 170px"
@@ -13,10 +13,10 @@
         placeholder="Sắp xếp theo"
         v-show="searchData?.length"
       >
-        <el-option value="all" label="Tất cả" />
-        <el-option value="movie" label="Phim lẻ" />
-        <el-option value="tv" label="Phim bộ" />
-      </el-select>
+        <a-select-option value="all" label="Tất cả">Tất cả</a-select-option>
+        <a-select-option value="movie" label="Phim lẻ">Phim lẻ</a-select-option>
+        <a-select-option value="tv" label="Phim bộ">Phim bộ</a-select-option>
+      </a-select>
     </h2>
     <section
       class="search-section"
