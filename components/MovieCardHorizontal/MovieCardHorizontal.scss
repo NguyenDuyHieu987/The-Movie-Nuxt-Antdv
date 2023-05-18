@@ -16,31 +16,6 @@
   }
 }
 
-.movie-card-horizontal-item-skeleton {
-  color: #fff;
-  position: relative;
-  display: block;
-
-  .img-box {
-    position: relative;
-    height: 150px;
-    overflow: hidden;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-
-    .ant-image {
-      width: 100%;
-      height: 100%;
-
-      img {
-        transition: all 0.3s;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
-}
-
 .movie-card-horizontal-item {
   color: #fff;
   cursor: pointer;

@@ -1,7 +1,7 @@
 import VueProgressBar from '@aacassandra/vue3-progressbar';
 
 const progressBarOptions = {
-  color: '#e82b00',
+  color: 'var(--loading-progress-bar)',
   failedColor: 'red',
   thickness: '3px',
   transition: {

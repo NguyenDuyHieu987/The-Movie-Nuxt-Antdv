@@ -1,9 +1,5 @@
 <template>
-  <el-skeleton
-    :loading="loading"
-    animated
-    class="movie-card-horizontal-item-skeleton"
-  >
+  <el-skeleton :loading="loading" animated class="movie-card-horizontal-item">
     <template #template>
       <div class="img-box">
         <el-skeleton-item class="ant-image" variant="image" />
