@@ -88,6 +88,15 @@
           <a-button size="large" type="text" class="play">
             <template #icon>
               <Icon name="ic:play-arrow" class="play" />
+              <!-- <svg
+                class="play"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 16 16"
+              >
+                <path fill="#fff" d="M8 5v14l11-7L8 5z" />
+              </svg> -->
             </template>
             Xem ngay
           </a-button>

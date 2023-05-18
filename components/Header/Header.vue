@@ -286,10 +286,11 @@ const handleChangeInput = (query) => {
       //     loadingSearch.value = false;
       //     if (axios.isCancel(e)) return;
       //   });
-      navigateTo({
-        path: '/search',
-        query: { q: query?.replaceAll(' ', '+').toLowerCase() },
-      });
+
+      navigateTo(
+        `/search?q=${query?.replaceAll(' ', '+').toLowerCase()}`
+        // query: { q: query?.replaceAll(' ', '+').toLowerCase() },
+      );
     }, 500);
   } else if (query.length == 0) {
     navigateTo({ path: '/' });
@@ -299,10 +300,10 @@ const handleChangeInput = (query) => {
 
 const handleSearch = (value) => {
   if (value.length > 0) {
-    navigateTo({
-      path: '/search',
-      query: { q: value?.replaceAll(' ', '+').toLowerCase() },
-    });
+    navigateTo(
+      `/search?q=${query?.replaceAll(' ', '+').toLowerCase()}`
+      // query: { q: query?.replaceAll(' ', '+').toLowerCase() },
+    );
 
     valueInput.value = '';
     isOpenAutoComplete.value = false;
