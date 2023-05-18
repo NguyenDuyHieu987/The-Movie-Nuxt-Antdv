@@ -11,6 +11,13 @@ export default defineNuxtConfig({
   //     publicDir: 'output/public',
   //   },
   // },
+  vite: {
+    server: {
+      hmr: {
+        // overlay: false,
+      },
+    },
+  },
   app: {
     head: {
       title: 'Phimhay247',
