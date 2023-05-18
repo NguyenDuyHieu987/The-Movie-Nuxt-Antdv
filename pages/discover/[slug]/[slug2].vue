@@ -2,7 +2,7 @@
   <div class="discover-container">
     <FilterBar
       @dataFiltered="(data, formSelect) => setDataFiltered(data, formSelect)"
-      @cancelFilter="cancelFilter"
+      :cancelFilter="cancelFilter"
     />
 
     <div class="discover-head">

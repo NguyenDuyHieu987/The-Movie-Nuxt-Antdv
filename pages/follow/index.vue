@@ -155,7 +155,7 @@
             </div>
           </div>
         </a-layout-sider>
-        <Teleport to="#topic-follow-column-teleport" v-if="!loading">
+        <Teleport v-if="!loading" to="#topic-follow-column-teleport">
           <a-layout-sider class="topic-follow-column" :width="340">
             <div class="column-container">
               <div class="backdrop">
@@ -376,8 +376,8 @@ import { storeToRefs } from 'pinia';
 import scrollBottom from 'scroll-bottom';
 
 definePageMeta({
-  requireAuth: true,
-  middleware: ['require-auth'],
+  // requireAuth: true,
+  // middleware: ['require-auth'],
 });
 
 const store = useStore();

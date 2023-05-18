@@ -1,7 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
-import * as AntD from 'ant-design-vue';
-import { addComponent } from '@nuxt/kit';
 
 export default defineNuxtConfig({
   // nitro: {
@@ -14,7 +12,7 @@ export default defineNuxtConfig({
   vite: {
     server: {
       hmr: {
-        // overlay: false,
+        overlay: false,
       },
     },
   },

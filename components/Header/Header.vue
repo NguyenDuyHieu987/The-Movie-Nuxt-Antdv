@@ -263,7 +263,7 @@ const page = ref(1);
 const loadingSearch = ref(false);
 const isOpenAutoComplete = ref(true);
 const debounce = ref();
-const valueInput = ref('');
+const valueInput = computed(() => route.query.q);
 
 const handleChangeInput = (query) => {
   if (query.length > 0) {
@@ -301,8 +301,8 @@ const handleChangeInput = (query) => {
 const handleSearch = (value) => {
   if (value.length > 0) {
     navigateTo(
-      `/search?q=${query?.replaceAll(' ', '+').toLowerCase()}`
-      // query: { q: query?.replaceAll(' ', '+').toLowerCase() },
+      `/search?q=${value?.replaceAll(' ', '+').toLowerCase()}`
+      // query: { q: value?.replaceAll(' ', '+').toLowerCase() },
     );
 
     valueInput.value = '';

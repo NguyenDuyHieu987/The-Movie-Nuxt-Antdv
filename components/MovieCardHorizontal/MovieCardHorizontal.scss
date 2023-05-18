@@ -304,9 +304,9 @@
     color: #fff;
     background-image: linear-gradient(
       to right,
-      var(--sider-header-background-color1),
-      var(--sider-header-background-color2),
-      var(--sider-header-background-color3)
+      var(--app-background-color1),
+      var(--app-background-color2),
+      var(--app-background-color3)
     );
     background-size: 200% 100%;
     position: absolute;
@@ -331,9 +331,9 @@
     color: #fff;
     background-image: linear-gradient(
       to right,
-      var(--sider-header-background-color3),
-      var(--sider-header-background-color2),
-      var(--sider-header-background-color1)
+      var(--app-background-color3),
+      var(--app-background-color2),
+      var(--app-background-color1)
     );
     background-size: 200% 100%;
     position: absolute;

@@ -398,8 +398,8 @@ import _ from 'lodash';
 import scrollBottom from 'scroll-bottom';
 
 definePageMeta({
-  requireAuth: true,
-  middleware: ['require-auth'],
+  // requireAuth: true,
+  // middleware: ['require-auth'],
 });
 
 const store = useStore();

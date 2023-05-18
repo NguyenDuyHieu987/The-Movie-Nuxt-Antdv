@@ -52,12 +52,12 @@
 
   --tooltip-background-color: #222222;
 
-  --sider-header-background-color1: #c30061;
-  --sider-header-background-color2: #000046;
-  --sider-header-background-color3: #1cb5e0;
-  --sider-header-background-color4: #470024;
-  --sider-header-background-color5: #4f006e;
-  --sider-header-background-color6: #e82b00;
+  --app-background-color1: #c30061;
+  --app-background-color2: #000046;
+  --app-background-color3: #1cb5e0;
+  --app-background-color4: #470024;
+  --app-background-color5: #4f006e;
+  --app-background-color6: #e82b00;
 
   --menu-item-background-color: #07070780;
   --menu-inline-submenu-background-color: #2828284d;
@@ -154,25 +154,20 @@ dl {
   h1,
   h2,
   h3 {
-    // background-image: linear-gradient(
-    //   90deg,
-    //   #230d72,
-    //   #44107a,
-    //   #ff1361,
-    //   #ffc400,
-    //   #ff5100,
-    //   #231557
-    // );
+    // #290070,
+    // #ff1361,
+    // #ffc400,
+    // #ff5100,
+    // #9f0000,
+    // #25126b
 
     background-image: linear-gradient(
       90deg,
-      #290070,
-      #ff1361,
-      #ffc400,
-      #ff5100,
-      #9f0000,
-      #25126b
+      var(--app-background-color3),
+      var(--app-background-color2),
+      var(--app-background-color3)
     );
+
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -208,26 +203,26 @@ dl {
 
     background-image: linear-gradient(
       to right,
-      var(--sider-header-background-color6),
-      var(--sider-header-background-color1),
-      var(--sider-header-background-color3)
+      var(--app-background-color2),
+      var(--app-background-color3)
     );
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    height: 2px;
-    width: 100%;
-    left: 0;
-    bottom: -5px;
+  &.underline {
+    &::before {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      left: 0;
+      bottom: -5px;
 
-    background-image: linear-gradient(
-      to right,
-      var(--sider-header-background-color6),
-      var(--sider-header-background-color1),
-      var(--sider-header-background-color3)
-    );
+      background-image: linear-gradient(
+        to right,
+        var(--app-background-color3),
+        var(--app-background-color2)
+      );
+    }
   }
 }
 
@@ -247,8 +242,8 @@ dl {
     -webkit-background-clip: text;
     background-image: linear-gradient(
       to right,
-      var(--sider-header-background-color2),
-      var(--sider-header-background-color3)
+      var(--app-background-color2),
+      var(--app-background-color3)
     );
   }
 
@@ -259,8 +254,8 @@ dl {
     width: 100%;
     background-image: linear-gradient(
       to right,
-      var(--sider-header-background-color2),
-      var(--sider-header-background-color3)
+      var(--app-background-color3),
+      var(--app-background-color2)
     );
     left: 0;
     bottom: -5px;

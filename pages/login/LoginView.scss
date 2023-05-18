@@ -62,18 +62,8 @@
       .title-login {
         text-align: center;
         margin-bottom: 20px;
-
-        strong {
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-image: linear-gradient(
-            to right,
-            var(--sider-header-background-color6),
-            var(--sider-header-background-color1),
-            var(--sider-header-background-color3)
-          );
-        }
+        font-size: 2.7rem;
+        margin-top: 0px;
       }
 
       .play-now {
@@ -85,9 +75,9 @@
         flex-grow: 1;
         background-image: linear-gradient(
           to right,
-          var(--sider-header-background-color6),
-          var(--sider-header-background-color1),
-          var(--sider-header-background-color3)
+          var(--app-background-color6),
+          var(--app-background-color2),
+          var(--app-background-color3)
         );
         transition: all 0.5s;
         background-size: 100% 100%;
@@ -235,9 +225,9 @@
       height: 600px;
       background-image: linear-gradient(
         45deg,
-        var(--sider-header-background-color6),
-        var(--sider-header-background-color1),
-        var(--sider-header-background-color3)
+        var(--app-background-color6),
+        var(--app-background-color1),
+        var(--app-background-color3)
       );
       z-index: 2;
       animation: animate 6s linear infinite;
@@ -253,9 +243,9 @@
       height: 600px;
       background-image: linear-gradient(
         45deg,
-        var(--sider-header-background-color6),
-        var(--sider-header-background-color1),
-        var(--sider-header-background-color3)
+        var(--app-background-color6),
+        var(--app-background-color1),
+        var(--app-background-color3)
       );
       z-index: 1;
       animation: animate 6s linear infinite;

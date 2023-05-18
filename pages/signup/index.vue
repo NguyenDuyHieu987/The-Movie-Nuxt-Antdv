@@ -3,7 +3,7 @@
     <Transition name="slide-fade">
       <div v-if="isSignUp" class="verify-form-container">
         <a-form :model="formStateVerify" name="verify-form" class="verify-form">
-          <h1 class="title-verify">
+          <h1 class="title-verify gradient-title-default">
             <strong> Xác nhận Email</strong>
           </h1>
           <a-form-item
@@ -100,7 +100,7 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
-        <h1 class="title-signup">
+        <h1 class="title-signup gradient-title-default">
           <strong> Đăng ký </strong>
         </h1>
 

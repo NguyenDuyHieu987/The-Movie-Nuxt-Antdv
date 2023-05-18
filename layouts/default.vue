@@ -6,7 +6,7 @@
       <Drawer />
 
       <a-layout
-        v-show="$route.path == '/follow'"
+        v-show="isLogin && $route.path == '/follow'"
         id="topic-follow-column-teleport"
       ></a-layout>
 
@@ -21,7 +21,7 @@
       </a-layout>
 
       <a-layout
-        v-show="$route.path == '/history'"
+        v-show="isLogin && $route.path == '/history'"
         id="topic-history-column-teleport"
       ></a-layout>
     </a-layout>
@@ -37,7 +37,7 @@ import BreadCrumb from '@/components/BreadCrumb/BreadCrumb.vue';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();
-const { collapsed } = storeToRefs(store);
+const { collapsed, isLogin } = storeToRefs(store);
 </script>
 
 <style lang="scss" scoped>
@@ -73,16 +73,16 @@ const { collapsed } = storeToRefs(store);
 }
 
 .ant-layout-content.container {
-  // min-height: calc(100vh - 130px);
   padding: 15px 20px;
-  padding-bottom: 70px;
-  // background-color: var(--background-content-color);
   background-color: transparent;
 
   & > .wrapper {
     width: 100%;
+    height: 100%;
+    padding-bottom: 70px;
   }
 }
+
 @media (prefers-color-scheme: dark) {
   .ant-layout-content.container {
     // background-color: var(--background-content-color);
@@ -95,7 +95,10 @@ const { collapsed } = storeToRefs(store);
   }
   .ant-layout-content.container {
     padding: 15px 15px;
-    padding-bottom: 30px;
+
+    & > .wrapper {
+      padding-bottom: 30px;
+    }
   }
 }
 </style>

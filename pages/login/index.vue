@@ -8,7 +8,7 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
-        <h1 class="title-login">
+        <h1 class="title-login gradient-title-default">
           <strong>Đăng nhập </strong>
         </h1>
 

@@ -114,8 +114,7 @@
   </a-collapse>
 </template>
 
-<script setup lang="ts">
-import { year, sortby, genre, country } from '@/types';
+<script setup>
 import {
   getAllGenre,
   getAllNational,
@@ -127,8 +126,14 @@ import axios from 'axios';
 // import listSortBy from '../constants/Sortby';
 import { CaretRightFilled } from '@ant-design/icons-vue';
 
-const emit = defineEmits(['dataFiltered', 'cancelFilter']);
-const route: any = useRoute();
+const emit = defineEmits(['dataFiltered']);
+const props = defineProps({
+  cancelFilter: {
+    type: Function,
+  },
+});
+
+const route = useRoute();
 
 const movieType = computed(() => {
   if (route.params?.slug?.includes('movie')) {
@@ -166,10 +171,10 @@ watch(route, () => {
   resetFilter();
 });
 
-const genres = ref<genre[]>();
-const years = ref<year[]>();
-const countries = ref<country[]>();
-const listSortBy = ref<sortby[]>();
+const genres = ref([]);
+const years = ref([]);
+const countries = ref([]);
+const listSortBy = ref([]);
 
 onBeforeMount(async () => {
   Promise.all([
@@ -178,9 +183,9 @@ onBeforeMount(async () => {
     await useAsyncData(`country/all`, () => getAllNational()),
     await useAsyncData(`sortby/all`, () => getAllSortBy()),
   ])
-    .then((response: any) => {
+    .then((response) => {
       genres.value = response[0].data.value.data;
-      years.value = response[1].data.value.data.sort((a: year, b: year) => {
+      years.value = response[1].data.value.data.sort((a, b) => {
         return +b.name.slice(-4) - +a.name.slice(-4);
       });
       countries.value = response[2].data.value.data;
@@ -220,7 +225,7 @@ const resetFilter = () => {
 
 const handleCancelFilter = () => {
   resetFilter();
-  emit('cancelFilter');
+  props.cancelFilter();
 };
 </script>
 

@@ -125,7 +125,8 @@
 }
 
 .follow {
-  // height: calc(100vh - var(--header-height) + 53px);
+  height: 100%;
+
   .follow-container {
     .ant-layout {
       background-color: var(--background-content-color);

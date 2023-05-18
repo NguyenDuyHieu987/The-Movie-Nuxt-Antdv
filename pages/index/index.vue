@@ -3,7 +3,10 @@
     <SlideTopicHome :trendings="trendings" />
     <div class="home-content">
       <section class="home-section outstanding">
-        <h2 class="gradient-title-default" v-show="nowPlayings?.length">
+        <h2
+          class="gradient-title-default underline"
+          v-show="nowPlayings?.length"
+        >
           <strong>Phim nổi bật</strong>
           <!-- <NuxtLink
             :to="{
@@ -35,7 +38,7 @@
         v-if="store.$state?.isLogin"
         v-show="recommends?.length"
       >
-        <h2 class="gradient-title-default">
+        <h2 class="gradient-title-default underline">
           <strong>Gợi ý cho bạn</strong>
         </h2>
 
@@ -83,7 +86,7 @@
       </div>
 
       <section class="home-section cartoon">
-        <h2 class="gradient-title-default" v-show="cartoons?.length">
+        <h2 class="gradient-title-default underline" v-show="cartoons?.length">
           <strong>Hoạt hình - Anime đặc sắc</strong>
           <NuxtLink
             :to="{
@@ -109,7 +112,7 @@
       </section>
 
       <section class="home-section tv-new" v-show="tvAiringTodays?.length">
-        <h2 class="gradient-title-default">
+        <h2 class="gradient-title-default underline">
           <strong>Phim bộ mới</strong>
           <NuxtLink
             :to="{
@@ -135,7 +138,7 @@
       </section>
 
       <section class="home-section trailer" v-show="upComings?.length">
-        <h2 class="gradient-title-default">
+        <h2 class="gradient-title-default underline">
           <strong>Trailer</strong>
 
           <NuxtLink
@@ -159,7 +162,7 @@
       </section>
 
       <section class="home-section theater">
-        <h2 class="gradient-title-default" v-show="topRateds?.length">
+        <h2 class="gradient-title-default underline" v-show="topRateds?.length">
           <strong>Phim chiếu rạp mới</strong>
           <NuxtLink
             :to="{
@@ -185,7 +188,10 @@
       </section>
 
       <section class="home-section on-the-air">
-        <h2 class="gradient-title-default" v-show="tvOnTheAirs?.length">
+        <h2
+          class="gradient-title-default underline"
+          v-show="tvOnTheAirs?.length"
+        >
           <strong>TV On the air</strong>
           <NuxtLink
             :to="{

@@ -1,8 +1,9 @@
 <template>
   <div class="search-container">
-    <h2 class="gradient-title-default">
+    <h2 class="gradient-title-default underline">
       <strong
-        >Kết quả tìm kiếm cho: {{ $route.query.q.replaceAll('+', ' ') }}</strong
+        >Kết quả tìm kiếm cho:
+        {{ $route.query.q?.replaceAll('+', ' ') }}</strong
       >
 
       <a-select
@@ -32,8 +33,8 @@
         />
       </div>
 
-      <!-- <ControlPage :page="page" :onChangePage="onChangePage" /> -->
-      <div class="control-page" v-show="searchData?.length">
+      <ControlPage :page="page" :onChangePage="onChangePage" />
+      <!-- <div class="control-page" v-show="searchData?.length">
         <el-pagination
           :current-page="page"
           background
@@ -42,7 +43,7 @@
           :pager-count="5"
           @current-change="onChangePage"
         />
-      </div>
+      </div> -->
     </section>
   </div>
 </template>
