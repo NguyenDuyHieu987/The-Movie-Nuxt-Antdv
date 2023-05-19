@@ -1,12 +1,13 @@
 <template>
   <div class="discover-container">
     <FilterBar
+      v-model="dataDiscover"
       @dataFiltered="(data, formSelect) => setDataFiltered(data, formSelect)"
       :cancelFilter="cancelFilter"
     />
 
     <div class="discover-head">
-      <h2 class="gradient-title-default">
+      <h2 class="gradient-title-default underline">
         <strong>{{ metaHead }}</strong>
       </h2>
     </div>

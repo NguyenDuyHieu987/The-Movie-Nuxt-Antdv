@@ -132,6 +132,9 @@ const props = defineProps({
     type: Function,
   },
 });
+const modelValue = defineModel();
+
+console.log(modelValue);
 
 const route = useRoute();
 
