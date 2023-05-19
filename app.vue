@@ -1,7 +1,17 @@
 <template>
   <div>
     <ClientOnly>
-      <vue-progress-bar />
+      <vue-progress-bar
+        style="
+          background: linear-gradient(
+            90deg,
+            var(--loading-progress-bar1),
+            var(--app-background-color1),
+            var(--loading-progress-bar2),
+            var(--loading-progress-bar3)
+          );
+        "
+      />
     </ClientOnly>
 
     <div
@@ -37,8 +47,6 @@ import { CloseCircleFilled } from '@ant-design/icons-vue';
 import { notification } from 'ant-design-vue';
 import { getUserToken } from '@/services/MovieService';
 import { getWithExpiry } from '@/utils/LocalStorage';
-
-// import { useStore } from '@/store/useStore';
 
 const store = useStore();
 const router = useRouter();

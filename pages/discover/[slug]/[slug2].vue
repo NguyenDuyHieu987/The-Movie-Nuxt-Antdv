@@ -36,9 +36,10 @@
 
     <ControlPage
       v-show="dataDiscover?.length"
+      v-model="isFilter"
       :page="page"
-      :onChangePage="onChangePage"
       :total="totalPage"
+      :onChangePage="onChangePage"
     />
   </div>
 </template>
@@ -307,17 +308,16 @@ const getData = async () => {
 };
 
 watch(route, () => {
-  isFilter.value = false;
-  loading.value = true;
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-  getData();
-  useHead({
-    title: '`Phimhay247 - ' + metaHead.value,
-    htmlAttrs: { lang: 'vi', amp: true },
-  });
-
-  loading.value = false;
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
+  // isFilter.value = false;
+  // loading.value = true;
+  // internalInstance.appContext.config.globalProperties.$Progress.start();
+  // getData();
+  // useHead({
+  //   title: '`Phimhay247 - ' + metaHead.value,
+  //   htmlAttrs: { lang: 'vi', amp: true },
+  // });
+  // loading.value = false;
+  // internalInstance.appContext.config.globalProperties.$Progress.finish();
 });
 
 onBeforeMount(() => {
@@ -344,7 +344,9 @@ const onChangePage = (
     formFilterSelect.value['pageFilter'] = pageSelected;
     getData();
   } else {
+    page.value = pageSelected;
     router.push({ query: { page: pageSelected } });
+    getData();
   }
 };
 

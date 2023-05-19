@@ -108,7 +108,7 @@
         </div>
       </div>
       <template #extra>
-        <font-awesome-icon icon="fa-solid fa-filter" />
+        <Icon name="ic:sharp-filter-alt" />
       </template>
     </a-collapse-panel>
   </a-collapse>
@@ -126,7 +126,7 @@ import axios from 'axios';
 // import listSortBy from '../constants/Sortby';
 import { CaretRightFilled } from '@ant-design/icons-vue';
 
-const emit = defineEmits(['dataFiltered']);
+const emit = defineEmits('dataFiltered');
 const props = defineProps({
   cancelFilter: {
     type: Function,
@@ -134,7 +134,7 @@ const props = defineProps({
 });
 const modelValue = defineModel();
 
-console.log(modelValue);
+// console.log(modelValue);
 
 const route = useRoute();
 

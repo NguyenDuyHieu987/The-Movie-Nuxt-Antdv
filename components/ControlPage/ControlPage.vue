@@ -22,9 +22,6 @@
 </template>
 
 <script setup>
-const modelValue = defineModel();
-console.log(modelValue);
-
 defineProps({
   page: {
     type: Number,
@@ -37,6 +34,8 @@ defineProps({
     type: Function,
   },
 });
+const modelValue = defineModel();
+console.log(modelValue);
 </script>
 
 <style lang="scss" src="./ControlPage.scss"></style>
