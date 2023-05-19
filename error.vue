@@ -1,18 +1,21 @@
 <template>
-  <NuxtLayout>
-    <a-result :status="500" :title="`${error.statusCode} Not Found`">
-      <template #subTitle>
-        <h3>Ops!, Không thể tìm thấy trang này.</h3></template
-      >
-      <template #extra>
-        <NuxtLink :to="{ path: '/' }">
-          <a-button size="large">Quay về trang chủ </a-button>
-        </NuxtLink>
-      </template>
-    </a-result>
-  </NuxtLayout>
+  <div>
+    <NuxtLayout>
+      <a-result status="404" :title="`${error.statusCode} Not Found`">
+        <template #subTitle>
+          <h2>Ops!, Không thể tìm thấy trang này.</h2>
+        </template>
+        <template #extra>
+          <NuxtLink :to="{ path: '/' }">
+            <GradientButton>Quay về trang chủ </GradientButton>
+          </NuxtLink>
+        </template>
+      </a-result>
+    </NuxtLayout>
+  </div>
 </template>
 <script setup>
+import GradientButton from '@/components/button/GradientButton';
 defineProps(['error']);
 useHead({
   title: 'Error - 404 Not Found',
@@ -20,4 +23,4 @@ useHead({
 });
 </script>
 
-<style lang="scss" src="./assets/style/Error404View.scss"></style>
+<style lang="scss" src="./assets/style/Error404View.scss" scoped></style>

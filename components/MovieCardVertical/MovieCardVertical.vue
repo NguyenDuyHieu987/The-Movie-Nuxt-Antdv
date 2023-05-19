@@ -319,12 +319,7 @@
   </NuxtLink>
 </template>
 <script setup>
-import { createVNode } from 'vue';
-import {
-  PlusOutlined,
-  InfoOutlined,
-  QuestionCircleOutlined,
-} from '@ant-design/icons-vue';
+import { PlusOutlined, InfoOutlined } from '@ant-design/icons-vue';
 import axios from 'axios';
 import {
   getPoster,
@@ -332,21 +327,17 @@ import {
   getTvById,
   getMovieById,
   getLanguage,
-  addItemList,
-  removeItemList,
-  // getList,
   getItemList,
   getItemHistory,
 } from '@/services/MovieService';
 import { useRouter } from 'vue-router';
-import {
-  Modal,
-  // message
-} from 'ant-design-vue';
-import { ElMessage } from 'element-plus';
-import { message } from 'ant-design-vue';
+
 import { ViewFormatter } from '@/utils/convertViews';
 import { storeToRefs } from 'pinia';
+import {
+  handelAddItemToList,
+  handelRemoveItemFromList,
+} from '@/utils/handelAddRemoveItemList';
 
 const props = defineProps({
   item: {
@@ -500,92 +491,33 @@ onBeforeMount(async () => {
 });
 
 const handelAddToList = () => {
-  if (!store.$state.isLogin) {
-    Modal.confirm({
-      title: 'Bạn cần đăng nhập để sử dụng chức năng này.',
-      icon: createVNode(QuestionCircleOutlined),
-      // content: createVNode('div', 'Bạn có muốn đăng nhập không?'),
-      content: createVNode('h3', {}, 'Đăng nhập ngay?'),
-      okText: 'Có',
-      okType: 'primary',
-      cancelText: 'Không',
-      centered: true,
-      onOk() {
-        navigateTo({ path: '/login' });
-      },
-      onCancel() {},
-      class: 'require-login-confirm',
-    });
-  } else {
-    if (isAddToList.value == false) {
-      isAddToList.value = true;
-      message.loading({ content: 'Đang thêm' });
-      addItemList(store.$state?.userAccount?.id, {
-        media_type: isEpisodes.value ? 'tv' : 'movie',
-        media_id: dataMovie.value?.id,
-      })
-        .then((response) => {
-          if (response.data.success == true) {
-            setTimeout(() => {
-              message.destroy();
-              ElMessage({
-                type: 'success',
-                message: `Thêm thành công!`,
-              });
-            }, 500);
-          } else {
-            message.destroy();
-            isAddToList.value = false;
-            ElMessage({
-              type: 'error',
-              message: `Thêm thất bại!`,
-            });
-          }
-        })
-        .catch((e) => {
-          message.destroy();
-          isAddToList.value = false;
-          ElMessage({
-            type: 'error',
-            message: `Thêm thất bại!`,
-          });
-          if (axios.isCancel(e)) return;
-        });
-    } else {
+  if (!store.$state?.isLogin) {
+    store.$state.openRequireAuthDialog = true;
+    return;
+  }
+  if (!isAddToList.value) {
+    isAddToList.value = true;
+    if (
+      !handelAddItemToList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id,
+        isEpisodes.value ? 'tv' : 'movie'
+      )
+    ) {
       isAddToList.value = false;
-      message.loading({ content: 'Đang xóa' });
-
-      removeItemList(store.$state?.userAccount?.id, {
-        media_id: dataMovie.value?.id,
-      })
-        .then((movieRespone) => {
-          if (movieRespone.data?.success == true) {
-            setTimeout(() => {
-              message.destroy();
-              ElMessage({
-                type: 'success',
-                message: `Xóa thành công!`,
-              });
-            }, 500);
-          } else {
-            message.destroy();
-            isAddToList.value = true;
-            ElMessage({
-              type: 'error',
-              message: `Xóa thất bại!`,
-            });
-          }
-        })
-        .catch((e) => {
-          message.destroy();
-          isAddToList.value = true;
-          ElMessage({
-            type: 'error',
-            message: `Xóa thất bại!`,
-          });
-          if (axios.isCancel(e)) return;
-        });
     }
+    return;
+  } else {
+    isAddToList.value = false;
+    if (
+      !handelRemoveItemFromList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id
+      )
+    ) {
+      isAddToList.value = true;
+    }
+    return;
   }
 };
 </script>

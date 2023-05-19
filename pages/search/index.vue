@@ -33,17 +33,11 @@
         />
       </div>
 
-      <ControlPage :page="page" :onChangePage="onChangePage" />
-      <!-- <div class="control-page" v-show="searchData?.length">
-        <el-pagination
-          :current-page="page"
-          background
-          layout="prev, pager, next, total"
-          :total="100"
-          :pager-count="5"
-          @current-change="onChangePage"
-        />
-      </div> -->
+      <ControlPage
+        v-show="searchData?.length"
+        :page="page"
+        :onChangePage="onChangePage"
+      />
     </section>
   </div>
 </template>
@@ -112,6 +106,7 @@ const handleChangeType = (activeKey) => {
 };
 
 const onChangePage = async (pageSelected) => {
+  page.value = pageSelected;
   await useAsyncData(
     `search/all/${route.query?.q.replaceAll('+', ' ')}/${pageSelected}`,
     () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), pageSelected)

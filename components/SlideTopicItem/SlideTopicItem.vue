@@ -126,10 +126,11 @@
           </a-button>
         </NuxtLink>
 
-        <NuxtLink @click.prevent>
+        <NuxtLink @click.prevent="handelAddToList">
           <a-button size="large" type="text" class="add">
             <template #icon>
-              <PlusOutlined />
+              <Icon v-if="isAddToList" name="ic:baseline-check" />
+              <Icon v-else name="ic:baseline-plus" />
             </template>
             <span> Danh sách</span>
           </a-button>
@@ -140,9 +141,16 @@
 </template>
 
 <script setup>
-// import axios from 'axios';
-import { getAllGenresById, getBackdrop } from '@/services/MovieService';
-import { PlusOutlined } from '@ant-design/icons-vue';
+import axios from 'axios';
+import {
+  getAllGenresById,
+  getItemList,
+  getBackdrop,
+} from '@/services/MovieService';
+import {
+  handelAddItemToList,
+  handelRemoveItemFromList,
+} from '@/utils/handelAddRemoveItemList';
 
 const props = defineProps({
   item: {
@@ -150,6 +158,52 @@ const props = defineProps({
   },
 });
 const store = useStore();
+const isAddToList = ref(false);
+
+onBeforeMount(async () => {
+  if (store.$state.isLogin) {
+    await useAsyncData(
+      `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
+      () => getItemList(store.$state?.userAccount?.id, props.item?.id)
+    )
+      .then((movieRespone) => {
+        if (movieRespone.data.value.data.success == true) {
+          isAddToList.value = true;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+  }
+});
+
+const handelAddToList = () => {
+  if (!store.$state?.isLogin) {
+    store.$state.openRequireAuthDialog = true;
+    return;
+  }
+  if (!isAddToList.value) {
+    isAddToList.value = true;
+    if (
+      !handelAddItemToList(
+        store.$state?.userAccount?.id,
+        props.item?.id,
+        props.item?.media_type == 'movie' ? 'movie' : 'tv'
+      )
+    ) {
+      isAddToList.value = false;
+    }
+    return;
+  } else {
+    isAddToList.value = false;
+    if (
+      !handelRemoveItemFromList(store.$state?.userAccount?.id, props.item?.id)
+    ) {
+      isAddToList.value = true;
+    }
+    return;
+  }
+};
 </script>
 
 <style lang="scss" src="./SlideTopicItem.scss"></style>

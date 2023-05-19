@@ -1,4 +1,10 @@
-.ant-result-title,
-.ant-result-subtitle {
-  color: #fff !important;
+.ant-result {
+  .ant-result-title,
+  .ant-result-subtitle {
+    color: #fff !important;
+  }
+
+  .ant-result-subtitle {
+    font-size: 1.8rem;
+  }
 }

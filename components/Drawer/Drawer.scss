@@ -4,6 +4,13 @@
   .ant-drawer-mask {
     display: none;
   }
+
+  .el-popover {
+    display: none;
+  }
+  .el-overlay:has(.el-drawer) {
+    display: none;
+  }
 }
 
 .el-drawer {

@@ -1,25 +1,30 @@
 <template>
   <div class="control-page">
-    <!-- <a-pagination
-        v-model:current="page"
-        :total="totalPage"
-        :show-total="(total) => `Tổng ${total}`"
-        :showSizeChanger="false"
-        @change="onChangePage"
-      /> -->
+    <a-pagination
+      class="pagination"
+      :current="page"
+      :total="total"
+      :showSizeChanger="false"
+      :responsive="true"
+      @change="onChangePage"
+    />
+    <!-- :show-total="(total) => `Tổng ${total}`" -->
 
-    <el-pagination
+    <!-- <el-pagination
       :current-page="page"
       background
       layout="prev, pager, next, total"
-      :total="totalPage"
+      :total="total"
       :pager-count="5"
       @current-change="onChangePage"
-    />
+    /> -->
   </div>
 </template>
 
 <script setup>
+const modelValue = defineModel();
+console.log(modelValue);
+
 defineProps({
   page: {
     type: Number,
@@ -34,4 +39,4 @@ defineProps({
 });
 </script>
 
-<style lang="scss" scoped src="./ControlPage.scss"></style>
+<style lang="scss" src="./ControlPage.scss"></style>

@@ -1,0 +1,12 @@
+<template>
+  <a-button>
+    <template #icon>
+      <slot name="icon" />
+    </template>
+    <slot />
+  </a-button>
+</template>
+
+<script setup></script>
+
+<style scoped lang="scss" src="./GradientButton.scss"></style>

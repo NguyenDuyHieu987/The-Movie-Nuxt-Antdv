@@ -44,6 +44,7 @@
 
     .ant-menu-title-content {
       transition: all 0s;
+      user-select: none;
     }
   }
 
@@ -83,6 +84,7 @@
 
       .ant-menu-title-content {
         transition: all 0s;
+        user-select: none;
       }
     }
 

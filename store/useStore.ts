@@ -17,7 +17,7 @@ export const useStore = defineStore('store', {
     return {
       collapsed: false,
       openDrawer: false,
-      modalVisible: false,
+      openRequireAuthDialog: false,
       isLogin: getWithExpiry('userAccount') != null ? true : false,
       breadCrumbValue: '',
       role: 'normal',
@@ -44,6 +44,9 @@ export const useStore = defineStore('store', {
     },
     setOpendrawer() {
       this.$state.openDrawer = !this.$state.openDrawer;
+    },
+    setCloseRequireAuthDialog() {
+      this.$state.openRequireAuthDialog = false;
     },
     async getDataHomePage() {
       this.$state.loadingHomePage = true;

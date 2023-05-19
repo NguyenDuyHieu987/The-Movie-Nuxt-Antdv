@@ -37,8 +37,7 @@ import { CloseCircleFilled } from '@ant-design/icons-vue';
 import { notification } from 'ant-design-vue';
 import { getUserToken } from '@/services/MovieService';
 import { getWithExpiry } from '@/utils/LocalStorage';
-import { Modal } from 'ant-design-vue';
-import { QuestionCircleOutlined } from '@ant-design/icons-vue';
+
 // import { useStore } from '@/store/useStore';
 
 const store = useStore();
@@ -50,7 +49,6 @@ onBeforeMount(() => {
   // console.log(store.$state);
 
   if (getWithExpiry('userAccount')?.user_token) {
-    // if (remember) {
     getUserToken({ user_token: getWithExpiry('userAccount')?.user_token })
       .then((accountResponse) => {
         // console.log(accountResponse.data?.result);
@@ -79,24 +77,6 @@ onBeforeMount(() => {
         });
         if (axios.isCancel(e)) return;
       });
-    // }
-
-    // if (store.$state.loadingHomePage == true) {
-    //   navigateTo({ path: to.path });
-    // } else {
-    //   new Promise((resolve) => {
-    //     resolve(
-
-    //       (loadingHomePage.value = false),
-    //       (store.$state.loadingHomePage = true)
-    //     );
-    //   }).then(() => {
-    //     setTimeout(() => {
-    //       loadingHomePage.value = false;
-    //       navigateTo({ path: '/' });
-    //     }, 2000);
-    //   });
-    // }
   } else {
   }
 

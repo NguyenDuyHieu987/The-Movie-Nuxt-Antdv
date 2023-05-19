@@ -2,7 +2,7 @@
   <div class="ranking-container">
     <a-layout>
       <a-layout-content>
-        <h2 class="gradient-title-default">
+        <h2 class="gradient-title-default underline">
           <strong>Trending</strong>
         </h2>
 
@@ -15,25 +15,12 @@
             :type="item?.media_type"
           />
         </section>
-        <div class="control-page">
-          <!-- <a-pagination
-            v-if="trendings?.length"
-            v-model:current="pageTrending"
-            :total="totalPage"
-            :showSizeChanger="false"
-            @change="onChangePage"
-          /> -->
-
-          <el-pagination
-            v-model:current-page="pageTrending"
-            background
-            layout="prev, pager, next, total"
-            :total="totalPage"
-            :pager-count="5"
-            @current-change="onChangePage"
-          />
-          <!-- @current-change="onChangePage" -->
-        </div>
+        <ControlPage
+          v-show="trendings?.length"
+          :page="page"
+          :onChangePage="onChangePage"
+          :total="totalPage"
+        />
       </a-layout-content>
       <RankSide />
     </a-layout>
@@ -43,6 +30,7 @@
 <script setup>
 import MovieCardVertical from '@/components/MovieCardVertical/MovieCardVertical.vue';
 import RankSide from '@/components/RankSide/RankSide.vue';
+import ControlPage from '@/components/ControlPage/ControlPage.vue';
 import { getTrending } from '@/services/MovieService';
 import axios from 'axios';
 

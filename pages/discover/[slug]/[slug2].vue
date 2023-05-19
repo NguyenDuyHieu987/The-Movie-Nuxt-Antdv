@@ -33,24 +33,12 @@
       </div>
     </section>
 
-    <div class="control-page" v-show="dataDiscover?.length">
-      <!-- <a-pagination
-        v-model:current="page"
-        :total="totalPage"
-        :show-total="(total) => `Tổng ${total}`"
-        :showSizeChanger="false"
-        @change="onChangePage"
-      /> -->
-
-      <el-pagination
-        v-model:current-page="page"
-        background
-        layout="prev, pager, next, total"
-        :total="totalPage"
-        :pager-count="5"
-        @current-change="onChangePage"
-      />
-    </div>
+    <ControlPage
+      v-show="dataDiscover?.length"
+      :page="page"
+      :onChangePage="onChangePage"
+      :total="totalPage"
+    />
   </div>
 </template>
 
@@ -76,6 +64,7 @@ import {
 } from '@/services/MovieService';
 import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '@/components/FilterBar/FilterBar.vue';
+import ControlPage from '@/components/ControlPage/ControlPage.vue';
 
 const route = useRoute();
 const router = useRouter();

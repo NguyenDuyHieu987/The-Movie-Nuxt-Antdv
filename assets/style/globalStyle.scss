@@ -67,6 +67,8 @@
   --btn-backgroud-color-gray: #1e1e1e;
   --btn-backgroud-color-gray1: #252525;
   --btn-backgroud-color-gray-hover: #303030;
+  --btn-border-color: #e3e3e3;
+  --btn-border-color-hover: #c7c7c7;
   --btn-backgroud-color: #004671;
   --btn-backgroud-color-hover: #003b60;
   --btn-delete-background-color: #f10606;
@@ -350,6 +352,9 @@ dl {
 
 .el-overlay {
   font-weight: unset;
+}
+
+.el-overlay:has(.el-drawer) {
   margin-top: var(--header-height);
 }
 

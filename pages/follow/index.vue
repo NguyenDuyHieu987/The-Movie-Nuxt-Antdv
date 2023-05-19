@@ -302,7 +302,7 @@
         </Teleport>
 
         <a-layout-content class="follow-main-content">
-          <h2 class="gradient-title-default">
+          <h2 class="gradient-title-default underline">
             <strong>Danh sách phát</strong>
           </h2>
 

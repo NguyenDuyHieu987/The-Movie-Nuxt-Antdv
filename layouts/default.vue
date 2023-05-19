@@ -1,31 +1,35 @@
 <template>
-  <a-layout class="app-wrapper">
-    <Header />
-    <a-layout :class="[collapsed ? 'expand' : '', 'body-content']">
-      <Sider />
-      <Drawer />
+  <div>
+    <RequireAuthDialog />
 
-      <a-layout
-        v-show="isLogin && $route.path == '/follow'"
-        id="topic-follow-column-teleport"
-      ></a-layout>
+    <a-layout class="app-wrapper">
+      <Header />
+      <a-layout :class="[collapsed ? 'expand' : '', 'body-content']">
+        <Sider />
+        <Drawer />
 
-      <a-layout class="main-content">
-        <!-- <BreadCrumb /> -->
-        <a-layout-content class="container">
-          <div class="wrapper">
-            <slot />
-          </div>
-        </a-layout-content>
-        <Footer />
+        <a-layout
+          v-show="isLogin && $route.path == '/follow'"
+          id="topic-follow-column-teleport"
+        ></a-layout>
+
+        <a-layout class="main-content">
+          <!-- <BreadCrumb /> -->
+          <a-layout-content class="container">
+            <div class="wrapper">
+              <slot />
+            </div>
+          </a-layout-content>
+          <Footer />
+        </a-layout>
+
+        <a-layout
+          v-show="isLogin && $route.path == '/history'"
+          id="topic-history-column-teleport"
+        ></a-layout>
       </a-layout>
-
-      <a-layout
-        v-show="isLogin && $route.path == '/history'"
-        id="topic-history-column-teleport"
-      ></a-layout>
     </a-layout>
-  </a-layout>
+  </div>
 </template>
 
 <script setup>
@@ -33,8 +37,9 @@ import Header from '@/components/Header/Header.vue';
 import Drawer from '@/components/Drawer/Drawer.vue';
 import Sider from '@/components/Sider/Sider.vue';
 import Footer from '@/components/Footer/Footer.vue';
-import BreadCrumb from '@/components/BreadCrumb/BreadCrumb.vue';
+// import BreadCrumb from '@/components/BreadCrumb/BreadCrumb.vue';
 import { storeToRefs } from 'pinia';
+import RequireAuthDialog from '@/components/RequireAuthDialog/RequireAuthDialog.vue';
 
 const store = useStore();
 const { collapsed, isLogin } = storeToRefs(store);

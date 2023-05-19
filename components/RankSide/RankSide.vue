@@ -1,6 +1,6 @@
 <template>
   <a-layout-sider :width="450" class="sider-rank">
-    <h2 class="gradient-title-default">
+    <h2 class="gradient-title-default underline">
       <strong> Top xem phim</strong>
     </h2>
     <ul class="tabs-rank">

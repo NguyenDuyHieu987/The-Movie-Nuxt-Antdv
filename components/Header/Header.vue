@@ -15,9 +15,7 @@
         <!-- <el-icon v-else><Close /></el-icon> -->
       </button>
       <NuxtLink :to="{ path: '/' }">
-        <a-tooltip title="Trang chủ">
-          <h1>PhimHay247</h1>
-        </a-tooltip>
+        <h1>PhimHay247</h1>
       </NuxtLink>
     </div>
 

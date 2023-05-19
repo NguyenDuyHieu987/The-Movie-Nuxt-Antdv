@@ -1,0 +1,85 @@
+.control-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+
+  .el-pagination {
+    .btn-prev {
+      background-color: transparent;
+    }
+
+    .btn-next {
+      background-color: transparent;
+    }
+
+    .el-pager {
+      li.number {
+        background-color: transparent;
+
+        &.is-active {
+          background-color: rgb(46, 46, 46);
+        }
+      }
+    }
+  }
+
+  .pagination {
+    font-size: 1.6rem;
+    .ant-pagination-prev {
+      background-color: transparent;
+      border: none;
+      .ant-pagination-item-link {
+        background-color: transparent;
+        border: none;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      &.ant-pagination-disabled {
+        display: none;
+      }
+    }
+
+    .ant-pagination-next {
+      .ant-pagination-item-link {
+        background-color: transparent;
+        border: none;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      &.ant-pagination-disabled {
+        display: none;
+      }
+    }
+
+    .ant-pagination-item {
+      background-color: transparent;
+      border: none;
+
+      a {
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      &.ant-pagination-item-active {
+        background-color: var(--btn-backgroud-color-gray);
+
+        a {
+          color: #fff;
+        }
+      }
+    }
+
+    .ant-pagination-jump-next {
+      .anticon-double-right {
+        color: #fff;
+      }
+    }
+  }
+}

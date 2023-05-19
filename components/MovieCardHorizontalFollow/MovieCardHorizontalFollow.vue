@@ -360,61 +360,6 @@ onBeforeMount(async () => {
     });
 });
 
-const temp = () => {
-  ElMessageBox({
-    title: 'Thông báo',
-    message: h(
-      'h3',
-      null,
-      'Bạn có muốn xóa phim khỏi danh sách theo dõi không?'
-    ),
-    showCancelButton: true,
-    showClose: false,
-    confirmButtonText: 'Có',
-    cancelButtonText: 'Không',
-    beforeClose: (action, instance, done) => {
-      if (action === 'confirm') {
-        instance.confirmButtonText = 'Đang xóa...';
-        instance.confirmButtonLoading = true;
-        removeItemList(store.$state?.userAccount?.id, {
-          media_id: props.item?.id,
-        })
-          .then((movieRespone) => {
-            if (movieRespone.data?.success == true) {
-              setTimeout(() => {
-                done();
-                setTimeout(() => {
-                  props.getDataWhenRemoveList(movieRespone.data?.results);
-                  instance.confirmButtonLoading = false;
-                }, 300);
-              }, 2000);
-            } else {
-              ElMessage({
-                type: 'error',
-                message: `Xóa thất bại!`,
-              });
-            }
-          })
-          .catch((e) => {
-            instance.confirmButtonLoading = false;
-            ElMessage({
-              type: 'error',
-              message: `Xóa thất bại!`,
-            });
-            if (axios.isCancel(e)) return;
-          });
-      } else {
-        done();
-      }
-    },
-  }).then(() => {
-    ElMessage({
-      type: 'success',
-      message: `Xóa thành công!`,
-    });
-  });
-};
-
 const handleRemoveFromList = () => {
   message.loading({ content: 'Đang xóa' });
 

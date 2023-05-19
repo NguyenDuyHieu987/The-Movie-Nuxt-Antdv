@@ -1,0 +1,15 @@
+.ant-btn {
+  border-color: var(--border-regular);
+  color: #fff;
+  transition: all 0.25s;
+  height: auto;
+  padding: 10px 35px;
+  border-radius: 3px;
+
+  &:hover {
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+}
