@@ -195,7 +195,7 @@
             </a>
             <template #overlay>
               <a-menu class="dropdown-account">
-                <a-menu-item key="my-profile" v-if="isLogin">
+                <a-menu-item key="my-profile" v-show="isLogin">
                   <NuxtLink :to="{ path: '/profile' }"
                     ><span>My Profile</span>
                     <br />
@@ -204,7 +204,10 @@
                     }}</span>
                   </NuxtLink>
                 </a-menu-item>
-                <a-menu-item key="dashboard" v-if="isLogin && role == 'admin'">
+                <a-menu-item
+                  key="dashboard"
+                  v-show="isLogin && role == 'admin'"
+                >
                   <!-- <NuxtLink :to="{ path: '/dashboard' }"
                     >Bảng điều khiển
                   </NuxtLink> -->
@@ -215,7 +218,7 @@
                     Bảng điều khiển
                   </NuxtLink>
                 </a-menu-item>
-                <a-menu-item key="pricing" v-if="isLogin">
+                <a-menu-item key="pricing" v-show="isLogin">
                   <NuxtLink :to="{ path: '/billing' }">Billing</NuxtLink>
                 </a-menu-item>
                 <a-menu-item key="logout">

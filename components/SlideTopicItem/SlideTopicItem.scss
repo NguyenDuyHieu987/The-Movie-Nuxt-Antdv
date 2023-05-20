@@ -22,8 +22,15 @@
     object-fit: cover;
 
     img {
-      object-fit: cover;
       height: 100%;
+      width: 100%;
+      object-fit: cover;
+
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
     }
   }
 
@@ -92,7 +99,7 @@
       flex-direction: row;
 
       a + a {
-        margin-left: 10px;
+        margin-left: 15px;
       }
 
       a {
@@ -107,7 +114,7 @@
         justify-content: center;
         border-color: transparent;
         height: 100%;
-        padding: 9px 25px;
+        padding: 9px 27px;
         font-size: 1.8rem;
         // padding: 0.5vw 1.5vw;
         // font-size: 0.9vw;
@@ -126,7 +133,7 @@
 
         &.add {
           svg {
-            margin-right: 7px;
+            margin-left: -7px;
             font-size: 2.5rem;
           }
         }
@@ -141,18 +148,17 @@
         }
 
         svg {
-          margin-right: 2px;
+          margin-right: 7px;
           font-size: 1.8rem;
         }
 
         svg.info {
-          margin-right: 13px;
+          margin-right: 14px;
           font-size: 1.8rem;
         }
 
         svg.play {
           margin-left: -5px;
-          margin-right: 6px;
           font-size: 3rem;
         }
       }

@@ -16,13 +16,6 @@
     }"
     class="topic-item"
   >
-    <!-- <el-image
-      :src="getBackdrop(item?.backdrop_path)"
-      :preview="false"
-      loading="lazy"
-      lazy
-    ></el-image> -->
-
     <el-image
       class="el-image"
       :src="getBackdrop(item?.backdrop_path)"
