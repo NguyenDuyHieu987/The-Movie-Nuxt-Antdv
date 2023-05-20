@@ -34,20 +34,18 @@
           >
         </el-radio-group> -->
     <div
-      class="rank-data"
+      class="rank-content"
       v-loading="loading"
       element-loading-text="Đang tải..."
       element-loading-background="rgba(0, 0, 0, 0.75)"
     >
-      <el-scrollbar height="75vh">
-        <RankCard
-          v-for="(item, index) in rankData"
-          :index="index"
-          :key="item.id"
-          :item="item"
-          :type="item.media_type"
-        />
-      </el-scrollbar>
+      <RankCard
+        v-for="(item, index) in rankData"
+        :index="index"
+        :key="item.id"
+        :item="item"
+        :type="item.media_type"
+      />
     </div>
   </a-layout-sider>
 </template>

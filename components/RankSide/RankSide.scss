@@ -121,8 +121,10 @@
       }
     }
   }
-  .rank-data {
+  .rank-content {
     padding-top: 10px;
+    max-height: 75vh;
+    overflow-y: scroll;
 
     &.el-loading-parent--relative {
       z-index: 1;
