@@ -27,18 +27,14 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ShareAltOutlined } from '@ant-design/icons-vue';
 
-const props = defineProps({
-  dataMovie: {
-    type: Object,
-  },
-});
+const props = defineProps<{ dataMovie: any }>();
 // const route = useRoute();
 
-// alert(window.location);
-const urlShare = computed(() => window.location);
+// alert(window.location.href);
+const urlShare = computed<string>((): string => window.location.href);
 // alert(encodeURIComponent(urlShare.value));
 </script>
 

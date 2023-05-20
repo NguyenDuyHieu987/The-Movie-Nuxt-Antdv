@@ -52,15 +52,20 @@
   </a-layout-sider>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import RankCard from '@/components/RankCard/RankCard.vue';
 import { getRanking } from '@/services/MovieService';
 import axios from 'axios';
 
-const activeTab = ref('day');
+interface tab {
+  key: string;
+  tabName: string;
+}
+
+const activeTab = ref<string>('day');
 const loading = ref(false);
-const rankData = ref([]);
-const allTabs = ref([
+const rankData = ref<any[]>([]);
+const allTabs = ref<tab[]>([
   {
     key: 'day',
     tabName: 'Top ngày',
@@ -79,12 +84,12 @@ const allTabs = ref([
   },
 ]);
 
-const getDataRanking = (activeKey) => {
+const getDataRanking = (activeKey: string) => {
   loading.value = true;
   switch (activeKey) {
     case 'day':
       useAsyncData(`ranking/all/1`, () => getRanking(1))
-        .then((movieRespone) => {
+        .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value.data?.results;
           setTimeout(() => {
             loading.value = false;
@@ -98,7 +103,7 @@ const getDataRanking = (activeKey) => {
       break;
     case 'week':
       useAsyncData(`ranking/all/2`, () => getRanking(2))
-        .then((movieRespone) => {
+        .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value.data?.results;
 
           setTimeout(() => {
@@ -113,7 +118,7 @@ const getDataRanking = (activeKey) => {
       break;
     case 'month':
       useAsyncData(`ranking/all/3`, () => getRanking(3))
-        .then((movieRespone) => {
+        .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value.data?.results;
 
           setTimeout(() => {
@@ -128,7 +133,7 @@ const getDataRanking = (activeKey) => {
       break;
     case 'all':
       useAsyncData(`ranking/all/4`, () => getRanking(4))
-        .then((movieRespone) => {
+        .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value.data?.results;
 
           setTimeout(() => {
@@ -148,7 +153,7 @@ onBeforeMount(() => {
   getDataRanking(activeTab.value);
 });
 
-const handleTabClick = (activeKey) => {
+const handleTabClick = (activeKey: any) => {
   getDataRanking(activeKey);
 };
 </script>

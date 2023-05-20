@@ -219,7 +219,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // @ is an alias to /src
 import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
@@ -245,19 +245,19 @@ definePageMeta({
   middleware: [function (to, from) {}, 'home-page-loading'],
 });
 
-const store = useStore();
-const trendings = ref([]);
-const nowPlayings = ref([]);
-const upComings = ref([]);
-const tvAiringTodays = ref([]);
-const tvOnTheAirs = ref([]);
-const cartoons = ref([]);
-const topRateds = ref([]);
-const recommends = ref([]);
-const viewMoreRecommend = ref(false);
-const loadMoreRecommend = ref(false);
-const skipRecommend = ref(2);
-const loadSection1 = ref(false);
+const store: any = useStore();
+const trendings = ref<any>([]);
+const nowPlayings = ref<any>([]);
+const upComings = ref<any>([]);
+const tvAiringTodays = ref<any>([]);
+const tvOnTheAirs = ref<any>([]);
+const cartoons = ref<any>([]);
+const topRateds = ref<any>([]);
+const recommends = ref<any>([]);
+const viewMoreRecommend = ref<boolean>(false);
+const loadMoreRecommend = ref<boolean>(false);
+const skipRecommend = ref<number>(2);
+const loadSection1 = ref<boolean>(false);
 
 // const responsiveHorizoltal = ref({
 //   0: {
@@ -306,7 +306,7 @@ const loadSection1 = ref(false);
 //   },
 // });
 
-const responsiveHorizoltal = computed(() => ({
+const responsiveHorizoltal = computed<any>((): any => ({
   0: {
     slidesPerView: 2,
     slidesPerGroup: 2,
@@ -396,7 +396,7 @@ const responsiveHorizoltal = computed(() => ({
 //   },
 // });
 
-const responsiveVertical = computed(() => ({
+const responsiveVertical = computed<any>((): any => ({
   0: {
     slidesPerView: 2,
     slidesPerGroup: 2,
@@ -433,7 +433,7 @@ const responsiveVertical = computed(() => ({
 
 useHead({
   title: 'Phimhay247',
-  htmlAttrs: { lang: 'vi', amp: true },
+  htmlAttrs: { lang: 'vi' },
 });
 
 onBeforeMount(async () => {
@@ -454,7 +454,7 @@ onBeforeMount(async () => {
         )
       : null,
   ])
-    .then((response) => {
+    .then((response: any) => {
       trendings.value = response[0].data.value.data?.results.slice(0, 11);
       nowPlayings.value = response[1].data.value.data?.results.slice(0, 10);
       cartoons.value = response[2].data.value.data?.results.slice(0, 10);
@@ -477,7 +477,7 @@ const handleLoadMoreRecommend = async () => {
   await useAsyncData(`recommend/get/${skipRecommend.value}`, () =>
     getMyRecommend(store.$state.userAccount?.id, skipRecommend.value)
   )
-    .then((movieResponse) => {
+    .then((movieResponse: any) => {
       if (movieResponse.data.value.data?.results.length > 0) {
         setTimeout(() => {
           recommends.value = recommends.value.concat(

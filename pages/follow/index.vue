@@ -351,7 +351,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { createVNode } from 'vue';
 import axios from 'axios';
 import MovieCardHorizontalFollow from '@/components/MovieCardHorizontalFollow/MovieCardHorizontalFollow.vue';
@@ -380,38 +380,41 @@ definePageMeta({
   // middleware: ['require-auth'],
 });
 
-const store = useStore();
-const { isLogin } = storeToRefs(store);
+const store: any = useStore();
+const { isLogin } = storeToRefs<any>(store);
 const route = useRoute();
-const dataList = ref([]);
-const valueInput = ref('');
-const debounce = ref();
-const total = ref(0);
-const skip = ref(1);
-const internalInstance = getCurrentInstance();
-const loading = ref(false);
-const loadingSearch = ref(false);
-const loadMore = ref(false);
-const isScroll = ref(false);
-const topicImage = ref('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
+const dataList = ref<any[]>([]);
+const valueInput = ref<string>('');
+const debounce = ref<any>();
+const total = ref<number>(0);
+const skip = ref<number>(1);
+const internalInstance: any = getCurrentInstance();
+const loading = ref<boolean>(false);
+const loadingSearch = ref<boolean>(false);
+const loadMore = ref<boolean>(false);
+const isScroll = ref<boolean>(false);
+const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
 
 // document.title = 'Phimhay247 - Theo dõi';
 useHead({
   title: 'Phimhay247 - Theo dõi',
-  htmlAttrs: { lang: 'vi', amp: true },
+  htmlAttrs: { lang: 'vi' },
 });
 
-const setBackgroundColor = (color) => {
+const setBackgroundColor = (color: string[]) => {
   const main_color = `linear-gradient(to bottom, rgba(${color[0]}, ${color[1]}, ${color[2]}, 1), rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.5), rgba(0, 0, 0, 1));`;
 
   // const main_color = `linear-gradient(to bottom, rgba(${color[0]}, ${color[1]}, ${color[2]}, 1) 0%, rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.33) 33%, rgba(0, 0, 0, 1) 100%);`;
 
   const topic_follow_column = document.getElementsByClassName(
     'topic-follow-column'
-  )[0];
+  )[0] as HTMLElement;
 
   if (topic_follow_column) {
-    topic_follow_column.style = `background-image: ${main_color}`;
+    topic_follow_column.setAttribute(
+      'style',
+      `background-image: ${main_color}`
+    );
     // topic_follow_column.style.setProperty('--main-color', main_color);
 
     // const search_follow =
@@ -419,16 +422,22 @@ const setBackgroundColor = (color) => {
 
     const ant_input_affix_wrapper = topic_follow_column.getElementsByClassName(
       'ant-input-affix-wrapper'
-    )[0];
-    ant_input_affix_wrapper.style = `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`;
+    )[0] as HTMLElement;
+    ant_input_affix_wrapper.setAttribute(
+      'style',
+      `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`
+    );
   }
 
   const topic_follow_column_responsive = document.getElementsByClassName(
     'topic-follow-column-responsive'
-  )[0];
+  )[0] as HTMLElement;
 
   if (topic_follow_column_responsive) {
-    topic_follow_column_responsive.style = `background-image: ${main_color}`;
+    topic_follow_column_responsive.setAttribute(
+      'style',
+      `background-image: ${main_color}`
+    );
 
     // const search_follow =
     //   topic_follow_column_responsive.querySelector('.search-follow');
@@ -436,9 +445,12 @@ const setBackgroundColor = (color) => {
     const ant_input_affix_wrapper =
       topic_follow_column_responsive.getElementsByClassName(
         'ant-input-affix-wrapper'
-      )[0];
+      )[0] as HTMLElement;
 
-    ant_input_affix_wrapper.style = `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`;
+    ant_input_affix_wrapper.setAttribute(
+      'style',
+      `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`
+    );
   }
 
   // topic_follow_column.style = `background: url("${getBackdrop(
@@ -476,7 +488,7 @@ const getData = () => {
   useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () =>
     getList(store.$state.userAccount?.id)
   )
-    .then((movieRespone) => {
+    .then((movieRespone: any) => {
       if (movieRespone.data.value.data?.result?.items?.length > 0) {
         dataList.value = movieRespone.data.value.data?.result?.items;
         total.value = movieRespone.data.value.data?.total;
@@ -492,7 +504,7 @@ const getData = () => {
         useAsyncData(`image/color/${topicImage.value}`, () =>
           getColorImage(topicImage.value)
         )
-          .then((colorResponse) => {
+          .then((colorResponse: any) => {
             const color = colorResponse.data.value.data?.color;
             setBackgroundColor(color);
           })
@@ -521,25 +533,6 @@ onBeforeMount(() => {
   });
 
   window.onscroll = () => {
-    // console.log('scroll bottom =', scrollBottom());
-    // const scrolled = window.scrollY;
-
-    // const bottomOfWindow =
-    //   document.documentElement.scrollTop + window.innerHeight >
-    //   document.documentElement.scrollHeight - 200;
-
-    // const bottomOfWindow = window.scrollY > window.innerHeight - 200
-    // console.log(document.documentElement.scrollHeight);
-
-    // if (scrollBefore > scrolled) {
-    //   //ScrollUP
-    //   scrollBefore = scrolled;
-    // } else {
-    //   //ScrollDOWN
-    //   scrollBefore = scrolled;
-
-    // console.log(Math.floor(scrollBottom()));
-
     if (
       Math.floor(scrollBottom()) == 0 &&
       isScroll.value == true &&
@@ -551,7 +544,7 @@ onBeforeMount(() => {
         `list/get/${store.$state.userAccount?.id}/${skip.value}`,
         () => getList(store.$state.userAccount?.id, skip.value)
       )
-        .then((movieRespone) => {
+        .then((movieRespone: any) => {
           if (movieRespone.data.value.data?.result?.length > 0) {
             setTimeout(() => {
               loadMore.value = false;
@@ -566,11 +559,10 @@ onBeforeMount(() => {
           if (axios.isCancel(e)) return;
         });
     }
-    // }
   };
 });
 
-const getDataWhenRemoveList = (data) => {
+const getDataWhenRemoveList = (data: number) => {
   // dataList.value = data;
   dataList.value = _.reject(dataList.value, (x) => {
     return x.id === data;
@@ -636,7 +628,7 @@ const removeAllFollowList = () => {
   }
 };
 
-const searchFollow = (e) => {
+const searchFollow = (e: any) => {
   if (e.target.value.length >= 0) {
     loadingSearch.value = true;
 
@@ -646,7 +638,7 @@ const searchFollow = (e) => {
         `list/search/${store.$state.userAccount?.id}/${e.target.value}`,
         () => searchList(store?.$state.userAccount?.id, e.target.value)
       )
-        .then((movieRespone) => {
+        .then((movieRespone: any) => {
           dataList.value = movieRespone.data.value.data?.results;
           setTimeout(() => {
             loadingSearch.value = false;

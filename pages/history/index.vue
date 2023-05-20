@@ -374,7 +374,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { createVNode } from 'vue';
 import axios from 'axios';
 import MovieCardHorizontalHistory from '@/components/MovieCardHorizontalHistory/MovieCardHorizontalHistory.vue';
@@ -402,44 +402,50 @@ definePageMeta({
   // middleware: ['require-auth'],
 });
 
-const store = useStore();
-const { isLogin } = storeToRefs(store);
-const route = useRoute();
-const valueInput = ref('');
-const debounce = ref();
-const total = ref(0);
-const skip = ref(1);
-const dataHistory = ref([]);
-const loading = ref(false);
-const isScroll = ref(false);
-const loadingSearch = ref(false);
-const loadMore = ref(false);
-const topicImage = ref('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
-const internalInstance = getCurrentInstance();
+const store: any = useStore();
+const { isLogin } = storeToRefs<any>(store);
+const route: any = useRoute();
+const valueInput = ref<string>('');
+const debounce = ref<any>();
+const total = ref<number>(0);
+const skip = ref<number>(1);
+const dataHistory = ref<any[]>([]);
+const loading = ref<boolean>(false);
+const isScroll = ref<boolean>(false);
+const loadingSearch = ref<boolean>(false);
+const loadMore = ref<boolean>(false);
+const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
+const internalInstance: any = getCurrentInstance();
 
 useHead({
   title: 'Phimhay247 - Lịch sử xem',
-  htmlAttrs: { lang: 'vi', amp: true },
+  htmlAttrs: { lang: 'vi' },
 });
 
-const setBackgroundColor = (color) => {
+const setBackgroundColor = (color: string[]) => {
   const main_color = `linear-gradient(to bottom, rgba(${color[0]}, ${color[1]}, ${color[2]}, 1), rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.5), rgba(0, 0, 0, 1));`;
 
   // const main_color = `linear-gradient(to bottom, rgba(${color[0]}, ${color[1]}, ${color[2]}, 1) 0%, rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.33) 33%, rgba(0, 0, 0, 1) 100%);`;
   const topic_history_column = document.getElementsByClassName(
     'topic-history-column'
-  )[0];
+  )[0] as HTMLElement;
 
   if (topic_history_column) {
-    topic_history_column.style = `background-image: ${main_color}`;
+    topic_history_column.setAttribute(
+      'style',
+      `background-image: ${main_color}`
+    );
 
     // const search_history =
     //   topic_history_column.querySelector('.search-history');
 
     const ant_input_affix_wrapper = topic_history_column.getElementsByClassName(
       'ant-input-affix-wrapper'
-    )[0];
-    ant_input_affix_wrapper.style = `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`;
+    )[0] as HTMLElement;
+    ant_input_affix_wrapper.setAttribute(
+      'style',
+      `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`
+    );
   }
 
   const topic_history_column_responsive = document.getElementsByClassName(
@@ -447,7 +453,10 @@ const setBackgroundColor = (color) => {
   )[0];
 
   if (topic_history_column_responsive) {
-    topic_history_column_responsive.style = `background-image: ${main_color}`;
+    topic_history_column_responsive.setAttribute(
+      'style',
+      `background-image: ${main_color}`
+    );
 
     // const search_history =
     //   topic_history_column_responsive.querySelector('.search-history');
@@ -455,8 +464,11 @@ const setBackgroundColor = (color) => {
     const ant_input_affix_wrapper =
       topic_history_column_responsive.getElementsByClassName(
         'ant-input-affix-wrapper'
-      )[0];
-    ant_input_affix_wrapper.style = `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`;
+      )[0] as HTMLElement;
+    ant_input_affix_wrapper.setAttribute(
+      'style',
+      `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`
+    );
   }
 
   // topic_history_column.style = `background: url("${getBackdrop(
@@ -496,7 +508,7 @@ const getData = () => {
   useAsyncData(`history/get/${store.$state.userAccount?.id}/1`, () =>
     getHistory(store.$state.userAccount?.id)
   )
-    .then((movieRespone) => {
+    .then((movieRespone: any) => {
       if (movieRespone.data.value.data?.result?.items?.length > 0) {
         dataHistory.value = movieRespone.data.value.data?.result?.items;
         total.value = movieRespone.data.value.data?.total;
@@ -512,7 +524,7 @@ const getData = () => {
         useAsyncData(`image/color/${topicImage.value}`, () =>
           getColorImage(topicImage.value)
         )
-          .then((colorResponse) => {
+          .then((colorResponse: any) => {
             const color = colorResponse.data.value.data?.color;
             setBackgroundColor(color);
           })
@@ -551,7 +563,7 @@ onBeforeMount(() => {
         `history/get/${store.$state.userAccount?.id}/${skip.value}`,
         () => getHistory(store.$state.userAccount?.id, skip.value)
       )
-        .then((movieRespone) => {
+        .then((movieRespone: any) => {
           if (movieRespone.data.value.data?.result?.length > 0) {
             setTimeout(() => {
               loadMore.value = false;
@@ -569,7 +581,7 @@ onBeforeMount(() => {
   };
 });
 
-const getDataWhenRemoveHistory = (data) => {
+const getDataWhenRemoveHistory = (data: number) => {
   // dataHistory.value = data;
   dataHistory.value = _.reject(dataHistory.value, (x) => {
     return x.id === data;
@@ -635,7 +647,7 @@ watch(route, () => {
   // getData();
 });
 
-const searchWatchList = (e) => {
+const searchWatchList = (e: any) => {
   if (e.target.value.length >= 0) {
     loadingSearch.value = true;
 
@@ -645,7 +657,7 @@ const searchWatchList = (e) => {
         `history/search/${store.$state.userAccount?.id}/${e.target.value}`,
         () => searchHistory(store.$state.userAccount?.id, e.target.value)
       )
-        .then((movieRespone) => {
+        .then((movieRespone: any) => {
           dataHistory.value = movieRespone.data.value.data?.results;
           setTimeout(() => {
             loadingSearch.value = false;

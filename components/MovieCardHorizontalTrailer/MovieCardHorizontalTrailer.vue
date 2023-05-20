@@ -111,7 +111,9 @@
                   }}
                 </p> -->
               <p class="genres" v-if="dataMovie?.genres">
-                {{ Array?.from(dataMovie?.genres, (x) => x.name).join(' • ') }}
+                {{
+                  Array?.from(dataMovie?.genres, (x: any) => x.name).join(' • ')
+                }}
               </p>
             </div>
             <!-- </a-skeleton> -->
@@ -216,7 +218,8 @@
     </template>
   </el-skeleton>
 </template>
-<script setup>
+
+<script setup lang="ts">
 import axios from 'axios';
 import {
   getBackdrop,
@@ -226,21 +229,18 @@ import {
   getItemHistory,
 } from '@/services/MovieService';
 
-const props = defineProps({
-  item: {
-    type: Object,
-  },
-  type: {
-    type: String,
-  },
-});
-const store = useStore();
-const dataMovie = ref({});
-const isEpisodes = ref(false);
-const loading = ref(false);
-const isInHistory = ref(false);
-const percent = ref(0);
-const isOenModalTrailer = ref(false);
+const props = defineProps<{
+  item: any;
+  type: string | undefined;
+}>();
+
+const store: any = useStore();
+const dataMovie = ref<any>({});
+const isEpisodes = ref<boolean>(false);
+const loading = ref<boolean>(false);
+const isInHistory = ref<boolean>(false);
+const percent = ref<number>(0);
+const isOenModalTrailer = ref<boolean>(false);
 
 onBeforeMount(async () => {
   loading.value = true;
@@ -252,7 +252,7 @@ onBeforeMount(async () => {
         await useAsyncData(`movie/short/${props.item?.id}`, () =>
           getMovieById(props.item?.id)
         )
-          .then((movieResponed) => {
+          .then((movieResponed: any) => {
             dataMovie.value = movieResponed.data.value.data;
 
             loading.value = false;
@@ -268,7 +268,7 @@ onBeforeMount(async () => {
         await useAsyncData(`tv/short/${props.item?.id}`, () =>
           getTvById(props.item?.id)
         )
-          .then((tvResponed) => {
+          .then((tvResponed: any) => {
             dataMovie.value = tvResponed.data.value.data;
 
             loading.value = false;
@@ -288,7 +288,7 @@ onBeforeMount(async () => {
       await useAsyncData(`tv/short/${props.item?.id}`, () =>
         getTvById(props.item?.id)
       )
-        .then((tvResponed) => {
+        .then((tvResponed: any) => {
           dataMovie.value = tvResponed.data.value.data;
 
           loading.value = false;
@@ -302,7 +302,7 @@ onBeforeMount(async () => {
       await useAsyncData(`movie/short/${props.item?.id}`, () =>
         getMovieById(props.item?.id)
       )
-        .then((movieResponed) => {
+        .then((movieResponed: any) => {
           dataMovie.value = movieResponed.data.value.data;
 
           loading.value = false;
@@ -319,7 +319,7 @@ onBeforeMount(async () => {
       `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
       () => getItemHistory(store.$state?.userAccount?.id, props.item?.id)
     )
-      .then((movieRespone) => {
+      .then((movieRespone: any) => {
         if (movieRespone.data.value.data.success == true) {
           isInHistory.value = true;
           percent.value = movieRespone.data.value.data?.result?.percent;

@@ -294,7 +294,7 @@
   </a-menu>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { HomeOutlined } from '@ant-design/icons-vue';
 import {
   getAllGenre,
@@ -303,10 +303,11 @@ import {
 } from '@/services/MovieService';
 import axios from 'axios';
 import { removeVietnameseTones } from '@/utils/RemoveVietnameseTones';
+import { genre, country, year } from '~/types';
 
-const route = useRoute();
-const store = useStore();
-const state = reactive({
+const route: any = useRoute();
+const store: any = useStore();
+const state = reactive<any>({
   selectedKeys: [
     route.path
       .replaceAll('discover', '')
@@ -325,10 +326,9 @@ const state = reactive({
   ],
   // preOpenKeys: ['1'],
 });
-
-const genres = ref([]);
-const years = ref([]);
-const countries = ref([]);
+const genres = ref<genre[]>([]);
+const years = ref<year[]>([]);
+const countries = ref<country[]>([]);
 
 onBeforeMount(async () => {
   Promise.all([
@@ -336,15 +336,21 @@ onBeforeMount(async () => {
     await useAsyncData(`year/all`, () => getAllYear()),
     await useAsyncData(`country/all`, () => getAllNational()),
   ])
-    .then((response) => {
+    .then((response: any) => {
       genres.value = response[0].data.value.data;
-      years.value = response[1].data.value.data.sort(function (a, b) {
+      years.value = response[1].data.value.data.sort(function (
+        a: year,
+        b: year
+      ) {
         return +b.name.slice(-4) - +a.name.slice(-4);
       });
       countries.value = response[2].data.value.data;
 
       store.$state.allGenres = response[0].data.value.data;
-      store.$state.allYears = response[1].data.value.data.sort(function (a, b) {
+      store.$state.allYears = response[1].data.value.data.sort(function (
+        a: year,
+        b: year
+      ) {
         return +b.name.slice(-4) - +a.name.slice(-4);
       });
       store.$state.allCountries = response[2].data.value.data;

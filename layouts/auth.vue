@@ -17,12 +17,11 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-
-const image = ref(Math.floor(Math.random() * 3) + 1);
-const image_mobile = ref(Math.floor(Math.random() * 3) + 1);
+<script setup lang="ts">
+const image = ref<number>(Math.floor(Math.random() * 3) + 1);
+const image_mobile = ref<number>(Math.floor(Math.random() * 3) + 1);
 </script>
+
 <style lang="scss">
 @media only screen and (max-width: 500px) {
   .image-auth:not(.image-auth.responsive) {

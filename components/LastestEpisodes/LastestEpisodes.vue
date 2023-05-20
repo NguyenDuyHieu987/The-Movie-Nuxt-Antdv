@@ -59,7 +59,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { getSeasonTV } from '@/services/MovieService';
 import axios from 'axios';
 
@@ -74,9 +74,9 @@ const props = defineProps({
     type: Boolean,
   },
 });
-const route = useRoute();
-const dataSeason = ref({});
-const loadingLastestEpisodes = ref(false);
+const route: any = useRoute();
+const dataSeason = ref<any>({});
+const loadingLastestEpisodes = ref<boolean>(false);
 
 onBeforeMount(() => {
   loadingLastestEpisodes.value = true;
@@ -89,7 +89,7 @@ onBeforeMount(() => {
         props.dataMovie?.last_episode_to_air?.season_number
       )
   )
-    .then((episodesRespones) => {
+    .then((episodesRespones: any) => {
       dataSeason.value = episodesRespones.data.value.data;
       loadingLastestEpisodes.value = false;
     })

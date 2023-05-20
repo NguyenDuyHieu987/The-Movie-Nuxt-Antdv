@@ -75,18 +75,20 @@
   </a-layout-sider>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
 import TheMenu from '../TheMenu/TheMenu.vue';
 import { useStore } from '@/store/useStore';
 import { storeToRefs } from 'pinia';
 
-const store = useStore();
-const { collapsed, isLogin, userAccount } = storeToRefs(store);
+const store: any = useStore();
+const { collapsed, isLogin, userAccount } = storeToRefs<any>(store);
 onMounted(() => {
-  const menu = document.querySelector('.sider-bar .ant-layout-sider-children');
-  const sider_header = document.querySelector('.sider-header');
-  menu?.addEventListener('scroll', (e) => {
+  const menu: HTMLElement | null = document.querySelector(
+    '.sider-bar .ant-layout-sider-children'
+  );
+  const sider_header = document.querySelector('.sider-header') as HTMLElement;
+  menu!.addEventListener('scroll', (e: any) => {
     if (e.target.scrollTop > 0) {
       // if (store.$state.isLogin) {
       sider_header.style.backgroundColor = 'var(--background-content-color)';

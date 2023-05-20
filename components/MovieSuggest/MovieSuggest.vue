@@ -1,6 +1,6 @@
 <template>
   <div class="similar-stage">
-    <h2 class="gradient-title-default" v-show="dataSimilar?.length">
+    <h2 class="gradient-title-default underline" v-show="dataSimilar?.length">
       <strong>Phim tương tự</strong>
     </h2>
 
@@ -19,7 +19,7 @@
   </div>
 
   <div class="recommend-stage">
-    <h2 class="gradient-title-default" v-show="dataRecommend?.length">
+    <h2 class="gradient-title-default underline" v-show="dataRecommend?.length">
       <strong>Có thể bạn quan tâm</strong>
     </h2>
 
@@ -38,24 +38,20 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
 import { getSimilar, getTrending } from '@/services/MovieService';
 import MovieCardVertical from '../MovieCardVertical/MovieCardVertical.vue';
 import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
 
-const props = defineProps({
-  movieId: {
-    type: Number,
-  },
-  type: {
-    type: String,
-  },
-});
-const dataSimilar = ref([]);
-const dataRecommend = ref([]);
-const randomRecommend = ref(Math.floor(Math.random() * 50) + 1);
+const props = defineProps<{
+  movieId: number;
+  type: string;
+}>();
+const dataSimilar = ref<any[]>([]);
+const dataRecommend = ref<any[]>([]);
+const randomRecommend = ref<number>(Math.floor(Math.random() * 50) + 1);
 // const responsive = ref({
 //   0: {
 //     items: 2,
@@ -150,9 +146,6 @@ const responsive = computed(() => ({
   },
 }));
 
-const btnPrev = ref('<i class="fa-solid fa-chevron-left "></i>');
-const btnNext = ref('<i class="fa-solid fa-chevron-right "></i>');
-
 onBeforeMount(async () => {
   Promise.all([
     useAsyncData(`similar/${props?.type}/${props?.movieId}`, () =>
@@ -162,7 +155,7 @@ onBeforeMount(async () => {
       getTrending(randomRecommend.value)
     ),
   ])
-    .then((response) => {
+    .then((response: any) => {
       dataSimilar.value = response[0].data.value.data?.results;
       dataRecommend.value = response[1].data.value.data?.results;
     })

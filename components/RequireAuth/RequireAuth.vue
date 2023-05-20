@@ -10,8 +10,8 @@
   </div>
 </template>
 
-<script setup>
-import GradientButton from '@/components/button/GradientButton';
+<script setup lang="ts">
+import GradientButton from '@/components/button/GradientButton/GradientButton.vue';
 </script>
 
 <style scoped lang="scss" src="./RequireAuth.scss"></style>

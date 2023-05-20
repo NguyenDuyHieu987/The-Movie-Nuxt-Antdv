@@ -31,16 +31,12 @@
   </el-skeleton>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { getPosterCast } from '@/services/MovieService';
 
-const props = defineProps({
-  item: {
-    type: Object,
-  },
-  loading: {
-    type: Boolean,
-  },
-});
+const props = defineProps<{
+  item: any;
+  loading: boolean;
+}>();
 </script>
 <style lang="scss" src="./CastCard.scss"></style>

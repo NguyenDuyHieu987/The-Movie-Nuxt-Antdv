@@ -48,14 +48,13 @@
   </el-drawer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // import { MenufoldOutlined } from '@ant-design/icons-vue';
 import TheMenu from '../TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();
-const visible = ref(false);
-const { collapsed, isLogin, openDrawer, userAccount } = storeToRefs(store);
+const { collapsed, isLogin, openDrawer, userAccount } = storeToRefs<any>(store);
 </script>
 
 <style lang="scss" src="./Drawer.scss"></style>

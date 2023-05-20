@@ -475,48 +475,38 @@
   </div>
 </template>
 
-<script setup>
-import { createVNode } from 'vue';
+<script setup lang="ts">
 import axios from 'axios';
 import {
   getPoster,
   getBackdrop,
   getMovieById,
   getLanguage,
-  addItemList,
-  removeItemList,
   getItemList,
-  // getList,
-  // getColorImage,
 } from '@/services/MovieService';
-// import carousel from 'vue-owl-carousel/src/Carousel';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
-import { QuestionCircleOutlined } from '@ant-design/icons-vue';
-import {
-  Modal,
-  // message
-} from 'ant-design-vue';
 import { removeVietnameseTones } from '@/utils/RemoveVietnameseTones';
-import { ElMessage, ElMessageBox } from 'element-plus';
-import { message } from 'ant-design-vue';
+import {
+  handelAddItemToList,
+  handelRemoveItemFromList,
+} from '@/utils/handelAddRemoveItemList';
 
-const store = useStore();
-const route = useRoute();
+const store: any = useStore();
+const route: any = useRoute();
 const router = useRouter();
-const isEpisodes = ref(false);
-const dataMovie = ref({});
-const dataCredit = ref([]);
-// const dataAddToList = ref([]);
-const isOpenContent = ref(false);
-const isOpenTrailerYoutube = ref(false);
-const loading = ref(false);
-const srcBackdropList = ref([]);
-const isAddToList = ref(false);
+const isEpisodes = ref<boolean>(false);
+const dataMovie = ref<any>({});
+const dataCredit = ref<any>({});
+const isOpenContent = ref<boolean>(false);
+const isOpenTrailerYoutube = ref<boolean>(false);
+const loading = ref<boolean>(false);
+const srcBackdropList = ref<string[]>([]);
+const isAddToList = ref<boolean>(false);
 
-const internalInstance = getCurrentInstance();
+const internalInstance: any = getCurrentInstance();
 
 onMounted(() => {});
 
@@ -531,19 +521,19 @@ const getData = async () => {
       'Phimhay247 - Thông tin - ' +
       Array?.from(
         route.params?.name?.split('+'),
-        (x) => x.charAt(0).toUpperCase() + x.slice(1)
+        (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
       ).join(' ')
         ? 'Phimhay247 - Thông tin - ' +
           Array?.from(
             route.params?.name?.split('+'),
-            (x) => x.charAt(0).toUpperCase() + x.slice(1)
+            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
           ).join(' ')
         : 'Phimhay247 - Thông tin - ' +
           Array?.from(
             route.params?.name?.split('+'),
-            (x) => x.charAt(0).toUpperCase() + x.slice(1)
+            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
           ).join(' '),
-    htmlAttrs: { lang: 'vi', amp: true },
+    htmlAttrs: { lang: 'vi' },
   });
 
   // document.title = `${Array?.from(
@@ -557,7 +547,7 @@ const getData = async () => {
   await useAsyncData(`movie/detail/${route.params?.id}`, () =>
     getMovieById(route.params?.id, 'images,credits')
   )
-    .then((movieResponed) => {
+    .then((movieResponed: any) => {
       dataMovie.value = movieResponed.data.value.data;
       dataCredit.value = movieResponed.data.value.data.credits;
 
@@ -569,7 +559,7 @@ const getData = async () => {
 
       srcBackdropList.value = Array.from(
         movieResponed.data.value.data.images?.backdrops,
-        (item) => 'https://image.tmdb.org/t/p/original' + item?.file_path
+        (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       );
 
       loading.value = false;
@@ -585,7 +575,7 @@ const getData = async () => {
       `itemlist/${store.$state?.userAccount?.id}/${route.params?.id}`,
       () => getItemList(store.$state?.userAccount?.id, route.params?.id)
     )
-      .then((movieRespone) => {
+      .then((movieRespone: any) => {
         if (movieRespone.data.value.data.success == true) {
           isAddToList.value = true;
         }
@@ -619,249 +609,40 @@ onMounted(() => {
 });
 
 const scrolltoTrailerYoutube = () => {
-  const trailer_youtube = document.getElementById('trailer-youtube');
+  const trailer_youtube = document.getElementById(
+    'trailer-youtube'
+  ) as HTMLElement;
   trailer_youtube.scrollIntoView();
 };
 
-const temp = () => {
-  if (!store.$state.isLogin) {
-    Modal.confirm({
-      title: 'Bạn cần đăng nhập để sử dụng chức năng này.',
-      icon: createVNode(QuestionCircleOutlined),
-      // content: createVNode('div', 'Bạn có muốn đăng nhập không?'),
-      content: createVNode('h3', {}, 'Đăng nhập ngay?'),
-      okText: 'Có',
-      okType: 'primary',
-      cancelText: 'Không',
-      centered: true,
-      onOk() {
-        router.push({ path: '/login' });
-      },
-      onCancel() {},
-      class: 'require-login-confirm',
-    });
-  } else {
-    if (isAddToList.value == false) {
-      ElMessageBox({
-        title: 'Thông báo',
-        message: h(
-          'h3',
-          null,
-          'Bạn có muốn thêm phim vào danh sách theo dõi không?'
-        ),
-        showCancelButton: true,
-        showClose: false,
-        confirmButtonText: 'Có',
-        cancelButtonText: 'Không',
-        beforeClose: (action, instance, done) => {
-          if (action === 'confirm') {
-            instance.confirmButtonText = 'Đang thêm...';
-            instance.confirmButtonLoading = true;
-            addItemList(store.$state?.userAccount?.id, {
-              media_type: 'movie',
-              media_id: dataMovie.value?.id,
-            })
-              .then((response) => {
-                if (response.data.success == true) {
-                  setTimeout(() => {
-                    done();
-                    setTimeout(() => {
-                      isAddToList.value = true;
-                      instance.confirmButtonLoading = false;
-                    }, 300);
-                  }, 2000);
-                } else {
-                  ElMessage({
-                    type: 'error',
-                    message: `Thêm thất bại!`,
-                  });
-                }
-              })
-              .catch((e) => {
-                isAddToList.value = false;
-                instance.confirmButtonLoading = false;
-                ElMessage({
-                  type: 'error',
-                  message: `Thêm thất bại!`,
-                });
-                if (axios.isCancel(e)) return;
-              });
-          } else {
-            done();
-          }
-        },
-      }).then(() => {
-        ElMessage({
-          type: 'success',
-          message: `Thêm thành công!`,
-        });
-      });
-
-      // message.loading({ content: 'Đang thêm...', duration: 2 });
-      // if (response.data.success == true) {
-      //   setTimeout(() => {
-      //     message.success({ content: 'Thêm thành công!', duration: 2 });
-      //     isAddToList.value = true;
-      //   }, 2200);
-      // }
-    } else {
-      ElMessageBox({
-        title: 'Thông báo',
-        message: h(
-          'h3',
-          null,
-          'Bạn có muốn xóa phim khỏi danh sách theo dõi không?'
-        ),
-        showCancelButton: true,
-        showClose: false,
-        confirmButtonText: 'Có',
-        cancelButtonText: 'Không',
-        beforeClose: (action, instance, done) => {
-          if (action === 'confirm') {
-            instance.confirmButtonText = 'Đang xóa...';
-            instance.confirmButtonLoading = true;
-            removeItemList(store.$state?.userAccount?.id, {
-              media_id: dataMovie.value?.id,
-            })
-              .then((response) => {
-                if (response.data.success == true) {
-                  setTimeout(() => {
-                    done();
-                    setTimeout(() => {
-                      isAddToList.value = false;
-                      instance.confirmButtonLoading = false;
-                    }, 300);
-                  }, 2000);
-                } else {
-                  ElMessage({
-                    type: 'error',
-                    message: `Xóa thất bại!`,
-                  });
-                }
-              })
-              .catch((e) => {
-                isAddToList.value = true;
-                instance.confirmButtonLoading = false;
-                ElMessage({
-                  type: 'error',
-                  message: `Xóa thất bại!`,
-                });
-                if (axios.isCancel(e)) return;
-              });
-          } else {
-            done();
-          }
-        },
-      }).then(() => {
-        ElMessage({
-          type: 'success',
-          message: `Xóa thành công!`,
-        });
-      });
-
-      // removeItemList(store.$state?.userAccount?.id, {
-      //   media_id: dataMovie.value?.id,
-      // }).then((response) => {
-      //   message.loading({ content: 'Đang xóa...', duration: 2 });
-
-      //   if (response.data.success == true) {
-      //     setTimeout(() => {
-      //       message.success({ content: 'Xóa thành công!', duration: 2 });
-      //       isAddToList.value = false;
-      //     }, 2200);
-      //   }
-      // });
-    }
-  }
-};
-
 const handelAddToList = () => {
-  if (!store.$state.isLogin) {
-    Modal.confirm({
-      title: 'Bạn cần đăng nhập để sử dụng chức năng này.',
-      icon: createVNode(QuestionCircleOutlined),
-      // content: createVNode('div', 'Bạn có muốn đăng nhập không?'),
-      content: createVNode('h3', {}, 'Đăng nhập ngay?'),
-      okText: 'Có',
-      okType: 'primary',
-      cancelText: 'Không',
-      centered: true,
-      onOk() {
-        router.push({ path: '/login' });
-      },
-      onCancel() {},
-      class: 'require-login-confirm',
-    });
-  } else {
-    if (isAddToList.value == false) {
-      isAddToList.value = true;
-      message.loading({ content: 'Đang thêm' });
-      addItemList(store.$state?.userAccount?.id, {
-        media_type: 'movie',
-        media_id: dataMovie.value?.id,
-      })
-        .then((response) => {
-          if (response.data.success == true) {
-            setTimeout(() => {
-              message.destroy();
-              ElMessage({
-                type: 'success',
-                message: `Thêm thành công!`,
-              });
-            }, 500);
-          } else {
-            message.destroy();
-            isAddToList.value = false;
-            ElMessage({
-              type: 'error',
-              message: `Thêm thất bại!`,
-            });
-          }
-        })
-        .catch((e) => {
-          message.destroy();
-          isAddToList.value = false;
-          ElMessage({
-            type: 'error',
-            message: `Thêm thất bại!`,
-          });
-          if (axios.isCancel(e)) return;
-        });
-    } else {
+  if (!store.$state?.isLogin) {
+    store.$state.openRequireAuthDialog = true;
+    return;
+  }
+  if (!isAddToList.value) {
+    isAddToList.value = true;
+    if (
+      !handelAddItemToList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id,
+        isEpisodes.value ? 'tv' : 'movie'
+      )
+    ) {
       isAddToList.value = false;
-      message.loading({ content: 'Đang xóa' });
-
-      removeItemList(store.$state?.userAccount?.id, {
-        media_id: dataMovie.value?.id,
-      })
-        .then((movieRespone) => {
-          if (movieRespone.data?.success == true) {
-            setTimeout(() => {
-              message.destroy();
-              ElMessage({
-                type: 'success',
-                message: `Xóa thành công!`,
-              });
-            }, 500);
-          } else {
-            message.destroy();
-            isAddToList.value = true;
-            ElMessage({
-              type: 'error',
-              message: `Xóa thất bại!`,
-            });
-          }
-        })
-        .catch((e) => {
-          message.destroy();
-          isAddToList.value = true;
-          ElMessage({
-            type: 'error',
-            message: `Xóa thất bại!`,
-          });
-          if (axios.isCancel(e)) return;
-        });
     }
+    return;
+  } else {
+    isAddToList.value = false;
+    if (
+      !handelRemoveItemFromList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id
+      )
+    ) {
+      isAddToList.value = true;
+    }
+    return;
   }
 };
 

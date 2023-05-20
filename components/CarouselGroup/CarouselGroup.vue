@@ -56,17 +56,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const store = useStore();
 
-defineProps({
-  data: {
-    type: Array,
-  },
-  responsive: {
-    type: Object,
-  },
-});
+defineProps<{
+  data: any[];
+  responsive: any;
+}>();
 </script>
 
 <style lang="scss" src="./CarouselGroup.scss"></style>

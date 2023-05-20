@@ -1,8 +1,7 @@
 <template>
   <div class="discover-container">
     <FilterBar
-      v-model="dataDiscover"
-      @dataFiltered="(data, formSelect) => setDataFiltered(data, formSelect)"
+      @dataFiltered="(data: any[], formSelect: formFilter) => setDataFiltered(data, formSelect)"
       :cancelFilter="cancelFilter"
     />
 
@@ -36,7 +35,6 @@
 
     <ControlPage
       v-show="dataDiscover?.length"
-      v-model="isFilter"
       :page="page"
       :total="totalPage"
       :onChangePage="onChangePage"
@@ -44,7 +42,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import axios from 'axios';
 import {
   getMovies,
@@ -67,25 +65,26 @@ import {
 import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '@/components/FilterBar/FilterBar.vue';
 import ControlPage from '@/components/ControlPage/ControlPage.vue';
+import type { formFilter } from '@/types';
 
-const route = useRoute();
+const route: any = useRoute();
 const router = useRouter();
-const store = useStore();
-const dataDiscover = ref([]);
-const page = ref(route.query?.page ? +route.query?.page : 1);
-const totalPage = ref(100);
-const isFilter = ref(false);
-const loading = ref(false);
-const formFilterSelect = ref({});
-const metaHead = ref('');
-const internalInstance = getCurrentInstance();
+const store: any = useStore();
+const dataDiscover = ref<any[]>();
+const page = ref<number>(route.query?.page ? +route.query?.page : 1);
+const totalPage = ref<number>(100);
+const isFilter = ref<boolean>(false);
+const loading = ref<boolean>(false);
+const formFilterSelect = ref<formFilter | any>({});
+const metaHead = ref<string>('');
+const internalInstance: any = getCurrentInstance();
 
 const getData = async () => {
   if (isFilter.value) {
     await useAsyncData(`discover/all/${formFilterSelect.value}}`, () =>
       FilterDataMovie(formFilterSelect.value)
     )
-      .then((movieResponse) => {
+      .then((movieResponse: any) => {
         dataDiscover.value = movieResponse.data.value.data?.results;
       })
       .catch((e) => {
@@ -102,7 +101,7 @@ const getData = async () => {
               await useAsyncData(`movie/all/${page.value}`, () =>
                 getMovies(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value = movieResponse.data.value.data?.total;
                 })
@@ -116,7 +115,7 @@ const getData = async () => {
               await useAsyncData(`movie/nowplaying/${page.value}`, () =>
                 getNowPlaying(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value =
                     movieResponse.data.value.data.total_pages * 10;
@@ -131,7 +130,7 @@ const getData = async () => {
               await useAsyncData(`movie/popular/${page.value}`, () =>
                 getPopular(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value =
                     movieResponse.data.value.data.total_pages * 10;
@@ -146,7 +145,7 @@ const getData = async () => {
               await useAsyncData(`movie/toprated${page.value}`, () =>
                 getTopRated(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value =
                     movieResponse.data.value.data.total_pages * 10;
@@ -161,7 +160,7 @@ const getData = async () => {
               await useAsyncData(`movie/upcoming/${page.value}`, () =>
                 getUpComing(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value =
                     movieResponse.data.value.data.total_pages * 10;
@@ -182,7 +181,7 @@ const getData = async () => {
               await useAsyncData(`tv/all/${page.value}`, () =>
                 getTv(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value = movieResponse.data.value.data?.total;
                 })
@@ -198,7 +197,7 @@ const getData = async () => {
               await useAsyncData(`tv/airingtoday/${page.value}`, () =>
                 getTvAiringToday(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value =
                     movieResponse.data.value.data.total_pages * 10;
@@ -213,7 +212,7 @@ const getData = async () => {
               await useAsyncData(`tv/ontheair/${page.value}`, () =>
                 getTvOntheAir(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value =
                     movieResponse.data.value.data.total_pages * 10;
@@ -228,7 +227,7 @@ const getData = async () => {
               await useAsyncData(`tv/popular/${page.value}`, () =>
                 getTvPopular(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value =
                     movieResponse.data.value.data.total_pages * 10;
@@ -243,7 +242,7 @@ const getData = async () => {
               await useAsyncData(`tv/toprated/${page.value}`, () =>
                 getTvTopRated(page.value)
               )
-                .then((movieResponse) => {
+                .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value =
                     movieResponse.data.value.data.total_pages * 10;
@@ -259,7 +258,7 @@ const getData = async () => {
         await useAsyncData(`genres/${route.params?.slug2}/${page.value}`, () =>
           getMoviesByGenres(route.params?.slug2, page.value)
         )
-          .then((movieResponse) => {
+          .then((movieResponse: any) => {
             dataDiscover.value = movieResponse.data.value.data?.results;
           })
           .catch((e) => {
@@ -275,7 +274,7 @@ const getData = async () => {
         await useAsyncData(`years/${route.params?.slug2}/${page.value}`, () =>
           getMoviesByYear(route.params?.slug2, page.value)
         )
-          .then((movieResponse) => {
+          .then((movieResponse: any) => {
             dataDiscover.value = movieResponse.data.value.data?.results;
           })
           .catch((e) => {
@@ -291,7 +290,7 @@ const getData = async () => {
           `countries/${route.params?.slug2}/${page.value}`,
           () => getMovieByCountry(route.params?.slug2, page.value)
         )
-          .then((movieResponse) => {
+          .then((movieResponse: any) => {
             dataDiscover.value = movieResponse.data.value.data?.results;
           })
           .catch((e) => {
@@ -332,12 +331,12 @@ onBeforeMount(() => {
 
   useHead({
     title: '`Phimhay247 - ' + metaHead.value,
-    htmlAttrs: { lang: 'vi', amp: true },
+    htmlAttrs: { lang: 'vi' },
   });
 });
 
 const onChangePage = (
-  pageSelected
+  pageSelected: number
   // pageSize
 ) => {
   if (isFilter.value) {
@@ -350,7 +349,7 @@ const onChangePage = (
   }
 };
 
-const setDataFiltered = (data, formSelect) => {
+const setDataFiltered = (data: any[], formSelect: formFilter) => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   dataDiscover.value = data;

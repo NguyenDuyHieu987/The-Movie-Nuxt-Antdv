@@ -33,31 +33,23 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ratingMovie, ratingTV } from '@/services/MovieService';
 import { notification } from 'ant-design-vue';
-import { CheckCircleFilled, StarFilled } from '@ant-design/icons-vue';
+import { CheckCircleFilled } from '@ant-design/icons-vue';
 import axios from 'axios';
 
-const props = defineProps({
-  voteAverage: {
-    type: Number,
-  },
-  voteCount: {
-    type: Number,
-  },
-  movieId: {
-    type: Number,
-  },
-  isEpisodes: {
-    type: Boolean,
-  },
-});
+const props = defineProps<{
+  voteAverage: number;
+  voteCount: number;
+  movieId: number;
+  isEpisodes: boolean;
+}>();
 
-const vote_Average = ref(props.voteAverage);
-const vote_Count = ref(props.voteCount);
+const vote_Average = ref<number>(props.voteAverage);
+const vote_Count = ref<number>(props.voteCount);
 
-const tooltipRating = ref([
+const tooltipRating = ref<string[]>([
   'Dở tệ',
   'Dở',
   'Không hay',
@@ -70,7 +62,7 @@ const tooltipRating = ref([
   'Tuyệt hay',
 ]);
 
-const handleRating = (value) => {
+const handleRating = (value: number) => {
   if (props?.isEpisodes) {
     ratingTV(props?.movieId, { value: value })
       .then((response) => {

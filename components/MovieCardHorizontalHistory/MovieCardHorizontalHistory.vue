@@ -260,7 +260,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // import axios from 'axios';
 import {
   getBackdrop,
@@ -281,29 +281,22 @@ import { ViewFormatter } from '@/utils/convertViews';
 import _ from 'lodash';
 import moment from 'moment';
 
-const props = defineProps({
-  item: {
-    type: Object,
-  },
-  prevItem: {
-    type: Object,
-  },
-  type: {
-    type: String,
-  },
-  getDataWhenRemoveHistory: {
-    type: Function,
-  },
-});
-const store = useStore();
-const dataMovie = ref({});
-const isEpisodes = ref(false);
-const loading = ref(false);
-const urlShare = computed(() => window.location);
-const percent = ref(0);
-const isAddToList = ref(false);
-const differenceDate = ref(0);
-const timeLine = ref('');
+const props = defineProps<{
+  item: any;
+  prevItem: any;
+  type: string | undefined;
+  getDataWhenRemoveHistory: (id: number) => void;
+}>();
+
+const store: any = useStore();
+const dataMovie = ref<any>({});
+const isEpisodes = ref<boolean>(false);
+const loading = ref<boolean>(false);
+const urlShare = computed<string>((): string => window.location.href);
+const percent = ref<number>(0);
+const isAddToList = ref<boolean>(false);
+const differenceDate = ref<number>(0);
+const timeLine = ref<string>('');
 
 onMounted(() => {
   const ant_btn = document.querySelectorAll('.action .viewmore-btn');
@@ -419,7 +412,7 @@ onBeforeMount(async () => {
         await useAsyncData(`movie/short/${props.item?.id}`, () =>
           getMovieById(props.item?.id)
         )
-          .then((movieResponed) => {
+          .then((movieResponed: any) => {
             dataMovie.value = movieResponed.data.value.data;
 
             loading.value = false;
@@ -435,7 +428,7 @@ onBeforeMount(async () => {
         await useAsyncData(`tv/short/${props.item?.id}`, () =>
           getTvById(props.item?.id)
         )
-          .then((tvResponed) => {
+          .then((tvResponed: any) => {
             dataMovie.value = tvResponed.data.value.data;
 
             loading.value = false;
@@ -455,7 +448,7 @@ onBeforeMount(async () => {
       await useAsyncData(`tv/short/${props.item?.id}`, () =>
         getTvById(props.item?.id)
       )
-        .then((tvResponed) => {
+        .then((tvResponed: any) => {
           dataMovie.value = tvResponed.data.value.data;
 
           loading.value = false;
@@ -469,7 +462,7 @@ onBeforeMount(async () => {
       await useAsyncData(`movie/short/${props.item?.id}`, () =>
         getMovieById(props.item?.id)
       )
-        .then((movieResponed) => {
+        .then((movieResponed: any) => {
           dataMovie.value = movieResponed.data.value.data;
 
           loading.value = false;
@@ -485,7 +478,7 @@ onBeforeMount(async () => {
     `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
     () => getItemList(store.$state?.userAccount?.id, props.item?.id)
   )
-    .then((movieRespone) => {
+    .then((movieRespone: any) => {
       if (movieRespone.data.value.data.success == true) {
         isAddToList.value = true;
       }

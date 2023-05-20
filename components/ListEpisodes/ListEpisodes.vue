@@ -26,7 +26,7 @@
       <strong style="margin-right: 10px">
         {{ dataMovie?.name ? dataMovie?.name : dataMovie?.title }}
         - Tập
-        {{ $route.params?.tap?.replace('tap-', '') }}
+        {{ route.params?.tap?.replace('tap-', '') }}
         |
         {{
           dataSeason?.name?.split(' ')[0] === 'Phần' ||
@@ -117,35 +117,31 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import axios from 'axios';
 import { getSeasonTV } from '@/services/MovieService';
 
-const props = defineProps({
-  dataMovie: {
-    type: Object,
-  },
-  numberOfEpisodes: {
-    type: Number,
-  },
-});
+const props = defineProps<{
+  dataMovie: any;
+  numberOfEpisodes: number;
+}>();
 
-const emit = defineEmits(['setUrlCodeMovie']);
+const emit = defineEmits<{ setUrlCodeMovie: [url: string] }>();
 
-const route = useRoute();
+const route: any = useRoute();
 const router = useRouter();
-const dataSeason = ref({});
-const selectedSeason = ref(props?.dataMovie?.number_of_seasons);
-const currentEpisode = computed(() =>
+const dataSeason = ref<any>({});
+const selectedSeason = ref<number>(props?.dataMovie?.number_of_seasons);
+const currentEpisode = computed<number>((): number =>
   route.params?.tap?.replace('tap-', '')
     ? +route.params?.tap?.replace('tap-', '')
     : 1
 );
 const loading = ref(false);
 
-const emitUrlCode = (dataSeason) => {
+const emitUrlCode = (dataSeason: any) => {
   const url_code_movie = dataSeason.episodes?.find(
-    (item) => item.episode_number == currentEpisode.value
+    (item: any) => item.episode_number == currentEpisode.value
   )?.url_code;
 
   emit('setUrlCodeMovie', url_code_movie);
@@ -158,7 +154,7 @@ onBeforeMount(() => {
     `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
     () => getSeasonTV(route.params?.id, selectedSeason.value)
   )
-    .then((episodesRespones) => {
+    .then((episodesRespones: any) => {
       dataSeason.value = episodesRespones.data.value.data;
 
       emitUrlCode(dataSeason.value);
@@ -173,7 +169,7 @@ onBeforeMount(() => {
     });
 });
 
-const handleChange = (value) => {
+const handleChange = (value: number) => {
   selectedSeason.value = value;
 };
 
@@ -185,7 +181,7 @@ watch(selectedSeason, () => {
     `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
     () => getSeasonTV(route.params?.id, selectedSeason.value)
   )
-    .then((episodesRespones) => {
+    .then((episodesRespones: any) => {
       dataSeason.value = episodesRespones.data.value.data;
 
       emitUrlCode(dataSeason.value);

@@ -98,14 +98,18 @@
               </p>
               <div class="info-bottom">
                 <p class="genres" v-if="item?.genres">
-                  {{ Array?.from(item?.genres, (x) => x.name).join(' • ') }}
+                  {{
+                    Array?.from(item?.genres, (x: any) => x.name).join(' • ')
+                  }}
                 </p>
                 <p
                   class="genres"
                   v-else-if="item?.genres == undefined && dataMovie?.genres"
                 >
                   {{
-                    Array?.from(dataMovie?.genres, (x) => x.name).join(' • ')
+                    Array?.from(dataMovie?.genres, (x: any) => x.name).join(
+                      ' • '
+                    )
                   }}
                 </p>
               </div>
@@ -275,13 +279,15 @@
 
           <div class="info-bottom">
             <p class="genres" v-if="item?.genres">
-              {{ Array.from(item?.genres, (x) => x.name).join(' • ') }}
+              {{ Array.from(item?.genres, (x: any) => x.name).join(' • ') }}
             </p>
             <p
               class="genres"
               v-else-if="item?.genres == undefined && dataMovie?.genres"
             >
-              {{ Array.from(dataMovie?.genres, (x) => x.name).join(' • ') }}
+              {{
+                Array.from(dataMovie?.genres, (x: any) => x.name).join(' • ')
+              }}
             </p>
           </div>
 
@@ -318,7 +324,7 @@
     </div>
   </NuxtLink>
 </template>
-<script setup>
+<script setup lang="ts">
 import { PlusOutlined, InfoOutlined } from '@ant-design/icons-vue';
 import axios from 'axios';
 import {
@@ -331,7 +337,6 @@ import {
   getItemHistory,
 } from '@/services/MovieService';
 import { useRouter } from 'vue-router';
-
 import { ViewFormatter } from '@/utils/convertViews';
 import { storeToRefs } from 'pinia';
 import {
@@ -339,34 +344,35 @@ import {
   handelRemoveItemFromList,
 } from '@/utils/handelAddRemoveItemList';
 
-const props = defineProps({
-  item: {
-    type: Object,
-  },
-  type: {
-    type: String,
-  },
-});
-const store = useStore();
-const { allCountries } = storeToRefs(store);
+const props = defineProps<{
+  item: any;
+  type: string | undefined;
+}>();
+
+const store: any = useStore();
+const { allCountries } = storeToRefs<any>(store);
 const router = useRouter();
-const isEpisodes = ref(false);
-const dataMovie = ref({});
-const loading = ref(false);
+const isEpisodes = ref<boolean>(false);
+const dataMovie = ref<any>({});
+const loading = ref<boolean>(false);
 // const dataAddToList = ref([]);
-const isAddToList = ref(false);
-const isInHistory = ref(false);
-const percent = ref(0);
-const urlShare = computed(() => window.location);
+const isAddToList = ref<boolean>(false);
+const isInHistory = ref<boolean>(false);
+const percent = ref<number>(0);
+const urlShare = computed<string>((): string => window.location.href);
 
 onMounted(() => {
-  const itemMovie = document.querySelectorAll('.movie-card-vertical-item');
+  const itemMovie: NodeListOf<HTMLElement> = document.querySelectorAll(
+    '.movie-card-vertical-item'
+  );
 
-  itemMovie.forEach((x) => {
-    x?.addEventListener('mouseenter', (e) => {
+  itemMovie.forEach((x: HTMLElement) => {
+    x?.addEventListener('mouseenter', (e: any) => {
       // const rect = x.getBoundingClientRect();
 
-      const detailFlow = x.getElementsByClassName('detail-flow')[0];
+      const detailFlow = x.getElementsByClassName(
+        'detail-flow'
+      )[0] as HTMLElement;
 
       if (detailFlow?.style) {
         // if (rect.left <= 300) {
@@ -398,7 +404,7 @@ onBeforeMount(async () => {
         await useAsyncData(`movie/short/${props.item?.id}`, () =>
           getMovieById(props.item?.id)
         )
-          .then((movieResponed) => {
+          .then((movieResponed: any) => {
             dataMovie.value = movieResponed.data.value.data;
 
             loading.value = false;
@@ -414,7 +420,7 @@ onBeforeMount(async () => {
         await useAsyncData(`tv/short/${props.item?.id}`, () =>
           getTvById(props.item?.id)
         )
-          .then((tvResponed) => {
+          .then((tvResponed: any) => {
             dataMovie.value = tvResponed.data.value.data;
 
             loading.value = false;
@@ -434,7 +440,7 @@ onBeforeMount(async () => {
       await useAsyncData(`tv/short/${props.item?.id}`, () =>
         getTvById(props.item?.id)
       )
-        .then((tvResponed) => {
+        .then((tvResponed: any) => {
           dataMovie.value = tvResponed.data.value.data;
 
           loading.value = false;
@@ -448,7 +454,7 @@ onBeforeMount(async () => {
       await useAsyncData(`movie/short/${props.item?.id}`, () =>
         getMovieById(props.item?.id)
       )
-        .then((movieResponed) => {
+        .then((movieResponed: any) => {
           dataMovie.value = movieResponed.data.value.data;
 
           loading.value = false;
@@ -465,7 +471,7 @@ onBeforeMount(async () => {
       `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
       () => getItemList(store.$state?.userAccount?.id, props.item?.id)
     )
-      .then((movieRespone) => {
+      .then((movieRespone: any) => {
         if (movieRespone.data.value.data.success == true) {
           isAddToList.value = true;
         }
@@ -478,7 +484,7 @@ onBeforeMount(async () => {
       `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
       () => getItemHistory(store.$state?.userAccount?.id, props.item?.id)
     )
-      .then((movieRespone) => {
+      .then((movieRespone: any) => {
         if (movieRespone.data.value.data.success == true) {
           isInHistory.value = true;
           percent.value = movieRespone.data.value.data?.result?.percent;

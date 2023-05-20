@@ -30,12 +30,12 @@
   </a-breadcrumb>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { getGenresNameByShortName } from '@/services/MovieService';
-// import ALLCOUNTRY from '../constants/Country';
+import type { country } from '@/types';
 
-const route = useRoute();
-const store = useStore();
+const route: any = useRoute();
+const store: any = useStore();
 
 const getParamsRoute = () => {
   const breadList = [];
@@ -105,7 +105,7 @@ const getParamsRoute = () => {
         params: 'countries',
         // name: store.state.breadCrumbValue,
         name: store.state.allCountries.find(
-          (country) => country.short_name === route.params?.slug2
+          (country: country) => country.short_name === route.params?.slug2
         )?.name,
       });
       break;
@@ -120,7 +120,7 @@ const getParamsRoute = () => {
   return breadList;
 };
 
-const path = computed(() => {
+const path = computed<any[]>(() => {
   return getParamsRoute();
 });
 

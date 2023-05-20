@@ -140,7 +140,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import axios from 'axios';
 import {
   getAllGenresById,
@@ -152,13 +152,11 @@ import {
   handelRemoveItemFromList,
 } from '@/utils/handelAddRemoveItemList';
 
-const props = defineProps({
-  item: {
-    type: Object,
-  },
-});
-const store = useStore();
-const isAddToList = ref(false);
+const props = defineProps<{
+  item: any;
+}>();
+const store: any = useStore();
+const isAddToList = ref<boolean>(false);
 
 onBeforeMount(async () => {
   if (store.$state.isLogin) {
@@ -166,7 +164,7 @@ onBeforeMount(async () => {
       `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
       () => getItemList(store.$state?.userAccount?.id, props.item?.id)
     )
-      .then((movieRespone) => {
+      .then((movieRespone: any) => {
         if (movieRespone.data.value.data.success == true) {
           isAddToList.value = true;
         }

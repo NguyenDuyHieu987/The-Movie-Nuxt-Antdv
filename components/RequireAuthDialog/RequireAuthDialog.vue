@@ -38,9 +38,9 @@
   </div>
 </template>
 
-<script setup>
-import GradientButton from '@/components/button/GradientButton';
-import DefaultButton from '@/components/button/DefaultButton';
+<script setup lang="ts">
+import GradientButton from '@/components/button/GradientButton/GradientButton.vue';
+import DefaultButton from '@/components/button/DefaultButton/DefaultButton.vue';
 
 const store = useStore();
 </script>

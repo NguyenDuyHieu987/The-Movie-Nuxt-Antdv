@@ -381,7 +381,7 @@
             <p>
               <label>Số lượng tập: </label>
               {{
-                dataMovie?.seasons?.find((item) =>
+                dataMovie?.seasons?.find((item: any) =>
                   item?.season_number ===
                   dataMovie?.last_episode_to_air?.season_number
                     ? item
@@ -448,7 +448,7 @@
       v-if="!checkEmptyDataMovies"
       :dataMovie="dataMovie"
       :numberOfEpisodes="
-        dataMovie?.seasons?.find((item) =>
+        dataMovie?.seasons?.find((item: any) =>
           item.season_number === dataMovie?.last_episode_to_air?.season_number
             ? item
             : null
@@ -515,49 +515,39 @@
   </div>
 </template>
 
-<script setup>
-import { createVNode } from 'vue';
+<script setup lang="ts">
 import axios from 'axios';
 import {
   getPoster,
   getBackdrop,
   getTvById,
   getLanguage,
-  addItemList,
-  removeItemList,
   getItemList,
-  // getList,
-  // getColorImage,
 } from '@/services/MovieService';
-// import carousel from 'vue-owl-carousel/src/Carousel';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import LastestEpisodes from '@/components/LastestEpisodes/LastestEpisodes.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
-import { QuestionCircleOutlined } from '@ant-design/icons-vue';
-import {
-  Modal,
-  // message
-} from 'ant-design-vue';
 import { removeVietnameseTones } from '@/utils/RemoveVietnameseTones';
-import { ElMessage, ElMessageBox } from 'element-plus';
-import { message } from 'ant-design-vue';
+import {
+  handelAddItemToList,
+  handelRemoveItemFromList,
+} from '@/utils/handelAddRemoveItemList';
 
-const store = useStore();
-const route = useRoute();
+const store: any = useStore();
+const route: any = useRoute();
 const router = useRouter();
-const isEpisodes = ref(false);
-const dataMovie = ref({});
-const dataCredit = ref([]);
-// const dataAddToList = ref([]);
-const isOpenContent = ref(false);
-const isOpenTrailerYoutube = ref(false);
-const loading = ref(false);
-const srcBackdropList = ref([]);
-const isAddToList = ref(false);
+const isEpisodes = ref<boolean>(false);
+const dataMovie = ref<any>({});
+const dataCredit = ref<any>({});
+const isOpenContent = ref<boolean>(false);
+const isOpenTrailerYoutube = ref<boolean>(false);
+const loading = ref<boolean>(false);
+const srcBackdropList = ref<string[]>([]);
+const isAddToList = ref<boolean>(false);
 
-const internalInstance = getCurrentInstance();
+const internalInstance: any = getCurrentInstance();
 
 onMounted(() => {});
 
@@ -572,19 +562,19 @@ const getData = async () => {
       'Phimhay247 - Thông tin - ' +
       Array?.from(
         route.params?.name?.split('+'),
-        (x) => x.charAt(0).toUpperCase() + x.slice(1)
+        (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
       ).join(' ')
         ? 'Phimhay247 - Thông tin - ' +
           Array?.from(
             route.params?.name?.split('+'),
-            (x) => x.charAt(0).toUpperCase() + x.slice(1)
+            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
           ).join(' ')
         : 'Phimhay247 - Thông tin - ' +
           Array?.from(
             route.params?.name?.split('+'),
-            (x) => x.charAt(0).toUpperCase() + x.slice(1)
+            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
           ).join(' '),
-    htmlAttrs: { lang: 'vi', amp: true },
+    htmlAttrs: { lang: 'vi' },
   });
 
   srcBackdropList.value = [];
@@ -592,7 +582,7 @@ const getData = async () => {
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
     getTvById(route.params?.id, 'images,credits')
   )
-    .then((tvResponed) => {
+    .then((tvResponed: any) => {
       isEpisodes.value = true;
       dataMovie.value = tvResponed.data.value.data;
       dataCredit.value = tvResponed.data.value.data?.credits;
@@ -606,7 +596,7 @@ const getData = async () => {
 
       srcBackdropList.value = Array.from(
         tvResponed.data.value.data.images?.backdrops,
-        (item) => 'https://image.tmdb.org/t/p/original' + item?.file_path
+        (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       );
 
       loading.value = false;
@@ -623,7 +613,7 @@ const getData = async () => {
       `itemlist/${store.$state?.userAccount?.id}/${route.params?.id}`,
       () => getItemList(store.$state?.userAccount?.id, route.params?.id)
     )
-      .then((movieRespone) => {
+      .then((movieRespone: any) => {
         if (movieRespone.data.value.data.success == true) {
           isAddToList.value = true;
         }
@@ -657,97 +647,40 @@ onMounted(() => {
 });
 
 const scrolltoTrailerYoutube = () => {
-  const trailer_youtube = document.getElementById('trailer-youtube');
+  const trailer_youtube = document.getElementById(
+    'trailer-youtube'
+  ) as HTMLElement;
   trailer_youtube.scrollIntoView();
 };
 
 const handelAddToList = () => {
-  if (!store.$state.isLogin) {
-    Modal.confirm({
-      title: 'Bạn cần đăng nhập để sử dụng chức năng này.',
-      icon: createVNode(QuestionCircleOutlined),
-      // content: createVNode('div', 'Bạn có muốn đăng nhập không?'),
-      content: createVNode('h3', {}, 'Đăng nhập ngay?'),
-      okText: 'Có',
-      okType: 'primary',
-      cancelText: 'Không',
-      centered: true,
-      onOk() {
-        navigateTo({ path: '/login' });
-      },
-      onCancel() {},
-      class: 'require-login-confirm',
-    });
-  } else {
-    if (isAddToList.value == false) {
-      isAddToList.value = true;
-      message.loading({ content: 'Đang thêm' });
-      addItemList(store.$state?.userAccount?.id, {
-        media_type: 'tv',
-        media_id: dataMovie.value?.id,
-      })
-        .then((response) => {
-          if (response.data.success == true) {
-            setTimeout(() => {
-              message.destroy();
-              ElMessage({
-                type: 'success',
-                message: `Thêm thành công!`,
-              });
-            }, 500);
-          } else {
-            message.destroy();
-            isAddToList.value = false;
-            ElMessage({
-              type: 'error',
-              message: `Thêm thất bại!`,
-            });
-          }
-        })
-        .catch((e) => {
-          message.destroy();
-          isAddToList.value = false;
-          ElMessage({
-            type: 'error',
-            message: `Thêm thất bại!`,
-          });
-          if (axios.isCancel(e)) return;
-        });
-    } else {
+  if (!store.$state?.isLogin) {
+    store.$state.openRequireAuthDialog = true;
+    return;
+  }
+  if (!isAddToList.value) {
+    isAddToList.value = true;
+    if (
+      !handelAddItemToList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id,
+        isEpisodes.value ? 'tv' : 'movie'
+      )
+    ) {
       isAddToList.value = false;
-      message.loading({ content: 'Đang xóa' });
-
-      removeItemList(store.$state?.userAccount?.id, {
-        media_id: dataMovie.value?.id,
-      })
-        .then((movieRespone) => {
-          if (movieRespone.data?.success == true) {
-            setTimeout(() => {
-              message.destroy();
-              ElMessage({
-                type: 'success',
-                message: `Xóa thành công!`,
-              });
-            }, 500);
-          } else {
-            message.destroy();
-            isAddToList.value = true;
-            ElMessage({
-              type: 'error',
-              message: `Xóa thất bại!`,
-            });
-          }
-        })
-        .catch((e) => {
-          message.destroy();
-          isAddToList.value = true;
-          ElMessage({
-            type: 'error',
-            message: `Xóa thất bại!`,
-          });
-          if (axios.isCancel(e)) return;
-        });
     }
+    return;
+  } else {
+    isAddToList.value = false;
+    if (
+      !handelRemoveItemFromList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id
+      )
+    ) {
+      isAddToList.value = true;
+    }
+    return;
   }
 };
 

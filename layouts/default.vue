@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Header from '@/components/Header/Header.vue';
 import Drawer from '@/components/Drawer/Drawer.vue';
 import Sider from '@/components/Sider/Sider.vue';

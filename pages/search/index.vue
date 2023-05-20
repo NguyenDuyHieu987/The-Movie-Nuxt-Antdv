@@ -2,8 +2,7 @@
   <div class="search-container">
     <h2 class="gradient-title-default underline">
       <strong
-        >Kết quả tìm kiếm cho:
-        {{ $route.query.q?.replaceAll('+', ' ') }}</strong
+        >Kết quả tìm kiếm cho: {{ route.query.q?.replaceAll('+', ' ') }}</strong
       >
 
       <a-select
@@ -36,26 +35,27 @@
       <ControlPage
         v-show="searchData?.length"
         :page="page"
+        :total="100"
         :onChangePage="onChangePage"
       />
     </section>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import ControlPage from '@/components/ControlPage/ControlPage.vue';
 import { getDaTaSearch } from '@/services/MovieService';
 import axios from 'axios';
 
-const store = useStore();
-const route = useRoute();
-const searchData = ref([]);
-const searchDataMovie = ref([]);
-const searchDataTv = ref([]);
-const activeTabSearch = ref('all');
-const page = ref(1);
-const internalInstance = getCurrentInstance();
+const store: any = useStore();
+const route: any = useRoute();
+const searchData = ref<any>([]);
+const searchDataMovie = ref<any[]>([]);
+const searchDataTv = ref<any[]>([]);
+const activeTabSearch = ref<string>('all');
+const page = ref<number>(1);
+const internalInstance: any = getCurrentInstance();
 
 onBeforeMount(async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
@@ -64,7 +64,7 @@ onBeforeMount(async () => {
     `search/all/${route.query?.q.replaceAll('+', ' ')}/${page.value}`,
     () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), page.value)
   )
-    .then((searchMovieResponse) => {
+    .then((searchMovieResponse: any) => {
       searchData.value = searchMovieResponse.data.value.data?.results;
       searchDataMovie.value = searchMovieResponse.data.value.data?.movie;
       searchDataTv.value = searchMovieResponse.data.value.data?.tv;
@@ -81,7 +81,7 @@ watch(route, async () => {
     `search/all/${route.query?.q.replaceAll('+', ' ')}/${page.value}`,
     () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), page.value)
   )
-    .then((searchMovieResponse) => {
+    .then((searchMovieResponse: any) => {
       searchData.value = searchMovieResponse.data.value.data?.results;
       searchDataMovie.value = searchMovieResponse.data.value.data?.movie;
       searchDataTv.value = searchMovieResponse.data.value.data?.tv;
@@ -91,7 +91,7 @@ watch(route, async () => {
     });
 });
 
-const handleChangeType = (activeKey) => {
+const handleChangeType = (activeKey: any) => {
   switch (activeKey?.target?.value ? activeKey?.target?.value : activeKey) {
     case 'all':
       searchData.value = searchDataMovie.value.concat(searchDataTv.value);
@@ -105,13 +105,13 @@ const handleChangeType = (activeKey) => {
   }
 };
 
-const onChangePage = async (pageSelected) => {
+const onChangePage = async (pageSelected: number) => {
   page.value = pageSelected;
   await useAsyncData(
     `search/all/${route.query?.q.replaceAll('+', ' ')}/${pageSelected}`,
     () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), pageSelected)
   )
-    .then((searchMovieResponse) => {
+    .then((searchMovieResponse: any) => {
       searchData.value = searchMovieResponse.data.value.data?.results;
       searchDataMovie.value = searchMovieResponse.data.value.data?.movie;
       searchDataTv.value = searchMovieResponse.data.value.data?.tv;

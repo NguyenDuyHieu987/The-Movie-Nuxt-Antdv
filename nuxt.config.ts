@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
+import vue from '@vitejs/plugin-vue';
 
 export default defineNuxtConfig({
   // nitro: {
@@ -70,10 +71,6 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        // {
-        //   rel: 'stylesheet',
-        //   href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css',
-        // },
         {
           rel: 'stylesheet',
           href: '/plugins/fontawesome-pro-6.0.0-alpha3/fontawesome6/pro/css/all.min.css',
@@ -84,10 +81,6 @@ export default defineNuxtConfig({
         },
       ],
       script: [
-        // {
-        //   src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js',
-        //   type: 'text/javascript',
-        // },
         {
           src: 'https://apis.google.com/js/platform.js',
           type: 'text/javascript',
@@ -108,8 +101,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    // API_CONTENT_SERVICE_URL: process.env.API_CONTENT_SERVICE_URL,
-    API_CONTENT_SERVICE_URL: 'http://127.0.0.1:5000',
+    API_CONTENT_SERVICE_URL: process.env.API_CONTENT_SERVICE_URL,
     API_IMAGE_SERVICE_URL: process.env.API_IMAGE_SERVICE_URL,
     TMDB_IMAGE_BASE_URL: process.env.TMDB_IMAGE_BASE_URL,
     public: {
@@ -163,12 +155,12 @@ export default defineNuxtConfig({
     '@/plugins/antd',
     '@/plugins/fontawesome',
     { src: '@/plugins/owlcarousel', mode: 'client' },
-    // '@/plugins/vue3carousel',
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/googlelogin',
     '@/plugins/vuelazyload',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
+    // vue({ script: { defineModel: true, propsDestructure: true } }),
   ],
   routeRules: {
     // '/**': { ssr: true },

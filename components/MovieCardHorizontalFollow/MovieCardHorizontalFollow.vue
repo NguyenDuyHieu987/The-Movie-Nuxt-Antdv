@@ -216,7 +216,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onBeforeMount, computed, h, onMounted } from 'vue';
 // import axios from 'axios';
 import {
@@ -232,28 +232,20 @@ import { ElMessage, ElMessageBox } from 'element-plus';
 import { message } from 'ant-design-vue';
 import { ViewFormatter } from '@/utils/convertViews';
 
-const props = defineProps({
-  item: {
-    type: Object,
-  },
-  index: {
-    type: Number,
-  },
-  type: {
-    type: String,
-  },
-  getDataWhenRemoveList: {
-    type: Function,
-  },
-});
+const props = defineProps<{
+  item: any;
+  index: number;
+  type: string | undefined;
+  getDataWhenRemoveList: (id: number) => void;
+}>();
 
-const store = useStore();
-const dataMovie = ref({});
-const isEpisodes = ref(false);
-const loading = ref(false);
-const isInHistory = ref(false);
-const percent = ref(0);
-const urlShare = computed(() => window.location);
+const store: any = useStore();
+const dataMovie = ref<any>({});
+const isEpisodes = ref<boolean>(false);
+const loading = ref<boolean>(false);
+const isInHistory = ref<boolean>(false);
+const percent = ref<number>(0);
+const urlShare = computed<string>((): string => window.location.href);
 
 onMounted(() => {
   const ant_btn = document.querySelectorAll('.action .viewmore-btn');
@@ -283,7 +275,7 @@ onBeforeMount(async () => {
         await useAsyncData(`movie/short/${props.item?.id}`, () =>
           getMovieById(props.item?.id)
         )
-          .then((movieResponed) => {
+          .then((movieResponed: any) => {
             dataMovie.value = movieResponed.data.value.data;
 
             loading.value = false;
@@ -299,7 +291,7 @@ onBeforeMount(async () => {
         await useAsyncData(`tv/short/${props.item?.id}`, () =>
           getTvById(props.item?.id)
         )
-          .then((tvResponed) => {
+          .then((tvResponed: any) => {
             dataMovie.value = tvResponed.data.value.data;
 
             loading.value = false;
@@ -319,7 +311,7 @@ onBeforeMount(async () => {
       await useAsyncData(`tv/short/${props.item?.id}`, () =>
         getTvById(props.item?.id)
       )
-        .then((tvResponed) => {
+        .then((tvResponed: any) => {
           dataMovie.value = tvResponed.data.value.data;
 
           loading.value = false;
@@ -333,7 +325,7 @@ onBeforeMount(async () => {
       await useAsyncData(`movie/short/${props.item?.id}`, () =>
         getMovieById(props.item?.id)
       )
-        .then((movieResponed) => {
+        .then((movieResponed: any) => {
           dataMovie.value = movieResponed.data.value.data;
 
           loading.value = false;
@@ -349,7 +341,7 @@ onBeforeMount(async () => {
     `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
     () => getItemHistory(store.$state?.userAccount?.id, props.item?.id)
   )
-    .then((movieRespone) => {
+    .then((movieRespone: any) => {
       if (movieRespone.data.value.data.success == true) {
         isInHistory.value = true;
         percent.value = movieRespone.data.value.data?.result?.percent;

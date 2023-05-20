@@ -35,7 +35,7 @@
           </span>
         </p>
         <p class="genres" v-if="item?.genres">
-          {{ Array?.from(item?.genres, (x) => x.name).join(' • ') }}
+          {{ Array?.from(item?.genres, (x: any) => x.name).join(' • ') }}
         </p>
         <p class="genres" v-else-if="item?.genre_ids">
           {{
@@ -68,7 +68,7 @@
   </NuxtLink>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // import axios from 'axios';
 import {
   getAllGenresById,
@@ -78,14 +78,12 @@ import {
 } from '@/services/MovieService';
 import { ViewFormatter } from '@/utils/convertViews';
 
-const props = defineProps({
-  item: {
-    type: Object,
-  },
-});
+const props = defineProps<{
+  item: any;
+}>();
 
-const isEpisodes = ref(false);
-const loading = ref(false);
+const isEpisodes = ref<boolean>(false);
+const loading = ref<boolean>(false);
 
 onBeforeMount(() => {
   loading.value = true;

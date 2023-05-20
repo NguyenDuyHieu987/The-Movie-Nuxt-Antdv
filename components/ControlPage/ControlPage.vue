@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
   page: {
     type: Number,
@@ -35,7 +35,7 @@ defineProps({
   },
 });
 const modelValue = defineModel();
-console.log(modelValue);
+// console.log(modelValue);
 </script>
 
 <style lang="scss" src="./ControlPage.scss"></style>

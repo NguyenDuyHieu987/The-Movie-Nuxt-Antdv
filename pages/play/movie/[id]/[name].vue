@@ -171,17 +171,13 @@
   </div>
 </template>
 
-<script setup>
-import { createVNode } from 'vue';
+<script setup lang="ts">
 import axios from 'axios';
 import {
   getBackdrop,
   getMovieById,
-  // getList,
   getItemList,
   getItemHistory,
-  addItemList,
-  removeItemList,
   add_update_History,
   UpdateViewMovie,
 } from '@/services/MovieService';
@@ -189,37 +185,30 @@ import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
 import {
-  // PlusOutlined,
-  QuestionCircleOutlined,
-} from '@ant-design/icons-vue';
-import { ElMessage } from 'element-plus';
-import {
-  Modal,
-  // message
-} from 'ant-design-vue';
-import { message } from 'ant-design-vue';
+  handelAddItemToList,
+  handelRemoveItemFromList,
+} from '@/utils/handelAddRemoveItemList';
 import Player from '@vimeo/player';
 
-const store = useStore();
-const route = useRoute();
+const store: any = useStore();
+const route: any = useRoute();
 const router = useRouter();
-const isEpisodes = ref(false);
-const dataMovie = ref({});
-const isOpenContent = ref(false);
-const urlComment = computed(() => window.location);
-const loading = ref(false);
-const urlCodeMovie = ref('809431505');
-const isAddToList = ref(false);
-// const dataAddToList = ref([]);
-const seconds = ref(0);
-const percent = ref(0);
-const duration = ref(0);
-const isPlayVideo = ref(false);
-const isUpdataView = ref(true);
-const isInHistory = ref(false);
-const dataItemHistory = ref({});
+const isEpisodes = ref<boolean>(false);
+const dataMovie = ref<any>({});
+const isOpenContent = ref<boolean>(false);
+const urlComment = computed<string>((): string => window.location.href);
+const loading = ref<boolean>(false);
+const urlCodeMovie = ref<string>('809431505');
+const isAddToList = ref<boolean>(false);
+const seconds = ref<number>(0);
+const percent = ref<number>(0);
+const duration = ref<number>(0);
+const isPlayVideo = ref<boolean>(false);
+const isUpdataView = ref<boolean>(true);
+const isInHistory = ref<boolean>(false);
+const dataItemHistory = ref<any>({});
 
-const internalInstance = getCurrentInstance();
+const internalInstance: any = getCurrentInstance();
 
 onBeforeRouteLeave(() => {
   if (isPlayVideo.value == true && store.$state.isLogin) {
@@ -278,16 +267,16 @@ onBeforeRouteLeave(() => {
 });
 
 onMounted(() => {
-  const iframe = document.querySelector('#vimeo-player');
+  const iframe = document.querySelector('#vimeo-player') as HTMLIFrameElement;
   const player = new Player(iframe);
 
-  player.on('play', function (e) {
+  player.on('play', function (e: any) {
     // alert('play');
     duration.value = e.duration;
     isPlayVideo.value = true;
   });
 
-  player.on('timeupdate', function (e) {
+  player.on('timeupdate', function (e: any) {
     if (e?.seconds > 0) {
       if (e.seconds > seconds.value && e.percent > percent.value) {
         if (seconds.value > e.duration - 6) {
@@ -325,19 +314,19 @@ const getData = async () => {
       'Phimhay247 - Xem phim - ' +
       Array?.from(
         route.params?.name?.split('+'),
-        (x) => x.charAt(0).toUpperCase() + x.slice(1)
+        (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
       ).join(' ')
         ? 'Phimhay247 - Xem phim - ' +
           Array?.from(
             route.params?.name?.split('+'),
-            (x) => x.charAt(0).toUpperCase() + x.slice(1)
+            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
           ).join(' ')
         : 'Phimhay247 - Xem phim - ' +
           Array?.from(
             route.params?.name?.split('+'),
-            (x) => x.charAt(0).toUpperCase() + x.slice(1)
+            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
           ).join(' '),
-    htmlAttrs: { lang: 'vi', amp: true },
+    htmlAttrs: { lang: 'vi' },
   });
 
   isEpisodes.value = false;
@@ -345,7 +334,7 @@ const getData = async () => {
   await useAsyncData(`movie/short/${route.params?.id}`, () =>
     getMovieById(route.params?.id)
   )
-    .then((movieResponed) => {
+    .then((movieResponed: any) => {
       dataMovie.value = movieResponed.data.value.data;
 
       loading.value = false;
@@ -362,7 +351,7 @@ const getData = async () => {
       `itemlist/${store.$state?.userAccount?.id}/${route.params?.id}`,
       () => getItemList(store.$state?.userAccount?.id, route.params?.id)
     )
-      .then((movieRespone) => {
+      .then((movieRespone: any) => {
         if (movieRespone.data.value.data.success == true) {
           isAddToList.value = true;
         }
@@ -375,7 +364,7 @@ const getData = async () => {
       `itemhistory/${store.$state?.userAccount?.id}/${route.params?.id}`,
       () => getItemHistory(store.$state?.userAccount?.id, route.params?.id)
     )
-      .then((movieRespone) => {
+      .then((movieRespone: any) => {
         if (movieRespone.data.value.data.success == true) {
           isInHistory.value = true;
           dataItemHistory.value = movieRespone.data.value.data?.result;
@@ -386,20 +375,6 @@ const getData = async () => {
       .catch((e) => {
         if (axios.isCancel(e)) return;
       });
-
-    // getList(store.$state?.userAccount?.id)
-    //   .then((movieRespone) => {
-    //     dataAddToList.value = movieRespone?.data?.items;
-
-    //     dataAddToList.value?.map((item) => {
-    //       if (item?.id == route.params?.id) {
-    //         isAddToList.value = true;
-    //       }
-    //     });
-    //   })
-    //   .catch((e) => {
-    //     if (axios.isCancel(e)) return;
-    //   });
   }
 };
 
@@ -426,92 +401,33 @@ const checkEmptyDataMovies = computed(() => {
 });
 
 const handelAddToList = () => {
-  if (!store.$state.isLogin) {
-    Modal.confirm({
-      title: 'Bạn cần đăng nhập để sử dụng chức năng này.',
-      icon: createVNode(QuestionCircleOutlined),
-      // content: createVNode('div', 'Bạn có muốn đăng nhập không?'),
-      content: createVNode('h3', {}, 'Đăng nhập ngay?'),
-      okText: 'Có',
-      okType: 'primary',
-      cancelText: 'Không',
-      centered: true,
-      onOk() {
-        navigateTo({ path: '/login' });
-      },
-      onCancel() {},
-      class: 'require-login-confirm',
-    });
-  } else {
-    if (isAddToList.value == false) {
-      isAddToList.value = true;
-      message.loading({ content: 'Đang thêm' });
-      addItemList(store.$state?.userAccount?.id, {
-        media_type: 'movie',
-        media_id: dataMovie.value?.id,
-      })
-        .then((response) => {
-          if (response.data.success == true) {
-            setTimeout(() => {
-              message.destroy();
-              ElMessage({
-                type: 'success',
-                message: `Thêm thành công!`,
-              });
-            }, 500);
-          } else {
-            message.destroy();
-            isAddToList.value = false;
-            ElMessage({
-              type: 'error',
-              message: `Thêm thất bại!`,
-            });
-          }
-        })
-        .catch((e) => {
-          message.destroy();
-          isAddToList.value = false;
-          ElMessage({
-            type: 'error',
-            message: `Thêm thất bại!`,
-          });
-          if (axios.isCancel(e)) return;
-        });
-    } else {
+  if (!store.$state?.isLogin) {
+    store.$state.openRequireAuthDialog = true;
+    return;
+  }
+  if (!isAddToList.value) {
+    isAddToList.value = true;
+    if (
+      !handelAddItemToList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id,
+        isEpisodes.value ? 'tv' : 'movie'
+      )
+    ) {
       isAddToList.value = false;
-      message.loading({ content: 'Đang xóa' });
-
-      removeItemList(store.$state?.userAccount?.id, {
-        media_id: dataMovie.value?.id,
-      })
-        .then((movieRespone) => {
-          if (movieRespone.data?.success == true) {
-            setTimeout(() => {
-              message.destroy();
-              ElMessage({
-                type: 'success',
-                message: `Xóa thành công!`,
-              });
-            }, 500);
-          } else {
-            message.destroy();
-            isAddToList.value = true;
-            ElMessage({
-              type: 'error',
-              message: `Xóa thất bại!`,
-            });
-          }
-        })
-        .catch((e) => {
-          message.destroy();
-          isAddToList.value = true;
-          ElMessage({
-            type: 'error',
-            message: `Xóa thất bại!`,
-          });
-          if (axios.isCancel(e)) return;
-        });
     }
+    return;
+  } else {
+    isAddToList.value = false;
+    if (
+      !handelRemoveItemFromList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id
+      )
+    ) {
+      isAddToList.value = true;
+    }
+    return;
   }
 };
 

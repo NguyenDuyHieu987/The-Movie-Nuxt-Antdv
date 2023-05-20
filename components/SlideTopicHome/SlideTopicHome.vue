@@ -50,20 +50,18 @@
     </el-carousel>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import axios from 'axios';
 import SlideTopicItem from '../SlideTopicItem/SlideTopicItem.vue';
 import { getTrending, getBackdrop } from '@/services/MovieService';
 
 // const trendings = ref([]);
 
-const props = defineProps({
-  trendings: {
-    type: Array,
-  },
-});
+const props = defineProps<{
+  trendings: any[];
+}>();
 
-const topicHome = ref();
+const topicHome = ref<any>();
 
 onBeforeMount(async () => {
   // await useAsyncData('trending/all/1', () => getTrending(1))
@@ -75,15 +73,16 @@ onBeforeMount(async () => {
   //   });
 });
 
-const handleSwitchCarouel = (e) => {
+const handleSwitchCarouel = (e: any) => {
   const el_carousel_topic_home = document.querySelector(
     '.el-carousel.topic-home'
-  );
+  ) as HTMLElement;
 
-  const index_silde_topic_item_active = el_carousel_topic_home.querySelector(
+  const index_silde_topic_item_active = el_carousel_topic_home?.querySelector(
     '.el-carousel__item.is-active'
-  );
-  let index = +index_silde_topic_item_active.getAttribute('index') + 1;
+  ) as HTMLElement;
+
+  let index = +index_silde_topic_item_active!.getAttribute('index')! + 1;
   if (index == 11) {
     index = 0;
   }
@@ -91,53 +90,59 @@ const handleSwitchCarouel = (e) => {
   const img_silde_topic_item_active =
     el_carousel_topic_home.getElementsByClassName(
       'el-carousel__item is-active'
-    )[0];
+    )[0] as HTMLElement;
 
-  const overlay_backdrop =
-    document.getElementsByClassName('overlay-backdrop')[0];
-  const img_overlay_backdrop = overlay_backdrop.querySelector('img');
+  const overlay_backdrop = document.getElementsByClassName(
+    'overlay-backdrop'
+  )[0] as HTMLElement;
+  const img_overlay_backdrop = overlay_backdrop.querySelector(
+    'img'
+  ) as HTMLImageElement;
 
   if (getComputedStyle(el_carousel_topic_home).display == 'block') {
     if (e == index) {
       if (index == 0) {
-        img_overlay_backdrop.src = el_carousel_topic_home.querySelectorAll(
-          '.el-carousel__item .el-image'
-        )[0].src;
+        img_overlay_backdrop.src =
+          el_carousel_topic_home.querySelectorAll<HTMLImageElement>(
+            '.el-carousel__item .el-image'
+          )[0].src;
       } else {
         if (img_silde_topic_item_active?.nextElementSibling) {
           img_overlay_backdrop.src =
-            img_silde_topic_item_active.nextElementSibling.querySelector(
+            img_silde_topic_item_active.nextElementSibling.querySelector<HTMLImageElement>(
               '.el-image'
-            ).src;
+            )!.src;
         }
       }
     } else {
       if (e == 10) {
-        img_overlay_backdrop.src = el_carousel_topic_home.querySelectorAll(
-          '.el-carousel__item .el-image'
-        )[10].src;
+        img_overlay_backdrop.src =
+          el_carousel_topic_home.querySelectorAll<HTMLImageElement>(
+            '.el-carousel__item .el-image'
+          )[10].src;
       } else {
         if (img_silde_topic_item_active?.previousElementSibling) {
           img_overlay_backdrop.src =
-            img_silde_topic_item_active.previousElementSibling.querySelector(
+            img_silde_topic_item_active.previousElementSibling.querySelector<HTMLImageElement>(
               '.el-image'
-            ).src;
+            )!.src;
         }
       }
     }
   }
 };
 
-const handleSwitchCarouelResponsive = (e) => {
+const handleSwitchCarouelResponsive = (e: any) => {
   const el_carousel_topic_home_responsive = document.querySelector(
     '.el-carousel.topic-home-responsive'
-  );
+  ) as HTMLElement;
 
   const index_silde_topic_item_active =
     el_carousel_topic_home_responsive.querySelector(
       '.el-carousel__item.is-active'
-    );
-  let index = +index_silde_topic_item_active.getAttribute('index') + 1;
+    ) as HTMLElement;
+
+  let index = +index_silde_topic_item_active!.getAttribute('index')! + 1;
   if (index == 11) {
     index = 0;
   }
@@ -147,37 +152,40 @@ const handleSwitchCarouelResponsive = (e) => {
       'el-carousel__item is-active'
     )[0];
 
-  const overlay_backdrop =
-    document.getElementsByClassName('overlay-backdrop')[0];
-  const img_overlay_backdrop = overlay_backdrop.querySelector('img');
+  const overlay_backdrop = document.getElementsByClassName(
+    'overlay-backdrop'
+  )[0] as HTMLElement;
+  const img_overlay_backdrop = overlay_backdrop.querySelector(
+    'img'
+  ) as HTMLImageElement;
 
   if (getComputedStyle(el_carousel_topic_home_responsive).display == 'block') {
     if (e == index) {
       if (index == 0) {
         img_overlay_backdrop.src =
-          el_carousel_topic_home_responsive.querySelectorAll(
+          el_carousel_topic_home_responsive.querySelectorAll<HTMLImageElement>(
             '.el-carousel__item .el-image img'
           )[0].src;
       } else {
         if (img_silde_topic_item_active?.nextElementSibling) {
           img_overlay_backdrop.src =
-            img_silde_topic_item_active.nextElementSibling.querySelector(
+            img_silde_topic_item_active.nextElementSibling.querySelector<HTMLImageElement>(
               '.el-image img'
-            ).src;
+            )!.src;
         }
       }
     } else {
       if (e == 10) {
         img_overlay_backdrop.src =
-          el_carousel_topic_home_responsive.querySelectorAll(
+          el_carousel_topic_home_responsive.querySelectorAll<HTMLImageElement>(
             '.el-carousel__item .el-image img'
           )[10].src;
       } else {
         if (img_silde_topic_item_active?.previousElementSibling) {
           img_overlay_backdrop.src =
-            img_silde_topic_item_active.previousElementSibling.querySelector(
+            img_silde_topic_item_active.previousElementSibling.querySelector<HTMLImageElement>(
               '.el-image img'
-            ).src;
+            )!.src;
         }
       }
     }

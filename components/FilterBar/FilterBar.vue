@@ -114,7 +114,7 @@
   </a-collapse>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {
   getAllGenre,
   getAllNational,
@@ -123,20 +123,22 @@ import {
   getAllSortBy,
 } from '@/services/MovieService';
 import axios from 'axios';
-// import listSortBy from '../constants/Sortby';
 import { CaretRightFilled } from '@ant-design/icons-vue';
+import type { genre, country, year, sortby } from '~/types';
 
-const emit = defineEmits('dataFiltered');
-const props = defineProps({
-  cancelFilter: {
-    type: Function,
-  },
-});
+const emit = defineEmits<{ dataFiltered: [data: any[], formSelect: any] }>();
+const props = defineProps<{
+  cancelFilter: () => void;
+}>();
 const modelValue = defineModel();
 
 // console.log(modelValue);
 
-const route = useRoute();
+const route: any = useRoute();
+const genres = ref<genre[]>([]);
+const years = ref<year[]>([]);
+const countries = ref<country[]>([]);
+const listSortBy = ref<sortby[]>([]);
 
 const movieType = computed(() => {
   if (route.params?.slug?.includes('movie')) {
@@ -167,17 +169,9 @@ const formSelect = reactive({
   pageFilter: 1,
 });
 
-// const movieType = computed(() => route.params.slug.replace('/', ''));
-// alert(movieType.value);
-
 watch(route, () => {
   resetFilter();
 });
-
-const genres = ref([]);
-const years = ref([]);
-const countries = ref([]);
-const listSortBy = ref([]);
 
 onBeforeMount(async () => {
   Promise.all([
@@ -186,11 +180,13 @@ onBeforeMount(async () => {
     await useAsyncData(`country/all`, () => getAllNational()),
     await useAsyncData(`sortby/all`, () => getAllSortBy()),
   ])
-    .then((response) => {
+    .then((response: any) => {
       genres.value = response[0].data.value.data;
-      years.value = response[1].data.value.data.sort((a, b) => {
-        return +b.name.slice(-4) - +a.name.slice(-4);
-      });
+      years.value = response[1].data.value.data.sort(
+        (a: year, b: year): number => {
+          return +b.name.slice(-4) - +a.name.slice(-4);
+        }
+      );
       countries.value = response[2].data.value.data;
       listSortBy.value = response[3].data.value.data;
     })
