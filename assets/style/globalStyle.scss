@@ -49,7 +49,7 @@
 
   --loading-progress-bar1: #1cb5e0;
   --loading-progress-bar2: #00dc82;
-  --loading-progress-bar3: #0047e1;
+  --loading-progress-bar3: #1cb5e0;
 
   --hover-regular-color: #002135;
   --hover-dropdown-color: #222222;
@@ -178,7 +178,7 @@ dl {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: textclip 3s linear infinite;
+    // animation: textclip 3s linear infinite;
     display: inline-block;
     font-family: 'Lobster', cursive;
     font-weight: 200;
