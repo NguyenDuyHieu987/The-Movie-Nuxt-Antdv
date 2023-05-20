@@ -113,11 +113,8 @@
             id="google-login-btn"
             size="large"
             :loading="loadingGoogleLogin"
-            @click="handleGoogleLogin1"
+            @click="handleGoogleLogin"
           >
-            <!-- <template #icon>
-                  <img src="/images/socials/icons8-google-48.png" alt="" />
-                </template> -->
             <el-icon class="el-icon--right">
               <img src="/images/socials/icons8-google-48.png" alt="" />
             </el-icon>
