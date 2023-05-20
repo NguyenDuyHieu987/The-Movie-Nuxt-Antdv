@@ -23,12 +23,15 @@
 }
 
 .login-container {
-  max-height: 100vh;
-  width: 100vw;
   display: flex;
-  align-items: center;
-  overflow-y: scroll;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   padding: 20px 0px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   .login-form-container {
     position: relative;
@@ -43,21 +46,18 @@
     //   0 9px 28px 8px #0000002d;
     box-shadow: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
       0 9px 28px 8px #00000077;
-    // border: 0.5px solid #919191;
     z-index: 1;
     background-color: var(--background-content-color);
-    overflow: hidden;
     width: 550px;
     min-height: 730px;
+    overflow: hidden;
 
     .login-form {
       position: absolute;
       inset: 3px;
       z-index: 3;
-      display: block;
       background-color: var(--background-content-color);
       padding: 40px 70px;
-      // overflow-y: scroll;
 
       .title-login {
         text-align: center;
