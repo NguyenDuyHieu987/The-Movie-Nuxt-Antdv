@@ -22,7 +22,7 @@
     >
       <div class="loading-page-container">
         <img src="/images/logo.png" alt="" />
-        <div class="logo"><h2>Phimhay247</h2></div>
+        <div class="logo"><h2 class="animated">Phimhay247</h2></div>
       </div>
     </div>
 

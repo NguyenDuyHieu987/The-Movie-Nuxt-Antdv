@@ -178,12 +178,15 @@ dl {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    // animation: textclip 3s linear infinite;
     display: inline-block;
     font-family: 'Lobster', cursive;
     font-weight: 200;
     font-size: 1.9em;
     user-select: none;
+
+    &.animated {
+      animation: textclip 3s linear infinite;
+    }
   }
 
   @keyframes textclip {

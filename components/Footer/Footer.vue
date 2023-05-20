@@ -3,7 +3,7 @@
     <div class="footer-container">
       <div class="logo">
         <NuxtLink :to="{ path: '/' }">
-          <img src="/images/film-reel.png" style="height: 50px" />
+          <img src="/images/logo.png" />
           <h1>Phimhay247</h1>
         </NuxtLink>
       </div>
