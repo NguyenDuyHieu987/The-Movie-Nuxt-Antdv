@@ -124,15 +124,11 @@
           v-model:visible="isOenModalTrailer"
           width="1300px"
           centered
-          @ok="isOenModalTrailer = false"
           class="modal-trailer"
+          :closable="false"
         >
-          <template #title>
-            <p>
-              Trailer:
-              {{ item?.name ? item?.name : item?.title }}
-            </p>
-          </template>
+          <CloseBtn @click="isOenModalTrailer = false" />
+
           <iframe
             height="650px"
             width="100%"
@@ -154,34 +150,18 @@
             frameBorder="{0}"
           />
           <template #footer>
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-              "
-            >
-              <div style="max-width: 70%">
-                <h3 style="display: flex">
+            <div class="content">
+              <div class="info">
+                <h3>
                   <strong> {{ item?.name ? item?.name : item?.title }}</strong>
                 </h3>
 
-                <p
-                  class="genres"
-                  style="
-                    display: flex;
-                    text-align: left;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    display: -webkit-box;
-                  "
-                >
+                <p class="overview">
                   {{ dataMovie?.overview }}
                 </p>
               </div>
               <div class="action">
-                <a-button key="back" size="large" @click="handleCancel"
+                <a-button size="large" type="text" @click="handleCancel"
                   >Đóng
                 </a-button>
                 <NuxtLink
@@ -195,7 +175,7 @@
                   }"
                   class="btn-play-now"
                 >
-                  <span> Xem ngay</span>
+                  Xem ngay
                 </NuxtLink>
                 <NuxtLink
                   v-else-if="!isEpisodes"
@@ -208,7 +188,7 @@
                   }"
                   class="btn-play-now"
                 >
-                  <span> Xem ngay</span>
+                  Xem ngay
                 </NuxtLink>
               </div>
             </div>
@@ -221,6 +201,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+import CloseBtn from '@/components/button/CloseBtn/CloseBtn.vue';
 import {
   getBackdrop,
   getTvById,

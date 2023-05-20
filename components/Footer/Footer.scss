@@ -22,6 +22,7 @@
     justify-content: center;
     flex-direction: column;
     color: #fff;
+    font-size: 1.6rem;
 
     .logo {
       a {
@@ -52,19 +53,30 @@
 
       a {
         color: #fff;
+        transition: all 0.25s;
       }
 
       .facebook {
-        color: #1890ff;
+        color: #d4d4d4;
+
         &:hover {
-          color: #188fffd2;
+          color: #fff;
+        }
+
+        &:active {
+          opacity: 0.8;
         }
       }
 
       .email {
-        color: #ff3300;
+        color: #d4d4d4;
+
         &:hover {
-          color: #ff3300f1;
+          color: #fff;
+        }
+
+        &:active {
+          opacity: 0.8;
         }
       }
     }

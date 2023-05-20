@@ -24,13 +24,17 @@
           :to="{ path: '/signup' }"
           @click="store.setCloseRequireAuthDialog()"
         >
-          <DefaultButton> Đăng ký </DefaultButton>
+          <a-button type="text" size="large" class="default">
+            Đăng ký
+          </a-button>
         </NuxtLink>
         <NuxtLink
           :to="{ path: '/login' }"
           @click="store.setCloseRequireAuthDialog()"
         >
-          <GradientButton> Đăng nhập </GradientButton>
+          <a-button type="text" size="large" class="default gradient">
+            Đăng nhập
+          </a-button>
         </NuxtLink>
       </template>
     </el-dialog>
@@ -38,8 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import GradientButton from '@/components/button/GradientButton/GradientButton.vue';
-import DefaultButton from '@/components/button/DefaultButton/DefaultButton.vue';
 import CloseBtn from '@/components/button/CloseBtn/CloseBtn.vue';
 
 const store = useStore();

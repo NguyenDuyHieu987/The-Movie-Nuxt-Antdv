@@ -393,18 +393,16 @@ dl {
   overflow: hidden;
 
   .ant-modal-content {
-    background-color: var(--background-content-color1);
+    background-color: var(--background-content-color);
+
+    .ant-modal-header {
+      background-color: var(--background-content-color);
+    }
 
     p,
     span,
     h3 {
       color: #fff;
-    }
-
-    .ant-modal-confirm-btns {
-      .ant-btn:first-child {
-        background-color: var(--btn-backgroud-color-gray1);
-      }
     }
   }
 }
@@ -508,7 +506,42 @@ dl {
   box-shadow: var(--input-border-color-focused);
 }
 
-.ant-btn {
+.ant-btn.default {
+  display: flex;
+  align-items: center;
+  border-color: var(--border-regular);
+  color: #fff;
+  transition: all 0.25s;
+  height: auto;
+  padding: 10px 35px;
+  border-radius: 3px;
+  background-color: transparent;
+
+  &.gradient {
+    background: linear-gradient(
+      to right,
+      var(--app-background-color3),
+      var(--app-background-color2),
+      var(--app-background-color3)
+    );
+    border: none;
+    background-size: 200% 100%;
+    padding: 11px 35px;
+
+    &:hover {
+      background-size: 200% 100%;
+      background-position: 100% center;
+    }
+  }
+
+  &:hover {
+    border-color: var(--btn-border-color-hover);
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+
   &::after {
     box-shadow: none !important;
   }

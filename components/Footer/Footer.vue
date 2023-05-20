@@ -16,7 +16,7 @@
       </p>
 
       <div class="support">
-        <p>Mọi thông tin liên quan vui lòng liên hệ qua:</p>
+        <p>Thông tin liên hệ:</p>
         <NuxtLink
           class="facebook"
           target="blank"

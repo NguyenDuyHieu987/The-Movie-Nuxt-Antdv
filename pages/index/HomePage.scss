@@ -56,18 +56,14 @@
       justify-content: space-between;
       align-items: center;
 
-      &::before {
-        // margin-left: 30px;
-      }
-
       .view-all {
-        font-size: 0.8vw;
+        font-size: 0.7em;
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
         background-image: linear-gradient(
           to right,
-          var(--sider-header-background-color2),
-          var(--sider-header-background-color3)
+          var(--app-background-color2),
+          var(--app-background-color3)
         );
         transition: all 0.25s;
         background-position: 100% center;

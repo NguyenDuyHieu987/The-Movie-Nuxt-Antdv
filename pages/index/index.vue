@@ -8,14 +8,13 @@
           v-show="nowPlayings?.length"
         >
           <strong>Phim nổi bật</strong>
-          <!-- <NuxtLink
+          <NuxtLink
             :to="{
               path: `/discover/movie/nowplaying`,
             }"
-            
           >
             <strong class="view-all">Xem tất cả</strong>
-          </NuxtLink> -->
+          </NuxtLink>
         </h2>
 
         <!-- :navText="[btnPrev, btnNext]" -->

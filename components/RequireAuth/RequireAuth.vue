@@ -3,15 +3,15 @@
     <a-result title="Bạn cần đăng nhập để sử dụng chức năng này" status="403">
       <template #extra>
         <NuxtLink :to="{ path: '/login' }">
-          <GradientButton size="large"> Đăng nhập ngay </GradientButton>
+          <a-button size="large" type="text" class="default gradient">
+            Đăng nhập ngay
+          </a-button>
         </NuxtLink>
       </template>
     </a-result>
   </div>
 </template>
 
-<script setup lang="ts">
-import GradientButton from '@/components/button/GradientButton/GradientButton.vue';
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss" src="./RequireAuth.scss"></style>

@@ -7,7 +7,9 @@
         </template>
         <template #extra>
           <NuxtLink :to="{ path: '/' }">
-            <GradientButton>Quay về trang chủ </GradientButton>
+            <a-button type="text" size="large" class="default gradient">
+              Quay về trang chủ
+            </a-button>
           </NuxtLink>
         </template>
       </a-result>
@@ -15,7 +17,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import GradientButton from '@/components/button/GradientButton/GradientButton.vue';
 defineProps(['error']);
 useHead({
   title: 'Error - 404 Not Found',
