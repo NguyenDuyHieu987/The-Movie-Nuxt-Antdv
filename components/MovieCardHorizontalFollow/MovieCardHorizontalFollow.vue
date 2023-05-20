@@ -5,7 +5,7 @@
       <template #template>
         <div class="item-skeleton">
           <div class="img-box">
-            <el-skeleton-item class="image-skeleton" variant="image" />
+            <el-skeleton-item class="image-skeleton" />
           </div>
           <div style="margin-top: 7px" class="info">
             <el-skeleton-item variant="text" style="width: 40%" />

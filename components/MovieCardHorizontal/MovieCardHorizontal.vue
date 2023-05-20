@@ -20,7 +20,7 @@
         <div class="img-box">
           <el-skeleton-item class="ant-image" />
         </div>
-        <div style="margin-top: 7px">
+        <div class="content-skeleton">
           <el-skeleton-item variant="text" />
           <el-skeleton-item variant="text" style="width: 60%" />
         </div>

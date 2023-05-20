@@ -671,33 +671,6 @@
     }
   }
 
-  .ant-tabs-nav-list {
-    .ant-tabs-tab {
-      .ant-tabs-tab-btn {
-        font-weight: bold;
-        font-size: 1.8rem;
-      }
-    }
-
-    .ant-tabs-tab-active {
-      .ant-tabs-tab-btn {
-        color: transparent;
-        display: inline;
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text;
-        background-image: linear-gradient(
-          to right,
-          var(--sider-header-background-color2),
-          var(--sider-header-background-color3)
-        );
-      }
-    }
-  }
-
-  .cast-suggest {
-    overflow: hidden;
-  }
-
   .widget-skeleton {
     margin-top: 15px;
 

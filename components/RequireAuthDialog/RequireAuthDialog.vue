@@ -10,9 +10,8 @@
       :show-close="false"
     >
       <template #header>
-        <Icon
-          name="ic:twotone-close"
-          class="close"
+        <CloseBtn
+          class="transparent"
           @click="store.setCloseRequireAuthDialog()"
         />
       </template>
@@ -41,6 +40,7 @@
 <script setup lang="ts">
 import GradientButton from '@/components/button/GradientButton/GradientButton.vue';
 import DefaultButton from '@/components/button/DefaultButton/DefaultButton.vue';
+import CloseBtn from '@/components/button/CloseBtn/CloseBtn.vue';
 
 const store = useStore();
 </script>

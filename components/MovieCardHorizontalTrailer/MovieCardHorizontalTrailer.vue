@@ -1,32 +1,32 @@
 <template>
-  <el-skeleton :loading="loading" animated class="movie-card-horizontal-item">
-    <template #template>
-      <div class="img-box">
-        <el-skeleton-item class="ant-image" variant="image" />
-      </div>
-      <div style="margin-top: 7px">
-        <el-skeleton-item variant="text" />
-        <el-skeleton-item variant="text" style="width: 60%" />
-      </div>
-    </template>
+  <NuxtLink
+    :to="{
+      path: isEpisodes
+        ? `/info/tv/${item?.id}/${
+            item?.name
+              ? item?.name?.replace(/\s/g, '+').toLowerCase()
+              : item?.title?.replace(/\s/g, '+').toLowerCase()
+          }`
+        : `/info/movie/${item?.id}/${
+            item?.name
+              ? item?.name?.replace(/\s/g, '+').toLowerCase()
+              : item?.title?.replace(/\s/g, '+').toLowerCase()
+          }`,
+    }"
+    class="movie-card-horizontal-item"
+  >
+    <el-skeleton :loading="loading" animated>
+      <template #template>
+        <div class="img-box">
+          <el-skeleton-item class="ant-image" />
+        </div>
+        <div class="content-skeleton">
+          <el-skeleton-item variant="text" />
+          <el-skeleton-item variant="text" style="width: 60%" />
+        </div>
+      </template>
 
-    <template #default>
-      <NuxtLink
-        :to="{
-          path: isEpisodes
-            ? `/info/tv/${item?.id}/${
-                item?.name
-                  ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                  : item?.title?.replace(/\s/g, '+').toLowerCase()
-              }`
-            : `/info/movie/${item?.id}/${
-                item?.name
-                  ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                  : item?.title?.replace(/\s/g, '+').toLowerCase()
-              }`,
-        }"
-        class="movie-card-horizontal-item"
-      >
+      <template #default>
         <div class="img-box">
           <el-image
             class="ant-image"
@@ -214,9 +214,9 @@
             </div>
           </template>
         </a-modal>
-      </NuxtLink>
-    </template>
-  </el-skeleton>
+      </template>
+    </el-skeleton>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">

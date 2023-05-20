@@ -1,0 +1,19 @@
+.icon.close {
+  position: absolute;
+  padding: 5px;
+  font-size: 4rem;
+  top: 10px;
+  right: 0;
+  transition: 0.25s;
+  cursor: pointer;
+  background-color: #1111116b;
+  border-radius: 50%;
+
+  &:active {
+    opacity: 0.8;
+  }
+
+  &.transparent {
+    background-color: transparent;
+  }
+}

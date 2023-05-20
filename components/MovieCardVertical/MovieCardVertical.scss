@@ -30,6 +30,16 @@
   position: relative;
   display: block;
 
+  .el-skeleton.is-animated {
+    .content-skeleton {
+      margin-top: 13px;
+
+      .el-skeleton__item.el-skeleton__text {
+        // height: 18px;
+      }
+    }
+  }
+
   .img-box {
     position: relative;
     // height: 260px;

@@ -2,5 +2,42 @@
   // overflow: hidden;
   .ant-tabs {
     overflow: visible;
+
+    .ant-tabs-nav-list {
+      .ant-tabs-tab {
+        &:hover {
+          .ant-tabs-tab-btn {
+            color: transparent;
+            display: inline;
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-image: linear-gradient(
+              to right,
+              var(--app-background-color2),
+              var(--app-background-color3)
+            );
+          }
+        }
+
+        .ant-tabs-tab-btn {
+          font-weight: bold;
+          font-size: 1.8rem;
+        }
+      }
+
+      .ant-tabs-tab-active {
+        .ant-tabs-tab-btn {
+          color: transparent;
+          display: inline;
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+          background-image: linear-gradient(
+            to right,
+            var(--app-background-color2),
+            var(--app-background-color3)
+          );
+        }
+      }
+    }
   }
 }

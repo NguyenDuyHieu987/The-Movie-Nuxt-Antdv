@@ -109,35 +109,47 @@ const responsiveCarousel = ref<any>({
     slidesPerView: 2,
     slidesPerGroup: 2,
   },
-  500: {
+  450: {
     slidesPerView: 3,
     slidesPerGroup: 3,
   },
-  650: {
+  600: {
+    slidesPerView: 4,
+    slidesPerGroup: 4,
+  },
+  700: {
+    slidesPerView: 5,
+    slidesPerGroup: 5,
+  },
+  900: {
     slidesPerView: 4,
     slidesPerGroup: 4,
   },
   1000: {
-    slidesPerView: 4,
-    slidesPerGroup: 4,
-  },
-  1100: {
     slidesPerView: 5,
     slidesPerGroup: 5,
   },
-  1400: {
+  1100: {
     slidesPerView: 6,
     slidesPerGroup: 6,
   },
-  1550: {
+  1300: {
     slidesPerView: 7,
     slidesPerGroup: 7,
   },
-  1700: {
+  1550: {
     slidesPerView: 8,
     slidesPerGroup: 8,
+  },
+  1700: {
+    slidesPerView: 9,
+    slidesPerGroup: 9,
+  },
+  2000: {
+    slidesPerView: 10,
+    slidesPerGroup: 10,
   },
 });
 </script>
 
-<style lang="scss" scoped src="./CastCrew.scss"></style>
+<style lang="scss" src="./CastCrew.scss"></style>

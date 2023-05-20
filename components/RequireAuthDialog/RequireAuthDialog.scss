@@ -4,22 +4,10 @@
   border-radius: 5px;
   box-shadow: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
     0 9px 28px 8px #00000077;
+  background-color: var(--background-content-color);
 
   .el-dialog__header {
     position: relative;
-    .icon.close {
-      position: absolute;
-      padding: 5px;
-      font-size: 4rem;
-      top: 10px;
-      right: 0;
-      transition: 0.25s;
-      cursor: pointer;
-
-      &:active {
-        opacity: 0.8;
-      }
-    }
   }
 
   .el-dialog__body {
@@ -51,7 +39,8 @@
     justify-content: center;
 
     .ant-btn {
-      padding: 10px 50px;
+      padding-left: 50px;
+      padding-right: 50px;
     }
   }
 }
