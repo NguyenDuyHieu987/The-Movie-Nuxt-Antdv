@@ -147,7 +147,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {
   UserOutlined,
   LockOutlined,
@@ -168,17 +168,16 @@ definePageMeta({
   layout: 'auth',
 });
 
-const store = useStore();
-const loadingLogin = ref(false);
-const loadingFacebookLogin = ref(false);
-const loadingGoogleLogin = ref(false);
-const router = useRouter();
-const formState = reactive({
+const store: any = useStore();
+const loadingLogin = ref<boolean>(false);
+const loadingFacebookLogin = ref<boolean>(false);
+const loadingGoogleLogin = ref<boolean>(false);
+const formState = reactive<any>({
   username: '',
   password: '',
   remember: false,
 });
-const tokenClient = ref({});
+const tokenClient = ref<any>({});
 
 const reset = () => {
   formState.username = '';
@@ -188,7 +187,7 @@ const reset = () => {
 
 useHead({
   title: 'Phimhay247 - Đăng nhập',
-  htmlAttrs: { lang: 'vi', amp: true },
+  htmlAttrs: { lang: 'vi' },
 });
 
 const onFinish = () => {
@@ -199,24 +198,12 @@ const onFinishFailed = () => {
   // console.log('Failed:', errorInfo);
 };
 
-const disabled = computed(() => {
+const disabled = computed<boolean>((): boolean => {
   return !(
     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formState.username) &&
     formState.password
   );
 });
-
-// const rand = function () {
-//   return Math.random().toString(36).substring(2); // remove `0.`
-// };
-
-// const token = function () {
-//   return rand() + rand() + rand() + rand(); // to make it longer
-// };
-
-// const randomToken = require('random-token').create(
-//   'abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-// );
 
 const handleSubmit = () => {
   loadingLogin.value = true;
@@ -231,7 +218,7 @@ const handleSubmit = () => {
         // user_token: randomToken(40),
       })
   )
-    .then((response) => {
+    .then((response: any) => {
       if (response.data.value.data?.isLogin == true) {
         store.$state.isLogin = true;
         store.$state.userAccount = response.data.value.data?.result;
@@ -263,7 +250,7 @@ const handleSubmit = () => {
 
         setTimeout(() => {
           loadingLogin.value = false;
-          router.push({ path: '/' });
+          navigateTo({ path: '/' });
         }, 1000);
         // }
 
@@ -322,7 +309,7 @@ const handleSubmit = () => {
 };
 
 const handleFacebookLogin = async () => {
-  const { authResponse } = await new Promise(window.FB.login);
+  const { authResponse }: any = await new Promise(window.FB.login);
 
   if (!authResponse) return;
 
@@ -339,7 +326,7 @@ const handleFacebookLogin = async () => {
       accessToken: authResponse.accessToken,
     })
   )
-    .then((response) => {
+    .then((response: any) => {
       // console.log(response.data.value.data?.result);
 
       if (response.data.value.data.isSignUp == true) {
@@ -361,7 +348,7 @@ const handleFacebookLogin = async () => {
         );
 
         loadingFacebookLogin.value = false;
-        router.push({ path: '/' });
+        navigateTo({ path: '/' });
       } else if (response.data.value.data.isLogin == true) {
         store.$state.userAccount = response.data.value.data?.result;
         store.$state.isLogin = true;
@@ -373,7 +360,7 @@ const handleFacebookLogin = async () => {
         );
 
         loadingFacebookLogin.value = false;
-        router.push({ path: '/' });
+        navigateTo({ path: '/' });
       } else if (response.data.value.data.isLogin == false) {
         loadingFacebookLogin.value = false;
         ElNotification.error({
@@ -401,71 +388,28 @@ const handleFacebookLogin = async () => {
     });
 };
 
-const handleGoogleLogin = (response) => {
-  console.log('Handle the response', response);
-  // axios
-  //   .get(`https://www.googleapis.com/oauth2/v3/userinfo`, {
-  //     headers: {
-  //       Authorization: `Bearer ${response?.credential}`,
-  //       Accept: 'application/json',
-  //     },
-  //   })
-  //   .then((userInfo) => {
-  //     console.log(userInfo.data);
-  //   });
-};
-
 onMounted(() => {
-  // console.log(store.$state.userAccount);
-
-  // const gapi = window.gapi;
-  // let auth2;
-  // gapi.load('auth2', function () {
-  //   auth2 = gapi.auth2.init({
-  //     client_id:
-  //       '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
-  //     // cookiepolicy: 'single_host_origin',
-  //     scope: 'profile email',
-  //   });
-  //   attachSignin(document.getElementById('google-login-btn'));
-  // });
-
-  // function attachSignin(element) {
-  //   auth2.attachClickHandler(
-  //     element,
-  //     {},
-  //     function (googleUser) {
-  //       console.log(googleUser.getBasicProfile());
-  //     },
-  //     function (error) {
-  //       console.log(
-  //         'error google login: ' + JSON.stringify(error, undefined, 2)
-  //       );
-  //     }
-  //   );
-  // }
-
   const google = window.google;
   google.accounts.id.initialize({
     client_id:
       '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
-    callback: handleGoogleLogin1,
+    callback: handleGoogleLogin,
   });
 
-  google.accounts.id.renderButton(
-    document.getElementById('google-login-btn1'),
-    {
-      theme: 'outline',
-      size: 'large',
-    }
-  );
+  // google.accounts.id.renderButton(
+  //   document.getElementById('google-login-btn1') as HTMLElement,
+  //   {
+  //     theme: 'outline',
+  //     size: 'large',
+  //   }
+  // );
 
   tokenClient.value = google.accounts.oauth2.initTokenClient({
     client_id:
       '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
     scope:
       'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-    callback: (authResponse) => {
+    callback: (authResponse: any) => {
       if (authResponse && authResponse?.access_token) {
         loadingGoogleLogin.value = true;
 
@@ -474,7 +418,7 @@ onMounted(() => {
             accessToken: authResponse?.access_token,
           })
         )
-          .then((response) => {
+          .then((response: any) => {
             if (response.data.value.data.isSignUp == true) {
               ElNotification.success({
                 title: 'Thành công!',
@@ -498,7 +442,7 @@ onMounted(() => {
               );
 
               loadingGoogleLogin.value = false;
-              router.push({ path: '/' });
+              navigateTo({ path: '/' });
             } else if (response.data.value.data.isLogin == true) {
               store.$state.userAccount = response.data.value.data?.result;
               store.$state.isLogin = true;
@@ -512,7 +456,7 @@ onMounted(() => {
               );
 
               loadingGoogleLogin.value = false;
-              router.push({ path: '/' });
+              navigateTo({ path: '/' });
             } else if (response.data.value.data.isLogin == false) {
               loadingGoogleLogin.value = false;
               ElNotification.error({
@@ -538,16 +482,6 @@ onMounted(() => {
             });
             if (axios.isCancel(e)) return;
           });
-
-        // axios
-        //   .get('https://www.googleapis.com/oauth2/v3/userinfo', {
-        //     headers: {
-        //       Authorization: `Bearer ${authResponse.access_token}`,
-        //     },
-        //   })
-        //   .then((userAccount) => {
-        //     console.log(userAccount.data);
-        //   });
       }
     },
   });
@@ -555,7 +489,7 @@ onMounted(() => {
   google.accounts.id.prompt();
 });
 
-const handleGoogleLogin1 = () => {
+const handleGoogleLogin = () => {
   tokenClient.value.requestAccessToken();
 };
 </script>

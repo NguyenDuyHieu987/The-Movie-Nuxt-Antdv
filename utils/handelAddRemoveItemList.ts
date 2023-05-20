@@ -13,7 +13,7 @@ export function handelAddItemToList(
     media_type: media_type,
     media_id: movieId,
   })
-    .then((response) => {
+    .then((response: any) => {
       if (response.data.success == true) {
         setTimeout(() => {
           message.destroy();
@@ -48,7 +48,7 @@ export function handelRemoveItemFromList(accountId: string, movieId: number) {
   return removeItemList(accountId, {
     media_id: movieId,
   })
-    .then((movieRespone) => {
+    .then((movieRespone: any) => {
       if (movieRespone.data?.success == true) {
         setTimeout(() => {
           message.destroy();

@@ -243,7 +243,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import {
   UserOutlined,
   LockOutlined,
@@ -265,8 +265,7 @@ definePageMeta({
   layout: 'auth',
 });
 
-const router = useRouter();
-const formState = reactive({
+const formState = reactive<any>({
   id: '',
   fullname: '',
   username: '',
@@ -275,18 +274,18 @@ const formState = reactive({
   email: '',
   avatar: '',
 });
-const formStateVerify = reactive({
+const formStateVerify = reactive<any>({
   email: '',
   otp: '',
 });
 
-const loadingSignUp = ref(false);
-const loadingVerify = ref(false);
-const isSignUp = ref(false);
-const jwtToken_VerifyEmail = ref('');
-const disabled_countdown = ref(true);
-const loadingResend = ref(false);
-const countdown = ref('60 s');
+const loadingSignUp = ref<boolean>(false);
+const loadingVerify = ref<boolean>(false);
+const isSignUp = ref<boolean>(false);
+const jwtToken_VerifyEmail = ref<string>('');
+const disabled_countdown = ref<boolean>(true);
+const loadingResend = ref<boolean>(false);
+const countdown = ref<string>('60 s');
 
 watch(isSignUp, () => {
   // alert('g');
@@ -352,7 +351,7 @@ const reset = () => {
 
 useHead({
   title: 'Phimhay247 - Đăng ký',
-  htmlAttrs: { lang: 'vi', amp: true },
+  htmlAttrs: { lang: 'vi' },
 });
 
 const onFinish = () => {
@@ -363,7 +362,7 @@ const onFinishFailed = () => {
   // console.log('Failed:', errorInfo);
 };
 
-const disabled = computed(() => {
+const disabled = computed<boolean>((): boolean => {
   return !(
     formState.fullname &&
     formState.username &&
@@ -374,11 +373,11 @@ const disabled = computed(() => {
   );
 });
 
-const disabledVerifyEmail = computed(() => {
+const disabledVerifyEmail = computed<boolean>((): boolean => {
   return !(formStateVerify.email && formStateVerify.otp.length == 6);
 });
 
-const checkConfirmPassword = async (_rule, value) => {
+const checkConfirmPassword = async (_rule: any, value: string) => {
   if (value !== formState.password) {
     return Promise.reject('Mật khẩu không khớp!');
   } else {
@@ -427,7 +426,7 @@ const handleSignUp = () => {
     full_name: formState.fullname,
     avatar: formState.avatar,
   })
-    .then((response) => {
+    .then((response: any) => {
       // console.log(response.data);
       // console.log(response.headers.get('Authorization'));
 
@@ -522,7 +521,7 @@ const handleResendVerifyEmail = () => {
     full_name: formState.fullname,
     avatar: formState.avatar,
   })
-    .then((response) => {
+    .then((response: any) => {
       // console.log(response.data);
       // console.log(response.headers.get('Authorization'));
 
@@ -607,110 +606,6 @@ const handleResendVerifyEmail = () => {
 const handleVerify = () => {
   loadingVerify.value = true;
 
-  // signUp({
-  //   id: Date.now(),
-  //   username: formState.username,
-  //   email: formState.email,
-  //   // password: md5(formState.password),
-  //   password: encryptPassword(formState.password),
-  //   full_name: formState.fullname,
-  //   avatar: `${Math.floor(Math.random() * 10) + 1}`,
-  // })
-  //   .then((response) => {
-  //     // console.log(response.data);
-  //     if (response.data?.isInValidEmail == true) {
-  //       loadingSignUp.value = false;
-
-  //       ElNotification.error({
-  //         title: 'Lỗi!',
-  //         message: 'Email không tồn tại.',
-  //         icon: () =>
-  //           h(CloseCircleFilled, {
-  //             style: 'color: red',
-  //           }),
-  //       });
-  //     } else if (response?.data?.isSignUp === true) {
-  //       // setTimeout(() => {
-  //       loadingSignUp.value = false;
-  //       // notification.open({
-  //       //   message: 'Thành công!',
-  //       //   description:
-  //       //     'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
-  //       //   icon: () =>
-  //       //     h(CheckCircleFilled, {
-  //       //       style: 'color: green',
-  //       //     }),
-  //       // });
-
-  //       ElNotification.success({
-  //         title: 'Thành công!',
-  //         message: 'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
-  //         icon: () =>
-  //           h(CheckCircleFilled, {
-  //             style: 'color: green',
-  //           }),
-  //       });
-  //       router.push({ path: '/login' });
-  //       // }, 1000);
-  //       reset();
-  //     } else if (response.data?.isEmailExist == true) {
-  //       // setTimeout(() => {
-  //       loadingSignUp.value = false;
-  //       // notification.open({
-  //       //   message: 'Lỗi!',
-  //       //   description: 'Email đã được đăng ký.',
-  //       //   icon: () =>
-  //       //     h(CheckCircleFilled, {
-  //       //       style: 'color: red',
-  //       //     }),
-  //       // });
-
-  //       ElNotification.error({
-  //         title: 'Lỗi!',
-  //         message: 'Email đã được đăng ký.',
-  //         icon: () =>
-  //           h(CloseCircleFilled, {
-  //             style: 'color: red',
-  //           }),
-  //       });
-  //       // }, 1000);
-  //     } else {
-  //       loadingSignUp.value = false;
-
-  //       ElNotification.error({
-  //         title: 'Failed!',
-  //         message: 'Some thing went wrong.',
-  //         icon: () =>
-  //           h(CloseCircleFilled, {
-  //             style: 'color: red',
-  //           }),
-  //       });
-  //     }
-  //   })
-  //   .catch((e) => {
-  //     setTimeout(() => {
-  //       loadingSignUp.value = false;
-  //       // notification.open({
-  //       //   message: 'Failed!',
-  //       //   description: 'Some thing went wrong.',
-  //       //   icon: () =>
-  //       //     h(CloseCircleFilled, {
-  //       //       style: 'color: red',
-  //       //     }),
-  //       // });
-
-  //       ElNotification.error({
-  //         title: 'Failed!',
-  //         message: 'Some thing went wrong.',
-  //         icon: () =>
-  //           h(CloseCircleFilled, {
-  //             style: 'color: red',
-  //           }),
-  //       });
-  //     }, 1000);
-  //     if (axios.isCancel(e)) return;
-  //   });
-
   signUp({
     otp: formStateVerify.otp,
     user_token: jwtToken_VerifyEmail.value,
@@ -729,7 +624,7 @@ const handleVerify = () => {
                 style: 'color: green',
               }),
           });
-          router.push({ path: '/login' });
+          navigateTo({ path: '/login' });
         }, 1000);
         reset();
       } else if (response.data?.isInvalidOTP == true) {

@@ -2,10 +2,10 @@
   <div>This is Billing page</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 useHead({
   title: 'Phimhay247 - Billing',
-  htmlAttrs: { lang: 'vi', amp: true },
+  htmlAttrs: { lang: 'vi' },
 });
 </script>
 

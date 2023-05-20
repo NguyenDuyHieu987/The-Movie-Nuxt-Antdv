@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import MovieCardVertical from '@/components/MovieCardVertical/MovieCardVertical.vue';
 import RankSide from '@/components/RankSide/RankSide.vue';
 import ControlPage from '@/components/ControlPage/ControlPage.vue';
@@ -35,15 +35,15 @@ import { getTrending } from '@/services/MovieService';
 import axios from 'axios';
 
 const router = useRouter();
-const route = useRoute();
-const trendings = ref([]);
-const pageTrending = ref(route?.query?.page ? route?.query?.page : 1);
-const totalPage = ref(100);
-const internalInstance = getCurrentInstance();
+const route: any = useRoute();
+const trendings = ref<any[]>([]);
+const pageTrending = ref<number>(route?.query?.page ? route?.query?.page : 1);
+const totalPage = ref<number>(100);
+const internalInstance: any = getCurrentInstance();
 
 useHead({
   title: 'Phimhay247 - Xếp hạng',
-  htmlAttrs: { lang: 'vi', amp: true },
+  htmlAttrs: { lang: 'vi' },
 });
 
 onBeforeMount(async () => {
@@ -52,7 +52,7 @@ onBeforeMount(async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )
-    .then((movieRespone) => {
+    .then((movieRespone: any) => {
       trendings.value = movieRespone.data.value.data?.results;
       totalPage.value = movieRespone.data.value.data?.total_pages * 10;
 
@@ -69,7 +69,7 @@ watch(pageTrending, async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )
-    .then((movieRespone) => {
+    .then((movieRespone: any) => {
       trendings.value = movieRespone.data.value.data?.results;
     })
     .catch((e) => {
@@ -77,10 +77,7 @@ watch(pageTrending, async () => {
     });
 });
 
-const onChangePage = (
-  pageSelected
-  // pageSize
-) => {
+const onChangePage = (pageSelected: number) => {
   router.push({ query: { page: pageSelected } });
 };
 </script>

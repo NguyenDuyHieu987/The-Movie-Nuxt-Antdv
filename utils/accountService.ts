@@ -10,37 +10,6 @@ export const accountService = {
   apiAuthenticate,
 };
 
-// async function generateJwtToken(data) {
-//   const header = {
-//     alg: 'HS256',
-//     typ: 'JWT',
-//   };
-//   // const encodedHeaders = btoa(JSON.stringify(header));
-
-//   // const tokenPayload = {
-//   //   exp: Math.round(new Date(Date.now() + 15 * 60 * 1000).getTime() / 1000),
-//   //   id: data.id,
-//   // };
-//   // const encodedPlayload = btoa(JSON.stringify(tokenPayload));
-
-//   // const signature = Base64.stringify(
-//   //   hmacSHA256(`${encodedHeaders}.${encodedPlayload}`, 'mysecret')
-//   // );
-
-//   // const encodedSignature = signature;
-
-//   // const jwt = `${encodedHeaders}.${encodedPlayload}.${encodedSignature}`;
-
-//   const secret = new TextEncoder().encode('hieusen123');
-
-//   const jwt = await new jose.SignJWT({ id: data.id })
-//     .setProtectedHeader(header)
-//     .setExpirationTime('2h')
-//     .sign(secret);
-
-//   return jwt;
-// }
-
 async function authenticateFacebook(accessToken: string) {
   return await axios
     .get(
@@ -65,14 +34,3 @@ function apiAuthenticate(accessToken: string) {
   // startAuthenticateTimer();
   return account;
 }
-
-// const startAuthenticateTimer = () => {
-//   // parse json object from base64 encoded jwt token
-//   const jwtToken = JSON.parse(atob(accountSubject.value.token.split('.')[1]));
-
-//   // set a timeout to re-authenticate with the api one minute before the token expires
-//   const expires = new Date(jwtToken.exp * 1000);
-//   const timeout = expires.getTime() - Date.now() - 60 * 1000;
-//   const { accessToken } = window.FB.getAuthResponse();
-//   setTimeout(() => apiAuthenticate(accessToken), timeout);
-// };

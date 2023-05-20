@@ -14,12 +14,12 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
-import GradientButton from '@/components/button/GradientButton';
+<script setup lang="ts">
+import GradientButton from '@/components/button/GradientButton/GradientButton.vue';
 defineProps(['error']);
 useHead({
   title: 'Error - 404 Not Found',
-  htmlAttrs: { lang: 'vi', amp: true },
+  htmlAttrs: { lang: 'vi' },
 });
 </script>
 

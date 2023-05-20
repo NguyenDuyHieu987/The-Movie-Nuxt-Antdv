@@ -358,7 +358,7 @@ const handleRemoveFromList = () => {
   removeItemList(store.$state?.userAccount?.id, {
     media_id: props.item?.id,
   })
-    .then((movieRespone) => {
+    .then((movieRespone: any) => {
       if (movieRespone.data?.success == true) {
         setTimeout(() => {
           // props.getDataWhenRemoveList(movieRespone.data?.results);

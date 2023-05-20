@@ -530,7 +530,7 @@ const handelAddToList = () => {
     removeItemList(store.$state?.userAccount?.id, {
       media_id: dataMovie.value?.id,
     })
-      .then((movieRespone) => {
+      .then((movieRespone: any) => {
         if (movieRespone.data?.success == true) {
           setTimeout(() => {
             message.destroy();
@@ -566,7 +566,7 @@ const handleRemoveFromHistory = () => {
   removeItemHistory(store.$state?.userAccount?.id, {
     media_id: props.item?.id,
   })
-    .then((movieRespone) => {
+    .then((movieRespone: any) => {
       if (movieRespone.data?.success == true) {
         setTimeout(() => {
           // props.getDataWhenRemoveHistory(movieRespone.data?.results);
