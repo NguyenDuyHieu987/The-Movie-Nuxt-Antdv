@@ -32,12 +32,13 @@
         />
       </div>
 
-      <ControlPage
+      <!-- <ControlPage
         v-show="searchData?.length"
         :page="page"
-        :total="100"
+        :total="totalPage"
+        :pageSize="pageSize"
         :onChangePage="onChangePage"
-      />
+      /> -->
     </section>
   </div>
 </template>
@@ -55,6 +56,8 @@ const searchDataMovie = ref<any[]>([]);
 const searchDataTv = ref<any[]>([]);
 const activeTabSearch = ref<string>('all');
 const page = ref<number>(1);
+const totalPage = ref<number>(100);
+const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
 
 onBeforeMount(async () => {
@@ -66,6 +69,8 @@ onBeforeMount(async () => {
   )
     .then((searchMovieResponse: any) => {
       searchData.value = searchMovieResponse.data.value.data?.results;
+      totalPage.value = searchMovieResponse.data.value.data?.total;
+      pageSize.value = searchMovieResponse.data.value.data?.page_size;
       searchDataMovie.value = searchMovieResponse.data.value.data?.movie;
       searchDataTv.value = searchMovieResponse.data.value.data?.tv;
       internalInstance.appContext.config.globalProperties.$Progress.finish();

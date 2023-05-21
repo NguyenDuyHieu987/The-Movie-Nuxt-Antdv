@@ -4,6 +4,7 @@
       class="pagination"
       :current="page"
       :total="total"
+      :pageSize="pageSize"
       :showSizeChanger="false"
       :responsive="true"
       @change="onChangePage"
@@ -29,6 +30,9 @@ defineProps({
   total: {
     type: Number,
     default: 100,
+  },
+  pageSize: {
+    type: Number,
   },
   onChangePage: {
     type: Function,

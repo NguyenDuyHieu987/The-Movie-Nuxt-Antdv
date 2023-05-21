@@ -111,7 +111,7 @@ const randomRecommend = ref<number>(Math.floor(Math.random() * 50) + 1);
 //   },
 // });
 
-const responsive = computed(() => ({
+const responsive = computed<any>((): any => ({
   0: {
     slidesPerView: 2,
     slidesPerGroup: 2,

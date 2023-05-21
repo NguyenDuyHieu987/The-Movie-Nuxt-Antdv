@@ -37,6 +37,7 @@
       v-show="dataDiscover?.length"
       :page="page"
       :total="totalPage"
+      :pageSize="pageSize"
       :onChangePage="onChangePage"
     />
   </div>
@@ -73,6 +74,7 @@ const store: any = useStore();
 const dataDiscover = ref<any[]>();
 const page = ref<number>(route.query?.page ? +route.query?.page : 1);
 const totalPage = ref<number>(100);
+const pageSize = ref<number>(20);
 const isFilter = ref<boolean>(false);
 const loading = ref<boolean>(false);
 const formFilterSelect = ref<formFilter | any>({});
@@ -104,6 +106,7 @@ const getData = async () => {
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value = movieResponse.data.value.data?.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
@@ -117,8 +120,8 @@ const getData = async () => {
               )
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
-                  totalPage.value =
-                    movieResponse.data.value.data.total_pages * 10;
+                  totalPage.value = movieResponse.data.value.data?.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
@@ -132,8 +135,8 @@ const getData = async () => {
               )
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
-                  totalPage.value =
-                    movieResponse.data.value.data.total_pages * 10;
+                  totalPage.value = movieResponse.data.value.data?.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
@@ -147,8 +150,8 @@ const getData = async () => {
               )
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
-                  totalPage.value =
-                    movieResponse.data.value.data.total_pages * 10;
+                  totalPage.value = movieResponse.data.value.data.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
@@ -162,8 +165,8 @@ const getData = async () => {
               )
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
-                  totalPage.value =
-                    movieResponse.data.value.data.total_pages * 10;
+                  totalPage.value = movieResponse.data.value.data.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
@@ -184,6 +187,7 @@ const getData = async () => {
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
                   totalPage.value = movieResponse.data.value.data?.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
@@ -199,8 +203,8 @@ const getData = async () => {
               )
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
-                  totalPage.value =
-                    movieResponse.data.value.data.total_pages * 10;
+                  totalPage.value = movieResponse.data.value.data?.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
@@ -214,8 +218,8 @@ const getData = async () => {
               )
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
-                  totalPage.value =
-                    movieResponse.data.value.data.total_pages * 10;
+                  totalPage.value = movieResponse.data.value.data?.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
@@ -229,8 +233,8 @@ const getData = async () => {
               )
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
-                  totalPage.value =
-                    movieResponse.data.value.data.total_pages * 10;
+                  totalPage.value = movieResponse.data.value.data?.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
@@ -244,8 +248,8 @@ const getData = async () => {
               )
                 .then((movieResponse: any) => {
                   dataDiscover.value = movieResponse.data.value.data?.results;
-                  totalPage.value =
-                    movieResponse.data.value.data.total_pages * 10;
+                  totalPage.value = movieResponse.data.value.data?.total;
+                  pageSize.value = movieResponse.data.value.data?.page_size;
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;

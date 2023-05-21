@@ -22,16 +22,12 @@
         <NuxtLink
           :to="{
             path: isEpisodes
-              ? `/info/tv/${item?.id}/${
-                  item?.name
-                    ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                    : item?.title?.replace(/\s/g, '+').toLowerCase()
-                }`
-              : `/info/movie/${item?.id}/${
-                  item?.name
-                    ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                    : item?.title?.replace(/\s/g, '+').toLowerCase()
-                }`,
+              ? `/info/tv/${item?.id}/${item?.name
+                  ?.replace(/\s/g, '+')
+                  .toLowerCase()}`
+              : `/info/movie/${item?.id}/${item?.name
+                  ?.replace(/\s/g, '+')
+                  .toLowerCase()}`,
           }"
           class="movie-follow-item"
         >
@@ -55,7 +51,7 @@
           <div class="info">
             <h2 class="title">
               <strong>
-                {{ item?.name ? item?.name : item?.title }}
+                {{ item?.name }}
                 <strong v-if="isEpisodes">
                   {{
                     ' - Phần ' + dataMovie?.last_episode_to_air?.season_number
@@ -64,11 +60,7 @@
               </strong>
             </h2>
 
-            <!-- <p class="release-date">
-        Năm:
-        {{ dataMovie?.release_date ? dataMovie?.release_date : dataMovie?.first_air_date }}
-      </p> -->
-            <p v-if="dataMovie?.last_episode_to_air" class="duration-episode">
+            <p v-if="isEpisodes" class="duration-episode">
               Tập mới nhất:
               {{
                 dataMovie?.last_episode_to_air?.episode_number
@@ -77,23 +69,26 @@
               }}
             </p>
 
-            <p v-else-if="dataMovie?.runtime" class="duration-episode">
+            <p v-else class="duration-episode">
               Thời lượng:
               {{ dataMovie?.runtime ? dataMovie?.runtime + ' phút' : '' }}
             </p>
 
             <div class="year-views">
-              <p class="year">
+              <p class="year" v-if="!isEpisodes">
+                Năm:
+                {{ dataMovie?.release_date?.slice(0, 4) }}
+              </p>
+
+              <p class="year" v-else>
                 Năm:
                 {{
-                  dataMovie?.release_date
-                    ? dataMovie?.release_date?.slice(0, 4)
-                    : dataMovie?.last_air_date?.slice(0, 4)
+                  dataMovie?.last_air_date?.slice(0, 4)
                     ? dataMovie?.last_air_date?.slice(0, 4)
                     : dataMovie?.first_air_date?.slice(0, 4)
                 }}
               </p>
-              •
+
               <p class="views">
                 {{ ViewFormatter(dataMovie?.views) }} lượt xem
               </p>
@@ -133,11 +128,9 @@
                         <NuxtLink
                           v-if="isEpisodes && !loading"
                           :to="{
-                            path: `/play/tv/${item?.id}/${
-                              item?.name
-                                ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                                : item?.title?.replace(/\s/g, '+').toLowerCase()
-                            }/tap-1`,
+                            path: `/play/tv/${item?.id}/${item?.name
+                              ?.replace(/\s/g, '+')
+                              .toLowerCase()}/tap-1`,
                           }"
                           class="btn-play-now"
                         >
@@ -146,11 +139,9 @@
                         <NuxtLink
                           v-else-if="!isEpisodes && !loading"
                           :to="{
-                            path: `/play/movie/${item?.id}/${
-                              item?.name
-                                ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                                : item?.title?.replace(/\s/g, '+').toLowerCase()
-                            }`,
+                            path: `/play/movie/${item?.id}/${item?.name
+                              ?.replace(/\s/g, '+')
+                              .toLowerCase()}`,
                           }"
                           class="btn-play-now"
                         >
@@ -178,11 +169,7 @@
                           <ShareNetwork
                             network="facebook"
                             :url="urlShare"
-                            :title="
-                              dataMovie?.name
-                                ? dataMovie?.name
-                                : dataMovie?.title
-                            "
+                            :title="item?.name"
                             hashtags="phimhay247.site,vite"
                             style="white-space: nowrap; display: block"
                           >

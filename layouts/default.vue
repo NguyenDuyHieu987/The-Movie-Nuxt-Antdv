@@ -74,7 +74,7 @@ const { collapsed, isLogin } = storeToRefs(store);
   max-width: var(--max-app-width);
   // width: 100%;
   margin: 0px auto;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .ant-layout-content.container {

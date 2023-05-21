@@ -23,7 +23,7 @@
 
         <div class="info">
           <p class="name">
-            {{ item?.name ? item?.name : item?.title }}
+            {{ item?.name }}
           </p>
         </div>
       </div>

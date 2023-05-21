@@ -30,7 +30,7 @@
 
     <Swiper
       class="carousel-group"
-      :modules="[SwiperAutoplay, SwiperNavigation, SwiperVirtual]"
+      :modules="[SwiperAutoplay, SwiperNavigation]"
       :breakpoints="responsive"
       :space-between="7"
       effect="creative"
@@ -43,7 +43,6 @@
         pauseOnMouseEnter: true,
         reverseDirection: true,
       }"
-      :virtual="true"
     >
       <slot name="content" />
       <div class="swiper-button-prev">

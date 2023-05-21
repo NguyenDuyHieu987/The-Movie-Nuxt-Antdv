@@ -2,16 +2,12 @@
   <NuxtLink
     :to="{
       path: isEpisodes
-        ? `/info/tv/${item?.id}/${
-            item?.name
-              ? item?.name?.replace(/\s/g, '+').toLowerCase()
-              : item?.title?.replace(/\s/g, '+').toLowerCase()
-          }`
-        : `/info/movie/${item?.id}/${
-            item?.name
-              ? item?.name?.replace(/\s/g, '+').toLowerCase()
-              : item?.title?.replace(/\s/g, '+').toLowerCase()
-          }`,
+        ? `/info/tv/${item?.id}/${item?.name
+            ?.replace(/\s/g, '+')
+            .toLowerCase()}`
+        : `/info/movie/${item?.id}/${item?.name
+            ?.replace(/\s/g, '+')
+            .toLowerCase()}`,
     }"
     class="movie-card-horizontal-item"
   >
@@ -28,9 +24,9 @@
 
       <template #default>
         <div class="img-box">
-          <el-image
+          <img
             class="ant-image"
-            :src="getBackdrop(dataMovie?.backdrop_path, ',250')"
+            v-lazy="getBackdrop(dataMovie?.backdrop_path, ',250')"
             :preview="false"
             :lazy="true"
             loading="lazy"
@@ -46,14 +42,13 @@
           <div v-if="isInHistory" class="viewed-overlay-bar"></div>
 
           <div v-if="!loading" class="duration-episode-box">
-            <p class="duration-episode">
+            <p v-if="!isEpisodes" class="duration-episode">
+              {{ dataMovie?.runtime + ' min' }}
+            </p>
+            <p v-else class="duration-episode">
               {{
-                isEpisodes
-                  ? dataMovie?.last_episode_to_air?.episode_number
-                    ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
-                    : ''
-                  : dataMovie?.runtime
-                  ? dataMovie?.runtime + ' min'
+                dataMovie?.last_episode_to_air?.episode_number
+                  ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
                   : ''
               }}
             </p>
@@ -68,13 +63,14 @@
           </div>
 
           <div v-if="!loading" class="release-date-box">
-            <p class="release-date">
+            <p class="release-date" v-if="!isEpisodes">
+              {{ item?.release_date?.slice(0, 4) }}
+            </p>
+            <p v-else class="release-date">
               {{
-                item?.release_date
-                  ? item?.release_date?.slice(0, 4)
-                  : item?.last_air_date?.slice(0, 4)
-                  ? item?.last_air_date?.slice(0, 4)
-                  : item?.first_air_date?.slice(0, 4)
+                dataMovie?.last_air_date?.slice(0, 4)
+                  ? dataMovie?.last_air_date?.slice(0, 4)
+                  : dataMovie?.first_air_date?.slice(0, 4)
               }}
             </p>
           </div>
@@ -96,7 +92,7 @@
                 :title="false"
               > -->
             <p class="title">
-              {{ item?.name ? item?.name : item?.title }}
+              {{ item?.name }}
               <span v-if="isEpisodes">
                 {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
               </span>
@@ -153,7 +149,7 @@
             <div class="content">
               <div class="info">
                 <h3>
-                  <strong> {{ item?.name ? item?.name : item?.title }}</strong>
+                  <strong> {{ item?.name }}</strong>
                 </h3>
 
                 <p class="overview">
@@ -167,11 +163,9 @@
                 <NuxtLink
                   v-if="isEpisodes"
                   :to="{
-                    path: `/play/tv/${item?.id}/${
-                      item?.name
-                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                        : item?.title?.replace(/\s/g, '+').toLowerCase()
-                    }/tap-1`,
+                    path: `/play/tv/${item?.id}/${item?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}/tap-1`,
                   }"
                   class="btn-play-now"
                 >
@@ -180,11 +174,9 @@
                 <NuxtLink
                   v-else-if="!isEpisodes"
                   :to="{
-                    path: `/play/movie/${item?.id}/${
-                      item?.name
-                        ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                        : item?.title?.replace(/\s/g, '+').toLowerCase()
-                    }`,
+                    path: `/play/movie/${item?.id}/${item?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}`,
                   }"
                   class="btn-play-now"
                 >

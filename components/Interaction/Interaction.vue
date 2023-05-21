@@ -13,7 +13,7 @@
     <ShareNetwork
       network="facebook"
       :url="urlShare"
-      :title="dataMovie?.name ? dataMovie?.name : dataMovie?.title"
+      :title="dataMovie?.name"
       hashtags="phimhay247.site,vite"
       style="white-space: nowrap; display: block"
     >

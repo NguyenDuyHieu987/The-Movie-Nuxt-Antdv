@@ -3,16 +3,12 @@
     :to="{
       path:
         item?.type || item?.media_type == 'tv'
-          ? `/info/tv/${item?.id}/${
-              item?.name
-                ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                : item?.title?.replace(/\s/g, '+').toLowerCase()
-            }`
-          : `/info/movie/${item?.id}/${
-              item?.name
-                ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                : item?.title?.replace(/\s/g, '+').toLowerCase()
-            }`,
+          ? `/info/tv/${item?.id}/${item?.name
+              ?.replace(/\s/g, '+')
+              .toLowerCase()}`
+          : `/info/movie/${item?.id}/${item?.name
+              ?.replace(/\s/g, '+')
+              .toLowerCase()}`,
     }"
     class="movie-rank-item"
   >
@@ -29,7 +25,7 @@
     <div class="info">
       <div class="top">
         <p class="title">
-          {{ item?.name ? item?.name : item?.title }}
+          {{ item?.name }}
           <span v-if="isEpisodes">
             {{ ' - Phần ' + item?.last_episode_to_air?.season_number }}
           </span>

@@ -29,16 +29,12 @@
         <NuxtLink
           :to="{
             path: isEpisodes
-              ? `/info/tv/${item?.id}/${
-                  item?.name
-                    ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                    : item?.title?.replace(/\s/g, '+').toLowerCase()
-                }`
-              : `/info/movie/${item?.id}/${
-                  item?.name
-                    ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                    : item?.title?.replace(/\s/g, '+').toLowerCase()
-                }`,
+              ? `/info/tv/${item?.id}/${item?.name
+                  ?.replace(/\s/g, '+')
+                  .toLowerCase()}`
+              : `/info/movie/${item?.id}/${item?.name
+                  ?.replace(/\s/g, '+')
+                  .toLowerCase()}`,
           }"
           class="movie-history-item"
         >
@@ -60,7 +56,7 @@
           <div class="info">
             <h2 class="title">
               <strong>
-                {{ item?.name ? item?.name : item?.title }}
+                {{ item?.name }}
                 <strong v-if="isEpisodes">
                   {{
                     ' - Phần ' + dataMovie?.last_episode_to_air?.season_number
@@ -158,11 +154,9 @@
                         <NuxtLink
                           v-if="isEpisodes && !loading"
                           :to="{
-                            path: `/play/tv/${item?.id}/${
-                              item?.name
-                                ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                                : item?.title?.replace(/\s/g, '+').toLowerCase()
-                            }/tap-1`,
+                            path: `/play/tv/${item?.id}/${item?.name
+                              ?.replace(/\s/g, '+')
+                              .toLowerCase()}/tap-1`,
                           }"
                           class="btn-play-now"
                         >
@@ -171,11 +165,9 @@
                         <NuxtLink
                           v-else-if="!isEpisodes && !loading"
                           :to="{
-                            path: `/play/movie/${item?.id}/${
-                              item?.name
-                                ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                                : item?.title?.replace(/\s/g, '+').toLowerCase()
-                            }`,
+                            path: `/play/movie/${item?.id}/${item?.name
+                              ?.replace(/\s/g, '+')
+                              .toLowerCase()}`,
                           }"
                           class="btn-play-now"
                         >
@@ -221,11 +213,7 @@
                           <ShareNetwork
                             network="facebook"
                             :url="urlShare"
-                            :title="
-                              dataMovie?.name
-                                ? dataMovie?.name
-                                : dataMovie?.title
-                            "
+                            :title="item?.name"
                             hashtags="phimhay247.site,vite"
                             style="white-space: nowrap; display: block"
                           >

@@ -18,8 +18,9 @@
         <ControlPage
           v-show="trendings?.length"
           :page="page"
-          :onChangePage="onChangePage"
           :total="totalPage"
+          :pageSize="pageSize"
+          :onChangePage="onChangePage"
         />
       </a-layout-content>
       <RankSide />
@@ -39,6 +40,7 @@ const route: any = useRoute();
 const trendings = ref<any[]>([]);
 const pageTrending = ref<number>(route?.query?.page ? route?.query?.page : 1);
 const totalPage = ref<number>(100);
+const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
@@ -54,7 +56,8 @@ onBeforeMount(async () => {
   )
     .then((movieRespone: any) => {
       trendings.value = movieRespone.data.value.data?.results;
-      totalPage.value = movieRespone.data.value.data?.total_pages * 10;
+      totalPage.value = movieRespone.data.value.data?.total;
+      pageSize.value = movieRespone.data.value.data?.page_size;
 
       setTimeout(() => {
         internalInstance.appContext.config.globalProperties.$Progress.finish();

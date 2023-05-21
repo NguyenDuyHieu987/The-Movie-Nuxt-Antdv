@@ -25,7 +25,7 @@
                 :item="item"
                 :index="index"
                 :key="item.id"
-                type="movie"
+                :type="item.media_type"
               />
             </SwiperSlide>
           </template>
@@ -129,7 +129,7 @@
                 :index="index"
                 :key="item.id"
                 :item="item"
-                type="tv"
+                :type="item.media_type"
               />
             </SwiperSlide>
           </template>
@@ -155,7 +155,7 @@
             :index="index"
             :key="item.id"
             :item="item"
-            type="movie"
+            :type="item.me_type"
           />
         </section>
       </section>
@@ -179,7 +179,7 @@
                 :item="item"
                 :index="index"
                 :key="item.id"
-                type="movie"
+                :type="item.me_type"
               />
             </SwiperSlide>
           </template>
@@ -208,7 +208,7 @@
                 :item="item"
                 :index="index"
                 :key="item.id"
-                type="tv"
+                :type="item.media_type"
               />
             </SwiperSlide>
           </template>

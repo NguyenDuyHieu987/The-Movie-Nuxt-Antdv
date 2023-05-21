@@ -7,6 +7,8 @@
             :src="getBackdrop(dataMovie?.backdrop_path)"
             :preview-src-list="srcBackdropList"
             :preview-teleported="true"
+            :lazy="true"
+            loading="lazy"
           >
             <template #placeholder>
               <div
@@ -69,11 +71,9 @@
             <NuxtLink
               v-if="!loading"
               :to="{
-                path: `/play/movie/${dataMovie?.id}/${
-                  dataMovie?.name
-                    ? dataMovie?.name?.replace(/\s/g, '+').toLowerCase()
-                    : dataMovie?.title?.replace(/\s/g, '+').toLowerCase()
-                }`,
+                path: `/play/movie/${dataMovie?.id}/${dataMovie?.name
+                  ?.replace(/\s/g, '+')
+                  .toLowerCase()}`,
               }"
               class="btn-play-now"
             >
@@ -97,9 +97,7 @@
           :title="false"
         >
           <h2>
-            <strong>{{
-              dataMovie?.name ? dataMovie?.name : dataMovie?.title
-            }}</strong>
+            <strong>{{ dataMovie?.name }}</strong>
           </h2>
 
           <h3>
@@ -163,11 +161,9 @@
             <NuxtLink
               v-if="!loading"
               :to="{
-                path: `/play/movie/${dataMovie?.id}/${
-                  dataMovie?.name
-                    ? dataMovie?.name?.replace(/\s/g, '+').toLowerCase()
-                    : dataMovie?.title?.replace(/\s/g, '+').toLowerCase()
-                }`,
+                path: `/play/movie/${dataMovie?.id}/${dataMovie?.name
+                  ?.replace(/\s/g, '+')
+                  .toLowerCase()}`,
               }"
               class="btn-play-now"
             >
@@ -583,20 +579,6 @@ const getData = async () => {
       .catch((e) => {
         if (axios.isCancel(e)) return;
       });
-
-    // getList(store.$state?.userAccount?.id)
-    //   .then((movieRespone) => {
-    //     dataAddToList.value = movieRespone?.data?.items;
-
-    //     dataAddToList.value?.map((item) => {
-    //       if (item?.id == route.params?.id) {
-    //         isAddToList.value = true;
-    //       }
-    //     });
-    //   })
-    //   .catch((e) => {
-    //     if (axios.isCancel(e)) return;
-    //   });
   }
 };
 

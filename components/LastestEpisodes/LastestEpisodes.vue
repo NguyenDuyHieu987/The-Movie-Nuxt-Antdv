@@ -33,11 +33,9 @@
         <NuxtLink
           v-if="item?.episode_number === numberOfEpisodes"
           :to="{
-            path: `/play/tv/${dataMovie?.id}/${
-              dataMovie?.name
-                ? dataMovie?.name?.replace(/\s/g, '+').toLowerCase()
-                : dataMovie?.title?.replace(/\s/g, '+').toLowerCase()
-            }/tap-${item?.episode_number}`,
+            path: `/play/tv/${dataMovie?.id}/${dataMovie?.name
+              ?.replace(/\s/g, '+')
+              .toLowerCase()}/tap-${item?.episode_number}`,
           }"
         >
           {{ 'Tập ' + item?.episode_number + '-End' }}
@@ -45,11 +43,9 @@
         <NuxtLink
           v-else-if="item?.episode_number !== numberOfEpisodes"
           :to="{
-            path: `/play/tv/${dataMovie?.id}/${
-              dataMovie?.name
-                ? dataMovie?.name?.replace(/\s/g, '+').toLowerCase()
-                : dataMovie?.title?.replace(/\s/g, '+').toLowerCase()
-            }/tap-${item?.episode_number}`,
+            path: `/play/tv/${dataMovie?.id}/${dataMovie?.name
+              ?.replace(/\s/g, '+')
+              .toLowerCase()}/tap-${item?.episode_number}`,
           }"
         >
           {{ 'Tập ' + item?.episode_number }}

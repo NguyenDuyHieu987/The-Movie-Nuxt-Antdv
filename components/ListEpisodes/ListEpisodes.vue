@@ -24,7 +24,7 @@
     </div>
     <h3 class="section-title" style="display: flex; align-items: center">
       <strong style="margin-right: 10px">
-        {{ dataMovie?.name ? dataMovie?.name : dataMovie?.title }}
+        {{ dataMovie?.name }}
         - Tập
         {{ route.params?.tap?.replace('tap-', '') }}
         |
@@ -95,11 +95,9 @@
       >
         <NuxtLink
           :to="{
-            path: `/play/tv/${dataMovie?.id}/${
-              dataMovie?.name
-                ? dataMovie?.name?.replace(/\s/g, '+').toLowerCase()
-                : dataMovie?.title?.replace(/\s/g, '+').toLowerCase()
-            }/tap-${item.episode_number}`,
+            path: `/play/tv/${dataMovie?.id}/${dataMovie?.name
+              ?.replace(/\s/g, '+')
+              .toLowerCase()}/tap-${item.episode_number}`,
           }"
         >
           {{

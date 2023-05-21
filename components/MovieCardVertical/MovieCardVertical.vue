@@ -2,16 +2,12 @@
   <NuxtLink
     :to="{
       path: isEpisodes
-        ? `/info/tv/${item?.id}/${
-            item?.name
-              ? item?.name?.replace(/\s/g, '+').toLowerCase()
-              : item?.title?.replace(/\s/g, '+').toLowerCase()
-          }`
-        : `/info/movie/${item?.id}/${
-            item?.name
-              ? item?.name?.replace(/\s/g, '+').toLowerCase()
-              : item?.title?.replace(/\s/g, '+').toLowerCase()
-          }`,
+        ? `/info/tv/${item?.id}/${item?.name
+            ?.replace(/\s/g, '+')
+            .toLowerCase()}`
+        : `/info/movie/${item?.id}/${item?.name
+            ?.replace(/\s/g, '+')
+            .toLowerCase()}`,
     }"
     class="movie-card-vertical-item"
   >
@@ -28,9 +24,9 @@
 
       <template #default>
         <div class="img-box">
-          <el-image
+          <img
             class="ant-image"
-            :src="getPoster(dataMovie?.poster_path)"
+            v-lazy="getPoster(dataMovie?.poster_path)"
             :preview="false"
             :lazy="true"
             loading="lazy"
@@ -46,27 +42,27 @@
           <div v-if="isInHistory" class="viewed-overlay-bar"></div>
 
           <div v-if="!loading" class="duration-episode-box">
-            <p class="duration-episode">
+            <p v-if="!isEpisodes" class="duration-episode">
+              {{ dataMovie?.runtime + ' min' }}
+            </p>
+            <p v-else class="duration-episode">
               {{
-                isEpisodes
-                  ? dataMovie?.last_episode_to_air?.episode_number
-                    ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
-                    : ''
-                  : dataMovie?.runtime
-                  ? dataMovie?.runtime + ' phút'
+                dataMovie?.last_episode_to_air?.episode_number
+                  ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
                   : ''
               }}
             </p>
           </div>
 
           <div v-if="!loading" class="release-date-box">
-            <p class="release-date">
+            <p class="release-date" v-if="!isEpisodes">
+              {{ item?.release_date?.slice(0, 4) }}
+            </p>
+            <p v-else class="release-date">
               {{
-                item?.release_date
-                  ? item?.release_date?.slice(0, 4)
-                  : item?.last_air_date?.slice(0, 4)
-                  ? item?.last_air_date?.slice(0, 4)
-                  : item?.first_air_date?.slice(0, 4)
+                dataMovie?.last_air_date?.slice(0, 4)
+                  ? dataMovie?.last_air_date?.slice(0, 4)
+                  : dataMovie?.first_air_date?.slice(0, 4)
               }}
             </p>
           </div>
@@ -89,7 +85,7 @@
               :title="false"
             >
               <p class="title">
-                {{ item?.name ? item?.name : item?.title }}
+                {{ item?.name }}
                 <span v-if="isEpisodes">
                   {{
                     ' - Phần ' + dataMovie?.last_episode_to_air?.season_number
@@ -97,19 +93,9 @@
                 </span>
               </p>
               <div class="info-bottom">
-                <p class="genres" v-if="item?.genres">
+                <p class="genres">
                   {{
                     Array?.from(item?.genres, (x: any) => x.name).join(' • ')
-                  }}
-                </p>
-                <p
-                  class="genres"
-                  v-else-if="item?.genres == undefined && dataMovie?.genres"
-                >
-                  {{
-                    Array?.from(dataMovie?.genres, (x: any) => x.name).join(
-                      ' • '
-                    )
                   }}
                 </p>
               </div>
@@ -121,9 +107,9 @@
 
     <div class="detail-flow" v-if="!loading">
       <div class="backdrop-box">
-        <el-image
+        <img
           class="ant-image"
-          :src="getBackdrop(dataMovie?.backdrop_path, ',250')"
+          v-lazy="getBackdrop(dataMovie?.backdrop_path, ',250')"
           :preview="false"
           :lazy="true"
           loading="lazy"
@@ -149,11 +135,9 @@
               <NuxtLink
                 v-if="isEpisodes"
                 :to="{
-                  path: `/play/tv/${item?.id}/${
-                    item?.name
-                      ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                      : item?.title?.replace(/\s/g, '+').toLowerCase()
-                  }/tap-1`,
+                  path: `/play/tv/${item?.id}/${item?.name
+                    ?.replace(/\s/g, '+')
+                    .toLowerCase()}/tap-1`,
                 }"
                 class="btn-play-now"
               >
@@ -167,11 +151,9 @@
               <NuxtLink
                 v-else
                 :to="{
-                  path: `/play/movie/${item?.id}/${
-                    item?.name
-                      ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                      : item?.title?.replace(/\s/g, '+').toLowerCase()
-                  }`,
+                  path: `/play/movie/${item?.id}/${item?.name
+                    ?.replace(/\s/g, '+')
+                    .toLowerCase()}`,
                 }"
                 class="btn-play-now"
               >
@@ -219,7 +201,7 @@
               <ShareNetwork
                 network="facebook"
                 :url="urlShare"
-                :title="dataMovie?.name ? dataMovie?.name : dataMovie?.title"
+                :title="item?.name"
                 hashtags="phimhay247.site,vite"
                 style="white-space: nowrap; display: block"
               >
@@ -247,16 +229,12 @@
               <NuxtLink
                 :to="{
                   path: isEpisodes
-                    ? `/info/tv/${item?.id}/${
-                        item?.name
-                          ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                          : item?.title?.replace(/\s/g, '+').toLowerCase()
-                      }`
-                    : `/info/movie/${item?.id}/${
-                        item?.name
-                          ? item?.name?.replace(/\s/g, '+').toLowerCase()
-                          : item?.title?.replace(/\s/g, '+').toLowerCase()
-                      }`,
+                    ? `/info/tv/${item?.id}/${item?.name
+                        ?.replace(/\s/g, '+')
+                        .toLowerCase()}`
+                    : `/info/movie/${item?.id}/${item?.name
+                        ?.replace(/\s/g, '+')
+                        .toLowerCase()}`,
                 }"
               >
                 <a-button shape="circle" size="large" type="text">
@@ -271,23 +249,15 @@
         </div>
         <div class="info">
           <h3 class="title">
-            {{ item?.name ? item?.name : item?.title }}
+            {{ item?.name }}
             <span v-if="isEpisodes">
               {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
             </span>
           </h3>
 
           <div class="info-bottom">
-            <p class="genres" v-if="item?.genres">
+            <p class="genres">
               {{ Array.from(item?.genres, (x: any) => x.name).join(' • ') }}
-            </p>
-            <p
-              class="genres"
-              v-else-if="item?.genres == undefined && dataMovie?.genres"
-            >
-              {{
-                Array.from(dataMovie?.genres, (x: any) => x.name).join(' • ')
-              }}
             </p>
           </div>
 
