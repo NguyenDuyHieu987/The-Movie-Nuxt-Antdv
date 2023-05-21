@@ -96,18 +96,22 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
-          <template #content>
-            <SwiperSlide v-for="(item, index) in cartoons">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
-          </template>
-        </CarouselGroup>
+        <div v-bind="containerProps">
+          <div v-bind="wrapperProps">
+            <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
+              <template #content>
+                <SwiperSlide v-for="(item, index) in list">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
+          </div>
+        </div>
       </section>
 
       <section class="home-section tv-new" v-show="tvAiringTodays?.length">
@@ -240,14 +244,6 @@ import {
 import { PlusOutlined } from '@ant-design/icons-vue';
 import { useVirtualList } from '@vueuse/core';
 
-const { list, containerProps, wrapperProps } = useVirtualList(
-  Array.from(Array(99999).keys()),
-  {
-    // Keep `itemHeight` in sync with the item's row.
-    itemHeight: 22,
-  }
-);
-
 definePageMeta({
   // layout: 'home',
 });
@@ -264,7 +260,6 @@ const recommends = ref<any>([]);
 const viewMoreRecommend = ref<boolean>(false);
 const loadMoreRecommend = ref<boolean>(false);
 const skipRecommend = ref<number>(2);
-const loadSection1 = ref<boolean>(false);
 
 // const responsiveHorizoltal = ref({
 //   0: {
@@ -484,6 +479,15 @@ onBeforeMount(async () => {
       if (axios.isCancel(e)) return;
     });
 });
+
+const { list, containerProps, wrapperProps }: any = useVirtualList(
+  cartoons.value,
+  {
+    // Keep `itemHeight` in sync with the item's row.
+    itemHeight: 22,
+    itemWidth: 22,
+  }
+);
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;
