@@ -238,10 +238,18 @@ import {
   getMoviesByGenres,
 } from '@/services/MovieService';
 import { PlusOutlined } from '@ant-design/icons-vue';
+import { useVirtualList } from '@vueuse/core';
+
+const { list, containerProps, wrapperProps } = useVirtualList(
+  Array.from(Array(99999).keys()),
+  {
+    // Keep `itemHeight` in sync with the item's row.
+    itemHeight: 22,
+  }
+);
 
 definePageMeta({
   // layout: 'home',
-  middleware: [function (to, from) {}, 'home-page-loading'],
 });
 
 const store: any = useStore();
@@ -436,8 +444,15 @@ useHead({
 });
 
 onBeforeMount(async () => {
+  await useAsyncData('trending/all/1', () => getTrending(1))
+    .then((response: any) => {
+      trendings.value = response.data.value.data?.results.slice(0, 11);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
   Promise.all([
-    await useAsyncData('trending/all/1', () => getTrending(1)),
     await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1)),
     await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
       getMoviesByGenres('hoat-hinh', 1, 'views_desc')
@@ -454,16 +469,15 @@ onBeforeMount(async () => {
       : null,
   ])
     .then((response: any) => {
-      trendings.value = response[0].data.value.data?.results.slice(0, 11);
-      nowPlayings.value = response[1].data.value.data?.results.slice(0, 10);
-      cartoons.value = response[2].data.value.data?.results.slice(0, 10);
-      tvAiringTodays.value = response[3].data.value.data?.results.slice(0, 10);
-      upComings.value = response[4].data.value.data?.results.slice(0, 10);
-      topRateds.value = response[5].data.value.data?.results.slice(0, 10);
-      tvOnTheAirs.value = response[6].data.value.data?.results.slice(0, 10);
+      nowPlayings.value = response[0].data.value.data?.results.slice(0, 10);
+      cartoons.value = response[1].data.value.data?.results.slice(0, 10);
+      tvAiringTodays.value = response[2].data.value.data?.results.slice(0, 10);
+      upComings.value = response[3].data.value.data?.results.slice(0, 10);
+      topRateds.value = response[4].data.value.data?.results.slice(0, 10);
+      tvOnTheAirs.value = response[5].data.value.data?.results.slice(0, 10);
 
       if (store.$state.isLogin) {
-        recommends.value = response[7].data.value.data?.results;
+        recommends.value = response[6].data.value.data?.results;
       }
     })
     .catch((e) => {

@@ -119,6 +119,12 @@ onBeforeMount(() => {
 }
 
 .loading-page {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -126,6 +132,7 @@ onBeforeMount(() => {
   justify-content: center;
   flex-direction: column;
   background-color: var(--loading-background);
+  overflow: hidden;
 
   .loading-page-container {
     display: flex;
