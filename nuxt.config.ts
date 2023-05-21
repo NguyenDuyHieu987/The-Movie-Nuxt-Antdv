@@ -111,6 +111,8 @@ export default defineNuxtConfig({
   alias: {
     '@': resolve(__dirname, './'),
   },
+  experimental: {
+  },
   typescript: {
     strict: true,
   },
