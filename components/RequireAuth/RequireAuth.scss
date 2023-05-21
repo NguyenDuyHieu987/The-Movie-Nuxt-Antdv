@@ -3,4 +3,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .ant-result {
+    .ant-result-extra {
+      .ant-btn {
+        border-radius: 3px;
+        margin: 0px auto;
+      }
+    }
+  }
 }
