@@ -15,15 +15,9 @@
                     dataHistory[0]?.media_type == 'tv' && dataHistory[0]?.id
                   "
                   :to="{
-                    path: `/play/tv/${dataHistory[0]?.id}/${
-                      dataHistory[0]?.name
-                        ? dataHistory[0]?.name
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()
-                        : dataHistory[0]?.title
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()
-                    }/tap-1`,
+                    path: `/play/tv/${dataHistory[0]?.id}/${dataHistory[0]?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}/tap-1`,
                   }"
                 >
                   <img
@@ -44,15 +38,11 @@
                     dataHistory[0]?.media_type == 'movie' && dataHistory[0]?.id
                   "
                   :to="{
-                    path: `/play/movie/${dataHistory[0]?.id}/${
-                      dataHistory[0]?.name
-                        ? dataHistory[0]?.name
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()
-                        : dataHistory[0]?.title
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()
-                    }`,
+                    path: `/play/movie/${
+                      dataHistory[0]?.id
+                    }/${dataHistory[0]?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}`,
                   }"
                 >
                   <img
@@ -177,15 +167,9 @@
                     dataHistory[0]?.media_type == 'tv' && dataHistory[0]?.id
                   "
                   :to="{
-                    path: `/play/tv/${dataHistory[0]?.id}/${
-                      dataHistory[0]?.name
-                        ? dataHistory[0]?.name
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()
-                        : dataHistory[0]?.title
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()
-                    }/tap-1`,
+                    path: `/play/tv/${dataHistory[0]?.id}/${dataHistory[0]?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}/tap-1`,
                   }"
                 >
                   <img
@@ -206,15 +190,11 @@
                     dataHistory[0]?.media_type == 'movie' && dataHistory[0]?.id
                   "
                   :to="{
-                    path: `/play/movie/${dataHistory[0]?.id}/${
-                      dataHistory[0]?.name
-                        ? dataHistory[0]?.name
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()
-                        : dataHistory[0]?.title
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()
-                    }`,
+                    path: `/play/movie/${
+                      dataHistory[0]?.id
+                    }/${dataHistory[0]?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}`,
                   }"
                 >
                   <img
@@ -375,7 +355,6 @@
 </template>
 
 <script setup lang="ts">
-import { createVNode } from 'vue';
 import axios from 'axios';
 import MovieCardHorizontalHistory from '@/components/MovieCardHorizontalHistory/MovieCardHorizontalHistory.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
@@ -384,18 +363,13 @@ import {
   getColorImage,
   getHistory,
   searchHistory,
-  removeAllItemHistory,
 } from '@/services/MovieService';
-import {
-  // InfoCircleOutlined,
-  QuestionCircleOutlined,
-} from '@ant-design/icons-vue';
 import disableScroll from 'disable-scroll';
-import { ElMessage } from 'element-plus';
-import { message, Modal } from 'ant-design-vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import scrollBottom from 'scroll-bottom';
+import { conrfirmMessageModal } from '~/utils/messageModal';
+import { handleRemoveAllitemFromHistory } from '~/utils/handelAddRemoveItemList_History';
 
 definePageMeta({
   // requireAuth: true,
@@ -591,52 +565,15 @@ const getDataWhenRemoveHistory = (data: number) => {
 
 const removeAllHistoryList = () => {
   if (dataHistory.value?.length > 0) {
-    Modal.confirm({
+    conrfirmMessageModal({
       title: 'Thông Báo',
-      icon: createVNode(QuestionCircleOutlined),
-      content: createVNode(
-        'h3',
-        {},
-        'Bạn có muốn xóa toàn bộ Lịch sử xem không?'
-      ),
-      okText: 'Có',
-      okType: 'primary',
-      okButtonProps: {
-        type: 'primary',
-        danger: true,
-      },
-      cancelText: 'Không',
-      centered: true,
-      onOk() {
-        message.loading({ content: 'Đang xóa tất cả Lịch sử xem' });
-
-        removeAllItemHistory(store?.state.userAccount?.id)
-          .then((movieRespone) => {
-            if (movieRespone.data?.success == true) {
-              setTimeout(() => {
-                dataHistory.value = movieRespone.data?.results;
-                message.destroy();
-                ElMessage({
-                  type: 'success',
-                  message: `Xóa thành công!`,
-                });
-              }, 500);
-            } else {
-              message.destroy();
-              ElMessage({
-                type: 'error',
-                message: `Xóa thất bại!`,
-              });
-            }
-          })
-          .catch((e) => {
-            message.destroy();
-            ElMessage({
-              type: 'error',
-              message: `Xóa thất bại!`,
-            });
-            if (axios.isCancel(e)) return;
-          });
+      message: 'Bạn có muốn xóa toàn bộ Lịch sử xem không?',
+      onOk: async function () {
+        if (
+          await handleRemoveAllitemFromHistory(store?.$state.userAccount?.id)
+        ) {
+          dataHistory.value = [];
+        }
       },
       onCancel() {},
     });

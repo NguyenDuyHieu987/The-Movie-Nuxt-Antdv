@@ -273,8 +273,7 @@
       transition-delay: 2s;
       transition-duration: 0.3s;
       background-color: var(--background-content-color);
-      box-shadow: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
-        0 9px 28px 8px #00000077;
+      box-shadow: var(--box-shadow-large);
     }
   }
 
@@ -298,7 +297,7 @@
     white-space: nowrap;
     border-radius: 5px;
     padding: 5px 10px;
-    box-shadow: #000000bf 0px 3px 10px;
+    box-shadow: var(--box-shadow-small);
     left: 5px;
     top: 5px;
     transition: all 0.7s;
@@ -324,7 +323,7 @@
     justify-content: center;
     border-radius: 5px;
     padding: 5px 10px;
-    box-shadow: #000000bf 0px 3px 10px;
+    box-shadow: var(--box-shadow-small);
     right: 5px;
     bottom: 5px;
     transition: all 0.7s;

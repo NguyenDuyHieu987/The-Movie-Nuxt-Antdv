@@ -86,6 +86,12 @@
   --breadcrumb-background-color: #070707;
   --footer-background-color: #070707;
 
+  --box-shadow-small: #000000bf 0px 3px 10px;
+  --box-shadow-medium: 0 2px 5px -4px #000000ba, 0 6px 10px 0 #00000098,
+    0 9px 30px 8px #00000077;
+  --box-shadow-large: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
+    0 9px 28px 8px #00000077;
+
   --padding-home: 30px;
   --padding-home-expand: 50px;
 
@@ -344,7 +350,7 @@ dl {
   .el-input {
     &.is-focus {
       .el-input__wrapper {
-        box-shadow: 0 0 0 1px #ff0000 !important;
+        box-shadow: 0 0 0 1px #fff !important;
       }
     }
   }
@@ -386,17 +392,32 @@ dl {
   }
 }
 
+.el-message--success {
+  --el-message-bg-color: var(--background-content-color1) !important;
+  box-shadow: var(--box-shadow-medium) !important;
+}
+
+.el-notification {
+  background-color: var(--background-content-color1) !important;
+  border: none !important;
+  box-shadow: var(--box-shadow-medium) !important;
+}
+
+.ant-message-notice-content {
+  background: var(--background-content-color1) !important;
+  box-shadow: var(--box-shadow-medium) !important;
+}
+
 .ant-modal {
-  box-shadow: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
-    0 9px 28px 8px #00000077;
+  box-shadow: var(--box-shadow-large);
   border-radius: 5px;
   overflow: hidden;
 
   .ant-modal-content {
-    background-color: var(--background-content-color);
+    background-color: var(--background-content-color1);
 
     .ant-modal-header {
-      background-color: var(--background-content-color);
+      background-color: var(--background-content-color1);
     }
 
     p,
@@ -548,7 +569,7 @@ dl {
 .ant-tooltip {
   .ant-tooltip-content {
     background-color: var(--tooltip-background-color);
-    box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    box-shadow: var(--box-shadow-small);
 
     .ant-tooltip-arrow {
       .ant-tooltip-arrow-content {

@@ -252,22 +252,20 @@
 // import axios from 'axios';
 import {
   getBackdrop,
-  removeItemHistory,
   getMovieById,
   getTvById,
-  addItemList,
-  removeItemList,
   getItemList,
 } from '@/services/MovieService';
 import disableScroll from 'disable-scroll';
 import axios from 'axios';
-// import { CloseOutlined } from '@ant-design/icons-vue';
-// import { Close } from '@element-plus/icons-vue';
-import { ElMessage } from 'element-plus';
-import { message } from 'ant-design-vue';
 import { ViewFormatter } from '@/utils/convertViews';
 import _ from 'lodash';
 import moment from 'moment';
+import {
+  handelAddItemToList,
+  handelRemoveItemFromList,
+  handleRemoveItemHistory,
+} from '~/utils/handelAddRemoveItemList_History';
 
 const props = defineProps<{
   item: any;
@@ -477,111 +475,42 @@ onBeforeMount(async () => {
 });
 
 const handelAddToList = () => {
-  if (isAddToList.value == false) {
+  if (!isAddToList.value) {
     isAddToList.value = true;
-    message.loading({ content: 'Đang thêm' });
-    addItemList(store.$state?.userAccount?.id, {
-      media_type: isEpisodes.value ? 'tv' : 'movie',
-      media_id: dataMovie.value?.id,
-    })
-      .then((response) => {
-        if (response.data.success == true) {
-          setTimeout(() => {
-            message.destroy();
-            ElMessage({
-              type: 'success',
-              message: `Thêm thành công!`,
-            });
-          }, 500);
-        } else {
-          message.destroy();
-          isAddToList.value = false;
-          ElMessage({
-            type: 'error',
-            message: `Thêm thất bại!`,
-          });
-        }
-      })
-      .catch((e) => {
-        message.destroy();
-        isAddToList.value = false;
-        ElMessage({
-          type: 'error',
-          message: `Thêm thất bại!`,
-        });
-        if (axios.isCancel(e)) return;
-      });
+    if (
+      !handelAddItemToList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id,
+        props.item.media_type
+      )
+    ) {
+      isAddToList.value = false;
+    }
+    return;
   } else {
     isAddToList.value = false;
-    message.loading({ content: 'Đang xóa' });
-
-    removeItemList(store.$state?.userAccount?.id, {
-      media_id: dataMovie.value?.id,
-    })
-      .then((movieRespone: any) => {
-        if (movieRespone.data?.success == true) {
-          setTimeout(() => {
-            message.destroy();
-            ElMessage({
-              type: 'success',
-              message: `Xóa thành công!`,
-            });
-          }, 500);
-        } else {
-          message.destroy();
-          isAddToList.value = true;
-          ElMessage({
-            type: 'error',
-            message: `Xóa thất bại!`,
-          });
-        }
-      })
-      .catch((e) => {
-        message.destroy();
-        isAddToList.value = true;
-        ElMessage({
-          type: 'error',
-          message: `Xóa thất bại!`,
-        });
-        if (axios.isCancel(e)) return;
-      });
+    if (
+      !handelRemoveItemFromList(
+        store.$state?.userAccount?.id,
+        dataMovie.value?.id
+      )
+    ) {
+      isAddToList.value = true;
+    }
+    return;
   }
 };
 
-const handleRemoveFromHistory = () => {
-  message.loading({ content: 'Đang xóa' });
-
-  removeItemHistory(store.$state?.userAccount?.id, {
-    media_id: props.item?.id,
-  })
-    .then((movieRespone: any) => {
-      if (movieRespone.data?.success == true) {
-        setTimeout(() => {
-          // props.getDataWhenRemoveHistory(movieRespone.data?.results);
-          props.getDataWhenRemoveHistory(props.item?.id);
-
-          message.destroy();
-          ElMessage({
-            type: 'success',
-            message: `Xóa thành công!`,
-          });
-        }, 500);
-      } else {
-        message.destroy();
-        ElMessage({
-          type: 'error',
-          message: `Xóa thất bại!`,
-        });
-      }
-    })
-    .catch((e) => {
-      message.destroy();
-      ElMessage({
-        type: 'error',
-        message: `Xóa thất bại!`,
-      });
-      if (axios.isCancel(e)) return;
-    });
+const handleRemoveFromHistory = async () => {
+  if (
+    await handleRemoveItemHistory(
+      store.$state?.userAccount?.id,
+      dataMovie.value?.id
+    )
+  ) {
+    props.getDataWhenRemoveHistory(props.item?.id);
+  }
+  return;
 };
 </script>
 <style lang="scss" src="./MovieCardHorizontalHistory.scss"></style>

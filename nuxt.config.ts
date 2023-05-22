@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
-import vue from '@vitejs/plugin-vue';
+// import vue from '@vitejs/plugin-vue';
 
 export default defineNuxtConfig({
   // nitro: {
@@ -111,8 +111,7 @@ export default defineNuxtConfig({
   alias: {
     '@': resolve(__dirname, './'),
   },
-  experimental: {
-  },
+  experimental: {},
   typescript: {
     strict: true,
   },

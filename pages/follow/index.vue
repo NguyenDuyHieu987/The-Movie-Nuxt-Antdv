@@ -13,11 +13,9 @@
                 <NuxtLink
                   v-if="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
                   :to="{
-                    path: `/play/tv/${dataList[0]?.id}/${
-                      dataList[0]?.name
-                        ? dataList[0]?.name?.replace(/\s/g, '+').toLowerCase()
-                        : dataList[0]?.title?.replace(/\s/g, '+').toLowerCase()
-                    }/tap-1`,
+                    path: `/play/tv/${dataList[0]?.id}/${dataList[0]?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}/tap-1`,
                   }"
                 >
                   <img
@@ -37,11 +35,9 @@
                     dataList[0]?.media_type == 'movie' && dataList[0]?.id
                   "
                   :to="{
-                    path: `/play/movie/${dataList[0]?.id}/${
-                      dataList[0]?.name
-                        ? dataList[0]?.name?.replace(/\s/g, '+').toLowerCase()
-                        : dataList[0]?.title?.replace(/\s/g, '+').toLowerCase()
-                    }`,
+                    path: `/play/movie/${dataList[0]?.id}/${dataList[0]?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}`,
                   }"
                 >
                   <img
@@ -162,11 +158,9 @@
                 <NuxtLink
                   v-if="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
                   :to="{
-                    path: `/play/tv/${dataList[0]?.id}/${
-                      dataList[0]?.name
-                        ? dataList[0]?.name?.replace(/\s/g, '+').toLowerCase()
-                        : dataList[0]?.title?.replace(/\s/g, '+').toLowerCase()
-                    }/tap-1`,
+                    path: `/play/tv/${dataList[0]?.id}/${dataList[0]?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}/tap-1`,
                   }"
                 >
                   <img
@@ -187,11 +181,9 @@
                     dataList[0]?.media_type == 'movie' && dataList[0]?.id
                   "
                   :to="{
-                    path: `/play/movie/${dataList[0]?.id}/${
-                      dataList[0]?.name
-                        ? dataList[0]?.name?.replace(/\s/g, '+').toLowerCase()
-                        : dataList[0]?.title?.replace(/\s/g, '+').toLowerCase()
-                    }`,
+                    path: `/play/movie/${dataList[0]?.id}/${dataList[0]?.name
+                      ?.replace(/\s/g, '+')
+                      .toLowerCase()}`,
                   }"
                 >
                   <img
@@ -352,7 +344,6 @@
 </template>
 
 <script setup lang="ts">
-import { createVNode } from 'vue';
 import axios from 'axios';
 import MovieCardHorizontalFollow from '@/components/MovieCardHorizontalFollow/MovieCardHorizontalFollow.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
@@ -361,19 +352,13 @@ import {
   getBackdrop,
   searchList,
   getColorImage,
-  removeAllItemList,
 } from '@/services/MovieService';
-import {
-  // InfoCircleOutlined,
-  QuestionCircleOutlined,
-} from '@ant-design/icons-vue';
-// import { extractColors } from 'extract-colors';
 import disableScroll from 'disable-scroll';
-import { ElMessage } from 'element-plus';
-import { message, Modal } from 'ant-design-vue';
 import _ from 'lodash';
 import { storeToRefs } from 'pinia';
 import scrollBottom from 'scroll-bottom';
+import { conrfirmMessageModal } from '~/utils/messageModal';
+import { handleRemoveAllitemFromList } from '~/utils/handelAddRemoveItemList_History';
 
 definePageMeta({
   // requireAuth: true,
@@ -576,52 +561,13 @@ watch(route, () => {
 
 const removeAllFollowList = () => {
   if (dataList.value?.length > 0) {
-    Modal.confirm({
+    conrfirmMessageModal({
       title: 'Thông Báo',
-      icon: createVNode(QuestionCircleOutlined),
-      content: createVNode(
-        'h3',
-        {},
-        'Bạn có muốn xóa toàn bộ Danh sách phát không?'
-      ),
-      okText: 'Có',
-      okType: 'primary',
-      okButtonProps: {
-        type: 'primary',
-        danger: true,
-      },
-      cancelText: 'Không',
-      centered: true,
-      onOk() {
-        message.loading({ content: 'Đang xóa tất cả Danh sách phát' });
-
-        removeAllItemList(store?.state.userAccount?.id)
-          .then((movieRespone) => {
-            if (movieRespone.data?.success == true) {
-              setTimeout(() => {
-                dataList.value = movieRespone.data?.results;
-                message.destroy();
-                ElMessage({
-                  type: 'success',
-                  message: `Xóa thành công!`,
-                });
-              }, 500);
-            } else {
-              message.destroy();
-              ElMessage({
-                type: 'error',
-                message: `Xóa thất bại!`,
-              });
-            }
-          })
-          .catch((e) => {
-            message.destroy();
-            ElMessage({
-              type: 'error',
-              message: `Xóa thất bại!`,
-            });
-            if (axios.isCancel(e)) return;
-          });
+      message: 'Bạn có muốn xóa toàn bộ Danh sách phát không?',
+      onOk: async function () {
+        if (await handleRemoveAllitemFromList(store?.$state.userAccount?.id)) {
+          dataList.value = [];
+        }
       },
       onCancel() {},
     });

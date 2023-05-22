@@ -108,7 +108,7 @@ import { getItemList, getBackdrop } from '@/services/MovieService';
 import {
   handelAddItemToList,
   handelRemoveItemFromList,
-} from '@/utils/handelAddRemoveItemList';
+} from '~/utils/handelAddRemoveItemList_History';
 
 const props = defineProps<{
   item: any;

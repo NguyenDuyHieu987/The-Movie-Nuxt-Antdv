@@ -134,7 +134,8 @@
 
   .history-container {
     .ant-layout {
-      background-color: var(--background-content-color);
+      // background-color: var(--background-content-color);
+      background-color: transparent;
     }
 
     .topic-history-column-responsive {
@@ -686,7 +687,7 @@
   overflow: hidden;
 
   .ant-dropdown-menu.dropdown-viewmore {
-    padding: 10px 0px;
+    padding: 7px 0px;
   }
 
   .ant-dropdown-menu-item {

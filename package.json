@@ -57,6 +57,7 @@
     "vue-owl-carousel": "^2.0.3",
     "vue-router": "^4.2.0",
     "vue-social-sharing": "^4.0.0-alpha4",
+    "vue-virtual-scroll-list": "^2.3.4",
     "vue3-google-login": "^2.0.15",
     "vuex": "^4.1.0"
   },

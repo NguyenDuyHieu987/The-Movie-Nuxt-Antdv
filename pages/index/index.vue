@@ -20,12 +20,13 @@
         <!-- :navText="[btnPrev, btnNext]" -->
         <CarouselGroup :data="nowPlayings" :responsive="responsiveHorizoltal">
           <template #content>
-            <SwiperSlide v-for="(item, index) in nowPlayings">
+            <SwiperSlide v-for="(item, index) in nowPlayings" v-memo>
               <MovieCardHorizontal
                 :item="item"
                 :index="index"
                 :key="item.id"
                 :type="item.media_type"
+                v-memo
               />
             </SwiperSlide>
           </template>
@@ -51,6 +52,7 @@
             :key="item.id"
             :item="item"
             :type="item.media_type"
+            v-memo
           />
           <el-button
             class="loadmore-btn"
@@ -96,22 +98,25 @@
           </NuxtLink>
         </h2>
 
-        <div v-bind="containerProps">
+        <!-- <div v-bind="containerProps">
           <div v-bind="wrapperProps">
-            <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
-              <template #content>
-                <SwiperSlide v-for="(item, index) in list">
-                  <MovieCardHorizontal
-                    :item="item"
-                    :index="index"
-                    :key="item.id"
-                    :type="item.media_type"
-                  />
-                </SwiperSlide>
-              </template>
-            </CarouselGroup>
+         
           </div>
-        </div>
+        </div> -->
+
+        <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
+          <template #content>
+            <SwiperSlide v-for="(item, index) in cartoons">
+              <MovieCardHorizontal
+                :item="item"
+                :index="index"
+                :key="item.id"
+                :type="item.media_type"
+                v-memo
+              />
+            </SwiperSlide>
+          </template>
+        </CarouselGroup>
       </section>
 
       <section class="home-section tv-new" v-show="tvAiringTodays?.length">
@@ -134,6 +139,7 @@
                 :key="item.id"
                 :item="item"
                 :type="item.media_type"
+                v-memo
               />
             </SwiperSlide>
           </template>
@@ -184,6 +190,7 @@
                 :index="index"
                 :key="item.id"
                 :type="item.me_type"
+                v-memo
               />
             </SwiperSlide>
           </template>
@@ -213,6 +220,7 @@
                 :index="index"
                 :key="item.id"
                 :type="item.media_type"
+                v-memo
               />
             </SwiperSlide>
           </template>
@@ -447,37 +455,87 @@ onBeforeMount(async () => {
       if (axios.isCancel(e)) return;
     });
 
-  Promise.all([
-    await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1)),
-    await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
-      getMoviesByGenres('hoat-hinh', 1, 'views_desc')
-    ),
-    await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1)),
-    await useAsyncData('movie/upcoming/1', () => getUpComing(1)),
-    await useAsyncData('movie/toprated/1', () => getTopRated(1)),
-    await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1)),
-
-    store.$state?.isLogin
-      ? useAsyncData('recommend/get/1', () =>
-          getMyRecommend(store.$state.userAccount?.id, 1)
-        )
-      : null,
-  ])
+  await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
     .then((response: any) => {
-      nowPlayings.value = response[0].data.value.data?.results.slice(0, 10);
-      cartoons.value = response[1].data.value.data?.results.slice(0, 10);
-      tvAiringTodays.value = response[2].data.value.data?.results.slice(0, 10);
-      upComings.value = response[3].data.value.data?.results.slice(0, 10);
-      topRateds.value = response[4].data.value.data?.results.slice(0, 10);
-      tvOnTheAirs.value = response[5].data.value.data?.results.slice(0, 10);
-
-      if (store.$state.isLogin) {
-        recommends.value = response[6].data.value.data?.results;
-      }
+      nowPlayings.value = response.data.value.data?.results.slice(0, 10);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
+
+  await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
+    getMoviesByGenres('hoat-hinh', 1, 'views_desc')
+  )
+    .then((response: any) => {
+      cartoons.value = response.data.value.data?.results.slice(0, 10);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
+    .then((response: any) => {
+      tvAiringTodays.value = response.data.value.data?.results.slice(0, 10);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  await useAsyncData('movie/upcoming/1', () => getUpComing(1))
+    .then((response: any) => {
+      upComings.value = response.data.value.data?.results.slice(0, 10);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  await useAsyncData('movie/toprated/1', () => getTopRated(1))
+    .then((response: any) => {
+      topRateds.value = response.data.value.data?.results.slice(0, 10);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
+    .then((response: any) => {
+      tvOnTheAirs.value = response.data.value.data?.results.slice(0, 10);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  // Promise.all([
+  //   await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1)),
+  //   await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
+  //     getMoviesByGenres('hoat-hinh', 1, 'views_desc')
+  //   ),
+  //   await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1)),
+  //   await useAsyncData('movie/upcoming/1', () => getUpComing(1)),
+  //   await useAsyncData('movie/toprated/1', () => getTopRated(1)),
+  //   await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1)),
+
+  //   store.$state?.isLogin
+  //     ? useAsyncData('recommend/get/1', () =>
+  //         getMyRecommend(store.$state.userAccount?.id, 1)
+  //       )
+  //     : null,
+  // ])
+  //   .then((response: any) => {
+  //     nowPlayings.value = response[0].data.value.data?.results.slice(0, 10);
+  //     cartoons.value = response[1].data.value.data?.results.slice(0, 10);
+  //     tvAiringTodays.value = response[2].data.value.data?.results.slice(0, 10);
+  //     upComings.value = response[3].data.value.data?.results.slice(0, 10);
+  //     topRateds.value = response[4].data.value.data?.results.slice(0, 10);
+  //     tvOnTheAirs.value = response[5].data.value.data?.results.slice(0, 10);
+
+  //     if (store.$state.isLogin) {
+  //       recommends.value = response[6].data.value.data?.results;
+  //     }
+  //   })
+  //   .catch((e) => {
+  //     if (axios.isCancel(e)) return;
+  //   });
 });
 
 const { list, containerProps, wrapperProps }: any = useVirtualList(

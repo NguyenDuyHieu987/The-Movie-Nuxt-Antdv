@@ -204,20 +204,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeMount, computed, h, onMounted } from 'vue';
 // import axios from 'axios';
 import {
   getBackdrop,
-  removeItemList,
   getMovieById,
   getTvById,
   getItemHistory,
 } from '@/services/MovieService';
 import axios from 'axios';
 import disableScroll from 'disable-scroll';
-import { ElMessage, ElMessageBox } from 'element-plus';
-import { message } from 'ant-design-vue';
 import { ViewFormatter } from '@/utils/convertViews';
+import { handelRemoveItemFromList } from '~/utils/handelAddRemoveItemList_History';
 
 const props = defineProps<{
   item: any;
@@ -339,39 +336,16 @@ onBeforeMount(async () => {
     });
 });
 
-const handleRemoveFromList = () => {
-  message.loading({ content: 'Đang xóa' });
-
-  removeItemList(store.$state?.userAccount?.id, {
-    media_id: props.item?.id,
-  })
-    .then((movieRespone: any) => {
-      if (movieRespone.data?.success == true) {
-        setTimeout(() => {
-          // props.getDataWhenRemoveList(movieRespone.data?.results);
-          props.getDataWhenRemoveList(props.item?.id);
-          message.destroy();
-          ElMessage({
-            type: 'success',
-            message: `Xóa thành công!`,
-          });
-        }, 500);
-      } else {
-        message.destroy();
-        ElMessage({
-          type: 'error',
-          message: `Xóa thất bại!`,
-        });
-      }
-    })
-    .catch((e) => {
-      message.destroy();
-      ElMessage({
-        type: 'error',
-        message: `Xóa thất bại!`,
-      });
-      if (axios.isCancel(e)) return;
-    });
+const handleRemoveFromList = async () => {
+  if (
+    await handelRemoveItemFromList(
+      store.$state?.userAccount?.id,
+      dataMovie.value?.id
+    )
+  ) {
+    props.getDataWhenRemoveList(props.item?.id);
+  }
+  return;
 };
 </script>
 <style lang="scss" src="./MovieCardHorizontalFollow.scss"></style>

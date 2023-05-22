@@ -21,6 +21,7 @@
         v-for="(item, index) in trendings"
         :key="item.id"
         :index="index"
+        v-memo
       >
         <SlideTopicItem :item="item" />
       </el-carousel-item>

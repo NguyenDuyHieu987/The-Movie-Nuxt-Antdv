@@ -312,7 +312,7 @@ import { storeToRefs } from 'pinia';
 import {
   handelAddItemToList,
   handelRemoveItemFromList,
-} from '@/utils/handelAddRemoveItemList';
+} from '~/utils/handelAddRemoveItemList_History';
 
 const props = defineProps<{
   item: any;
@@ -477,7 +477,7 @@ const handelAddToList = () => {
       !handelAddItemToList(
         store.$state?.userAccount?.id,
         dataMovie.value?.id,
-        isEpisodes.value ? 'tv' : 'movie'
+        props.item.media_type
       )
     ) {
       isAddToList.value = false;

@@ -185,7 +185,7 @@ import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
 import {
   handelAddItemToList,
   handelRemoveItemFromList,
-} from '@/utils/handelAddRemoveItemList';
+} from '~/utils/handelAddRemoveItemList_History';
 import Player from '@vimeo/player';
 
 const store: any = useStore();
@@ -409,7 +409,7 @@ const handelAddToList = () => {
       !handelAddItemToList(
         store.$state?.userAccount?.id,
         dataMovie.value?.id,
-        isEpisodes.value ? 'tv' : 'movie'
+        'movie'
       )
     ) {
       isAddToList.value = false;

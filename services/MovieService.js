@@ -496,7 +496,7 @@ const getColorImage = async (path) =>
   await axios.get(
     path === null || path === undefined
       ? ''
-      : `${URL_API_IMAGE}/imagecolor${path}?api=hieu987`
+      : `${URL_API_IMAGE}/imagecolor/backdrop/${path}?api=hieu987`
   );
 
 const getAvatar = (path) => {

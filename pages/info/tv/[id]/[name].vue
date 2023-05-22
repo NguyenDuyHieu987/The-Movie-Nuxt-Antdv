@@ -525,7 +525,7 @@ import { removeVietnameseTones } from '@/utils/RemoveVietnameseTones';
 import {
   handelAddItemToList,
   handelRemoveItemFromList,
-} from '@/utils/handelAddRemoveItemList';
+} from '~/utils/handelAddRemoveItemList_History';
 
 const store: any = useStore();
 const route: any = useRoute();
@@ -642,7 +642,7 @@ const handelAddToList = () => {
       !handelAddItemToList(
         store.$state?.userAccount?.id,
         dataMovie.value?.id,
-        isEpisodes.value ? 'tv' : 'movie'
+        'tv'
       )
     ) {
       isAddToList.value = false;
