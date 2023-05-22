@@ -11,7 +11,9 @@
         style="width: 170px"
         @change="handleChangeType"
         placeholder="Sắp xếp theo"
-        v-show="searchData?.length"
+        v-show="
+          searchData?.length || searchDataMovie?.length || searchDataTv?.length
+        "
       >
         <a-select-option value="all" label="Tất cả">Tất cả</a-select-option>
         <a-select-option value="movie" label="Phim lẻ">Phim lẻ</a-select-option>

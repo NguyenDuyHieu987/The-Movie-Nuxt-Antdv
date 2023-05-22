@@ -263,6 +263,37 @@ const isOpenAutoComplete = ref<boolean>(true);
 const debounce = ref<any>();
 const valueInput = ref<string>(route.query.q);
 
+onMounted(() => {
+  const header: HTMLElement | null = document.querySelector(
+    '.ant-layout-header.header'
+  );
+  var lastScrollTop = 0;
+  window.onscroll = () => {
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      // downscroll code
+      if (window.scrollY >= 65) {
+        // header.style.backgroundColor = '#000';
+        header!.style.background = '#0b0b0bcc';
+      } else if (window.scrollY == 0) {
+        header!.style.background =
+          'linear-gradient(to bottom, #050505 0, #05050500 100%)';
+      }
+    } else if (st < lastScrollTop) {
+      // upscroll code
+      if (window.scrollY == 0) {
+        header!.style.background =
+          'linear-gradient(to bottom, #050505 0, #05050500 100%)';
+      }
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  };
+});
+
+watchEffect(() => {
+  valueInput.value = route.query.q;
+});
+
 const handleChangeInput = (query: string) => {
   if (query.length > 0) {
     // loadingSearch.value = true;
@@ -321,33 +352,6 @@ const handleLogout = () => {
     window.localStorage.removeItem('isLogin');
   }
 };
-
-onMounted(() => {
-  const header: HTMLElement | null = document.querySelector(
-    '.ant-layout-header.header'
-  );
-  var lastScrollTop = 0;
-  window.onscroll = () => {
-    var st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop) {
-      // downscroll code
-      if (window.scrollY >= 65) {
-        // header.style.backgroundColor = '#000';
-        header!.style.background = '#0b0b0bcc';
-      } else if (window.scrollY == 0) {
-        header!.style.background =
-          'linear-gradient(to bottom, #050505 0, #05050500 100%)';
-      }
-    } else if (st < lastScrollTop) {
-      // upscroll code
-      if (window.scrollY == 0) {
-        header!.style.background =
-          'linear-gradient(to bottom, #050505 0, #05050500 100%)';
-      }
-    }
-    lastScrollTop = st <= 0 ? 0 : st;
-  };
-});
 </script>
 
 <style lang="scss" src="./Header.scss"></style>
