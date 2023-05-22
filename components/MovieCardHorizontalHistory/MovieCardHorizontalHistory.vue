@@ -463,18 +463,22 @@ onBeforeMount(async () => {
     }
   }
 
-  await useAsyncData(
-    `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
-    () => getItemList(store.$state?.userAccount?.id, props.item?.id)
-  )
-    .then((movieRespone: any) => {
-      if (movieRespone.data.value.data.success == true) {
-        isAddToList.value = true;
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  if (dataMovie.value?.in_list) {
+    isAddToList.value = true;
+  }
+
+  // await useAsyncData(
+  //   `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
+  //   () => getItemList( props.item?.id)
+  // )
+  //   .then((movieRespone: any) => {
+  //     if (movieRespone.data.value.data.success == true) {
+  //       isAddToList.value = true;
+  //     }
+  //   })
+  //   .catch((e) => {
+  //     if (axios.isCancel(e)) return;
+  //   });
 });
 
 const handelAddToList = () => {

@@ -280,19 +280,24 @@ onBeforeMount(async () => {
   }
 
   if (store.$state.isLogin) {
-    await useAsyncData(
-      `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
-      () => getItemHistory(store.$state?.userAccount?.id, props.item?.id)
-    )
-      .then((movieRespone: any) => {
-        if (movieRespone.data.value.data.success == true) {
-          isInHistory.value = true;
-          percent.value = movieRespone.data.value.data?.result?.percent;
-        }
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      });
+    if (dataMovie.value?.in_history) {
+      isInHistory.value = true;
+      percent.value = dataMovie.value?.history_progress?.percent;
+    }
+
+    // await useAsyncData(
+    //   `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
+    //   () => getItemHistory(props.item?.id)
+    // )
+    //   .then((movieRespone: any) => {
+    //     if (movieRespone.data.value.data.success == true) {
+    //       isInHistory.value = true;
+    //       percent.value = movieRespone.data.value.data?.result?.percent;
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     if (axios.isCancel(e)) return;
+    //   });
   }
 });
 

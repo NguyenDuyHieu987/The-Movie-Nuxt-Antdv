@@ -505,6 +505,14 @@ onBeforeMount(async () => {
       if (axios.isCancel(e)) return;
     });
 
+  await useAsyncData('recommend/get/1', () => getMyRecommend(1))
+    .then((response: any) => {
+      recommends.value = response.data.value.data?.results;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
   // Promise.all([
   //   await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1)),
   //   await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
@@ -550,7 +558,7 @@ const { list, containerProps, wrapperProps }: any = useVirtualList(
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;
   await useAsyncData(`recommend/get/${skipRecommend.value}`, () =>
-    getMyRecommend(store.$state.userAccount?.id, skipRecommend.value)
+    getMyRecommend(skipRecommend.value)
   )
     .then((movieResponse: any) => {
       if (movieResponse.data.value.data?.results.length > 0) {

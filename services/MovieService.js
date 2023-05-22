@@ -212,36 +212,80 @@ const getMovieByRecommend = async (type, movieId, page) =>
 const getSimilar = async (type, movieId) =>
   await axios.get(`${URL_API}/similar/${type}/${movieId}?api=hieu987`);
 
-const getMyRecommend = async (userId, skip = 1) =>
-  await axios.get(
-    `${URL_API}/recommend/${userId}/getrecommend?skip=${skip}&api=hieu987`
+const getMyRecommend = async (skip = 1) => {
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
+
+  return await axios.get(
+    `${URL_API}/recommend/getrecommend?skip=${skip}&api=hieu987`,
+    {
+      headers: headers,
+    }
   );
+};
 
-const getList = async (userID, skip = 0) =>
-  await axios.get(`${URL_API}/list/${userID}/getlist?skip=${skip}&api=hieu987`);
+const getList = async (skip = 0) => {
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
 
-const searchList = async (userID, query) =>
-  await axios.get(
-    `${URL_API}/list/${userID}/searchlist?query=${query}&api=hieu987`
+  return await axios.get(`${URL_API}/list/getlist?skip=${skip}&api=hieu987`, {
+    headers: headers,
+  });
+};
+
+const searchList = async (query) => {
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
+
+  return await axios.get(
+    `${URL_API}/list/searchlist?query=${query}&api=hieu987`,
+    { headers: headers }
   );
+};
 
-const getItemList = async (userID, movieId) =>
-  await axios.get(`${URL_API}/list/${userID}/getitem/${movieId}?api=hieu987`);
+const getItemList = async (movieId) => {
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
 
-const getHistory = async (userID, skip = 0) =>
-  await axios.get(
-    `${URL_API}/history/${userID}/gethistory?skip=${skip}&api=hieu987`
+  return await axios.get(`${URL_API}/list/getitem/${movieId}?api=hieu987`, {
+    headers: headers,
+  });
+};
+
+const getHistory = async (skip = 0) => {
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
+
+  return await axios.get(
+    `${URL_API}/history/gethistory?skip=${skip}&api=hieu987`,
+    { headers: headers }
   );
+};
+const searchHistory = async (query) => {
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
 
-const searchHistory = async (userID, query) =>
-  await axios.get(
-    `${URL_API}/history/${userID}/searchhistory?query=${query}&api=hieu987`
+  return await axios.get(
+    `${URL_API}/history/searchhistory?query=${query}&api=hieu987`,
+    { headers: headers }
   );
+};
 
-const getItemHistory = async (userID, movieId) =>
-  await axios.get(
-    `${URL_API}/history/${userID}/getitem/${movieId}?api=hieu987`
-  );
+const getItemHistory = async (movieId) => {
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
+
+  return await axios.get(`${URL_API}/history/getitem/${movieId}?api=hieu987`, {
+    headers: headers,
+  });
+};
 
 const getTheMostVoteCount = async (page) =>
   await axios.get(
@@ -335,62 +379,104 @@ const UpdateViewTV = async (movieId) =>
 const getSeasonTV = async (movieid, season) =>
   await axios.get(`${URL_API}/tv/${movieid}/season/${season}?api=hieu987`);
 
-const addItemList = async (userID, params) => {
+const addItemList = async (params) => {
   const bodyFormData = new FormData();
   bodyFormData.append('media_type', params.media_type);
   bodyFormData.append('media_id', params.media_id);
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
 
   return await axios.post(
-    `${URL_API}/list/${userID}/add_item?api=hieu987`,
-    bodyFormData
+    `${URL_API}/list/add_item?api=hieu987`,
+    bodyFormData,
+    {
+      headers: headers,
+    }
   );
 };
 
-const removeItemList = async (userID, params) => {
+const removeItemList = async (params) => {
   const bodyFormData = new FormData();
   bodyFormData.append('media_type', params.media_type);
   bodyFormData.append('media_id', params.media_id);
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
 
   return await axios.post(
-    `${URL_API}/list/${userID}/remove_item?api=hieu987`,
-    bodyFormData
+    `${URL_API}/list/remove_item?api=hieu987`,
+    bodyFormData,
+    {
+      headers: headers,
+    }
   );
 };
 
-const removeAllItemList = async (userID) => {
+const removeAllItemList = async () => {
+  const bodyFormData = new FormData();
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
+
   return await axios.post(
-    `${URL_API}/list/${userID}/removeall_item?api=hieu987`
+    `${URL_API}/list/removeall_item?api=hieu987`,
+    bodyFormData,
+    {
+      headers: headers,
+    }
   );
 };
 
-const add_update_History = async (userID, params) => {
+const add_update_History = async (params) => {
   const bodyFormData = new FormData();
   bodyFormData.append('media_type', params.media_type);
   bodyFormData.append('media_id', params.media_id);
   bodyFormData.append('duration', params.duration);
   bodyFormData.append('percent', params.percent);
   bodyFormData.append('seconds', params.seconds);
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
 
   return await axios.post(
-    `${URL_API}/history/${userID}/add_item?api=hieu987`,
-    bodyFormData
+    `${URL_API}/history/add_item?api=hieu987`,
+    bodyFormData,
+    {
+      headers: headers,
+    }
   );
 };
 
-const removeItemHistory = async (userID, params) => {
+const removeItemHistory = async (params) => {
   const bodyFormData = new FormData();
   bodyFormData.append('media_type', params.media_type);
   bodyFormData.append('media_id', params.media_id);
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
 
   return await axios.post(
-    `${URL_API}/history/${userID}/remove_item?api=hieu987`,
-    bodyFormData
+    `${URL_API}/history/remove_item?api=hieu987`,
+    bodyFormData,
+    {
+      headers: headers,
+    }
   );
 };
 
-const removeAllItemHistory = async (userID) => {
+const removeAllItemHistory = async () => {
+  const bodyFormData = new FormData();
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
+
   return await axios.post(
-    `${URL_API}/history/${userID}/removeall_item?api=hieu987`
+    `${URL_API}/history/removeall_item?api=hieu987`,
+    bodyFormData,
+    {
+      headers: headers,
+    }
   );
 };
 

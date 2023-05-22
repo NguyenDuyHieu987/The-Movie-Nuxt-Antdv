@@ -120,7 +120,7 @@ onBeforeMount(async () => {
   if (store.$state.isLogin) {
     await useAsyncData(
       `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
-      () => getItemList(store.$state?.userAccount?.id, props.item?.id)
+      () => getItemList(props.item?.id)
     )
       .then((movieRespone: any) => {
         if (movieRespone.data.value.data.success == true) {

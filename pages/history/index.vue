@@ -480,7 +480,7 @@ const getData = () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   useAsyncData(`history/get/${store.$state.userAccount?.id}/1`, () =>
-    getHistory(store.$state.userAccount?.id)
+    getHistory()
   )
     .then((movieRespone: any) => {
       if (movieRespone.data.value.data?.result?.items?.length > 0) {
@@ -535,7 +535,7 @@ onBeforeMount(() => {
       loadMore.value = true;
       useAsyncData(
         `history/get/${store.$state.userAccount?.id}/${skip.value}`,
-        () => getHistory(store.$state.userAccount?.id, skip.value)
+        () => getHistory(skip.value)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.data?.result?.length > 0) {
@@ -592,7 +592,7 @@ const searchWatchList = (e: any) => {
     debounce.value = setTimeout(() => {
       useAsyncData(
         `history/search/${store.$state.userAccount?.id}/${e.target.value}`,
-        () => searchHistory(store.$state.userAccount?.id, e.target.value)
+        () => searchHistory(e.target.value)
       )
         .then((movieRespone: any) => {
           dataHistory.value = movieRespone.data.value.data?.results;

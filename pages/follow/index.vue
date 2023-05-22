@@ -470,9 +470,7 @@ const getData = () => {
   loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () =>
-    getList(store.$state.userAccount?.id)
-  )
+  useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () => getList())
     .then((movieRespone: any) => {
       if (movieRespone.data.value.data?.result?.items?.length > 0) {
         dataList.value = movieRespone.data.value.data?.result?.items;
@@ -527,7 +525,7 @@ onBeforeMount(() => {
       loadMore.value = true;
       useAsyncData(
         `list/get/${store.$state.userAccount?.id}/${skip.value}`,
-        () => getList(store.$state.userAccount?.id, skip.value)
+        () => getList(skip.value)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.data?.result?.length > 0) {
@@ -582,7 +580,7 @@ const searchFollow = (e: any) => {
     debounce.value = setTimeout(() => {
       useAsyncData(
         `list/search/${store.$state.userAccount?.id}/${e.target.value}`,
-        () => searchList(store?.$state.userAccount?.id, e.target.value)
+        () => searchList(e.target.value)
       )
         .then((movieRespone: any) => {
           dataList.value = movieRespone.data.value.data?.results;
@@ -603,7 +601,7 @@ const searchFollow = (e: any) => {
 
 const onLoadMore = () => {
   loadMore.value = true;
-  getList(store.$state.userAccount?.id, skip.value)
+  getList(skip.value)
     .then((movieRespone) => {
       if (movieRespone.data?.result?.length > 0) {
         setTimeout(() => {

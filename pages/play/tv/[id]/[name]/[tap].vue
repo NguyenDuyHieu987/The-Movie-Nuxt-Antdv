@@ -245,7 +245,7 @@ onBeforeRouteLeave(() => {
     //     percent.value > dataItemHistory.value?.percent &&
     //     dataItemHistory.value?.seconds < duration.value
     //   ) {
-    //     add_update_History(store.$state.userAccount?.id, {
+    //     add_update_History( {
     //       media_type: 'tv',
     //       media_id: dataMovie.value?.id,
     //       duration: duration.value,
@@ -256,7 +256,7 @@ onBeforeRouteLeave(() => {
     //     });
     //   } else {
     //     if (seconds.value > 0 && percent.value > 0) {
-    //       add_update_History(store.$state.userAccount?.id, {
+    //       add_update_History( {
     //         media_type: 'tv',
     //         media_id: dataMovie.value?.id,
     //         duration: dataItemHistory.value?.duration,
@@ -268,7 +268,7 @@ onBeforeRouteLeave(() => {
     //     }
     //   }
     // } else {
-    //   add_update_History(store.$state.userAccount?.id, {
+    //   add_update_History( {
     //     media_type: 'tv',
     //     media_id: dataMovie.value?.id,
     //     duration: duration.value,
@@ -280,7 +280,7 @@ onBeforeRouteLeave(() => {
     // }
 
     if (seconds.value > 0 && percent.value > 0 && duration.value > 0) {
-      add_update_History(store.$state.userAccount?.id, {
+      add_update_History({
         media_type: 'tv',
         media_id: dataMovie.value?.id,
         duration: duration.value,
@@ -373,45 +373,40 @@ const getData = async () => {
     });
 
   if (store.$state.isLogin) {
-    await useAsyncData(
-      `itemlist/${store.$state?.userAccount?.id}/${route.params?.id}`,
-      () => getItemHistory(store.$state?.userAccount?.id, route.params?.id)
-    );
-    getItemList(store.$state?.userAccount?.id, route.params?.id)
-      .then((movieRespone) => {
-        if (movieRespone.data.value.data.success == true) {
-          isAddToList.value = true;
-        }
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      });
+    if (dataMovie.value?.in_list) {
+      isAddToList.value = true;
+    }
 
-    await useAsyncData(
-      `itemhistory/${store.$state?.userAccount?.id}/${route.params?.id}`,
-      () => getItemHistory(store.$state?.userAccount?.id, route.params?.id)
-    )
-      .then((movieRespone: any) => {
-        if (movieRespone.data.value.data.success == true) {
-          isInHistory.value = true;
-          dataItemHistory.value = movieRespone.data.value.data?.result;
-        } else {
-          isInHistory.value = false;
-        }
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      });
+    if (dataMovie.value?.in_history) {
+      isInHistory.value = true;
+      dataItemHistory.value = dataMovie.value?.history_progress;
+    }
 
-    // getList(store.$state?.userAccount?.id)
+    // await useAsyncData(
+    //   `itemlist/${store.$state?.userAccount?.id}/${route.params?.id}`,
+    //   () => getItemHistory(route.params?.id)
+    // );
+    // getItemList(route.params?.id)
     //   .then((movieRespone) => {
-    //     dataAddToList.value = movieRespone?.data?.items;
+    //     if (movieRespone.data.value.data.success == true) {
+    //       isAddToList.value = true;
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     if (axios.isCancel(e)) return;
+    //   });
 
-    //     dataAddToList.value?.map((item) => {
-    //       if (item?.id == route.params?.id) {
-    //         isAddToList.value = true;
-    //       }
-    //     });
+    // await useAsyncData(
+    //   `itemhistory/${store.$state?.userAccount?.id}/${route.params?.id}`,
+    //   () => getItemHistory(route.params?.id)
+    // )
+    //   .then((movieRespone: any) => {
+    //     if (movieRespone.data.value.data.success == true) {
+    //       isInHistory.value = true;
+    //       dataItemHistory.value = movieRespone.data.value.data?.result;
+    //     } else {
+    //       isInHistory.value = false;
+    //     }
     //   })
     //   .catch((e) => {
     //     if (axios.isCancel(e)) return;

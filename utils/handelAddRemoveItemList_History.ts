@@ -16,7 +16,7 @@ export async function handelAddItemToList(
   media_type: string
 ): Promise<boolean> {
   // message.loading({ content: 'Đang thêm' });
-  return addItemList(accountId, {
+  return addItemList({
     media_type: media_type,
     media_id: movieId,
   })
@@ -74,7 +74,7 @@ export async function handelRemoveItemFromList(
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa' });
 
-  return removeItemList(accountId, {
+  return removeItemList({
     media_id: movieId,
   })
     .then((movieRespone: any) => {
@@ -130,7 +130,7 @@ export async function handleRemoveAllitemFromList(
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa tất cả Danh sách phát' });
 
-  return removeAllItemList(accountId)
+  return removeAllItemList()
     .then((movieRespone) => {
       if (movieRespone.data?.success == true) {
         message.destroy();
@@ -183,7 +183,7 @@ export async function handleRemoveItemHistory(
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa' });
 
-  return removeItemHistory(accountId, {
+  return removeItemHistory({
     media_id: movieId,
   })
     .then((movieRespone: any) => {
@@ -238,7 +238,7 @@ export async function handleRemoveAllitemFromHistory(
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa tất cả Lịch sử xem' });
 
-  return removeAllItemHistory(accountId)
+  return removeAllItemHistory()
     .then((movieRespone) => {
       if (movieRespone.data?.success == true) {
         message.destroy();

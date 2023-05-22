@@ -567,18 +567,22 @@ const getData = async () => {
     });
 
   if (store.$state.isLogin) {
-    await useAsyncData(
-      `itemlist/${store.$state?.userAccount?.id}/${route.params?.id}`,
-      () => getItemList(store.$state?.userAccount?.id, route.params?.id)
-    )
-      .then((movieRespone: any) => {
-        if (movieRespone.data.value.data.success == true) {
-          isAddToList.value = true;
-        }
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      });
+    if (dataMovie.value?.in_list) {
+      isAddToList.value = true;
+    }
+
+    // await useAsyncData(
+    //   `itemlist/${store.$state?.userAccount?.id}/${route.params?.id}`,
+    //   () => getItemList(route.params?.id)
+    // )
+    //   .then((movieRespone: any) => {
+    //     if (movieRespone.data.value.data.success == true) {
+    //       isAddToList.value = true;
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     if (axios.isCancel(e)) return;
+    //   });
   }
 };
 
