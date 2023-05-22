@@ -1,8 +1,8 @@
 import ALLGENRES from '../constants/Genres';
 // import LANGUAGES from '../constants/Languages';
+import { getWithExpiry } from '@/utils/LocalStorage';
 import COUNTRIES from '../constants/Country';
 import axios from 'axios';
-// const axios = require('axios').default;
 // import { useRuntimeConfig } from 'nuxt';
 
 // const { API_CONTENT_SERVICE_URL, API_IMAGE_SERVICE_URL, TMDB_IMAGE_BASE_URL } =
@@ -288,18 +288,46 @@ const getMovies = async (page) =>
 const getTv = async (page) =>
   await axios.get(`${URL_API}/tv/phimbo?api=hieu987&page=${page}`);
 
-const getMovieById = async (movieId, append_to_response = '') =>
-  await axios.get(
-    `${URL_API}/movie/detail/${movieId}?append_to_response=${append_to_response}&api=hieu987`
-  );
+const getMovieById = async (movieId, append_to_response = '') => {
+  if (getWithExpiry('userAccount')?.user_token) {
+    const headers = {
+      Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    };
+
+    return await axios.get(
+      `${URL_API}/movie/detail/${movieId}?append_to_response=${append_to_response}&api=hieu987`,
+      {
+        headers: headers,
+      }
+    );
+  } else {
+    return await axios.get(
+      `${URL_API}/movie/detail/${movieId}?append_to_response=${append_to_response}&api=hieu987`
+    );
+  }
+};
 
 const UpdateViewMovie = async (movieId) =>
   await axios.post(`${URL_API}/movie/updateview/${movieId}?api=hieu987`);
 
-const getTvById = async (movieid, append_to_response = '') =>
-  await axios.get(
-    `${URL_API}/tv/detail/${movieid}?append_to_response=${append_to_response}&api=hieu987`
-  );
+const getTvById = async (movieId, append_to_response = '') => {
+  if (getWithExpiry('userAccount')?.user_token) {
+    const headers = {
+      Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    };
+
+    return await axios.get(
+      `${URL_API}/tv/detail/${movieId}?append_to_response=${append_to_response}&api=hieu987`,
+      {
+        headers: headers,
+      }
+    );
+  } else {
+    return await axios.get(
+      `${URL_API}/tv/detail/${movieId}?append_to_response=${append_to_response}&api=hieu987`
+    );
+  }
+};
 
 const UpdateViewTV = async (movieId) =>
   await axios.post(`${URL_API}/tv/updateview/${movieId}?api=hieu987`);
