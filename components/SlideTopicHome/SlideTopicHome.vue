@@ -14,6 +14,7 @@
       trigger="click"
       ref="topicHome"
       class="topic-home"
+      @change="handleChangeCarouel"
     >
       <!-- @change="handleSwitchCarouel" -->
 
@@ -27,26 +28,41 @@
       </el-carousel-item>
 
       <div class="carousel-arrow">
-        <a-button
-          @click="topicHome.prev()"
-          size="large"
-          type="text"
-          shape="circle"
+        <a-tooltip
+          :teleported="false"
+          :title="prevItemCarousel"
+          :content="prevItemCarousel"
+          placement="top"
         >
-          <template #icon>
-            <Icon name="fa6-solid:chevron-left"></Icon>
-          </template>
-        </a-button>
-        <a-button
-          @click="topicHome.next()"
-          size="large"
-          type="text"
-          shape="circle"
+          <a-button
+            @click="topicHome.prev()"
+            size="large"
+            type="text"
+            shape="circle"
+          >
+            <template #icon>
+              <Icon name="fa6-solid:chevron-left"></Icon>
+            </template>
+          </a-button>
+        </a-tooltip>
+
+        <a-tooltip
+          :teleported="false"
+          :title="nextItemCarousel"
+          :content="nextItemCarousel"
+          placement="top"
         >
-          <template #icon>
-            <Icon name="fa6-solid:chevron-right"></Icon>
-          </template>
-        </a-button>
+          <a-button
+            @click="topicHome.next()"
+            size="large"
+            type="text"
+            shape="circle"
+          >
+            <template #icon>
+              <Icon name="fa6-solid:chevron-right"></Icon>
+            </template>
+          </a-button>
+        </a-tooltip>
       </div>
     </el-carousel>
   </div>
@@ -56,13 +72,13 @@ import axios from 'axios';
 import SlideTopicItem from '../SlideTopicItem/SlideTopicItem.vue';
 import { getTrending, getBackdrop } from '@/services/MovieService';
 
-// const trendings = ref([]);
-
 const props = defineProps<{
   trendings: any[];
 }>();
-
 const topicHome = ref<any>();
+// const trendings = ref([]);
+const prevItemCarousel = ref<string>('');
+const nextItemCarousel = ref<string>('');
 
 onBeforeMount(async () => {
   // await useAsyncData('trending/all/1', () => getTrending(1))
@@ -74,7 +90,25 @@ onBeforeMount(async () => {
   //   });
 });
 
-const handleSwitchCarouel = (e: any) => {
+watch(props, () => {
+  prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
+  nextItemCarousel.value = props.trendings[1]?.name;
+});
+
+const handleChangeCarouel = (activeIndex: number) => {
+  if (activeIndex == props.trendings?.length - 1) {
+    prevItemCarousel.value = props.trendings[activeIndex - 1]?.name;
+    nextItemCarousel.value = props.trendings[0]?.name;
+  } else if (activeIndex == 0) {
+    prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
+    nextItemCarousel.value = props.trendings[activeIndex + 1]?.name;
+  } else {
+    prevItemCarousel.value = props.trendings[activeIndex - 1]?.name;
+    nextItemCarousel.value = props.trendings[activeIndex + 1]?.name;
+  }
+};
+
+const handleSwitchCarouel = (activeIndex: number) => {
   const el_carousel_topic_home = document.querySelector(
     '.el-carousel.topic-home'
   ) as HTMLElement;
@@ -101,7 +135,7 @@ const handleSwitchCarouel = (e: any) => {
   ) as HTMLImageElement;
 
   if (getComputedStyle(el_carousel_topic_home).display == 'block') {
-    if (e == index) {
+    if (activeIndex == index) {
       if (index == 0) {
         img_overlay_backdrop.src =
           el_carousel_topic_home.querySelectorAll<HTMLImageElement>(
@@ -116,7 +150,7 @@ const handleSwitchCarouel = (e: any) => {
         }
       }
     } else {
-      if (e == 10) {
+      if (activeIndex == 10) {
         img_overlay_backdrop.src =
           el_carousel_topic_home.querySelectorAll<HTMLImageElement>(
             '.el-carousel__item .el-image'
@@ -133,7 +167,7 @@ const handleSwitchCarouel = (e: any) => {
   }
 };
 
-const handleSwitchCarouelResponsive = (e: any) => {
+const handleSwitchCarouelResponsive = (activeIndex: number) => {
   const el_carousel_topic_home_responsive = document.querySelector(
     '.el-carousel.topic-home-responsive'
   ) as HTMLElement;
@@ -161,7 +195,7 @@ const handleSwitchCarouelResponsive = (e: any) => {
   ) as HTMLImageElement;
 
   if (getComputedStyle(el_carousel_topic_home_responsive).display == 'block') {
-    if (e == index) {
+    if (activeIndex == index) {
       if (index == 0) {
         img_overlay_backdrop.src =
           el_carousel_topic_home_responsive.querySelectorAll<HTMLImageElement>(
@@ -176,7 +210,7 @@ const handleSwitchCarouelResponsive = (e: any) => {
         }
       }
     } else {
-      if (e == 10) {
+      if (activeIndex == 10) {
         img_overlay_backdrop.src =
           el_carousel_topic_home_responsive.querySelectorAll<HTMLImageElement>(
             '.el-carousel__item .el-image img'

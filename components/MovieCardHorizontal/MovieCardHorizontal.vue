@@ -41,7 +41,7 @@
 
           <div class="duration-episode-box">
             <p v-if="!isEpisodes" class="duration-episode">
-              {{ dataMovie?.runtime + ' min' }}
+              {{ item?.runtime + ' min' }}
             </p>
             <p v-else class="duration-episode">
               {{
@@ -58,9 +58,9 @@
             </p>
             <p v-else class="release-date">
               {{
-                dataMovie?.last_air_date?.slice(0, 4)
-                  ? dataMovie?.last_air_date?.slice(0, 4)
-                  : dataMovie?.first_air_date?.slice(0, 4)
+                item?.last_air_date?.slice(0, 4)
+                  ? item?.last_air_date?.slice(0, 4)
+                  : item?.first_air_date?.slice(0, 4)
               }}
             </p>
           </div>

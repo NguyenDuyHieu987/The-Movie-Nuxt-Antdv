@@ -84,17 +84,20 @@
             </p>
 
             <div class="year-views">
-              <p class="year">
+              <p class="year" v-if="!isEpisodes">
+                Năm:
+                {{ dataMovie?.release_date?.slice(0, 4) }}
+              </p>
+
+              <p class="year" v-else>
                 Năm:
                 {{
-                  dataMovie?.release_date
-                    ? dataMovie?.release_date?.slice(0, 4)
-                    : dataMovie?.last_air_date?.slice(0, 4)
+                  dataMovie?.last_air_date?.slice(0, 4)
                     ? dataMovie?.last_air_date?.slice(0, 4)
                     : dataMovie?.first_air_date?.slice(0, 4)
                 }}
               </p>
-              •
+
               <p class="views">
                 {{ ViewFormatter(dataMovie?.views) }} lượt xem
               </p>

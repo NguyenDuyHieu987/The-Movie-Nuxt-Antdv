@@ -76,8 +76,8 @@
           .el-carousel__button {
             background: linear-gradient(
               to bottom,
-              var(--sider-header-background-color2),
-              var(--sider-header-background-color3)
+              var(--app-background-color2),
+              var(--app-background-color3)
             );
           }
         }
@@ -93,13 +93,18 @@
       gap: 10px;
 
       .ant-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background: none;
         border: none;
         color: #8a8a8a;
         transition: all 0.25s;
         border: 1px solid var(--border-regular);
-        height: auto;
         padding: 5px;
+        height: 42px;
+        width: 42px;
+        border-radius: 50%;
 
         // &:hover ,
         &:focus {
