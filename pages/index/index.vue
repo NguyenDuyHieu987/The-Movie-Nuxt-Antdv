@@ -26,7 +26,6 @@
                 :index="index"
                 :key="item.id"
                 :type="item.media_type"
-                v-memo
               />
             </SwiperSlide>
           </template>
@@ -106,13 +105,12 @@
 
         <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
           <template #content>
-            <SwiperSlide v-for="(item, index) in cartoons">
+            <SwiperSlide v-for="(item, index) in cartoons" v-memo>
               <MovieCardHorizontal
                 :item="item"
                 :index="index"
                 :key="item.id"
                 :type="item.media_type"
-                v-memo
               />
             </SwiperSlide>
           </template>
@@ -133,13 +131,12 @@
 
         <CarouselGroup :data="tvAiringTodays" :responsive="responsiveVertical">
           <template #content>
-            <SwiperSlide v-for="(item, index) in tvAiringTodays">
+            <SwiperSlide v-for="(item, index) in tvAiringTodays" v-memo>
               <MovieCardVertical
                 :index="index"
                 :key="item.id"
                 :item="item"
                 :type="item.media_type"
-                v-memo
               />
             </SwiperSlide>
           </template>
@@ -166,6 +163,7 @@
             :key="item.id"
             :item="item"
             :type="item.me_type"
+            v-memo
           />
         </section>
       </section>
@@ -184,13 +182,12 @@
 
         <CarouselGroup :data="topRateds" :responsive="responsiveVertical">
           <template #content>
-            <SwiperSlide v-for="(item, index) in topRateds">
+            <SwiperSlide v-for="(item, index) in topRateds" v-memo>
               <MovieCardVertical
                 :item="item"
                 :index="index"
                 :key="item.id"
                 :type="item.me_type"
-                v-memo
               />
             </SwiperSlide>
           </template>
@@ -214,13 +211,12 @@
 
         <CarouselGroup :data="tvOnTheAirs" :responsive="responsiveHorizoltal">
           <template #content>
-            <SwiperSlide v-for="(item, index) in tvOnTheAirs">
+            <SwiperSlide v-for="(item, index) in tvOnTheAirs" v-memo>
               <MovieCardHorizontal
                 :item="item"
                 :index="index"
                 :key="item.id"
                 :type="item.media_type"
-                v-memo
               />
             </SwiperSlide>
           </template>

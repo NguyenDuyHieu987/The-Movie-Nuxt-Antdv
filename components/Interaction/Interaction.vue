@@ -16,7 +16,7 @@
       :title="dataMovie?.name"
       :description="dataMovie?.overview"
       :quote="'Xem phim thỏa thích cùng Phimhay247'"
-      hashtags="phimhay247.site,vite"
+      hashtags="phimhay247.site"
     >
       <a-button round type="primary" shape="round">
         <template #icon>
