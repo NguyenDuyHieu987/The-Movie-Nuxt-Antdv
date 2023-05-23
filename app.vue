@@ -84,7 +84,6 @@ onBeforeMount(() => {
         });
         if (axios.isCancel(e)) return;
       });
-  } else {
   }
 
   setTimeout(() => {

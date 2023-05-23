@@ -3,20 +3,6 @@ import { resolve } from 'path';
 // import vue from '@vitejs/plugin-vue';
 
 export default defineNuxtConfig({
-  // nitro: {
-  //   output: {
-  //     dir: 'output',
-  //     serverDir: 'output/server',
-  //     publicDir: 'output/public',
-  //   },
-  // },
-  vite: {
-    server: {
-      hmr: {
-        overlay: false,
-      },
-    },
-  },
   app: {
     head: {
       title: 'Phimhay247',
@@ -163,7 +149,26 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
     // vue({ script: { defineModel: true, propsDestructure: true } }),
   ],
+  nitro: {
+    prerender: {
+      routes: ['/', '/search', '/discover', '/info', '/play'],
+    },
+    output: {
+      dir: '.output',
+      serverDir: '.output/server',
+      publicDir: '.output/public',
+    },
+  },
+  vite: {
+    server: {
+      hmr: {
+        // overlay: false,
+      },
+    },
+  },
+  ssr: true,
   routeRules: {
-    // '/**': { ssr: true },
+    '/': { prerender: true, swr: true },
+    '/search/**': { ssr: true },
   },
 });
