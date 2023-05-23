@@ -154,9 +154,9 @@ export default defineNuxtConfig({
       routes: ['/', '/search', '/discover', '/info', '/play'],
     },
     output: {
-      dir: '.output',
-      serverDir: '.output/server',
-      publicDir: '.output/public',
+      dir: 'dist',
+      serverDir: 'dist/server',
+      publicDir: 'dist/public',
     },
   },
   vite: {

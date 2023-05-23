@@ -256,6 +256,21 @@ definePageMeta({
   // layout: 'home',
 });
 
+useSeoMeta({
+  title: 'Phimhay247',
+  description: 'Xem phim thỏa thích cùng Phimhay247',
+  ogTitle: 'Phimhay247',
+  ogType: 'video.movie',
+  ogUrl: window.location.href,
+  ogDescription: 'Xem phim thỏa thích cùng Phimhay247',
+  ogLocale: 'vi',
+});
+
+useHead({
+  title: 'Phimhay247',
+  htmlAttrs: { lang: 'vi' },
+});
+
 const store: any = useStore();
 const trendings = ref<any>([]);
 const nowPlayings = ref<any>([]);
@@ -440,11 +455,6 @@ const responsiveVertical = computed<any>((): any => ({
     slidesPerGroup: 8,
   },
 }));
-
-useHead({
-  title: 'Phimhay247',
-  htmlAttrs: { lang: 'vi' },
-});
 
 onBeforeMount(async () => {
   await useAsyncData('trending/all/1', () => getTrending(1))
