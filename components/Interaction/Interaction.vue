@@ -15,6 +15,7 @@
       :url="urlShare"
       :title="dataMovie?.name"
       :description="dataMovie?.overview"
+      :quote="'Xem phim thỏa thích cùng Phimhay247'"
       hashtags="phimhay247.site,vite"
     >
       <a-button round type="primary" shape="round">

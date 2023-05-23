@@ -111,7 +111,7 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
     '@pinia/nuxt',
     'nuxt-icon',
-    'vue-social-sharing/nuxt',
+    // 'vue-social-sharing/nuxt',
     // 'nuxt-lazy-load'
     'nuxt-swiper',
   ],
