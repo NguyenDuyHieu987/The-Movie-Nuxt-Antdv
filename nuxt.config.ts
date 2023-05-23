@@ -151,7 +151,16 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      routes: ['/', '/search', '/discover', '/info', '/play'],
+      routes: [
+        '/',
+        '/search',
+        '/discover',
+        '/list',
+        '/history',
+        '/ranking',
+        '/info',
+        '/play',
+      ],
     },
     // output: {
     //   dir: '.output',
@@ -169,6 +178,12 @@ export default defineNuxtConfig({
   ssr: true,
   routeRules: {
     '/': { prerender: true, swr: true },
-    '/search/**': { ssr: true },
+    '/search/**': { prerender: true, swr: true },
+    '/discover/**': { prerender: true, swr: true },
+    '/list/**': { prerender: true, swr: true },
+    '/history/**': { prerender: true, swr: true },
+    '/ranking/**': { prerender: true, swr: true },
+    '/info/**': { prerender: true, swr: true },
+    '/play/**': { prerender: true, swr: true },
   },
 });
