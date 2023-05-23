@@ -14,8 +14,8 @@
       network="facebook"
       :url="urlShare"
       :title="dataMovie?.name"
+      :description="dataMovie?.overview"
       hashtags="phimhay247.site,vite"
-      style="white-space: nowrap; display: block"
     >
       <a-button round type="primary" shape="round">
         <template #icon>
