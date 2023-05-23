@@ -141,8 +141,13 @@
                   </p>
                 </div>
                 <div class="action">
-                  <a-button size="large" type="text" @click="handleCancel"
-                    >Đóng
+                  <a-button
+                    class="default"
+                    size="large"
+                    type="text"
+                    @click="handleCancel"
+                  >
+                    Đóng
                   </a-button>
                   <NuxtLink
                     v-if="isEpisodes"
