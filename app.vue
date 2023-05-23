@@ -1,42 +1,40 @@
 <template>
-  <div>
-    <ClientOnly>
-      <vue-progress-bar
-        style="
-          background: linear-gradient(
-            90deg,
-            var(--loading-progress-bar1),
-            var(--loading-progress-bar2),
-            var(--loading-progress-bar3)
-          );
-        "
-      />
-    </ClientOnly>
-
-    <div
-      v-if="
-        // $route.name == 'index' &&
-        loadingHomePage && !store.$state.loadingHomePage
+  <ClientOnly>
+    <vue-progress-bar
+      style="
+        background: linear-gradient(
+          90deg,
+          var(--loading-progress-bar1),
+          var(--loading-progress-bar2),
+          var(--loading-progress-bar3)
+        );
       "
-      class="loading-page"
-    >
-      <div class="loading-page-container">
-        <img src="/images/logo.png" alt="" />
-        <div class="logo"><h2 class="animated">Phimhay247</h2></div>
+    />
+  </ClientOnly>
+
+  <div
+    v-if="
+      // $route.name == 'index' &&
+      loadingHomePage && !store.$state.loadingHomePage
+    "
+    class="loading-page"
+  >
+    <div class="loading-page-container">
+      <img src="/images/logo.png" alt="" />
+      <div class="logo"><h2 class="animated">Phimhay247</h2></div>
+    </div>
+  </div>
+
+  <div v-else class="app-wrapper">
+    <NuxtLayout>
+      <NuxtPage />
+
+      <div id="components-back-top-demo-custom">
+        <a-back-top class="ant-back-top-inner" :visibilityHeight="600">
+          <font-awesome-icon icon="fa-solid fa-chevron-up" />
+        </a-back-top>
       </div>
-    </div>
-
-    <div v-else class="app-wrapper">
-      <NuxtLayout>
-        <NuxtPage />
-
-        <div id="components-back-top-demo-custom">
-          <a-back-top class="ant-back-top-inner" :visibilityHeight="600">
-            <font-awesome-icon icon="fa-solid fa-chevron-up" />
-          </a-back-top>
-        </div>
-      </NuxtLayout>
-    </div>
+    </NuxtLayout>
   </div>
 </template>
 
@@ -155,16 +153,16 @@ onBeforeMount(() => {
   right: 40px;
 }
 #components-back-top-demo-custom .ant-back-top-inner {
-  height: 40px;
-  width: 43px;
-  line-height: 40px;
-  border-radius: 5px;
+  height: 45px;
+  width: 45px;
+  line-height: 45px;
+  border-radius: 50%;
   border: 1px solid #fff;
   background-color: var(--background-content-color1);
   color: #fff;
   text-align: center;
   font-size: 20px;
-  box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 0.26) !important;
+  box-shadow: var(--box-shadow-small) !important;
   transition: all 0.25s;
 
   &:active {

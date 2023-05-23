@@ -9,7 +9,7 @@
             ?.replace(/\s/g, '+')
             .toLowerCase()}`,
     }"
-    class="movie-card-vertical-item"
+    class="movie-card-item vertical"
   >
     <el-skeleton :loading="loading" animated>
       <template #template>
@@ -68,44 +68,30 @@
           </div>
         </div>
 
-        <a-tooltip
-          :title="
-            getLanguage(item?.original_language, store.$state.allCountries)
-              ?.name
-              ? getLanguage(item?.original_language, store.$state.allCountries)
-                  ?.name
-              : ''
-          "
-        >
-          <div class="info">
-            <a-skeleton
-              :loading="loading"
-              :active="true"
-              :paragraph="{ rows: 2 }"
-              :title="false"
-            >
-              <p class="title">
-                {{ item?.name }}
-                <span v-if="isEpisodes">
-                  {{
-                    ' - Phần ' + dataMovie?.last_episode_to_air?.season_number
-                  }}
-                </span>
+        <div class="info">
+          <a-skeleton
+            :loading="loading"
+            :active="true"
+            :paragraph="{ rows: 2 }"
+            :title="false"
+          >
+            <p class="title">
+              {{ item?.name }}
+              <span v-if="isEpisodes">
+                {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
+              </span>
+            </p>
+            <div class="info-bottom">
+              <p class="genres">
+                {{ Array?.from(item?.genres, (x: any) => x.name).join(' • ') }}
               </p>
-              <div class="info-bottom">
-                <p class="genres">
-                  {{
-                    Array?.from(item?.genres, (x: any) => x.name).join(' • ')
-                  }}
-                </p>
-              </div>
-            </a-skeleton>
-          </div>
-        </a-tooltip>
+            </div>
+          </a-skeleton>
+        </div>
       </template>
     </el-skeleton>
 
-    <div class="detail-flow" v-if="!loading">
+    <div class="detail-flow">
       <div class="backdrop-box">
         <img
           class="ant-image"
@@ -333,7 +319,7 @@ const urlShare = computed<string>((): string => window.location.href);
 
 onMounted(() => {
   const itemMovie: NodeListOf<HTMLElement> = document.querySelectorAll(
-    '.movie-card-vertical-item'
+    '.movie-card-item.vertical'
   );
 
   itemMovie.forEach((x: HTMLElement) => {

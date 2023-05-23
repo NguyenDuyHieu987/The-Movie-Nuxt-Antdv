@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Teleport to="body" v-if="store.$state.openRequireAuthDialog">
     <el-dialog
       class="require-auth-dialog"
       v-model="store.$state.openRequireAuthDialog"
@@ -38,7 +38,7 @@
         </NuxtLink>
       </template>
     </el-dialog>
-  </div>
+  </Teleport>
 </template>
 
 <script setup lang="ts">

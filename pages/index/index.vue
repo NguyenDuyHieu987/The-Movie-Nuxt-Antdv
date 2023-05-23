@@ -17,10 +17,9 @@
           </NuxtLink>
         </h2>
 
-        <!-- :navText="[btnPrev, btnNext]" -->
         <CarouselGroup :data="nowPlayings" :responsive="responsiveHorizoltal">
           <template #content>
-            <SwiperSlide v-for="(item, index) in nowPlayings" v-memo>
+            <SwiperSlide v-for="(item, index) in nowPlayings">
               <MovieCardHorizontal
                 :item="item"
                 :index="index"
@@ -51,7 +50,6 @@
             :key="item.id"
             :item="item"
             :type="item.media_type"
-            v-memo
           />
           <el-button
             class="loadmore-btn"
@@ -105,7 +103,7 @@
 
         <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
           <template #content>
-            <SwiperSlide v-for="(item, index) in cartoons" v-memo>
+            <SwiperSlide v-for="(item, index) in cartoons">
               <MovieCardHorizontal
                 :item="item"
                 :index="index"
@@ -131,7 +129,7 @@
 
         <CarouselGroup :data="tvAiringTodays" :responsive="responsiveVertical">
           <template #content>
-            <SwiperSlide v-for="(item, index) in tvAiringTodays" v-memo>
+            <SwiperSlide v-for="(item, index) in tvAiringTodays">
               <MovieCardVertical
                 :index="index"
                 :key="item.id"
@@ -163,7 +161,6 @@
             :key="item.id"
             :item="item"
             :type="item.me_type"
-            v-memo
           />
         </section>
       </section>
@@ -182,7 +179,7 @@
 
         <CarouselGroup :data="topRateds" :responsive="responsiveVertical">
           <template #content>
-            <SwiperSlide v-for="(item, index) in topRateds" v-memo>
+            <SwiperSlide v-for="(item, index) in topRateds">
               <MovieCardVertical
                 :item="item"
                 :index="index"
@@ -211,7 +208,7 @@
 
         <CarouselGroup :data="tvOnTheAirs" :responsive="responsiveHorizoltal">
           <template #content>
-            <SwiperSlide v-for="(item, index) in tvOnTheAirs" v-memo>
+            <SwiperSlide v-for="(item, index) in tvOnTheAirs">
               <MovieCardHorizontal
                 :item="item"
                 :index="index"
@@ -455,7 +452,7 @@ const responsiveVertical = computed<any>((): any => ({
 onBeforeMount(async () => {
   await useAsyncData('trending/all/1', () => getTrending(1))
     .then((response: any) => {
-      trendings.value = response.data.value.data?.results.slice(0, 11);
+      trendings.value = response.data.value.data?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -463,7 +460,7 @@ onBeforeMount(async () => {
 
   await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
     .then((response: any) => {
-      nowPlayings.value = response.data.value.data?.results.slice(0, 10);
+      nowPlayings.value = response.data.value.data?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -473,7 +470,7 @@ onBeforeMount(async () => {
     getMoviesByGenres('hoat-hinh', 1, 'views_desc')
   )
     .then((response: any) => {
-      cartoons.value = response.data.value.data?.results.slice(0, 10);
+      cartoons.value = response.data.value.data?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -481,7 +478,7 @@ onBeforeMount(async () => {
 
   await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
     .then((response: any) => {
-      tvAiringTodays.value = response.data.value.data?.results.slice(0, 10);
+      tvAiringTodays.value = response.data.value.data?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -489,7 +486,7 @@ onBeforeMount(async () => {
 
   await useAsyncData('movie/upcoming/1', () => getUpComing(1))
     .then((response: any) => {
-      upComings.value = response.data.value.data?.results.slice(0, 10);
+      upComings.value = response.data.value.data?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -497,7 +494,7 @@ onBeforeMount(async () => {
 
   await useAsyncData('movie/toprated/1', () => getTopRated(1))
     .then((response: any) => {
-      topRateds.value = response.data.value.data?.results.slice(0, 10);
+      topRateds.value = response.data.value.data?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -505,7 +502,7 @@ onBeforeMount(async () => {
 
   await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
     .then((response: any) => {
-      tvOnTheAirs.value = response.data.value.data?.results.slice(0, 10);
+      tvOnTheAirs.value = response.data.value.data?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -518,6 +515,19 @@ onBeforeMount(async () => {
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
+
+  window.onscroll = () => {
+    let bottomOfWindow =
+      Math.max(
+        window.scrollY,
+        document.documentElement.scrollTop,
+        document.body.scrollTop
+      ) +
+        window.innerHeight ===
+      document.documentElement.offsetHeight;
+
+    console.log(bottomOfWindow);
+  };
 
   // Promise.all([
   //   await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1)),

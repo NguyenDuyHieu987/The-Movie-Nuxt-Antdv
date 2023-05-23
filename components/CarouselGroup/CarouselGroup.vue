@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- :navText="[btnPrev, btnNext]" -->
     <!-- <OwlCarousel
       v-if="data?.length"
       class="carousel-group"
@@ -30,7 +31,11 @@
 
     <Swiper
       class="carousel-group"
-      :modules="[SwiperAutoplay, SwiperNavigation, SwiperVirtual]"
+      :modules="[
+        // SwiperAutoplay,
+        SwiperNavigation,
+        SwiperVirtual,
+      ]"
       :breakpoints="responsive"
       :space-between="7"
       effect="creative"
@@ -43,7 +48,8 @@
         pauseOnMouseEnter: true,
         reverseDirection: true,
       }"
-      :virtual="true"
+      :rewind="true"
+      :speed="500"
     >
       <slot name="content" />
       <div class="swiper-button-prev">

@@ -1,5 +1,5 @@
 .movie-group.horizontal.trailer {
-  .movie-card-horizontal-item {
+  .movie-card-item.horizontal {
     display: inline-block;
     width: calc((100% - (5 * var(--card-movie-gap))) / 6);
   }
@@ -7,14 +7,14 @@
 
 // .body-content.expand {
 // .movie-group.horizontal.trailer {
-//   .movie-card-horizontal-item {
+//   .movie-card-item.horizontal {
 //     display: inline-block;
 //     width: calc((100% - (5 * 7px)) / 6);
 //   }
 // }
 // }
 
-.movie-card-horizontal-item {
+.movie-card-item.horizontal {
   color: #fff;
   cursor: pointer;
   position: relative;
