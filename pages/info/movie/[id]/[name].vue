@@ -532,7 +532,7 @@ const getData = async () => {
       useSeoMeta({
         title: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',
         description: dataMovie.value?.overview,
-        ogTitle: 'Phimhay247',
+        ogTitle: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',
         ogType: 'video.movie',
         ogUrl: window.location.href,
         ogDescription: dataMovie.value?.overview,

@@ -256,6 +256,11 @@ definePageMeta({
   // layout: 'home',
 });
 
+useHead({
+  title: 'Phimhay247',
+  htmlAttrs: { lang: 'vi' },
+});
+
 useSeoMeta({
   title: 'Phimhay247',
   description: 'Xem phim thỏa thích cùng Phimhay247',
@@ -264,11 +269,6 @@ useSeoMeta({
   ogUrl: window.location.href,
   ogDescription: 'Xem phim thỏa thích cùng Phimhay247',
   ogLocale: 'vi',
-});
-
-useHead({
-  title: 'Phimhay247',
-  htmlAttrs: { lang: 'vi' },
 });
 
 const store: any = useStore();

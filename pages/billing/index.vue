@@ -4,8 +4,18 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Phimhay247 - Billing',
+  title: 'Billing - Hóa đơn - Thanh toán | Phimhay247',
   htmlAttrs: { lang: 'vi' },
+});
+
+useSeoMeta({
+  title: 'Billing - Hóa đơn - Thanh toán | Phimhay247',
+  description: 'Hóa đơn của bạn. Thanh toán gói cước',
+  ogTitle: 'Billing - Hóa đơn - Thanh toán | Phimhay247',
+  ogType: 'video.movie',
+  ogUrl: window.location.href,
+  ogDescription: 'Hóa đơn của bạn. Thanh toán gói cước',
+  ogLocale: 'vi',
 });
 </script>
 

@@ -153,11 +153,11 @@ export default defineNuxtConfig({
     prerender: {
       routes: ['/', '/search', '/discover', '/info', '/play'],
     },
-    output: {
-      dir: 'dist',
-      serverDir: 'dist/server',
-      publicDir: 'dist/public',
-    },
+    // output: {
+    //   dir: '.output',
+    //   serverDir: '.output/server',
+    //   publicDir: '.output/public',
+    // },
   },
   vite: {
     server: {

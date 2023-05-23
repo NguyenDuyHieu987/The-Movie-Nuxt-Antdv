@@ -526,6 +526,7 @@ import {
   handelAddItemToList,
   handelRemoveItemFromList,
 } from '~/utils/handelAddRemoveItemList_History';
+import { textUppercase } from '~/utils/textUppercase';
 
 const store: any = useStore();
 const route: any = useRoute();
@@ -549,26 +550,6 @@ const getData = async () => {
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  useHead({
-    title:
-      'Phimhay247 - Thông tin - ' +
-      Array?.from(
-        route.params?.name?.split('+'),
-        (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-      ).join(' ')
-        ? 'Phimhay247 - Thông tin - ' +
-          Array?.from(
-            route.params?.name?.split('+'),
-            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-          ).join(' ')
-        : 'Phimhay247 - Thông tin - ' +
-          Array?.from(
-            route.params?.name?.split('+'),
-            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-          ).join(' '),
-    htmlAttrs: { lang: 'vi' },
-  });
-
   srcBackdropList.value = [];
 
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
@@ -579,6 +560,37 @@ const getData = async () => {
       dataMovie.value = tvResponed.data.value.data;
       dataCredit.value = tvResponed.data.value.data?.credits;
       dataCredit.value = tvResponed.data.value.data?.credits;
+
+      useHead({
+        title:
+          'Thông tin - Phim bộ - ' +
+          dataMovie.value?.name +
+          ' - Phần ' +
+          dataMovie.value?.last_episode_to_air?.season_number +
+          ' | Phimhay247',
+        htmlAttrs: { lang: 'vi' },
+      });
+
+      useSeoMeta({
+        title:
+          'Thông tin - Phim bộ - ' +
+          dataMovie.value?.name +
+          ' - Phần ' +
+          dataMovie.value?.last_episode_to_air?.season_number +
+          ' | Phimhay247',
+        description: dataMovie.value?.overview,
+        ogTitle:
+          'Thông tin - Phim bộ - ' +
+          dataMovie.value?.name +
+          ' - Phần ' +
+          dataMovie.value?.last_episode_to_air?.season_number +
+          ' | Phimhay247',
+        ogType: 'video.movie',
+        ogUrl: window.location.href,
+        ogDescription: dataMovie.value?.overview,
+        ogImage: getBackdrop(dataMovie.value?.backdrop_path),
+        ogLocale: 'vi',
+      });
 
       // tvResponed?.data?.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(

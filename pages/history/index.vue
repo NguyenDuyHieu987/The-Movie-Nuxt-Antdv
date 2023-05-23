@@ -392,8 +392,18 @@ const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: 'Phimhay247 - Lịch sử xem',
+  title: 'Lịch sử xem ' + ' | Phimhay247',
   htmlAttrs: { lang: 'vi' },
+});
+
+useSeoMeta({
+  title: 'Lịch sử xem ' + ' | Phimhay247',
+  description: 'Lịch sử xem dõi của bạn',
+  ogTitle: 'Lịch sử xem ' + ' | Phimhay247',
+  ogType: 'video.movie',
+  ogUrl: window.location.href,
+  ogDescription: 'Lịch sử xem dõi của bạn',
+  ogLocale: 'vi',
 });
 
 const setBackgroundColor = (color: string[]) => {

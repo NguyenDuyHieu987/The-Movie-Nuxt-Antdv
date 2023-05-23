@@ -485,6 +485,7 @@ import {
   handelAddItemToList,
   handelRemoveItemFromList,
 } from '~/utils/handelAddRemoveItemList_History';
+import { textUppercase } from '~/utils/textUppercase';
 
 const store: any = useStore();
 const route: any = useRoute();
@@ -508,31 +509,6 @@ const getData = async () => {
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  useHead({
-    title:
-      'Phimhay247 - Thông tin - ' +
-      Array?.from(
-        route.params?.name?.split('+'),
-        (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-      ).join(' ')
-        ? 'Phimhay247 - Thông tin - ' +
-          Array?.from(
-            route.params?.name?.split('+'),
-            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-          ).join(' ')
-        : 'Phimhay247 - Thông tin - ' +
-          Array?.from(
-            route.params?.name?.split('+'),
-            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-          ).join(' '),
-    htmlAttrs: { lang: 'vi' },
-  });
-
-  // document.title = `${Array?.from(
-  //   route.params?.name?.split('+'),
-  //   (x) => x.charAt(0).toUpperCase() + x?.slice(1)
-  // ).join(' ')} - Thông tin`;
-
   srcBackdropList.value = [];
   isEpisodes.value = false;
 
@@ -542,6 +518,23 @@ const getData = async () => {
     .then((movieResponed: any) => {
       dataMovie.value = movieResponed.data.value.data;
       dataCredit.value = movieResponed.data.value.data.credits;
+
+      useHead({
+        title:
+          'Thông tin - Phim lẻ - ' + dataMovie.value?.name + ' | Phimhay247',
+        htmlAttrs: { lang: 'vi' },
+      });
+
+      useSeoMeta({
+        title: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',
+        description: dataMovie.value?.overview,
+        ogTitle: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',
+        ogType: 'video.movie',
+        ogUrl: window.location.href,
+        ogDescription: dataMovie.value?.overview,
+        ogImage: getBackdrop(dataMovie.value?.backdrop_path),
+        ogLocale: 'vi',
+      });
 
       // movieResponed?.data?.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(

@@ -336,32 +336,43 @@ const getData = async () => {
   loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  useHead({
-    title:
-      'Phimhay247 - Xem phim - ' +
-      Array?.from(
-        route.params?.name?.split('+'),
-        (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-      ).join(' ')
-        ? 'Phimhay247 - Xem phim - ' +
-          Array?.from(
-            route.params?.name?.split('+'),
-            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-          ).join(' ')
-        : 'Phimhay247 - Xem phim - ' +
-          Array?.from(
-            route.params?.name?.split('+'),
-            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-          ).join(' '),
-    htmlAttrs: { lang: 'vi' },
-  });
-
   await useAsyncData(`tv/short/${route.params?.id}`, () =>
     getTvById(route.params?.id)
   )
     .then((tvResponed: any) => {
       isEpisodes.value = true;
       dataMovie.value = tvResponed.data.value.data;
+
+      useHead({
+        title:
+          'Xem phim - Phim bộ - ' +
+          dataMovie.value?.name +
+          ' - Phần ' +
+          dataMovie.value?.last_episode_to_air?.season_number +
+          ' | Phimhay247',
+        htmlAttrs: { lang: 'vi' },
+      });
+
+      useSeoMeta({
+        title:
+          'Xem phim - Phim bộ - ' +
+          dataMovie.value?.name +
+          ' - Phần ' +
+          dataMovie.value?.last_episode_to_air?.season_number +
+          ' | Phimhay247',
+        description: dataMovie.value?.overview,
+        ogTitle:
+          'Xem phim - Phim bộ - ' +
+          dataMovie.value?.name +
+          ' - Phần ' +
+          dataMovie.value?.last_episode_to_air?.season_number +
+          ' | Phimhay247',
+        ogType: 'video.movie',
+        ogUrl: window.location.href,
+        ogDescription: dataMovie.value?.overview,
+        ogImage: getBackdrop(dataMovie.value?.backdrop_path),
+        ogLocale: 'vi',
+      });
 
       loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();

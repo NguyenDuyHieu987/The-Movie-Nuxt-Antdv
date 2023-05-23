@@ -307,26 +307,6 @@ const getData = async () => {
   loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  useHead({
-    title:
-      'Phimhay247 - Xem phim - ' +
-      Array?.from(
-        route.params?.name?.split('+'),
-        (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-      ).join(' ')
-        ? 'Phimhay247 - Xem phim - ' +
-          Array?.from(
-            route.params?.name?.split('+'),
-            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-          ).join(' ')
-        : 'Phimhay247 - Xem phim - ' +
-          Array?.from(
-            route.params?.name?.split('+'),
-            (x: string) => x.charAt(0).toUpperCase() + x.slice(1)
-          ).join(' '),
-    htmlAttrs: { lang: 'vi' },
-  });
-
   isEpisodes.value = false;
 
   await useAsyncData(`movie/short/${route.params?.id}`, () =>
@@ -334,6 +314,23 @@ const getData = async () => {
   )
     .then((movieResponed: any) => {
       dataMovie.value = movieResponed.data.value.data;
+
+      useHead({
+        title:
+          'Xem phim - Phim lẻ - ' + dataMovie.value?.name + ' | Phimhay247',
+        htmlAttrs: { lang: 'vi' },
+      });
+
+      useSeoMeta({
+        title: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',
+        description: dataMovie.value?.overview,
+        ogTitle: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',
+        ogType: 'video.movie',
+        ogUrl: window.location.href,
+        ogDescription: dataMovie.value?.overview,
+        ogImage: getBackdrop(dataMovie.value?.backdrop_path),
+        ogLocale: 'vi',
+      });
 
       loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();

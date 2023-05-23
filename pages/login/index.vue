@@ -165,6 +165,21 @@ definePageMeta({
   layout: 'auth',
 });
 
+useHead({
+  title: 'Đăng nhập | Phimhay247',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useSeoMeta({
+  title: 'Đăng nhập | Phimhay247',
+  description: 'Xem phim thỏa thích cùng Phimhay247',
+  ogTitle: 'Đăng nhập | Phimhay247',
+  ogType: 'video.movie',
+  ogUrl: window.location.href,
+  ogDescription: 'Xem phim thỏa thích cùng Phimhay247',
+  ogLocale: 'vi',
+});
+
 const store: any = useStore();
 const loadingLogin = ref<boolean>(false);
 const loadingFacebookLogin = ref<boolean>(false);
@@ -181,11 +196,6 @@ const reset = () => {
   formState.password = '';
   formState.remember = false;
 };
-
-useHead({
-  title: 'Phimhay247 - Đăng nhập',
-  htmlAttrs: { lang: 'vi' },
-});
 
 const onFinish = () => {
   // console.log('Success:', values);

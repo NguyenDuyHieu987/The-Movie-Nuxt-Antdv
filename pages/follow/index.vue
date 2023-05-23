@@ -380,10 +380,19 @@ const loadMore = ref<boolean>(false);
 const isScroll = ref<boolean>(false);
 const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
 
-// document.title = 'Phimhay247 - Theo dõi';
 useHead({
-  title: 'Phimhay247 - Theo dõi',
+  title: 'Theo dõi - Danh sách ' + ' | Phimhay247',
   htmlAttrs: { lang: 'vi' },
+});
+
+useSeoMeta({
+  title: 'Theo dõi - Danh sách ' + ' | Phimhay247',
+  description: 'Danh sách theo dõi của bạn',
+  ogTitle: 'Theo dõi - Danh sách ' + ' | Phimhay247',
+  ogType: 'video.movie',
+  ogUrl: window.location.href,
+  ogDescription: 'Danh sách theo dõi của bạn',
+  ogLocale: 'vi',
 });
 
 const setBackgroundColor = (color: string[]) => {
