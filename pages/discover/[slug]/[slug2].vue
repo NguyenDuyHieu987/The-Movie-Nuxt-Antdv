@@ -317,7 +317,7 @@ watch(route, () => {
   // getData();
   // useHead({
   //   title: '`Phimhay247 - ' + metaHead.value,
-  //   htmlAttrs: { lang: 'vi', amp: true },
+  //   htmlAttrs: { lang: 'vi'},
   // });
   // loading.value = false;
   // internalInstance.appContext.config.globalProperties.$Progress.finish();
@@ -334,8 +334,18 @@ onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 
   useHead({
-    title: '`Phimhay247 - ' + metaHead.value,
+    title: 'Khám phá - ' + metaHead.value + ' | Phimhay247',
     htmlAttrs: { lang: 'vi' },
+  });
+
+  useSeoMeta({
+    title: 'Khám phá - ' + metaHead.value + ' | Phimhay247',
+    description: 'Khám phá phim mới cùng Phimhay247',
+    ogTitle: 'Khám phá - ' + metaHead.value + ' | Phimhay247',
+    ogType: 'video.movie',
+    ogUrl: window.location.href,
+    ogDescription: 'Khám phá phim mới cùng Phimhay247',
+    ogLocale: 'vi',
   });
 });
 

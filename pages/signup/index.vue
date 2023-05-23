@@ -265,6 +265,21 @@ definePageMeta({
   layout: 'auth',
 });
 
+useHead({
+  title: 'Đăng ký | Phimhay247',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useSeoMeta({
+  title: 'Đăng ký | Phimhay247',
+  description: 'Xem phim thỏa thích cùng Phimhay247',
+  ogTitle: 'Đăng ký | Phimhay247',
+  ogType: 'video.movie',
+  ogUrl: window.location.href,
+  ogDescription: 'Xem phim thỏa thích cùng Phimhay247',
+  ogLocale: 'vi',
+});
+
 const formState = reactive<any>({
   id: '',
   fullname: '',
