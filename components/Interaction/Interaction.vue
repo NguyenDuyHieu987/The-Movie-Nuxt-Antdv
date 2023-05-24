@@ -1,17 +1,7 @@
 <template>
   <div class="like-share">
-    <div
-      class="fb-like"
-      :data-href="urlShare"
-      data-width=""
-      data-layout=""
-      data-action=""
-      data-size=""
-      data-share="true"
-    ></div>
-
     <iframe
-      :src="`https://www.facebook.com/plugins/like.php?href=${urlShare}&layout&action&size&share=true&height=35&appId`"
+      :src="`https://www.facebook.com/plugins/like.php?href=${urlShare}&layout&action&size&share=true&height=35&appId=820070179113499`"
       width="100%"
       height="35"
       style="border: none; overflow: hidden"
