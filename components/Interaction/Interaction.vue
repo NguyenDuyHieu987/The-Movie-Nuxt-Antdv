@@ -11,17 +11,6 @@
       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
     ></iframe>
 
-    <a
-      name="fb_share"
-      type="button"
-      :href="`http://www.facebook.com/sharer.php?u=${urlShare}&media=${getBackdrop(
-        dataMovie?.backdrop_path
-      )}&description=${dataMovie?.overview}`"
-      class="joinFB"
-    >
-      Share Your Advertise
-    </a>
-
     <ShareNetwork
       network="facebook"
       :url="urlShare"
