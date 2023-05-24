@@ -10,6 +10,17 @@
       data-share="true"
     ></div>
 
+    <iframe
+      :src="`https://www.facebook.com/plugins/like.php?href=${urlShare}&layout&action&size&share=true&height=35&appId`"
+      width="100%"
+      height="35"
+      style="border: none; overflow: hidden"
+      scrolling="no"
+      frameborder="0"
+      allowfullscreen="true"
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+    ></iframe>
+
     <ShareNetwork
       network="facebook"
       :url="urlShare"
