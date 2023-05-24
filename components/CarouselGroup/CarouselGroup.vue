@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="slider-container">
     <!-- :navText="[btnPrev, btnNext]" -->
     <!-- <OwlCarousel
       v-if="data?.length"

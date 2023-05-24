@@ -49,9 +49,12 @@
             </p>
             <p v-else class="duration-episode">
               {{
-                dataMovie?.last_episode_to_air?.episode_number
-                  ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
-                  : ''
+                // dataMovie?.last_episode_to_air?.episode_number
+                //   ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
+                //   : ''
+                item?.episode_run_time[0]
+                  ? item?.episode_run_time[0] + ' min'
+                  : '? min'
               }}
             </p>
           </div>
@@ -79,9 +82,9 @@
           >
             <p class="title">
               {{ item?.name }}
-              <span v-if="isEpisodes">
+              <!-- <span v-if="isEpisodes">
                 {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
-              </span>
+              </span> -->
             </p>
             <div class="info-bottom">
               <p class="genres">
@@ -278,204 +281,22 @@
       </div>
     </div> -->
 
-    <Teleport to="#__nuxt" v-if="isTeleportPreviewModal">
-      <div class="preview-overlay">
-        <div
-          ref="previewModal"
-          class="preview-modal"
-          :style="{ left: x + 'px', top: y + 'px' }"
-          @mouseleave="onMouseLeave"
-        >
-          <div class="backdrop-box">
-            <el-image
-              class="ant-image"
-              :src="getBackdrop(item?.backdrop_path, ',250')"
-              :preview="false"
-              :lazy="true"
-              loading="lazy"
-            />
-
-            <div
-              v-if="isInHistory"
-              class="percent-viewed"
-              :style="{ width: percent * 100 + '%' }"
-            ></div>
-            <div v-if="isInHistory" class="viewed-overlay-bar"></div>
-          </div>
-
-          <div class="bottom-content">
-            <div class="widget">
-              <div class="left">
-                <a-tooltip
-                  :teleported="false"
-                  title="Xem ngay"
-                  content="Xem ngay"
-                  placement="top"
-                >
-                  <NuxtLink
-                    v-if="isEpisodes"
-                    :to="{
-                      path: `/play/tv/${item?.id}/${item?.name
-                        ?.replace(/\s/g, '+')
-                        .toLowerCase()}/tap-1`,
-                    }"
-                    class="btn-play-now"
-                  >
-                    <a-button shape="circle" size="large" type="text">
-                      <template #icon>
-                        <Icon name="ic:play-arrow" />
-                      </template>
-                    </a-button>
-                  </NuxtLink>
-                  <NuxtLink
-                    v-else
-                    :to="{
-                      path: `/play/movie/${item?.id}/${item?.name
-                        ?.replace(/\s/g, '+')
-                        .toLowerCase()}`,
-                    }"
-                    class="btn-play-now"
-                  >
-                    <a-button shape="circle" size="large" type="text">
-                      <template #icon>
-                        <Icon name="ic:play-arrow" />
-                      </template>
-                    </a-button>
-                  </NuxtLink>
-                </a-tooltip>
-
-                <a-tooltip
-                  :teleported="false"
-                  :title="
-                    !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
-                  "
-                  :content="
-                    !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
-                  "
-                  placement="top"
-                >
-                  <a-button
-                    shape="circle"
-                    size="large"
-                    type="text"
-                    @click.prevent="handelAddToList"
-                  >
-                    <template #icon>
-                      <font-awesome-icon
-                        v-if="isAddToList"
-                        icon="fa-solid fa-check"
-                      />
-                      <PlusOutlined v-else />
-                    </template>
-                  </a-button>
-                </a-tooltip>
-
-                <a-tooltip
-                  :teleported="false"
-                  title="Chia sẻ"
-                  content="Chia sẻ"
-                  placement="top"
-                >
-                  <ShareNetwork
-                    network="facebook"
-                    :url="urlShare"
-                    :title="item?.name"
-                    hashtags="phimhay247.site,vite"
-                    style="white-space: nowrap; display: block"
-                  >
-                    <a-button
-                      shape="circle"
-                      size="large"
-                      type="text"
-                      @click.prevent=""
-                    >
-                      <template #icon>
-                        <font-awesome-icon icon="fa-solid fa-share" />
-                      </template>
-                    </a-button>
-                  </ShareNetwork>
-                </a-tooltip>
-              </div>
-
-              <div class="right">
-                <a-tooltip
-                  :teleported="false"
-                  title="Chi tiết phim"
-                  content="Chi tiết phim"
-                  placement="top"
-                >
-                  <NuxtLink
-                    :to="{
-                      path: isEpisodes
-                        ? `/info/tv/${item?.id}/${item?.name
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()}`
-                        : `/info/movie/${item?.id}/${item?.name
-                            ?.replace(/\s/g, '+')
-                            .toLowerCase()}`,
-                    }"
-                  >
-                    <a-button shape="circle" size="large" type="text">
-                      <template #icon>
-                        <InfoOutlined />
-                      </template>
-                    </a-button>
-                  </NuxtLink>
-                </a-tooltip>
-              </div>
-            </div>
-            <div class="info">
-              <h3 class="title">
-                {{ item?.name }}
-                <span v-if="isEpisodes">
-                  {{
-                    ' - Phần ' + dataMovie?.last_episode_to_air?.season_number
-                  }}
-                </span>
-              </h3>
-
-              <div class="info-bottom">
-                <p class="genres">
-                  {{ Array.from(item?.genres, (x: any) => x.name).join(' • ') }}
-                </p>
-              </div>
-
-              <div class="views-imdb">
-                <p class="views">
-                  {{ ViewFormatter(dataMovie?.views) }} lượt xem
-                </p>
-
-                <p>
-                  <span
-                    style="color: green; font-weight: bold"
-                    v-if="dataMovie?.vote_average >= 8"
-                  >
-                    {{ dataMovie?.vote_average.toFixed(2) }}
-                  </span>
-                  <span
-                    style="color: yellow; font-weight: bold"
-                    v-if="
-                      dataMovie?.vote_average >= 5 &&
-                      dataMovie?.vote_average < 8
-                    "
-                  >
-                    {{ dataMovie?.vote_average.toFixed(2) }}
-                  </span>
-                  <span
-                    style="color: red; font-weight: bold"
-                    v-if="dataMovie?.vote_average < 5"
-                  >
-                    {{ dataMovie?.vote_average.toFixed(2) }}
-                  </span>
-                  diểm /
-                  {{ dataMovie?.vote_count + ' lượt' }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Teleport>
+    <PreviewModal
+      :isTeleportPreviewModal="isTeleportPreviewModal"
+      v-model="isTeleportPreviewModal"
+      :item="item"
+      :style="{
+        left: left,
+        top: top,
+        offsetHeight: offsetHeight,
+        offsetWidth: offsetWidth,
+        imgHeight: imgHeight,
+        imgWidth: imgWidth,
+      }"
+      :interval="interval"
+      :isEpisodes="isEpisodes"
+      @setIsTeleportModal="(data : boolean) => (isTeleportPreviewModal = data)"
+    />
   </NuxtLink>
 </template>
 <script setup lang="ts">
@@ -490,7 +311,7 @@ import {
   getItemList,
   getItemHistory,
 } from '@/services/MovieService';
-import { useRouter } from 'vue-router';
+import PreviewModal from '@/components/PreviewModal/PreviewModal.vue';
 import { ViewFormatter } from '@/utils/convertViews';
 import { storeToRefs } from 'pinia';
 import {
@@ -509,30 +330,19 @@ const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
-// const dataAddToList = ref([]);
 const isAddToList = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const urlShare = computed<string>((): string => window.location.href);
 const isTeleportPreviewModal = ref<boolean>(false);
 const cardItem = ref<any>(null);
-const previewModal = ref<any>(null);
-const x = ref<number>(0);
-const y = ref<number>(0);
+const left = ref<number>(0);
+const top = ref<number>(0);
+const offsetWidth = ref<number>(0);
+const offsetHeight = ref<number>(0);
+const imgHeight = ref<number>(0);
+const imgWidth = ref<number>(0);
 const interval = ref<any>();
-
-watch(previewModal, () => {
-  if (previewModal.value) {
-    previewModal.value?.addEventListener('mouseenter', () => {
-      isTeleportPreviewModal.value = true;
-
-      previewModal.value.addEventListener('mouseleave', () => {
-        isTeleportPreviewModal.value = false;
-        clearInterval(interval.value);
-      });
-    });
-  }
-});
 
 const onMouseEnter = (e: any) => {
   const rect = e.target.getBoundingClientRect();
@@ -548,11 +358,17 @@ const onMouseEnter = (e: any) => {
     height = 330;
   }
 
-  // x.value = offsetX + e.target.offsetWidth / 2 - width / 2;
-  // y.value = offsetY + e.target.offsetHeight / 2 - height / 2;
+  // left.value = offsetX + e.target.offsetWidth / 2 - width / 2;
+  // top.value = offsetY + e.target.offsetHeight / 2 - height / 2;
 
-  x.value = offsetX + e.target.offsetWidth / 2;
-  y.value = offsetY + e.target.offsetHeight / 2;
+  left.value = offsetX + e.target.offsetWidth / 2;
+  top.value = offsetY + e.target.offsetHeight / 2;
+
+  offsetWidth.value = e.target.offsetWidth;
+  offsetHeight.value = e.target.offsetHeight;
+
+  imgHeight.value = e.target.querySelector('img').offsetHeight;
+  imgWidth.value = e.target.querySelector('img').offsetWidth;
 
   interval.value = setTimeout(() => {
     isTeleportPreviewModal.value = true;
@@ -562,10 +378,6 @@ const onMouseEnter = (e: any) => {
     // isTeleportPreviewModal.value = false;
     clearInterval(interval.value);
   });
-};
-
-const onMouseLeave = () => {
-  console.log('onMouseLeave');
 };
 
 onMounted(() => {
@@ -596,38 +408,43 @@ onMounted(() => {
 onBeforeMount(async () => {
   loading.value = true;
 
+  setTimeout(() => {
+    loading.value = false;
+  }, 500);
+
   if (props?.type) {
     switch (props?.type) {
       case 'movie':
         isEpisodes.value = false;
-        await useAsyncData(`movie/short/${props.item?.id}`, () =>
-          getMovieById(props.item?.id)
-        )
-          .then((movieResponed: any) => {
-            dataMovie.value = movieResponed.data.value.data;
 
-            loading.value = false;
-          })
-          .catch((e) => {
-            loading.value = false;
-            if (axios.isCancel(e)) return;
-          });
+        // await useAsyncData(`movie/short/${props.item?.id}`, () =>
+        //   getMovieById(props.item?.id)
+        // )
+        //   .then((movieResponed: any) => {
+        //     dataMovie.value = movieResponed.data.value.data;
+
+        //     loading.value = false;
+        //   })
+        //   .catch((e) => {
+        //     loading.value = false;
+        //     if (axios.isCancel(e)) return;
+        //   });
         break;
       case 'tv':
         isEpisodes.value = true;
 
-        await useAsyncData(`tv/short/${props.item?.id}`, () =>
-          getTvById(props.item?.id)
-        )
-          .then((tvResponed: any) => {
-            dataMovie.value = tvResponed.data.value.data;
+        // await useAsyncData(`tv/short/${props.item?.id}`, () =>
+        //   getTvById(props.item?.id)
+        // )
+        //   .then((tvResponed: any) => {
+        //     dataMovie.value = tvResponed.data.value.data;
 
-            loading.value = false;
-          })
-          .catch((e) => {
-            loading.value = false;
-            if (axios.isCancel(e)) return;
-          });
+        //     loading.value = false;
+        //   })
+        //   .catch((e) => {
+        //     loading.value = false;
+        //     if (axios.isCancel(e)) return;
+        //   });
         break;
       default:
         break;
@@ -636,32 +453,33 @@ onBeforeMount(async () => {
     if (props?.item?.media_type == 'tv' || props?.item?.type) {
       isEpisodes.value = true;
 
-      await useAsyncData(`tv/short/${props.item?.id}`, () =>
-        getTvById(props.item?.id)
-      )
-        .then((tvResponed: any) => {
-          dataMovie.value = tvResponed.data.value.data;
+      // await useAsyncData(`tv/short/${props.item?.id}`, () =>
+      //   getTvById(props.item?.id)
+      // )
+      //   .then((tvResponed: any) => {
+      //     dataMovie.value = tvResponed.data.value.data;
 
-          loading.value = false;
-        })
-        .catch((e) => {
-          loading.value = false;
-          if (axios.isCancel(e)) return;
-        });
+      //     loading.value = false;
+      //   })
+      //   .catch((e) => {
+      //     loading.value = false;
+      //     if (axios.isCancel(e)) return;
+      //   });
     } else {
       isEpisodes.value = false;
-      await useAsyncData(`movie/short/${props.item?.id}`, () =>
-        getMovieById(props.item?.id)
-      )
-        .then((movieResponed: any) => {
-          dataMovie.value = movieResponed.data.value.data;
 
-          loading.value = false;
-        })
-        .catch((e) => {
-          loading.value = false;
-          if (axios.isCancel(e)) return;
-        });
+      // await useAsyncData(`movie/short/${props.item?.id}`, () =>
+      //   getMovieById(props.item?.id)
+      // )
+      //   .then((movieResponed: any) => {
+      //     dataMovie.value = movieResponed.data.value.data;
+
+      //     loading.value = false;
+      //   })
+      //   .catch((e) => {
+      //     loading.value = false;
+      //     if (axios.isCancel(e)) return;
+      //   });
     }
   }
 

@@ -7,6 +7,7 @@
       align-center
       center
       append-to-body
+      destroy-on-close
       :show-close="false"
     >
       <template #header>
