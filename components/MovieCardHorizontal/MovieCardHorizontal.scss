@@ -349,6 +349,21 @@
       text-overflow: ellipsis;
     }
 
+    .genres {
+      .genre-item {
+        padding-right: 0.4vw;
+
+        &:not(:first-child) {
+          &::before {
+            color: #d0d0d0;
+            content: '\2022';
+            display: inline-block;
+            padding-right: 0.4vw;
+          }
+        }
+      }
+    }
+
     .info-bottom {
       display: flex;
 

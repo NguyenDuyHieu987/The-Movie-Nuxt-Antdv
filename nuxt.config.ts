@@ -30,16 +30,16 @@ export default defineNuxtConfig({
           content:
             'Phim hành động | Phim hollywood | Phim bom tấn | Phim hài | Phim tình cảm Hàn Quốc | Phim tình cảm Trung Quốc',
         },
-        {
-          property: 'og:description',
-          content:
-            'Xem phim hay nhất 2023 cập nhật nhanh nhất, Xem Phim Online HD Vietsub - Thuyết Minh tốt trên nhiều thiết bị.',
-        },
-        {
-          property: 'og:description',
-          content:
-            'Phimhay247 - Trang Web xem phim Free hàng đầu ở Việt Nam, xem phim hay, phim chiếu rạp không chứa quảng cáo và giật lag.',
-        },
+        // {
+        //   property: 'og:description',
+        //   content:
+        //     'Xem phim hay nhất 2023 cập nhật nhanh nhất, Xem Phim Online HD Vietsub - Thuyết Minh tốt trên nhiều thiết bị.',
+        // },
+        // {
+        //   property: 'og:description',
+        //   content:
+        //     'Phimhay247 - Trang Web xem phim Free hàng đầu ở Việt Nam, xem phim hay, phim chiếu rạp không chứa quảng cáo và giật lag.',
+        // },
         {
           name: 'description',
           content:

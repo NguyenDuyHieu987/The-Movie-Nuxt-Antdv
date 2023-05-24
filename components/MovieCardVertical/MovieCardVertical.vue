@@ -87,9 +87,17 @@
               </span> -->
             </p>
             <div class="info-bottom">
-              <p class="genres">
-                {{ Array?.from(item?.genres, (x: any) => x.name).join(' • ') }}
-              </p>
+              <div class="genres">
+                <span
+                  class="genre-item"
+                  v-for="(genre, index) in Array.from(item?.genres, (x: any) => x.name)"
+                  :index="index"
+                  :key="index"
+                >
+                  {{ genre }}
+                </span>
+                <!-- {{ Array?.from(item?.genres, (x: any) => x.name).join(' • ') }} -->
+              </div>
             </div>
           </a-skeleton>
         </div>

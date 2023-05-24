@@ -573,8 +573,8 @@ const getGenresNameByShortName = (genresName, allGenres) => {
   }
 };
 
-const getCountry = (country_name) =>
-  COUNTRIES.find((country) => country.short_name === country_name);
+const getCountry = (original_language) =>
+  COUNTRIES.find((country) => country.short_name === original_language);
 
 // const getCountry = async (country_name) => {
 //   const county = await axios

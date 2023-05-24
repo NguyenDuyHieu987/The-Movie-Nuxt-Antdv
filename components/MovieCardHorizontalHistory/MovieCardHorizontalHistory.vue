@@ -55,21 +55,17 @@
 
           <div class="info">
             <h2 class="title">
-              <strong>
+              <strong v-if="!isEpisodes">
                 {{ item?.name }}
-                <strong v-if="isEpisodes">
-                  {{
-                    ' - Phần ' + dataMovie?.last_episode_to_air?.season_number
-                  }}
-                </strong>
+              </strong>
+
+              <strong v-else>
+                {{ item?.name }}
+                {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
               </strong>
             </h2>
 
-            <!-- <p class="release-date">
-            Năm:
-            {{ dataMovie?.release_date ? dataMovie?.release_date : dataMovie?.first_air_date }}
-          </p> -->
-            <p v-if="dataMovie?.last_episode_to_air" class="duration-episode">
+            <p v-if="isEpisodes" class="duration-episode">
               Tập mới nhất:
               {{
                 dataMovie?.last_episode_to_air?.episode_number
@@ -78,7 +74,7 @@
               }}
             </p>
 
-            <p v-else-if="dataMovie?.runtime" class="duration-episode">
+            <p v-else class="duration-episode">
               Thời lượng:
               {{ dataMovie?.runtime ? dataMovie?.runtime + ' phút' : '' }}
             </p>

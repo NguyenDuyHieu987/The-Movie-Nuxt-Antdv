@@ -152,10 +152,22 @@
                 {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
               </span>
             </h3>
-            <div class="info-bottom">
-              <p class="genres">
-                {{ Array.from(item?.genres, (x: any) => x.name).join(' • ') }}
-              </p>
+            <div class="evidence-tags">
+              <span class="evidence-item country">
+                {{
+                  getLanguage(
+                    item?.original_language,
+                    store.$state.allCountries
+                  )?.name || ''
+                }}
+              </span>
+              <span v-if="isEpisodes" class="evidence-item lastest-episode">
+                {{
+                  dataMovie?.last_episode_to_air?.episode_number
+                    ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
+                    : ''
+                }}
+              </span>
             </div>
 
             <div class="views-imdb">
@@ -199,7 +211,12 @@
 import axios from 'axios';
 import { PlusOutlined, InfoOutlined } from '@ant-design/icons-vue';
 import { ViewFormatter } from '@/utils/convertViews';
-import { getBackdrop, getTvById, getMovieById } from '@/services/MovieService';
+import {
+  getBackdrop,
+  getTvById,
+  getMovieById,
+  getLanguage,
+} from '@/services/MovieService';
 import {
   handelAddItemToList,
   handelRemoveItemFromList,

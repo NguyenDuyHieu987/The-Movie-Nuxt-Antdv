@@ -288,12 +288,7 @@
                     getLanguage(
                       dataMovie?.original_language,
                       store.$state.allCountries
-                    )?.short_name
-                      ? getLanguage(
-                          dataMovie?.original_language,
-                          store.$state.allCountries
-                        )?.short_name
-                      : 'au-my'
+                    )?.short_name || 'au-my'
                   }`,
                 }"
               >
@@ -302,12 +297,7 @@
                     getLanguage(
                       dataMovie?.original_language,
                       store.$state.allCountries
-                    )?.name
-                      ? getLanguage(
-                          dataMovie?.original_language,
-                          store.$state.allCountries
-                        )?.name
-                      : ''
+                    )?.name || ''
                   }}
                 </span>
               </NuxtLink>
