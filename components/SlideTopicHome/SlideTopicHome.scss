@@ -36,12 +36,14 @@
 
   .el-carousel.topic-home {
     .el-carousel__container {
-      height: 100vh;
       position: relative;
+      // height: 100vh;
+      height: 0px !important;
+      padding-bottom: 56.25%;
 
       .el-carousel__item {
         transform: translate(0px) scale(1) !important;
-        transition: all 0.5s;
+        transition: opacity 0.5s;
         opacity: 0;
 
         &.is-active {
@@ -152,26 +154,31 @@
 }
 
 @media only screen and (max-width: 1150px) {
-  .el-carousel {
-    .el-carousel__container {
-      height: 100vh;
+  .slide-topic-home {
+    .el-carousel {
+      .el-carousel__container {
+        height: 100vh;
+      }
     }
   }
 }
 
 @media only screen and (max-width: 1000px) {
-  .el-carousel {
-    .el-carousel__container {
-      height: 400px;
+  .slide-topic-home {
+    .el-carousel {
+      .el-carousel__container {
+        height: 400px;
+      }
     }
   }
 }
 
 @media only screen and (max-width: 900px) {
   .slide-topic-home {
-    .overlay-backdrop {
-      // width: 120% ;
-      // height: 120% ;
+    .el-carousel {
+      .el-carousel__container {
+        height: 400px;
+      }
     }
   }
 }

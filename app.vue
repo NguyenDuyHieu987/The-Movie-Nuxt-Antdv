@@ -29,11 +29,9 @@
     <NuxtLayout>
       <NuxtPage />
 
-      <div id="components-back-top-demo-custom">
-        <a-back-top class="ant-back-top-inner" :visibilityHeight="600">
-          <font-awesome-icon icon="fa-solid fa-chevron-up" />
-        </a-back-top>
-      </div>
+      <el-backtop class="app-back-top" :visibilityHeight="600">
+        <font-awesome-icon icon="fa-solid fa-chevron-up" />
+      </el-backtop>
     </NuxtLayout>
   </div>
 </template>
@@ -148,11 +146,9 @@ onBeforeMount(() => {
   }
 }
 
-#components-back-top-demo-custom .ant-back-top {
+.app-back-top {
   bottom: 40px;
   right: 40px;
-}
-#components-back-top-demo-custom .ant-back-top-inner {
   height: 45px;
   width: 45px;
   line-height: 45px;
