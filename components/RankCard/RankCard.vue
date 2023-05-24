@@ -30,16 +30,10 @@
             {{ ' - Phần ' + item?.last_episode_to_air?.season_number }}
           </span>
         </p>
-        <p class="genres" v-if="item?.genres">
+        <p class="genres">
           {{ Array?.from(item?.genres, (x: any) => x.name).join(' • ') }}
         </p>
-        <p class="genres" v-else-if="item?.genre_ids">
-          {{
-            getAllGenresById(item?.genre_ids, $store.state?.allGenres).join(
-              ' • '
-            )
-          }}
-        </p>
+
         <p class="release-date">
           Năm:
           {{ item?.release_date ? item?.release_date : item?.first_air_date }}

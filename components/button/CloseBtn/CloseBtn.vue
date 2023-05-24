@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ class: string }>();
+defineProps({ class: { type: String } });
 </script>
 
 <style scoped lang="scss" src="./CloseBtn.scss"></style>

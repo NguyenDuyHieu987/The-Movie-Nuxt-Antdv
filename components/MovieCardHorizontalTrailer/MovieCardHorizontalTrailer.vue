@@ -47,9 +47,13 @@
             </p>
             <p v-else class="duration-episode">
               {{
-                dataMovie?.last_episode_to_air?.episode_number
-                  ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
-                  : ''
+                // dataMovie?.last_episode_to_air?.episode_number
+                //   ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
+                //   : ''
+
+                item?.episode_run_time[0]
+                  ? item?.episode_run_time[0] + ' min'
+                  : '? min / Ep'
               }}
             </p>
           </div>
@@ -57,7 +61,7 @@
           <div
             class="youtub-icon"
             v-if="!loading"
-            @click.prevent="handleClickTrailerIcon"
+            @click.prevent="isOpenModalTrailer = true"
           >
             <font-awesome-icon icon="fa-brands fa-youtube" />
           </div>
@@ -77,12 +81,6 @@
         </div>
 
         <div class="info">
-          <!-- <a-skeleton
-                :loading="loading"
-                :active="true"
-                :paragraph="{ rows: 2 }"
-                :title="false"
-              > -->
           <p class="title">
             {{ item?.name }}
             <span v-if="isEpisodes">
@@ -96,94 +94,22 @@
               }}
             </p>
           </div>
-          <!-- </a-skeleton> -->
         </div>
-
-        <Teleport v-if="isOenModalTrailer" to="body">
-          <a-modal
-            v-model:visible="isOenModalTrailer"
-            width="1300px"
-            centered
-            class="modal-trailer"
-            :closable="false"
-          >
-            <CloseBtn @click="isOenModalTrailer = false" />
-
-            <iframe
-              height="650px"
-              width="100%"
-              :src="
-                dataMovie?.videos?.results?.length != 0
-                  ? `https://www.youtube.com/embed/${
-                      dataMovie?.videos?.results[
-                        Math.floor(
-                          Math.random() * dataMovie?.videos?.results?.length
-                        )
-                      ]?.key
-                    }`
-                  : 'https://www.youtube.com/embed/ndl1W4ltcmg'
-              "
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-          gyroscope; picture-in-picture"
-              allowFullScreen
-              frameBorder="{0}"
-            />
-            <template #footer>
-              <div class="content">
-                <div class="info">
-                  <h3>
-                    <strong> {{ item?.name }}</strong>
-                  </h3>
-
-                  <p class="overview">
-                    {{ dataMovie?.overview }}
-                  </p>
-                </div>
-                <div class="action">
-                  <a-button
-                    class="default"
-                    size="large"
-                    type="text"
-                    @click="handleCancel"
-                  >
-                    Đóng
-                  </a-button>
-                  <NuxtLink
-                    v-if="isEpisodes"
-                    :to="{
-                      path: `/play/tv/${item?.id}/${item?.name
-                        ?.replace(/\s/g, '+')
-                        .toLowerCase()}/tap-1`,
-                    }"
-                    class="btn-play-now"
-                  >
-                    Xem ngay
-                  </NuxtLink>
-                  <NuxtLink
-                    v-else-if="!isEpisodes"
-                    :to="{
-                      path: `/play/movie/${item?.id}/${item?.name
-                        ?.replace(/\s/g, '+')
-                        .toLowerCase()}`,
-                    }"
-                    class="btn-play-now"
-                  >
-                    Xem ngay
-                  </NuxtLink>
-                </div>
-              </div>
-            </template>
-          </a-modal>
-        </Teleport>
       </template>
     </el-skeleton>
+
+    <ModalTrailer
+      :isOpenModalTrailer="isOpenModalTrailer"
+      :item="item"
+      :dataMovie="dataMovie"
+      :isEpisodes="isEpisodes"
+      @setIsTeleportModal="(data: boolean)=>isOpenModalTrailer = data"
+    />
   </NuxtLink>
 </template>
 
 <script setup lang="ts">
 import axios from 'axios';
-import CloseBtn from '@/components/button/CloseBtn/CloseBtn.vue';
 import {
   getBackdrop,
   getTvById,
@@ -191,6 +117,7 @@ import {
   getLanguage,
   getItemHistory,
 } from '@/services/MovieService';
+import ModalTrailer from '@/components/ModalTrailer/ModalTrailer.vue';
 
 const props = defineProps<{
   item: any;
@@ -203,7 +130,7 @@ const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
-const isOenModalTrailer = ref<boolean>(false);
+const isOpenModalTrailer = ref<boolean>(false);
 
 onBeforeMount(async () => {
   loading.value = true;
@@ -283,28 +210,20 @@ onBeforeMount(async () => {
       percent.value = dataMovie.value?.history_progress?.percent;
     }
 
-    // await useAsyncData(
-    //   `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
-    //   () => getItemHistory(props.item?.id)
-    // )
-    //   .then((movieRespone: any) => {
-    //     if (movieRespone.data.value.data.success == true) {
-    //       isInHistory.value = true;
-    //       percent.value = movieRespone.data.value.data?.result?.percent;
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     if (axios.isCancel(e)) return;
-    //   });
+    await useAsyncData(
+      `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
+      () => getItemHistory(props.item?.id)
+    )
+      .then((movieRespone: any) => {
+        if (movieRespone.data.value.data.success == true) {
+          isInHistory.value = true;
+          percent.value = movieRespone.data.value.data?.result?.percent;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
   }
 });
-
-const handleClickTrailerIcon = () => {
-  isOenModalTrailer.value = true;
-};
-
-const handleCancel = () => {
-  isOenModalTrailer.value = false;
-};
 </script>
 <style lang="scss" src="./MovieCardHorizontalTrailer.scss"></style>

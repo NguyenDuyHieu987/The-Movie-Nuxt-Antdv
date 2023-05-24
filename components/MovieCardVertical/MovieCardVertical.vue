@@ -300,20 +300,9 @@
   </NuxtLink>
 </template>
 <script setup lang="ts">
-import { PlusOutlined, InfoOutlined } from '@ant-design/icons-vue';
 import axios from 'axios';
-import {
-  getPoster,
-  getBackdrop,
-  getTvById,
-  getMovieById,
-  getLanguage,
-  getItemList,
-  getItemHistory,
-} from '@/services/MovieService';
+import { getPoster, getItemHistory } from '@/services/MovieService';
 import PreviewModal from '@/components/PreviewModal/PreviewModal.vue';
-import { ViewFormatter } from '@/utils/convertViews';
-import { storeToRefs } from 'pinia';
 import {
   handelAddItemToList,
   handelRemoveItemFromList,
@@ -325,7 +314,6 @@ const props = defineProps<{
 }>();
 
 const store: any = useStore();
-const { allCountries } = storeToRefs<any>(store);
 const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
@@ -506,19 +494,19 @@ onBeforeMount(async () => {
     //     if (axios.isCancel(e)) return;
     //   });
 
-    // await useAsyncData(
-    //   `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
-    //   () => getItemHistory(store.$state?.userAccount?.id, props.item?.id)
-    // )
-    //   .then((movieRespone: any) => {
-    //     if (movieRespone.data.value.data.success == true) {
-    //       isInHistory.value = true;
-    //       percent.value = movieRespone.data.value.data?.result?.percent;
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     if (axios.isCancel(e)) return;
-    //   });
+    await useAsyncData(
+      `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
+      () => getItemHistory(props.item?.id)
+    )
+      .then((movieRespone: any) => {
+        if (movieRespone.data.value.data.success == true) {
+          isInHistory.value = true;
+          percent.value = movieRespone.data.value.data?.result?.percent;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
   }
 });
 

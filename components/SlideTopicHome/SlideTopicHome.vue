@@ -4,20 +4,17 @@
       <img :src="getBackdrop(trendings[0]?.backdrop_path)" />
     </div> -->
 
-    <!-- height="100vh" -->
     <el-carousel
       :interval="5000"
       loop
       direction="vertical"
       arrow="always"
-      :pause-on-hover="true"
+      :pause-on-hover="false"
       trigger="click"
       ref="topicHome"
       class="topic-home"
       @change="handleChangeCarouel"
     >
-      <!-- @change="handleSwitchCarouel" -->
-
       <el-carousel-item
         v-for="(item, index) in trendings"
         :key="item.id"

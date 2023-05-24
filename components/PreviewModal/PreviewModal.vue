@@ -7,10 +7,8 @@
             class="ant-image"
             :src="getBackdrop(item?.backdrop_path, ',250')"
             :preview="false"
-            :lazy="true"
-            loading="lazy"
           />
-
+          <!-- :lazy="true" loading="lazy" -->
           <div
             v-if="isInHistory"
             class="percent-viewed"
@@ -26,6 +24,7 @@
                 title="Xem ngay"
                 content="Xem ngay"
                 placement="top"
+                :mouseLeaveDelay="0"
               >
                 <NuxtLink
                   v-if="isEpisodes"
@@ -70,6 +69,7 @@
                   !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
                 "
                 placement="top"
+                :mouseLeaveDelay="0"
               >
                 <a-button
                   shape="circle"
@@ -93,6 +93,7 @@
                 title="Chia sẻ"
                 content="Chia sẻ"
                 placement="top"
+                :mouseLeaveDelay="0"
               >
                 <ShareNetwork
                   network="facebook"
@@ -121,6 +122,7 @@
                 title="Chi tiết phim"
                 content="Chi tiết phim"
                 placement="top"
+                :mouseLeaveDelay="0"
               >
                 <NuxtLink
                   :to="{
@@ -255,11 +257,6 @@ watch(previewModal, () => {
       props.style.imgHeight + 'px'
     );
 
-    previewModal.value.style.setProperty(
-      '--preview-modal-height',
-      previewModal.value.offsetHeight + 'px'
-    );
-
     previewModal.value.style.setProperty('--left', props.style.left + 'px');
     previewModal.value.style.setProperty('--top', props.style.top + 'px');
 
@@ -304,6 +301,17 @@ watch(isTeleport, async () => {
             if (axios.isCancel(e)) return;
           });
       }
+
+      if (store.$state.isLogin) {
+        if (dataMovie.value?.in_list) {
+          isAddToList.value = true;
+        }
+
+        if (dataMovie.value?.in_history) {
+          isInHistory.value = true;
+          percent.value = dataMovie.value?.history_progress?.percent;
+        }
+      }
     }
   }
 });
@@ -338,6 +346,8 @@ const handelAddToList = () => {
     return;
   }
 };
+
+const getPopupContainer = () => document.querySelector('.preview-modal');
 </script>
 
 <style lang="scss" src="./PreviewModal.scss"></style>
