@@ -30,16 +30,16 @@ export default defineNuxtConfig({
           content:
             'Phim hành động | Phim hollywood | Phim bom tấn | Phim hài | Phim tình cảm Hàn Quốc | Phim tình cảm Trung Quốc',
         },
-        // {
-        //   property: 'og:description',
-        //   content:
-        //     'Xem phim hay nhất 2023 cập nhật nhanh nhất, Xem Phim Online HD Vietsub - Thuyết Minh tốt trên nhiều thiết bị.',
-        // },
-        // {
-        //   property: 'og:description',
-        //   content:
-        //     'Phimhay247 - Trang Web xem phim Free hàng đầu ở Việt Nam, xem phim hay, phim chiếu rạp không chứa quảng cáo và giật lag.',
-        // },
+        {
+          property: 'og:description',
+          content:
+            'Xem phim hay nhất 2023 cập nhật nhanh nhất, Xem Phim Online HD Vietsub - Thuyết Minh tốt trên nhiều thiết bị.',
+        },
+        {
+          property: 'og:description',
+          content:
+            'Phimhay247 - Trang Web xem phim Free hàng đầu ở Việt Nam, xem phim hay, phim chiếu rạp không chứa quảng cáo và giật lag.',
+        },
         {
           name: 'description',
           content:
@@ -82,6 +82,13 @@ export default defineNuxtConfig({
         {
           src: 'https://player.vimeo.com/api/player.js',
           type: 'text/javascript',
+        },
+        {
+          async: true,
+          defer: true,
+          crossorigin: 'anonymous',
+          src: 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0',
+          nonce: 'iiJTP3eJ',
         },
       ],
     },
