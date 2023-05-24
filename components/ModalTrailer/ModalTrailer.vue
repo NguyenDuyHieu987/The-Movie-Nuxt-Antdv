@@ -31,11 +31,17 @@
         <div class="content">
           <div class="info">
             <h3>
-              <strong> {{ item?.name }}</strong>
+              <strong v-if="isEpisodes">
+                {{ item?.name }}
+                {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
+              </strong>
+              <strong v-else>
+                {{ item?.name }}
+              </strong>
             </h3>
 
             <p class="overview">
-              {{ dataMovie?.overview }}
+              {{ item?.overview }}
             </p>
           </div>
           <div class="action">
@@ -77,16 +83,20 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
+import { getTvById, getMovieById } from '@/services/MovieService';
 import CloseBtn from '@/components/button/CloseBtn/CloseBtn.vue';
 
 const props = defineProps<{
   isOpenModalTrailer: boolean;
   item: any;
-  dataMovie: any;
   isEpisodes: boolean;
 }>();
 
 const emit = defineEmits<{ setIsTeleportModal: [data: boolean] }>();
+
+const dataMovie = ref<any>({});
+const loading = ref<boolean>(false);
 
 const isTeleport = computed<boolean>({
   get() {
@@ -95,6 +105,38 @@ const isTeleport = computed<boolean>({
   set(value: boolean) {
     emit('setIsTeleportModal', value);
   },
+});
+
+watch(isTeleport, async () => {
+  if (props.isOpenModalTrailer == true) {
+    if (props.isEpisodes) {
+      await useAsyncData(`tv/short/${props.item?.id}`, () =>
+        getTvById(props.item?.id)
+      )
+        .then((tvResponed: any) => {
+          dataMovie.value = tvResponed.data.value.data;
+
+          loading.value = false;
+        })
+        .catch((e) => {
+          loading.value = false;
+          if (axios.isCancel(e)) return;
+        });
+    } else {
+      await useAsyncData(`movie/short/${props.item?.id}`, () =>
+        getMovieById(props.item?.id)
+      )
+        .then((movieRespone: any) => {
+          dataMovie.value = movieRespone.data.value.data;
+
+          loading.value = false;
+        })
+        .catch((e) => {
+          loading.value = false;
+          if (axios.isCancel(e)) return;
+        });
+    }
+  }
 });
 </script>
 

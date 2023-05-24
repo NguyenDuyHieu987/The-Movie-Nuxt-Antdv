@@ -83,15 +83,13 @@
         <div class="info">
           <p class="title">
             {{ item?.name }}
-            <span v-if="isEpisodes">
+            <!-- <span v-if="isEpisodes">
               {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
-            </span>
+            </span> -->
           </p>
           <div class="info-bottom">
             <p class="genres">
-              {{
-                Array?.from(dataMovie?.genres, (x: any) => x.name).join(' • ')
-              }}
+              {{ Array?.from(item?.genres, (x: any) => x.name).join(' • ') }}
             </p>
           </div>
         </div>
@@ -101,7 +99,6 @@
     <ModalTrailer
       :isOpenModalTrailer="isOpenModalTrailer"
       :item="item"
-      :dataMovie="dataMovie"
       :isEpisodes="isEpisodes"
       @setIsTeleportModal="(data: boolean)=>isOpenModalTrailer = data"
     />
@@ -110,13 +107,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import {
-  getBackdrop,
-  getTvById,
-  getMovieById,
-  getLanguage,
-  getItemHistory,
-} from '@/services/MovieService';
+import { getBackdrop, getItemHistory } from '@/services/MovieService';
 import ModalTrailer from '@/components/ModalTrailer/ModalTrailer.vue';
 
 const props = defineProps<{
@@ -135,38 +126,43 @@ const isOpenModalTrailer = ref<boolean>(false);
 onBeforeMount(async () => {
   loading.value = true;
 
+  setTimeout(() => {
+    loading.value = false;
+  }, 500);
+
   if (props?.type) {
     switch (props?.type) {
       case 'movie':
         isEpisodes.value = false;
-        await useAsyncData(`movie/short/${props.item?.id}`, () =>
-          getMovieById(props.item?.id)
-        )
-          .then((movieResponed: any) => {
-            dataMovie.value = movieResponed.data.value.data;
 
-            loading.value = false;
-          })
-          .catch((e) => {
-            loading.value = false;
-            if (axios.isCancel(e)) return;
-          });
+        // await useAsyncData(`movie/short/${props.item?.id}`, () =>
+        //   getMovieById(props.item?.id)
+        // )
+        //   .then((movieResponed: any) => {
+        //     dataMovie.value = movieResponed.data.value.data;
+
+        //     loading.value = false;
+        //   })
+        //   .catch((e) => {
+        //     loading.value = false;
+        //     if (axios.isCancel(e)) return;
+        //   });
         break;
       case 'tv':
         isEpisodes.value = true;
 
-        await useAsyncData(`tv/short/${props.item?.id}`, () =>
-          getTvById(props.item?.id)
-        )
-          .then((tvResponed: any) => {
-            dataMovie.value = tvResponed.data.value.data;
+        // await useAsyncData(`tv/short/${props.item?.id}`, () =>
+        //   getTvById(props.item?.id)
+        // )
+        //   .then((tvResponed: any) => {
+        //     dataMovie.value = tvResponed.data.value.data;
 
-            loading.value = false;
-          })
-          .catch((e) => {
-            loading.value = false;
-            if (axios.isCancel(e)) return;
-          });
+        //     loading.value = false;
+        //   })
+        //   .catch((e) => {
+        //     loading.value = false;
+        //     if (axios.isCancel(e)) return;
+        //   });
         break;
       default:
         break;
@@ -175,32 +171,33 @@ onBeforeMount(async () => {
     if (props?.item?.media_type == 'tv' || props?.item?.type) {
       isEpisodes.value = true;
 
-      await useAsyncData(`tv/short/${props.item?.id}`, () =>
-        getTvById(props.item?.id)
-      )
-        .then((tvResponed: any) => {
-          dataMovie.value = tvResponed.data.value.data;
+      // await useAsyncData(`tv/short/${props.item?.id}`, () =>
+      //   getTvById(props.item?.id)
+      // )
+      //   .then((tvResponed: any) => {
+      //     dataMovie.value = tvResponed.data.value.data;
 
-          loading.value = false;
-        })
-        .catch((e) => {
-          loading.value = false;
-          if (axios.isCancel(e)) return;
-        });
+      //     loading.value = false;
+      //   })
+      //   .catch((e) => {
+      //     loading.value = false;
+      //     if (axios.isCancel(e)) return;
+      //   });
     } else {
       isEpisodes.value = false;
-      await useAsyncData(`movie/short/${props.item?.id}`, () =>
-        getMovieById(props.item?.id)
-      )
-        .then((movieResponed: any) => {
-          dataMovie.value = movieResponed.data.value.data;
 
-          loading.value = false;
-        })
-        .catch((e) => {
-          loading.value = false;
-          if (axios.isCancel(e)) return;
-        });
+      // await useAsyncData(`movie/short/${props.item?.id}`, () =>
+      //   getMovieById(props.item?.id)
+      // )
+      //   .then((movieResponed: any) => {
+      //     dataMovie.value = movieResponed.data.value.data;
+
+      //     loading.value = false;
+      //   })
+      //   .catch((e) => {
+      //     loading.value = false;
+      //     if (axios.isCancel(e)) return;
+      //   });
     }
   }
 
