@@ -9,6 +9,7 @@
     display: inline-block;
     overflow: hidden;
     position: absolute;
+    cursor: pointer;
     opacity: 1;
     min-width: 350px;
     width: 17vw;
@@ -186,8 +187,8 @@
           justify-content: center;
           background-color: var(--btn-backgroud-color-gray);
           border-color: #313131;
-          height: 40px;
-          width: 40px;
+          height: 43px;
+          width: 43px;
           overflow: hidden;
 
           svg.icon {

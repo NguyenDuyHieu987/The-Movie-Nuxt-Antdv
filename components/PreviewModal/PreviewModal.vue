@@ -1,7 +1,11 @@
 <template>
   <Teleport to="#__nuxt" v-if="isTeleportPreviewModal">
     <div class="preview-overlay">
-      <div ref="previewModal" class="preview-modal">
+      <div
+        ref="previewModal"
+        class="preview-modal"
+        @click="onClickPreviewModal"
+      >
         <div class="backdrop-box">
           <el-image
             class="ant-image"
@@ -94,6 +98,7 @@
                 content="Chia sẻ"
                 placement="top"
                 :mouseLeaveDelay="0"
+                @click.prevent
               >
                 <ShareNetwork
                   network="facebook"
@@ -332,6 +337,22 @@ watch(isTeleport, async () => {
     }
   }
 });
+
+const onClickPreviewModal = (e: any) => {
+  const actionBtn = e.target.closest('.ant-btn');
+
+  if (!actionBtn) {
+    navigateTo({
+      path: props.isEpisodes
+        ? `/info/tv/${props.item?.id}/${props.item?.name
+            ?.replace(/\s/g, '+')
+            .toLowerCase()}`
+        : `/info/movie/${props.item?.id}/${props.item?.name
+            ?.replace(/\s/g, '+')
+            .toLowerCase()}`,
+    });
+  }
+};
 
 const handelAddToList = () => {
   if (!store.$state?.isLogin) {

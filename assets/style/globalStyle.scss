@@ -187,6 +187,17 @@ a {
   }
 }
 
+img,
+button,
+.ant-btn,
+.logo {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 .logo {
   h1,
   h2,
@@ -213,7 +224,6 @@ a {
     font-family: 'Lobster', cursive;
     font-weight: 200;
     font-size: 1.9em;
-    user-select: none;
 
     &.animated {
       animation: textclip 3s linear infinite;
