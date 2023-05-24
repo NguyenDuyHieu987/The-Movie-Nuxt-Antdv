@@ -17,6 +17,15 @@ useSeoMeta({
   ogDescription: 'Dịch vụ, ưu đãi, đặc quyền, đăng ký gói',
   ogLocale: 'vi',
 });
+
+const internalInstance: any = getCurrentInstance();
+onBeforeMount(() => {
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+});
+
+onMounted(() => {
+  internalInstance.appContext.config.globalProperties.$Progress.finish();
+});
 </script>
 
 <style scoped lang="scss" src="./Pricing.scss"></style>
