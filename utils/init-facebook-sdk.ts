@@ -16,7 +16,8 @@ export async function initFacebookSdk() {
         appId: 820070179113499,
         cookie: true,
         xfbml: true,
-        version: 'v15.0',
+        autoLogAppEvents: true,
+        version: 'v17.0',
       });
       resolve();
 
@@ -42,7 +43,7 @@ export async function initFacebookSdk() {
       }
       js = d.createElement(s);
       js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js';
+      js.src = 'https://connect.facebook.net/vi_VN/sdk.js';
       fjs?.parentNode?.insertBefore(js, fjs);
     })(document, 'script', 'facebook-jssdk');
     // }
