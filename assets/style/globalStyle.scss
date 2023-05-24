@@ -135,6 +135,7 @@ body {
   font-size: 1.6rem;
   font-family: 'Roboto Flex', sans-serif;
   text-rendering: optimizeSpeed;
+  // user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -158,19 +159,32 @@ body {
   }
 }
 
+div,
 h1,
 h2,
 h3,
 h4,
+h5,
+h6,
 p,
-span {
-  margin: 0px;
-}
-
+span,
+th,
+td,
 ol,
 ul,
+li,
 dl {
   margin: 0px;
+  padding: 0px;
+}
+
+a {
+  color: var(--a-text-color);
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--a-text-color-hover);
+  }
 }
 
 .logo {
