@@ -151,15 +151,7 @@
       </a-skeleton>
     </div>
 
-    <h3 class="section-title">
-      <strong> Bình luận</strong>
-    </h3>
-    <div
-      class="fb-comments"
-      :data-href="urlComment"
-      data-width="100%"
-      data-numposts="10"
-    ></div>
+    <Comment :urlComment="urlComment" />
 
     <MovieSuggest
       v-if="!checkEmptyDataMovies"
@@ -182,6 +174,7 @@ import {
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
+import Comment from '@/components/Comment/Comment.vue';
 import {
   handelAddItemToList,
   handelRemoveItemFromList,

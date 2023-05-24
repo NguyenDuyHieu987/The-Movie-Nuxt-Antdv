@@ -11,6 +11,15 @@
       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
     ></iframe>
 
+    <a
+      name="fb_share"
+      type="button"
+      :href="`http://www.facebook.com/sharer.php?u=${urlShare}&media=${dataMovie?.overview}&description=${dataMovie?.overview}`"
+      class="joinFB"
+    >
+      Share Your Advertise
+    </a>
+
     <ShareNetwork
       network="facebook"
       :url="urlShare"
