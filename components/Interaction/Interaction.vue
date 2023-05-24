@@ -14,7 +14,9 @@
     <a
       name="fb_share"
       type="button"
-      :href="`http://www.facebook.com/sharer.php?u=${urlShare}&media=${dataMovie?.overview}&description=${dataMovie?.overview}`"
+      :href="`http://www.facebook.com/sharer.php?u=${urlShare}&media=${getBackdrop(
+        dataMovie?.backdrop_path
+      )}&description=${dataMovie?.overview}`"
       class="joinFB"
     >
       Share Your Advertise
@@ -40,6 +42,7 @@
 
 <script setup lang="ts">
 import { ShareAltOutlined } from '@ant-design/icons-vue';
+import { getBackdrop } from '@/services/MovieService';
 
 const props = defineProps<{ dataMovie: any }>();
 // const route = useRoute();
