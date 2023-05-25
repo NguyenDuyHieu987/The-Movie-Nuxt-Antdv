@@ -516,7 +516,7 @@ import {
   Modal,
   // message
 } from 'ant-design-vue';
-import { removeVietnameseTones } from '@/utils/RemoveVietnameseTones';
+import { removeVietnameseTones } from '~/utils/removeVietnameseTones';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { useMeta } from 'vue-meta';
 

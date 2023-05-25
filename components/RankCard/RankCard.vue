@@ -52,7 +52,9 @@
         </p>
       </div>
       <div class="bottom">
-        <span class="views">{{ ViewFormatter(item?.views) }} lượt xem</span>
+        <span class="views"
+          >{{ utils.viewFormatter(item?.views) }} lượt xem</span
+        >
       </div>
     </div>
   </NuxtLink>
@@ -60,14 +62,9 @@
 
 <script setup lang="ts">
 // import axios from 'axios';
-import {
-  getAllGenresById,
-  getPoster,
-  // getTvById,
-  // getMovieById,
-} from '@/services/MovieService';
-import { ViewFormatter } from '@/utils/convertViews';
+import { getPoster } from '@/services/MovieService';
 
+const utils = useUtils();
 const props = defineProps<{
   item: any;
 }>();

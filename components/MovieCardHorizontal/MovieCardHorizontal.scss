@@ -1,4 +1,4 @@
-.movie-group.horizoltal {
+.movie-group.horizontal {
   .movie-card-item.horizontal {
     display: inline-block;
     width: calc((100% - (5 * var(--card-movie-gap))) / 6);
@@ -24,7 +24,7 @@
 
   .el-skeleton.is-animated {
     .content-skeleton {
-      margin-top: 13px;
+      margin-top: 7px;
 
       .el-skeleton__item.el-skeleton__text {
         // height: 18px;
@@ -32,7 +32,8 @@
     }
   }
 
-  .img-box {
+  .img-box,
+  .skeleton-img {
     position: relative;
     // height: 150px;
     height: 8vw;
@@ -40,16 +41,18 @@
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     transition: all 0.3s;
+    height: 0px !important;
+    padding-bottom: 56.25%;
 
     .ant-image {
+      // height: 100%;
       width: 100%;
-      height: 100%;
       object-fit: cover;
       transition: all 0.3s;
       background-color: var(--background-content-color);
 
       img {
-        height: 100%;
+        // height: 100%;
         object-fit: cover;
         transition: all 0.3s;
       }
@@ -378,12 +381,12 @@
   .body-content.expand {
     .movie-card-item.horizontal {
       .img-box {
-        height: 10vw !important;
+        // height: 10vw !important;
       }
     }
   }
 
-  .movie-group.horizoltal {
+  .movie-group.horizontal {
     .movie-card-item.horizontal {
       display: inline-block;
       width: calc((100% - (4 * var(--card-movie-gap))) / 5);
@@ -393,7 +396,7 @@
 
   .movie-card-item.horizontal {
     .img-box {
-      height: 9vw !important;
+      // height: 9vw !important;
     }
 
     .duration-episode-box {
@@ -418,12 +421,12 @@
   .body-content.expand {
     .movie-card-item.horizontal {
       .img-box {
-        height: 13vw !important;
+        // height: 13vw !important;
       }
     }
   }
 
-  .movie-group.horizoltal {
+  .movie-group.horizontal {
     .movie-card-item.horizontal {
       display: inline-block;
       width: calc((100% - (3 * var(--card-movie-gap))) / 4);
@@ -433,7 +436,7 @@
 
   .movie-card-item.horizontal {
     .img-box {
-      height: 11vw !important;
+      // height: 11vw !important;
     }
   }
 }
@@ -442,12 +445,12 @@
   .body-content.expand {
     .movie-card-item.horizontal {
       .img-box {
-        height: 17vw !important;
+        // height: 17vw !important;
       }
     }
   }
 
-  .movie-group.horizoltal {
+  .movie-group.horizontal {
     .movie-card-item.horizontal {
       display: inline-block;
       width: calc((100% - (2 * var(--card-movie-gap))) / 3);
@@ -457,7 +460,7 @@
 
   .movie-card-item.horizontal {
     .img-box {
-      height: 14vw !important;
+      // height: 14vw !important;
     }
   }
 }
@@ -465,7 +468,7 @@
 @media only screen and (max-width: 900px) {
   .movie-card-item.horizontal {
     .img-box {
-      height: 18vw !important;
+      // height: 18vw !important;
     }
   }
 }
@@ -473,11 +476,11 @@
 @media only screen and (max-width: 600px) {
   .movie-card-item.horizontal {
     .img-box {
-      height: 26vw !important;
+      // height: 26vw !important;
     }
   }
 
-  .movie-group.horizoltal {
+  .movie-group.horizontal {
     .movie-card-item.horizontal {
       display: inline-block;
       width: calc((100% - (1 * var(--card-movie-gap))) / 2);

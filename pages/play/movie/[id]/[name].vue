@@ -175,13 +175,11 @@ import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
 import Comment from '@/components/Comment/Comment.vue';
-import {
-  handelAddItemToList,
-  handelRemoveItemFromList,
-} from '~/utils/handelAddRemoveItemList_History';
+
 import Player from '@vimeo/player';
 
 const store: any = useStore();
+const utils = useUtils();
 const route: any = useRoute();
 const router = useRouter();
 const isEpisodes = ref<boolean>(false);
@@ -404,24 +402,13 @@ const handelAddToList = () => {
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (
-      !handelAddItemToList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id,
-        'movie'
-      )
-    ) {
+    if (!utils.handelAddItemToList(dataMovie.value?.id, 'movie')) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (
-      !handelRemoveItemFromList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id
-      )
-    ) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
       isAddToList.value = true;
     }
     return;

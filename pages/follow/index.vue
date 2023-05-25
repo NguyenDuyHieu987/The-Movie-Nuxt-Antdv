@@ -357,8 +357,6 @@ import disableScroll from 'disable-scroll';
 import _ from 'lodash';
 import { storeToRefs } from 'pinia';
 import scrollBottom from 'scroll-bottom';
-import { conrfirmMessageModal } from '~/utils/messageModal';
-import { handleRemoveAllitemFromList } from '~/utils/handelAddRemoveItemList_History';
 
 definePageMeta({
   // requireAuth: true,
@@ -366,6 +364,7 @@ definePageMeta({
 });
 
 const store: any = useStore();
+const utils = useUtils();
 const { isLogin } = storeToRefs<any>(store);
 const route = useRoute();
 const dataList = ref<any[]>([]);
@@ -568,11 +567,11 @@ watch(route, () => {
 
 const removeAllFollowList = () => {
   if (dataList.value?.length > 0) {
-    conrfirmMessageModal({
+    utils.conrfirmMessageModal({
       title: 'Thông Báo',
       message: 'Bạn có muốn xóa toàn bộ Danh sách phát không?',
       onOk: async function () {
-        if (await handleRemoveAllitemFromList(store?.$state.userAccount?.id)) {
+        if (await utils.handleRemoveAllitemFromList()) {
           dataList.value = [];
         }
       },

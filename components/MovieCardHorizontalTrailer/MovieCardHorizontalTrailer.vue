@@ -13,9 +13,7 @@
   >
     <el-skeleton :loading="loading" animated>
       <template #template>
-        <div class="img-box">
-          <el-skeleton-item class="ant-image" />
-        </div>
+        <el-skeleton-item class="skeleton-img" />
         <div class="content-skeleton">
           <el-skeleton-item variant="text" />
           <el-skeleton-item variant="text" style="width: 60%" />

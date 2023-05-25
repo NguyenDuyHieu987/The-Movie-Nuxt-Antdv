@@ -49,26 +49,21 @@
 
       <p class="views">
         <!-- Lượt xem: -->
-        {{ item?.views ? ViewFormatter(item?.views) + ' lượt xem' : '' }}
+        {{ item?.views ? utils.viewFormatter(item?.views) + ' lượt xem' : '' }}
       </p>
     </div>
   </NuxtLink>
 </template>
 <script setup lang="ts">
 // import axios from 'axios';
-import {
-  getAllGenresById,
-  getPoster,
-  // getTvById,
-  // getMovieById,
-} from '@/services/MovieService';
-import { ViewFormatter } from '@/utils/convertViews';
+import { getPoster } from '@/services/MovieService';
 
 const props = defineProps<{
   item: any;
   type: string | undefined;
 }>();
 
+const utils = useUtils();
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
 

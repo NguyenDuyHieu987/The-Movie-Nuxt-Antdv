@@ -1,4 +1,4 @@
-import { getWithExpiry } from '@/utils/LocalStorage';
+import { getWithExpiry } from '~/utils/localStorage';
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import axios from 'axios';

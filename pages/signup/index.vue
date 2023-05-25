@@ -257,7 +257,6 @@ import {
   //  emailValidation
 } from '@/services/MovieService';
 // import md5 from 'md5';
-import { encryptPassword } from '@/utils/encrypt';
 import { ElNotification } from 'element-plus';
 // import { notification } from 'ant-design-vue';
 
@@ -294,6 +293,7 @@ const formStateVerify = reactive<any>({
   otp: '',
 });
 
+const utils = useUtils();
 const loadingSignUp = ref<boolean>(false);
 const loadingVerify = ref<boolean>(false);
 const isSignUp = ref<boolean>(false);
@@ -437,7 +437,7 @@ const handleSignUp = () => {
     username: formState.username,
     email: formState.email,
     // password: md5(formState.password),
-    password: encryptPassword(formState.password),
+    password: utils.encryptPassword(formState.password),
     full_name: formState.fullname,
     avatar: formState.avatar,
   })
@@ -532,7 +532,7 @@ const handleResendVerifyEmail = () => {
     username: formState.username,
     email: formState.email,
     // password: md5(formState.password),
-    password: encryptPassword(formState.password),
+    password: utils.encryptPassword(formState.password),
     full_name: formState.fullname,
     avatar: formState.avatar,
   })

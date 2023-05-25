@@ -177,7 +177,7 @@
 
             <div class="views-imdb">
               <p class="views">
-                {{ ViewFormatter(dataMovie?.views) }} lượt xem
+                {{ utils.viewFormatter(dataMovie?.views) }} lượt xem
               </p>
 
               <p>
@@ -215,17 +215,12 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { PlusOutlined, InfoOutlined } from '@ant-design/icons-vue';
-import { ViewFormatter } from '@/utils/convertViews';
 import {
   getBackdrop,
   getTvById,
   getMovieById,
   getLanguage,
 } from '@/services/MovieService';
-import {
-  handelAddItemToList,
-  handelRemoveItemFromList,
-} from '~/utils/handelAddRemoveItemList_History';
 
 const props = defineProps<{
   isTeleportPreviewModal: boolean;
@@ -245,6 +240,7 @@ const props = defineProps<{
 const emit = defineEmits<{ setIsTeleportModal: [data: boolean] }>();
 
 const store: any = useStore();
+const utils = useUtils();
 const dataMovie = ref<any>({});
 // const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
@@ -362,23 +358,14 @@ const handelAddToList = () => {
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (
-      !handelAddItemToList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id,
-        props.item.media_type
-      )
+      !utils.handelAddItemToList(dataMovie.value?.id, props.item.media_type)
     ) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (
-      !handelRemoveItemFromList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id
-      )
-    ) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
       isAddToList.value = true;
     }
     return;

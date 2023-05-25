@@ -135,8 +135,22 @@
 
   .right-header {
     .ant-menu {
+      height: 100%;
+      background: transparent;
+
       .ant-menu-item {
+        .ant-dropdown-trigger {
+          height: 100%;
+        }
+
         .ant-badge {
+          user-select: none;
+
+          .fa-bell {
+            font-size: 1.7rem;
+            color: #919191;
+          }
+
           .ant-badge-count {
             min-width: 15px;
             height: 15px;
@@ -145,12 +159,10 @@
           }
         }
 
-        .fa-bell {
-          font-size: 1.7rem;
-          color: #919191;
-        }
-
         .ant-dropdown-link.dropdown-notification {
+          display: flex;
+          align-items: center;
+
           .fa-bell.fa-solid {
             display: none;
           }
@@ -168,12 +180,28 @@
             display: none;
           }
         }
-      }
 
-      .ant-menu-item:hover {
-        // background-color: var(--hover-regular-color) !important;
-        background-color: none !important;
-        background: none !important;
+        .antitcon,
+        .ant-menu-title-content {
+          svg {
+            transition: all 0.2s;
+          }
+        }
+
+        &:hover {
+          // background-color: var(--hover-regular-color) !important;
+          background-color: none !important;
+          background: none !important;
+          transition: all 0.2s;
+          color: #fff;
+
+          .antitcon,
+          .ant-menu-title-content {
+            svg {
+              color: #fff;
+            }
+          }
+        }
       }
     }
 
@@ -258,7 +286,10 @@
   box-shadow: #000000bf 0px 3px 10px;
   border: none;
 
-  .ant-dropdown-menu {
+  .ant-dropdown-menu,
+  .el-menu.dropdown-notification {
+    border: none;
+
     .notification-header {
       padding: 13px 20px;
       line-height: normal;
@@ -287,6 +318,31 @@
 
     .separate {
       border-top: 1px solid var(--border-regular-light);
+    }
+
+    .el-menu-item-group.public,
+    .el-menu-item-group.private,
+    .ant-menu-item-group {
+      padding: 13px 0px;
+
+      .el-menu-item-group__title,
+      .ant-menu-item-group-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 25px;
+        font-size: 1.5rem;
+      }
+
+      ul,
+      .ant-menu-item-group-list {
+        .ant-menu-item-only-child {
+          padding: 13px 20px;
+          padding-left: 35px;
+          border: none;
+          font-size: 1.4rem;
+        }
+      }
     }
 
     .ant-dropdown-menu-item.public,

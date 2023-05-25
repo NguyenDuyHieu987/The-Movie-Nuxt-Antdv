@@ -1,4 +1,4 @@
-export function ViewFormatter(num: any) {
+export function viewFormatter(num: any) {
   const lookup = [
     { value: 1, symbol: '', fixed: 0 },
     { value: 1e3, symbol: ' N', fixed: 0 },

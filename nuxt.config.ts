@@ -87,12 +87,16 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    API_CONTENT_SERVICE_URL: process.env.API_CONTENT_SERVICE_URL,
-    API_IMAGE_SERVICE_URL: process.env.API_IMAGE_SERVICE_URL,
-    TMDB_IMAGE_BASE_URL: process.env.TMDB_IMAGE_BASE_URL,
-    public: {
-      apiBase: '/api',
-    },
+    // API_CONTENT_SERVICE_URL: process.env.API_CONTENT_SERVICE_URL,
+    // API_IMAGE_SERVICE_URL: process.env.API_IMAGE_SERVICE_URL,
+    // TMDB_IMAGE_BASE_URL: process.env.TMDB_IMAGE_BASE_URL,
+    // apiUrl: process.env.NUXT_API_CONTENT_SERVICE_URL,
+    // apiSecret: '123',
+    // app: {},
+    // public: {
+    //   apiBase: '/api',
+    //   apiUrl: process.env.NUXT_API_CONTENT_SERVICE_URL,
+    // },
   },
   alias: {
     '@': resolve(__dirname, './'),

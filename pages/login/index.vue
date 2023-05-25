@@ -155,11 +155,9 @@ import {
 import axios from 'axios';
 // import md5 from 'md5';
 import { signIn, loginFacebook, loginGoogle } from '@/services/MovieService';
-import { setWithExpiry } from '@/utils/LocalStorage';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';
 // import { notification } from 'ant-design-vue';
-import { encryptPassword } from '@/utils/encrypt';
 
 definePageMeta({
   layout: 'auth',
@@ -181,6 +179,7 @@ useSeoMeta({
 });
 
 const store: any = useStore();
+const utils = useUtils();
 const loadingLogin = ref<boolean>(false);
 const loadingFacebookLogin = ref<boolean>(false);
 const loadingGoogleLogin = ref<boolean>(false);
@@ -216,11 +215,11 @@ const handleSubmit = () => {
   loadingLogin.value = true;
 
   useAsyncData(
-    `login/${formState.username}/${encryptPassword(formState.password)}`,
+    `login/${formState.username}/${utils.encryptPassword(formState.password)}`,
     () =>
       signIn({
         email: formState.username,
-        password: encryptPassword(formState.password),
+        password: utils.encryptPassword(formState.password),
         // password: md5(formState.password),
         // user_token: randomToken(40),
       })
@@ -241,14 +240,14 @@ const handleSubmit = () => {
           //   })
           // );
 
-          setWithExpiry(
+          utils.localStorage.setWithExpiry(
             'userAccount',
             { user_token: response.data.value.headers.get('Authorization') },
             30
           );
         } else {
-          // setWithExpiry('isLogin', true, 30);
-          setWithExpiry(
+          // utils.localStorage.setWithExpiry('isLogin', true, 30);
+          utils.localStorage.setWithExpiry(
             'userAccount',
             { user_token: response.data.value.headers.get('Authorization') },
             30
@@ -348,7 +347,7 @@ const handleFacebookLogin = async () => {
         store.$state.userAccount = response.data.value.data?.result;
         store.$state.isLogin = true;
 
-        setWithExpiry(
+        utils.localStorage.setWithExpiry(
           'userAccount',
           { user_token: response.data.value.headers.get('Authorization') },
           30
@@ -360,7 +359,7 @@ const handleFacebookLogin = async () => {
         store.$state.userAccount = response.data.value.data?.result;
         store.$state.isLogin = true;
 
-        setWithExpiry(
+        utils.localStorage.setWithExpiry(
           'userAccount',
           { user_token: response.data.value.headers.get('Authorization') },
           30
@@ -440,7 +439,7 @@ onMounted(() => {
               store.$state.userAccount = response.data.value.data?.result;
               store.$state.isLogin = true;
 
-              setWithExpiry(
+              utils.localStorage.setWithExpiry(
                 'userAccount',
                 {
                   user_token: response.data.value.headers.get('Authorization'),
@@ -454,7 +453,7 @@ onMounted(() => {
               store.$state.userAccount = response.data.value.data?.result;
               store.$state.isLogin = true;
 
-              setWithExpiry(
+              utils.localStorage.setWithExpiry(
                 'userAccount',
                 {
                   user_token: response.data.value.headers.get('Authorization'),

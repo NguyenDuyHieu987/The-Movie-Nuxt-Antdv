@@ -123,46 +123,63 @@
         </el-popover>
       </ClientOnly>
 
-      <a-menu
-        theme="dark"
-        mode="horizontal"
-        :selectable="false"
-        style="height: 100%; background: transparent"
-        triggerSubMenuAction="click"
-      >
-        <a-menu-item key="notification" v-show="isLogin">
+      <a-menu theme="dark" mode="horizontal" :selectable="false">
+        <a-menu-item key="notification" v-if="isLogin" v-once>
           <a-dropdown
             :trigger="['click']"
             class="dropdown-notification"
             placement="bottomLeft"
           >
-            <a class="ant-dropdown-link" @click.prevent>
+            <a
+              class="ant-dropdown-link"
+              @click.prevent="
+                isOpenDropdownNotification = !isOpenDropdownNotification
+              "
+            >
               <a-badge :count="3" :overflow-count="9">
-                <font-awesome-icon
-                  icon="fa-regular fa-bell"
-                  class="fa-regular"
-                />
-                <font-awesome-icon icon="fa-solid fa-bell" class="fa-solid" />
-
                 <!-- <Icon name="fa6-regular:bell" class="fa-bell fa-regular" />
                 <Icon name="fa6-solid:bell" class="fa-bell fa-solid" /> -->
+
+                <svg
+                  class="fa-bell fa-regular"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M12 1.996a7.49 7.49 0 0 1 7.496 7.25l.004.25v4.097l1.38 3.156a1.249 1.249 0 0 1-1.145 1.75L15 18.502a3 3 0 0 1-5.995.177L9 18.499H4.275a1.251 1.251 0 0 1-1.147-1.747L4.5 13.594V9.496c0-4.155 3.352-7.5 7.5-7.5ZM13.5 18.5l-3 .002a1.5 1.5 0 0 0 2.993.145l.007-.147ZM12 3.496c-3.32 0-6 2.674-6 6v4.41L4.656 17h14.697L18 13.907V9.509l-.003-.225A5.988 5.988 0 0 0 12 3.496Z"
+                  />
+                </svg>
+
+                <svg
+                  class="fa-bell fa-solid"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M9.042 19.003h5.916a3 3 0 0 1-5.916 0Zm2.958-17a7.5 7.5 0 0 1 7.5 7.5v4l1.418 3.16A.95.95 0 0 1 20.052 18h-16.1a.95.95 0 0 1-.867-1.338l1.415-3.16V9.49l.005-.25A7.5 7.5 0 0 1 12 2.004Z"
+                  />
+                </svg>
               </a-badge>
             </a>
 
             <template #overlay>
-              <a-menu class="dropdown-notification">
-                <a-layout-header class="notification-header">
+              <el-menu class="dropdown-notification">
+                <div class="notification-header">
                   <span> Thông báo</span>
-                </a-layout-header>
+                </div>
 
                 <a-menu-item-group class="public" key="public">
                   <template #title>
                     <p>Thông báo chung</p>
                     <p>1</p>
                   </template>
-                  <a-menu-item key="1"
-                    >Chào mừng bạn đến với Phimhay247</a-menu-item
-                  >
+                  <a-menu-item>Chào mừng bạn đến với Phimhay247</a-menu-item>
                 </a-menu-item-group>
 
                 <div class="separate" />
@@ -172,15 +189,15 @@
                     <p>Thông báo cá nhân</p>
                     <p>2</p>
                   </template>
-                  <a-menu-item key="1">Message 1</a-menu-item>
-                  <a-menu-item key="2">Message 2</a-menu-item>
+                  <a-menu-item>Message 1</a-menu-item>
+                  <a-menu-item>Message 2</a-menu-item>
                 </a-menu-item-group>
-              </a-menu>
+              </el-menu>
             </template>
           </a-dropdown>
         </a-menu-item>
 
-        <a-menu-item key="account">
+        <a-menu-item class="account" key="account">
           <template #icon>
             <UserOutlined />
           </template>
@@ -195,7 +212,7 @@
             </a>
             <template #overlay>
               <a-menu class="dropdown-account">
-                <a-menu-item key="my-profile" v-show="isLogin">
+                <a-menu-item key="my-profile" v-if="isLogin" v-once>
                   <NuxtLink :to="{ path: '/profile' }"
                     ><span>My Profile</span>
                     <br />
@@ -206,7 +223,8 @@
                 </a-menu-item>
                 <a-menu-item
                   key="dashboard"
-                  v-show="isLogin && role == 'admin'"
+                  v-if="isLogin && role == 'admin'"
+                  v-once
                 >
                   <!-- <NuxtLink :to="{ path: '/dashboard' }"
                     >Bảng điều khiển
@@ -218,13 +236,13 @@
                     Bảng điều khiển
                   </NuxtLink>
                 </a-menu-item>
-                <a-menu-item key="pricing" v-show="isLogin">
+                <a-menu-item key="pricing" v-if="isLogin" v-once>
                   <NuxtLink :to="{ path: '/billing' }">Billing</NuxtLink>
                 </a-menu-item>
                 <a-menu-item key="logout">
                   <NuxtLink :to="{ path: '/login' }" @click="handleLogout">
-                    <span v-if="isLogin"> Đăng xuất</span>
-                    <span v-else> Đăng nhập</span>
+                    <span v-if="isLogin" v-once> Đăng xuất</span>
+                    <span v-else v-once> Đăng nhập</span>
                   </NuxtLink>
                 </a-menu-item>
               </a-menu>
@@ -241,13 +259,11 @@ import {
   UserOutlined,
   CaretDownOutlined,
   MenuOutlined,
-  SearchOutlined,
 } from '@ant-design/icons-vue';
 import { getDaTaSearch } from '@/services/MovieService';
 import SearchCard from '../SearchCard/SearchCard.vue';
 import { Close } from '@element-plus/icons-vue';
 import axios from 'axios';
-import { useStore } from '@/store/useStore';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 
@@ -262,6 +278,7 @@ const loadingSearch = ref<boolean>(false);
 const isOpenAutoComplete = ref<boolean>(true);
 const debounce = ref<any>();
 const valueInput = ref<string>(route.query.q);
+const isOpenDropdownNotification = ref<boolean>(false);
 
 onMounted(() => {
   const header: HTMLElement | null = document.querySelector(
@@ -341,7 +358,7 @@ const handleSearch = (value: string) => {
 };
 
 const handleLogout = () => {
-  if (isLogin.value) {
+  if (isLogin) {
     store.$state.userAccount = {};
     store.$state.isLogin = false;
     store.$state.role = 'normal';

@@ -198,7 +198,8 @@
             path: `/discover/years/${
               /^\d+$/.test(item?.name)
                 ? item?.name
-                : removeVietnameseTones(item?.name)
+                : utils
+                    .removeVietnameseTones(item?.name)
                     ?.replaceAll(/\s/g, '-')
                     .toLowerCase()
             }`,
@@ -302,10 +303,10 @@ import {
   getAllYear,
 } from '@/services/MovieService';
 import axios from 'axios';
-import { removeVietnameseTones } from '@/utils/RemoveVietnameseTones';
 import { genre, country, year } from '~/types';
 
 const route: any = useRoute();
+const utils = useUtils();
 const store: any = useStore();
 const state = reactive<any>({
   selectedKeys: [

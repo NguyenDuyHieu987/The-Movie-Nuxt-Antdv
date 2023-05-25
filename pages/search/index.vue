@@ -24,7 +24,7 @@
       class="search-section"
       :class="{ collapsed: store.$state.collapsed }"
     >
-      <div class="movie-group horizoltal">
+      <div class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in searchData"
           :index="index"

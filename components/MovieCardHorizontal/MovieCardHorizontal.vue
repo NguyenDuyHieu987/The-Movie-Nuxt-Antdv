@@ -15,9 +15,8 @@
   >
     <el-skeleton :loading="loading" animated>
       <template #template>
-        <div class="img-box">
-          <el-skeleton-item class="ant-image" />
-        </div>
+        <el-skeleton-item class="skeleton-img" />
+
         <div class="content-skeleton">
           <el-skeleton-item variant="text" />
           <el-skeleton-item variant="text" style="width: 60%" />
@@ -304,10 +303,6 @@
 import axios from 'axios';
 import { getBackdrop, getItemHistory } from '@/services/MovieService';
 import PreviewModal from '@/components/PreviewModal/PreviewModal.vue';
-import {
-  handelAddItemToList,
-  handelRemoveItemFromList,
-} from '~/utils/handelAddRemoveItemList_History';
 
 const props = defineProps<{
   item: any;
@@ -315,6 +310,7 @@ const props = defineProps<{
 }>();
 
 const store: any = useStore();
+const utils = useUtils();
 const router = useRouter();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
@@ -334,39 +330,41 @@ const imgWidth = ref<number>(0);
 const interval = ref<any>();
 
 const onMouseEnter = (e: any) => {
-  const rect = e.target.getBoundingClientRect();
+  if (e.target) {
+    const rect = e.target.getBoundingClientRect();
 
-  const offsetX = rect.left;
-  const offsetY = window.scrollY + rect.top;
-  let width = (16 / 100) * window.innerWidth;
-  let height = (15.5 / 100) * window.innerWidth;
-  if (width < 350) {
-    width = 350;
+    const offsetX = rect.left;
+    const offsetY = window.scrollY + rect.top;
+    let width = (16 / 100) * window.innerWidth;
+    let height = (15.5 / 100) * window.innerWidth;
+    if (width < 350) {
+      width = 350;
+    }
+    if (height < 330) {
+      height = 330;
+    }
+
+    // left.value = offsetX + e.target.offsetWidth / 2 - width / 2;
+    // top.value = offsetY + e.target.offsetHeight / 2 - height / 2;
+
+    left.value = offsetX + e.target.offsetWidth / 2;
+    top.value = offsetY + e.target.offsetHeight / 2;
+
+    offsetWidth.value = e.target.offsetWidth;
+    offsetHeight.value = e.target.offsetHeight;
+
+    imgHeight.value = e.target.querySelector('img').offsetHeight;
+    imgWidth.value = e.target.querySelector('img').offsetWidth;
+
+    interval.value = setTimeout(() => {
+      isTeleportPreviewModal.value = true;
+    }, 2000);
+
+    e.target.addEventListener('mouseleave', () => {
+      // isTeleportPreviewModal.value = false;
+      clearInterval(interval.value);
+    });
   }
-  if (height < 330) {
-    height = 330;
-  }
-
-  // left.value = offsetX + e.target.offsetWidth / 2 - width / 2;
-  // top.value = offsetY + e.target.offsetHeight / 2 - height / 2;
-
-  left.value = offsetX + e.target.offsetWidth / 2;
-  top.value = offsetY + e.target.offsetHeight / 2;
-
-  offsetWidth.value = e.target.offsetWidth;
-  offsetHeight.value = e.target.offsetHeight;
-
-  imgHeight.value = e.target.querySelector('img').offsetHeight;
-  imgWidth.value = e.target.querySelector('img').offsetWidth;
-
-  interval.value = setTimeout(() => {
-    isTeleportPreviewModal.value = true;
-  }, 2000);
-
-  e.target.addEventListener('mouseleave', () => {
-    // isTeleportPreviewModal.value = false;
-    clearInterval(interval.value);
-  });
 };
 
 onMounted(() => {
@@ -517,23 +515,14 @@ const handelAddToList = () => {
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (
-      !handelAddItemToList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id,
-        props.item.media_type
-      )
+      !utils.handelAddItemToList(dataMovie.value?.id, props.item.media_type)
     ) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (
-      !handelRemoveItemFromList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id
-      )
-    ) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
       isAddToList.value = true;
     }
     return;

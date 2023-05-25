@@ -14,7 +14,7 @@
       class="discover-section"
       :class="{ collapsed: store.$state.collapsed }"
     >
-      <div class="movie-group horizoltal">
+      <div class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in dataDiscover"
           :index="index"

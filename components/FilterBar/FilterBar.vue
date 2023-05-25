@@ -226,6 +226,8 @@ const handleCancelFilter = () => {
   resetFilter();
   props.cancelFilter();
 };
+
+const handleChange = () => {};
 </script>
 
 <style lang="scss" scoped src="./FilterBar.scss"></style>

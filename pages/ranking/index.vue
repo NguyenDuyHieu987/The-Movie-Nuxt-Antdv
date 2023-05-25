@@ -17,7 +17,7 @@
         </section>
         <ControlPage
           v-show="trendings?.length"
-          :page="page"
+          :page="pageTrending"
           :total="totalPage"
           :pageSize="pageSize"
           :onChangePage="onChangePage"

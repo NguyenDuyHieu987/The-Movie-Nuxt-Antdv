@@ -310,7 +310,8 @@
                 :key="item?.id"
                 :index="index"
                 :to="{
-                  path: `/discover/genres/${removeVietnameseTones(item?.name)
+                  path: `/discover/genres/${utils
+                    .removeVietnameseTones(item?.name)
                     ?.replaceAll(/\s/g, '-')
                     ?.toLowerCase()}`,
                 }"
@@ -470,14 +471,9 @@ import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
-import { removeVietnameseTones } from '@/utils/RemoveVietnameseTones';
-import {
-  handelAddItemToList,
-  handelRemoveItemFromList,
-} from '~/utils/handelAddRemoveItemList_History';
-import { textUppercase } from '~/utils/textUppercase';
 
 const store: any = useStore();
+const utils = useUtils();
 const route: any = useRoute();
 const router = useRouter();
 const isEpisodes = ref<boolean>(false);
@@ -587,24 +583,13 @@ const handelAddToList = () => {
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (
-      !handelAddItemToList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id,
-        'movie'
-      )
-    ) {
+    if (!utils.handelAddItemToList(dataMovie.value?.id, 'movie')) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (
-      !handelRemoveItemFromList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id
-      )
-    ) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
       isAddToList.value = true;
     }
     return;

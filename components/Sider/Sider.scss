@@ -162,6 +162,8 @@
   .ant-layout-sider.sider-bar {
     width: 0px !important;
     min-width: 0px !important;
+    max-width: 0px !important;
     overflow: hidden;
+    // display: none;
   }
 }

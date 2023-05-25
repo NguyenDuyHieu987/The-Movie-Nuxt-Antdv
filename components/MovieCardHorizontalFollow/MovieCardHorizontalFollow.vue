@@ -1,7 +1,7 @@
 <template>
   <div class="movie-follow-item-wrapper">
     <p class="index-item">{{ index + 1 }}</p>
-    <el-skeleton :loading="loading" animated class="movie-follow-item">
+    <el-skeleton :loading="loading" animated>
       <template #template>
         <div class="item-skeleton">
           <div class="img-box">
@@ -90,7 +90,7 @@
               </p>
 
               <p class="views">
-                {{ ViewFormatter(dataMovie?.views) }} lượt xem
+                {{ utils.viewFormatter(dataMovie?.views) }} lượt xem
               </p>
             </div>
 
@@ -213,8 +213,6 @@ import {
 } from '@/services/MovieService';
 import axios from 'axios';
 import disableScroll from 'disable-scroll';
-import { ViewFormatter } from '@/utils/convertViews';
-import { handelRemoveItemFromList } from '~/utils/handelAddRemoveItemList_History';
 
 const props = defineProps<{
   item: any;
@@ -224,6 +222,7 @@ const props = defineProps<{
 }>();
 
 const store: any = useStore();
+const utils = useUtils();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
@@ -342,12 +341,7 @@ onBeforeMount(async () => {
 });
 
 const handleRemoveFromList = async () => {
-  if (
-    await handelRemoveItemFromList(
-      store.$state?.userAccount?.id,
-      dataMovie.value?.id
-    )
-  ) {
+  if (await utils.handelRemoveItemFromList(dataMovie.value?.id)) {
     props.getDataWhenRemoveList(props.item?.id);
   }
   return;

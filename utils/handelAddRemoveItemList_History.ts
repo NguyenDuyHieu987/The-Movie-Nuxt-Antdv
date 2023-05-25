@@ -11,7 +11,6 @@ import { message } from 'ant-design-vue';
 import { ElNotification, ElMessage } from 'element-plus';
 
 export async function handelAddItemToList(
-  accountId: string,
   movieId: number,
   media_type: string
 ): Promise<boolean> {
@@ -69,7 +68,6 @@ export async function handelAddItemToList(
 }
 
 export async function handelRemoveItemFromList(
-  accountId: string,
   movieId: number
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa' });
@@ -125,9 +123,7 @@ export async function handelRemoveItemFromList(
     });
 }
 
-export async function handleRemoveAllitemFromList(
-  accountId: string
-): Promise<boolean> {
+export async function handleRemoveAllitemFromList(): Promise<boolean> {
   // message.loading({ content: 'Đang xóa tất cả Danh sách phát' });
 
   return removeAllItemList()
@@ -177,8 +173,7 @@ export async function handleRemoveAllitemFromList(
     });
 }
 
-export async function handleRemoveItemHistory(
-  accountId: string,
+export async function handleRemoveItemFromHistory(
   movieId: number
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa' });
@@ -233,9 +228,7 @@ export async function handleRemoveItemHistory(
     });
 }
 
-export async function handleRemoveAllitemFromHistory(
-  accountId: string
-): Promise<boolean> {
+export async function handleRemoveAllitemFromHistory(): Promise<boolean> {
   // message.loading({ content: 'Đang xóa tất cả Lịch sử xem' });
 
   return removeAllItemHistory()

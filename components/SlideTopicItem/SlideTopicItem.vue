@@ -105,15 +105,12 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getItemList, getBackdrop } from '@/services/MovieService';
-import {
-  handelAddItemToList,
-  handelRemoveItemFromList,
-} from '~/utils/handelAddRemoveItemList_History';
 
 const props = defineProps<{
   item: any;
 }>();
 const store: any = useStore();
+const utils = useUtils();
 const isAddToList = ref<boolean>(false);
 
 onBeforeMount(async () => {
@@ -141,8 +138,7 @@ const handelAddToList = () => {
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (
-      !handelAddItemToList(
-        store.$state?.userAccount?.id,
+      !utils.handelAddItemToList(
         props.item?.id,
         props.item?.media_type == 'movie' ? 'movie' : 'tv'
       )
@@ -152,9 +148,7 @@ const handelAddToList = () => {
     return;
   } else {
     isAddToList.value = false;
-    if (
-      !handelRemoveItemFromList(store.$state?.userAccount?.id, props.item?.id)
-    ) {
+    if (!utils.handelRemoveItemFromList(props.item?.id)) {
       isAddToList.value = true;
     }
     return;

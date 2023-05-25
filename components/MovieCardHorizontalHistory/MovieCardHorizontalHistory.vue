@@ -10,7 +10,7 @@
         {{ timeLine }}
       </span>
     </p>
-    <el-skeleton :loading="loading" animated class="movie-history-item">
+    <el-skeleton :loading="loading" animated>
       <template #template>
         <div class="img-box">
           <el-skeleton-item class="image-skeleton" />
@@ -95,7 +95,7 @@
               </p>
 
               <p class="views">
-                {{ ViewFormatter(dataMovie?.views) }} lượt xem
+                {{ utils.viewFormatter(dataMovie?.views) }} lượt xem
               </p>
             </div>
 
@@ -257,14 +257,8 @@ import {
 } from '@/services/MovieService';
 import disableScroll from 'disable-scroll';
 import axios from 'axios';
-import { ViewFormatter } from '@/utils/convertViews';
 import _ from 'lodash';
 import moment from 'moment';
-import {
-  handelAddItemToList,
-  handelRemoveItemFromList,
-  handleRemoveItemHistory,
-} from '~/utils/handelAddRemoveItemList_History';
 
 const props = defineProps<{
   item: any;
@@ -274,6 +268,7 @@ const props = defineProps<{
 }>();
 
 const store: any = useStore();
+const utils = useUtils();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
@@ -481,23 +476,14 @@ const handelAddToList = () => {
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (
-      !handelAddItemToList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id,
-        props.item.media_type
-      )
+      !utils.handelAddItemToList(dataMovie.value?.id, props.item.media_type)
     ) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (
-      !handelRemoveItemFromList(
-        store.$state?.userAccount?.id,
-        dataMovie.value?.id
-      )
-    ) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
       isAddToList.value = true;
     }
     return;
@@ -505,12 +491,7 @@ const handelAddToList = () => {
 };
 
 const handleRemoveFromHistory = async () => {
-  if (
-    await handleRemoveItemHistory(
-      store.$state?.userAccount?.id,
-      dataMovie.value?.id
-    )
-  ) {
+  if (await utils.handleRemoveItemFromHistory(dataMovie.value?.id)) {
     props.getDataWhenRemoveHistory(props.item?.id);
   }
   return;

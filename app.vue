@@ -41,18 +41,23 @@ import axios from 'axios';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
 import { notification } from 'ant-design-vue';
 import { getUserToken } from '@/services/MovieService';
-import { getWithExpiry } from '@/utils/LocalStorage';
 
 const store: any = useStore();
+const utils = useUtils();
 const router = useRouter();
 const route: any = useRoute();
 const loadingHomePage = ref<boolean>(true);
 
+// const request = useRequest();
+// request.makeRequest('/hieu', {});
+
 onBeforeMount(() => {
   // console.log(store.$state);
 
-  if (getWithExpiry('userAccount')?.user_token) {
-    getUserToken({ user_token: getWithExpiry('userAccount')?.user_token })
+  if (utils.localStorage.getWithExpiry('userAccount')?.user_token) {
+    getUserToken({
+      user_token: utils.localStorage.getWithExpiry('userAccount')?.user_token,
+    })
       .then((accountResponse: any) => {
         // console.log(accountResponse.data?.result);
         if (accountResponse.data?.isLogin == true) {

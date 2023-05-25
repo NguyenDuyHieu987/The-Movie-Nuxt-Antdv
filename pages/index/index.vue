@@ -526,7 +526,7 @@ onBeforeMount(async () => {
         window.innerHeight ===
       document.documentElement.offsetHeight;
 
-    console.log(bottomOfWindow);
+    // console.log(bottomOfWindow);
   };
 
   // Promise.all([

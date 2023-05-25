@@ -365,8 +365,6 @@ import disableScroll from 'disable-scroll';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import scrollBottom from 'scroll-bottom';
-import { conrfirmMessageModal } from '~/utils/messageModal';
-import { handleRemoveAllitemFromHistory } from '~/utils/handelAddRemoveItemList_History';
 
 definePageMeta({
   // requireAuth: true,
@@ -374,6 +372,7 @@ definePageMeta({
 });
 
 const store: any = useStore();
+const utils = useUtils();
 const { isLogin } = storeToRefs<any>(store);
 const route: any = useRoute();
 const valueInput = ref<string>('');
@@ -572,13 +571,11 @@ const getDataWhenRemoveHistory = (data: number) => {
 
 const removeAllHistoryList = () => {
   if (dataHistory.value?.length > 0) {
-    conrfirmMessageModal({
+    utils.conrfirmMessageModal({
       title: 'Thông Báo',
       message: 'Bạn có muốn xóa toàn bộ Lịch sử xem không?',
       onOk: async function () {
-        if (
-          await handleRemoveAllitemFromHistory(store?.$state.userAccount?.id)
-        ) {
+        if (await utils.handleRemoveAllitemFromHistory()) {
           dataHistory.value = [];
         }
       },
