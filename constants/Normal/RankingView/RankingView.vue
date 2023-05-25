@@ -91,7 +91,7 @@
 import { onBeforeMount, ref, watch } from 'vue';
 import MovieCarouselCardVertical from '@/components/Normal/MovieCardVertical/MovieCardVertical.vue';
 import RankCard from '@/components/Normal/RankCard/RankCard.vue';
-import { getTrending, getRanking } from '~/services/movieService';
+import { getTrending, getRanking } from '~/services/MovieService';
 import { useMeta } from 'vue-meta';
 import axios from 'axios';
 

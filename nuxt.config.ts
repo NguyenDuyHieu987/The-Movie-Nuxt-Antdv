@@ -94,7 +94,7 @@ export default defineNuxtConfig({
     apiKey: '123',
     app: {},
     public: {
-      apiBase: '/api',
+      baseURL: '123',
     },
   },
   alias: {

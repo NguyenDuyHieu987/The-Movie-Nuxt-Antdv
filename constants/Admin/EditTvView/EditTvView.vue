@@ -232,7 +232,7 @@ import {
   getAllNational,
   getAllYear,
   getTvById,
-} from '~/services/movieService';
+} from '~/services/MovieService';
 import { useRoute } from 'vue-router';
 
 export default {
