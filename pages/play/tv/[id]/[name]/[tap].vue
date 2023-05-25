@@ -198,7 +198,7 @@ import {
   add_update_History,
   UpdateViewMovie,
   getItemHistory,
-} from '@/services/movieService';
+} from '@/services/appMovieService';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
