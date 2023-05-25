@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { getSeasonTV } from '~/services/MovieService';
+import { getSeasonTV } from '~/services/movieService';
 import axios from 'axios';
 
 const props = defineProps({

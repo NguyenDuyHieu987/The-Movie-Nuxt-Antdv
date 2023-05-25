@@ -84,7 +84,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getTvById, getMovieById } from '~/services/MovieService';
+import { getTvById, getMovieById } from '~/services/movieService';
 import CloseBtn from '@/components/button/CloseBtn/CloseBtn.vue';
 
 const props = defineProps<{

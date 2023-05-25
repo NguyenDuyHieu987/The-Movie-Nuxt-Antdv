@@ -10,7 +10,7 @@ import {
   getAllGenre,
   getAllNational,
   getAllYear,
-} from '~/services/MovieService';
+} from '~/services/movieService';
 
 const utils = useUtils();
 

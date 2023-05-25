@@ -352,7 +352,7 @@ import {
   getBackdrop,
   searchList,
   getColorImage,
-} from '~/services/MovieService';
+} from '~/services/movieService';
 import disableScroll from 'disable-scroll';
 import _ from 'lodash';
 import { storeToRefs } from 'pinia';

@@ -220,7 +220,7 @@ import {
   getTvById,
   getMovieById,
   getLanguage,
-} from '~/services/MovieService';
+} from '~/services/movieService';
 
 const props = defineProps<{
   isTeleportPreviewModal: boolean;
