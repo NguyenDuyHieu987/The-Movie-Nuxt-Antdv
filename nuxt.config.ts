@@ -101,7 +101,9 @@ export default defineNuxtConfig({
   alias: {
     '@': resolve(__dirname, './'),
   },
-  experimental: {},
+  experimental: {
+    payloadExtraction: false,
+  },
   typescript: {
     strict: true,
   },
