@@ -2,7 +2,7 @@ import ALLGENRES from '../constants/Genres';
 // import LANGUAGES from '../constants/Languages';
 import COUNTRIES from '../constants/Country';
 import axios from 'axios';
-import { getWithExpiry } from '@/utils/localStorage';
+import { getWithExpiry } from '@/utils/localStorage.ts';
 
 // const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
