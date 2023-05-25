@@ -67,7 +67,12 @@
 
     <div class="right-header">
       <ClientOnly>
-        <el-popover trigger="click" placement="bottom" class="popover-search">
+        <el-popover
+          trigger="click"
+          placement="bottom"
+          popper-class="popover-search"
+          effect="dark"
+        >
           <template #reference>
             <a-button type="text" shape="circle" class="search-btn-mobile">
               <template #icon>
@@ -87,6 +92,7 @@
             </h3>
             <a-auto-complete
               v-model:value="valueInput"
+              class="search-poppover"
               dropdown-class-name="certain-category-search-dropdown"
               :options="dataSearch"
               style="width: 100%"
@@ -103,7 +109,7 @@
                 />
               </template>
               <a-input-search
-                class="center-search-header-responsive"
+                class="search-poppover"
                 placeholder="Nhập tên phim để tìm kiếm..."
                 size="large"
                 allowClear

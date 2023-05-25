@@ -375,7 +375,7 @@
 }
 
 .certain-category-search-dropdown {
-  background-color: #000;
+  background-color: var(--background-content-color);
   // top: calc(var(--header-height) - 10px) !important;
   position: fixed !important;
 
@@ -395,16 +395,79 @@
   }
 }
 
-.ant-input-wrapper,
-.right-header {
-  .ant-btn-primary {
-    background: var(--btn-backgroud-color);
-    border-color: var(--btn-backgroud-color);
-  }
+.el-popper.popover-search {
+  background-color: var(--loading-background) !important;
+  box-shadow: var(--box-shadow-medium);
 
-  .ant-btn-primary:hover,
-  .ant-btn-primary:focus {
-    border-color: var(--btn-backgroud-color-hover);
-    background: var(--btn-backgroud-color-hover);
+  .search-poppover {
+    .ant-input-group {
+    }
+
+    .ant-input-wrapper {
+      transition: all 0.15s;
+      border-radius: 20px;
+      background: var(--search-background);
+    }
+
+    .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
+      background: var(--search-focus-background);
+    }
+
+    .ant-input-affix-wrapper {
+      border: 1px solid var(--border-regular-light);
+      height: 40px;
+      padding-left: 16px;
+      // border-right: none;
+      transition: all 0s;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      background: transparent;
+      cursor: auto;
+
+      // &:hover {
+      //   border-color: var(--border-regular-light);
+      // }
+
+      &.ant-input-affix-wrapper-focused {
+        // border-color: #00dac8;
+
+        // &:hover {
+        //   border-color: #00dac8;
+        // }
+      }
+
+      .ant-input {
+        color: #fff;
+        background: transparent;
+      }
+    }
+
+    .ant-input-group-addon {
+      background: none;
+
+      .ant-input-search-button {
+        background: transparent;
+        border: 1px solid var(--border-regular-light);
+        transition: all 0.25s;
+        border-radius: 0 20px 20px 0;
+        border-left: none;
+
+        svg {
+          font-size: 1.9rem;
+        }
+
+        &:active {
+          svg {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+  .el-popper__arrow {
+    &::before {
+      border: none !important;
+      background-color: var(--loading-background) !important;
+    }
   }
 }
