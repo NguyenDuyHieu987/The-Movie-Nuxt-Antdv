@@ -1,4 +1,3 @@
-import { getWithExpiry } from '~/utils/localStorage';
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import axios from 'axios';
@@ -13,12 +12,14 @@ import {
   getAllYear,
 } from '@/services/MovieService';
 
+const utils = useUtils();
+
 export default defineStore('store', () => {
   const collapsed = ref(false);
   const openDrawer = ref(false);
   const modalVisible = ref(false);
   const isLogin = computed(() =>
-    getWithExpiry('userAccount') != null ? true : false
+    utils.localStorage.getWithExpiry('userAccount') != null ? true : false
   );
   const breadCrumbValue = ref('');
   const role = ref('normal');
@@ -49,7 +50,7 @@ export default defineStore('store', () => {
       getUpComing(1),
       getTvAiringToday(1),
       getTopRated(1),
-      isLogin.value ? getMyRecommend(userAccount.value?.id, 1) : null,
+      isLogin.value ? getMyRecommend(1) : null,
     ])
       .then((response: any) => {
         nowPlayings.value = response[0].data?.results;

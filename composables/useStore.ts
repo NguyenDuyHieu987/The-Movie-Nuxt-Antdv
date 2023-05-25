@@ -1,4 +1,3 @@
-import { getWithExpiry } from '~/utils/localStorage';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import {
@@ -12,19 +11,22 @@ import {
   getAllYear,
 } from '@/services/MovieService';
 
+const utils = useUtils();
+
 export default defineStore('store', {
   state() {
     return {
       collapsed: false,
       openDrawer: false,
       openRequireAuthDialog: false,
-      isLogin: getWithExpiry('userAccount') != null ? true : false,
+      isLogin:
+        utils.localStorage.getWithExpiry('userAccount') != null ? true : false,
       breadCrumbValue: '',
       role: 'normal',
       loadingHomePage: false,
       loadingMisc: false,
       loadingDashBoard: false,
-      userAccount: getWithExpiry('userAccount') || {},
+      userAccount: utils.localStorage.getWithExpiry('userAccount') || {},
       allGenres: [],
       allCountries: [],
       allYears: [],
@@ -56,9 +58,7 @@ export default defineStore('store', {
         getUpComing(1),
         getTvAiringToday(1),
         getTopRated(1),
-        this.$state?.isLogin
-          ? getMyRecommend(this.$state.userAccount?.id, 1)
-          : null,
+        this.$state?.isLogin ? getMyRecommend(1) : null,
       ])
         .then((response: any) => {
           this.$state.nowPlayings = response[0].data?.results;
