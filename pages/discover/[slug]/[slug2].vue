@@ -54,7 +54,7 @@ import {
   getTvPopular,
   getTvTopRated,
   getGenresNameByShortName,
-} from '~/services/MovieService';
+} from '~/services/movieService';
 import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '@/components/FilterBar/FilterBar.vue';
 import ControlPage from '@/components/ControlPage/ControlPage.vue';
