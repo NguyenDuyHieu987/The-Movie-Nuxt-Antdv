@@ -177,7 +177,7 @@ export default defineNuxtConfig({
   vite: {
     server: {
       hmr: {
-        // overlay: false,
+        overlay: false,
       },
     },
   },

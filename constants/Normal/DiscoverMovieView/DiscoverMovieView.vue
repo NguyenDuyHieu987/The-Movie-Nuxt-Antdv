@@ -92,7 +92,7 @@ import {
   getTvPopular,
   getTvTopRated,
   getGenresNameByShortName,
-} from '~/services/movieService';
+} from '~/services/appMovieService';
 import MovieCarouselCardHorizontal from '@/components/Normal/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '@/components/Normal/FilterBar/FilterBar.vue';
 import { useStore } from 'vuex';

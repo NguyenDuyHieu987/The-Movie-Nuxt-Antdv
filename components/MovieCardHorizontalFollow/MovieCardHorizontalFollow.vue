@@ -210,7 +210,7 @@ import {
   getMovieById,
   getTvById,
   getItemHistory,
-} from '@/services/movieService';
+} from '~/services/appMovieService';
 import axios from 'axios';
 import disableScroll from 'disable-scroll';
 

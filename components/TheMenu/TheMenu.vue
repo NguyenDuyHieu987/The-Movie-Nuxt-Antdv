@@ -301,7 +301,7 @@ import {
   getAllGenre,
   getAllNational,
   getAllYear,
-} from '@/services/movieService';
+} from '~/services/appMovieService';
 import axios from 'axios';
 import { genre, country, year } from '@/types';
 

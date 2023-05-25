@@ -266,7 +266,7 @@ import {
   CaretDownOutlined,
   MenuOutlined,
 } from '@ant-design/icons-vue';
-import { getDaTaSearch } from '@/services/movieService';
+import { getDaTaSearch } from '~/services/appMovieService';
 import SearchCard from '../SearchCard/SearchCard.vue';
 import { Close } from '@element-plus/icons-vue';
 import axios from 'axios';

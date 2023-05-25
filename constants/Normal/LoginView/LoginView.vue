@@ -120,7 +120,7 @@ import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import axios from 'axios';
 import md5 from 'md5';
-import { signIn } from '~/services/movieService';
+import { signIn } from '~/services/appMovieService';
 import { setWithExpiry } from '@/untils/LocalStorage';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';

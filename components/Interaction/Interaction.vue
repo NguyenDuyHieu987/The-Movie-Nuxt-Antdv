@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { ShareAltOutlined } from '@ant-design/icons-vue';
-import { getBackdrop } from '@/services/movieService';
+import { getBackdrop } from '~/services/appMovieService';
 
 const props = defineProps<{ dataMovie: any }>();
 // const route = useRoute();

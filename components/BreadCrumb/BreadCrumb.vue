@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { getGenresNameByShortName } from '@/services/movieService';
+import { getGenresNameByShortName } from '~/services/appMovieService';
 import type { country } from '@/types';
 
 const route: any = useRoute();

@@ -223,7 +223,7 @@ import {
   getTvAiringToday,
   getTopRated,
   getUpComing,
-} from '~/services/movieService';
+} from '~/services/appMovieService';
 import { useMeta } from 'vue-meta';
 
 export default {

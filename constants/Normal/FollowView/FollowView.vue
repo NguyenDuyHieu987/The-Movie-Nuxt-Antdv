@@ -69,7 +69,7 @@ import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 import MovieCardVerticalFollow from '@/components/Normal/MovieCardVerticalFollow/MovieCardVerticalFollow.vue';
-import { getList, getWatchList } from '~/services/movieService';
+import { getList, getWatchList } from '~/services/appMovieService';
 import { useMeta } from 'vue-meta';
 
 export default {

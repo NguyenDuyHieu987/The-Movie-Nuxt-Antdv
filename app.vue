@@ -40,7 +40,7 @@
 import axios from 'axios';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
 import { notification } from 'ant-design-vue';
-import { getUserToken } from '~/services/movieService';
+import { getUserToken } from '~/services/appMovieService';
 
 const store: any = useStore();
 const utils = useUtils();

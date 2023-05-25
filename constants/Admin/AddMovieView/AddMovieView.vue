@@ -218,7 +218,7 @@ import {
   getAllNational,
   getAllYear,
   // addImage,
-} from '~/services/movieService';
+} from '~/services/appMovieService';
 
 export default {
   components: { ArrowLeftOutlined },

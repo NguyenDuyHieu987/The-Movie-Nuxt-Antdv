@@ -255,7 +255,7 @@ import {
   signUp,
   verifyEmail,
   //  emailValidation
-} from '@/services/movieService';
+} from '~/services/appMovieService';
 // import md5 from 'md5';
 import { ElNotification } from 'element-plus';
 // import { notification } from 'ant-design-vue';

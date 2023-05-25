@@ -504,7 +504,7 @@ import {
   getList,
   // getMovieBySimilar,
   // getTrending,
-} from '~/services/movieService';
+} from '~/services/appMovieService';
 import Interaction from '@/components/Normal/Interaction/Interaction.vue';
 import RatingMovie from '@/components/Normal/RatingMovie/RatingMovie.vue';
 import LastestEpisodes from '@/components/Normal/LastestEpisodes/LastestEpisodes.vue';

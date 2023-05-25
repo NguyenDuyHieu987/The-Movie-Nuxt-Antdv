@@ -56,7 +56,7 @@
 </template>
 <script setup lang="ts">
 // import axios from 'axios';
-import { getPoster } from '@/services/movieService';
+import { getPoster } from '~/services/appMovieService';
 
 const props = defineProps<{
   item: any;
