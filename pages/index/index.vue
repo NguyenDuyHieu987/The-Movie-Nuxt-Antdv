@@ -450,7 +450,14 @@ const responsiveVertical = computed<any>((): any => ({
 }));
 
 onBeforeMount(async () => {
-  await useAsyncData('trending/all/1', () => getTrending(1))
+  // const request = useRequest();
+  // const data = await request.makeRequest('/trending/all?page=2', {});
+
+  // console.log(data);
+
+  await useAsyncData(`trending/all/${Math.floor(Math.random() * 10) + 1}`, () =>
+    getTrending(Math.floor(Math.random() * 50) + 1)
+  )
     .then((response: any) => {
       trendings.value = response.data.value.data?.results;
     })
