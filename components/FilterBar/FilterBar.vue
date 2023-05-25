@@ -121,10 +121,10 @@ import {
   getAllYear,
   FilterDataMovie,
   getAllSortBy,
-} from '~/services/movieService';
+} from '@/services/movieService';
 import axios from 'axios';
 import { CaretRightFilled } from '@ant-design/icons-vue';
-import type { genre, country, year, sortby } from '~/types';
+import type { genre, country, year, sortby } from '@/types';
 
 const emit = defineEmits<{ dataFiltered: [data: any[], formSelect: any] }>();
 const props = defineProps<{

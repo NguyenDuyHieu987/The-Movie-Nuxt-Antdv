@@ -67,7 +67,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import SlideTopicItem from '../SlideTopicItem/SlideTopicItem.vue';
-import { getTrending, getBackdrop } from '~/services/movieService';
+import { getTrending, getBackdrop } from '@/services/movieService';
 
 const props = defineProps<{
   trendings: any[];

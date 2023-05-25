@@ -241,7 +241,7 @@ import {
   getTrending,
   getTvOntheAir,
   getMoviesByGenres,
-} from '~/services/movieService';
+} from '@/services/movieService';
 import { PlusOutlined } from '@ant-design/icons-vue';
 import { useVirtualList } from '@vueuse/core';
 
@@ -450,8 +450,8 @@ const responsiveVertical = computed<any>((): any => ({
 }));
 
 onBeforeMount(async () => {
-  // const request = useRequest();
-  // const data = await request.makeRequest('/trending/all?page=2', {});
+  const request = useRequest();
+  const data = await request.makeRequest('/trending/all?page=2', {});
 
   await useAsyncData(`trending/all/1`, () => getTrending(1))
     .then((response: any) => {

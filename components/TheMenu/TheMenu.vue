@@ -301,9 +301,9 @@ import {
   getAllGenre,
   getAllNational,
   getAllYear,
-} from '~/services/movieService';
+} from '@/services/movieService';
 import axios from 'axios';
-import { genre, country, year } from '~/types';
+import { genre, country, year } from '@/types';
 
 const route: any = useRoute();
 const utils = useUtils();

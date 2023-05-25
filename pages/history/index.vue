@@ -360,7 +360,7 @@ import {
   getColorImage,
   getHistory,
   searchHistory,
-} from '~/services/movieService';
+} from '@/services/movieService';
 import disableScroll from 'disable-scroll';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
