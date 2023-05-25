@@ -21,11 +21,6 @@ const URL_API = 'http://127.0.0.1:5000';
 const URL_API_IMAGE = 'http://127.0.0.1:5001';
 // const URL_API_IMAGE = 'https://img.api.phimhay247.site';
 
-const api = axios.create({
-  baseURL: 'http://127.0.0.1:5000',
-  // withCredentials: true,
-});
-
 function emailValidation(email) {
   return axios.get(
     `https://emailvalidation.abstractapi.com/v1/?api_key=e23c5b9c07dc432796eea058c9d99e82&email=${email}`
@@ -124,7 +119,7 @@ const signUp = async (params) => {
 };
 
 const getTrending = async (page) =>
-  await api(`${URL_API}/trending/all?page=${page}&api=hieu987`);
+  await axios.get(`${URL_API}/trending/all?page=${page}&api=hieu987`);
 
 const getNowPlaying = async (page) =>
   await axios.get(`${URL_API}/movie/nowplaying?page=${page}&api=hieu987`);
