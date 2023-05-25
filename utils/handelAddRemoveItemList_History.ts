@@ -5,7 +5,7 @@ import {
   removeItemHistory,
   removeAllItemList,
   removeAllItemHistory,
-} from '@/services/MovieService';
+} from '~/services/movieService';
 import axios from 'axios';
 import { message } from 'ant-design-vue';
 import { ElNotification, ElMessage } from 'element-plus';

@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import RankCard from '@/components/RankCard/RankCard.vue';
-import { getRanking } from '@/services/MovieService';
+import { getRanking } from '~/services/movieService';
 import axios from 'axios';
 
 interface tab {

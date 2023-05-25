@@ -138,7 +138,7 @@ import {
   CloseCircleFilled,
 } from '@ant-design/icons-vue';
 import axios from 'axios';
-import { signUp, emailValidation } from '@/services/MovieService';
+import { signUp, emailValidation } from '~/services/movieService';
 import md5 from 'md5';
 import { useRouter } from 'vue-router';
 import { ElNotification } from 'element-plus';

@@ -219,7 +219,7 @@ import {
   getAllNational,
   getAllYear,
   getMovieById,
-} from '@/services/MovieService';
+} from '~/services/movieService';
 import { useRoute } from 'vue-router';
 
 export default {

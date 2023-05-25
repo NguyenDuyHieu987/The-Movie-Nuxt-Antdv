@@ -301,7 +301,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop, getItemHistory } from '@/services/MovieService';
+import { getBackdrop, getItemHistory } from '~/services/movieService';
 import PreviewModal from '@/components/PreviewModal/PreviewModal.vue';
 
 const props = defineProps<{

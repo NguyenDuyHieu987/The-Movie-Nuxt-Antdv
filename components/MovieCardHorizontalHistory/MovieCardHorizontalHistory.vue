@@ -254,7 +254,7 @@ import {
   getMovieById,
   getTvById,
   getItemList,
-} from '@/services/MovieService';
+} from '~/services/movieService';
 import disableScroll from 'disable-scroll';
 import axios from 'axios';
 import _ from 'lodash';

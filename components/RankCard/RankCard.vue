@@ -62,7 +62,7 @@
 
 <script setup lang="ts">
 // import axios from 'axios';
-import { getPoster } from '@/services/MovieService';
+import { getPoster } from '~/services/movieService';
 
 const utils = useUtils();
 const props = defineProps<{

@@ -154,7 +154,7 @@ import {
   getTvById,
   getMovieById,
   // getMovieByCredit,
-} from '@/services/MovieService';
+} from '~/services/movieService';
 import Interaction from '@/components/Normal/Interaction/Interaction.vue';
 import RatingMovie from '@/components/Normal/RatingMovie/RatingMovie.vue';
 import MovieSuggest from '@/components/Normal/MovieSuggest/MovieSuggest.vue';

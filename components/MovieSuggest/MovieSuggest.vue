@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
-import { getSimilar, getTrending } from '@/services/MovieService';
+import { getSimilar, getTrending } from '~/services/movieService';
 import MovieCardVertical from '../MovieCardVertical/MovieCardVertical.vue';
 import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
 

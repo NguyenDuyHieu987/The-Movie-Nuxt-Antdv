@@ -121,7 +121,7 @@ import {
   getAllYear,
   FilterDataMovie,
   getAllSortBy,
-} from '@/services/MovieService';
+} from '~/services/movieService';
 import axios from 'axios';
 import { CaretRightFilled } from '@ant-design/icons-vue';
 import type { genre, country, year, sortby } from '~/types';

@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { ratingMovie, ratingTV } from '@/services/MovieService';
+import { ratingMovie, ratingTV } from '~/services/movieService';
 import { notification } from 'ant-design-vue';
 import { CheckCircleFilled } from '@ant-design/icons-vue';
 import axios from 'axios';
