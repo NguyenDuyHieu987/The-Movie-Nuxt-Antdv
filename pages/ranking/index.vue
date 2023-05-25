@@ -95,6 +95,7 @@ watch(pageTrending, async () => {
 });
 
 const onChangePage = (pageSelected: number) => {
+  pageTrending.value = pageSelected;
   router.push({ query: { page: pageSelected } });
 };
 </script>
