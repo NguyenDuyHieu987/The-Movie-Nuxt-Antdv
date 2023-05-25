@@ -104,7 +104,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getItemList, getBackdrop } from '~/services/movieService';
+import { getItemList, getBackdrop } from '~/services/MovieService';
 
 const props = defineProps<{
   item: any;

@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { getPosterCast } from '~/services/movieService';
+import { getPosterCast } from '~/services/MovieService';
 
 const props = defineProps<{
   item: any;

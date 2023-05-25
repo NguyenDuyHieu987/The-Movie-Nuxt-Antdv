@@ -91,12 +91,11 @@ export default defineNuxtConfig({
     // API_IMAGE_SERVICE_URL: process.env.API_IMAGE_SERVICE_URL,
     // TMDB_IMAGE_BASE_URL: process.env.TMDB_IMAGE_BASE_URL,
     // apiUrl: process.env.NUXT_API_CONTENT_SERVICE_URL,
-    // apiSecret: '123',
-    // app: {},
-    // public: {
-    //   apiBase: '/api',
-    //   apiUrl: process.env.NUXT_API_CONTENT_SERVICE_URL,
-    // },
+    apiKey: '123',
+    app: {},
+    public: {
+      apiBase: '/api',
+    },
   },
   alias: {
     '@': resolve(__dirname, './'),

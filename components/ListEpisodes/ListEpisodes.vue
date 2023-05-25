@@ -117,7 +117,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getSeasonTV } from '~/services/movieService';
+import { getSeasonTV } from '~/services/MovieService';
 
 const props = defineProps<{
   dataMovie: any;

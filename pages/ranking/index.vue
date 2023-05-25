@@ -32,7 +32,7 @@
 import MovieCardVertical from '@/components/MovieCardVertical/MovieCardVertical.vue';
 import RankSide from '@/components/RankSide/RankSide.vue';
 import ControlPage from '@/components/ControlPage/ControlPage.vue';
-import { getTrending } from '~/services/movieService';
+import { getTrending } from '~/services/MovieService';
 import axios from 'axios';
 
 const router = useRouter();

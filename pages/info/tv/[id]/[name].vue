@@ -506,7 +506,7 @@ import {
   getTvById,
   getLanguage,
   getItemList,
-} from '~/services/movieService';
+} from '~/services/MovieService';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import LastestEpisodes from '@/components/LastestEpisodes/LastestEpisodes.vue';

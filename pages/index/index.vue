@@ -241,7 +241,7 @@ import {
   getTrending,
   getTvOntheAir,
   getMoviesByGenres,
-} from '~/services/movieService';
+} from '~/services/MovieService';
 import { PlusOutlined } from '@ant-design/icons-vue';
 import { useVirtualList } from '@vueuse/core';
 

@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import ControlPage from '@/components/ControlPage/ControlPage.vue';
-import { getDaTaSearch } from '~/services/movieService';
+import { getDaTaSearch } from '~/services/MovieService';
 import axios from 'axios';
 
 const store: any = useStore();

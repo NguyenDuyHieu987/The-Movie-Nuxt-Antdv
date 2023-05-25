@@ -170,7 +170,7 @@ import {
   getItemHistory,
   add_update_History,
   UpdateViewMovie,
-} from '~/services/movieService';
+} from '~/services/MovieService';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';

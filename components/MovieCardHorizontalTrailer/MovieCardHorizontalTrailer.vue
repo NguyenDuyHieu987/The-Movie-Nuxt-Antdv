@@ -113,7 +113,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop, getItemHistory } from '~/services/movieService';
+import { getBackdrop, getItemHistory } from '~/services/MovieService';
 import ModalTrailer from '@/components/ModalTrailer/ModalTrailer.vue';
 
 const props = defineProps<{

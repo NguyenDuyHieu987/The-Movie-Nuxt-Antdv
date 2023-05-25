@@ -154,7 +154,7 @@ import {
 } from '@ant-design/icons-vue';
 import axios from 'axios';
 // import md5 from 'md5';
-import { signIn, loginFacebook, loginGoogle } from '~/services/movieService';
+import { signIn, loginFacebook, loginGoogle } from '~/services/MovieService';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';
 // import { notification } from 'ant-design-vue';

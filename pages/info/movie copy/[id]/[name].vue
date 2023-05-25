@@ -466,7 +466,7 @@ import {
   getMovieById,
   getLanguage,
   getItemList,
-} from '~/services/movieService';
+} from '~/services/MovieService';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
