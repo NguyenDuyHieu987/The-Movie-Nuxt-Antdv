@@ -7,10 +7,10 @@
 
       <a-select
         ref="select"
-        v-model="activeTabSearch"
+        v-model:value="activeTabSearch"
         style="width: 170px"
         @change="handleChangeType"
-        placeholder="Sắp xếp theo"
+        placeholder=""
         v-show="
           searchData?.length || searchDataMovie?.length || searchDataTv?.length
         "

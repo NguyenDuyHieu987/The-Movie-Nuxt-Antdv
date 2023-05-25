@@ -124,7 +124,7 @@ const signUp = async (params) => {
 };
 
 const getTrending = async (page) =>
-  await axios.get(`${URL_API}/trending/all?page=${page}&api=hieu987`);
+  await api(`${URL_API}/trending/all?page=${page}&api=hieu987`);
 
 const getNowPlaying = async (page) =>
   await axios.get(`${URL_API}/movie/nowplaying?page=${page}&api=hieu987`);
