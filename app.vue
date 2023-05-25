@@ -48,11 +48,6 @@ const router = useRouter();
 const route: any = useRoute();
 const loadingHomePage = ref<boolean>(true);
 
-const request = useRequest();
-const data = await request.makeRequest('/trending/all?page=2', {});
-
-console.log(data);
-
 onBeforeMount(() => {
   // console.log(store.$state);
 
