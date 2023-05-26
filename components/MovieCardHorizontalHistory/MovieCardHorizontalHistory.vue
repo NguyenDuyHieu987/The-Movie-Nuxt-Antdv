@@ -104,11 +104,14 @@
             </p>
 
             <div class="action">
-              <el-tooltip
+              <a-tooltip
                 title="Xóa khỏi Lịch sử xem"
                 content="Xóa khỏi Lịch sử xem"
                 effect="dark"
                 placement="bottom"
+                :teleported="false"
+                popper-class="el-tooltip"
+                :mouseLeaveDelay="0"
               >
                 <el-button
                   circle
@@ -122,7 +125,7 @@
                     <i class="fa-light fa-xmark"></i>
                   </template>
                 </el-button>
-              </el-tooltip>
+              </a-tooltip>
 
               <a-dropdown
                 :trigger="['click']"

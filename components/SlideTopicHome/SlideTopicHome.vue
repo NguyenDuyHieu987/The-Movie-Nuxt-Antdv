@@ -5,7 +5,7 @@
     </div> -->
 
     <el-carousel
-      :interval="5000"
+      :interval="7000"
       loop
       direction="vertical"
       arrow="always"
@@ -25,10 +25,11 @@
       </el-carousel-item>
 
       <div class="carousel-arrow">
-        <a-tooltip
+        <el-tooltip
           :teleported="false"
           :title="prevItemCarousel"
           :content="prevItemCarousel"
+          popper-class="el-tooltip"
           placement="top"
         >
           <a-button
@@ -41,12 +42,13 @@
               <Icon name="fa6-solid:chevron-left"></Icon>
             </template>
           </a-button>
-        </a-tooltip>
+        </el-tooltip>
 
-        <a-tooltip
+        <el-tooltip
           :teleported="false"
           :title="nextItemCarousel"
           :content="nextItemCarousel"
+          popper-class="el-tooltip"
           placement="top"
         >
           <a-button
@@ -59,7 +61,7 @@
               <Icon name="fa6-solid:chevron-right"></Icon>
             </template>
           </a-button>
-        </a-tooltip>
+        </el-tooltip>
       </div>
     </el-carousel>
   </div>

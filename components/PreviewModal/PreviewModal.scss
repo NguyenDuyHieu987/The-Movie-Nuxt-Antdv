@@ -193,6 +193,10 @@
 
           svg.icon {
             font-size: 2.8rem;
+
+            &.fa6-solid {
+              font-size: 2.1rem;
+            }
           }
 
           &:hover {

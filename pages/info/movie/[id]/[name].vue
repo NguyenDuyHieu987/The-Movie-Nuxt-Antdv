@@ -193,13 +193,7 @@
               :class="{ active: isAddToList }"
               @click="handelAddToList"
             >
-              <!-- <font-awesome-icon v-if="isAddToList" icon="fa-solid fa-check" />
-            <font-awesome-icon v-else icon="fa-solid fa-bookmark" /> -->
-              <!-- <span v-if="isAddToList" class="material-icons-outlined">
-                playlist_add_check
-              </span> -->
-              <!-- <span v-else class="material-icons-outlined"> playlist_add </span> -->
-              <svg
+              <!-- <svg
                 v-if="isAddToList"
                 class="material-icons-outlined"
                 xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +231,9 @@
                     d="M14,10H3v2h11V10z M14,6H3v2h11V6z M18,14v-4h-2v4h-4v2h4v4h2v-4h4v-2H18z M3,16h7v-2H3V16z"
                   />
                 </g>
-              </svg>
+              </svg> -->
+              <Icon v-if="isAddToList" name="ic:twotone-playlist-add-check" />
+              <Icon v-else name="ic:twotone-playlist-add" />
 
               <span v-if="!isAddToList"> Thêm vòa D/sách</span>
               <span v-else> Xóa khỏi D/sách</span>

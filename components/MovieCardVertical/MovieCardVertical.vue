@@ -178,12 +178,8 @@
                 type="text"
                 @click.prevent="handelAddToList"
               >
-                <template #icon>
-                  <font-awesome-icon
-                    v-if="isAddToList"
-                    icon="fa-solid fa-check"
-                  />
-                  <PlusOutlined v-else />
+                  <Icon v-if="isAddToList" name="ic:baseline-check" />
+                    <Icon v-else name="ic:baseline-plus" />
                 </template>
               </a-button>
             </a-tooltip>
@@ -208,7 +204,7 @@
                   @click.prevent=""
                 >
                   <template #icon>
-                    <font-awesome-icon icon="fa-solid fa-share" />
+                      <Icon name="fa6-solid:share" class="fa6-solid" />
                   </template>
                 </a-button>
               </ShareNetwork>

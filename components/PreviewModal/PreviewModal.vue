@@ -4,7 +4,7 @@
       <div
         ref="previewModal"
         class="preview-modal"
-        @click="onClickPreviewModal"
+        @mouseover="onClickPreviewModal"
       >
         <div class="backdrop-box">
           <el-image
@@ -82,12 +82,16 @@
                   @click.prevent="handelAddToList"
                 >
                   <template #icon>
-                    <font-awesome-icon
+                    <!-- <Icon
                       v-if="isAddToList"
-                      icon="fa-solid fa-check"
+                      name="fa6-solid:check"
+                      class="fa6-solid"
                     />
 
-                    <PlusOutlined v-else />
+                    <Icon v-else name="ic:baseline-plus" /> -->
+
+                    <Icon v-if="isAddToList" name="ic:baseline-check" />
+                    <Icon v-else name="ic:baseline-plus" />
                   </template>
                 </a-button>
               </a-tooltip>
@@ -111,10 +115,12 @@
                     shape="circle"
                     size="large"
                     type="text"
-                    @click.prevent=""
+                    @click.prevent
                   >
                     <template #icon>
-                      <font-awesome-icon icon="fa-solid fa-share" />
+                      <!-- <font-awesome-icon icon="fa-solid fa-share" /> -->
+
+                      <Icon name="fa6-solid:share" class="fa6-solid" />
                     </template>
                   </a-button>
                 </ShareNetwork>
@@ -334,23 +340,27 @@ watch(isTeleport, async () => {
   }
 });
 
-const onClickPreviewModal = (e: any) => {
-  const actionBtn = e.target.closest('.ant-btn');
+const actionBtn = ref<any>(null);
 
-  if (!actionBtn) {
-    navigateTo({
-      path: props.isEpisodes
-        ? `/info/tv/${props.item?.id}/${props.item?.name
-            ?.replace(/\s/g, '+')
-            .toLowerCase()}`
-        : `/info/movie/${props.item?.id}/${props.item?.name
-            ?.replace(/\s/g, '+')
-            .toLowerCase()}`,
-    });
-  }
+const onClickPreviewModal = (e: any) => {
+  actionBtn.value = e.target.closest('.ant-btn');
+
+  e.target.addEventListener('click', () => {
+    if (!actionBtn.value) {
+      navigateTo({
+        path: props.isEpisodes
+          ? `/info/tv/${props.item?.id}/${props.item?.name
+              ?.replace(/\s/g, '+')
+              .toLowerCase()}`
+          : `/info/movie/${props.item?.id}/${props.item?.name
+              ?.replace(/\s/g, '+')
+              .toLowerCase()}`,
+      });
+    }
+  });
 };
 
-const handelAddToList = () => {
+const handelAddToList = (e: any) => {
   if (!store.$state?.isLogin) {
     store.$state.openRequireAuthDialog = true;
     return;
