@@ -117,6 +117,7 @@
                   circle
                   shape="circle"
                   size="large"
+                  text
                   class="remove-btn"
                   @click.prevent="handleRemoveFromHistory"
                 >
@@ -137,9 +138,12 @@
                   shape="circle"
                   size="large"
                   class="viewmore-btn"
+                  text
                 >
                   <template #icon>
-                    <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" />
+                    <!-- <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" /> -->
+
+                    <Icon name="fa6-solid:ellipsis-vertical" />
                   </template>
                 </el-button>
 
@@ -148,8 +152,6 @@
                     <div class="main-action">
                       <a-menu-item key="play">
                         <template #icon>
-                          <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
-                          <!-- <i class="fa-sharp fa-regular fa-play"></i> -->
                           <Icon class="play" name="ic:play-arrow" />
                         </template>
 
@@ -178,7 +180,7 @@
                       </a-menu-item>
                       <a-menu-item key="add-list" @click="handelAddToList">
                         <template #icon>
-                          <span
+                          <!-- <span
                             v-if="isAddToList"
                             class="material-icons-outlined"
                           >
@@ -187,17 +189,26 @@
 
                           <span v-else class="material-icons-outlined">
                             playlist_add
-                          </span>
-                        </template>
-                        <span v-if="isAddToList">Xóa khỏi Danh sách phát</span>
+                          </span> -->
 
+                          <Icon
+                            class="icon-material"
+                            v-if="isAddToList"
+                            name="ic:twotone-playlist-add-check"
+                          />
+                          <Icon
+                            class="icon-material"
+                            v-else
+                            name="ic:twotone-playlist-add"
+                          />
+                        </template>
+
+                        <span v-if="isAddToList">Xóa khỏi Danh sách phát</span>
                         <span v-else>Thêm vào Danh sách phát</span>
                       </a-menu-item>
 
                       <a-menu-item key="share">
                         <template #icon>
-                          <!-- <font-awesome-icon icon="fa-solid fa-share" /> -->
-                          <!-- <i class="fa-sharp fa-regular fa-share"></i> -->
                           <svg
                             class="icon share"
                             xmlns="http://www.w3.org/2000/svg"

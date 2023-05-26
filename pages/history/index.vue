@@ -90,13 +90,16 @@
                       circle
                       shape="circle"
                       size="large"
+                      text
                       class="viewmore-btn-history"
                       @click.prevent=""
                     >
                       <template #icon>
-                        <font-awesome-icon
+                        <!-- <font-awesome-icon
                           icon="fa-solid fa-ellipsis-vertical"
-                        />
+                        /> -->
+
+                        <Icon name="fa6-solid:ellipsis-vertical" />
                       </template>
                     </el-button>
 
@@ -121,12 +124,13 @@
                   round
                   type="primary"
                   shape="round"
+                  text
                   class="remove-all-history-btn"
                   @click="removeAllHistoryList"
                 >
                   <template #icon>
                     <!-- <span class="material-icons-outlined"> delete_sweep </span> -->
-                    <i class="fa-sharp fa-regular fa-trash-can-list"></i>
+                    <i class="fa-regular fa-trash-can-list"></i>
                   </template>
                   Xóa tất cả video đã xem
                 </el-button>
@@ -239,13 +243,16 @@
                       circle
                       shape="circle"
                       size="large"
+                      text
                       class="viewmore-btn-history"
                       @click.prevent=""
                     >
                       <template #icon>
-                        <font-awesome-icon
+                        <!-- <font-awesome-icon
                           icon="fa-solid fa-ellipsis-vertical"
-                        />
+                        /> -->
+
+                        <Icon name="fa6-solid:ellipsis-vertical" />
                       </template>
                     </el-button>
 
@@ -296,7 +303,7 @@
                 >
                   <template #icon>
                     <!-- <span class="material-icons-outlined"> delete_sweep </span> -->
-                    <i class="fa-sharp fa-regular fa-trash-can-list"></i>
+                    <i class="fa-regular fa-trash-can-list"></i>
                   </template>
                   Xóa tất cả Video đã xem
                 </el-button>

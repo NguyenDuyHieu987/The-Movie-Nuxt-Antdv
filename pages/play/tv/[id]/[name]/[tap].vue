@@ -117,6 +117,7 @@
               />
             </g>
           </svg> -->
+
           <Icon v-if="isAddToList" name="ic:twotone-playlist-add-check" />
           <Icon v-else name="ic:twotone-playlist-add" />
         </template>

@@ -121,7 +121,7 @@
                 >
                   <template #icon>
                     <!-- <span class="material-icons-outlined"> delete_sweep </span> -->
-                    <i class="fa-sharp fa-regular fa-trash-can-list"></i>
+                    <i class="fa-regular fa-trash-can-list"></i>
                   </template>
                   Xóa tất cả Danh sách phát
                 </el-button>
@@ -284,7 +284,7 @@
                 >
                   <template #icon>
                     <!-- <span class="material-icons-outlined"> delete_sweep </span> -->
-                    <i class="fa-sharp fa-regular fa-trash-can-list"></i>
+                    <i class="fa-regular fa-trash-can-list"></i>
                   </template>
                   Xóa tất cả Danh sách phát
                 </el-button>
