@@ -148,8 +148,8 @@
                 >
                   <a-button shape="circle" size="large" type="text">
                     <template #icon>
-                      <InfoOutlined />
-                      <!-- <i class="fa-sharp fa-solid fa-info"></i> -->
+                      <!-- <InfoOutlined /> -->
+                      <Icon name="mdi:information-variant" class="info-icon" />
                     </template>
                   </a-button>
                 </NuxtLink>
