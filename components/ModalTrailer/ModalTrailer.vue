@@ -12,15 +12,14 @@
       <iframe
         height="650px"
         width="100%"
-        :src="
-          dataMovie?.videos?.results?.length != 0
-            ? `https://www.youtube.com/embed/${
-                dataMovie?.videos?.results[
-                  Math.floor(Math.random() * dataMovie?.videos?.results?.length)
-                ]?.key
-              }`
-            : 'https://www.youtube.com/embed/ndl1W4ltcmg'
-        "
+        :src="// dataMovie?.videos?.results?.length != 0
+        //   ? `https://www.youtube.com/embed/${
+        //       dataMovie?.videos?.results[
+        //         Math.floor(Math.random() * dataMovie?.videos?.results?.length)
+        //       ]?.key
+        //     }`
+        //   :
+        'https://www.youtube.com/embed/ndl1W4ltcmg'"
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media;
           gyroscope; picture-in-picture"

@@ -83,6 +83,13 @@ export default defineNuxtConfig({
           src: 'https://player.vimeo.com/api/player.js',
           type: 'text/javascript',
         },
+        {
+          async: true,
+          defer: true,
+          crossorigin: 'anonymous',
+          src: 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0',
+          nonce: '5bLeXa47',
+        },
       ],
     },
   },
