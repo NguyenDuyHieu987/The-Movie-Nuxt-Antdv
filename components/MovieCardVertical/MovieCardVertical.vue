@@ -295,6 +295,7 @@
         offsetWidth: offsetWidth,
         imgHeight: imgHeight,
         imgWidth: imgWidth,
+        rectX: rectX,
       }"
       :interval="interval"
       :isEpisodes="isEpisodes"
@@ -330,6 +331,7 @@ const offsetWidth = ref<number>(0);
 const offsetHeight = ref<number>(0);
 const imgHeight = ref<number>(0);
 const imgWidth = ref<number>(0);
+const rectX = ref<number>(0);
 const interval = ref<any>();
 
 const onMouseEnter = (e: any) => {
@@ -358,6 +360,8 @@ const onMouseEnter = (e: any) => {
 
     imgHeight.value = e.target.querySelector('img').offsetHeight;
     imgWidth.value = e.target.querySelector('img').offsetWidth;
+
+    rectX.value = e.x;
 
     interval.value = setTimeout(() => {
       isTeleportPreviewModal.value = true;

@@ -238,6 +238,7 @@ const props = defineProps<{
     offsetWidth: number;
     imgHeight: number;
     imgWidth: number;
+    rectX: number;
   };
   interval: any;
   isEpisodes: boolean;
@@ -268,6 +269,8 @@ const isTeleport = computed<boolean>({
 
 watch(previewModal, () => {
   if (previewModal.value) {
+    console.log(props.style.rectX);
+
     previewModal.value.style.setProperty(
       '--width',
       props.style.offsetWidth + 'px'
@@ -281,7 +284,12 @@ watch(previewModal, () => {
       props.style.imgHeight + 'px'
     );
 
-    previewModal.value.style.setProperty('--left', props.style.left + 'px');
+    if (props.style.rectX - props.style.offsetWidth <= 260) {
+      previewModal.value.style.setProperty('--left', props.style.rectX + 'px');
+    } else {
+      previewModal.value.style.setProperty('--left', props.style.left + 'px');
+    }
+
     previewModal.value.style.setProperty('--top', props.style.top + 'px');
 
     previewModal.value?.addEventListener('mouseenter', () => {
