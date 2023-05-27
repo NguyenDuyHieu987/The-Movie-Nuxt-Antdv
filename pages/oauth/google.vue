@@ -8,6 +8,6 @@ definePageMeta({
 const route = useRoute();
 
 onBeforeMount(() => {
-  console.log(route.query.code);
+  // console.log(route.query.code);
 });
 </script>
