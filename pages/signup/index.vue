@@ -237,7 +237,7 @@
         </p>
 
         <div style="display: flex; justify-content: center">
-          <router-link :to="{ name: 'login' }">Đăng nhập ngay!</router-link>
+          <NuxtLink :to="{ name: 'login' }">Đăng nhập ngay!</NuxtLink>
         </div>
       </a-form>
     </div>

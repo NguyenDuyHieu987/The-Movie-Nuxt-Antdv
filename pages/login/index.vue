@@ -80,14 +80,14 @@
             Đăng nhập
           </a-button>
 
-          <router-link class="play-now" :to="{ path: '/' }"
-            >Xem phim ngay</router-link
+          <NuxtLink class="play-now" :to="{ path: '/' }"
+            >Xem phim ngay</NuxtLink
           >
         </a-form-item>
 
         <div class="bottom-form">
           <p style="color: #fff">Hoặc</p>
-          <router-link :to="{ name: 'signup' }">Dăng ký ngay!</router-link>
+          <NuxtLink :to="{ name: 'signup' }">Dăng ký ngay!</NuxtLink>
         </div>
 
         <div class="social-login">
@@ -179,7 +179,7 @@ useSeoMeta({
 });
 
 const store: any = useStore();
-const route: any = useRoute();
+const route = useRoute();
 const utils = useUtils();
 const loadingLogin = ref<boolean>(false);
 const loadingFacebookLogin = ref<boolean>(false);
@@ -396,25 +396,24 @@ const handleFacebookLogin = async () => {
 };
 
 onMounted(() => {
-  window.onload = () => {
-    window.google.accounts.id.initialize({
-      client_id:
-        '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
-      ux_mode: 'redirect',
-      callback: handleGooglePromptCallback,
-    });
-    window.google.accounts.id.prompt();
-  };
+  window.google.accounts.id.initialize({
+    client_id:
+      '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
+    // ux_mode: 'redirect',
+    callback: handleGooglePopupCallback,
+  });
 
-  // console.log(route.query.code);
+  // window.google.accounts.id.prompt();
 
-  // google.accounts.id.renderButton(
-  //   document.getElementById('google-login-btn1') as HTMLElement,
+  // window.google.accounts.id.renderButton(
+  //   document.getElementById('google-login-btn') as HTMLElement,
   //   {
   //     theme: 'outline',
   //     size: 'large',
   //   }
   // );
+
+  // console.log(route.query.code);
 
   tokenClient.value = window.google.accounts.oauth2.initTokenClient({
     client_id:
@@ -423,75 +422,9 @@ onMounted(() => {
       'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
     // ux_mode: 'redirect',
     // select_account: true,
-    // prompt: 'select_account',
-    callback: (authResponse: any) => {
-      if (authResponse && authResponse?.access_token) {
-        loadingGoogleLogin.value = true;
-        useAsyncData(`login/google/${authResponse?.access_token}`, () =>
-          loginGoogle({
-            accessToken: authResponse?.access_token,
-          })
-        )
-          .then((response: any) => {
-            if (response.data.value.data.isSignUp == true) {
-              ElNotification.success({
-                title: 'Thành công!',
-                message:
-                  'Bạn đã đăng nhập bằng Google thành công tại Phimhay247.',
-                icon: () =>
-                  h(CheckCircleFilled, {
-                    style: 'color: green',
-                  }),
-              });
-              store.$state.userAccount = response.data.value.data?.result;
-              store.$state.isLogin = true;
-              utils.localStorage.setWithExpiry(
-                'userAccount',
-                {
-                  user_token: response.data.value.headers.get('Authorization'),
-                },
-                30
-              );
-              loadingGoogleLogin.value = false;
-              navigateTo({ path: '/' });
-            } else if (response.data.value.data.isLogin == true) {
-              store.$state.userAccount = response.data.value.data?.result;
-              store.$state.isLogin = true;
-              utils.localStorage.setWithExpiry(
-                'userAccount',
-                {
-                  user_token: response.data.value.headers.get('Authorization'),
-                },
-                30
-              );
-              loadingGoogleLogin.value = false;
-              navigateTo({ path: '/' });
-            } else if (response.data.value.data.isLogin == false) {
-              loadingGoogleLogin.value = false;
-              ElNotification.error({
-                title: 'Failed!',
-                message: 'Some thing went wrong.',
-                icon: () =>
-                  h(CloseCircleFilled, {
-                    style: 'color: red',
-                  }),
-              });
-            }
-          })
-          .catch((e) => {
-            loadingGoogleLogin.value = false;
-            ElNotification.error({
-              title: 'Failed!',
-              message: 'Some thing went wrong.',
-              icon: () =>
-                h(CloseCircleFilled, {
-                  style: 'color: red',
-                }),
-            });
-            if (axios.isCancel(e)) return;
-          });
-      }
-    },
+    // redirect_uri: window.location.origin + '/oauth/google',
+    prompt: 'select_account',
+    callback: handleGooglePopupCallback,
   });
 });
 
@@ -500,7 +433,7 @@ const handleGoogleLogin = () => {
   tokenClient.value.requestAccessToken();
 };
 
-const handleGooglePromptCallback = (authResponse: any) => {
+const handleGooglePopupCallback = (authResponse: any) => {
   if (authResponse && authResponse?.access_token) {
     loadingGoogleLogin.value = true;
 
