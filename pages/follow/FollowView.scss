@@ -229,10 +229,12 @@
             gap: 13px;
             position: relative;
             width: 100%;
+            color: #fff;
 
             .title {
               margin-bottom: 13px;
               max-width: 90%;
+              color: #fff;
             }
 
             .user-info {
@@ -312,6 +314,7 @@
               padding: 6px 30px;
               background-color: #000000;
               transition: all 0.15s;
+              color: #fff;
 
               &:hover {
                 color: #b90016;
@@ -332,6 +335,10 @@
               border: none;
               border-bottom: 2px solid #104480;
               padding-left: 2px;
+
+              .ant-input-prefix {
+                color: #fff;
+              }
 
               .ant-input {
                 font-size: 1.5rem;
@@ -541,9 +548,11 @@
       .info {
         margin-top: 17px;
         gap: 13px;
+        color: #fff;
 
         .title {
           margin-bottom: 13px;
+          color: #fff;
         }
 
         .user-info {
@@ -599,6 +608,10 @@
           border: none;
           border-bottom: 2px solid #104480;
           padding-left: 2px;
+
+          .ant-input-prefix {
+            color: #fff;
+          }
 
           .ant-input {
             font-size: 1.5rem;

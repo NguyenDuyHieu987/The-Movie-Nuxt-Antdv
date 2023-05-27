@@ -63,7 +63,9 @@
     }
 
     .info {
-      color: #fff;
+      .title {
+        color: #fff;
+      }
     }
 
     .action {
@@ -128,6 +130,7 @@
     width: 100%;
 
     .title {
+      color: #fff;
       max-width: 90%;
     }
 
