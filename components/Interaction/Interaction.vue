@@ -1,6 +1,6 @@
 <template>
   <div class="like-share">
-    <iframe
+    <!-- <iframe
       :src="`https://www.facebook.com/plugins/like.php?href=${urlShare}&layout&action&size&share=true&height=35&appId=820070179113499`"
       width="100%"
       height="35"
@@ -9,7 +9,7 @@
       frameborder="0"
       allowfullscreen="true"
       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-    ></iframe>
+    ></iframe> -->
 
     <ShareNetwork
       network="facebook"
