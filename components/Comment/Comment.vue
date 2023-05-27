@@ -1,6 +1,5 @@
 <template>
   <div class="comment-container">
-    <div id="fb-root"></div>
     <h3 class="section-title">
       <strong> Bình luận</strong>
     </h3>
