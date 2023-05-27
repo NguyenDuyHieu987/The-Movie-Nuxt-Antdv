@@ -5,8 +5,10 @@
         type="primary"
         plain
         :disabled="currentEpisode == 1"
-        @click="$router.push({ params: { tap: `tap-${--currentEpisode}` } })"
+        @click="handleChangeEpisode(--currentEpisode)"
       >
+        <!-- @click="router.push({ params: { tap: `tap-${--currentEpisode}` } })" -->
+
         Tập trước
       </el-button>
       <el-button
@@ -17,8 +19,10 @@
             ? currentEpisode == dataMovie?.last_episode_to_air?.episode_number
             : currentEpisode == dataSeason?.episodes?.length
         "
-        @click="$router.push({ params: { tap: `tap-${++currentEpisode}` } })"
+        @click="handleChangeEpisode(++currentEpisode)"
       >
+        <!-- @click="router.push({ params: { tap: `tap-${++currentEpisode}` } })" -->
+
         Tập tiếp
       </el-button>
     </div>
@@ -39,7 +43,7 @@
         ref="select"
         v-model:value="selectedSeason"
         style="width: 150px"
-        @change="handleChange"
+        @change="handleChangeSeason"
       >
         <a-select-option
           v-for="(item, index) in dataMovie.seasons"
@@ -93,13 +97,12 @@
         :key="item.id"
         :class="{ active: currentEpisode == item?.episode_number }"
       >
-        <NuxtLink
-          :to="{
+        <NuxtLink @click.prevent="handleChangeEpisode(item?.episode_number)">
+          <!-- :to="{
             path: `/play/tv/${dataMovie?.id}/${dataMovie?.name
               ?.replace(/\s/g, '+')
               .toLowerCase()}/tap-${item.episode_number}`,
-          }"
-        >
+          }" -->
           {{
             item?.episode_number === dataSeason?.episodes.length
               ? item?.episode_number < 10
@@ -130,7 +133,8 @@ const route: any = useRoute();
 const router = useRouter();
 const dataSeason = ref<any>({});
 const selectedSeason = ref<number>(props?.dataMovie?.number_of_seasons);
-const currentEpisode = computed<number>((): number =>
+const currentEpisode = ref<number>(
+  // (): number =>
   route.params?.tap?.replace('tap-', '')
     ? +route.params?.tap?.replace('tap-', '')
     : 1
@@ -145,10 +149,12 @@ const emitUrlCode = (dataSeason: any) => {
   emit('setUrlCodeMovie', url_code_movie);
 };
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
   loading.value = true;
 
-  useAsyncData(
+  // console.log(route.params?.tap?.replace('tap-', ''));
+
+  await useAsyncData(
     `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
     () => getSeasonTV(route.params?.id, selectedSeason.value)
   )
@@ -167,15 +173,20 @@ onBeforeMount(() => {
     });
 });
 
-const handleChange = (value: number) => {
+const handleChangeSeason = (value: number) => {
   selectedSeason.value = value;
 };
 
-watch(selectedSeason, () => {
+const handleChangeEpisode = (value: number) => {
+  currentEpisode.value = value;
+  emitUrlCode(dataSeason.value);
+};
+
+watch(selectedSeason, async () => {
   loading.value = true;
   router.push({ params: { tap: 'tap-1' } });
 
-  useAsyncData(
+  await useAsyncData(
     `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
     () => getSeasonTV(route.params?.id, selectedSeason.value)
   )

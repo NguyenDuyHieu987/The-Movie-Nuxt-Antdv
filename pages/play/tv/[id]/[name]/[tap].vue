@@ -7,9 +7,7 @@
           id="okru-player"
           width="100%"
           height="100%"
-          :src="`//ok.ru/videoembed/${
-            urlCodeMovie ? urlCodeMovie : '3056793684585'
-          }`"
+          :src="`//ok.ru/videoembed/${urlCodeMovie || '3056793684585'}`"
           frameborder="0"
           allow="autoplay"
           allowfullscreen

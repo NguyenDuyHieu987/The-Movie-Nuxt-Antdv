@@ -524,12 +524,16 @@ onBeforeMount(() => {
   });
 
   window.onscroll = () => {
+    // console.log(scrollBottom());
+    // console.log(window.scrollY);
+
     if (
       Math.floor(scrollBottom()) == 0 &&
       isScroll.value == true &&
       total.value > 20 &&
       dataList.value?.length < total.value
     ) {
+      alert('G');
       loadMore.value = true;
       useAsyncData(
         `list/get/${store.$state.userAccount?.id}/${skip.value}`,
