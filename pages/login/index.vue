@@ -416,13 +416,13 @@ onMounted(() => {
   //   }
   // );
 
-  tokenClient.value = window.google.accounts.oauth2.initCodeClient({
+  tokenClient.value = window.google.accounts.oauth2.initTokenClient({
     client_id:
       '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
     scope:
       'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-    ux_mode: 'redirect',
-    select_account: true,
+    // ux_mode: 'redirect',
+    // select_account: true,
     // prompt: 'select_account',
     callback: (authResponse: any) => {
       if (authResponse && authResponse?.access_token) {
@@ -496,8 +496,8 @@ onMounted(() => {
 });
 
 const handleGoogleLogin = () => {
-  tokenClient.value.requestCode();
-  // tokenClient.value.requestAccessToken();
+  // tokenClient.value.requestCode();
+  tokenClient.value.requestAccessToken();
 };
 
 const handleGooglePromptCallback = (authResponse: any) => {
