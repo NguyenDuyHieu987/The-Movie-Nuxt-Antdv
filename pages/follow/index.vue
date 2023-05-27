@@ -356,7 +356,7 @@ import {
 import disableScroll from 'disable-scroll';
 import _ from 'lodash';
 import { storeToRefs } from 'pinia';
-import scrollBottom from 'scroll-bottom';
+// import scrollBottom from 'scroll-bottom';
 
 definePageMeta({
   // requireAuth: true,
@@ -521,19 +521,17 @@ onBeforeMount(() => {
 
   window.addEventListener('scroll', () => {
     isScroll.value = true;
-  });
+    // console.log(window.scrollY + window.innerHeight);
+    // console.log(document.documentElement.scrollHeight);
 
-  window.onscroll = () => {
-    // console.log(scrollBottom());
-    // console.log(window.scrollY);
-
+    const scrollHeight = Math.round(window.scrollY + window.innerHeight);
     if (
-      Math.floor(scrollBottom()) == 0 &&
+      scrollHeight == document.documentElement.scrollHeight &&
+      // Math.floor(scrollBottom()) == 0 &&
       isScroll.value == true &&
       total.value > 20 &&
       dataList.value?.length < total.value
     ) {
-      alert('G');
       loadMore.value = true;
       useAsyncData(
         `list/get/${store.$state.userAccount?.id}/${skip.value}`,
@@ -554,7 +552,9 @@ onBeforeMount(() => {
           if (axios.isCancel(e)) return;
         });
     }
-  };
+  });
+
+  window.onscroll = () => {};
 });
 
 const getDataWhenRemoveList = (data: number) => {

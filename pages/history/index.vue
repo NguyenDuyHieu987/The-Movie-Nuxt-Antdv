@@ -371,7 +371,7 @@ import {
 import disableScroll from 'disable-scroll';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
-import scrollBottom from 'scroll-bottom';
+// import scrollBottom from 'scroll-bottom';
 
 definePageMeta({
   // requireAuth: true,
@@ -536,11 +536,13 @@ onBeforeMount(() => {
   // const scrollBottom = require('scroll-bottom');
   window.addEventListener('scroll', () => {
     isScroll.value = true;
-  });
+    // console.log(window.scrollY + window.innerHeight);
+    // console.log(document.documentElement.scrollHeight);
+    const scrollHeight = Math.round(window.scrollY + window.innerHeight);
 
-  window.onscroll = () => {
     if (
-      Math.floor(scrollBottom()) == 0 &&
+      scrollHeight == document.documentElement.scrollHeight &&
+      // Math.floor(scrollBottom()) == 0 &&
       isScroll.value == true &&
       total.value > 20 &&
       dataHistory.value?.length < total.value
@@ -565,7 +567,9 @@ onBeforeMount(() => {
           if (axios.isCancel(e)) return;
         });
     }
-  };
+  });
+
+  window.onscroll = () => {};
 });
 
 const getDataWhenRemoveHistory = (data: number) => {
