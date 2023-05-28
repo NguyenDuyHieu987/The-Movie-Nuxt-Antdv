@@ -1,8 +1,15 @@
 <template>
-  <div>This is Billing page</div>
+  <div v-if="isLogin">This is Billing page</div>
+  <RequireAuth v-else />
 </template>
 
 <script setup lang="ts">
+import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
+import { storeToRefs } from 'pinia';
+
+const store: any = useStore();
+const { isLogin } = storeToRefs<any>(store);
+
 useHead({
   title: 'Billing - Hóa đơn - Thanh toán | Phimhay247',
   htmlAttrs: { lang: 'vi' },
