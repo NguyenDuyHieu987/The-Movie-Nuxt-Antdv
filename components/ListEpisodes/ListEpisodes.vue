@@ -120,7 +120,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getSeasonTV } from '~/services/appMovieService';
+import { getSeasonTV } from '~/services/tv';
 
 const props = defineProps<{
   dataMovie: any;
@@ -159,7 +159,7 @@ onBeforeMount(async () => {
     () => getSeasonTV(route.params?.id, selectedSeason.value)
   )
     .then((episodesRespones: any) => {
-      dataSeason.value = episodesRespones.data.value.data;
+      dataSeason.value = episodesRespones.data.value;
 
       emitUrlCode(dataSeason.value);
 
@@ -191,7 +191,7 @@ watch(selectedSeason, async () => {
     () => getSeasonTV(route.params?.id, selectedSeason.value)
   )
     .then((episodesRespones: any) => {
-      dataSeason.value = episodesRespones.data.value.data;
+      dataSeason.value = episodesRespones.data.value;
 
       emitUrlCode(dataSeason.value);
 

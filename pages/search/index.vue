@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import ControlPage from '@/components/ControlPage/ControlPage.vue';
-import { getDaTaSearch } from '~/services/appMovieService';
+import { getDaTaSearch } from '~/services/search';
 import axios from 'axios';
 
 const store: any = useStore();
@@ -85,11 +85,11 @@ onBeforeMount(async () => {
     () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), page.value)
   )
     .then((searchMovieResponse: any) => {
-      searchData.value = searchMovieResponse.data.value.data?.results;
-      totalPage.value = searchMovieResponse.data.value.data?.total;
-      pageSize.value = searchMovieResponse.data.value.data?.page_size;
-      searchDataMovie.value = searchMovieResponse.data.value.data?.movie;
-      searchDataTv.value = searchMovieResponse.data.value.data?.tv;
+      searchData.value = searchMovieResponse.data.value?.results;
+      totalPage.value = searchMovieResponse.data.value?.total;
+      pageSize.value = searchMovieResponse.data.value?.page_size;
+      searchDataMovie.value = searchMovieResponse.data.value?.movie;
+      searchDataTv.value = searchMovieResponse.data.value?.tv;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     })
     .catch((e) => {
@@ -104,9 +104,9 @@ watch(route, async () => {
     () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), page.value)
   )
     .then((searchMovieResponse: any) => {
-      searchData.value = searchMovieResponse.data.value.data?.results;
-      searchDataMovie.value = searchMovieResponse.data.value.data?.movie;
-      searchDataTv.value = searchMovieResponse.data.value.data?.tv;
+      searchData.value = searchMovieResponse.data.value?.results;
+      searchDataMovie.value = searchMovieResponse.data.value?.movie;
+      searchDataTv.value = searchMovieResponse.data.value?.tv;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -134,9 +134,9 @@ const onChangePage = async (pageSelected: number) => {
     () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), pageSelected)
   )
     .then((searchMovieResponse: any) => {
-      searchData.value = searchMovieResponse.data.value.data?.results;
-      searchDataMovie.value = searchMovieResponse.data.value.data?.movie;
-      searchDataTv.value = searchMovieResponse.data.value.data?.tv;
+      searchData.value = searchMovieResponse.data.value?.results;
+      searchDataMovie.value = searchMovieResponse.data.value?.movie;
+      searchDataTv.value = searchMovieResponse.data.value?.tv;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

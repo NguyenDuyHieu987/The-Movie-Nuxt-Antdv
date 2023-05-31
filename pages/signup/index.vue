@@ -251,14 +251,8 @@ import {
   CloseCircleFilled,
 } from '@ant-design/icons-vue';
 import axios from 'axios';
-import {
-  signUp,
-  verifyEmail,
-  //  emailValidation
-} from '~/services/appMovieService';
-// import md5 from 'md5';
+import { signUp, verifyEmail } from '~/services/authentication';
 import { ElNotification } from 'element-plus';
-// import { notification } from 'ant-design-vue';
 
 definePageMeta({
   layout: 'auth',
@@ -445,7 +439,7 @@ const handleSignUp = () => {
       // console.log(response.data);
       // console.log(response.headers.get('Authorization'));
 
-      if (response.data?.isInValidEmail == true) {
+      if (response?.isInValidEmail == true) {
         loadingSignUp.value = false;
 
         ElNotification.error({
@@ -456,7 +450,7 @@ const handleSignUp = () => {
               style: 'color: red',
             }),
         });
-      } else if (response?.data?.isVerify === true) {
+      } else if (response?.isVerify === true) {
         loadingSignUp.value = false;
 
         ElNotification.success({
@@ -484,7 +478,7 @@ const handleSignUp = () => {
               style: 'color: red',
             }),
         });
-      } else if (response.data?.isSendEmail == false) {
+      } else if (response?.isSendEmail == false) {
         loadingSignUp.value = false;
 
         ElNotification.error({
@@ -540,7 +534,7 @@ const handleResendVerifyEmail = () => {
       // console.log(response.data);
       // console.log(response.headers.get('Authorization'));
 
-      if (response?.data?.isVerify === true) {
+      if (response?.isVerify === true) {
         disabled_countdown.value = true;
         loadingResend.value = false;
 
@@ -555,7 +549,7 @@ const handleResendVerifyEmail = () => {
         });
 
         jwtToken_VerifyEmail.value = response.headers.get('Authorization');
-      } else if (response.data?.isInValidEmail == true) {
+      } else if (response?.isInValidEmail == true) {
         loadingResend.value = false;
 
         ElNotification.error({
@@ -566,7 +560,7 @@ const handleResendVerifyEmail = () => {
               style: 'color: red',
             }),
         });
-      } else if (response.data?.isEmailExist == true) {
+      } else if (response?.isEmailExist == true) {
         loadingResend.value = false;
 
         ElNotification.error({
@@ -577,7 +571,7 @@ const handleResendVerifyEmail = () => {
               style: 'color: red',
             }),
         });
-      } else if (response.data?.isSendEmail == false) {
+      } else if (response?.isSendEmail == false) {
         loadingResend.value = false;
 
         ElNotification.error({
@@ -627,7 +621,7 @@ const handleVerify = () => {
   })
     .then((response) => {
       // console.log(response.data);
-      if (response?.data?.isSignUp === true) {
+      if (response?.isSignUp === true) {
         setTimeout(() => {
           loadingVerify.value = false;
 
@@ -642,7 +636,7 @@ const handleVerify = () => {
           navigateTo({ path: '/login' });
         }, 1000);
         reset();
-      } else if (response.data?.isInvalidOTP == true) {
+      } else if (response?.isInvalidOTP == true) {
         loadingVerify.value = false;
 
         ElNotification.error({
@@ -654,7 +648,7 @@ const handleVerify = () => {
             }),
         });
         // }, 1000);
-      } else if (response.data?.isAccountExist == true) {
+      } else if (response?.isAccountExist == true) {
         loadingVerify.value = false;
 
         ElNotification.error({
@@ -666,7 +660,7 @@ const handleVerify = () => {
             }),
         });
         // }, 1000);
-      } else if (response.data?.isOTPExpired == true) {
+      } else if (response?.isOTPExpired == true) {
         loadingVerify.value = false;
 
         ElNotification.error({

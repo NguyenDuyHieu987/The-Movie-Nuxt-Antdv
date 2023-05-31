@@ -305,7 +305,8 @@
 </template>
 <script setup lang="ts">
 import axios from 'axios';
-import { getPoster, getItemHistory } from '~/services/appMovieService';
+import { getPoster } from '~/services/image';
+import { getItemHistory } from '~/services/history';
 import PreviewModal from '@/components/PreviewModal/PreviewModal.vue';
 
 const props = defineProps<{

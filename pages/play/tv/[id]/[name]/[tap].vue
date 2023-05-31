@@ -189,15 +189,11 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import {
-  getBackdrop,
-  getTvById,
-  // getList,
-  getItemList,
-  add_update_History,
-  UpdateViewMovie,
-  getItemHistory,
-} from '@/services/appMovieService';
+import { getBackdrop } from '~/services/image';
+import { getTvById } from '~/services/tv';
+import { getItemList } from '~/services/list';
+import { getItemHistory, add_update_History } from '~/services/history';
+import { UpdateViewTv } from '~/services/tv';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
@@ -221,7 +217,7 @@ const seconds = ref<number>(0);
 const percent = ref<number>(0);
 const duration = ref<number>(0);
 const isPlayVideo = ref<boolean>(false);
-const isUpdataView = ref<boolean>(true);
+const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
 const dataItemHistory = ref<any>({});
 
@@ -307,9 +303,9 @@ onMounted(() => {
         }
 
         if (seconds.value > e.duration / 2) {
-          if (isUpdataView.value == true) {
-            UpdateViewMovie(route.params?.id);
-            isUpdataView.value = false;
+          if (isUpdateView.value == true) {
+            UpdateViewTv(route.params?.id);
+            isUpdateView.value = false;
           }
         }
       }
@@ -331,7 +327,7 @@ const getData = async () => {
   )
     .then((tvResponed: any) => {
       isEpisodes.value = true;
-      dataMovie.value = tvResponed.data.value.data;
+      dataMovie.value = tvResponed.data.value;
 
       useHead({
         title:

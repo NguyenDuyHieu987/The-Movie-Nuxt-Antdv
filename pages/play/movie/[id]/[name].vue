@@ -164,14 +164,11 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import {
-  getBackdrop,
-  getMovieById,
-  getItemList,
-  getItemHistory,
-  add_update_History,
-  UpdateViewMovie,
-} from '~/services/appMovieService';
+import { getBackdrop } from '~/services/image';
+import { getMovieById } from '~/services/movie';
+import { getItemList } from '~/services/list';
+import { getItemHistory, add_update_History } from '~/services/history';
+import { UpdateViewMovie } from '~/services/movie';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
@@ -194,7 +191,7 @@ const seconds = ref<number>(0);
 const percent = ref<number>(0);
 const duration = ref<number>(0);
 const isPlayVideo = ref<boolean>(false);
-const isUpdataView = ref<boolean>(true);
+const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
 const dataItemHistory = ref<any>({});
 
@@ -280,9 +277,9 @@ onMounted(() => {
         }
 
         if (seconds.value > e.duration / 2) {
-          if (isUpdataView.value == true) {
+          if (isUpdateView.value == true) {
             UpdateViewMovie(route.params?.id);
-            isUpdataView.value = false;
+            isUpdateView.value = false;
           }
         }
       }
@@ -305,7 +302,7 @@ const getData = async () => {
     getMovieById(route.params?.id)
   )
     .then((movieResponed: any) => {
-      dataMovie.value = movieResponed.data.value.data;
+      dataMovie.value = movieResponed.data.value;
 
       useHead({
         title:

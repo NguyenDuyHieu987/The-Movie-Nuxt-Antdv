@@ -232,18 +232,12 @@ import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHoriz
 import MovieCardVertical from '@/components/MovieCardVertical/MovieCardVertical.vue';
 import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontalTrailer from '@/components/MovieCardHorizontalTrailer/MovieCardHorizontalTrailer.vue';
-import {
-  getNowPlaying,
-  getTvAiringToday,
-  getTopRated,
-  getUpComing,
-  getMyRecommend,
-  getTrending,
-  getTvOntheAir,
-  getMoviesByGenres,
-} from '~/services/appMovieService';
+import { getTrending } from '~/services/trending';
+import { getNowPlaying, getTopRated, getUpComing } from '~/services/movieSlug';
+import { getMoviesByGenres } from '~/services/discover';
+import { getMyRecommend } from '~/services/recommend';
+import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
 import { PlusOutlined } from '@ant-design/icons-vue';
-import { useVirtualList } from '@vueuse/core';
 
 definePageMeta({
   // layout: 'home',
@@ -277,53 +271,6 @@ const viewMoreRecommend = ref<boolean>(false);
 const loadMoreRecommend = ref<boolean>(false);
 const skipRecommend = ref<number>(2);
 
-// const responsiveHorizoltal = ref({
-//   0: {
-//     items: 2,
-//     slideBy: 2,
-//   },
-//   590: {
-//     items: 2,
-//     slideBy: 2,
-//   },
-//   750: {
-//     items: 3,
-//     slideBy: 3,
-//   },
-//   800: {
-//     items: 2,
-//     slideBy: 2,
-//   },
-//   900: {
-//     items: 3,
-//     slideBy: 3,
-//   },
-//   1150: {
-//     items: 4,
-//     slideBy: 4,
-//   },
-//   1300: {
-//     items: store.$state.collapsed ? 5 : 4,
-//     slideBy: store.$state.collapsed ? 5 : 4,
-//   },
-//   1500: {
-//     items: 5,
-//     slideBy: 5,
-//   },
-//   1800: {
-//     items: 6,
-//     slideBy: 6,
-//   },
-//   2050: {
-//     items: 7,
-//     slideBy: 7,
-//   },
-//   2200: {
-//     items: 8,
-//     slideBy: 8,
-//   },
-// });
-
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
     slidesPerView: 2,
@@ -350,69 +297,6 @@ const responsiveHorizoltal = computed<any>((): any => ({
     slidesPerGroup: 6,
   },
 }));
-
-// const responsiveVertical = ref({
-//   0: {
-//     items: 2,
-//     slideBy: 2,
-//   },
-//   500: {
-//     items: 2,
-//     slideBy: 2,
-//   },
-//   520: {
-//     items: 3,
-//     slideBy: 3,
-//   },
-//   700: {
-//     items: 4,
-//     slideBy: 4,
-//   },
-//   800: {
-//     items: 3,
-//     slideBy: 3,
-//   },
-//   900: {
-//     items: 4,
-//     slideBy: 4,
-//   },
-//   1000: {
-//     items: 4,
-//     slideBy: 4,
-//   },
-//   1150: {
-//     items: 5,
-//     slideBy: 5,
-//   },
-//   1300: {
-//     items: 6,
-//     slideBy: 6,
-//   },
-//   1400: {
-//     items: 6,
-//     slideBy: 6,
-//   },
-//   1550: {
-//     items: 7,
-//     slideBy: 7,
-//   },
-//   1700: {
-//     items: 8,
-//     slideBy: 8,
-//   },
-//   1900: {
-//     items: 9,
-//     slideBy: 9,
-//   },
-//   2000: {
-//     items: 10,
-//     slideBy: 10,
-//   },
-//   2200: {
-//     items: 11,
-//     slideBy: 11,
-//   },
-// });
 
 const responsiveVertical = computed<any>((): any => ({
   0: {
@@ -455,7 +339,7 @@ onBeforeMount(async () => {
 
   await useAsyncData(`trending/all/1`, () => getTrending(1))
     .then((response: any) => {
-      trendings.value = response.data.value.data?.results;
+      trendings.value = response.data.value?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -463,17 +347,17 @@ onBeforeMount(async () => {
 
   await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
     .then((response: any) => {
-      nowPlayings.value = response.data.value.data?.results.slice(0, 12);
+      nowPlayings.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
 
   await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
-    getMoviesByGenres('hoat-hinh', 1, 'views_desc')
+    getMoviesByGenres('hoat-hinh', 'views_desc', 1)
   )
     .then((response: any) => {
-      cartoons.value = response.data.value.data?.results.slice(0, 12);
+      cartoons.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -481,7 +365,7 @@ onBeforeMount(async () => {
 
   await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
     .then((response: any) => {
-      tvAiringTodays.value = response.data.value.data?.results.slice(0, 12);
+      tvAiringTodays.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -489,7 +373,7 @@ onBeforeMount(async () => {
 
   await useAsyncData('movie/upcoming/1', () => getUpComing(1))
     .then((response: any) => {
-      upComings.value = response.data.value.data?.results.slice(0, 12);
+      upComings.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -497,7 +381,7 @@ onBeforeMount(async () => {
 
   await useAsyncData('movie/toprated/1', () => getTopRated(1))
     .then((response: any) => {
-      topRateds.value = response.data.value.data?.results.slice(0, 12);
+      topRateds.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -505,74 +389,22 @@ onBeforeMount(async () => {
 
   await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
     .then((response: any) => {
-      tvOnTheAirs.value = response.data.value.data?.results.slice(0, 12);
+      tvOnTheAirs.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData('recommend/get/1', () => getMyRecommend(1))
-    .then((response: any) => {
-      recommends.value = response.data.value.data?.results;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
-
-  window.onscroll = () => {
-    let bottomOfWindow =
-      Math.max(
-        window.scrollY,
-        document.documentElement.scrollTop,
-        document.body.scrollTop
-      ) +
-        window.innerHeight ===
-      document.documentElement.offsetHeight;
-
-    // console.log(bottomOfWindow);
-  };
-
-  // Promise.all([
-  //   await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1)),
-  //   await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
-  //     getMoviesByGenres('hoat-hinh', 1, 'views_desc')
-  //   ),
-  //   await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1)),
-  //   await useAsyncData('movie/upcoming/1', () => getUpComing(1)),
-  //   await useAsyncData('movie/toprated/1', () => getTopRated(1)),
-  //   await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1)),
-
-  //   store.$state?.isLogin
-  //     ? useAsyncData('recommend/get/1', () =>
-  //         getMyRecommend(store.$state.userAccount?.id, 1)
-  //       )
-  //     : null,
-  // ])
-  //   .then((response: any) => {
-  //     nowPlayings.value = response[0].data.value.data?.results.slice(0, 10);
-  //     cartoons.value = response[1].data.value.data?.results.slice(0, 10);
-  //     tvAiringTodays.value = response[2].data.value.data?.results.slice(0, 10);
-  //     upComings.value = response[3].data.value.data?.results.slice(0, 10);
-  //     topRateds.value = response[4].data.value.data?.results.slice(0, 10);
-  //     tvOnTheAirs.value = response[5].data.value.data?.results.slice(0, 10);
-
-  //     if (store.$state.isLogin) {
-  //       recommends.value = response[6].data.value.data?.results;
-  //     }
-  //   })
-  //   .catch((e) => {
-  //     if (axios.isCancel(e)) return;
-  //   });
-});
-
-const { list, containerProps, wrapperProps }: any = useVirtualList(
-  cartoons.value,
-  {
-    // Keep `itemHeight` in sync with the item's row.
-    itemHeight: 22,
-    itemWidth: 22,
+  if (store.$state.isLogin) {
+    await useAsyncData('recommend/get/1', () => getMyRecommend(1))
+      .then((response: any) => {
+        recommends.value = response.data.value?.results;
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
   }
-);
+});
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;
@@ -599,33 +431,6 @@ const handleLoadMoreRecommend = async () => {
       if (axios.isCancel(e)) return;
     });
 };
-
-onMounted(() => {
-  // window.onscroll = async () => {
-  //   console.log(window.scrollY);
-  //   if (window.scrollY >= 1000) {
-  //     if (loadSection1.value == false) {
-  //       Promise.all([
-  //         await useAsyncData('movie/upcoming/1', () => getUpComing(1)),
-  //         await useAsyncData('movie/toprated/1', () => getTopRated(1)),
-  //         await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1)),
-  //       ])
-  //         .then((response) => {
-  //           upComings.value = response[0].data.value.data?.results.slice(0, 10);
-  //           topRateds.value = response[1].data.value.data?.results.slice(0, 10);
-  //           tvOnTheAirs.value = response[2].data.value.data?.results.slice(
-  //             0,
-  //             10
-  //           );
-  //           loadSection1.value = true;
-  //         })
-  //         .catch((e) => {
-  //           if (axios.isCancel(e)) return;
-  //         });
-  //     }
-  //   }
-  // };
-});
 </script>
 
 <style lang="scss" src="./HomePage.scss"></style>

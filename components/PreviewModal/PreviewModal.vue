@@ -166,7 +166,7 @@
             <div class="evidence-tags">
               <span class="evidence-item country">
                 {{
-                  getLanguage(
+                  getCountryByOriginalLanguage(
                     item?.original_language,
                     store.$state.allCountries
                   )?.name || ''
@@ -221,12 +221,10 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { PlusOutlined, InfoOutlined } from '@ant-design/icons-vue';
-import {
-  getBackdrop,
-  getTvById,
-  getMovieById,
-  getLanguage,
-} from '~/services/appMovieService';
+import { getBackdrop } from '~/services/image';
+import { getCountryByOriginalLanguage } from '~/services/country';
+import { getMovieById } from '~/services/movie';
+import { getTvById } from '~/services/tv';
 
 const props = defineProps<{
   isTeleportPreviewModal: boolean;
@@ -320,7 +318,7 @@ watch(isTeleport, async () => {
           getTvById(props.item?.id)
         )
           .then((tvResponed: any) => {
-            dataMovie.value = tvResponed.data.value.data;
+            dataMovie.value = tvResponed.data.value;
 
             loading.value = false;
           })
@@ -333,7 +331,7 @@ watch(isTeleport, async () => {
           getMovieById(props.item?.id)
         )
           .then((movieRespone: any) => {
-            dataMovie.value = movieRespone.data.value.data;
+            dataMovie.value = movieRespone.data.value;
 
             loading.value = false;
           })

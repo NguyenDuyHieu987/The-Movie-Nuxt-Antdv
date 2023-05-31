@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { getSeasonTV } from '~/services/appMovieService';
+import { getSeasonTV } from '~/services/tv';
 import axios from 'axios';
 
 const props = defineProps({
@@ -86,7 +86,7 @@ onBeforeMount(() => {
       )
   )
     .then((episodesRespones: any) => {
-      dataSeason.value = episodesRespones.data.value.data;
+      dataSeason.value = episodesRespones.data.value;
       loadingLastestEpisodes.value = false;
     })
     .catch((e) => {

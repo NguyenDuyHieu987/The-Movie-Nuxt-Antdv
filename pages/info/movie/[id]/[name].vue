@@ -286,7 +286,7 @@
               <NuxtLink
                 :to="{
                   path: `/discover/countries/${
-                    getLanguage(
+                    getCountryByOriginalLanguage(
                       dataMovie?.original_language,
                       store.$state.allCountries
                     )?.short_name || 'au-my'
@@ -295,7 +295,7 @@
               >
                 <span>
                   {{
-                    getLanguage(
+                    getCountryByOriginalLanguage(
                       dataMovie?.original_language,
                       store.$state.allCountries
                     )?.name || ''
@@ -461,13 +461,10 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import {
-  getPoster,
-  getBackdrop,
-  getMovieById,
-  getLanguage,
-  getItemList,
-} from '~/services/appMovieService';
+import { getItemList } from '~/services/list';
+import { getPoster, getBackdrop } from '~/services/image';
+import { getMovieById } from '~/services/movie';
+import { getCountryByOriginalLanguage } from '~/services/country';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
@@ -503,8 +500,8 @@ const getData = async () => {
     getMovieById(route.params?.id, 'images,credits')
   )
     .then((movieResponed: any) => {
-      dataMovie.value = movieResponed.data.value.data;
-      dataCredit.value = movieResponed.data.value.data.credits;
+      dataMovie.value = movieResponed.data.value;
+      dataCredit.value = movieResponed.data.value?.credits;
 
       useHead({
         title:
@@ -530,7 +527,7 @@ const getData = async () => {
       // });
 
       srcBackdropList.value = Array.from(
-        movieResponed.data.value.data.images?.backdrops,
+        movieResponed.data.value.images?.backdrops,
         (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       );
 

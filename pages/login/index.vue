@@ -150,14 +150,11 @@ import {
   LockOutlined,
   CheckCircleFilled,
   CloseCircleFilled,
-  // FacebookFilled,
 } from '@ant-design/icons-vue';
 import axios from 'axios';
-// import md5 from 'md5';
-import { signIn, loginFacebook, loginGoogle } from '~/services/appMovieService';
+import { signIn, loginFacebook, loginGoogle } from '~/services/authentication';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';
-// import { notification } from 'ant-design-vue';
 
 definePageMeta({
   layout: 'auth',
@@ -226,10 +223,11 @@ const handleSubmit = () => {
       })
   )
     .then((response: any) => {
-      if (response.data.value.data?.isLogin == true) {
+      console.log(response.data.value);
+      if (response.data.value?.isLogin == true) {
         store.$state.isLogin = true;
-        store.$state.userAccount = response.data.value.data?.result;
-        store.$state.role = response.data.value.data?.result?.role;
+        store.$state.userAccount = response.data.value?.result;
+        store.$state.role = response.data.value?.result?.role;
 
         // window.localStorage.setItem('remember', formState.remember);
 
@@ -262,7 +260,7 @@ const handleSubmit = () => {
         // }
 
         reset();
-      } else if (response.data.value.data?.isNotExist == true) {
+      } else if (response.data.value?.isNotExist == true) {
         setTimeout(() => {
           loadingLogin.value = false;
 
@@ -275,7 +273,7 @@ const handleSubmit = () => {
               }),
           });
         }, 1000);
-      } else if (response.data.value.data?.isWrongPassword == true) {
+      } else if (response.data.value?.isWrongPassword == true) {
         setTimeout(() => {
           loadingLogin.value = false;
 
@@ -288,7 +286,7 @@ const handleSubmit = () => {
               }),
           });
         }, 1000);
-      } else if (response.data.value.data.isLogin == false) {
+      } else if (response.data.value?.isLogin == false) {
         loadingLogin.value = false;
         ElNotification.error({
           title: 'Failed!',
@@ -334,9 +332,9 @@ const handleFacebookLogin = async () => {
     })
   )
     .then((response: any) => {
-      // console.log(response.data.value.data?.result);
+      // console.log(response.data.value?.result);
 
-      if (response.data.value.data.isSignUp == true) {
+      if (response.data.value.isSignUp == true) {
         ElNotification.success({
           title: 'Thành công!',
           message: 'Bạn đã đăng nhập bằng Facebook thành công tại Phimhay247.',
@@ -345,7 +343,7 @@ const handleFacebookLogin = async () => {
               style: 'color: green',
             }),
         });
-        store.$state.userAccount = response.data.value.data?.result;
+        store.$state.userAccount = response.data.value?.result;
         store.$state.isLogin = true;
 
         utils.localStorage.setWithExpiry(
@@ -356,8 +354,8 @@ const handleFacebookLogin = async () => {
 
         loadingFacebookLogin.value = false;
         navigateTo({ path: '/' });
-      } else if (response.data.value.data.isLogin == true) {
-        store.$state.userAccount = response.data.value.data?.result;
+      } else if (response.data.value.isLogin == true) {
+        store.$state.userAccount = response.data.value?.result;
         store.$state.isLogin = true;
 
         utils.localStorage.setWithExpiry(
@@ -368,7 +366,7 @@ const handleFacebookLogin = async () => {
 
         loadingFacebookLogin.value = false;
         navigateTo({ path: '/' });
-      } else if (response.data.value.data.isLogin == false) {
+      } else if (response.data.value.isLogin == false) {
         loadingFacebookLogin.value = false;
         ElNotification.error({
           title: 'Failed!',
@@ -443,7 +441,7 @@ const handleGooglePopupCallback = (authResponse: any) => {
       })
     )
       .then((response: any) => {
-        if (response.data.value.data.isSignUp == true) {
+        if (response.data.value.isSignUp == true) {
           ElNotification.success({
             title: 'Thành công!',
             message: 'Bạn đã đăng nhập bằng Google thành công tại Phimhay247.',
@@ -453,7 +451,7 @@ const handleGooglePopupCallback = (authResponse: any) => {
               }),
           });
 
-          store.$state.userAccount = response.data.value.data?.result;
+          store.$state.userAccount = response.data.value?.result;
           store.$state.isLogin = true;
 
           utils.localStorage.setWithExpiry(
@@ -466,8 +464,8 @@ const handleGooglePopupCallback = (authResponse: any) => {
 
           loadingGoogleLogin.value = false;
           navigateTo({ path: '/' });
-        } else if (response.data.value.data.isLogin == true) {
-          store.$state.userAccount = response.data.value.data?.result;
+        } else if (response.data.value.isLogin == true) {
+          store.$state.userAccount = response.data.value?.result;
           store.$state.isLogin = true;
 
           utils.localStorage.setWithExpiry(
@@ -480,7 +478,7 @@ const handleGooglePopupCallback = (authResponse: any) => {
 
           loadingGoogleLogin.value = false;
           navigateTo({ path: '/' });
-        } else if (response.data.value.data.isLogin == false) {
+        } else if (response.data.value.isLogin == false) {
           loadingGoogleLogin.value = false;
           ElNotification.error({
             title: 'Failed!',

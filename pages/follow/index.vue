@@ -347,12 +347,8 @@
 import axios from 'axios';
 import MovieCardHorizontalFollow from '@/components/MovieCardHorizontalFollow/MovieCardHorizontalFollow.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
-import {
-  getList,
-  getBackdrop,
-  searchList,
-  getColorImage,
-} from '~/services/appMovieService';
+import { getBackdrop, getColorImage } from '~/services/image';
+import { getList, searchList } from '~/services/list';
 import disableScroll from 'disable-scroll';
 import _ from 'lodash';
 import { storeToRefs } from 'pinia';
@@ -480,9 +476,9 @@ const getData = () => {
 
   useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () => getList())
     .then((movieRespone: any) => {
-      if (movieRespone.data.value.data?.result?.items?.length > 0) {
-        dataList.value = movieRespone.data.value.data?.result?.items;
-        total.value = movieRespone.data.value.data?.total;
+      if (movieRespone.data.value?.result?.items?.length > 0) {
+        dataList.value = movieRespone.data.value?.result?.items;
+        total.value = movieRespone.data.value?.total;
         topicImage.value = dataList.value[0]?.backdrop_path;
 
         setTimeout(() => {
@@ -496,7 +492,7 @@ const getData = () => {
           getColorImage(topicImage.value)
         )
           .then((colorResponse: any) => {
-            const color = colorResponse.data.value.data?.color;
+            const color = colorResponse.data.value?.color;
             setBackgroundColor(color);
           })
           .catch((e) => {

@@ -207,12 +207,9 @@
 
 <script setup lang="ts">
 // import axios from 'axios';
-import {
-  getBackdrop,
-  getMovieById,
-  getTvById,
-  getItemHistory,
-} from '~/services/appMovieService';
+import { getBackdrop } from '~/services/image';
+import { getMovieById } from '~/services/movie';
+import { getTvById } from '~/services/tv';
 import axios from 'axios';
 import disableScroll from 'disable-scroll';
 
@@ -261,7 +258,7 @@ onBeforeMount(async () => {
           getMovieById(props.item?.id)
         )
           .then((movieResponed: any) => {
-            dataMovie.value = movieResponed.data.value.data;
+            dataMovie.value = movieResponed.data.value;
 
             loading.value = false;
           })
@@ -277,7 +274,7 @@ onBeforeMount(async () => {
           getTvById(props.item?.id)
         )
           .then((tvResponed: any) => {
-            dataMovie.value = tvResponed.data.value.data;
+            dataMovie.value = tvResponed.data.value;
 
             loading.value = false;
           })
@@ -297,7 +294,7 @@ onBeforeMount(async () => {
         getTvById(props.item?.id)
       )
         .then((tvResponed: any) => {
-          dataMovie.value = tvResponed.data.value.data;
+          dataMovie.value = tvResponed.data.value;
 
           loading.value = false;
         })
@@ -311,7 +308,7 @@ onBeforeMount(async () => {
         getMovieById(props.item?.id)
       )
         .then((movieResponed: any) => {
-          dataMovie.value = movieResponed.data.value.data;
+          dataMovie.value = movieResponed.data.value;
 
           loading.value = false;
         })

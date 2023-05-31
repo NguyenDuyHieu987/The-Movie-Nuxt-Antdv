@@ -303,7 +303,7 @@
               <NuxtLink
                 :to="{
                   path: `/discover/countries/${
-                    getLanguage(
+                    getCountryByOriginalLanguage(
                       dataMovie?.original_language,
                       store.$state.allCountries
                     )?.short_name || 'au-my'
@@ -312,7 +312,7 @@
               >
                 <span>
                   {{
-                    getLanguage(
+                    getCountryByOriginalLanguage(
                       dataMovie?.original_language,
                       store.$state.allCountries
                     )?.name || ''
@@ -505,13 +505,10 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import {
-  getPoster,
-  getBackdrop,
-  getTvById,
-  getLanguage,
-  getItemList,
-} from '~/services/appMovieService';
+import { getItemList } from '~/services/list';
+import { getPoster, getBackdrop } from '~/services/image';
+import { getTvById } from '~/services/tv';
+import { getCountryByOriginalLanguage } from '~/services/country';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import LastestEpisodes from '@/components/LastestEpisodes/LastestEpisodes.vue';
@@ -548,9 +545,9 @@ const getData = async () => {
   )
     .then((tvResponed: any) => {
       isEpisodes.value = true;
-      dataMovie.value = tvResponed.data.value.data;
-      dataCredit.value = tvResponed.data.value.data?.credits;
-      dataCredit.value = tvResponed.data.value.data?.credits;
+      dataMovie.value = tvResponed.data.value;
+      dataCredit.value = tvResponed.data.value?.credits;
+      dataCredit.value = tvResponed.data.value?.credits;
 
       useHead({
         title:
@@ -590,7 +587,7 @@ const getData = async () => {
       // });
 
       srcBackdropList.value = Array.from(
-        tvResponed.data.value.data.images?.backdrops,
+        tvResponed.data.value.images?.backdrops,
         (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       );
 

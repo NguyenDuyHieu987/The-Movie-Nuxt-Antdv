@@ -115,13 +115,11 @@
 </template>
 
 <script setup lang="ts">
-import {
-  getAllGenre,
-  getAllNational,
-  getAllYear,
-  FilterDataMovie,
-  getAllSortBy,
-} from '~/services/appMovieService';
+import { FilterDataMovie } from '~/services/discover';
+import { getAllGenre } from '~/services/genres';
+import { getAllCountry } from '~/services/country';
+import { getAllYear } from '~/services/year';
+import { getAllSortBy } from '~/services/sortby';
 import axios from 'axios';
 import { CaretRightFilled } from '@ant-design/icons-vue';
 import type { genre, country, year, sortby } from '@/types';
@@ -177,18 +175,16 @@ onBeforeMount(async () => {
   Promise.all([
     await useAsyncData(`genre/all`, () => getAllGenre()),
     await useAsyncData(`year/all`, () => getAllYear()),
-    await useAsyncData(`country/all`, () => getAllNational()),
+    await useAsyncData(`country/all`, () => getAllCountry()),
     await useAsyncData(`sortby/all`, () => getAllSortBy()),
   ])
     .then((response: any) => {
-      genres.value = response[0].data.value.data;
-      years.value = response[1].data.value.data.sort(
-        (a: year, b: year): number => {
-          return +b.name.slice(-4) - +a.name.slice(-4);
-        }
-      );
-      countries.value = response[2].data.value.data;
-      listSortBy.value = response[3].data.value.data;
+      genres.value = response[0].data.value;
+      years.value = response[1].data.value.sort((a: year, b: year): number => {
+        return +b.name.slice(-4) - +a.name.slice(-4);
+      });
+      countries.value = response[2].data.value;
+      listSortBy.value = response[3].data.value;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -204,10 +200,12 @@ const disableBtnFilter = computed(
     formSelect.country == ''
 );
 
-const handleFilterMovie = () => {
-  FilterDataMovie(formSelect)
+const handleFilterMovie = async () => {
+  await useAsyncData(`discover/all/${formSelect}}`, () =>
+    FilterDataMovie(formSelect)
+  )
     .then((movieResponse) => {
-      emit('dataFiltered', movieResponse?.data?.results, formSelect);
+      emit('dataFiltered', movieResponse?.data.value.results, formSelect);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

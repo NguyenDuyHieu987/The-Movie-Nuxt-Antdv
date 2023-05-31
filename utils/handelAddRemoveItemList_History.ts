@@ -2,10 +2,9 @@ import { useStore } from '@/store/useStore';
 import {
   addItemList,
   removeItemList,
-  removeItemHistory,
   removeAllItemList,
-  removeAllItemHistory,
-} from '~/services/appMovieService';
+} from '~/services/list';
+import { removeItemHistory, removeAllItemHistory } from '~/services/history';
 import axios from 'axios';
 import { message } from 'ant-design-vue';
 import { ElNotification, ElMessage } from 'element-plus';
@@ -20,7 +19,7 @@ export async function handelAddItemToList(
     media_id: movieId,
   })
     .then((response: any) => {
-      if (response.data.success == true) {
+      if (response?.success == true) {
         // message.destroy();
         // ElMessage({
         //   type: 'success',
@@ -75,8 +74,8 @@ export async function handelRemoveItemFromList(
   return removeItemList({
     media_id: movieId,
   })
-    .then((movieRespone: any) => {
-      if (movieRespone.data?.success == true) {
+    .then((response: any) => {
+      if (response?.success == true) {
         message.destroy();
         // ElMessage({
         //   type: 'success',
@@ -127,8 +126,8 @@ export async function handleRemoveAllitemFromList(): Promise<boolean> {
   // message.loading({ content: 'Đang xóa tất cả Danh sách phát' });
 
   return removeAllItemList()
-    .then((movieRespone) => {
-      if (movieRespone.data?.success == true) {
+    .then((response) => {
+      if (response?.success == true) {
         message.destroy();
         // ElMessage({
         //   type: 'success',
@@ -142,7 +141,7 @@ export async function handleRemoveAllitemFromList(): Promise<boolean> {
           duration: 3000,
         });
 
-        return movieRespone.data?.results?.length == 0;
+        return response?.results?.length == 0;
       } else {
         message.destroy();
         // ElMessage({
@@ -181,8 +180,8 @@ export async function handleRemoveItemFromHistory(
   return removeItemHistory({
     media_id: movieId,
   })
-    .then((movieRespone: any) => {
-      if (movieRespone.data?.success == true) {
+    .then((response: any) => {
+      if (response?.success == true) {
         message.destroy();
         // ElMessage({
         //   type: 'success',
@@ -232,8 +231,8 @@ export async function handleRemoveAllitemFromHistory(): Promise<boolean> {
   // message.loading({ content: 'Đang xóa tất cả Lịch sử xem' });
 
   return removeAllItemHistory()
-    .then((movieRespone) => {
-      if (movieRespone.data?.success == true) {
+    .then((response) => {
+      if (response?.success == true) {
         message.destroy();
         ElNotification({
           title: 'Thành công!',
@@ -242,7 +241,7 @@ export async function handleRemoveAllitemFromHistory(): Promise<boolean> {
           position: 'bottom-right',
           duration: 3000,
         });
-        return movieRespone.data?.results?.length == 0;
+        return response?.results?.length == 0;
       } else {
         message.destroy();
         ElNotification({

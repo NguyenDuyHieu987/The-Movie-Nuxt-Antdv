@@ -297,11 +297,9 @@
 
 <script setup lang="ts">
 import { HomeOutlined } from '@ant-design/icons-vue';
-import {
-  getAllGenre,
-  getAllNational,
-  getAllYear,
-} from '~/services/appMovieService';
+import { getAllGenre } from '~/services/genres';
+import { getAllCountry } from '~/services/country';
+import { getAllYear } from '~/services/year';
 import axios from 'axios';
 import { genre, country, year } from '@/types';
 
@@ -335,26 +333,23 @@ onBeforeMount(async () => {
   Promise.all([
     await useAsyncData(`genre/all`, () => getAllGenre()),
     await useAsyncData(`year/all`, () => getAllYear()),
-    await useAsyncData(`country/all`, () => getAllNational()),
+    await useAsyncData(`country/all`, () => getAllCountry()),
   ])
     .then((response: any) => {
-      genres.value = response[0].data.value.data;
-      years.value = response[1].data.value.data.sort(function (
-        a: year,
-        b: year
-      ) {
+      genres.value = response[0].data.value;
+      years.value = response[1].data.value.sort(function (a: year, b: year) {
         return +b.name.slice(-4) - +a.name.slice(-4);
       });
-      countries.value = response[2].data.value.data;
+      countries.value = response[2].data.value;
 
-      store.$state.allGenres = response[0].data.value.data;
-      store.$state.allYears = response[1].data.value.data.sort(function (
+      store.$state.allGenres = response[0].data.value;
+      store.$state.allYears = response[1].data.value.sort(function (
         a: year,
         b: year
       ) {
         return +b.name.slice(-4) - +a.name.slice(-4);
       });
-      store.$state.allCountries = response[2].data.value.data;
+      store.$state.allCountries = response[2].data.value;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

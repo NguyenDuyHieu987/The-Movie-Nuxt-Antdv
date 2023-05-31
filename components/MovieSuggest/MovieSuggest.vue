@@ -40,8 +40,8 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-// import carousel from 'vue-owl-carousel/src/Carousel';
-import { getSimilar, getTrending } from '~/services/appMovieService';
+import { getSimilar } from '~/services/similar';
+import { getTrending } from '~/services/trending';
 import MovieCardVertical from '../MovieCardVertical/MovieCardVertical.vue';
 import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
 
@@ -156,8 +156,8 @@ onBeforeMount(async () => {
     ),
   ])
     .then((response: any) => {
-      dataSimilar.value = response[0].data.value.data?.results;
-      dataRecommend.value = response[1].data.value.data?.results;
+      dataSimilar.value = response[0].data.value?.results;
+      dataRecommend.value = response[1].data.value?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
