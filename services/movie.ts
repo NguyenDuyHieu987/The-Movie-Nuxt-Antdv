@@ -25,3 +25,16 @@ export function UpdateViewMovie(movieId: number | string) {
     method: 'POST',
   });
 }
+
+export function ratingMovie(
+  moveid: number | string,
+  { value }: { value: number }
+) {
+  const bodyFormData = new FormData();
+  bodyFormData.append('value', value.toString());
+
+  return makeRequest(`/rating/movie/${moveid}`, {
+    method: 'POST',
+    data: bodyFormData,
+  });
+}

@@ -29,3 +29,16 @@ export function UpdateViewTv(movieId: number | string) {
 export function getSeasonTV(movieid: number | string, season: number | string) {
   return makeRequest(`/tv/${movieid}/season/${season}`);
 }
+
+export function ratingTV(
+  moveid: number | string,
+  { value }: { value: number }
+) {
+  const bodyFormData = new FormData();
+  bodyFormData.append('value', value.toString());
+
+  return makeRequest(`/rating/tv/${moveid}`, {
+    method: 'POST',
+    data: bodyFormData,
+  });
+}

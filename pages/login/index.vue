@@ -212,22 +212,17 @@ const disabled = computed<boolean>((): boolean => {
 const handleSubmit = () => {
   loadingLogin.value = true;
 
-  useAsyncData(
-    `login/${formState.username}/${utils.encryptPassword(formState.password)}`,
-    () =>
-      signIn({
-        email: formState.username,
-        password: utils.encryptPassword(formState.password),
-        // password: md5(formState.password),
-        // user_token: randomToken(40),
-      })
-  )
+  signIn({
+    email: formState.username,
+    password: utils.encryptPassword(formState.password),
+    // password: md5(formState.password),
+    // user_token: randomToken(40),
+  })
     .then((response: any) => {
-      console.log(response.data.value);
-      if (response.data.value?.isLogin == true) {
+      if (response?.isLogin == true) {
         store.$state.isLogin = true;
-        store.$state.userAccount = response.data.value?.result;
-        store.$state.role = response.data.value?.result?.role;
+        store.$state.userAccount = response?.result;
+        store.$state.role = response?.result?.role;
 
         // window.localStorage.setItem('remember', formState.remember);
 
@@ -235,20 +230,20 @@ const handleSubmit = () => {
           // window.localStorage.setItem(
           //   'userAccount',
           //   JSON.stringify({
-          //     value: { user_token: response.data.value.headers.get('Authorization') },
+          //     value: { user_token: response.headers.get('Authorization') },
           //   })
           // );
 
           utils.localStorage.setWithExpiry(
             'userAccount',
-            { user_token: response.data.value.headers.get('Authorization') },
+            { user_token: response.headers.get('Authorization') },
             30
           );
         } else {
           // utils.localStorage.setWithExpiry('isLogin', true, 30);
           utils.localStorage.setWithExpiry(
             'userAccount',
-            { user_token: response.data.value.headers.get('Authorization') },
+            { user_token: response.headers.get('Authorization') },
             30
           );
         }
@@ -260,7 +255,7 @@ const handleSubmit = () => {
         // }
 
         reset();
-      } else if (response.data.value?.isNotExist == true) {
+      } else if (response?.isNotExist == true) {
         setTimeout(() => {
           loadingLogin.value = false;
 
@@ -273,7 +268,7 @@ const handleSubmit = () => {
               }),
           });
         }, 1000);
-      } else if (response.data.value?.isWrongPassword == true) {
+      } else if (response?.isWrongPassword == true) {
         setTimeout(() => {
           loadingLogin.value = false;
 
@@ -286,7 +281,7 @@ const handleSubmit = () => {
               }),
           });
         }, 1000);
-      } else if (response.data.value?.isLogin == false) {
+      } else if (response?.isLogin == false) {
         loadingLogin.value = false;
         ElNotification.error({
           title: 'Failed!',
@@ -326,15 +321,13 @@ const handleFacebookLogin = async () => {
 
   loadingFacebookLogin.value = true;
 
-  useAsyncData(`login/facebook/${authResponse.accessToken}`, () =>
-    loginFacebook({
-      accessToken: authResponse.accessToken,
-    })
-  )
+  loginFacebook({
+    accessToken: authResponse.accessToken,
+  })
     .then((response: any) => {
-      // console.log(response.data.value?.result);
+      // console.log(response?.result);
 
-      if (response.data.value.isSignUp == true) {
+      if (response.isSignUp == true) {
         ElNotification.success({
           title: 'Thành công!',
           message: 'Bạn đã đăng nhập bằng Facebook thành công tại Phimhay247.',
@@ -343,30 +336,30 @@ const handleFacebookLogin = async () => {
               style: 'color: green',
             }),
         });
-        store.$state.userAccount = response.data.value?.result;
+        store.$state.userAccount = response?.result;
         store.$state.isLogin = true;
 
         utils.localStorage.setWithExpiry(
           'userAccount',
-          { user_token: response.data.value.headers.get('Authorization') },
+          { user_token: response.headers.get('Authorization') },
           30
         );
 
         loadingFacebookLogin.value = false;
         navigateTo({ path: '/' });
-      } else if (response.data.value.isLogin == true) {
-        store.$state.userAccount = response.data.value?.result;
+      } else if (response.isLogin == true) {
+        store.$state.userAccount = response?.result;
         store.$state.isLogin = true;
 
         utils.localStorage.setWithExpiry(
           'userAccount',
-          { user_token: response.data.value.headers.get('Authorization') },
+          { user_token: response.headers.get('Authorization') },
           30
         );
 
         loadingFacebookLogin.value = false;
         navigateTo({ path: '/' });
-      } else if (response.data.value.isLogin == false) {
+      } else if (response.isLogin == false) {
         loadingFacebookLogin.value = false;
         ElNotification.error({
           title: 'Failed!',
@@ -435,13 +428,11 @@ const handleGooglePopupCallback = (authResponse: any) => {
   if (authResponse && authResponse?.access_token) {
     loadingGoogleLogin.value = true;
 
-    useAsyncData(`login/google/${authResponse?.access_token}`, () =>
-      loginGoogle({
-        accessToken: authResponse?.access_token,
-      })
-    )
+    loginGoogle({
+      accessToken: authResponse?.access_token,
+    })
       .then((response: any) => {
-        if (response.data.value.isSignUp == true) {
+        if (response.isSignUp == true) {
           ElNotification.success({
             title: 'Thành công!',
             message: 'Bạn đã đăng nhập bằng Google thành công tại Phimhay247.',
@@ -451,34 +442,34 @@ const handleGooglePopupCallback = (authResponse: any) => {
               }),
           });
 
-          store.$state.userAccount = response.data.value?.result;
+          store.$state.userAccount = response?.result;
           store.$state.isLogin = true;
 
           utils.localStorage.setWithExpiry(
             'userAccount',
             {
-              user_token: response.data.value.headers.get('Authorization'),
+              user_token: response.headers.get('Authorization'),
             },
             30
           );
 
           loadingGoogleLogin.value = false;
           navigateTo({ path: '/' });
-        } else if (response.data.value.isLogin == true) {
-          store.$state.userAccount = response.data.value?.result;
+        } else if (response.isLogin == true) {
+          store.$state.userAccount = response?.result;
           store.$state.isLogin = true;
 
           utils.localStorage.setWithExpiry(
             'userAccount',
             {
-              user_token: response.data.value.headers.get('Authorization'),
+              user_token: response.headers.get('Authorization'),
             },
             30
           );
 
           loadingGoogleLogin.value = false;
           navigateTo({ path: '/' });
-        } else if (response.data.value.isLogin == false) {
+        } else if (response.isLogin == false) {
           loadingGoogleLogin.value = false;
           ElNotification.error({
             title: 'Failed!',

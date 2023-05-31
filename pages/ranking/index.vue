@@ -69,9 +69,9 @@ onBeforeMount(async () => {
     getTrending(pageTrending.value)
   )
     .then((movieRespone: any) => {
-      trendings.value = movieRespone.data.value.data?.results;
-      totalPage.value = movieRespone.data.value.data?.total;
-      pageSize.value = movieRespone.data.value.data?.page_size;
+      trendings.value = movieRespone.data.value?.results;
+      totalPage.value = movieRespone.data.value?.total;
+      pageSize.value = movieRespone.data.value?.page_size;
 
       setTimeout(() => {
         internalInstance.appContext.config.globalProperties.$Progress.finish();
@@ -87,7 +87,7 @@ watch(pageTrending, async () => {
     getTrending(pageTrending.value)
   )
     .then((movieRespone: any) => {
-      trendings.value = movieRespone.data.value.data?.results;
+      trendings.value = movieRespone.data.value?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

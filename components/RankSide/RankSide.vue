@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import RankCard from '@/components/RankCard/RankCard.vue';
-import { getRanking } from '~/services/appMovieService';
+import { getRanking } from '~/services/ranking';
 import axios from 'axios';
 
 interface tab {
@@ -88,7 +88,7 @@ const getDataRanking = (activeKey: string) => {
     case 'day':
       useAsyncData(`ranking/all/1`, () => getRanking(1))
         .then((movieRespone: any) => {
-          rankData.value = movieRespone.data.value.data?.results;
+          rankData.value = movieRespone.data.value?.results;
           setTimeout(() => {
             loading.value = false;
           }, 1500);
@@ -102,7 +102,7 @@ const getDataRanking = (activeKey: string) => {
     case 'week':
       useAsyncData(`ranking/all/2`, () => getRanking(2))
         .then((movieRespone: any) => {
-          rankData.value = movieRespone.data.value.data?.results;
+          rankData.value = movieRespone.data.value?.results;
 
           setTimeout(() => {
             loading.value = false;
@@ -117,7 +117,7 @@ const getDataRanking = (activeKey: string) => {
     case 'month':
       useAsyncData(`ranking/all/3`, () => getRanking(3))
         .then((movieRespone: any) => {
-          rankData.value = movieRespone.data.value.data?.results;
+          rankData.value = movieRespone.data.value?.results;
 
           setTimeout(() => {
             loading.value = false;
@@ -132,7 +132,7 @@ const getDataRanking = (activeKey: string) => {
     case 'all':
       useAsyncData(`ranking/all/4`, () => getRanking(4))
         .then((movieRespone: any) => {
-          rankData.value = movieRespone.data.value.data?.results;
+          rankData.value = movieRespone.data.value?.results;
 
           setTimeout(() => {
             loading.value = false;

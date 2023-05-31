@@ -34,7 +34,8 @@
 </template>
 
 <script setup lang="ts">
-import { ratingMovie, ratingTV } from '~/services/appMovieService';
+import { ratingMovie } from '~/services/movie';
+import { ratingTV } from '~/services/tv';
 import { notification } from 'ant-design-vue';
 import { CheckCircleFilled } from '@ant-design/icons-vue';
 import axios from 'axios';
@@ -66,7 +67,7 @@ const handleRating = (value: number) => {
   if (props?.isEpisodes) {
     ratingTV(props?.movieId, { value: value })
       .then((response) => {
-        if (response.data?.success == true) {
+        if (response?.success == true) {
           notification.open({
             message: 'Cảm ơn bạn đã đánh giá!',
             description: `Đánh giá thành công ${value} điểm.`,
@@ -75,8 +76,8 @@ const handleRating = (value: number) => {
                 style: 'color: green',
               }),
           });
-          vote_Average.value = response.data?.vote_average;
-          vote_Count.value = response.data?.vote_count;
+          vote_Average.value = response?.vote_average;
+          vote_Count.value = response?.vote_count;
         }
       })
       .catch((e) => {
@@ -85,7 +86,7 @@ const handleRating = (value: number) => {
   } else {
     ratingMovie(props?.movieId, { value: value })
       .then((response) => {
-        if (response.data?.success == true) {
+        if (response?.success == true) {
           notification.open({
             message: 'Cảm ơn bạn đã đánh giá!',
             description: `Đánh giá thành công ${value} điểm.`,
@@ -94,8 +95,8 @@ const handleRating = (value: number) => {
                 style: 'color: green',
               }),
           });
-          vote_Average.value = response.data?.vote_average;
-          vote_Count.value = response.data?.vote_count;
+          vote_Average.value = response?.vote_average;
+          vote_Count.value = response?.vote_count;
         }
       })
       .catch((e) => {
