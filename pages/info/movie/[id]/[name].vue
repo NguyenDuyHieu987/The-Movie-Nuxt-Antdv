@@ -1,5 +1,5 @@
 <template>
-  <div class="prev-play-conainer">
+  <div class="movie-info-conainer">
     <div class="main-info">
       <div class="backdrop-img">
         <div class="backdrop-wrapper">
@@ -35,54 +35,6 @@
               </div>
             </template>
           </el-image>
-
-          <div class="poster-img">
-            <el-image
-              :src="getPoster(dataMovie?.poster_path)"
-              :preview-src-list="srcBackdropList"
-              :preview-teleported="true"
-            >
-              <template #placeholder>
-                <div
-                  class="ant-image"
-                  style="
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
-                >
-                  Đang tải<span class="dot">...</span>
-                </div>
-              </template>
-              <template #error>
-                <div
-                  class="el-image error"
-                  style="
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
-                >
-                  Đang tải<span class="dot">...</span>
-                </div>
-              </template>
-            </el-image>
-
-            <NuxtLink
-              v-if="!loading"
-              :to="{
-                path: `/play/movie/${dataMovie?.id}/${dataMovie?.name
-                  ?.replace(/\s/g, '+')
-                  .toLowerCase()}`,
-              }"
-              class="btn-play-now"
-            >
-              <font-awesome-icon icon="fa-solid fa-play" />
-              <span> Xem ngay</span>
-            </NuxtLink>
-
-            <strong class="hd-brand">HD</strong>
-          </div>
         </div>
         <div class="overlay-backdrop">
           <img :src="getBackdrop(dataMovie?.backdrop_path)" />
@@ -126,53 +78,6 @@
         </div>
 
         <div v-else class="widget">
-          <div class="poster-img-mobile">
-            <el-image
-              :src="getPoster(dataMovie?.poster_path)"
-              :preview-src-list="srcBackdropList"
-              :preview-teleported="true"
-            >
-              <template #placeholder>
-                <div
-                  class="ant-image"
-                  style="
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
-                >
-                  Đang tải<span class="dot">...</span>
-                </div>
-              </template>
-              <template #error>
-                <div
-                  class="el-image error"
-                  style="
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
-                >
-                  Đang tải<span class="dot">...</span>
-                </div>
-              </template>
-            </el-image>
-
-            <NuxtLink
-              v-if="!loading"
-              :to="{
-                path: `/play/movie/${dataMovie?.id}/${dataMovie?.name
-                  ?.replace(/\s/g, '+')
-                  .toLowerCase()}`,
-              }"
-              class="btn-play-now"
-            >
-              <font-awesome-icon icon="fa-solid fa-play" />
-              <span> Xem ngay</span>
-            </NuxtLink>
-            <strong class="hd-brand">HD</strong>
-          </div>
-
           <div class="widget-2">
             <div
               class="btn-trailer"
@@ -401,61 +306,13 @@
       </div>
     </div>
 
-    <h3 class="section-title">
-      <strong>Nội dung phim</strong>
-    </h3>
-
-    <div class="movie-content">
-      <a-skeleton
-        :loading="loading"
-        :active="true"
-        :paragraph="{ rows: 3, width: '40%' }"
-        :title="false"
-      >
-        <p :class="{ open: isOpenContent }">
-          {{ dataMovie?.overview }}
-        </p>
-        <strong class="toggle-content" @click="isOpenContent = !isOpenContent">
-          {{ !isOpenContent ? 'Xem thêm' : 'Ẩn bớt' }}
-        </strong>
-      </a-skeleton>
-    </div>
-
-    <div id="trailer-youtube">
-      <div class="trailer-youtube" :class="{ active: isOpenTrailerYoutube }">
-        <h3 class="section-title">
-          <strong>Trailer</strong>
-        </h3>
-        <iframe
-          height="650px"
-          width="100%"
-          :src="// dataMovie?.videos?.results?.length !== 0
-          //   ? `https://www.youtube.com/embed/${
-          //       dataMovie?.videos?.results[
-          //         Math.floor(
-          //           Math.random() * dataMovie?.videos?.results?.length
-          //         )
-          //       ]?.key
-          //     }`
-          //   :
-
-          'https://www.youtube.com/embed/ndl1W4ltcmg'"
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-        gyroscope; picture-in-picture"
-          allowFullScreen
-          frameBorder="{0}"
-        />
-      </div>
-    </div>
-
-    <CastCrew :dataCredit="dataCredit" :loading="loading" />
+    <!-- <CastCrew :dataCredit="dataCredit" :loading="loading" />
 
     <MovieSuggest
       v-if="!checkEmptyDataMovies"
       :movieId="dataMovie?.id"
       type="movie"
-    />
+    /> -->
   </div>
 </template>
 
@@ -532,11 +389,12 @@ const getData = async () => {
       );
 
       loading.value = false;
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
     })
     .catch((e) => {
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 
   if (store.$state.isLogin) {

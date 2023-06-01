@@ -87,12 +87,9 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    // API_CONTENT_SERVICE_URL: process.env.API_CONTENT_SERVICE_URL,
-    // API_IMAGE_SERVICE_URL: process.env.API_IMAGE_SERVICE_URL,
-    // TMDB_IMAGE_BASE_URL: process.env.TMDB_IMAGE_BASE_URL,
-    // apiUrl: process.env.NUXT_API_CONTENT_SERVICE_URL,
-    // app: {},
     apiKey: process.env.NUXT_API_KEY,
+    adminWebsiteUrl: 'https://dashboard.phimhay247.site/',
+    app: {},
     public: {
       baseURL: process.env.NUXT_PUBLIC_BASE_URL,
     },
@@ -117,33 +114,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-icon',
     // 'vue-social-sharing/nuxt',
-    // 'nuxt-lazy-load'
     'nuxt-swiper',
   ],
   elementPlus: {
     /** Options */
   },
-  // lazyLoad: {
-  //   // These are the default values
-  //   images: true,
-  //   videos: true,
-  //   audios: true,
-  //   iframes: true,
-  //   native: false,
-  //   directiveOnly: false,
-
-  //   // Default image must be in the public folder
-  //   // defaultImage: '/images/default-image.jpg',
-
-  //   // To remove class set value to false
-  //   loadingClass: 'isLoading',
-  //   loadedClass: 'isLoaded',
-  //   appendClass: 'lazyLoad',
-
-  //   observerConfig: {
-  //     // See IntersectionObserver documentation
-  //   }
-  // },
   plugins: [
     '@/plugins/antd',
     '@/plugins/fontawesome',
@@ -167,6 +142,7 @@ export default defineNuxtConfig({
         '/info',
         '/play',
       ],
+      crawlLinks: true,
     },
     // output: {
     //   dir: '.output',
@@ -183,13 +159,17 @@ export default defineNuxtConfig({
   },
   ssr: true,
   routeRules: {
-    '/': { prerender: true, swr: true },
-    '/search/**': { prerender: true, swr: true },
-    '/discover/**': { prerender: true, swr: true },
-    '/list/**': { prerender: true, swr: true },
-    '/history/**': { prerender: true, swr: true },
-    '/ranking/**': { prerender: true, swr: true },
-    '/info/**': { prerender: true, swr: true },
-    '/play/**': { prerender: true, swr: true },
+    '/': { prerender: true, ssr: true },
+    '/search/**': { prerender: true, ssr: true },
+    '/discover/year/**': { prerender: true, ssr: true },
+    '/discover/genre/**': { prerender: true, ssr: true },
+    '/discover/country/**': { prerender: true, ssr: true },
+    '/list/**': { prerender: true, ssr: true },
+    '/history/**': { prerender: true, ssr: true },
+    '/ranking/**': { prerender: true, ssr: true },
+    '/info/movie/**': { prerender: true, ssr: true },
+    '/info/tv/**': { prerender: true, ssr: true },
+    '/play/movie/**': { prerender: true, ssr: true },
+    '/play/tv/**': { prerender: true, ssr: true },
   },
 });

@@ -232,13 +232,7 @@
                   v-if="isLogin && role == 'admin'"
                   v-once
                 >
-                  <!-- <NuxtLink :to="{ path: '/dashboard' }"
-                    >Bảng điều khiển
-                  </NuxtLink> -->
-                  <NuxtLink
-                    to="https://dashboard.phimhay247.site/"
-                    target="_blank"
-                  >
+                  <NuxtLink :to="$config.adminWebsiteUrl" target="_blank">
                     Bảng điều khiển
                   </NuxtLink>
                 </a-menu-item>

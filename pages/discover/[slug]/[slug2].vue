@@ -254,8 +254,8 @@ const getData = async () => {
           }
         }
         break;
-      case 'genres':
-        await useAsyncData(`genres/${route.params?.slug2}/${page.value}`, () =>
+      case 'genre':
+        await useAsyncData(`genre/${route.params?.slug2}/${page.value}`, () =>
           getMoviesByGenres(route.params?.slug2, '', page.value)
         )
           .then((movieResponse: any) => {
@@ -270,8 +270,8 @@ const getData = async () => {
             ?.name_vietsub;
 
         break;
-      case 'years':
-        await useAsyncData(`years/${route.params?.slug2}/${page.value}`, () =>
+      case 'year':
+        await useAsyncData(`year/${route.params?.slug2}/${page.value}`, () =>
           getMoviesByYear(route.params?.slug2, page.value)
         )
           .then((movieResponse: any) => {
@@ -285,10 +285,9 @@ const getData = async () => {
           : 'Trước năm ' + route.params?.slug2?.slice(-4);
 
         break;
-      case 'countries':
-        await useAsyncData(
-          `countries/${route.params?.slug2}/${page.value}`,
-          () => getMovieByCountry(route.params?.slug2, page.value)
+      case 'country':
+        await useAsyncData(`country/${route.params?.slug2}/${page.value}`, () =>
+          getMovieByCountry(route.params?.slug2, page.value)
         )
           .then((movieResponse: any) => {
             dataDiscover.value = movieResponse.data.value?.results;

@@ -134,7 +134,7 @@
       </a-menu-item>
     </a-sub-menu>
 
-    <a-sub-menu key="genres">
+    <a-sub-menu key="genre">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-list" /> -->
         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -157,7 +157,7 @@
         >
           <NuxtLink
             :to="{
-              path: `/discover/genres/${item?.short_name}`,
+              path: `/discover/genre/${item?.short_name}`,
             }"
           >
             <span>{{ item?.name_vietsub }}</span>
@@ -166,7 +166,7 @@
         <NuxtLink
           v-else
           :to="{
-            path: `/discover/genres/${item?.short_name}`,
+            path: `/discover/genre/${item?.short_name}`,
           }"
         >
           <!-- @click="$store.$state.breadCrumbValue = item?.name_vietsub" -->
@@ -176,7 +176,7 @@
       </a-menu-item>
     </a-sub-menu>
 
-    <a-sub-menu key="years">
+    <a-sub-menu key="year">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-calendar-days" /> -->
         <!-- <i class="fa-sharp fa-light fa-calendar-days"></i> -->
@@ -195,7 +195,7 @@
       >
         <NuxtLink
           :to="{
-            path: `/discover/years/${
+            path: `/discover/year/${
               /^\d+$/.test(item?.name)
                 ? item?.name
                 : utils
@@ -210,7 +210,7 @@
       </a-menu-item>
     </a-sub-menu>
 
-    <a-sub-menu key="countries">
+    <a-sub-menu key="country">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-globe" /> -->
         <!-- <i class="fa-regular fa-globe"></i> -->
@@ -229,7 +229,7 @@
       >
         <NuxtLink
           :to="{
-            path: `/discover/countries/${item?.short_name}`,
+            path: `/discover/country/${item?.short_name}`,
           }"
         >
           <!-- @click="$store.$state.breadCrumbValue = item?.name" -->
