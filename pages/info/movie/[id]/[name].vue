@@ -342,8 +342,6 @@ const isAddToList = ref<boolean>(false);
 
 const internalInstance: any = getCurrentInstance();
 
-onMounted(() => {});
-
 const getData = async () => {
   isAddToList.value = false;
   loading.value = true;
