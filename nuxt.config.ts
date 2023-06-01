@@ -131,6 +131,7 @@ export default defineNuxtConfig({
     // vue({ script: { defineModel: true, propsDestructure: true } }),
   ],
   nitro: {
+    preset: 'node-server',
     prerender: {
       routes: [
         '/',
@@ -144,12 +145,14 @@ export default defineNuxtConfig({
       ],
       crawlLinks: true,
     },
-    output: {
-      dir: '.output',
-      serverDir: '.output/server',
-      publicDir: '.output/public',
-    },
+    // output: {
+    //   dir: '.output',
+    //   serverDir: '.output/server',
+    //   publicDir: '.output/public',
+    // },
   },
+  generate: {},
+  build: {},
   vite: {
     server: {
       hmr: {
@@ -161,15 +164,11 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true, ssr: true },
     '/search/**': { prerender: true, ssr: true },
-    '/discover/year/**': { prerender: true, ssr: true },
-    '/discover/genre/**': { prerender: true, ssr: true },
-    '/discover/country/**': { prerender: true, ssr: true },
+    '/discover/**': { prerender: true, ssr: true },
     '/list/**': { prerender: true, ssr: true },
     '/history/**': { prerender: true, ssr: true },
     '/ranking/**': { prerender: true, ssr: true },
-    '/info/movie/**': { prerender: true, ssr: true },
-    '/info/tv/**': { prerender: true, ssr: true },
-    '/play/movie/**': { prerender: true, ssr: true },
-    '/play/tv/**': { prerender: true, ssr: true },
+    '/info/**': { prerender: true, ssr: true },
+    '/play/**': { prerender: true, ssr: true },
   },
 });
