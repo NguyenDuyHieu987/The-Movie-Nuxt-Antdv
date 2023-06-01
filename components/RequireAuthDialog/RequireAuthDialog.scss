@@ -1,4 +1,4 @@
-.el-dialog.require-auth-dialog {
+.require-auth-dialog {
   max-width: 600px;
   min-width: 600px;
   border-radius: 5px;
@@ -41,6 +41,54 @@
     .ant-btn {
       padding: 10px 50px;
       border-radius: 3px;
+    }
+  }
+
+  .ant-modal-content {
+    .ant-modal-close {
+      .ant-modal-close-x {
+        height: auto;
+        width: auto;
+
+        .icon.close {
+          top: 7px;
+        }
+      }
+    }
+
+    .ant-modal-body {
+      padding-top: 50px;
+
+      .ant-result {
+        padding: 0px 20px;
+
+        .ant-result-title {
+          padding: 0px 20px;
+          line-height: inherit;
+        }
+
+        .ant-result-image {
+          height: 235px;
+
+          svg {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .ant-modal-footer {
+      display: flex;
+      padding-bottom: 40px;
+      gap: 15px;
+      justify-content: center;
+      border: none;
+
+      .ant-btn {
+        padding: 10px 50px;
+        border-radius: 3px;
+      }
     }
   }
 }

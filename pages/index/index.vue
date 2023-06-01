@@ -2,6 +2,7 @@
   <div class="home-container">
     <SlideTopicHome :trendings="trendings" />
     <div class="home-content">
+      <div class="temp"></div>
       <section class="home-section outstanding">
         <h2
           class="gradient-title-default underline"

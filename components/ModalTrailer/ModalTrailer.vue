@@ -4,6 +4,7 @@
       v-model:visible="isTeleport"
       width="1300px"
       centered
+      destroyOnClose
       class="modal-trailer"
       :closable="false"
     >

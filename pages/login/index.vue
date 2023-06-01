@@ -60,8 +60,9 @@
             <a-checkbox
               v-model:checked="formState.remember"
               style="user-select: none"
-              >Tự động đăng nhập</a-checkbox
             >
+              Ghi nhớ tôi
+            </a-checkbox>
           </a-form-item>
           <a class="login-form-forgot" href="">Quên mật khẩu?</a>
         </a-form-item>
@@ -224,41 +225,11 @@ const handleSubmit = () => {
         store.$state.userAccount = response?.result;
         store.$state.role = response?.result?.role;
 
-        // window.localStorage.setItem('remember', formState.remember);
-
-        if (formState.remember) {
-          // window.localStorage.setItem(
-          //   'userAccount',
-          //   JSON.stringify({
-          //     value: { user_token: response.headers.get('Authorization') },
-          //   })
-          // );
-
-          utils.localStorage.setWithExpiry(
-            'userAccount',
-            { user_token: response.headers.get('Authorization') },
-            30
-          );
-        } else {
-          // utils.localStorage.setWithExpiry('isLogin', true, 30);
-          utils.localStorage.setWithExpiry(
-            'userAccount',
-            { user_token: response.headers.get('Authorization') },
-            30
-          );
-        }
-
-        setTimeout(() => {
-          loadingLogin.value = false;
-          navigateTo({ path: '/' });
-        }, 1000);
-        // }
+        navigateTo({ path: '/' });
 
         reset();
       } else if (response?.isNotExist == true) {
         setTimeout(() => {
-          loadingLogin.value = false;
-
           ElNotification.error({
             title: 'Lỗi!',
             message: 'Tài khoản không tồi tại.',
@@ -270,8 +241,6 @@ const handleSubmit = () => {
         }, 1000);
       } else if (response?.isWrongPassword == true) {
         setTimeout(() => {
-          loadingLogin.value = false;
-
           ElNotification.error({
             title: 'Lỗi!',
             message: 'Sai tài khoản hoặc mật khẩu.',
@@ -282,7 +251,6 @@ const handleSubmit = () => {
           });
         }, 1000);
       } else if (response?.isLogin == false) {
-        loadingLogin.value = false;
         ElNotification.error({
           title: 'Failed!',
           message: 'Some thing went wrong.',
@@ -294,8 +262,6 @@ const handleSubmit = () => {
       }
     })
     .catch((e) => {
-      loadingLogin.value = false;
-
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
@@ -305,6 +271,9 @@ const handleSubmit = () => {
           }),
       });
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingLogin.value = false;
     });
 };
 
@@ -345,7 +314,6 @@ const handleFacebookLogin = async () => {
           30
         );
 
-        loadingFacebookLogin.value = false;
         navigateTo({ path: '/' });
       } else if (response.isLogin == true) {
         store.$state.userAccount = response?.result;
@@ -357,10 +325,8 @@ const handleFacebookLogin = async () => {
           30
         );
 
-        loadingFacebookLogin.value = false;
         navigateTo({ path: '/' });
       } else if (response.isLogin == false) {
-        loadingFacebookLogin.value = false;
         ElNotification.error({
           title: 'Failed!',
           message: 'Some thing went wrong.',
@@ -372,8 +338,6 @@ const handleFacebookLogin = async () => {
       }
     })
     .catch((e) => {
-      loadingFacebookLogin.value = false;
-
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
@@ -383,6 +347,9 @@ const handleFacebookLogin = async () => {
           }),
       });
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingFacebookLogin.value = false;
     });
 };
 
@@ -453,7 +420,6 @@ const handleGooglePopupCallback = (authResponse: any) => {
             30
           );
 
-          loadingGoogleLogin.value = false;
           navigateTo({ path: '/' });
         } else if (response.isLogin == true) {
           store.$state.userAccount = response?.result;
@@ -467,10 +433,8 @@ const handleGooglePopupCallback = (authResponse: any) => {
             30
           );
 
-          loadingGoogleLogin.value = false;
           navigateTo({ path: '/' });
         } else if (response.isLogin == false) {
-          loadingGoogleLogin.value = false;
           ElNotification.error({
             title: 'Failed!',
             message: 'Some thing went wrong.',
@@ -482,8 +446,6 @@ const handleGooglePopupCallback = (authResponse: any) => {
         }
       })
       .catch((e) => {
-        loadingGoogleLogin.value = false;
-
         ElNotification.error({
           title: 'Failed!',
           message: 'Some thing went wrong.',
@@ -493,6 +455,9 @@ const handleGooglePopupCallback = (authResponse: any) => {
             }),
         });
         if (axios.isCancel(e)) return;
+      })
+      .finally(() => {
+        loadingGoogleLogin.value = false;
       });
   }
 };

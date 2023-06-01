@@ -16,20 +16,8 @@
 
     .home-container {
       .home-content {
-        margin-top: -12%;
+        // margin-top: -12%;
         padding: 0px var(--padding-home-expand);
-
-        .carousel-group {
-          .owl-prev,
-          .swiper-button-prev {
-            left: calc(0px - var(--padding-home-expand));
-          }
-
-          .owl-next,
-          .swiper-button-next {
-            right: calc(0px - var(--padding-home-expand));
-          }
-        }
       }
     }
   }
@@ -41,7 +29,7 @@
   .home-content {
     position: relative;
     z-index: 1;
-    margin-top: -12%;
+    // margin-top: -12%;
     clip-path: inset(-100vh 0 -100vh 0);
     // background-color: var(--background-content-color);
     padding: 0px var(--padding-home);
@@ -151,6 +139,25 @@
       .home-content {
         padding: 0px 15px;
         padding-bottom: 30px;
+
+        .carousel-group {
+          .owl-prev,
+          .owl-next,
+          .swiper-button-prev,
+          .swiper-button-next {
+            width: 30px;
+          }
+
+          .owl-prev,
+          .swiper-button-prev {
+            left: calc(-15px);
+          }
+
+          .owl-next,
+          .swiper-button-next {
+            right: calc(-15px);
+          }
+        }
       }
     }
 
@@ -159,6 +166,18 @@
         .home-content {
           padding: 0px 30px;
           padding-bottom: 50px;
+
+          .carousel-group {
+            .owl-prev,
+            .swiper-button-prev {
+              left: calc(-30px);
+            }
+
+            .owl-next,
+            .swiper-button-next {
+              right: calc(-30px);
+            }
+          }
         }
       }
     }

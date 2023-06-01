@@ -25,13 +25,12 @@
 
   &:hover {
     ::-webkit-scrollbar-thumb {
-      background-color: #acacac;
-    }
-  }
+      background-color: #7e7e7e;
 
-  ::-webkit-scrollbar {
-    width: 7px;
-    background-color: transparent;
+      &:active {
+        background-color: #686868d2;
+      }
+    }
   }
 
   .ant-layout-header.sider-header {

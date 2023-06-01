@@ -1,3 +1,30 @@
+.body-content:has(.home-container) {
+  &.expand {
+    .home-container {
+      .home-content {
+        .carousel-group {
+          .owl-prev,
+          .owl-next,
+          .swiper-button-prev,
+          .swiper-button-next {
+            width: var(--padding-home-expand);
+          }
+
+          .owl-prev,
+          .swiper-button-prev {
+            left: calc(0px - var(--padding-home-expand));
+          }
+
+          .owl-next,
+          .swiper-button-next {
+            right: calc(0px - var(--padding-home-expand));
+          }
+        }
+      }
+    }
+  }
+}
+
 .carousel-group {
   // overflow: visible;
   position: relative;
@@ -17,35 +44,6 @@
         transform: translateX(-50%) translateY(-50%) scale(1.1);
       }
     }
-
-    .owl-dots {
-      position: absolute;
-      top: -55px;
-      right: 0;
-      z-index: -1;
-
-      .owl-dot {
-        span {
-          //   border-radius: 0px;
-        }
-
-        &.active {
-        }
-      }
-    }
-  }
-
-  &:hover {
-    .owl-prev,
-    .owl-next,
-    .swiper-button-prev,
-    .swiper-button-next {
-      opacity: 1;
-
-      &.swiper-button-disabled {
-        opacity: 0;
-      }
-    }
   }
 
   .owl-prev,
@@ -62,16 +60,18 @@
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0px 10px;
-    width: auto;
+    justify-content: center;
+    padding: 0px 0px;
+    width: 30px;
     opacity: 0;
     transition: 0.15s all;
 
     i,
     svg {
-      font-size: 35px;
+      font-size: 3.5rem;
       transition: 0.2s all;
       color: #d3d3d3;
+      height: 100%;
     }
 
     &:hover {
@@ -99,13 +99,71 @@
   .owl-prev,
   .swiper-button-prev {
     background-image: linear-gradient(90deg, #050505 0, #05050500 100%);
-    left: -10px;
+    left: -5px;
   }
 
   .owl-next,
   .swiper-button-next {
     background-image: linear-gradient(90deg, #05050500 0, #050505 100%);
-    right: -10px;
+    right: -5px;
+  }
+
+  &:hover {
+    .owl-prev,
+    .owl-next,
+    .swiper-button-prev,
+    .swiper-button-next {
+      opacity: 1;
+
+      &.swiper-button-disabled {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .body-content:has(.home-container) {
+    .home-container {
+      .home-content {
+        .carousel-group {
+          .owl-prev,
+          .owl-next,
+          .swiper-button-prev,
+          .swiper-button-next {
+            width: 30px;
+          }
+
+          .owl-prev,
+          .swiper-button-prev {
+            left: calc(-15px);
+          }
+
+          .owl-next,
+          .swiper-button-next {
+            right: calc(-15px);
+          }
+        }
+      }
+    }
+
+    &.expand {
+      .home-container {
+        .home-content {
+          .carousel-group {
+            .owl-prev,
+            .swiper-button-prev {
+              left: calc(-30px);
+            }
+
+            .owl-next,
+            .swiper-button-next {
+              right: calc(-30px);
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -119,66 +177,4 @@
       right: -10px;
     }
   }
-}
-
-.swiper.swiper-initialized.swiper-horizontal {
-  // overflow: visible;
-
-  // .swiper-wrapper {
-  //   .swiper-slide {
-  //     .movie-card-vertical-item,
-  //     .movie-card-horizontal-item {
-  //       .detail-flow {
-  //         // top: 50%;
-  //         // right: 12px;
-  //         // transform: translateX(-1%) translateY(-50%) scale(1.1);
-  //         top: 50%;
-  //         left: 50%;
-  //         transform: translateX(-50%) translateY(-50%) scale(1.1);
-  //       }
-  //     }
-  //   }
-  // }
-
-  // &:hover {
-  //   .swiper-button-prev,
-  //   .swiper-button-next {
-  //     z-index: 1;
-  //     opacity: 1;
-  //   }
-  // }
-
-  // .swiper-button-prev,
-  // .swiper-button-next {
-  //   top: auto;
-  //   bottom: 0;
-  //   height: 100%;
-  //   padding: 0px 10px;
-  //   transition: 0.15s all;
-  //   z-index: -1;
-  //   opacity: 0;
-  //   display: flex;
-  //   align-items: center;
-  //   width: auto;
-
-  //   svg {
-  //     color: #d3d3d3;
-  //     font-size: 3rem;
-  //   }
-
-  //   &.swiper-button-disabled {
-  //     // z-index: -1;
-  //     opacity: 0;
-  //   }
-  // }
-
-  // .swiper-button-prev {
-  //   left: -30px;
-  //   background-image: linear-gradient(90deg, #050505 0, #05050500 100%);
-  // }
-
-  // .swiper-button-next {
-  //   right: -30px;
-  //   background-image: linear-gradient(90deg, #05050500 0, #050505 100%);
-  // }
 }

@@ -3,6 +3,7 @@
     <!-- <div class="overlay-backdrop">
       <img :src="getBackdrop(trendings[0]?.backdrop_path)" />
     </div> -->
+    <div class="overlay-backdrop"></div>
 
     <el-carousel
       :interval="7000"
@@ -24,7 +25,7 @@
         <SlideTopicItem :item="item" />
       </el-carousel-item>
 
-      <div class="carousel-arrow">
+      <div class="carousel-arrow" v-show="trendings.length">
         <el-tooltip
           :teleported="false"
           :title="prevItemCarousel"

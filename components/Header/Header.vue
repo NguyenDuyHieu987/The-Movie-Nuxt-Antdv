@@ -296,8 +296,7 @@ onMounted(() => {
     if (st > lastScrollTop) {
       // downscroll code
       if (window.scrollY >= 65) {
-        // header.style.backgroundColor = '#000';
-        header!.style.background = '#0b0b0bcc';
+        header!.style.background = '#070707e6';
       } else if (window.scrollY == 0) {
         header!.style.background =
           'linear-gradient(to bottom, #050505 0, #05050500 100%)';

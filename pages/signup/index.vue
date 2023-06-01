@@ -436,12 +436,9 @@ const handleSignUp = () => {
     avatar: formState.avatar,
   })
     .then((response: any) => {
-      // console.log(response.data);
-      // console.log(response.headers.get('Authorization'));
+      // console.log(response);
 
       if (response?.isInValidEmail == true) {
-        loadingSignUp.value = false;
-
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Email không tồn tại.',
@@ -451,11 +448,9 @@ const handleSignUp = () => {
             }),
         });
       } else if (response?.isVerify === true) {
-        loadingSignUp.value = false;
-
         ElNotification.success({
           title: 'Thành công!',
-          message: `Chúng tôi đã gửi mã xác nhận đến email: ${formState.email}. Vui lòng kiểm tra và nhập mã xác nhận để hoàn tất đăng ký.`,
+          message: `Mã xác nhận đã được gửi đến đến email: ${formState.email}.`,
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -468,8 +463,6 @@ const handleSignUp = () => {
         isSignUp.value = !isSignUp.value;
         formStateVerify.email = formState.email;
       } else if (response.data?.isEmailExist == true) {
-        loadingSignUp.value = false;
-
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Email đã được đăng ký.',
@@ -479,8 +472,6 @@ const handleSignUp = () => {
             }),
         });
       } else if (response?.isSendEmail == false) {
-        loadingSignUp.value = false;
-
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Gửi email thất bại.',
@@ -490,8 +481,6 @@ const handleSignUp = () => {
             }),
         });
       } else {
-        loadingSignUp.value = false;
-
         ElNotification.error({
           title: 'Failed!',
           message: 'Some thing went wrong.',
@@ -503,19 +492,18 @@ const handleSignUp = () => {
       }
     })
     .catch((e) => {
-      setTimeout(() => {
-        loadingSignUp.value = false;
-
-        ElNotification.error({
-          title: 'Failed!',
-          message: 'Some thing went wrong.',
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-      }, 1000);
+      ElNotification.error({
+        title: 'Failed!',
+        message: 'Some thing went wrong.',
+        icon: () =>
+          h(CloseCircleFilled, {
+            style: 'color: red',
+          }),
+      });
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingSignUp.value = false;
     });
 };
 
@@ -531,16 +519,14 @@ const handleResendVerifyEmail = () => {
     avatar: formState.avatar,
   })
     .then((response: any) => {
-      // console.log(response.data);
-      // console.log(response.headers.get('Authorization'));
+      // console.log(response);
 
       if (response?.isVerify === true) {
         disabled_countdown.value = true;
-        loadingResend.value = false;
 
         ElNotification.success({
           title: 'Thành công!',
-          message: `Chúng tôi đã gửi mã xác nhận đến email: ${formState.email}. Vui lòng kiểm tra và nhập mã xác nhận để hoàn tất đăng ký.`,
+          message: `Mã xác nhận đã được gửi đến đến email: ${formState.email}.`,
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -550,8 +536,6 @@ const handleResendVerifyEmail = () => {
 
         jwtToken_VerifyEmail.value = response.headers.get('Authorization');
       } else if (response?.isInValidEmail == true) {
-        loadingResend.value = false;
-
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Email không tồn tại.',
@@ -561,8 +545,6 @@ const handleResendVerifyEmail = () => {
             }),
         });
       } else if (response?.isEmailExist == true) {
-        loadingResend.value = false;
-
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Email đã được đăng ký.',
@@ -572,8 +554,6 @@ const handleResendVerifyEmail = () => {
             }),
         });
       } else if (response?.isSendEmail == false) {
-        loadingResend.value = false;
-
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Gửi email thất bại.',
@@ -583,8 +563,6 @@ const handleResendVerifyEmail = () => {
             }),
         });
       } else {
-        loadingResend.value = false;
-
         ElNotification.error({
           title: 'Failed!',
           message: 'Some thing went wrong.',
@@ -596,19 +574,18 @@ const handleResendVerifyEmail = () => {
       }
     })
     .catch((e) => {
-      setTimeout(() => {
-        loadingResend.value = false;
-
-        ElNotification.error({
-          title: 'Failed!',
-          message: 'Some thing went wrong.',
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-      }, 1000);
+      ElNotification.error({
+        title: 'Failed!',
+        message: 'Some thing went wrong.',
+        icon: () =>
+          h(CloseCircleFilled, {
+            style: 'color: red',
+          }),
+      });
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingResend.value = false;
     });
 };
 
@@ -622,23 +599,17 @@ const handleVerify = () => {
     .then((response) => {
       // console.log(response.data);
       if (response?.isSignUp === true) {
-        setTimeout(() => {
-          loadingVerify.value = false;
-
-          ElNotification.success({
-            title: 'Thành công!',
-            message: 'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
-            icon: () =>
-              h(CheckCircleFilled, {
-                style: 'color: green',
-              }),
-          });
-          navigateTo({ path: '/login' });
-        }, 1000);
+        ElNotification.success({
+          title: 'Thành công!',
+          message: 'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
+          icon: () =>
+            h(CheckCircleFilled, {
+              style: 'color: green',
+            }),
+        });
+        navigateTo({ path: '/login' });
         reset();
       } else if (response?.isInvalidOTP == true) {
-        loadingVerify.value = false;
-
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Mã xác nhận không đúng.',
@@ -647,10 +618,7 @@ const handleVerify = () => {
               style: 'color: red',
             }),
         });
-        // }, 1000);
       } else if (response?.isAccountExist == true) {
-        loadingVerify.value = false;
-
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Tài khoản đã tồn tại.',
@@ -659,10 +627,7 @@ const handleVerify = () => {
               style: 'color: red',
             }),
         });
-        // }, 1000);
       } else if (response?.isOTPExpired == true) {
-        loadingVerify.value = false;
-
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Mã xác nhận đã hết hạn.',
@@ -672,8 +637,6 @@ const handleVerify = () => {
             }),
         });
       } else {
-        loadingVerify.value = false;
-
         ElNotification.error({
           title: 'Failed!',
           message: 'Some thing went wrong.',
@@ -685,19 +648,18 @@ const handleVerify = () => {
       }
     })
     .catch((e) => {
-      setTimeout(() => {
-        loadingVerify.value = false;
-
-        ElNotification.error({
-          title: 'Failed!',
-          message: 'Some thing went wrong.',
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-      }, 1000);
+      ElNotification.error({
+        title: 'Failed!',
+        message: 'Some thing went wrong.',
+        icon: () =>
+          h(CloseCircleFilled, {
+            style: 'color: red',
+          }),
+      });
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingVerify.value = false;
     });
 };
 </script>

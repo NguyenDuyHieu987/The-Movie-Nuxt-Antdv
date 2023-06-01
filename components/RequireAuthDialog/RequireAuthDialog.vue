@@ -1,6 +1,6 @@
 <template>
-  <Teleport to="body" v-if="store.$state.openRequireAuthDialog">
-    <el-dialog
+  <Teleport v-if="store.$state.openRequireAuthDialog" to="body">
+    <!-- <el-dialog
       class="require-auth-dialog"
       v-model="store.$state.openRequireAuthDialog"
       width="30%"
@@ -38,7 +38,45 @@
           </a-button>
         </NuxtLink>
       </template>
-    </el-dialog>
+    </el-dialog> -->
+
+    <a-modal
+      class="require-auth-dialog"
+      v-model:visible="store.$state.openRequireAuthDialog"
+      width="30%"
+      centered
+      destroyOnClose
+      :closable="true"
+    >
+      <template #closeIcon>
+        <CloseBtn
+          class="transparent"
+          @click="store.setCloseRequireAuthDialog()"
+        />
+      </template>
+
+      <a-result title="Bạn cần đăng nhập để sử dụng chức năng này" status="403">
+      </a-result>
+
+      <template #footer>
+        <NuxtLink
+          :to="{ path: '/signup' }"
+          @click="store.setCloseRequireAuthDialog()"
+        >
+          <a-button type="text" size="large" class="default">
+            Đăng ký
+          </a-button>
+        </NuxtLink>
+        <NuxtLink
+          :to="{ path: '/login' }"
+          @click="store.setCloseRequireAuthDialog()"
+        >
+          <a-button type="text" size="large" class="default gradient">
+            Đăng nhập
+          </a-button>
+        </NuxtLink>
+      </template>
+    </a-modal>
   </Teleport>
 </template>
 

@@ -470,7 +470,7 @@ import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
 
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
 const route: any = useRoute();
 const router = useRouter();
