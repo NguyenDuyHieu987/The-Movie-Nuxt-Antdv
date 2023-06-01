@@ -144,11 +144,11 @@ export default defineNuxtConfig({
       ],
       crawlLinks: true,
     },
-    // output: {
-    //   dir: '.output',
-    //   serverDir: '.output/server',
-    //   publicDir: '.output/public',
-    // },
+    output: {
+      dir: '.output',
+      serverDir: '.output/server',
+      publicDir: '.output/public',
+    },
   },
   vite: {
     server: {
