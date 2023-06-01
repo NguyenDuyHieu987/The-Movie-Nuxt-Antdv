@@ -2,7 +2,7 @@
   "name": "nuxt-app",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt build --max_old_space_size=8192",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -59,7 +59,8 @@
     "vue-social-sharing": "^4.0.0-alpha4",
     "vue-virtual-scroll-list": "^2.3.4",
     "vue3-google-login": "^2.0.15",
-    "vuex": "^4.1.0"
+    "vuex": "^4.1.0",
+    "wrangler": "^3.0.1"
   },
   "engines": {
     "node": "^16.0.0"
