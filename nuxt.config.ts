@@ -151,16 +151,7 @@ export default defineNuxtConfig({
     //   publicDir: '.output/public',
     // },
   },
-  hooks: {
-    async 'nitro:config'(nitroConfig) {
-      if (nitroConfig.dev) {
-        return;
-      }
-      nitroConfig!.prerender!.routes!.push('/discover');
-      nitroConfig!.prerender!.routes!.push('/info');
-      nitroConfig!.prerender!.routes!.push('/play');
-    },
-  },
+  hooks: {},
   generate: {},
   build: {},
   vite: {
