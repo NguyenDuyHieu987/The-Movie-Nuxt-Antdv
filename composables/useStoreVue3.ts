@@ -44,50 +44,6 @@ export default defineStore('store', () => {
     openDrawer.value = !openDrawer.value;
   };
 
-  async function getDataHomePage() {
-    await Promise.all([
-      getNowPlaying(1),
-      getUpComing(1),
-      getTvAiringToday(1),
-      getTopRated(1),
-      isLogin.value ? getMyRecommend(1) : null,
-    ])
-      .then((response: any) => {
-        nowPlayings.value = response[0].data?.results;
-        upComings.value = response[1].data?.results;
-        tvAiringTodays.value = response[2].data?.results;
-        topRateds.value = response[3].data?.results;
-        if (isLogin.value) {
-          recommends.value = response[4].data?.results;
-        }
-
-        loadingHomePage.value = true;
-      })
-      .catch((e) => {
-        // loadingHomePage.value = false;
-        if (axios.isCancel(e)) return;
-      });
-  }
-
-  async function getDataMisc() {
-    loadingMisc.value = true;
-
-    Promise.all([getAllGenre(), getAllYear(), getAllNational()])
-      .then((response) => {
-        allGenres.value = response[0].data;
-        allYears.value = response[1].data.sort(function (a: any, b: any) {
-          return +b.name.slice(-4) - +a.name.slice(-4);
-        });
-        allCountries.value = response[2].data;
-
-        loadingMisc.value = true;
-      })
-      .catch((e) => {
-        // loadingMisc.value = false;
-        if (axios.isCancel(e)) return;
-      });
-  }
-
   return {
     collapsed,
     openDrawer,
@@ -107,8 +63,6 @@ export default defineStore('store', () => {
     tvAiringTodays,
     topRateds,
     recommends,
-    getDataHomePage,
-    getDataMisc,
     setCollapsed,
     setOpendrawer,
   };
