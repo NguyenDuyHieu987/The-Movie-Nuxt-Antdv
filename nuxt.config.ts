@@ -131,21 +131,21 @@ export default defineNuxtConfig({
     // vue({ script: { defineModel: true, propsDestructure: true } }),
   ],
   nitro: {
-    preset: 'node-server',
-    prerender: {
-      routes: [
-        '/',
-        '/search',
-        '/follow',
-        '/history',
-        '/ranking',
-        '/billing',
-        '/profile',
-        '/login',
-        '/signup',
-      ],
-      crawlLinks: true,
-    },
+    // preset: 'node-server',
+    // prerender: {
+    //   routes: [
+    //     '/',
+    //     '/search',
+    //     '/follow',
+    //     '/history',
+    //     '/ranking',
+    //     '/billing',
+    //     '/profile',
+    //     '/login',
+    //     '/signup',
+    //   ],
+    //   crawlLinks: true,
+    // },
     // output: {
     //   dir: '.output',
     //   serverDir: '.output/server',
