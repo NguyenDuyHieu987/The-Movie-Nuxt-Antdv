@@ -132,20 +132,21 @@ export default defineNuxtConfig({
   ],
   nitro: {
     // preset: 'node-server',
-    // prerender: {
-    //   routes: [
-    //     '/',
-    //     '/search',
-    //     '/follow',
-    //     '/history',
-    //     '/ranking',
-    //     '/billing',
-    //     '/profile',
-    //     '/login',
-    //     '/signup',
-    //   ],
-    //   crawlLinks: true,
-    // },
+    preset: 'static',
+    prerender: {
+      routes: [
+        '/',
+        '/search',
+        '/follow',
+        '/history',
+        '/ranking',
+        '/billing',
+        '/profile',
+        '/login',
+        '/signup',
+      ],
+      crawlLinks: true,
+    },
     // output: {
     //   dir: '.output',
     //   serverDir: '.output/server',
