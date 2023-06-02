@@ -164,7 +164,7 @@ export default defineNuxtConfig({
   },
   ssr: true,
   routeRules: {
-    '/': { ssr: true },
+    '/': { swr: true },
     '/search/**': { swr: true },
     '/discover/**': { swr: true },
     '/list/**': { swr: true },
