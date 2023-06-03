@@ -25,7 +25,7 @@
         <SlideTopicItem :item="item" />
       </el-carousel-item>
 
-      <div class="carousel-arrow" v-show="trendings.length">
+      <div class="carousel-arrow" v-show="trendings?.length">
         <el-tooltip
           :teleported="false"
           :title="prevItemCarousel"
