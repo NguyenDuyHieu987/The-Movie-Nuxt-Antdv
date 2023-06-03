@@ -305,7 +305,7 @@ import { genre, country, year } from '@/types';
 
 const route: any = useRoute();
 const utils = useUtils();
-const store: any = useStore();
+const store = useStore();
 const state = reactive<any>({
   selectedKeys: [
     route.path
@@ -337,18 +337,25 @@ const getData = async () => {
   ])
     .then((response: any) => {
       genres.value = response[0].data.value;
-      years.value = response[1].data.value.sort(function (a: year, b: year) {
+
+      console.log(
+        response[1].data.value.sort((a: any, b: any) => {
+          return +b.name.slice(-4) - +a.name.slice(-4);
+        })
+      );
+
+      years.value = response[1].data.value.sort((a: year, b: year) => {
         return +b.name.slice(-4) - +a.name.slice(-4);
       });
+
       countries.value = response[2].data.value;
 
       store.$state.allGenres = response[0].data.value;
-      store.$state.allYears = response[1].data.value.sort(function (
-        a: year,
-        b: year
-      ) {
-        return +b.name.slice(-4) - +a.name.slice(-4);
-      });
+      store.$state.allYears = response[1].data.value.sort(
+        (a: year, b: year) => {
+          return +b.name.slice(-4) - +a.name.slice(-4);
+        }
+      );
       store.$state.allCountries = response[2].data.value;
     })
     .catch((e) => {

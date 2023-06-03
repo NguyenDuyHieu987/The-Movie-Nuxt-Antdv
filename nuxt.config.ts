@@ -130,8 +130,7 @@ export default defineNuxtConfig({
     // vue({ script: { defineModel: true, propsDestructure: true } }),
   ],
   nitro: {
-    // preset: 'node-server',
-    preset: 'static',
+    // preset: 'static',
     prerender: {
       routes: [
         '/',
