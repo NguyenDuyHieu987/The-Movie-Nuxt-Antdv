@@ -146,7 +146,7 @@ const responsive = computed<any>((): any => ({
   },
 }));
 
-onBeforeMount(async () => {
+const getData = async () => {
   Promise.all([
     useAsyncData(`similar/${props?.type}/${props?.movieId}`, () =>
       getSimilar(props?.type, props?.movieId)
@@ -162,7 +162,9 @@ onBeforeMount(async () => {
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
-});
+};
+
+getData();
 </script>
 
 <style lang="scss" src="./MovieSuggest.scss"></style>

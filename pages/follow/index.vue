@@ -468,6 +468,41 @@ onMounted(() => {
   ant_btn?.addEventListener('blur', () => {
     disableScroll.off();
   });
+
+  window.addEventListener('scroll', () => {
+    isScroll.value = true;
+    // console.log(window.scrollY + window.innerHeight);
+    // console.log(document.documentElement.scrollHeight);
+
+    const scrollHeight = Math.round(window.scrollY + window.innerHeight);
+    if (
+      scrollHeight == document.documentElement.scrollHeight &&
+      // Math.floor(scrollBottom()) == 0 &&
+      isScroll.value == true &&
+      total.value > 20 &&
+      dataList.value?.length < total.value
+    ) {
+      loadMore.value = true;
+      useAsyncData(
+        `list/get/${store.$state.userAccount?.id}/${skip.value}`,
+        () => getList(skip.value)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value.data?.result?.length > 0) {
+            setTimeout(() => {
+              loadMore.value = false;
+              dataList.value = dataList.value.concat(
+                movieRespone.data.value.data?.result
+              );
+            }, 2000);
+            skip.value += 1;
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        });
+    }
+  });
 });
 
 const getData = () => {
@@ -509,49 +544,7 @@ const getData = () => {
     });
 };
 
-onBeforeMount(() => {
-  getData();
-
-  // var scrollBefore = 0;
-  // const scrollBottom = require('scroll-bottom');
-
-  window.addEventListener('scroll', () => {
-    isScroll.value = true;
-    // console.log(window.scrollY + window.innerHeight);
-    // console.log(document.documentElement.scrollHeight);
-
-    const scrollHeight = Math.round(window.scrollY + window.innerHeight);
-    if (
-      scrollHeight == document.documentElement.scrollHeight &&
-      // Math.floor(scrollBottom()) == 0 &&
-      isScroll.value == true &&
-      total.value > 20 &&
-      dataList.value?.length < total.value
-    ) {
-      loadMore.value = true;
-      useAsyncData(
-        `list/get/${store.$state.userAccount?.id}/${skip.value}`,
-        () => getList(skip.value)
-      )
-        .then((movieRespone: any) => {
-          if (movieRespone.data.value.data?.result?.length > 0) {
-            setTimeout(() => {
-              loadMore.value = false;
-              dataList.value = dataList.value.concat(
-                movieRespone.data.value.data?.result
-              );
-            }, 2000);
-            skip.value += 1;
-          }
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        });
-    }
-  });
-
-  window.onscroll = () => {};
-});
+getData();
 
 const getDataWhenRemoveList = (data: number) => {
   // dataList.value = data;

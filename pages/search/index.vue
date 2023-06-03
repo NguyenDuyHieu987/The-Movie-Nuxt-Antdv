@@ -77,7 +77,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-onBeforeMount(async () => {
+const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(
@@ -90,13 +90,16 @@ onBeforeMount(async () => {
       pageSize.value = searchMovieResponse.data.value?.page_size;
       searchDataMovie.value = searchMovieResponse.data.value?.movie;
       searchDataTv.value = searchMovieResponse.data.value?.tv;
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
     })
     .catch((e) => {
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
-});
+};
+
+getData();
 
 watch(route, async () => {
   await useAsyncData(

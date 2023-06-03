@@ -466,10 +466,6 @@ const setBackgroundColor = (color: string[]) => {
 };
 
 onMounted(() => {
-  // const ant_btn = document.querySelector(
-  //   '.topic-history-column .viewmore-btn-history'
-  // );
-
   const ant_btn = document.getElementsByClassName('viewmore-btn-history')[0];
 
   ant_btn?.addEventListener('click', () => {
@@ -482,6 +478,41 @@ onMounted(() => {
 
   ant_btn?.addEventListener('blur', () => {
     disableScroll.off();
+  });
+
+  window.addEventListener('scroll', () => {
+    isScroll.value = true;
+    // console.log(window.scrollY + window.innerHeight);
+    // console.log(document.documentElement.scrollHeight);
+    const scrollHeight = Math.round(window.scrollY + window.innerHeight);
+
+    if (
+      scrollHeight == document.documentElement.scrollHeight &&
+      // Math.floor(scrollBottom()) == 0 &&
+      isScroll.value == true &&
+      total.value > 20 &&
+      dataHistory.value?.length < total.value
+    ) {
+      loadMore.value = true;
+      useAsyncData(
+        `history/get/${store.$state.userAccount?.id}/${skip.value}`,
+        () => getHistory(skip.value)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value.data?.result?.length > 0) {
+            setTimeout(() => {
+              loadMore.value = false;
+              dataHistory.value = dataHistory.value.concat(
+                movieRespone.data.value.data?.result
+              );
+            }, 2000);
+            skip.value += 1;
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        });
+    }
   });
 });
 
@@ -527,47 +558,7 @@ const getData = () => {
     });
 };
 
-onBeforeMount(() => {
-  getData();
-
-  // const scrollBottom = require('scroll-bottom');
-  window.addEventListener('scroll', () => {
-    isScroll.value = true;
-    // console.log(window.scrollY + window.innerHeight);
-    // console.log(document.documentElement.scrollHeight);
-    const scrollHeight = Math.round(window.scrollY + window.innerHeight);
-
-    if (
-      scrollHeight == document.documentElement.scrollHeight &&
-      // Math.floor(scrollBottom()) == 0 &&
-      isScroll.value == true &&
-      total.value > 20 &&
-      dataHistory.value?.length < total.value
-    ) {
-      loadMore.value = true;
-      useAsyncData(
-        `history/get/${store.$state.userAccount?.id}/${skip.value}`,
-        () => getHistory(skip.value)
-      )
-        .then((movieRespone: any) => {
-          if (movieRespone.data.value.data?.result?.length > 0) {
-            setTimeout(() => {
-              loadMore.value = false;
-              dataHistory.value = dataHistory.value.concat(
-                movieRespone.data.value.data?.result
-              );
-            }, 2000);
-            skip.value += 1;
-          }
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        });
-    }
-  });
-
-  window.onscroll = () => {};
-});
+getData();
 
 const getDataWhenRemoveHistory = (data: number) => {
   // dataHistory.value = data;

@@ -371,22 +371,7 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
-  getData();
-});
-
-onMounted(() => {
-  // getData();
-});
-
-router.beforeEach(() => {
-  // if (to.params.slug == 'play') {
-  //   dataCredit.value = [];
-  //   getData();
-  // }
-});
-
-watch(route, () => {});
+getData();
 
 const checkEmptyDataMovies = computed(() => {
   if (Object.keys(dataMovie.value).length == 0) return true;

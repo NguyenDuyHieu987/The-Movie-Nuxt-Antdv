@@ -411,22 +411,7 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
-  getData();
-});
-
-onMounted(() => {
-  // getData();
-});
-
-router.beforeEach(() => {
-  // if (to.params.slug == 'play') {
-  //   dataCredit.value = [];
-  //   getData();
-  // }
-});
-
-watch(route, () => {});
+getData();
 
 const getUrlCodeMovie = (data: string) => {
   urlCodeMovie.value = data;

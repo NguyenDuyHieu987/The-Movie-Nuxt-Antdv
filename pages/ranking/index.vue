@@ -62,7 +62,7 @@ useSeoMeta({
   ogLocale: 'vi',
 });
 
-onBeforeMount(async () => {
+const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
@@ -72,15 +72,16 @@ onBeforeMount(async () => {
       trendings.value = movieRespone.data.value?.results;
       totalPage.value = movieRespone.data.value?.total;
       pageSize.value = movieRespone.data.value?.page_size;
-
-      setTimeout(() => {
-        internalInstance.appContext.config.globalProperties.$Progress.finish();
-      }, 500);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
-});
+};
+
+getData();
 
 watch(pageTrending, async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>

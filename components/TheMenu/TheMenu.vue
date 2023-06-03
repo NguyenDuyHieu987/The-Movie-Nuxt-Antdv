@@ -329,7 +329,7 @@ const genres = ref<genre[]>([]);
 const years = ref<year[]>([]);
 const countries = ref<country[]>([]);
 
-onBeforeMount(async () => {
+const getData = async () => {
   Promise.all([
     await useAsyncData(`genre/all`, () => getAllGenre()),
     await useAsyncData(`year/all`, () => getAllYear()),
@@ -354,7 +354,9 @@ onBeforeMount(async () => {
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
-});
+};
+
+getData();
 
 watch(route, () => {
   state.selectedKeys = [
