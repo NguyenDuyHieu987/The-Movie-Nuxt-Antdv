@@ -28,4 +28,4 @@ onMounted(() => {
 });
 </script>
 
-<style scoped lang="scss" src="./Pricing.scss"></style>
+<style scoped lang="scss" src="./PricingPage.scss"></style>

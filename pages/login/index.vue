@@ -463,4 +463,4 @@ const handleGooglePopupCallback = (authResponse: any) => {
 };
 </script>
 
-<style lang="scss" src="./LoginView.scss"></style>
+<style lang="scss" src="./LoginPage.scss"></style>

@@ -1,16 +1,5 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import axios from 'axios';
-import {
-  getNowPlaying,
-  getTvAiringToday,
-  getTopRated,
-  getUpComing,
-  getMyRecommend,
-  getAllGenre,
-  getAllNational,
-  getAllYear,
-} from '~/services/appMovieService';
 
 const utils = useUtils();
 
@@ -30,11 +19,6 @@ export default defineStore('store', () => {
   const allGenres = ref<object[]>([]);
   const allCountries = ref<object[]>([]);
   const allYears = ref<object[]>([]);
-  const nowPlayings = ref<object[]>([]);
-  const upComings = ref<object[]>([]);
-  const tvAiringTodays = ref<object[]>([]);
-  const topRateds = ref<object[]>([]);
-  const recommends = ref<object[]>([]);
 
   const setCollapsed = () => {
     collapsed.value = !collapsed.value;
@@ -58,11 +42,6 @@ export default defineStore('store', () => {
     allGenres,
     allCountries,
     allYears,
-    nowPlayings,
-    upComings,
-    tvAiringTodays,
-    topRateds,
-    recommends,
     setCollapsed,
     setOpendrawer,
   };

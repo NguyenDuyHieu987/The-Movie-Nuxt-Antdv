@@ -87,9 +87,9 @@ const getParamsRoute = () => {
     case 'tv':
       breadList.push({ params: 'tv', name: 'Phim bộ' });
       break;
-    case 'genres':
+    case 'genre':
       breadList.push({
-        params: 'genres',
+        params: 'genre',
         // name: route.params?.slug2
         name: getGenresNameByShortName(
           route.params?.slug2,
@@ -97,12 +97,12 @@ const getParamsRoute = () => {
         )?.name_vietsub,
       });
       break;
-    case 'years':
-      breadList.push({ params: 'years', name: route.params?.slug2 });
+    case 'year':
+      breadList.push({ params: 'year', name: route.params?.slug2 });
       break;
-    case 'countries':
+    case 'countrie':
       breadList.push({
-        params: 'countries',
+        params: 'countrie',
         // name: store.state.breadCrumbValue,
         name: store.state.allCountries.find(
           (country: country) => country.short_name === route.params?.slug2

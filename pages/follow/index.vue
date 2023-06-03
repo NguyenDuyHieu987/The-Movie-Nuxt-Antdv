@@ -620,4 +620,4 @@ const onLoadMore = () => {
 };
 </script>
 
-<style lang="scss" src="./FollowView.scss"></style>
+<style lang="scss" src="./FollowPage.scss"></style>

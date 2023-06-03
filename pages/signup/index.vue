@@ -664,4 +664,4 @@ const handleVerify = () => {
 };
 </script>
 
-<style lang="scss" src="./SignupView.scss"></style>
+<style lang="scss" src="./SignupPage.scss"></style>

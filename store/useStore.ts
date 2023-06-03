@@ -1,15 +1,4 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
-import {
-  getNowPlaying,
-  getTvAiringToday,
-  getTopRated,
-  getUpComing,
-  getMyRecommend,
-  getAllGenre,
-  getAllNational,
-  getAllYear,
-} from '~/services/appMovieService';
 
 const utils = useUtils();
 

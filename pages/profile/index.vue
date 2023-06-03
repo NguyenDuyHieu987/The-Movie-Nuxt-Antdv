@@ -9,3 +9,5 @@
 <script setup lang="ts">
 const store = useStore();
 </script>
+
+<style lang="scss" scoped src="./ProfilePage.scss"></style>

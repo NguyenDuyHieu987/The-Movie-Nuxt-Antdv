@@ -22,42 +22,4 @@ const image = ref<number>(Math.floor(Math.random() * 3) + 1);
 const image_mobile = ref<number>(Math.floor(Math.random() * 3) + 1);
 </script>
 
-<style lang="scss">
-@media only screen and (max-width: 500px) {
-  .image-auth:not(.image-auth.responsive) {
-    display: none;
-  }
-
-  .image-auth.responsive {
-    display: block !important;
-  }
-}
-
-.auth-container {
-  overflow-y: scroll;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-
-  .image-auth {
-    height: 100vh;
-    width: 100%;
-    position: absolute;
-  }
-
-  .image-auth.responsive {
-    display: none;
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    opacity: 1;
-    object-fit: cover;
-  }
-}
-</style>
+<style lang="scss" scoped src="../assets/style/authLayout.scss"></style>

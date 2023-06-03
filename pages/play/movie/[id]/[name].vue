@@ -405,4 +405,4 @@ window.scrollTo({
 });
 </script>
 
-<style lang="scss" src="./PlayView.scss"></style>
+<style lang="scss" src="./PlayMoviePage.scss"></style>

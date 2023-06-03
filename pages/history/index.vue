@@ -615,4 +615,4 @@ const searchWatchList = (e: any) => {
 };
 </script>
 
-<style lang="scss" src="./HistoryView.scss"></style>
+<style lang="scss" src="./HistoryPage.scss"></style>

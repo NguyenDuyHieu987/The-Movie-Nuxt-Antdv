@@ -530,8 +530,6 @@ const isAddToList = ref<boolean>(false);
 
 const internalInstance: any = getCurrentInstance();
 
-onMounted(() => {});
-
 const getData = async () => {
   isAddToList.value = false;
   loading.value = true;
@@ -679,4 +677,4 @@ window.scrollTo({
 });
 </script>
 
-<style lang="scss" src="./PrevPlayTVView.scss"></style>
+<style lang="scss" src="./InfoTvPage.scss"></style>

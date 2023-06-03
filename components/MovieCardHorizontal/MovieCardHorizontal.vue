@@ -245,6 +245,8 @@ const getData = async () => {
   }
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 </script>
 <style lang="scss" src="./MovieCardHorizontal.scss"></style>

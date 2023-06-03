@@ -415,10 +415,9 @@ const getData = async () => {
   }
 };
 
-getData();
-
-// onBeforeMount(() => {
-// });
+onBeforeMount(() => {
+  getData();
+});
 
 const scrolltoTrailerYoutube = () => {
   const trailer_youtube = document.getElementById(
@@ -477,4 +476,4 @@ window.scrollTo({
 });
 </script>
 
-<style lang="scss" src="./PrevPlayView.scss"></style>
+<style lang="scss" src="./InfoMoviePage.scss"></style>

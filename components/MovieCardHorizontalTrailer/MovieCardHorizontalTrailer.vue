@@ -173,6 +173,9 @@ const getData = async () => {
       });
   }
 };
-getData();
+
+onBeforeMount(() => {
+  getData();
+});
 </script>
 <style lang="scss" src="./MovieCardHorizontalTrailer.scss"></style>

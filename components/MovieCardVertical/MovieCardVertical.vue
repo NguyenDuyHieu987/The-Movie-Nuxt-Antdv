@@ -194,7 +194,7 @@ const onMouseEnter = (e: any) => {
   }
 };
 
-onBeforeMount(async () => {
+const getData = async () => {
   loading.value = true;
 
   setTimeout(() => {
@@ -251,6 +251,10 @@ onBeforeMount(async () => {
         if (axios.isCancel(e)) return;
       });
   }
+};
+
+onBeforeMount(() => {
+  getData();
 });
 </script>
 <style lang="scss" src="./MovieCardVertical.scss"></style>

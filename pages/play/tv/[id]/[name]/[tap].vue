@@ -449,4 +449,4 @@ window.scrollTo({
 });
 </script>
 
-<style lang="scss" src="./PlayViewTV.scss"></style>
+<style lang="scss" src="./PlayTvPage.scss"></style>

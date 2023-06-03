@@ -50,9 +50,7 @@ const router = useRouter();
 const route: any = useRoute();
 const loadingHomePage = ref<boolean>(true);
 
-onBeforeMount(() => {
-  // console.log(store.$state);
-
+const getData = async () => {
   if (utils.localStorage.getWithExpiry('userAccount')?.user_token) {
     getUserToken({
       user_token: utils.localStorage.getWithExpiry('userAccount')?.user_token,
@@ -92,81 +90,12 @@ onBeforeMount(() => {
     }
     loadingHomePage.value = false;
   }, 2000);
-});
+};
 
-// router.beforeResolve((to, from, next) => {
-//   console.log(to);
-// });
+getData();
+onBeforeMount(() => {
+  // console.log(store.$state);
+});
 </script>
 
-<style lang="scss" scoped>
-@media only screen and (max-width: 1000px) {
-  #components-back-top-demo-custom .ant-back-top {
-    bottom: 30px !important;
-    right: 30px !important;
-  }
-}
-
-@media only screen and (max-width: 680px) {
-  #components-back-top-demo-custom .ant-back-top {
-    bottom: 20px !important;
-    right: 20px !important;
-  }
-}
-.app-wrapper {
-  overflow: hidden;
-}
-
-.loading-page {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1000;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: var(--loading-background);
-  overflow: hidden;
-
-  .loading-page-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    user-select: none;
-
-    img {
-      width: 64px;
-      height: 64px;
-    }
-
-    // h3 {
-    //   margin: 10px 0px;
-    // }
-  }
-}
-
-.app-back-top {
-  bottom: 40px;
-  right: 40px;
-  height: 45px;
-  width: 45px;
-  line-height: 45px;
-  border-radius: 50%;
-  border: 1px solid #fff;
-  background-color: var(--background-content-color1);
-  color: #fff;
-  text-align: center;
-  font-size: 20px;
-  box-shadow: var(--box-shadow-small) !important;
-  transition: all 0.25s;
-
-  &:active {
-    opacity: 0.8;
-  }
-}
-</style>
+<style lang="scss" scoped src="./assets/style/app.scss"></style>

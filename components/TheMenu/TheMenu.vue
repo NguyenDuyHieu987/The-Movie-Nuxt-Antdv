@@ -296,11 +296,11 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
 import { HomeOutlined } from '@ant-design/icons-vue';
 import { getAllGenre } from '~/services/genres';
 import { getAllCountry } from '~/services/country';
 import { getAllYear } from '~/services/year';
-import axios from 'axios';
 import { genre, country, year } from '@/types';
 
 const route: any = useRoute();
@@ -357,7 +357,9 @@ const getData = async () => {
     });
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 watch(route, () => {
   state.selectedKeys = [

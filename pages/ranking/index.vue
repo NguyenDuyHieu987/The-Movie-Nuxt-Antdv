@@ -81,7 +81,9 @@ const getData = async () => {
     });
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 watch(pageTrending, async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
@@ -101,4 +103,4 @@ const onChangePage = (pageSelected: number) => {
 };
 </script>
 
-<style lang="scss" src="./RankingView.scss"></style>
+<style lang="scss" src="./RankingPage.scss"></style>
