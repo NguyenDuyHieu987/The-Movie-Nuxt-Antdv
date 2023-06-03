@@ -516,12 +516,12 @@ onMounted(() => {
   });
 });
 
-const getData = () => {
+const getData = async () => {
   loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  useAsyncData(`history/get/${store.$state.userAccount?.id}/1`, () =>
-    getHistory()
+  await useAsyncData(`history/get/${store.$state.userAccount?.id}/1`, () =>
+    getHistory(0)
   )
     .then((movieRespone: any) => {
       if (movieRespone.data.value?.result?.items?.length > 0) {

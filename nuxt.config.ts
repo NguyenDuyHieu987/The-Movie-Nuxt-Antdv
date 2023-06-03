@@ -87,8 +87,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    apiKey: process.env.NUXT_API_KEY || 'default_api_url',
-    adminWebsiteUrl: 'https://dashboard.phimhay247.site/',
+    // apiKey: process.env.NUXT_API_KEY || 'default_api_url',
     app: {},
     public: {},
   },

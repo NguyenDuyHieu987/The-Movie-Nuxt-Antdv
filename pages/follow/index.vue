@@ -505,11 +505,13 @@ onMounted(() => {
   });
 });
 
-const getData = () => {
+const getData = async () => {
   loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () => getList())
+  await useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () =>
+    getList(0)
+  )
     .then((movieRespone: any) => {
       if (movieRespone.data.value?.result?.items?.length > 0) {
         dataList.value = movieRespone.data.value?.result?.items;
