@@ -122,7 +122,6 @@ export default defineNuxtConfig({
   plugins: [
     '@/plugins/antd',
     '@/plugins/fontawesome',
-    { src: '@/plugins/owlcarousel', mode: 'client' },
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/googlelogin',
