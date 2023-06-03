@@ -307,7 +307,7 @@ onMounted(() => {
   });
 });
 
-onBeforeMount(async () => {
+const getData = async () => {
   loading.value = true;
   percent.value = props.item?.percent;
 
@@ -372,32 +372,14 @@ onBeforeMount(async () => {
       case 1:
         timeLine.value = 'Hôm qua';
         break;
-      // case 2:
-      //   timeLine.value = '2 Ngày trước';
-      //   break;
-      // case 3:
-      //   timeLine.value = '3 Ngày trước';
-      //   break;
-      // case 4:
-      //   timeLine.value = '4 Ngày trước';
-      //   break;
-      // case 5:
-      //   timeLine.value = '5 Ngày trước';
-      //   break;
-      // case 6:
-      //   timeLine.value = '6 Ngày trước';
-      //   break;
-      // case 7:
-      //   timeLine.value = '1 Tuần trước';
-      //   break;
       default:
         timeLine.value = date_old_moment_format;
         break;
     }
   }
 
-  if (props?.type) {
-    switch (props?.type) {
+  if (props?.type || props?.item?.media_type) {
+    switch (props?.type || props?.item?.media_type) {
       case 'movie':
         isEpisodes.value = false;
         await useAsyncData(`movie/short/${props.item?.id}`, () =>
@@ -432,37 +414,6 @@ onBeforeMount(async () => {
       default:
         break;
     }
-  } else {
-    if (props?.item?.media_type == 'tv' || props?.item?.type) {
-      isEpisodes.value = true;
-
-      await useAsyncData(`tv/short/${props.item?.id}`, () =>
-        getTvById(props.item?.id)
-      )
-        .then((tvResponed: any) => {
-          dataMovie.value = tvResponed.data.value;
-
-          loading.value = false;
-        })
-        .catch((e) => {
-          loading.value = false;
-          if (axios.isCancel(e)) return;
-        });
-    } else {
-      isEpisodes.value = false;
-      await useAsyncData(`movie/short/${props.item?.id}`, () =>
-        getMovieById(props.item?.id)
-      )
-        .then((movieResponed: any) => {
-          dataMovie.value = movieResponed.data.value;
-
-          loading.value = false;
-        })
-        .catch((e) => {
-          loading.value = false;
-          if (axios.isCancel(e)) return;
-        });
-    }
   }
 
   if (dataMovie.value?.in_list) {
@@ -481,7 +432,9 @@ onBeforeMount(async () => {
   //   .catch((e) => {
   //     if (axios.isCancel(e)) return;
   //   });
-});
+};
+
+getData();
 
 const handelAddToList = () => {
   if (!isAddToList.value) {

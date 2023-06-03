@@ -147,9 +147,7 @@ const getDataRanking = (activeKey: string) => {
   }
 };
 
-onBeforeMount(() => {
-  getDataRanking(activeTab.value);
-});
+getDataRanking(activeTab.value);
 
 const handleTabClick = (activeKey: any) => {
   getDataRanking(activeKey);

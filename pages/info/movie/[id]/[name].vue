@@ -415,13 +415,10 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
-  getData();
-});
+getData();
 
-onMounted(() => {
-  // getData();
-});
+// onBeforeMount(() => {
+// });
 
 const scrolltoTrailerYoutube = () => {
   const trailer_youtube = document.getElementById(

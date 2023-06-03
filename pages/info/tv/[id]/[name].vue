@@ -620,13 +620,7 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
-  getData();
-});
-
-onMounted(() => {
-  // getData();
-});
+getData();
 
 const scrolltoTrailerYoutube = () => {
   const trailer_youtube = document.getElementById(

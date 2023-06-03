@@ -247,11 +247,11 @@ onMounted(() => {
   });
 });
 
-onBeforeMount(async () => {
+const getData = async () => {
   loading.value = true;
 
-  if (props?.type) {
-    switch (props?.type) {
+  if (props?.type || props?.item?.media_type) {
+    switch (props?.type || props?.item?.media_type) {
       case 'movie':
         isEpisodes.value = false;
         await useAsyncData(`movie/short/${props.item?.id}`, () =>
@@ -286,37 +286,6 @@ onBeforeMount(async () => {
       default:
         break;
     }
-  } else {
-    if (props?.item?.media_type == 'tv' || props?.item?.type) {
-      isEpisodes.value = true;
-
-      await useAsyncData(`tv/short/${props.item?.id}`, () =>
-        getTvById(props.item?.id)
-      )
-        .then((tvResponed: any) => {
-          dataMovie.value = tvResponed.data.value;
-
-          loading.value = false;
-        })
-        .catch((e) => {
-          loading.value = false;
-          if (axios.isCancel(e)) return;
-        });
-    } else {
-      isEpisodes.value = false;
-      await useAsyncData(`movie/short/${props.item?.id}`, () =>
-        getMovieById(props.item?.id)
-      )
-        .then((movieResponed: any) => {
-          dataMovie.value = movieResponed.data.value;
-
-          loading.value = false;
-        })
-        .catch((e) => {
-          loading.value = false;
-          if (axios.isCancel(e)) return;
-        });
-    }
   }
 
   if (dataMovie.value?.in_history) {
@@ -337,7 +306,9 @@ onBeforeMount(async () => {
   //   .catch((e) => {
   //     if (axios.isCancel(e)) return;
   //   });
-});
+};
+
+getData();
 
 const handleRemoveFromList = async () => {
   if (await utils.handelRemoveItemFromList(dataMovie.value?.id)) {

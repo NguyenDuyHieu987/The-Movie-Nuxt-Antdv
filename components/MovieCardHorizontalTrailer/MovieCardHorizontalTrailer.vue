@@ -130,81 +130,25 @@ const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const isOpenModalTrailer = ref<boolean>(false);
 
-onBeforeMount(async () => {
+const getData = async () => {
   loading.value = true;
 
   setTimeout(() => {
     loading.value = false;
   }, 500);
 
-  if (props?.type) {
-    switch (props?.type) {
+  if (props?.type || props?.item?.media_type) {
+    switch (props?.type || props?.item?.media_type) {
       case 'movie':
         isEpisodes.value = false;
 
-        // await useAsyncData(`movie/short/${props.item?.id}`, () =>
-        //   getMovieById(props.item?.id)
-        // )
-        //   .then((movieResponed: any) => {
-        //     dataMovie.value = movieResponed.data.value.data;
-
-        //     loading.value = false;
-        //   })
-        //   .catch((e) => {
-        //     loading.value = false;
-        //     if (axios.isCancel(e)) return;
-        //   });
         break;
       case 'tv':
         isEpisodes.value = true;
 
-        // await useAsyncData(`tv/short/${props.item?.id}`, () =>
-        //   getTvById(props.item?.id)
-        // )
-        //   .then((tvResponed: any) => {
-        //     dataMovie.value = tvResponed.data.value.data;
-
-        //     loading.value = false;
-        //   })
-        //   .catch((e) => {
-        //     loading.value = false;
-        //     if (axios.isCancel(e)) return;
-        //   });
         break;
       default:
         break;
-    }
-  } else {
-    if (props?.item?.media_type == 'tv' || props?.item?.type) {
-      isEpisodes.value = true;
-
-      // await useAsyncData(`tv/short/${props.item?.id}`, () =>
-      //   getTvById(props.item?.id)
-      // )
-      //   .then((tvResponed: any) => {
-      //     dataMovie.value = tvResponed.data.value.data;
-
-      //     loading.value = false;
-      //   })
-      //   .catch((e) => {
-      //     loading.value = false;
-      //     if (axios.isCancel(e)) return;
-      //   });
-    } else {
-      isEpisodes.value = false;
-
-      // await useAsyncData(`movie/short/${props.item?.id}`, () =>
-      //   getMovieById(props.item?.id)
-      // )
-      //   .then((movieResponed: any) => {
-      //     dataMovie.value = movieResponed.data.value.data;
-
-      //     loading.value = false;
-      //   })
-      //   .catch((e) => {
-      //     loading.value = false;
-      //     if (axios.isCancel(e)) return;
-      //   });
     }
   }
 
@@ -228,6 +172,7 @@ onBeforeMount(async () => {
         if (axios.isCancel(e)) return;
       });
   }
-});
+};
+getData();
 </script>
 <style lang="scss" src="./MovieCardHorizontalTrailer.scss"></style>

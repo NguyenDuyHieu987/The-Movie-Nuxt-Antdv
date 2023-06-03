@@ -133,6 +133,7 @@ body {
 body {
   line-height: 1.43;
   font-size: 1.6rem;
+  // font-size: clamp(1.4rem, 1vw, 10rem);
   font-family: 'Roboto Flex', sans-serif;
   text-rendering: optimizeSpeed;
   // user-select: none;
