@@ -1,3 +1,12 @@
+.body-content {
+  &.expand {
+    .ant-layout-sider.sider-bar {
+      // left: var(--sider-collapsed-width);
+      // width: var(--sider-collapsed-width) !important;
+    }
+  }
+}
+
 .ant-layout-sider.sider-bar {
   position: fixed;
   left: 0;
@@ -22,6 +31,10 @@
   ::-webkit-scrollbar,
   ::-webkit-scrollbar-thumb {
     background-color: transparent;
+  }
+
+  &.ant-layout-sider-collapsed {
+    border: none;
   }
 
   &:hover {
@@ -164,6 +177,7 @@
     min-width: 0px !important;
     max-width: 0px !important;
     overflow: hidden;
+    border: none;
     // display: none;
   }
 }

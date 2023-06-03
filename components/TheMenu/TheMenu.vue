@@ -336,27 +336,21 @@ const getData = async () => {
     await useAsyncData(`country/all`, () => getAllCountry()),
   ])
     .then((response: any) => {
-      genres.value = response[0].data.value;
+      genres.value = response[0].data.value?.result;
 
-      console.log(
-        response[1].data.value.sort((a: any, b: any) => {
-          return +b.name.slice(-4) - +a.name.slice(-4);
-        })
-      );
-
-      years.value = response[1].data.value.sort((a: year, b: year) => {
+      years.value = response[1].data.value?.result.sort((a: year, b: year) => {
         return +b.name.slice(-4) - +a.name.slice(-4);
       });
 
-      countries.value = response[2].data.value;
+      countries.value = response[2].data.value?.result;
 
-      store.$state.allGenres = response[0].data.value;
-      store.$state.allYears = response[1].data.value.sort(
+      store.$state.allGenres = response[0].data.value?.result;
+      store.$state.allYears = response[1].data.value?.result.sort(
         (a: year, b: year) => {
           return +b.name.slice(-4) - +a.name.slice(-4);
         }
       );
-      store.$state.allCountries = response[2].data.value;
+      store.$state.allCountries = response[2].data.value?.result;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

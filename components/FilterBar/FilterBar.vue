@@ -179,12 +179,14 @@ onBeforeMount(async () => {
     await useAsyncData(`sortby/all`, () => getAllSortBy()),
   ])
     .then((response: any) => {
-      genres.value = response[0].data.value;
-      years.value = response[1].data.value.sort((a: year, b: year): number => {
-        return +b.name.slice(-4) - +a.name.slice(-4);
-      });
-      countries.value = response[2].data.value;
-      listSortBy.value = response[3].data.value;
+      genres.value = response[0].data.value?.result;
+      years.value = response[1].data.value?.result.sort(
+        (a: year, b: year): number => {
+          return +b.name.slice(-4) - +a.name.slice(-4);
+        }
+      );
+      countries.value = response[2].data.value?.result;
+      listSortBy.value = response[3].data.value?.result;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

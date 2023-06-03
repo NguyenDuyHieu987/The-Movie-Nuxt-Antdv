@@ -40,9 +40,7 @@
       border: none;
       cursor: pointer;
       color: #fff;
-      // border-right: 0.25px solid var( --border-regular-light);
-      // margin-right: 10px;
-      transition: all 0.25s;
+      transition: opacity 0.25s;
 
       &.mobile {
         display: none;

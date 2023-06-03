@@ -3,7 +3,6 @@
     v-model:collapsed="collapsed"
     width="var(--sider-width)"
     collapsedWidth="var(--sider-collapsed-width)"
-    style=""
     class="sider-bar"
   >
     <a-layout-header class="sider-header">
@@ -32,26 +31,8 @@
             </a-avatar>
           </a-tooltip>
         </div>
-
-        <!-- </a-skeleton> -->
       </div>
     </a-layout-header>
-
-    <!-- <a-list>
-      <template #header>
-        <div
-          style="display: flex; justify-content: center; align-items: center"
-        >
-          <h3 style="color: #fff" v-if="!collapsed">DuyHieu</h3>
-          <div v-else class="user-name-container">
-            <h4 style="color: #fff">
-              {{ 'DuyHieu'.slice(0, 2).toUpperCase() }}
-            </h4>
-          </div>
-        </div>
-      </template>
-    <TheMenu />
-    </a-list> -->
 
     <TheMenu />
     <a-layout-footer @click="store.setCollapsed()">
