@@ -12,7 +12,7 @@
     />
   </ClientOnly>
 
-  <div
+  <!-- <div
     v-if="
       // $route.name == 'index' &&
       loadingHomePage && !store.$state.loadingHomePage
@@ -23,17 +23,17 @@
       <img src="/images/logo.png" alt="" />
       <div class="logo"><h2 class="animated">Phimhay247</h2></div>
     </div>
-  </div>
+  </div> -->
 
-  <div v-else class="app-wrapper">
-    <NuxtLayout>
-      <NuxtPage />
+  <!-- <div v-else class="app-wrapper"> -->
+  <NuxtLayout>
+    <NuxtPage />
 
-      <el-backtop class="app-back-top" :visibilityHeight="600">
-        <font-awesome-icon icon="fa-solid fa-chevron-up" />
-      </el-backtop>
-    </NuxtLayout>
-  </div>
+    <el-backtop class="app-back-top" :visibilityHeight="600">
+      <font-awesome-icon icon="fa-solid fa-chevron-up" />
+    </el-backtop>
+  </NuxtLayout>
+  <!-- </div> -->
 </template>
 
 <script setup lang="ts">
