@@ -1,38 +1,40 @@
 <template>
-  <ClientOnly>
-    <vue-progress-bar
-      style="
-        background: linear-gradient(
-          90deg,
-          var(--loading-progress-bar1),
-          var(--loading-progress-bar2),
-          var(--loading-progress-bar3)
-        );
-      "
-    />
-  </ClientOnly>
+  <div>
+    <ClientOnly>
+      <vue-progress-bar
+        style="
+          background: linear-gradient(
+            90deg,
+            var(--loading-progress-bar1),
+            var(--loading-progress-bar2),
+            var(--loading-progress-bar3)
+          );
+        "
+      />
+    </ClientOnly>
 
-  <!-- <div
-      v-if="
-        // $route.name == 'index' &&
-        loadingHomePage && !store.$state.loadingHomePage
-      "
-      class="loading-page"
-    >
-      <div class="loading-page-container">
-        <img src="/images/logo.png" alt="" />
-        <div class="logo"><h2 class="animated">Phimhay247</h2></div>
-      </div>
-    </div> -->
+    <!-- <div
+        v-if="
+          // $route.name == 'index' &&
+          loadingHomePage && !store.$state.loadingHomePage
+        "
+        class="loading-page"
+      >
+        <div class="loading-page-container">
+          <img src="/images/logo.png" alt="" />
+          <div class="logo"><h2 class="animated">Phimhay247</h2></div>
+        </div>
+      </div> -->
 
-  <div class="app-wrapper">
-    <NuxtLayout>
-      <NuxtPage />
+    <div class="app-wrapper">
+      <NuxtLayout>
+        <NuxtPage />
 
-      <el-backtop class="app-back-top" :visibilityHeight="600">
-        <font-awesome-icon icon="fa-solid fa-chevron-up" />
-      </el-backtop>
-    </NuxtLayout>
+        <el-backtop class="app-back-top" :visibilityHeight="600">
+          <font-awesome-icon icon="fa-solid fa-chevron-up" />
+        </el-backtop>
+      </NuxtLayout>
+    </div>
   </div>
 </template>
 

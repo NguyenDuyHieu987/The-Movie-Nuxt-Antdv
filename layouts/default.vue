@@ -3,14 +3,10 @@
     <RequireAuthDialog />
 
     <a-layout class="app-wrapper">
-      <ClientOnly>
-        <Header />
-      </ClientOnly>
+      <Header />
       <a-layout :class="[collapsed ? 'expand' : '', 'body-content']">
-        <ClientOnly>
-          <Sider />
-          <Drawer />
-        </ClientOnly>
+        <Sider />
+        <Drawer />
 
         <a-layout
           v-show="isLogin && $route.path == '/follow'"
