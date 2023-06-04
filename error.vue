@@ -24,4 +24,4 @@ useHead({
 });
 </script>
 
-<style lang="scss" src="./assets/style/error404View.scss" scoped></style>
+<style lang="scss" src="./assets/style/error404Page.scss" scoped></style>
