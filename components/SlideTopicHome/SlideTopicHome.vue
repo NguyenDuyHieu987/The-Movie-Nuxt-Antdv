@@ -89,14 +89,14 @@ onBeforeMount(async () => {
   //   .catch((e) => {
   //     if (axios.isCancel(e)) return;
   //   });
-});
 
-watch(props, () => {
   if (props.trendings?.length) {
     prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
     nextItemCarousel.value = props.trendings[1]?.name;
   }
 });
+
+watch(props, () => {});
 
 const handleChangeCarouel = (activeIndex: number) => {
   if (activeIndex == props.trendings?.length - 1) {
