@@ -28,9 +28,6 @@ useSeoMeta({
 const internalInstance: any = getCurrentInstance();
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
-});
-
-onMounted(() => {
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 });
 </script>

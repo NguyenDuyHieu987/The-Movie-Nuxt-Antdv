@@ -558,7 +558,9 @@ const getData = async () => {
     });
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 const getDataWhenRemoveHistory = (data: number) => {
   // dataHistory.value = data;

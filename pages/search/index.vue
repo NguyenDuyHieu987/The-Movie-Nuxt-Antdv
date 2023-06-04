@@ -62,23 +62,22 @@ const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
 
-// useSeoMeta({
-//   title: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
-//   description: 'Tìm kiếm phim hay vói Phimhay247',
-//   ogTitle: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
-//   ogType: 'video.movie',
-//   // ogUrl: window.location.href,
-//   ogDescription: 'Tìm kiếm phim hay vói Phimhay247',
-//   ogLocale: 'vi',
-// });
-
-useHead({
-  title: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
-  htmlAttrs: { lang: 'vi' },
-});
-
 const getData = async () => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
+  useHead({
+    title: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
+    htmlAttrs: { lang: 'vi' },
+  });
+
+  useSeoMeta({
+    title: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
+    description: 'Tìm kiếm phim hay vói Phimhay247',
+    ogTitle:
+      'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
+    ogType: 'video.movie',
+    // ogUrl: window.location.href,
+    ogDescription: 'Tìm kiếm phim hay vói Phimhay247',
+    ogLocale: 'vi',
+  });
 
   await useAsyncData(
     `search/all/${route.query?.q.replaceAll('+', ' ')}/${page.value}`,
@@ -100,22 +99,13 @@ const getData = async () => {
 };
 
 onBeforeMount(() => {
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+
   getData();
 });
 
-watch(route, async () => {
-  await useAsyncData(
-    `search/all/${route.query?.q.replaceAll('+', ' ')}/${page.value}`,
-    () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), page.value)
-  )
-    .then((searchMovieResponse: any) => {
-      searchData.value = searchMovieResponse.data.value?.results;
-      searchDataMovie.value = searchMovieResponse.data.value?.movie;
-      searchDataTv.value = searchMovieResponse.data.value?.tv;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+watch(route, () => {
+  getData();
 });
 
 const handleChangeType = (activeKey: any) => {

@@ -546,7 +546,9 @@ const getData = async () => {
     });
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 const getDataWhenRemoveList = (data: number) => {
   // dataList.value = data;
