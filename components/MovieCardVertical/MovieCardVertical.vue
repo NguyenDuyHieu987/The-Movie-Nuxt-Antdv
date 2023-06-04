@@ -253,8 +253,7 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
-  getData();
-});
+onBeforeMount(() => {});
+getData();
 </script>
 <style lang="scss" src="./MovieCardVertical.scss"></style>

@@ -80,6 +80,7 @@ const topicHome = ref<any>();
 // const trendings = ref([]);
 const prevItemCarousel = ref<string>('');
 const nextItemCarousel = ref<string>('');
+const trendingsData = computed<any[]>(() => props.trendings);
 
 onBeforeMount(async () => {
   // await useAsyncData('trending/all/1', () => getTrending(1))
@@ -89,14 +90,14 @@ onBeforeMount(async () => {
   //   .catch((e) => {
   //     if (axios.isCancel(e)) return;
   //   });
+});
 
+watch(trendingsData, () => {
   if (props.trendings?.length) {
     prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
     nextItemCarousel.value = props.trendings[1]?.name;
   }
 });
-
-watch(props, () => {});
 
 const handleChangeCarouel = (activeIndex: number) => {
   if (activeIndex == props.trendings?.length - 1) {

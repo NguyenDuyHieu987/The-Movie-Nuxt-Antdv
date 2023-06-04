@@ -1,6 +1,7 @@
 <template>
   <div class="home-container">
     <SlideTopicHome :trendings="trendings" />
+
     <div class="home-content">
       <div class="temp"></div>
       <section class="home-section outstanding">
