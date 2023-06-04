@@ -63,28 +63,26 @@ const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
 const queryParams = computed<string>(() => route.query?.q.replaceAll('+', ' '));
 
-useHead({
-  title: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
-  htmlAttrs: { lang: 'vi' },
-});
-
-useSeoMeta({
-  title: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
-  description: 'Tìm kiếm phim hay vói Phimhay247',
-  ogTitle: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
-  ogType: 'video.movie',
-  // ogUrl: window.location.href,
-  ogDescription: 'Tìm kiếm phim hay vói Phimhay247',
-  ogLocale: 'vi',
-});
-
 const getData = async () => {
+  useHead({
+    title: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
+    htmlAttrs: { lang: 'vi' },
+  });
+
+  useSeoMeta({
+    title: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
+    description: 'Tìm kiếm phim hay vói Phimhay247',
+    ogTitle: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
+    ogType: 'video.movie',
+    // ogUrl: window.location.href,
+    ogDescription: 'Tìm kiếm phim hay vói Phimhay247',
+    ogLocale: 'vi',
+  });
+
   await useAsyncData(`search/all/${queryParams.value}/${page.value}`, () =>
     getDaTaSearch(queryParams.value, page.value)
   )
     .then((response) => {
-      console.log(response.data?.value);
-
       searchData.value = response.data.value?.results;
       totalPage.value = response.data.value?.total;
       pageSize.value = response.data.value?.page_size;

@@ -77,19 +77,18 @@ const trendings = ref<any[]>([]);
 const prevItemCarousel = ref<string>('');
 const nextItemCarousel = ref<string>('');
 
-onBeforeMount(async () => {
-  await useAsyncData(`trending/all/1`, () => getTrending(1))
-    .then((response: any) => {
-      trendings.value = response.data.value?.results;
+onBeforeMount(async () => {});
 
-      prevItemCarousel.value =
-        trendings.value[trendings.value?.length - 1]?.name;
-      nextItemCarousel.value = trendings.value[1]?.name;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
-});
+useAsyncData(`trending/all/1`, () => getTrending(1))
+  .then((response: any) => {
+    trendings.value = response.data.value?.results;
+
+    prevItemCarousel.value = trendings.value[trendings.value?.length - 1]?.name;
+    nextItemCarousel.value = trendings.value[1]?.name;
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
 
 const handleChangeCarouel = (activeIndex: number) => {
   if (activeIndex == trendings.value?.length - 1) {
