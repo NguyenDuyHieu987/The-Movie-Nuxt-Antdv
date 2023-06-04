@@ -11,6 +11,7 @@
   "devDependencies": {
     "@types/node": "^18",
     "node-sass": "^9.0.0",
+    "nuxt": "^3.5.2",
     "sass-loader": "^13.3.0"
   },
   "dependencies": {
@@ -41,7 +42,6 @@
     "md5": "^2.3.0",
     "moment": "^2.29.4",
     "normalize.css": "^8.0.1",
-    "nuxt": "^3.5.2",
     "nuxt-icon": "^0.3.3",
     "nuxt-lazy-load": "^3.0.4",
     "nuxt-swiper": "^1.1.0",

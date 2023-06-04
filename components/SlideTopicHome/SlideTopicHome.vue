@@ -90,7 +90,7 @@ onBeforeMount(async () => {
   //   });
 });
 
-watch(props, () => {
+watch(props.trendings, () => {
   prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
   nextItemCarousel.value = props.trendings[1]?.name;
 });
