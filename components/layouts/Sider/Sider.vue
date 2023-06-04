@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 // import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
-import TheMenu from '../TheMenu/TheMenu.vue';
+import TheMenu from '@/components/TheMenu/TheMenu.vue';
 import { useStore } from '@/store/useStore';
 import { storeToRefs } from 'pinia';
 

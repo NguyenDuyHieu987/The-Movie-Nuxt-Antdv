@@ -75,6 +75,7 @@ import { getTrending, getBackdrop } from '~/services/appMovieService';
 const props = defineProps<{
   trendings: any[];
 }>();
+
 const topicHome = ref<any>();
 // const trendings = ref([]);
 const prevItemCarousel = ref<string>('');
@@ -90,9 +91,11 @@ onBeforeMount(async () => {
   //   });
 });
 
-watch(props.trendings, () => {
-  prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
-  nextItemCarousel.value = props.trendings[1]?.name;
+watch(props, () => {
+  if (props.trendings?.length) {
+    prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
+    nextItemCarousel.value = props.trendings[1]?.name;
+  }
 });
 
 const handleChangeCarouel = (activeIndex: number) => {
@@ -108,123 +111,123 @@ const handleChangeCarouel = (activeIndex: number) => {
   }
 };
 
-const handleSwitchCarouel = (activeIndex: number) => {
-  const el_carousel_topic_home = document.querySelector(
-    '.el-carousel.topic-home'
-  ) as HTMLElement;
+// const handleSwitchCarouel = (activeIndex: number) => {
+//   const el_carousel_topic_home = document.querySelector(
+//     '.el-carousel.topic-home'
+//   ) as HTMLElement;
 
-  const index_silde_topic_item_active = el_carousel_topic_home?.querySelector(
-    '.el-carousel__item.is-active'
-  ) as HTMLElement;
+//   const index_silde_topic_item_active = el_carousel_topic_home?.querySelector(
+//     '.el-carousel__item.is-active'
+//   ) as HTMLElement;
 
-  let index = +index_silde_topic_item_active!.getAttribute('index')! + 1;
-  if (index == 11) {
-    index = 0;
-  }
+//   let index = +index_silde_topic_item_active!.getAttribute('index')! + 1;
+//   if (index == 11) {
+//     index = 0;
+//   }
 
-  const img_silde_topic_item_active =
-    el_carousel_topic_home.getElementsByClassName(
-      'el-carousel__item is-active'
-    )[0] as HTMLElement;
+//   const img_silde_topic_item_active =
+//     el_carousel_topic_home.getElementsByClassName(
+//       'el-carousel__item is-active'
+//     )[0] as HTMLElement;
 
-  const overlay_backdrop = document.getElementsByClassName(
-    'overlay-backdrop'
-  )[0] as HTMLElement;
-  const img_overlay_backdrop = overlay_backdrop.querySelector(
-    'img'
-  ) as HTMLImageElement;
+//   const overlay_backdrop = document.getElementsByClassName(
+//     'overlay-backdrop'
+//   )[0] as HTMLElement;
+//   const img_overlay_backdrop = overlay_backdrop.querySelector(
+//     'img'
+//   ) as HTMLImageElement;
 
-  if (getComputedStyle(el_carousel_topic_home).display == 'block') {
-    if (activeIndex == index) {
-      if (index == 0) {
-        img_overlay_backdrop.src =
-          el_carousel_topic_home.querySelectorAll<HTMLImageElement>(
-            '.el-carousel__item .el-image'
-          )[0].src;
-      } else {
-        if (img_silde_topic_item_active?.nextElementSibling) {
-          img_overlay_backdrop.src =
-            img_silde_topic_item_active.nextElementSibling.querySelector<HTMLImageElement>(
-              '.el-image'
-            )!.src;
-        }
-      }
-    } else {
-      if (activeIndex == 10) {
-        img_overlay_backdrop.src =
-          el_carousel_topic_home.querySelectorAll<HTMLImageElement>(
-            '.el-carousel__item .el-image'
-          )[10].src;
-      } else {
-        if (img_silde_topic_item_active?.previousElementSibling) {
-          img_overlay_backdrop.src =
-            img_silde_topic_item_active.previousElementSibling.querySelector<HTMLImageElement>(
-              '.el-image'
-            )!.src;
-        }
-      }
-    }
-  }
-};
+//   if (getComputedStyle(el_carousel_topic_home).display == 'block') {
+//     if (activeIndex == index) {
+//       if (index == 0) {
+//         img_overlay_backdrop.src =
+//           el_carousel_topic_home.querySelectorAll<HTMLImageElement>(
+//             '.el-carousel__item .el-image'
+//           )[0].src;
+//       } else {
+//         if (img_silde_topic_item_active?.nextElementSibling) {
+//           img_overlay_backdrop.src =
+//             img_silde_topic_item_active.nextElementSibling.querySelector<HTMLImageElement>(
+//               '.el-image'
+//             )!.src;
+//         }
+//       }
+//     } else {
+//       if (activeIndex == 10) {
+//         img_overlay_backdrop.src =
+//           el_carousel_topic_home.querySelectorAll<HTMLImageElement>(
+//             '.el-carousel__item .el-image'
+//           )[10].src;
+//       } else {
+//         if (img_silde_topic_item_active?.previousElementSibling) {
+//           img_overlay_backdrop.src =
+//             img_silde_topic_item_active.previousElementSibling.querySelector<HTMLImageElement>(
+//               '.el-image'
+//             )!.src;
+//         }
+//       }
+//     }
+//   }
+// };
 
-const handleSwitchCarouelResponsive = (activeIndex: number) => {
-  const el_carousel_topic_home_responsive = document.querySelector(
-    '.el-carousel.topic-home-responsive'
-  ) as HTMLElement;
+// const handleSwitchCarouelResponsive = (activeIndex: number) => {
+//   const el_carousel_topic_home_responsive = document.querySelector(
+//     '.el-carousel.topic-home-responsive'
+//   ) as HTMLElement;
 
-  const index_silde_topic_item_active =
-    el_carousel_topic_home_responsive.querySelector(
-      '.el-carousel__item.is-active'
-    ) as HTMLElement;
+//   const index_silde_topic_item_active =
+//     el_carousel_topic_home_responsive.querySelector(
+//       '.el-carousel__item.is-active'
+//     ) as HTMLElement;
 
-  let index = +index_silde_topic_item_active!.getAttribute('index')! + 1;
-  if (index == 11) {
-    index = 0;
-  }
+//   let index = +index_silde_topic_item_active!.getAttribute('index')! + 1;
+//   if (index == 11) {
+//     index = 0;
+//   }
 
-  const img_silde_topic_item_active =
-    el_carousel_topic_home_responsive.getElementsByClassName(
-      'el-carousel__item is-active'
-    )[0];
+//   const img_silde_topic_item_active =
+//     el_carousel_topic_home_responsive.getElementsByClassName(
+//       'el-carousel__item is-active'
+//     )[0];
 
-  const overlay_backdrop = document.getElementsByClassName(
-    'overlay-backdrop'
-  )[0] as HTMLElement;
-  const img_overlay_backdrop = overlay_backdrop.querySelector(
-    'img'
-  ) as HTMLImageElement;
+//   const overlay_backdrop = document.getElementsByClassName(
+//     'overlay-backdrop'
+//   )[0] as HTMLElement;
+//   const img_overlay_backdrop = overlay_backdrop.querySelector(
+//     'img'
+//   ) as HTMLImageElement;
 
-  if (getComputedStyle(el_carousel_topic_home_responsive).display == 'block') {
-    if (activeIndex == index) {
-      if (index == 0) {
-        img_overlay_backdrop.src =
-          el_carousel_topic_home_responsive.querySelectorAll<HTMLImageElement>(
-            '.el-carousel__item .el-image img'
-          )[0].src;
-      } else {
-        if (img_silde_topic_item_active?.nextElementSibling) {
-          img_overlay_backdrop.src =
-            img_silde_topic_item_active.nextElementSibling.querySelector<HTMLImageElement>(
-              '.el-image img'
-            )!.src;
-        }
-      }
-    } else {
-      if (activeIndex == 10) {
-        img_overlay_backdrop.src =
-          el_carousel_topic_home_responsive.querySelectorAll<HTMLImageElement>(
-            '.el-carousel__item .el-image img'
-          )[10].src;
-      } else {
-        if (img_silde_topic_item_active?.previousElementSibling) {
-          img_overlay_backdrop.src =
-            img_silde_topic_item_active.previousElementSibling.querySelector<HTMLImageElement>(
-              '.el-image img'
-            )!.src;
-        }
-      }
-    }
-  }
-};
+//   if (getComputedStyle(el_carousel_topic_home_responsive).display == 'block') {
+//     if (activeIndex == index) {
+//       if (index == 0) {
+//         img_overlay_backdrop.src =
+//           el_carousel_topic_home_responsive.querySelectorAll<HTMLImageElement>(
+//             '.el-carousel__item .el-image img'
+//           )[0].src;
+//       } else {
+//         if (img_silde_topic_item_active?.nextElementSibling) {
+//           img_overlay_backdrop.src =
+//             img_silde_topic_item_active.nextElementSibling.querySelector<HTMLImageElement>(
+//               '.el-image img'
+//             )!.src;
+//         }
+//       }
+//     } else {
+//       if (activeIndex == 10) {
+//         img_overlay_backdrop.src =
+//           el_carousel_topic_home_responsive.querySelectorAll<HTMLImageElement>(
+//             '.el-carousel__item .el-image img'
+//           )[10].src;
+//       } else {
+//         if (img_silde_topic_item_active?.previousElementSibling) {
+//           img_overlay_backdrop.src =
+//             img_silde_topic_item_active.previousElementSibling.querySelector<HTMLImageElement>(
+//               '.el-image img'
+//             )!.src;
+//         }
+//       }
+//     }
+//   }
+// };
 </script>
 <style lang="scss" src="./SlideTopicHome.scss"></style>

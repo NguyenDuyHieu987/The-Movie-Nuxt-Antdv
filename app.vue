@@ -1,25 +1,27 @@
 <template>
-  <ClientOnly>
-    <vue-progress-bar
-      style="
-        background: linear-gradient(
-          90deg,
-          var(--loading-progress-bar1),
-          var(--loading-progress-bar2),
-          var(--loading-progress-bar3)
-        );
-      "
-    />
-  </ClientOnly>
+  <div>
+    <ClientOnly>
+      <vue-progress-bar
+        style="
+          background: linear-gradient(
+            90deg,
+            var(--loading-progress-bar1),
+            var(--loading-progress-bar2),
+            var(--loading-progress-bar3)
+          );
+        "
+      />
+    </ClientOnly>
 
-  <div class="app-wrapper">
-    <NuxtLayout>
-      <NuxtPage />
+    <div class="app-wrapper">
+      <NuxtLayout>
+        <NuxtPage />
 
-      <el-backtop class="app-back-top" :visibilityHeight="600">
-        <font-awesome-icon icon="fa-solid fa-chevron-up" />
-      </el-backtop>
-    </NuxtLayout>
+        <el-backtop class="app-back-top" :visibilityHeight="600">
+          <font-awesome-icon icon="fa-solid fa-chevron-up" />
+        </el-backtop>
+      </NuxtLayout>
+    </div>
   </div>
 </template>
 

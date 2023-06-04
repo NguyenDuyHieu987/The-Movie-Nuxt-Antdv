@@ -261,7 +261,7 @@ import {
   MenuOutlined,
 } from '@ant-design/icons-vue';
 import { getDaTaSearch } from '~/services/search';
-import SearchCard from '../SearchCard/SearchCard.vue';
+import SearchCard from '@/components/SearchCard/SearchCard.vue';
 import { Close } from '@element-plus/icons-vue';
 import axios from 'axios';
 import { storeToRefs } from 'pinia';

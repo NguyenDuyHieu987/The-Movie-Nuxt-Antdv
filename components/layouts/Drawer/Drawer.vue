@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 // import { MenufoldOutlined } from '@ant-design/icons-vue';
-import TheMenu from '../TheMenu/TheMenu.vue';
+import TheMenu from '@/components/TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();

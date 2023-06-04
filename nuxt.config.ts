@@ -63,7 +63,11 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: '/icons/google-material-icons/iconfont/material-icons.min.css',
+          href: '/icons/google-material-icons/iconfont/material-icons.css',
+        },
+        {
+          rel: 'stylesheet',
+          href: '/icons/google-material-icons/css/material-icons.min.css',
         },
       ],
       script: [
