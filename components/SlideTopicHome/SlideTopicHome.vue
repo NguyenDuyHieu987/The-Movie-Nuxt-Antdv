@@ -70,45 +70,37 @@
 <script setup lang="ts">
 import axios from 'axios';
 import SlideTopicItem from '../SlideTopicItem/SlideTopicItem.vue';
-import { getTrending, getBackdrop } from '~/services/appMovieService';
-
-const props = defineProps<{
-  trendings: any[];
-}>();
+import { getTrending } from '~/services/trending';
 
 const topicHome = ref<any>();
-// const trendings = ref([]);
+const trendings = ref<any[]>([]);
 const prevItemCarousel = ref<string>('');
 const nextItemCarousel = ref<string>('');
-const trendingsData = computed<any[]>(() => props.trendings);
 
 onBeforeMount(async () => {
-  // await useAsyncData('trending/all/1', () => getTrending(1))
-  //   .then((response) => {
-  //     trendings.value = response.data.value.data?.results;
-  //   })
-  //   .catch((e) => {
-  //     if (axios.isCancel(e)) return;
-  //   });
-});
+  await useAsyncData(`trending/all/1`, () => getTrending(1))
+    .then((response: any) => {
+      trendings.value = response.data.value?.results;
 
-watch(trendingsData, () => {
-  if (props.trendings?.length) {
-    prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
-    nextItemCarousel.value = props.trendings[1]?.name;
-  }
+      prevItemCarousel.value =
+        trendings.value[trendings.value?.length - 1]?.name;
+      nextItemCarousel.value = trendings.value[1]?.name;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
 });
 
 const handleChangeCarouel = (activeIndex: number) => {
-  if (activeIndex == props.trendings?.length - 1) {
-    prevItemCarousel.value = props.trendings[activeIndex - 1]?.name;
-    nextItemCarousel.value = props.trendings[0]?.name;
+  if (activeIndex == trendings.value?.length - 1) {
+    prevItemCarousel.value = trendings.value[activeIndex - 1]?.name;
+    nextItemCarousel.value = trendings.value[0]?.name;
   } else if (activeIndex == 0) {
-    prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
-    nextItemCarousel.value = props.trendings[activeIndex + 1]?.name;
+    prevItemCarousel.value = trendings.value[trendings.value?.length - 1]?.name;
+    nextItemCarousel.value = trendings.value[activeIndex + 1]?.name;
   } else {
-    prevItemCarousel.value = props.trendings[activeIndex - 1]?.name;
-    nextItemCarousel.value = props.trendings[activeIndex + 1]?.name;
+    prevItemCarousel.value = trendings.value[activeIndex - 1]?.name;
+    nextItemCarousel.value = trendings.value[activeIndex + 1]?.name;
   }
 };
 

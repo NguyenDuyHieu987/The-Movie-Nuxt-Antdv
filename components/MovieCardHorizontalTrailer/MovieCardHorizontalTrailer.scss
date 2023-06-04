@@ -7,16 +7,6 @@
 }
 
 .movie-card-item.horizontal {
-  .percent-viewed {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 4px;
-    width: var(--percent-viewed);
-    background-color: red;
-    z-index: 1;
-  }
-
   .viewed-overlay-bar {
     position: absolute;
     left: 0;

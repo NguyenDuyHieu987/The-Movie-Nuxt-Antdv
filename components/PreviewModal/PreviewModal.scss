@@ -104,9 +104,9 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 4px;
+        height: 3px;
         width: var(--percent-viewed);
-        background-color: red;
+        background-color: var(--app-background-color3);
         z-index: 1;
       }
 

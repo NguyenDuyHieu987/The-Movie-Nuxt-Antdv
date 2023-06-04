@@ -17,10 +17,10 @@
       <template #template>
         <el-skeleton-item class="skeleton-img" />
 
-        <div class="content-skeleton">
+        <!-- <div class="content-skeleton">
           <el-skeleton-item variant="text" />
           <el-skeleton-item variant="text" style="width: 60%" />
-        </div>
+        </div> -->
       </template>
 
       <template #default>
@@ -40,7 +40,7 @@
           ></div>
           <div v-if="isInHistory" class="viewed-overlay-bar"></div>
 
-          <div class="duration-episode-box">
+          <!-- <div class="duration-episode-box">
             <p v-if="!isEpisodes" class="duration-episode">
               {{ item?.runtime + ' min' }}
             </p>
@@ -54,9 +54,9 @@
                   : '? min / Ep'
               }}
             </p>
-          </div>
+          </div> -->
 
-          <div class="release-date-box">
+          <!-- <div class="release-date-box">
             <p class="release-date" v-if="!isEpisodes">
               {{ item?.release_date?.slice(0, 4) }}
             </p>
@@ -67,7 +67,7 @@
                   : item?.first_air_date?.slice(0, 4)
               }}
             </p>
-          </div>
+          </div> -->
         </div>
 
         <div class="info">
@@ -77,7 +77,7 @@
               {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
             </span> -->
           </p>
-          <div class="info-bottom">
+          <!-- <div class="info-bottom">
             <div class="genres">
               <span
                 class="genre-item"
@@ -87,10 +87,8 @@
               >
                 {{ genre }}
               </span>
-
-              <!-- {{ Array.from(item?.genres, (x: any) => x.name).join(' • ') }} -->
             </div>
-          </div>
+          </div> -->
         </div>
       </template>
     </el-skeleton>
@@ -117,7 +115,8 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop, getItemHistory } from '~/services/appMovieService';
+import { getBackdrop } from '~/services/image';
+import { getItemHistory } from '~/services/history';
 import PreviewModal from '@/components/PreviewModal/PreviewModal.vue';
 
 const props = defineProps<{
@@ -211,11 +210,6 @@ const getData = async () => {
       isAddToList.value = true;
     }
 
-    if (dataMovie.value?.in_history) {
-      isInHistory.value = true;
-      percent.value = dataMovie.value?.history_progress?.percent;
-    }
-
     // await useAsyncData(
     //   `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
     //   () => getItemList(store.$state?.userAccount?.id, props.item?.id)
@@ -229,19 +223,24 @@ const getData = async () => {
     //     if (axios.isCancel(e)) return;
     //   });
 
-    await useAsyncData(
-      `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
-      () => getItemHistory(props.item?.id)
-    )
-      .then((movieRespone: any) => {
-        if (movieRespone.data.value.data.success == true) {
-          isInHistory.value = true;
-          percent.value = movieRespone.data.value.data?.result?.percent;
-        }
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      });
+    if (dataMovie.value?.in_history) {
+      isInHistory.value = true;
+      percent.value = dataMovie.value?.history_progress?.percent;
+    } else {
+      await useAsyncData(
+        `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
+        () => getItemHistory(props.item?.id)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value.success == true) {
+            isInHistory.value = true;
+            percent.value = movieRespone.data.value?.result?.percent;
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        });
+    }
   }
 };
 

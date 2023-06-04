@@ -1,14 +1,11 @@
 <template>
   <div class="home-container">
-    <SlideTopicHome :trendings="trendings" />
+    <SlideTopicHome />
 
     <div class="home-content">
       <div class="temp"></div>
       <section class="home-section outstanding">
-        <h2
-          class="gradient-title-default underline"
-          v-show="nowPlayings?.length"
-        >
+        <h2 class="gradient-title-default">
           <strong>Phim nổi bật</strong>
           <NuxtLink
             :to="{
@@ -33,12 +30,8 @@
         </CarouselGroup>
       </section>
 
-      <div
-        class="home-section recommend"
-        v-if="store.$state?.isLogin"
-        v-show="recommends?.length"
-      >
-        <h2 class="gradient-title-default underline">
+      <div class="home-section recommend" v-if="store.$state?.isLogin">
+        <h2 class="gradient-title-default">
           <strong>Gợi ý cho bạn</strong>
         </h2>
 
@@ -86,7 +79,7 @@
       </div>
 
       <section class="home-section cartoon">
-        <h2 class="gradient-title-default underline" v-show="cartoons?.length">
+        <h2 class="gradient-title-default">
           <strong>Hoạt hình - Anime đặc sắc</strong>
           <NuxtLink
             :to="{
@@ -117,8 +110,8 @@
         </CarouselGroup>
       </section>
 
-      <section class="home-section tv-new" v-show="tvAiringTodays?.length">
-        <h2 class="gradient-title-default underline">
+      <section class="home-section tv-new">
+        <h2 class="gradient-title-default">
           <strong>Phim bộ mới</strong>
           <NuxtLink
             :to="{
@@ -143,8 +136,8 @@
         </CarouselGroup>
       </section>
 
-      <section class="home-section trailer" v-show="upComings?.length">
-        <h2 class="gradient-title-default underline">
+      <section class="home-section trailer">
+        <h2 class="gradient-title-default">
           <strong>Trailer</strong>
 
           <NuxtLink
@@ -168,7 +161,7 @@
       </section>
 
       <section class="home-section theater">
-        <h2 class="gradient-title-default underline" v-show="topRateds?.length">
+        <h2 class="gradient-title-default">
           <strong>Phim chiếu rạp mới</strong>
           <NuxtLink
             :to="{
@@ -194,10 +187,7 @@
       </section>
 
       <section class="home-section on-the-air">
-        <h2
-          class="gradient-title-default underline"
-          v-show="tvOnTheAirs?.length"
-        >
+        <h2 class="gradient-title-default">
           <strong>TV On the air</strong>
           <NuxtLink
             :to="{
@@ -234,7 +224,6 @@ import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHoriz
 import MovieCardVertical from '@/components/MovieCardVertical/MovieCardVertical.vue';
 import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontalTrailer from '@/components/MovieCardHorizontalTrailer/MovieCardHorizontalTrailer.vue';
-import { getTrending } from '~/services/trending';
 import { getNowPlaying, getTopRated, getUpComing } from '~/services/movieSlug';
 import { getMoviesByGenres } from '~/services/discover';
 import { getMyRecommend } from '~/services/recommend';
@@ -261,7 +250,6 @@ useSeoMeta({
 });
 
 const store = useStore();
-const trendings = ref<any>([]);
 const nowPlayings = ref<any>([]);
 const upComings = ref<any>([]);
 const tvAiringTodays = ref<any>([]);
@@ -335,18 +323,7 @@ const responsiveVertical = computed<any>((): any => ({
   },
 }));
 
-onBeforeMount(async () => {
-  // const request = useRequest();
-  // const data = await request.makeRequest('/trending/all?page=2', {});
-
-  await useAsyncData(`trending/all/1`, () => getTrending(1))
-    .then((response: any) => {
-      trendings.value = response.data.value?.results;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
-
+const getData = async () => {
   await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
     .then((response: any) => {
       nowPlayings.value = response.data.value?.results.slice(0, 12);
@@ -406,6 +383,13 @@ onBeforeMount(async () => {
         if (axios.isCancel(e)) return;
       });
   }
+};
+
+onBeforeMount(() => {
+  // const request = useRequest();
+  // const data = await request.makeRequest('/trending/all?page=2', {});
+
+  getData();
 });
 
 const handleLoadMoreRecommend = async () => {

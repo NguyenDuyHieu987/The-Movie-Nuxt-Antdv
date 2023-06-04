@@ -61,34 +61,35 @@ const page = ref<number>(1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
+const queryParams = computed<string>(() => route.query?.q.replaceAll('+', ' '));
+
+useHead({
+  title: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useSeoMeta({
+  title: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
+  description: 'Tìm kiếm phim hay vói Phimhay247',
+  ogTitle: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: 'Tìm kiếm phim hay vói Phimhay247',
+  ogLocale: 'vi',
+});
 
 const getData = async () => {
-  useHead({
-    title: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
-    htmlAttrs: { lang: 'vi' },
-  });
-
-  useSeoMeta({
-    title: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
-    description: 'Tìm kiếm phim hay vói Phimhay247',
-    ogTitle:
-      'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
-    ogType: 'video.movie',
-    // ogUrl: window.location.href,
-    ogDescription: 'Tìm kiếm phim hay vói Phimhay247',
-    ogLocale: 'vi',
-  });
-
-  await useAsyncData(
-    `search/all/${route.query?.q.replaceAll('+', ' ')}/${page.value}`,
-    () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), page.value)
+  await useAsyncData(`search/all/${queryParams.value}/${page.value}`, () =>
+    getDaTaSearch(queryParams.value, page.value)
   )
-    .then((searchMovieResponse: any) => {
-      searchData.value = searchMovieResponse.data.value?.results;
-      totalPage.value = searchMovieResponse.data.value?.total;
-      pageSize.value = searchMovieResponse.data.value?.page_size;
-      searchDataMovie.value = searchMovieResponse.data.value?.movie;
-      searchDataTv.value = searchMovieResponse.data.value?.tv;
+    .then((response) => {
+      console.log(response.data?.value);
+
+      searchData.value = response.data.value?.results;
+      totalPage.value = response.data.value?.total;
+      pageSize.value = response.data.value?.page_size;
+      searchDataMovie.value = response.data.value?.movie;
+      searchDataTv.value = response.data.value?.tv;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -124,14 +125,13 @@ const handleChangeType = (activeKey: any) => {
 
 const onChangePage = async (pageSelected: number) => {
   page.value = pageSelected;
-  await useAsyncData(
-    `search/all/${route.query?.q.replaceAll('+', ' ')}/${pageSelected}`,
-    () => getDaTaSearch(route.query?.q.replaceAll('+', ' '), pageSelected)
+  await useAsyncData(`search/all/${queryParams.value}/${pageSelected}`, () =>
+    getDaTaSearch(queryParams.value, pageSelected)
   )
-    .then((searchMovieResponse: any) => {
-      searchData.value = searchMovieResponse.data.value?.results;
-      searchDataMovie.value = searchMovieResponse.data.value?.movie;
-      searchDataTv.value = searchMovieResponse.data.value?.tv;
+    .then((response: any) => {
+      searchData.value = response.data.value?.results;
+      searchDataMovie.value = response.data.value?.movie;
+      searchDataTv.value = response.data.value?.tv;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
