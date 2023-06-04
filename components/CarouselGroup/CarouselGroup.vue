@@ -1,34 +1,5 @@
 <template>
   <div class="slider-container">
-    <!-- :navText="[btnPrev, btnNext]" -->
-    <!-- <OwlCarousel
-      v-if="data?.length"
-      class="carousel-group"
-      :autoplay="true"
-      :autoHeight="true"
-      :stagePadding="0"
-      :dots="false"
-      :autoplayHoverPause="true"
-      :autoplayTimeout="10000"
-      :margin="7"
-      :autoplaySpeed="500"
-      :nav="false"
-      :responsive="responsive"
-    >
-      <slot name="content" />
-
-      <template #prev>
-        <div class="owl-prev">
-          <Icon name="bi:chevron-left"></Icon>
-        </div>
-      </template>
-      <template #next>
-        <div class="owl-next">
-          <Icon name="bi:chevron-right"></Icon>
-        </div>
-      </template>
-    </OwlCarousel> -->
-
     <Swiper
       class="carousel-group"
       :modules="[
