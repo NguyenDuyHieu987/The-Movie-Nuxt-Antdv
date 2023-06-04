@@ -371,7 +371,9 @@ const getData = async () => {
   }
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 const checkEmptyDataMovies = computed(() => {
   if (Object.keys(dataMovie.value).length == 0) return true;

@@ -618,7 +618,9 @@ const getData = async () => {
   }
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 const scrolltoTrailerYoutube = () => {
   const trailer_youtube = document.getElementById(
@@ -653,16 +655,6 @@ router.beforeEach((to) => {
 
     getData();
   }
-});
-
-watch(route, () => {
-  // window.scrollTo({
-  //   top: 0,
-  //   left: 0,
-  //   behavior: 'smooth',
-  // });
-  // dataCredit.value = [];
-  // getData();
 });
 
 const checkEmptyDataMovies = computed(() => {

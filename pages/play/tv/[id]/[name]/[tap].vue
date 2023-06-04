@@ -411,7 +411,9 @@ const getData = async () => {
   }
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 const getUrlCodeMovie = (data: string) => {
   urlCodeMovie.value = data;

@@ -401,7 +401,7 @@ useSeoMeta({
   description: 'Lịch sử xem dõi của bạn',
   ogTitle: 'Lịch sử xem ' + ' | Phimhay247',
   ogType: 'video.movie',
-  ogUrl: window.location.href,
+  // ogUrl: window.location.href,
   ogDescription: 'Lịch sử xem dõi của bạn',
   ogLocale: 'vi',
 });

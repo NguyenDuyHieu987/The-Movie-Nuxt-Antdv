@@ -57,7 +57,7 @@ useSeoMeta({
   ogTitle:
     'Bảng xếp hạng - Trending - Top phim ngày, tháng, năm ' + ' | Phimhay247',
   ogType: 'video.movie',
-  ogUrl: window.location.href,
+  // ogUrl: window.location.href,
   ogDescription: 'Phim hay, Trending, bảng xếp hạng xem phim trên Phimhay247',
   ogLocale: 'vi',
 });

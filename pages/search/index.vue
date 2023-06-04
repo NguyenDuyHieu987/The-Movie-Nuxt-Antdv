@@ -62,15 +62,15 @@ const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
 
-useSeoMeta({
-  title: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
-  description: 'Tìm kiếm phim hay vói Phimhay247',
-  ogTitle: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
-  ogType: 'video.movie',
-  ogUrl: window.location.href,
-  ogDescription: 'Tìm kiếm phim hay vói Phimhay247',
-  ogLocale: 'vi',
-});
+// useSeoMeta({
+//   title: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
+//   description: 'Tìm kiếm phim hay vói Phimhay247',
+//   ogTitle: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
+//   ogType: 'video.movie',
+//   // ogUrl: window.location.href,
+//   ogDescription: 'Tìm kiếm phim hay vói Phimhay247',
+//   ogLocale: 'vi',
+// });
 
 useHead({
   title: 'Tìm kiếm: ' + route.query?.q.replaceAll('+', ' ') + ' | Phimhay247',
@@ -99,7 +99,9 @@ const getData = async () => {
     });
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 watch(route, async () => {
   await useAsyncData(

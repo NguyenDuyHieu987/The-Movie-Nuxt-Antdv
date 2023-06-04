@@ -8,6 +8,21 @@
 
 <script setup lang="ts">
 const store = useStore();
+
+useHead({
+  title: 'Profile - Hồ sơ | Phimhay247',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useSeoMeta({
+  title: 'Profile - Hồ sơ | Phimhay247',
+  description: 'Hồ sơ, thông tin cá nhân',
+  ogTitle: 'Profile - Hồ sơ | Phimhay247',
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: 'Hồ sơ, thông tin cá nhân',
+  ogLocale: 'vi',
+});
 </script>
 
 <style lang="scss" scoped src="./ProfilePage.scss"></style>

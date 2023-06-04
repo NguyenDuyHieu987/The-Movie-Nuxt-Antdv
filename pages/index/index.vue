@@ -254,7 +254,7 @@ useSeoMeta({
   description: 'Xem phim thỏa thích cùng Phimhay247',
   ogTitle: 'Phimhay247',
   ogType: 'video.movie',
-  ogUrl: window.location.href,
+  // ogUrl: window.location.href,
   ogDescription: 'Xem phim thỏa thích cùng Phimhay247',
   ogLocale: 'vi',
 });

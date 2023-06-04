@@ -59,11 +59,11 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'stylesheet',
-          href: '/plugins/fontawesome-pro-6.0.0-alpha3/fontawesome6/pro/css/all.min.css',
+          href: '/icons/fontawesome-pro-6.0.0-alpha3/fontawesome6/pro/css/all.min.css',
         },
         {
           rel: 'stylesheet',
-          href: '/plugins/google-material-icons/iconfont/material-icons.css',
+          href: '/icons/google-material-icons/iconfont/material-icons.min.css',
         },
       ],
       script: [
@@ -72,7 +72,7 @@ export default defineNuxtConfig({
           type: 'text/javascript',
         },
         {
-          src: '/plugins/jquery/jquery-3.6.4.min.js',
+          src: '/js/jquery/jquery-3.6.4.min.js',
           type: 'text/javascript',
         },
         {
@@ -160,13 +160,13 @@ export default defineNuxtConfig({
   },
   ssr: true,
   routeRules: {
-    '/': { ssr: true },
-    '/search/**': { ssr: true },
-    '/discover/**': { ssr: true },
-    '/list/**': { ssr: true },
-    '/history/**': { ssr: true },
-    '/ranking/**': { ssr: true },
-    '/info/**': { ssr: true },
-    '/play/**': { ssr: true },
+    '/': { swr: true },
+    '/search/**': { swr: true },
+    '/discover/**': { swr: true },
+    '/list/**': { swr: true },
+    '/history/**': { swr: true },
+    '/ranking/**': { swr: true },
+    '/info/**': { swr: true },
+    '/play/**': { swr: true },
   },
 });

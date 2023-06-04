@@ -1,19 +1,18 @@
 <template>
-  <div>
-    <ClientOnly>
-      <vue-progress-bar
-        style="
-          background: linear-gradient(
-            90deg,
-            var(--loading-progress-bar1),
-            var(--loading-progress-bar2),
-            var(--loading-progress-bar3)
-          );
-        "
-      />
-    </ClientOnly>
+  <ClientOnly>
+    <vue-progress-bar
+      style="
+        background: linear-gradient(
+          90deg,
+          var(--loading-progress-bar1),
+          var(--loading-progress-bar2),
+          var(--loading-progress-bar3)
+        );
+      "
+    />
+  </ClientOnly>
 
-    <!-- <div
+  <!-- <div
         v-if="
           // $route.name == 'index' &&
           loadingHomePage && !store.$state.loadingHomePage
@@ -26,15 +25,14 @@
         </div>
       </div> -->
 
-    <div class="app-wrapper">
-      <NuxtLayout>
-        <NuxtPage />
+  <div class="app-wrapper">
+    <NuxtLayout>
+      <NuxtPage />
 
-        <el-backtop class="app-back-top" :visibilityHeight="600">
-          <font-awesome-icon icon="fa-solid fa-chevron-up" />
-        </el-backtop>
-      </NuxtLayout>
-    </div>
+      <el-backtop class="app-back-top" :visibilityHeight="600">
+        <font-awesome-icon icon="fa-solid fa-chevron-up" />
+      </el-backtop>
+    </NuxtLayout>
   </div>
 </template>
 
@@ -92,9 +90,8 @@ const getData = async () => {
   }, 2000);
 };
 
-getData();
 onBeforeMount(() => {
-  // console.log(store.$state);
+  getData();
 });
 </script>
 

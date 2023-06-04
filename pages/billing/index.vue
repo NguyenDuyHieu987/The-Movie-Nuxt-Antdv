@@ -20,7 +20,7 @@ useSeoMeta({
   description: 'Hóa đơn của bạn. Thanh toán gói cước',
   ogTitle: 'Billing - Hóa đơn - Thanh toán | Phimhay247',
   ogType: 'video.movie',
-  ogUrl: window.location.href,
+  // ogUrl: window.location.href,
   ogDescription: 'Hóa đơn của bạn. Thanh toán gói cước',
   ogLocale: 'vi',
 });
@@ -35,4 +35,4 @@ onMounted(() => {
 });
 </script>
 
-<style scoped lang="scss" src="./Billing.scss"></style>
+<style scoped lang="scss" src="./BillingPage.scss"></style>

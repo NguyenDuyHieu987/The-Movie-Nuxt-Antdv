@@ -82,11 +82,11 @@ const allTabs = ref<tab[]>([
   },
 ]);
 
-const getDataRanking = (activeKey: string) => {
+const getData = async (activeKey: string) => {
   loading.value = true;
   switch (activeKey) {
     case 'day':
-      useAsyncData(`ranking/all/1`, () => getRanking(1))
+      await useAsyncData(`ranking/all/1`, () => getRanking(1))
         .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value?.results;
           setTimeout(() => {
@@ -100,7 +100,7 @@ const getDataRanking = (activeKey: string) => {
       activeTab.value = activeKey;
       break;
     case 'week':
-      useAsyncData(`ranking/all/2`, () => getRanking(2))
+      await useAsyncData(`ranking/all/2`, () => getRanking(2))
         .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value?.results;
 
@@ -115,7 +115,7 @@ const getDataRanking = (activeKey: string) => {
       activeTab.value = activeKey;
       break;
     case 'month':
-      useAsyncData(`ranking/all/3`, () => getRanking(3))
+      await useAsyncData(`ranking/all/3`, () => getRanking(3))
         .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value?.results;
 
@@ -130,7 +130,7 @@ const getDataRanking = (activeKey: string) => {
       activeTab.value = activeKey;
       break;
     case 'all':
-      useAsyncData(`ranking/all/4`, () => getRanking(4))
+      await useAsyncData(`ranking/all/4`, () => getRanking(4))
         .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value?.results;
 
@@ -147,10 +147,12 @@ const getDataRanking = (activeKey: string) => {
   }
 };
 
-getDataRanking(activeTab.value);
+onBeforeMount(() => {
+  getData(activeTab.value);
+});
 
 const handleTabClick = (activeKey: any) => {
-  getDataRanking(activeKey);
+  getData(activeKey);
 };
 </script>
 

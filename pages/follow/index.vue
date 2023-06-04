@@ -385,7 +385,7 @@ useSeoMeta({
   description: 'Danh sách theo dõi của bạn',
   ogTitle: 'Theo dõi - Danh sách ' + ' | Phimhay247',
   ogType: 'video.movie',
-  ogUrl: window.location.href,
+  // ogUrl: window.location.href,
   ogDescription: 'Danh sách theo dõi của bạn',
   ogLocale: 'vi',
 });
@@ -555,10 +555,6 @@ const getDataWhenRemoveList = (data: number) => {
   });
   // total.value = data?.length;
 };
-
-watch(route, () => {
-  // getData();
-});
 
 const removeAllFollowList = () => {
   if (dataList.value?.length > 0) {
