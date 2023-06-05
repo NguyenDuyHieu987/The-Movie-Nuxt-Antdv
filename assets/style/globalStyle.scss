@@ -158,12 +158,23 @@ body {
   background-clip: padding-box;
 
   &:hover {
-    background-color: #686868d2;
+    background-color: #686868;
   }
 
   &:active {
-    background-color: #686868d2;
+    background-color: #686868;
   }
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: red;
+  background: #1cb5e0;
+}
+
+::selection {
+  color: red;
+  background: #1cb5e0;
 }
 
 div,

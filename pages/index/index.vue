@@ -216,7 +216,6 @@
 </template>
 
 <script setup lang="ts">
-// @ is an alias to /src
 import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
 import SlideTopicHome from '@/components/SlideTopicHome/SlideTopicHome.vue';
@@ -249,6 +248,7 @@ useSeoMeta({
   ogLocale: 'vi',
 });
 
+const nuxtApp = useNuxtApp();
 const store = useStore();
 const nowPlayings = ref<any>([]);
 const upComings = ref<any>([]);

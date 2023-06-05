@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
-// import vue from '@vitejs/plugin-vue';
 
 export default defineNuxtConfig({
   app: {
@@ -128,7 +127,6 @@ export default defineNuxtConfig({
     '@/plugins/googlelogin',
     '@/plugins/vuelazyload',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
-    // vue({ script: { defineModel: true, propsDestructure: true } }),
   ],
   nitro: {
     // preset: 'static',
@@ -152,7 +150,11 @@ export default defineNuxtConfig({
     //   publicDir: '.output/public',
     // },
   },
-  hooks: {},
+  hooks: {
+    // ready: (ctx) => {
+    //   console.log('ctx', ctx);
+    // },
+  },
   generate: {},
   build: {},
   vite: {

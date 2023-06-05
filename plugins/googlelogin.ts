@@ -9,5 +9,7 @@ const gauthOption = {
 };
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.use(vue3GoogleLogin, gauthOption);
+  nuxtApp.hook('app:created', () => {
+    nuxtApp.vueApp.use(vue3GoogleLogin, gauthOption);
+  });
 });

@@ -255,6 +255,7 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
 import {
   UserOutlined,
   CaretDownOutlined,
@@ -263,11 +264,10 @@ import {
 import { getDaTaSearch } from '~/services/search';
 import SearchCard from '@/components/SearchCard/SearchCard.vue';
 import { Close } from '@element-plus/icons-vue';
-import axios from 'axios';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 
-const store: any = useStore();
+const store = useStore();
 const { openDrawer, collapsed, isLogin, userAccount, role } =
   storeToRefs<any>(store);
 const router = useRouter();

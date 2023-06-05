@@ -159,14 +159,6 @@ const onMouseEnter = (e: any) => {
 
     const offsetX = rect.left;
     const offsetY = window.scrollY + rect.top;
-    let width = (16 / 100) * window.innerWidth;
-    let height = (15.5 / 100) * window.innerWidth;
-    if (width < 350) {
-      width = 350;
-    }
-    if (height < 330) {
-      height = 330;
-    }
 
     // left.value = offsetX + e.target.offsetWidth / 2 - width / 2;
     // top.value = offsetY + e.target.offsetHeight / 2 - height / 2;

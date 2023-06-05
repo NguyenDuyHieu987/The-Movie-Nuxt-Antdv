@@ -59,10 +59,9 @@
 <script setup lang="ts">
 // import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
 import TheMenu from '@/components/TheMenu/TheMenu.vue';
-import { useStore } from '@/store/useStore';
 import { storeToRefs } from 'pinia';
 
-const store: any = useStore();
+const store = useStore();
 const { collapsed, isLogin, userAccount } = storeToRefs<any>(store);
 onMounted(() => {
   const menu: HTMLElement | null = document.querySelector(
