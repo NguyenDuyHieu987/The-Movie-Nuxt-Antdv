@@ -1,7 +1,7 @@
 <template>
   <div class="lastest-episodes">
     <h3 class="section-title">
-      <strong>Tập mới nhất</strong>
+      <span>Tập mới nhất</span>
     </h3>
 
     <div v-if="loading" class="list-lastest-episodes skeleton">

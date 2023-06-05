@@ -6,13 +6,13 @@
       <div class="temp"></div>
       <section class="home-section outstanding">
         <h2 class="gradient-title-default">
-          <strong>Phim nổi bật</strong>
+          <span>Phim nổi bật</span>
           <NuxtLink
             :to="{
               path: `/discover/movie/nowplaying`,
             }"
           >
-            <strong class="view-all">Xem tất cả</strong>
+            <span class="view-all">Xem tất cả</span>
           </NuxtLink>
         </h2>
 
@@ -32,7 +32,7 @@
 
       <div class="home-section recommend" v-if="store.$state?.isLogin">
         <h2 class="gradient-title-default">
-          <strong>Gợi ý cho bạn</strong>
+          <span>Gợi ý cho bạn</span>
         </h2>
 
         <section
@@ -82,13 +82,13 @@
 
       <section class="home-section cartoon">
         <h2 class="gradient-title-default">
-          <strong>Hoạt hình - Anime đặc sắc</strong>
+          <span>Hoạt hình - Anime đặc sắc</span>
           <NuxtLink
             :to="{
               path: `/discover/genres/hoat-hinh`,
             }"
           >
-            <strong class="view-all">Xem tất cả</strong>
+            <span class="view-all">Xem tất cả</span>
           </NuxtLink>
         </h2>
 
@@ -114,13 +114,13 @@
 
       <section class="home-section tv-new">
         <h2 class="gradient-title-default">
-          <strong>Phim bộ mới</strong>
+          <span>Phim bộ mới</span>
           <NuxtLink
             :to="{
               path: `/discover/tv/airingtoday`,
             }"
           >
-            <strong class="view-all">Xem tất cả</strong>
+            <span class="view-all">Xem tất cả</span>
           </NuxtLink>
         </h2>
 
@@ -140,14 +140,14 @@
 
       <section class="home-section trailer">
         <h2 class="gradient-title-default">
-          <strong>Trailer</strong>
+          <span>Trailer</span>
 
           <NuxtLink
             :to="{
               path: `/discover/movie/upcoming`,
             }"
           >
-            <strong class="view-all">Xem tất cả</strong>
+            <span class="view-all">Xem tất cả</span>
           </NuxtLink>
         </h2>
 
@@ -164,13 +164,13 @@
 
       <section class="home-section theater">
         <h2 class="gradient-title-default">
-          <strong>Phim chiếu rạp mới</strong>
+          <span>Phim chiếu rạp mới</span>
           <NuxtLink
             :to="{
               path: `/discover/movie/toprated`,
             }"
           >
-            <strong class="view-all">Xem tất cả</strong>
+            <span class="view-all">Xem tất cả</span>
           </NuxtLink>
         </h2>
 
@@ -190,13 +190,13 @@
 
       <section class="home-section on-the-air">
         <h2 class="gradient-title-default">
-          <strong>TV On the air</strong>
+          <span>TV On the air</span>
           <NuxtLink
             :to="{
               path: `/discover/tv/ontheair`,
             }"
           >
-            <strong class="view-all">Xem tất cả</strong>
+            <span class="view-all">Xem tất cả</span>
           </NuxtLink>
         </h2>
 

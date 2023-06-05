@@ -9,7 +9,7 @@
         @finishFailed="onFinishFailed"
       >
         <h1 class="title-login gradient-title-default">
-          <strong>Đăng nhập </strong>
+          <span>Đăng nhập </span>
         </h1>
 
         <a-form-item
@@ -325,7 +325,7 @@ const handleFacebookLogin = async () => {
     })
     .catch((e) => {
       ElNotification.error({
-        title: 'Failed!',
+        title: 'Lỗi!',
         message: 'Some thing went wrong.',
         showClose: false,
         icon: () =>
@@ -423,7 +423,7 @@ const handleGooglePopupCallback = (authResponse: any) => {
           navigateTo({ path: '/' });
         } else if (response.isLogin == false) {
           ElNotification.error({
-            title: 'Failed!',
+            title: 'Lỗi!',
             message: 'Some thing went wrong.',
             icon: () =>
               h(CloseCircleFilled, {
@@ -434,7 +434,7 @@ const handleGooglePopupCallback = (authResponse: any) => {
       })
       .catch((e) => {
         ElNotification.error({
-          title: 'Failed!',
+          title: 'Lỗi!',
           message: 'Some thing went wrong.',
           icon: () =>
             h(CloseCircleFilled, {

@@ -468,7 +468,7 @@
     <div id="trailer-youtube">
       <div class="trailer-youtube" :class="{ active: isOpenTrailerYoutube }">
         <h3 class="section-title">
-          <strong>Trailer</strong>
+          <span>Trailer</span>
         </h3>
         <iframe
           height="650px"

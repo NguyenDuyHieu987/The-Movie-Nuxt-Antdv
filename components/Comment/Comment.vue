@@ -1,7 +1,7 @@
 <template>
   <div class="comment-container">
     <h3 class="section-title">
-      <strong> Bình luận</strong>
+      <span> Bình luận</span>
     </h3>
     <div
       class="fb-comments"

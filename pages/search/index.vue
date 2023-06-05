@@ -1,9 +1,9 @@
 <template>
   <div class="search-container">
     <h2 class="gradient-title-default underline">
-      <strong
-        >Kết quả tìm kiếm cho: {{ route.query.q?.replaceAll('+', ' ') }}</strong
-      >
+      <span
+        >Kết quả tìm kiếm cho: {{ route.query.q?.replaceAll('+', ' ') }}
+      </span>
 
       <a-select
         ref="select"

@@ -4,7 +4,7 @@
       <div v-if="isSignUp" class="verify-form-container">
         <a-form :model="formStateVerify" name="verify-form" class="verify-form">
           <h1 class="title-verify gradient-title-default">
-            <strong> Xác nhận Email</strong>
+            <span> Xác nhận Email</span>
           </h1>
           <a-form-item
             label="Email"
@@ -101,7 +101,7 @@
         @finishFailed="onFinishFailed"
       >
         <h1 class="title-signup gradient-title-default">
-          <strong> Đăng ký </strong>
+          <span> Đăng ký </span>
         </h1>
 
         <a-form-item
@@ -488,7 +488,7 @@ const handleSignUp = () => {
     })
     .catch((e) => {
       ElNotification.error({
-        title: 'Failed!',
+        title: 'Lỗi!',
         message: 'Some thing went wrong.',
         showClose: false,
         icon: () =>
@@ -566,7 +566,7 @@ const handleResendVerifyEmail = () => {
     })
     .catch((e) => {
       ElNotification.error({
-        title: 'Failed!',
+        title: 'Lỗi!',
         message: 'Some thing went wrong.',
         showClose: false,
         icon: () =>
@@ -636,7 +636,7 @@ const handleVerify = () => {
     })
     .catch((e) => {
       ElNotification.error({
-        title: 'Failed!',
+        title: 'Lỗi!',
         message: 'Some thing went wrong.',
         showClose: false,
         icon: () =>

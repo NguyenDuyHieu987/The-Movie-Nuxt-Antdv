@@ -28,7 +28,6 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
-import { notification } from 'ant-design-vue';
 import { getUserToken } from '~/services/appMovieService';
 import LoadingApp from './components/LoadingApp/LoadingApp.vue';
 
@@ -60,9 +59,10 @@ const getData = async () => {
         }
       })
       .catch((e) => {
-        notification.open({
-          message: 'Failed!',
-          description: 'Some thing went wrong.',
+        ElNotification.error({
+          title: 'Lỗi!',
+          message: 'Some thing went wrong.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',

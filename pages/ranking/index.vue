@@ -3,7 +3,7 @@
     <a-layout>
       <a-layout-content>
         <h2 class="gradient-title-default underline">
-          <strong>Trending</strong>
+          <span>Trending</span>
         </h2>
 
         <section class="movie-group vertical ranking">

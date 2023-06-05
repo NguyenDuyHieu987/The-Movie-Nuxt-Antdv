@@ -314,7 +314,7 @@
 
         <a-layout-content class="history-main-content">
           <h2 class="gradient-title-default underline">
-            <strong>Lịch sử xem</strong>
+            <span>Lịch sử xem</span>
           </h2>
           <section class="movie-history" v-show="dataHistory?.length">
             <MovieCardHorizontalHistory

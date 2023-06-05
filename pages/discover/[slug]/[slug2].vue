@@ -7,7 +7,7 @@
 
     <div class="discover-head">
       <h2 class="gradient-title-default underline">
-        <strong>{{ metaHead }}</strong>
+        <span>{{ metaHead }}</span>
       </h2>
     </div>
     <section

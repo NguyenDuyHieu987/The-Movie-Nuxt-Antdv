@@ -143,7 +143,7 @@
     </div>
 
     <h3 class="section-title">
-      <strong v-if="!checkEmptyDataMovies">
+      <span v-if="!checkEmptyDataMovies">
         {{ dataMovie?.name }}
         {{
           ` (${
@@ -152,7 +152,7 @@
               : dataMovie?.release_date?.slice(0, 4)
           })`
         }}
-      </strong>
+      </span>
       <strong v-else> Nội dung phim </strong>
     </h3>
     <div class="movie-content">

@@ -27,7 +27,7 @@
       </el-button>
     </div>
     <h3 class="section-title" style="display: flex; align-items: center">
-      <strong style="margin-right: 10px">
+      <span style="margin-right: 10px">
         {{ dataMovie?.name }}
         - Tập
         {{ route.params?.tap?.replace('tap-', '') }}
@@ -38,7 +38,7 @@
             ? dataSeason?.name
             : dataSeason?.name?.replace('Season', 'Phần')
         }}
-      </strong>
+      </span>
       <a-select
         ref="select"
         v-model:value="selectedSeason"
@@ -58,10 +58,6 @@
         </a-select-option>
       </a-select>
     </h3>
-
-    <!-- <h3 class="section-title width-fit" style="margin: 0px 15px 10px 0px">
-      <strong> Chọn phần</strong>
-    </h3> -->
 
     <div
       v-if="loading"

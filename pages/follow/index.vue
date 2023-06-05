@@ -295,7 +295,7 @@
 
         <a-layout-content class="follow-main-content">
           <h2 class="gradient-title-default underline">
-            <strong>Danh sách phát</strong>
+            <span>Danh sách phát</span>
           </h2>
 
           <section class="movie-follow" v-show="dataList?.length">

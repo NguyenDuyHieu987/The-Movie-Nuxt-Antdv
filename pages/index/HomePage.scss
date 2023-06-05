@@ -46,21 +46,17 @@
 
       .view-all {
         font-size: 0.7em;
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text;
-        background-image: linear-gradient(
-          to right,
-          var(--app-background-color2),
-          var(--app-background-color3)
-        );
+        color: #fff;
+        font-style: oblique;
         transition: all 0.25s;
-        background-position: 100% center;
-        background-size: 100% 100%;
 
         &:hover {
-          background-position: 100% center;
-          background-size: 200% 100%;
-          // opacity: 0.85;
+          // background-position: 100% center;
+          // background-size: 200% 100%;
+        }
+
+        &:active {
+          opacity: 0.8;
         }
       }
     }

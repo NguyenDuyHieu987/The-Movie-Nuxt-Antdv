@@ -20,7 +20,6 @@
         v-for="(item, index) in trendings"
         :key="item.id"
         :index="index"
-        v-memo
       >
         <SlideTopicItem :item="item" />
       </el-carousel-item>
@@ -80,7 +79,8 @@ const nextItemCarousel = ref<string>('');
 
 onBeforeMount(async () => {
   await useAsyncData(`trending/all/1`, () => getTrending(1))
-    .then((response: any) => {
+    .then((response) => {
+      console.log(response.pending.value);
       trendings.value = response.data.value?.results;
       prevItemCarousel.value =
         trendings.value[trendings.value?.length - 1]?.name;
