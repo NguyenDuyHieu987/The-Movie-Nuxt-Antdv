@@ -18,12 +18,12 @@ Roboto Flex is a variable font with these axes:
   wght
 
 This means all the styles are contained in a single file:
-  Roboto_Flex/RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf
+  RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
 in those cases you can use the static font file for Roboto Flex:
-  Roboto_Flex/static/RobotoFlex-Regular.ttf
+  static/RobotoFlex-Regular.ttf
 
 Get started
 -----------

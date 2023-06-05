@@ -1,40 +1,5 @@
 @import 'normalize.css';
-// @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Mulish&family=Roboto&family=Roboto+Flex&display=swap');
-
-@font-face {
-  font-family: 'Roboto';
-  font-weight: normal;
-  font-style: normal;
-  src: url('../fonts/Roboto/Roboto-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'Roboto Flex';
-  font-weight: normal;
-  font-style: normal;
-  src: url('../fonts/Roboto_Flex/static/RobotoFlex-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'Lobster';
-  font-weight: normal;
-  font-style: normal;
-  src: url('../fonts/Lobster/Lobster-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'Lobster Two';
-  font-weight: normal;
-  font-style: normal;
-  src: url('../fonts/Lobster_Two/LobsterTwo-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'Mulish';
-  font-weight: normal;
-  font-style: normal;
-  src: url('../fonts/Mulish/static/Mulish-Regular.ttf');
-}
+@import './fonts';
 
 :root {
   --background-content-color: #070707;
