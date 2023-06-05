@@ -233,6 +233,7 @@ const handleSubmit = () => {
           ElNotification.error({
             title: 'Lỗi!',
             message: 'Tài khoản không tồi tại.',
+            showClose: false,
             icon: () =>
               h(CloseCircleFilled, {
                 style: 'color: red',
@@ -244,27 +245,20 @@ const handleSubmit = () => {
           ElNotification.error({
             title: 'Lỗi!',
             message: 'Sai tài khoản hoặc mật khẩu.',
+            showClose: false,
             icon: () =>
               h(CloseCircleFilled, {
                 style: 'color: red',
               }),
           });
         }, 1000);
-      } else if (response?.isLogin == false) {
-        ElNotification.error({
-          title: 'Failed!',
-          message: 'Some thing went wrong.',
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
       }
     })
     .catch((e) => {
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
+        showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',
@@ -300,6 +294,7 @@ const handleFacebookLogin = async () => {
         ElNotification.success({
           title: 'Thành công!',
           message: 'Bạn đã đăng nhập bằng Facebook thành công tại Phimhay247.',
+          showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -326,21 +321,13 @@ const handleFacebookLogin = async () => {
         );
 
         navigateTo({ path: '/' });
-      } else if (response.isLogin == false) {
-        ElNotification.error({
-          title: 'Failed!',
-          message: 'Some thing went wrong.',
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
       }
     })
     .catch((e) => {
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
+        showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',

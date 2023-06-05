@@ -58,7 +58,7 @@
             </p>
           </div> -->
 
-          <!-- <div v-if="!loading" class="release-date-box">
+          <div v-if="!loading" class="release-date-box">
             <p class="release-date" v-if="!isEpisodes">
               {{ item?.release_date?.slice(0, 4) }}
             </p>
@@ -69,7 +69,7 @@
                   : item?.first_air_date?.slice(0, 4)
               }}
             </p>
-          </div> -->
+          </div>
         </div>
 
         <div class="info">
@@ -153,24 +153,24 @@ const imgWidth = ref<number>(0);
 const rectBound = ref<any>(0);
 const interval = ref<any>();
 
-const onMouseEnter = (e: any) => {
-  if (e.target) {
-    const rect = e.target.getBoundingClientRect();
+const onMouseEnter = ({ target }: { target: HTMLElement }) => {
+  if (target) {
+    const rect = target.getBoundingClientRect();
 
     const offsetX = rect.left;
     const offsetY = window.scrollY + rect.top;
 
-    // left.value = offsetX + e.target.offsetWidth / 2 - width / 2;
-    // top.value = offsetY + e.target.offsetHeight / 2 - height / 2;
+    // left.value = offsetX + target.offsetWidth / 2 - width / 2;
+    // top.value = offsetY + target.offsetHeight / 2 - height / 2;
 
-    left.value = offsetX + e.target.offsetWidth / 2;
-    top.value = offsetY + e.target.offsetHeight / 2;
+    left.value = offsetX + target.offsetWidth / 2;
+    top.value = offsetY + target.offsetHeight / 2;
 
-    offsetWidth.value = e.target.offsetWidth;
-    offsetHeight.value = e.target.offsetHeight;
+    offsetWidth.value = target.offsetWidth;
+    offsetHeight.value = target.offsetHeight;
 
-    imgHeight.value = e.target.querySelector('img').offsetHeight;
-    imgWidth.value = e.target.querySelector('img').offsetWidth;
+    imgHeight.value = target.querySelector('img')!.offsetHeight;
+    imgWidth.value = target.querySelector('img')!.offsetWidth;
 
     rectBound.value = rect;
 
@@ -178,7 +178,7 @@ const onMouseEnter = (e: any) => {
       isTeleportPreviewModal.value = true;
     }, 2000);
 
-    e.target.addEventListener('mouseleave', () => {
+    target.addEventListener('mouseleave', () => {
       // isTeleportPreviewModal.value = false;
       clearInterval(interval.value);
     });

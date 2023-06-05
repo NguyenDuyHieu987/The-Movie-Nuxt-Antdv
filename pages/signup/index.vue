@@ -442,6 +442,7 @@ const handleSignUp = () => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Email không tồn tại.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -451,6 +452,7 @@ const handleSignUp = () => {
         ElNotification.success({
           title: 'Thành công!',
           message: `Mã xác nhận đã được gửi đến đến email: ${formState.email}.`,
+          showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -466,6 +468,7 @@ const handleSignUp = () => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Email đã được đăng ký.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -475,15 +478,7 @@ const handleSignUp = () => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Gửi email thất bại.',
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-      } else {
-        ElNotification.error({
-          title: 'Failed!',
-          message: 'Some thing went wrong.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -495,6 +490,7 @@ const handleSignUp = () => {
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
+        showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',
@@ -527,6 +523,7 @@ const handleResendVerifyEmail = () => {
         ElNotification.success({
           title: 'Thành công!',
           message: `Mã xác nhận đã được gửi đến đến email: ${formState.email}.`,
+          showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -539,6 +536,7 @@ const handleResendVerifyEmail = () => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Email không tồn tại.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -548,6 +546,7 @@ const handleResendVerifyEmail = () => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Email đã được đăng ký.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -557,15 +556,7 @@ const handleResendVerifyEmail = () => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Gửi email thất bại.',
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-      } else {
-        ElNotification.error({
-          title: 'Failed!',
-          message: 'Some thing went wrong.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -577,6 +568,7 @@ const handleResendVerifyEmail = () => {
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
+        showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',
@@ -602,6 +594,7 @@ const handleVerify = () => {
         ElNotification.success({
           title: 'Thành công!',
           message: 'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
+          showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -613,6 +606,7 @@ const handleVerify = () => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Mã xác nhận không đúng.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -622,6 +616,7 @@ const handleVerify = () => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Tài khoản đã tồn tại.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -631,15 +626,7 @@ const handleVerify = () => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Mã xác nhận đã hết hạn.',
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-      } else {
-        ElNotification.error({
-          title: 'Failed!',
-          message: 'Some thing went wrong.',
+          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -651,6 +638,7 @@ const handleVerify = () => {
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
+        showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',

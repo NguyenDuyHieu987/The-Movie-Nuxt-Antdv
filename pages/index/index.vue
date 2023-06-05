@@ -47,6 +47,7 @@
             :type="item.media_type"
           />
           <el-button
+            v-show="recommends.length"
             class="loadmore-btn"
             type="primary"
             :loading="loadMoreRecommend"
@@ -63,6 +64,7 @@
         <div
           class="viewmore-group"
           @click="viewMoreRecommend = !viewMoreRecommend"
+          v-show="recommends.length"
         >
           <a-tooltip
             :teleported="false"
@@ -398,23 +400,18 @@ const handleLoadMoreRecommend = async () => {
     getMyRecommend(skipRecommend.value)
   )
     .then((movieResponse: any) => {
-      if (movieResponse.data.value.data?.results.length > 0) {
-        setTimeout(() => {
-          recommends.value = recommends.value.concat(
-            movieResponse.data.value.data?.results
-          );
-          loadMoreRecommend.value = false;
-        }, 1000);
+      if (movieResponse.data.value?.results.length > 0) {
+        recommends.value = recommends.value.concat(
+          movieResponse.data.value?.results
+        );
         skipRecommend.value += 1;
-      } else {
-        setTimeout(() => {
-          loadMoreRecommend.value = false;
-        }, 700);
       }
     })
     .catch((e) => {
-      loadMoreRecommend.value = false;
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadMoreRecommend.value = false;
     });
 };
 </script>

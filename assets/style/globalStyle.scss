@@ -168,13 +168,13 @@ body {
 
 ::-moz-selection {
   /* Code for Firefox */
-  color: red;
-  background: #1cb5e0;
+  color: #fff;
+  background-color: #1cb5e0;
 }
 
 ::selection {
-  color: red;
-  background: #1cb5e0;
+  color: #fff !important;
+  background-color: #1cb5e0;
 }
 
 div,

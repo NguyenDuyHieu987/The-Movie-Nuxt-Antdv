@@ -56,7 +56,7 @@
             </p>
           </div> -->
 
-          <!-- <div class="release-date-box">
+          <div class="release-date-box">
             <p class="release-date" v-if="!isEpisodes">
               {{ item?.release_date?.slice(0, 4) }}
             </p>
@@ -67,7 +67,7 @@
                   : item?.first_air_date?.slice(0, 4)
               }}
             </p>
-          </div> -->
+          </div>
         </div>
 
         <div class="info">
