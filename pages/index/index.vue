@@ -54,7 +54,6 @@
             @click="handleLoadMoreRecommend"
           >
             <template #icon>
-              <!-- <i class="fa-light fa-plus"></i> -->
               <PlusOutlined />
             </template>
             {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
@@ -72,8 +71,6 @@
             :content="!viewMoreRecommend ? 'Hiện thêm' : 'Ẩn bớt'"
             placement="bottom"
           >
-            <!-- <i v-if="!viewMoreRecommend" class="fa-light fa-chevron-down"></i>
-              <i v-else class="fa-light fa-chevron-up"></i> -->
             <Icon v-if="!viewMoreRecommend" name="ci:chevron-down" />
             <Icon v-else name="ci:chevron-big-up" />
           </a-tooltip>
@@ -91,12 +88,6 @@
             <span class="view-all">Xem tất cả</span>
           </NuxtLink>
         </h2>
-
-        <!-- <div v-bind="containerProps">
-          <div v-bind="wrapperProps">
-         
-          </div>
-        </div> -->
 
         <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
           <template #content>
