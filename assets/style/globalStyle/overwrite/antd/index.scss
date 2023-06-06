@@ -1,0 +1,195 @@
+.ant-skeleton-element .ant-skeleton-image {
+  width: 100%;
+  height: 100%;
+}
+
+.ant-message-notice-content {
+  background: var(--background-content-color1) !important;
+  box-shadow: var(--box-shadow-medium) !important;
+}
+
+.ant-modal {
+  box-shadow: var(--box-shadow-large);
+  border-radius: 5px;
+  overflow: hidden;
+
+  .ant-modal-content {
+    background-color: var(--background-content-color1);
+
+    .ant-modal-header {
+      background-color: var(--background-content-color1);
+    }
+
+    p,
+    span,
+    h3 {
+      color: #fff;
+    }
+  }
+}
+
+.ant-select-show-arrow {
+  .ant-select-selector {
+    border-color: #fff !important;
+    outline: 1px solid #9b9b9b;
+    box-shadow: none !important;
+    height: 35px !important;
+
+    .ant-select-selection-placeholder,
+    .ant-select-selection-item {
+      font-size: 1.6rem;
+      line-height: 33px;
+    }
+  }
+
+  .ant-select-arrow {
+    color: #fff;
+  }
+}
+
+.ant-select-dropdown {
+  .rc-virtual-list-holder-inner {
+    .ant-select-item {
+      padding: 10px 15px;
+    }
+    .ant-select-item-option-content {
+      font-size: 1.6rem;
+    }
+
+    .ant-select-item-option-selected {
+      background-color: rgb(59, 59, 59);
+    }
+  }
+}
+
+.ant-dropdown {
+  border: 0.5px solid var(--border-regular);
+  position: fixed !important;
+
+  .ant-dropdown-menu {
+    padding: 0px;
+    background-color: var(--background-content-color1);
+
+    .ant-dropdown-menu-item {
+      color: #d9d9d9;
+    }
+
+    .ant-dropdown-menu-item-active {
+      background-color: var(--hover-dropdown-color);
+    }
+  }
+
+  .ant-dropdown-menu-item:first-child {
+    border-bottom: 0.5px solid var(--border-regular);
+  }
+
+  .ant-dropdown-menu-item:last-child {
+    border-top: 0.5px solid var(--border-regular);
+  }
+
+  .ant-dropdown-menu-item.ant-dropdown-menu-item-only-child {
+    padding: 13px 20px;
+    font-size: 1.6rem;
+  }
+
+  .ant-menu-item:hover {
+    background-color: var(--hover-dropdown-color) !important;
+  }
+
+  .ant-menu-item-selected {
+    background-color: var(--hover-dropdown-color) !important;
+  }
+
+  .ant-menu-item {
+    margin: 0px;
+  }
+
+  .ant-menu-vertical > .ant-menu-item,
+  .ant-menu-vertical-left > .ant-menu-item,
+  .ant-menu-vertical-right > .ant-menu-item,
+  .ant-menu-inline > .ant-menu-item,
+  .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title,
+  .ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title,
+  .ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title,
+  .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+    height: 45px;
+    line-height: 45px;
+  }
+}
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: var(--input-border-color-hover);
+}
+
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  border-color: var(--input-border-color-focused);
+  box-shadow: var(--input-border-color-focused);
+}
+
+.ant-btn.default {
+  display: flex;
+  align-items: center;
+  border-color: var(--border-regular);
+  color: #fff;
+  transition: all 0.25s;
+  height: auto;
+  background-color: transparent;
+
+  &.gradient {
+    background: linear-gradient(
+      to right,
+      var(--app-background-color3),
+      var(--app-background-color2),
+      var(--app-background-color3)
+    );
+    border: none;
+    background-size: 200% 100%;
+    padding: 11px 35px;
+
+    &:hover {
+      background-size: 200% 100%;
+      background-position: 100% center;
+    }
+  }
+
+  &:hover {
+    border-color: var(--btn-border-color-hover);
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+
+  &::after {
+    box-shadow: none !important;
+  }
+}
+
+.ant-tooltip {
+  .ant-tooltip-content {
+    background-color: var(--tooltip-background-color);
+    box-shadow: var(--box-shadow-small);
+
+    .ant-tooltip-arrow {
+      .ant-tooltip-arrow-content {
+        height: 8px;
+        width: 8px;
+        background-color: var(--tooltip-background-color);
+      }
+    }
+
+    .ant-tooltip-inner {
+      transition: all 0s;
+      user-select: none;
+      background-color: var(--tooltip-background-color);
+      padding: 10px 18px;
+      // clip-path: inset(0px round 3px);
+    }
+  }
+}
+
+.ant-layout-sider-children {
+  margin: 0px;
+  padding: 0px;
+}

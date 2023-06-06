@@ -106,8 +106,8 @@ export default defineNuxtConfig({
   },
   css: [
     'ant-design-vue/dist/antd.css',
-    '@fortawesome/fontawesome-svg-core/styles.css',
     '@/assets/style/globalStyle.scss',
+    '@fortawesome/fontawesome-svg-core/styles.css',
     'material-icons/iconfont/material-icons.css',
   ],
   modules: [

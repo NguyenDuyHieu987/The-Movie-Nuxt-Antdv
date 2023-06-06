@@ -31,6 +31,18 @@
 
   .owl-carousel,
   .swiper-wrapper {
+    .swiper-slide {
+      &:first-child {
+        padding-left: 0px;
+      }
+
+      &:last-child {
+        padding-right: 0px;
+      }
+
+      padding: 0px calc(var(--card-movie-gap) / 2);
+    }
+
     .swiper-slide:hover,
     .owl-item:hover {
       z-index: 1;

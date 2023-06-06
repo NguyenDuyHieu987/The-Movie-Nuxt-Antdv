@@ -110,7 +110,8 @@
       right: 5%;
       z-index: 1;
       display: flex;
-      gap: 10px;
+      // gap: 10px;
+      gap: 0.5vw;
 
       .ant-btn {
         display: flex;
@@ -122,8 +123,10 @@
         transition: all 0.25s;
         border: 1px solid var(--border-regular);
         padding: 5px;
-        height: 42px;
-        width: 42px;
+        // height: 42px;
+        // width: 42px;
+        height: 2.5vw;
+        width: 2.5vw;
         border-radius: 50%;
 
         // &:hover ,
@@ -135,7 +138,6 @@
 
           svg {
             // font-size: 2.4rem;
-            // font-size: 1.1vw;
           }
         }
 
@@ -144,7 +146,8 @@
         }
 
         svg {
-          font-size: 2.2rem;
+          // font-size: 2.2rem;
+          font-size: 1.2vw;
         }
       }
     }
@@ -156,6 +159,17 @@
     .el-carousel.billboard-slide {
       .el-carousel__container {
         height: 100vh;
+      }
+
+      .carousel-arrow {
+        .ant-btn {
+          height: 42px;
+          width: 42px;
+
+          svg {
+            font-size: 2.2rem;
+          }
+        }
       }
       .el-carousel__indicators {
         display: none;

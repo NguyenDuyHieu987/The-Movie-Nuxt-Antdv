@@ -9,7 +9,7 @@
             ?.replace(/\s/g, '+')
             .toLowerCase()}`,
     }"
-    class="movie-card-item horizontal"
+    class="movie-card-item horizontal trailer"
   >
     <el-skeleton :loading="loading" animated>
       <template #template>
@@ -64,7 +64,7 @@
             <font-awesome-icon icon="fa-brands fa-youtube" />
           </div>
 
-          <!-- <div v-if="!loading" class="release-date-box">
+          <div v-if="!loading" class="release-date-box">
             <p class="release-date" v-if="!isEpisodes">
               {{ item?.release_date?.slice(0, 4) }}
             </p>
@@ -75,7 +75,7 @@
                   : item?.first_air_date?.slice(0, 4)
               }}
             </p>
-          </div> -->
+          </div>
         </div>
 
         <div class="info">

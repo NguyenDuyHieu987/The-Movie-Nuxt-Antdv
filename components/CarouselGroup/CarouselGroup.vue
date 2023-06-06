@@ -8,7 +8,7 @@
         SwiperVirtual,
       ]"
       :breakpoints="responsive"
-      :space-between="7"
+      :space-between="0"
       effect="creative"
       :navigation="{
         prevEl: '.swiper-button-prev',

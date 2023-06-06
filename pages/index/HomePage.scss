@@ -43,9 +43,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 1.44vw;
 
       .view-all {
-        font-size: 0.7em;
+        font-size: 0.6em;
         color: #fff;
         font-style: oblique;
         transition: all 0.25s;
@@ -135,6 +136,12 @@
       .home-content {
         padding: 0px 15px;
         padding-bottom: 30px;
+
+        .home-section {
+          .gradient-title-default {
+            font-size: 2.5rem;
+          }
+        }
 
         .carousel-group {
           .owl-prev,
