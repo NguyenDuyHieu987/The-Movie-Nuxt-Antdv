@@ -1,8 +1,8 @@
 .body-content {
   &.expand {
     .el-carousel {
-      .topic-item {
-        .topic-item-body {
+      .billboard-item {
+        .billboard-item-body {
           left: var(--padding-home-expand);
         }
       }
@@ -10,7 +10,7 @@
   }
 }
 
-.topic-item {
+.billboard-item {
   position: relative;
   display: block;
   height: 100%;
@@ -39,7 +39,7 @@
     }
   }
 
-  .topic-item-body {
+  .billboard-item-body {
     position: absolute;
     // top: 50%;
     // transform: translateY(-50%);
@@ -202,8 +202,8 @@
 }
 
 @media only screen and (max-width: 1500px) {
-  .topic-item {
-    .topic-item-body {
+  .billboard-item {
+    .billboard-item-body {
       left: 15px;
       .info {
         .head {
@@ -235,8 +235,8 @@
   .body-content {
     &.expand {
       .el-carousel {
-        .topic-item {
-          .topic-item-body {
+        .billboard-item {
+          .billboard-item-body {
             left: 30px;
           }
         }
@@ -246,8 +246,8 @@
 }
 
 @media only screen and (max-width: 1100px) {
-  .topic-item {
-    .topic-item-body {
+  .billboard-item {
+    .billboard-item-body {
       img.pngegg {
         height: 50px;
       }
@@ -256,8 +256,8 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .topic-item {
-    .topic-item-body {
+  .billboard-item {
+    .billboard-item-body {
       .action {
         a {
           height: 40px;
@@ -274,8 +274,8 @@
   .body-content {
     &.expand {
       .el-carousel {
-        .topic-item {
-          .topic-item-body {
+        .billboard-item {
+          .billboard-item-body {
             .action {
               a {
                 height: 43px;
@@ -294,8 +294,8 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .topic-item {
-    .topic-item-body {
+  .billboard-item {
+    .billboard-item-body {
       .info {
         h1 {
           font-size: 2.5rem;
@@ -312,8 +312,8 @@
 }
 
 @media only screen and (max-width: 700px) {
-  .topic-item {
-    .topic-item-body {
+  .billboard-item {
+    .billboard-item-body {
       .info {
         .overview {
           -webkit-line-clamp: 2;
@@ -324,8 +324,8 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .topic-item {
-    .topic-item-body {
+  .billboard-item {
+    .billboard-item-body {
       .info {
         img.pngegg {
           height: 40px;
@@ -336,8 +336,8 @@
 }
 
 @media only screen and (max-width: 530px) {
-  .topic-item {
-    .topic-item-body {
+  .billboard-item {
+    .billboard-item-body {
       bottom: 25px;
 
       .info {

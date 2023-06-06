@@ -176,7 +176,7 @@ useSeoMeta({
   ogLocale: 'vi',
 });
 
-const store: any = useStore();
+const store = useStore();
 const route = useRoute();
 const utils = useUtils();
 const loadingLogin = ref<boolean>(false);

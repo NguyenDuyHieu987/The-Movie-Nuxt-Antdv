@@ -54,8 +54,8 @@
             content="Tìm kiếm"
             effect="dark"
             placement="bottom"
+            popper-class="el-tooltip"
           >
-            <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" /> -->
             <Icon
               name="fa6-solid:magnifying-glass"
               class="fa-magnifying-glass"

@@ -1,5 +1,5 @@
 <template>
-  <div class="slide-topic-home">
+  <div class="billboard-animation-container">
     <!-- <div class="overlay-backdrop">
       <img :src="getBackdrop(trendings[0]?.backdrop_path)" />
     </div> -->
@@ -12,8 +12,8 @@
       arrow="always"
       :pause-on-hover="false"
       trigger="click"
-      ref="topicHome"
-      class="topic-home"
+      ref="billboard"
+      class="billboard-slide"
       @change="handleChangeCarouel"
     >
       <el-carousel-item
@@ -21,7 +21,7 @@
         :key="item.id"
         :index="index"
       >
-        <SlideTopicItem :item="item" />
+        <BillboardItem :item="item" />
       </el-carousel-item>
 
       <div class="carousel-arrow" v-show="trendings?.length">
@@ -33,7 +33,7 @@
           placement="top"
         >
           <a-button
-            @click="topicHome.prev()"
+            @click="billboard.prev()"
             size="large"
             type="text"
             shape="circle"
@@ -52,7 +52,7 @@
           placement="top"
         >
           <a-button
-            @click="topicHome.next()"
+            @click="billboard.next()"
             size="large"
             type="text"
             shape="circle"
@@ -68,39 +68,46 @@
 </template>
 <script setup lang="ts">
 import axios from 'axios';
-import SlideTopicItem from '../SlideTopicItem/SlideTopicItem.vue';
+import BillboardItem from '../BillboardItem/BillboardItem.vue';
 import { getTrending } from '~/services/trending';
 
-const nuxtApp = useNuxtApp();
-const topicHome = ref<any>();
-const trendings = ref<any[]>([]);
+const props = defineProps<{ trendings: any[] }>();
+
+const billboard = ref<any>();
+// const trendings = ref<any[]>([]);
 const prevItemCarousel = ref<string>('');
 const nextItemCarousel = ref<string>('');
+const trendingCompute = computed<any[]>(() => props.trendings);
 
 onBeforeMount(async () => {
-  await useAsyncData(`trending/all/1`, () => getTrending(1))
-    .then((response) => {
-      console.log(response.pending.value);
-      trendings.value = response.data.value?.results;
-      prevItemCarousel.value =
-        trendings.value[trendings.value?.length - 1]?.name;
-      nextItemCarousel.value = trendings.value[1]?.name;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  // await useAsyncData(`trending/all/1`, () => getTrending(1))
+  //   .then((response) => {
+  //     console.log(response.pending.value);
+  //     trendings.value = response.data.value?.results;
+  //     prevItemCarousel.value =
+  //       trendings.value[trendings.value?.length - 1]?.name;
+  //     nextItemCarousel.value = trendings.value[1]?.name;
+  //   })
+  //   .catch((e) => {
+  //     if (axios.isCancel(e)) return;
+  //   });
+});
+
+watch(trendingCompute, () => {
+  prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
+  nextItemCarousel.value = props.trendings[1]?.name;
 });
 
 const handleChangeCarouel = (activeIndex: number) => {
-  if (activeIndex == trendings.value?.length - 1) {
-    prevItemCarousel.value = trendings.value[activeIndex - 1]?.name;
-    nextItemCarousel.value = trendings.value[0]?.name;
+  if (activeIndex == props.trendings?.length - 1) {
+    prevItemCarousel.value = props.trendings[activeIndex - 1]?.name;
+    nextItemCarousel.value = props.trendings[0]?.name;
   } else if (activeIndex == 0) {
-    prevItemCarousel.value = trendings.value[trendings.value?.length - 1]?.name;
-    nextItemCarousel.value = trendings.value[activeIndex + 1]?.name;
+    prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
+    nextItemCarousel.value = props.trendings[activeIndex + 1]?.name;
   } else {
-    prevItemCarousel.value = trendings.value[activeIndex - 1]?.name;
-    nextItemCarousel.value = trendings.value[activeIndex + 1]?.name;
+    prevItemCarousel.value = props.trendings[activeIndex - 1]?.name;
+    nextItemCarousel.value = props.trendings[activeIndex + 1]?.name;
   }
 };
 
@@ -223,4 +230,4 @@ const handleChangeCarouel = (activeIndex: number) => {
 //   }
 // };
 </script>
-<style lang="scss" src="./SlideTopicHome.scss"></style>
+<style lang="scss" src="./BillboardAnimation.scss"></style>

@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <SlideTopicHome />
+    <BillboardAnimation :trendings="trendings" />
 
     <div class="home-content">
       <div class="temp"></div>
@@ -211,11 +211,12 @@
 <script setup lang="ts">
 import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
-import SlideTopicHome from '@/components/SlideTopicHome/SlideTopicHome.vue';
+import BillboardAnimation from '@/components/BillboardAnimation/BillboardAnimation.vue';
 import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import MovieCardVertical from '@/components/MovieCardVertical/MovieCardVertical.vue';
 import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontalTrailer from '@/components/MovieCardHorizontalTrailer/MovieCardHorizontalTrailer.vue';
+import { getTrending } from '~/services/trending';
 import { getNowPlaying, getTopRated, getUpComing } from '~/services/movieSlug';
 import { getMoviesByGenres } from '~/services/discover';
 import { getMyRecommend } from '~/services/recommend';
@@ -241,8 +242,8 @@ useSeoMeta({
   ogLocale: 'vi',
 });
 
-const nuxtApp = useNuxtApp();
 const store = useStore();
+const trendings = ref<any[]>([]);
 const nowPlayings = ref<any>([]);
 const upComings = ref<any>([]);
 const tvAiringTodays = ref<any>([]);
@@ -317,8 +318,16 @@ const responsiveVertical = computed<any>((): any => ({
 }));
 
 const getData = async () => {
+  await useAsyncData(`trending/all/1`, () => getTrending(1))
+    .then((response) => {
+      trendings.value = response.data.value?.results;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
   await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
-    .then((response: any) => {
+    .then((response) => {
       nowPlayings.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
@@ -328,7 +337,7 @@ const getData = async () => {
   await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
     getMoviesByGenres('hoat-hinh', 'views_desc', 1)
   )
-    .then((response: any) => {
+    .then((response) => {
       cartoons.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
@@ -336,7 +345,7 @@ const getData = async () => {
     });
 
   await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
-    .then((response: any) => {
+    .then((response) => {
       tvAiringTodays.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
@@ -344,7 +353,7 @@ const getData = async () => {
     });
 
   await useAsyncData('movie/upcoming/1', () => getUpComing(1))
-    .then((response: any) => {
+    .then((response) => {
       upComings.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
@@ -352,7 +361,7 @@ const getData = async () => {
     });
 
   await useAsyncData('movie/toprated/1', () => getTopRated(1))
-    .then((response: any) => {
+    .then((response) => {
       topRateds.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
@@ -360,7 +369,7 @@ const getData = async () => {
     });
 
   await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
-    .then((response: any) => {
+    .then((response) => {
       tvOnTheAirs.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
@@ -369,7 +378,7 @@ const getData = async () => {
 
   if (store.$state.isLogin) {
     await useAsyncData('recommend/get/1', () => getMyRecommend(1))
-      .then((response: any) => {
+      .then((response) => {
         recommends.value = response.data.value?.results;
       })
       .catch((e) => {

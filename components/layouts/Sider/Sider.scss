@@ -123,8 +123,7 @@
 
     .trigger-collapse {
       white-space: nowrap;
-      padding-left: 26px;
-      // transition: padding 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+      padding-left: 27px;
       transition: all 0s;
       display: flex;
       align-items: center;
@@ -133,8 +132,6 @@
         margin-left: 13px;
         user-select: none;
         opacity: 1;
-        // transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), margin 0.3s,
-        //   color 0.3s;
         transition: all 0s;
       }
 
@@ -147,7 +144,6 @@
 
     .trigger-collapse.active {
       left: 0;
-      // padding: 0 calc(50% - 16px / 2);
       padding: 0px calc((var(--sider-collapsed-width) - 16px) / 2);
       overflow: hidden;
 

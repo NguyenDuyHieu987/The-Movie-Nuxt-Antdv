@@ -10,7 +10,7 @@
               ?.replace(/\s/g, '+')
               .toLowerCase()}`,
     }"
-    class="topic-item"
+    class="billboard-item"
   >
     <el-image
       class="el-image"
@@ -20,7 +20,7 @@
       loading="lazy"
     />
 
-    <div class="topic-item-body">
+    <div class="billboard-item-body">
       <div class="info">
         <div class="head">
           <img class="pngegg" src="/images/pngegg.png" />
@@ -156,4 +156,4 @@ const handelAddToList = () => {
 };
 </script>
 
-<style lang="scss" src="./SlideTopicItem.scss"></style>
+<style lang="scss" src="./BillboardItem.scss"></style>

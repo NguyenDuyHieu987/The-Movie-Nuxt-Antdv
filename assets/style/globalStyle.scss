@@ -600,6 +600,7 @@ button,
     }
 
     .ant-tooltip-inner {
+      transition: all 0s;
       user-select: none;
       background-color: var(--tooltip-background-color);
       padding: 10px 18px;
