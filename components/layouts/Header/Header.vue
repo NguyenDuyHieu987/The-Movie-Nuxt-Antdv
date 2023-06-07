@@ -1,6 +1,6 @@
 <template>
   <a-layout-header class="header">
-    <div class="logo">
+    <div class="left-header">
       <button class="menu-btn mobile" @click="store.setOpendrawer()">
         <menu-outlined v-if="openDrawer == false" />
         <el-icon v-else><Close /></el-icon>
@@ -14,9 +14,11 @@
         <menu-outlined />
         <!-- <el-icon v-else><Close /></el-icon> -->
       </button>
-      <NuxtLink :to="{ path: '/' }">
-        <h1>PhimHay247</h1>
-      </NuxtLink>
+      <div class="logo">
+        <NuxtLink :to="{ path: '/' }">
+          <h1>PhimHay247</h1>
+        </NuxtLink>
+      </div>
     </div>
 
     <a-auto-complete
@@ -130,18 +132,15 @@
       </ClientOnly>
 
       <a-menu theme="dark" mode="horizontal" :selectable="false">
-        <a-menu-item key="notification" v-if="isLogin" v-once>
+        <a-menu-item key="notification">
           <a-dropdown
             :trigger="['click']"
             class="dropdown-notification"
             placement="bottomLeft"
+            v-if="isLogin"
+            v-once
           >
-            <a
-              class="ant-dropdown-link"
-              @click.prevent="
-                isOpenDropdownNotification = !isOpenDropdownNotification
-              "
-            >
+            <a class="ant-dropdown-link" @click.prevent>
               <a-badge :count="3" :overflow-count="9">
                 <!-- <Icon name="fa6-regular:bell" class="fa-bell fa-regular" />
                 <Icon name="fa6-solid:bell" class="fa-bell fa-solid" /> -->
@@ -278,7 +277,6 @@ const loadingSearch = ref<boolean>(false);
 const isOpenAutoComplete = ref<boolean>(true);
 const debounce = ref<any>();
 const valueInput = ref<string>(route.query.q);
-const isOpenDropdownNotification = ref<boolean>(false);
 
 onMounted(() => {
   const header: HTMLElement | null = document.querySelector(

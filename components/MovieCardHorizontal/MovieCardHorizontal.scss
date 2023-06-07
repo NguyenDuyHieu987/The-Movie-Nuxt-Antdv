@@ -19,6 +19,9 @@
 .movie-card-item {
   &.horizontal {
     .el-skeleton.is-animated {
+      .el-skeleton__item.skeleton-img {
+      }
+
       .content-skeleton {
         margin-top: 7px;
 

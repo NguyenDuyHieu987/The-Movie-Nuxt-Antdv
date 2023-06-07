@@ -27,8 +27,7 @@
     padding: 0px calc(var(--padding-home) - 20px) 0px var(--padding-home);
   }
 
-  .logo {
-    height: 100%;
+  .left-header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,8 +68,10 @@
         font-size: 3rem;
       }
     }
-  }
 
+    .logo {
+    }
+  }
   .center-search-header {
     .ant-input-group {
     }
@@ -225,8 +226,7 @@
 @media only screen and (max-width: 900px) {
   .ant-layout-header.header {
     padding-left: 20px;
-
-    .logo {
+    .left-header {
       .menu-btn {
         // padding: 16px 15px;
 
@@ -237,6 +237,9 @@
         &.desktop {
           display: none;
         }
+      }
+
+      .logo {
       }
     }
   }
