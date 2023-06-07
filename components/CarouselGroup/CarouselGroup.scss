@@ -31,6 +31,8 @@
 
   .owl-carousel,
   .swiper-wrapper {
+    // gap: var(--card-movie-gap);
+
     .swiper-slide {
       &:first-child {
         padding-left: 0px;

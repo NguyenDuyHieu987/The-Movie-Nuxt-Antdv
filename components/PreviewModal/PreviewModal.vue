@@ -254,16 +254,15 @@ const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const previewModal = ref<any>(null);
 const urlShare = computed<string>((): string => window.location.href);
-const modelValue = defineModel();
-// console.log(modelValue);
-const isTeleport = computed<boolean>({
-  get() {
-    return props.isTeleportPreviewModal;
-  },
-  set(value: boolean) {
-    emit('setIsTeleportModal', value);
-  },
-});
+const isTeleport = defineModel<boolean>('isTeleport');
+// const isTeleport = computed<boolean>({
+//   get() {
+//     return props.isTeleportPreviewModal;
+//   },
+//   set(value: boolean) {
+//     emit('setIsTeleportModal', value);
+//   },
+// });
 
 watch(previewModal, () => {
   if (previewModal.value) {
@@ -310,7 +309,7 @@ watch(previewModal, () => {
 });
 
 watch(isTeleport, async () => {
-  if (props.isTeleportPreviewModal == true) {
+  if (isTeleport.value == true) {
     if (!dataMovie.value?.id) {
       loading.value = true;
       if (props.isEpisodes) {

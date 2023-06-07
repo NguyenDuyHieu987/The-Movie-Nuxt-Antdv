@@ -10,8 +10,9 @@
 
   &:hover {
     .img-box {
-      border-top-right-radius: 0px;
-      border-top-left-radius: 0px;
+      // border-top-right-radius: 0px;
+      // border-top-left-radius: 0px;
+      border-radius: 0px !important;
 
       img {
         transform: scale(1.1);

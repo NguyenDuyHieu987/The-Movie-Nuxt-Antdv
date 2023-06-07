@@ -159,6 +159,12 @@ export default defineNuxtConfig({
   generate: {},
   build: {},
   vite: {
+    vue: {
+      script: {
+        defineModel: true,
+        propsDestructure: true,
+      },
+    },
     server: {
       hmr: {
         overlay: false,

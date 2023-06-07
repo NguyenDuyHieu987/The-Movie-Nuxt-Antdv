@@ -104,7 +104,7 @@
 
     <PreviewModal
       :isTeleportPreviewModal="isTeleportPreviewModal"
-      v-model="isTeleportPreviewModal"
+      v-model:isTeleport="isTeleportPreviewModal"
       :item="item"
       :style="{
         left: left,

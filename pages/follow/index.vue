@@ -555,7 +555,7 @@ const getDataWhenRemoveList = (data: number) => {
   dataList.value = _.reject(dataList.value, (x) => {
     return x.id === data;
   });
-  // total.value = data?.length;
+  total.value = dataList.value?.length;
 };
 
 const removeAllFollowList = () => {

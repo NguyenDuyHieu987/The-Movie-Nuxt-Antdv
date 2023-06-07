@@ -567,7 +567,7 @@ const getDataWhenRemoveHistory = (data: number) => {
   dataHistory.value = _.reject(dataHistory.value, (x) => {
     return x.id === data;
   });
-  // total.value = data?.length;
+  total.value = dataHistory.value?.length;
 };
 
 const removeAllHistoryList = () => {

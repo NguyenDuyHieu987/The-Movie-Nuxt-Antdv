@@ -17,14 +17,14 @@
       @change="handleChangeCarouel"
     >
       <el-carousel-item
-        v-for="(item, index) in trendings"
+        v-for="(item, index) in dataModel"
         :key="item.id"
         :index="index"
       >
         <BillboardItem :item="item" />
       </el-carousel-item>
 
-      <div class="carousel-arrow" v-show="trendings?.length">
+      <div class="carousel-arrow" v-show="dataModel?.length">
         <el-tooltip
           :teleported="false"
           :title="prevItemCarousel"
@@ -71,43 +71,31 @@ import axios from 'axios';
 import BillboardItem from '../BillboardItem/BillboardItem.vue';
 import { getTrending } from '~/services/trending';
 
-const props = defineProps<{ trendings: any[] }>();
+const props = defineProps<{ data1: any[] }>();
 
 const billboard = ref<any>();
-// const trendings = ref<any[]>([]);
+// const data = ref<any[]>([]);
 const prevItemCarousel = ref<string>('');
 const nextItemCarousel = ref<string>('');
-const trendingCompute = computed<any[]>(() => props.trendings);
+const dataCompute = computed<any[]>(() => props.data1);
+const dataModel = defineModel<any[]>('data');
 
-onBeforeMount(async () => {
-  // await useAsyncData(`trending/all/1`, () => getTrending(1))
-  //   .then((response) => {
-  //     console.log(response.pending.value);
-  //     trendings.value = response.data.value?.results;
-  //     prevItemCarousel.value =
-  //       trendings.value[trendings.value?.length - 1]?.name;
-  //     nextItemCarousel.value = trendings.value[1]?.name;
-  //   })
-  //   .catch((e) => {
-  //     if (axios.isCancel(e)) return;
-  //   });
-});
-
-watch(trendingCompute, () => {
-  prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
-  nextItemCarousel.value = props.trendings[1]?.name;
+watch(dataModel, () => {
+  prevItemCarousel.value = dataModel.value![dataModel.value!?.length - 1]?.name;
+  nextItemCarousel.value = dataModel.value![1]?.name;
 });
 
 const handleChangeCarouel = (activeIndex: number) => {
-  if (activeIndex == props.trendings?.length - 1) {
-    prevItemCarousel.value = props.trendings[activeIndex - 1]?.name;
-    nextItemCarousel.value = props.trendings[0]?.name;
+  if (activeIndex == dataModel.value!?.length - 1) {
+    prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
+    nextItemCarousel.value = dataModel.value![0]?.name;
   } else if (activeIndex == 0) {
-    prevItemCarousel.value = props.trendings[props.trendings?.length - 1]?.name;
-    nextItemCarousel.value = props.trendings[activeIndex + 1]?.name;
+    prevItemCarousel.value =
+      dataModel.value![dataModel.value!?.length - 1]?.name;
+    nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
   } else {
-    prevItemCarousel.value = props.trendings[activeIndex - 1]?.name;
-    nextItemCarousel.value = props.trendings[activeIndex + 1]?.name;
+    prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
+    nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
   }
 };
 

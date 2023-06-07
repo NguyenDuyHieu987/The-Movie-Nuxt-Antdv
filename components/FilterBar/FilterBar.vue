@@ -128,9 +128,6 @@ const emit = defineEmits<{ dataFiltered: [data: any[], formSelect: any] }>();
 const props = defineProps<{
   cancelFilter: () => void;
 }>();
-const modelValue = defineModel();
-
-// console.log(modelValue);
 
 const route: any = useRoute();
 const genres = ref<genre[]>([]);

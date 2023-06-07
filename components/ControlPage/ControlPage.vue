@@ -38,8 +38,6 @@ defineProps({
     type: Function,
   },
 });
-const modelValue = defineModel();
-// console.log(modelValue);
 </script>
 
 <style lang="scss" src="./ControlPage.scss"></style>

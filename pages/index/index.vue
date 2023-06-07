@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <BillboardAnimation :trendings="trendings" />
+    <BillboardAnimation :data1="trendings" v-model:data="trendings" />
 
     <div class="home-content">
       <div class="temp"></div>
