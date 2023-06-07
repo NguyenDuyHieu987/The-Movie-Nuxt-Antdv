@@ -1,40 +1,42 @@
 <template>
   <a-layout-sider :width="450" class="sider-rank">
-    <h2 class="gradient-title-default underline">
-      <strong> Top xem phim</strong>
-    </h2>
-    <ul class="tabs-rank">
-      <li
-        v-for="(item, index) in allTabs"
-        :key="item.key"
-        :index="index"
-        :class="[activeTab == item.key ? 'active' : '', item.key]"
-        @click="handleTabClick(item.key)"
-      >
-        <span> {{ item.tabName }} </span>
-      </li>
-    </ul>
-
-    <!-- <el-radio-group
-          v-model="activeTab"
-          @change="handleTabClick"
-          class="rank"
+    <div class="rank-side-header">
+      <h2 class="gradient-title-default underline">
+        <span> Top xem phim</span>
+      </h2>
+      <ul class="tabs-rank">
+        <li
+          v-for="(item, index) in allTabs"
+          :key="item.key"
+          :index="index"
+          :class="[activeTab == item.key ? 'active' : '', item.key]"
+          @click="handleTabClick(item.key)"
         >
-          <el-radio-button size="large" label="day" border
-            >Top ngày</el-radio-button
+          <span> {{ item.tabName }} </span>
+        </li>
+      </ul>
+
+      <!-- <el-radio-group
+            v-model="activeTab"
+            @change="handleTabClick"
+            class="rank"
           >
-          <el-radio-button size="large" label="week" border
-            >Top tuần</el-radio-button
-          >
-          <el-radio-button size="large" label="month" border
-            >Top tháng</el-radio-button
-          >
-          <el-radio-button size="large" label="all" border
-            >Tất cả</el-radio-button
-          >
-        </el-radio-group> -->
+            <el-radio-button size="large" label="day" border
+              >Top ngày</el-radio-button
+            >
+            <el-radio-button size="large" label="week" border
+              >Top tuần</el-radio-button
+            >
+            <el-radio-button size="large" label="month" border
+              >Top tháng</el-radio-button
+            >
+            <el-radio-button size="large" label="all" border
+              >Tất cả</el-radio-button
+            >
+          </el-radio-group> -->
+    </div>
     <div
-      class="rank-content"
+      class="rank-side-content"
       v-loading="loading"
       element-loading-text="Đang tải..."
       element-loading-background="rgba(0, 0, 0, 0.75)"
