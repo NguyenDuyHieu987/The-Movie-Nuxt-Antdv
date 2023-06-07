@@ -19,7 +19,7 @@
   // );
   // background-color: transparent;
   background: linear-gradient(to bottom, #050505 0, #05050500 100%);
-  transition: all 0.25s;
+  transition: background-color 0.25s;
   transition-delay: 0.3s;
 
   &:has(.menu-btn.desktop) {
