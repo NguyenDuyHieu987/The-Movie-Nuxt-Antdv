@@ -225,6 +225,12 @@ const handleSubmit = () => {
         store.$state.userAccount = response?.result;
         store.$state.role = response?.result?.role;
 
+        utils.localStorage.setWithExpiry(
+          'userAccount',
+          { user_token: response.headers.get('Authorization') },
+          30
+        );
+
         navigateTo({ path: '/' });
 
         reset();

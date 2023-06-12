@@ -31,9 +31,8 @@
             :preview="false"
             :lazy="true"
             loading="lazy"
+            @load="onLoadImg"
           />
-
-          <!-- <a-skeleton-image v-else class="ant-image" /> -->
 
           <div
             v-if="isInHistory"
@@ -138,6 +137,7 @@ const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
+const loadingImg = ref<boolean>(false);
 const isAddToList = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
@@ -152,38 +152,6 @@ const imgHeight = ref<number>(0);
 const imgWidth = ref<number>(0);
 const rectBound = ref<any>(0);
 const interval = ref<any>();
-
-const onMouseEnter = ({ target }: { target: HTMLElement }) => {
-  if (target) {
-    const rect = target.getBoundingClientRect();
-
-    const offsetX = rect.left;
-    const offsetY = window.scrollY + rect.top;
-
-    // left.value = offsetX + target.offsetWidth / 2 - width / 2;
-    // top.value = offsetY + target.offsetHeight / 2 - height / 2;
-
-    left.value = offsetX + target.offsetWidth / 2;
-    top.value = offsetY + target.offsetHeight / 2;
-
-    offsetWidth.value = target.offsetWidth;
-    offsetHeight.value = target.offsetHeight;
-
-    imgHeight.value = target.querySelector('img')!.offsetHeight;
-    imgWidth.value = target.querySelector('img')!.offsetWidth;
-
-    rectBound.value = rect;
-
-    interval.value = setTimeout(() => {
-      isTeleportPreviewModal.value = true;
-    }, 2000);
-
-    target.addEventListener('mouseleave', () => {
-      // isTeleportPreviewModal.value = false;
-      clearInterval(interval.value);
-    });
-  }
-};
 
 const getData = async () => {
   loading.value = true;
@@ -246,5 +214,41 @@ const getData = async () => {
 
 onBeforeMount(() => {});
 getData();
+
+const onMouseEnter = ({ target }: { target: HTMLElement }) => {
+  if (target) {
+    const rect = target.getBoundingClientRect();
+
+    const offsetX = rect.left;
+    const offsetY = window.scrollY + rect.top;
+
+    // left.value = offsetX + target.offsetWidth / 2 - width / 2;
+    // top.value = offsetY + target.offsetHeight / 2 - height / 2;
+
+    left.value = offsetX + target.offsetWidth / 2;
+    top.value = offsetY + target.offsetHeight / 2;
+
+    offsetWidth.value = target.offsetWidth;
+    offsetHeight.value = target.offsetHeight;
+
+    imgHeight.value = target.querySelector('img')!.offsetHeight;
+    imgWidth.value = target.querySelector('img')!.offsetWidth;
+
+    rectBound.value = rect;
+
+    interval.value = setTimeout(() => {
+      isTeleportPreviewModal.value = true;
+    }, 2000);
+
+    target.addEventListener('mouseleave', () => {
+      // isTeleportPreviewModal.value = false;
+      clearInterval(interval.value);
+    });
+  }
+};
+
+const onLoadImg = (e: any) => {
+  loadingImg.value = true;
+};
 </script>
 <style lang="scss" src="./MovieCardVertical.scss"></style>

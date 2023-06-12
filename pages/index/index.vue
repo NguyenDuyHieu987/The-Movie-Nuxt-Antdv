@@ -319,7 +319,7 @@ const responsiveVertical = computed<any>((): any => ({
 
 const getData = async () => {
   await useAsyncData(`trending/all/1`, () => getTrending(1))
-    .then((response) => {
+    .then((response: any) => {
       trendings.value = response.data.value?.results;
     })
     .catch((e) => {
@@ -387,12 +387,11 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
+onMounted(() => {
   // const request = useRequest();
   // const data = await request.makeRequest('/trending/all?page=2', {});
-
-  getData();
 });
+getData();
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;

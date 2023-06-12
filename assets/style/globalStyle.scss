@@ -9,7 +9,7 @@
 
   --text-color: #ffff;
 
-  --search-background: #ffffff1a;
+  --search-background: #0a0a0a41;
   --search-focus-background: #141414;
 
   --loading-progress-bar1: #1cb5e0;
@@ -94,6 +94,7 @@ html,
 body {
   height: auto;
   width: auto;
+  // color-scheme: dark;
 }
 
 body {

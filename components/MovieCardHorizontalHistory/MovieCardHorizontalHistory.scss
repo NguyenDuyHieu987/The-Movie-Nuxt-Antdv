@@ -73,23 +73,32 @@
 
   .img-box {
     position: relative;
-    max-width: 250px;
     flex: 1 0 250px;
-    min-height: 141px;
-    height: auto;
+    max-width: 250px;
     overflow: hidden;
     border-radius: 5px;
     transition: all 0.3s;
 
     .ant-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      transition: all 0.3s;
+      height: 0px !important;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      padding-bottom: 56.25%;
 
       img {
+        position: absolute;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: all 0.3s;
+        background-color: var(--background-content-color);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
       }
     }
 
@@ -206,7 +215,7 @@
   display: inline-flex;
   position: relative !important;
   border: none;
-  border-radius: 10px;
+  border-radius: 7px;
   overflow: hidden;
   z-index: 5;
 

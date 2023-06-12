@@ -1,7 +1,7 @@
 <template>
   <div class="movie-follow-item-wrapper">
     <p class="index-item">{{ index + 1 }}</p>
-    <el-skeleton :loading="loading" animated>
+    <el-skeleton :loading="loading && loadingImg" animated>
       <template #template>
         <div class="item-skeleton">
           <div class="img-box">
@@ -39,6 +39,7 @@
               :preview="false"
               :lazy="true"
               loading="lazy"
+              @load="onLoadImg"
             />
             <div
               v-show="isInHistory"
@@ -220,11 +221,12 @@ const props = defineProps<{
   getDataWhenRemoveList: (id: number) => void;
 }>();
 
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
+const loadingImg = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const urlShare = computed<string>((): string => window.location.href);
@@ -315,6 +317,10 @@ const handleRemoveFromList = async () => {
     props.getDataWhenRemoveList(props.item?.id);
   }
   return;
+};
+
+const onLoadImg = (e: any) => {
+  loadingImg.value = true;
 };
 </script>
 <style lang="scss" src="./MovieCardHorizontalFollow.scss"></style>

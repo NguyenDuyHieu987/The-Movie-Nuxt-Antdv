@@ -63,57 +63,40 @@
 }
 
 .ant-dropdown {
-  border: 0.5px solid var(--border-regular);
+  // border: 0.5px solid var(--border-regular);
+  border: none;
   position: fixed !important;
+  border-radius: 3px;
+  overflow: hidden;
 
-  .ant-dropdown-menu {
-    padding: 0px;
-    background-color: var(--background-content-color1);
+  .ant-dropdown-content {
+    .ant-dropdown-menu {
+      padding: 0px;
+      background-color: var(--background-content-color1);
 
-    .ant-dropdown-menu-item {
-      color: #d9d9d9;
+      .ant-dropdown-menu-item {
+        padding: 13px 20px;
+        font-size: 1.6rem;
+        color: #d9d9d9;
+      }
+
+      .ant-dropdown-menu-item-active {
+        background-color: var(--hover-dropdown-color);
+      }
+
+      .ant-dropdown-menu-item:first-child {
+        // border-bottom: 0.5px solid var(--border-regular);
+      }
+
+      .ant-dropdown-menu-item:last-child {
+        // border-top: 0.5px solid var(--border-regular);
+      }
+
+      .ant-dropdown-menu-item.ant-dropdown-menu-item-only-child {
+        a {
+        }
+      }
     }
-
-    .ant-dropdown-menu-item-active {
-      background-color: var(--hover-dropdown-color);
-    }
-  }
-
-  .ant-dropdown-menu-item:first-child {
-    border-bottom: 0.5px solid var(--border-regular);
-  }
-
-  .ant-dropdown-menu-item:last-child {
-    border-top: 0.5px solid var(--border-regular);
-  }
-
-  .ant-dropdown-menu-item.ant-dropdown-menu-item-only-child {
-    padding: 13px 20px;
-    font-size: 1.6rem;
-  }
-
-  .ant-menu-item:hover {
-    background-color: var(--hover-dropdown-color) !important;
-  }
-
-  .ant-menu-item-selected {
-    background-color: var(--hover-dropdown-color) !important;
-  }
-
-  .ant-menu-item {
-    margin: 0px;
-  }
-
-  .ant-menu-vertical > .ant-menu-item,
-  .ant-menu-vertical-left > .ant-menu-item,
-  .ant-menu-vertical-right > .ant-menu-item,
-  .ant-menu-inline > .ant-menu-item,
-  .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title,
-  .ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title,
-  .ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title,
-  .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
-    height: 45px;
-    line-height: 45px;
   }
 }
 

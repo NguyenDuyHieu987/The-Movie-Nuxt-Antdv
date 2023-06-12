@@ -67,7 +67,7 @@
 
               <div class="info">
                 <h2 class="title">
-                  <strong>Video đã thêm vào danh sách phát</strong>
+                  <strong>Phim đã thêm vào danh sách phát</strong>
                 </h2>
 
                 <div class="user-info">
@@ -77,7 +77,7 @@
                     </strong>
                   </p>
                   <p class="count-video">
-                    {{ total }} video
+                    {{ total }} phim
                     <span> Cập nhật hôm nay </span>
                   </p>
 
@@ -132,7 +132,7 @@
                     <!-- <span class="material-icons-outlined"> delete_sweep </span> -->
                     <i class="fa-regular fa-trash-can-list"></i>
                   </template>
-                  Xóa tất cả video đã xem
+                  Xóa tất cả phim đã xem
                 </el-button>
               </div>
 
@@ -140,7 +140,7 @@
                 <a-input
                   v-model:value="valueInput"
                   class="search-history"
-                  placeholder="Tìm kiếm trong danh sách video..."
+                  placeholder="Tìm kiếm trong danh sách..."
                   size="large"
                   allowClear
                   bordered
@@ -222,7 +222,7 @@
               <img class="overlay-image" v-lazy="getBackdrop(topicImage)" />
               <div class="info">
                 <h2 class="title">
-                  <strong>Video đã xem</strong>
+                  <strong>Phim đã xem</strong>
                 </h2>
                 <div class="user-info">
                   <p>
@@ -231,7 +231,7 @@
                     </strong>
                   </p>
                   <p class="count-video">
-                    {{ total }} video
+                    {{ total }} phim
                     <span> Cập nhật hôm nay </span>
                   </p>
                   <a-dropdown
@@ -275,7 +275,7 @@
                 <a-input
                   v-model:value="valueInput"
                   class="search-history"
-                  placeholder="Tìm kiếm trong danh sách video..."
+                  placeholder="Tìm kiếm trong danh sách..."
                   size="large"
                   allowClear
                   bordered
@@ -305,7 +305,7 @@
                     <!-- <span class="material-icons-outlined"> delete_sweep </span> -->
                     <i class="fa-regular fa-trash-can-list"></i>
                   </template>
-                  Xóa tất cả Video đã xem
+                  Xóa tất cả Phim đã xem
                 </el-button>
               </div>
             </div>

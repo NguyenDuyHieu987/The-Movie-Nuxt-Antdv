@@ -1,4 +1,4 @@
-.loading-page {
+.loading-app {
   position: fixed;
   left: 0;
   right: 0;
@@ -14,7 +14,7 @@
   background-color: var(--loading-background);
   overflow: hidden;
 
-  .loading-page-container {
+  .loading-app-container {
     display: flex;
     flex-direction: column;
     gap: 15px;

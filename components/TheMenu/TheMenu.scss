@@ -41,6 +41,7 @@
     align-items: center;
     padding-left: 24px !important;
     transition: width 0s !important;
+    margin-bottom: 0px;
 
     .ant-menu-title-content {
       transition: width 0s;
@@ -79,14 +80,17 @@
 
   .ant-menu-submenu {
     margin-left: 3px !important;
+    margin-top: 4px;
 
     .ant-menu-submenu-title {
-      height: 45px;
-      line-height: 45px;
+      height: 45px !important;
+      line-height: 45px !important;
+      height: 100%;
       border-radius: 100px;
       border-radius: 100px;
       padding-left: 24px !important;
       transition: width 0s;
+      margin: 0px;
 
       .ant-menu-title-content {
         transition: width 0s;

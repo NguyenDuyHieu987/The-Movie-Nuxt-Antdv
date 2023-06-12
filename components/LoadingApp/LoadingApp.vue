@@ -4,9 +4,9 @@
       // $route.name == 'index' &&
     //   loadingHomePage && !store.$state.loadingHomePage
     "
-    class="loading-page"
+    class="loading-app"
   >
-    <div class="loading-page-container">
+    <div class="loading-app-container">
       <img src="/images/logo.png" alt="" />
       <div class="logo"><h2 class="animated">Phimhay247</h2></div>
     </div>

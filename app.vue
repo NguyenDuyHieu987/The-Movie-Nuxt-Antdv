@@ -28,13 +28,12 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
-import { getUserToken } from '~/services/appMovieService';
-import LoadingApp from './components/LoadingApp/LoadingApp.vue';
+import { getUserToken } from '~/services/authentication';
+import LoadingApp from '@/components/LoadingApp/LoadingApp.vue';
 
 const store = useStore();
 const utils = useUtils();
 const router = useRouter();
-const route: any = useRoute();
 const loadingHomePage = ref<boolean>(true);
 
 const getData = async () => {
@@ -44,10 +43,10 @@ const getData = async () => {
     })
       .then((accountResponse: any) => {
         // console.log(accountResponse.data?.result);
-        if (accountResponse.data?.isLogin == true) {
+        if (accountResponse?.isLogin == true) {
           store.$state.isLogin = true;
-          store.$state.userAccount = accountResponse.data?.result;
-          store.$state.role = accountResponse.data?.result?.role;
+          store.$state.userAccount = accountResponse?.result;
+          store.$state.role = accountResponse?.result?.role;
         } else {
           window.localStorage.removeItem('userAccount');
           window.localStorage.removeItem('userToken');
@@ -80,9 +79,8 @@ const getData = async () => {
   }, 2000);
 };
 
-onBeforeMount(() => {
-  getData();
-});
+onBeforeMount(() => {});
+getData();
 </script>
 
 <style lang="scss" scoped src="./assets/style/app.scss"></style>

@@ -62,7 +62,7 @@
 
               <div class="info">
                 <h2 class="title">
-                  <strong>Video đã thêm vào danh sách phát</strong>
+                  <strong>Phim đã thêm vào danh sách phát</strong>
                 </h2>
 
                 <div class="user-info">
@@ -72,7 +72,7 @@
                     </strong>
                   </p>
                   <p class="count-video">
-                    {{ total }} video
+                    {{ total }} phim
                     <span> Cập nhật hôm nay </span>
                   </p>
 
@@ -130,7 +130,7 @@
                 <a-input
                   v-model:value="valueInput"
                   class="search-follow"
-                  placeholder="Tìm kiếm trong danh sách video..."
+                  placeholder="Tìm kiếm trong danh sách..."
                   size="large"
                   allowClear
                   :loading="loadingSearch"
@@ -207,7 +207,7 @@
               <img class="overlay-image" :src="getBackdrop(topicImage)" />
               <div class="info">
                 <h2 class="title">
-                  <strong>Video đã thêm vào danh sách phát</strong>
+                  <strong>Phim đã thêm vào danh sách phát</strong>
                 </h2>
                 <div class="user-info">
                   <p>
@@ -216,7 +216,7 @@
                     </strong>
                   </p>
                   <p class="count-video">
-                    {{ total }} video
+                    {{ total }} phim
                     <span> Cập nhật hôm nay </span>
                   </p>
                   <a-dropdown
@@ -257,7 +257,7 @@
                 <a-input
                   v-model:value="valueInput"
                   class="search-follow"
-                  placeholder="Tìm kiếm trong danh sách video..."
+                  placeholder="Tìm kiếm trong danh sách..."
                   size="large"
                   allowClear
                   :loading="loadingSearch"
