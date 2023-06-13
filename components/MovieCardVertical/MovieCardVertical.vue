@@ -25,9 +25,18 @@
 
       <template #default>
         <div class="img-box">
-          <img
+          <!-- <img
             class="ant-image"
             v-lazy="getPoster(item?.poster_path)"
+            :preview="false"
+            :lazy="true"
+            loading="lazy"
+            @load="onLoadImg"
+          /> -->
+
+          <nuxt-img
+            class="ant-image"
+            :src="getPoster(item?.poster_path)"
             :preview="false"
             :lazy="true"
             loading="lazy"

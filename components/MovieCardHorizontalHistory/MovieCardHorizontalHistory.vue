@@ -39,13 +39,15 @@
           class="movie-history-item"
         >
           <div class="img-box">
-            <el-image
-              class="ant-image"
-              :src="getBackdrop(item?.backdrop_path, ',250')"
-              :preview="false"
-              :lazy="true"
-              loading="lazy"
-            />
+            <div class="ant-image">
+              <nuxt-img
+                :src="getBackdrop(item?.backdrop_path, ',250')"
+                :preview="false"
+                :lazy="true"
+                loading="lazy"
+              />
+            </div>
+
             <div
               class="percent-viewed"
               :style="{ width: percent * 100 + '%' }"

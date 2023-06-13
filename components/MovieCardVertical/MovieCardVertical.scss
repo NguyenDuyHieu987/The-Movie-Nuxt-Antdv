@@ -116,9 +116,6 @@
     .movie-group.vertical.ranking {
       .movie-card-item.vertical {
         width: calc((100% - (6 * var(--card-movie-gap))) / 7);
-        .img-box {
-          // height: 14vw;
-        }
       }
     }
   }
@@ -126,9 +123,6 @@
   .movie-group.vertical.ranking {
     .movie-card-item.vertical {
       width: calc((100% - (5 * var(--card-movie-gap))) / 6);
-      .img-box {
-        // height: 14vw;
-      }
     }
   }
 }
@@ -136,17 +130,11 @@
 @media only screen and (max-width: 1700px) {
   .body-content.expand {
     .movie-card-item.vertical {
-      .img-box {
-        // height: 17vw;
-      }
     }
 
     .movie-group.vertical.ranking {
       .movie-card-item.vertical {
         width: calc((100% - (5 * var(--card-movie-gap))) / 6);
-        .img-box {
-          // height: 15vw;
-        }
       }
     }
   }
@@ -154,9 +142,6 @@
   .movie-group.vertical.ranking {
     .movie-card-item.vertical {
       width: calc((100% - (4 * var(--card-movie-gap))) / 5);
-      .img-box {
-        // height: 15vw;
-      }
     }
   }
 }
@@ -164,59 +149,38 @@
 @media only screen and (max-width: 1550px) {
   .body-content.expand {
     .movie-card-item.vertical {
-      .img-box {
-        // height: 20vw;
-      }
     }
   }
 
   .movie-group.vertical {
     .movie-card-item.vertical {
       width: calc((100% - (5 * var(--card-movie-gap))) / 6);
-      .img-box {
-        // height: 18vw;
-      }
     }
   }
 
   .movie-group.vertical.ranking {
     .movie-card-item.vertical {
       width: calc((100% - (3 * var(--card-movie-gap))) / 4);
-      .img-box {
-        // height: 17vw;
-      }
     }
   }
 
   .movie-card-item.vertical {
-    .img-box {
-      // height: 18vw;
-    }
   }
 }
 
 @media only screen and (max-width: 1400px) {
   .body-content.expand {
     .movie-card-item.vertical {
-      .img-box {
-        // height: 25vw;
-      }
     }
 
     .movie-group.vertical.ranking {
       .movie-card-item.vertical {
         width: calc((100% - (4 * var(--card-movie-gap))) / 5);
-        .img-box {
-          // height: 19vw;
-        }
       }
     }
   }
 
   .movie-card-item.vertical {
-    .img-box {
-      // height: 22vw;
-    }
   }
 }
 
@@ -224,18 +188,12 @@
   .movie-group.vertical {
     .movie-card-item.vertical {
       width: calc((100% - (4 * var(--card-movie-gap))) / 5);
-      .img-box {
-        // height: 22vw;
-      }
     }
   }
 
   .movie-group.vertical.ranking {
     .movie-card-item.vertical {
       width: calc((100% - (2 * var(--card-movie-gap))) / 3);
-      .img-box {
-        // height: 22vw;
-      }
     }
   }
 }
@@ -245,18 +203,12 @@
     .movie-group.vertical.ranking {
       .movie-card-item.vertical {
         width: calc((100% - (3 * var(--card-movie-gap))) / 4);
-        .img-box {
-          // height: 23vw;
-        }
       }
     }
   }
 
   .movie-group.vertical.ranking {
     .movie-card-item.vertical {
-      .img-box {
-        // height: 20vw;
-      }
     }
   }
 }
@@ -264,17 +216,11 @@
 @media only screen and (max-width: 1100px) {
   .body-content.expand {
     .movie-card-item.vertical {
-      .img-box {
-        // height: 29vw;
-      }
     }
 
     .movie-group.vertical {
       .movie-card-item.vertical {
         width: calc((100% - (4 * var(--card-movie-gap))) / 5) !important;
-        .img-box {
-          // height: 26vw !important;
-        }
       }
     }
   }
@@ -282,16 +228,10 @@
   .movie-group.vertical {
     .movie-card-item.vertical {
       width: calc((100% - (3 * var(--card-movie-gap))) / 4) !important;
-      .img-box {
-        // height: 25vw !important;
-      }
     }
   }
 
   .movie-card-item.vertical {
-    .img-box {
-      // height: 23vw;
-    }
   }
 }
 
@@ -299,16 +239,10 @@
   .movie-group.vertical {
     .movie-card-item.vertical {
       width: calc((100% - (4 * var(--card-movie-gap))) / 5) !important;
-      .img-box {
-        // height: 24vw !important;
-      }
     }
   }
 
   .movie-card-item.vertical {
-    .img-box {
-      // height: 33vw;
-    }
   }
 }
 
@@ -316,17 +250,6 @@
   .movie-group.vertical {
     .movie-card-item.vertical {
       width: calc((100% - (3 * var(--card-movie-gap))) / 4) !important;
-      .img-box {
-        // height: 32vw !important;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 650px) {
-  .movie-card-item.vertical {
-    .img-box {
-      // height: 43vw !important;
     }
   }
 }
@@ -335,9 +258,6 @@
   .movie-group.vertical {
     .movie-card-item.vertical {
       width: calc((100% - (2 * var(--card-movie-gap))) / 3) !important;
-      .img-box {
-        // height: 40vw !important;
-      }
     }
   }
 }
@@ -346,15 +266,9 @@
   .movie-group.vertical {
     .movie-card-item.vertical {
       width: calc((100% - (1 * var(--card-movie-gap))) / 2) !important;
-      .img-box {
-        // height: 64vw !important;
-      }
     }
   }
 
   .movie-card-item.vertical {
-    .img-box {
-      // height: 64vw !important;
-    }
   }
 }

@@ -12,13 +12,23 @@
     }"
     class="billboard-item"
   >
-    <el-image
-      class="el-image"
-      :src="getBackdrop(item?.backdrop_path)"
-      :preview="false"
-      :lazy="true"
-      loading="lazy"
-    />
+    <div class="img-wrapper">
+      <!-- <el-image
+        class="ant-image"
+        :src="getBackdrop(item?.backdrop_path)"
+        :preview="false"
+        :lazy="true"
+        loading="lazy"
+      /> -->
+
+      <nuxt-img
+        class="ant-image"
+        :src="getBackdrop(item?.backdrop_path)"
+        :preview="false"
+        :lazy="true"
+        loading="lazy"
+      />
+    </div>
 
     <div class="billboard-item-body">
       <div class="info">

@@ -113,9 +113,11 @@ export default defineNuxtConfig({
   modules: [
     '@element-plus/nuxt',
     '@pinia/nuxt',
+    'nuxt-swiper',
     'nuxt-icon',
     // 'vue-social-sharing/nuxt',
-    'nuxt-swiper',
+    '@nuxt/image',
+    'nuxt-lazy-load',
   ],
   elementPlus: {
     /** Options */

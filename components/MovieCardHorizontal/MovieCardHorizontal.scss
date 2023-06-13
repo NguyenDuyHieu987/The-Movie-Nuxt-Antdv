@@ -110,95 +110,63 @@
 @media only screen and (max-width: 1700px) {
   .body-content.expand {
     .movie-card-item.horizontal {
-      .img-box {
-        // height: 10vw !important;
-      }
     }
   }
 
   .movie-group.horizontal {
     .movie-card-item.horizontal {
-      display: inline-block;
       width: calc((100% - (4 * var(--card-movie-gap))) / 5);
-      //   margin: 4px;
     }
   }
 
   .movie-card-item.horizontal {
-    .img-box {
-      // height: 9vw !important;
-    }
   }
 }
 
 @media only screen and (max-width: 1500px) {
   .body-content.expand {
     .movie-card-item.horizontal {
-      .img-box {
-        // height: 13vw !important;
-      }
     }
   }
 
   .movie-group.horizontal {
     .movie-card-item.horizontal {
-      display: inline-block;
       width: calc((100% - (3 * var(--card-movie-gap))) / 4);
-      //   margin: 4px;
     }
   }
 
   .movie-card-item.horizontal {
-    .img-box {
-      // height: 11vw !important;
-    }
   }
 }
 
 @media only screen and (max-width: 1200px) {
   .body-content.expand {
     .movie-card-item.horizontal {
-      .img-box {
-        // height: 17vw !important;
-      }
     }
   }
 
   .movie-group.horizontal {
     .movie-card-item.horizontal {
-      display: inline-block;
       width: calc((100% - (2 * var(--card-movie-gap))) / 3);
-      //   margin: 4px;
     }
   }
 
   .movie-card-item.horizontal {
-    .img-box {
-      // height: 14vw !important;
-    }
   }
 }
 
 @media only screen and (max-width: 900px) {
   .movie-card-item.horizontal {
-    .img-box {
-      // height: 18vw !important;
-    }
   }
 }
 
 @media only screen and (max-width: 600px) {
   .movie-card-item.horizontal {
-    .img-box {
-      // height: 26vw !important;
-    }
   }
 
   .movie-group.horizontal {
     .movie-card-item.horizontal {
-      display: inline-block;
       width: calc((100% - (1 * var(--card-movie-gap))) / 2);
-      //   margin: 4px;
     }
   }
 }

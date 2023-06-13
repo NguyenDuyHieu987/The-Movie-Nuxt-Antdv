@@ -32,15 +32,24 @@
           class="movie-follow-item"
         >
           <div class="img-box">
-            <!-- v-if="!loading" -->
-            <el-image
+            <!-- <el-image
               class="ant-image"
               :src="getBackdrop(item?.backdrop_path, ',250')"
               :preview="false"
               :lazy="true"
               loading="lazy"
               @load="onLoadImg"
-            />
+            /> -->
+
+            <div class="ant-image">
+              <nuxt-img
+                :src="getBackdrop(item?.backdrop_path, ',250')"
+                :preview="false"
+                :lazy="true"
+                loading="lazy"
+              />
+            </div>
+
             <div
               v-show="isInHistory"
               class="percent-viewed"

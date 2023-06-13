@@ -291,11 +291,15 @@ const responsiveVertical = computed<any>((): any => ({
     slidesPerView: 3,
     slidesPerGroup: 3,
   },
-  650: {
+  600: {
     slidesPerView: 4,
     slidesPerGroup: 4,
   },
-  1000: {
+  800: {
+    slidesPerView: 5,
+    slidesPerGroup: 5,
+  },
+  900: {
     slidesPerView: 4,
     slidesPerGroup: 4,
   },
@@ -303,7 +307,7 @@ const responsiveVertical = computed<any>((): any => ({
     slidesPerView: 5,
     slidesPerGroup: 5,
   },
-  1400: {
+  1300: {
     slidesPerView: 6,
     slidesPerGroup: 6,
   },
@@ -390,8 +394,8 @@ const getData = async () => {
 onBeforeMount(() => {
   // const request = useRequest();
   // const data = await request.makeRequest('/trending/all?page=2', {});
+  getData();
 });
-getData();
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;

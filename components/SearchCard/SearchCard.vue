@@ -10,13 +10,21 @@
     class="movie-search-item"
   >
     <div class="img-box">
-      <el-image
+      <!-- <el-image
         class="ant-image"
         :src="getPoster(item?.poster_path)"
         :preview="false"
         :lazy="true"
         loading="lazy"
-      />
+      /> -->
+      <div class="ant-image">
+        <nuxt-img
+          :src="getPoster(item?.poster_path)"
+          :preview="false"
+          :lazy="true"
+          loading="lazy"
+        />
+      </div>
     </div>
 
     <div class="info">
