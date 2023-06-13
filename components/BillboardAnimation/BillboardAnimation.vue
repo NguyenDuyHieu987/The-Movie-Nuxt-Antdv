@@ -80,6 +80,8 @@ const nextItemCarousel = ref<string>('');
 const dataCompute = computed<any[]>(() => props.data1);
 const dataModel = defineModel<any[]>('data');
 
+onBeforeMount(() => {});
+
 watch(dataModel, () => {
   if (dataModel.value) {
     prevItemCarousel.value =

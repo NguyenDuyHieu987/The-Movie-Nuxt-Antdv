@@ -5,7 +5,6 @@
         <a-layout-sider
           class="topic-follow-column-responsive"
           width="calc(100% + 40px)"
-          v-show="!loading"
         >
           <div class="column-container">
             <div class="top">
@@ -152,7 +151,7 @@
             </div>
           </div>
         </a-layout-sider>
-        <Teleport v-if="!loading" to="#topic-follow-column-teleport">
+        <Teleport v-if="dataList?.length" to="#topic-follow-column-teleport">
           <a-layout-sider class="topic-follow-column" :width="340">
             <div class="column-container">
               <div class="backdrop">
@@ -538,13 +537,13 @@ const getData = async () => {
             if (axios.isCancel(e)) return;
           });
       }
-
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
-      loading.value = false;
     })
     .catch((e) => {
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loading.value = false;
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };
 
