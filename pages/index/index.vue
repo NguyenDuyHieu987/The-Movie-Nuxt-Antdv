@@ -390,8 +390,8 @@ const getData = async () => {
 onBeforeMount(() => {
   // const request = useRequest();
   // const data = await request.makeRequest('/trending/all?page=2', {});
+  getData();
 });
-getData();
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;

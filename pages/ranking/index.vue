@@ -81,8 +81,9 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {});
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 watch(pageTrending, async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>

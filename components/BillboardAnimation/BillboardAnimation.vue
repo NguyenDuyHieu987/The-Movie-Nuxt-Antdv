@@ -81,8 +81,11 @@ const dataCompute = computed<any[]>(() => props.data1);
 const dataModel = defineModel<any[]>('data');
 
 watch(dataModel, () => {
-  prevItemCarousel.value = dataModel.value![dataModel.value!?.length - 1]?.name;
-  nextItemCarousel.value = dataModel.value![1]?.name;
+  if (dataModel.value) {
+    prevItemCarousel.value =
+      dataModel.value![dataModel.value!?.length - 1]?.name;
+    nextItemCarousel.value = dataModel.value![1]?.name;
+  }
 });
 
 const handleChangeCarouel = (activeIndex: number) => {

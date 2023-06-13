@@ -8,6 +8,11 @@
   box-shadow: var(--box-shadow-medium) !important;
 }
 
+.ant-modal-mask {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .ant-modal {
   box-shadow: var(--box-shadow-large);
   border-radius: 5px;
@@ -68,6 +73,8 @@
   position: fixed !important;
   border-radius: 3px;
   overflow: hidden;
+  // box-shadow: 0 8px 24px var(--background-content-color);
+  box-shadow: var(--box-shadow-medium);
 
   .ant-dropdown-content {
     .ant-dropdown-menu {

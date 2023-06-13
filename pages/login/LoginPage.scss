@@ -42,10 +42,7 @@
     justify-content: center;
     flex-direction: column;
     border-radius: 5px;
-    // box-shadow: 0 3px 6px -4px #00000077, 0 6px 16px 0 #00000054,
-    //   0 9px 28px 8px #0000002d;
-    box-shadow: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
-      0 9px 28px 8px #00000077;
+    box-shadow: var(--box-shadow-large);
     z-index: 1;
     background-color: var(--background-content-color);
     width: 550px;
