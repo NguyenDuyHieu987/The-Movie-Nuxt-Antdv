@@ -13,7 +13,7 @@
     ref="cardItem"
     @mouseenter="onMouseEnter"
   >
-    <el-skeleton :loading="loading && loadingImg" animated>
+    <el-skeleton :loading="loading" animated>
       <template #template>
         <el-skeleton-item class="skeleton-img" />
 

@@ -79,6 +79,7 @@
                   <a-dropdown
                     :trigger="['click']"
                     placement="bottomRight"
+                    overlayClassName="dropdown-viewmore"
                     class="dropdown-viewmore"
                   >
                     <el-button
@@ -222,6 +223,7 @@
                   <a-dropdown
                     :trigger="['click']"
                     placement="bottomRight"
+                    overlayClassName="dropdown-viewmore"
                     class="dropdown-viewmore"
                   >
                     <el-button
@@ -546,9 +548,8 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {
-  getData();
-});
+onBeforeMount(() => {});
+getData();
 
 const getDataWhenRemoveList = (data: number) => {
   // dataList.value = data;

@@ -171,7 +171,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  ssr: false,
+  ssr: true,
   routeRules: {
     '/': { swr: true },
     '/search/**': { swr: true },

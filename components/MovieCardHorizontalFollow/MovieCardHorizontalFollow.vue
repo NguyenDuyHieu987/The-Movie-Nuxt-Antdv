@@ -1,7 +1,7 @@
 <template>
   <div class="movie-follow-item-wrapper">
     <p class="index-item">{{ index + 1 }}</p>
-    <el-skeleton :loading="loading && loadingImg" animated>
+    <el-skeleton :loading="loading" animated>
       <template #template>
         <div class="item-skeleton">
           <div class="img-box">
@@ -103,7 +103,8 @@
               <a-dropdown
                 :trigger="['click']"
                 placement="bottomRight"
-                class="dropdown-viewmore"
+                overlayClassName="dropdown-item-viewmore"
+                class="dropdown-item-viewmore"
               >
                 <el-button
                   circle
@@ -119,7 +120,7 @@
                 </el-button>
 
                 <template #overlay>
-                  <a-menu class="dropdown-item-viewmore">
+                  <a-menu>
                     <div class="main-action">
                       <a-menu-item key="play">
                         <template #icon>
@@ -186,7 +187,7 @@
                     <div class="danger-zone">
                       <a-menu-item
                         key="remove-list"
-                        class="remove-list"
+                        class="remove-item"
                         @click="handleRemoveFromList"
                       >
                         <template #icon>

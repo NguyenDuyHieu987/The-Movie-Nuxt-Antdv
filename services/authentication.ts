@@ -41,7 +41,7 @@ export function getUserToken(params: any) {
   const headers = { Authorization: `Bearer ${params.user_token}` };
 
   return makeRequest(`/auth/getusertoken`, {
-    method: 'POST',
+    // method: 'POST',
     headers: headers,
   });
 }

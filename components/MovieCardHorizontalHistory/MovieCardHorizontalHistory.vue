@@ -131,7 +131,8 @@
               <a-dropdown
                 :trigger="['click']"
                 placement="bottomRight"
-                class="dropdown-viewmore"
+                overlayClassName="dropdown-item-viewmore"
+                class="dropdown-item-viewmore"
               >
                 <el-button
                   circle
@@ -148,7 +149,7 @@
                 </el-button>
 
                 <template #overlay>
-                  <a-menu class="dropdown-item-viewmore">
+                  <a-menu>
                     <div class="main-action">
                       <a-menu-item key="play">
                         <template #icon>
@@ -241,7 +242,7 @@
                     <div class="danger-zone">
                       <a-menu-item
                         key="remove-history"
-                        class="remove-history"
+                        class="remove-item"
                         @click="handleRemoveFromHistory"
                       >
                         <template #icon>

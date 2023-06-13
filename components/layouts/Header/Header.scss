@@ -284,7 +284,7 @@
   // }
 }
 
-.ant-dropdown:has(.dropdown-notification) {
+.ant-dropdown.dropdown-notification {
   max-width: 480px;
   max-height: 642px;
   // height: 642px;
@@ -364,6 +364,16 @@
       padding-left: 35px;
       border: none;
       font-size: 1.4rem;
+    }
+  }
+}
+
+.ant-dropdown.dropdown-account {
+  .ant-dropdown-content {
+    .ant-dropdown-menu {
+      .ant-dropdown-menu-item {
+        padding: 13px 20px;
+      }
     }
   }
 }

@@ -387,7 +387,7 @@ const getData = async () => {
   }
 };
 
-onMounted(() => {
+onBeforeMount(() => {
   // const request = useRequest();
   // const data = await request.makeRequest('/trending/all?page=2', {});
 });

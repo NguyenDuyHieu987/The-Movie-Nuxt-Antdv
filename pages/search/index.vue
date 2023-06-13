@@ -97,11 +97,9 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
-  getData();
-});
+onBeforeMount(() => {});
+internalInstance.appContext.config.globalProperties.$Progress.start();
+getData();
 
 watch(route, () => {
   getData();

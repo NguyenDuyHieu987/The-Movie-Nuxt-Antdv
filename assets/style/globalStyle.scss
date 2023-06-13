@@ -341,3 +341,96 @@ button,
     overflow: visible !important;
   }
 }
+
+.ant-dropdown.dropdown-viewmore {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .ant-dropdown-menu.dropdown-viewmore {
+    padding: 7px 0px;
+  }
+
+  .ant-dropdown-menu-item {
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.45rem;
+
+    span,
+    a {
+      color: #fff;
+    }
+
+    svg,
+    i {
+      margin-right: 16px;
+      font-size: 1.5rem;
+    }
+
+    .material-icons-outlined {
+      font-size: 2rem;
+    }
+  }
+
+  .ant-dropdown-menu-item:not(.material-icons-outlined) {
+    .anticon {
+      margin-left: 2px;
+      margin-right: 16px;
+
+      svg {
+        margin-right: 0px;
+      }
+    }
+
+    svg {
+      margin-left: -2px;
+      width: 15px;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.ant-dropdown.dropdown-item-viewmore {
+  display: inline-flex;
+  position: relative !important;
+  border: none;
+  border-radius: 7px;
+  overflow: hidden;
+  z-index: 5;
+
+  .ant-dropdown-menu {
+    .main-action {
+      padding: 7px 0px;
+    }
+
+    hr {
+      border-top: 1px solid #7e7e7e00;
+    }
+
+    .danger-zone {
+      padding: 7px 0px;
+
+      .ant-dropdown-menu-item {
+        &.remove-item {
+          color: #b90016;
+          span,
+          a {
+            color: #b90016;
+          }
+        }
+      }
+    }
+  }
+
+  .ant-dropdown-menu-item {
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.45rem;
+    max-height: 42px;
+
+    span,
+    a {
+      color: #fff;
+    }
+  }
+}
