@@ -145,18 +145,17 @@ const getData = async (activeKey: string) => {
   }
 };
 
-onBeforeMount(async () => {
-  await useAsyncData(`ranking/all/1`, () => getRanking(1))
-    .then((movieRespone: any) => {
-      rankData.value = movieRespone.data.value?.results;
-      setTimeout(() => {
-        loading.value = false;
-      }, 1500);
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
-});
+onBeforeMount(async () => {});
+await useAsyncData(`ranking/all/1`, () => getRanking(1))
+  .then((movieRespone: any) => {
+    rankData.value = movieRespone.data.value?.results;
+    setTimeout(() => {
+      loading.value = false;
+    }, 1500);
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
 
 const handleTabClick = (activeKey: any) => {
   getData(activeKey);

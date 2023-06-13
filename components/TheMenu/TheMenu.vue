@@ -357,9 +357,8 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {
-  getData();
-});
+onBeforeMount(() => {});
+getData();
 
 watch(route, () => {
   state.selectedKeys = [

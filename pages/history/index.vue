@@ -560,8 +560,9 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {});
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 const getDataWhenRemoveHistory = (data: number) => {
   // dataHistory.value = data;
