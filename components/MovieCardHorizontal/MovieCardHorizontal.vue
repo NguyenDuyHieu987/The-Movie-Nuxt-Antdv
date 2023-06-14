@@ -25,20 +25,9 @@
 
       <template #default>
         <div class="img-box">
-          <!-- <img
+          <img
             class="ant-image"
             v-lazy="getBackdrop(item?.backdrop_path, ',250')"
-            :preview="false"
-            :lazy="true"
-            loading="lazy"
-            @load="onLoadImg"
-          /> -->
-
-          <nuxt-img
-            class="ant-image"
-            :src="getBackdrop(item?.backdrop_path, ',250')"
-            :preview="false"
-            :lazy="true"
             loading="lazy"
             @load="onLoadImg"
           />

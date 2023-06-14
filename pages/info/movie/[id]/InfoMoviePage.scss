@@ -1,40 +1,81 @@
 .movie-info-conainer {
   .main-info {
     display: flex;
-    gap: 15px;
+    // gap: 15px;
   }
 
   .backdrop-img {
-    height: 60vh;
-    width: 60%;
     position: relative;
+    height: 0px !important;
+    padding-bottom: 56.25%;
+    width: 100%;
 
     .backdrop-wrapper {
       position: relative;
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+      // overflow: hidden;
       z-index: 1;
-    }
 
-    .ant-image,
-    .el-image {
-      height: 100%;
-      width: 100%;
-
-      img {
+      .ant-image {
         height: 100%;
         width: 100%;
         object-fit: cover;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
       }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        background-image: linear-gradient(
+          35deg,
+          var(--background-content-color) 0%,
+          rgba(7, 7, 7, 0) 70%
+        );
+        // background-image: linear-gradient(35deg, red 0%, rgba(7, 7, 7, 0) 70%);
+        // box-shadow: inset 25vw -4vw 10px 10px var(--background-content-color);
+        // border-radius: 50%;
+        width: 100%;
+        height: 100%;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        background-image: linear-gradient(
+          35deg,
+          var(--background-content-color) 0%,
+          rgba(7, 7, 7, 0) 70%
+        );
+        // background-image: linear-gradient(35deg, red 0%, rgba(7, 7, 7, 0) 70%);
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .poster-img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
     }
 
     .overlay-backdrop {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 100%;
-      height: 100%;
+      width: 110%;
+      height: 110%;
       z-index: 0;
       transform: translateX(-50%) translateY(-50%);
 
@@ -42,173 +83,10 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0.4;
+        opacity: 0.5;
         filter: blur(150px);
         // border-radius: 23%;
       }
-    }
-
-    &:hover {
-      .poster-img {
-        right: 10px;
-      }
-
-      &::before,
-      &::after {
-        z-index: -1;
-        opacity: 0;
-      }
-    }
-  }
-
-  .poster-img {
-    display: flex;
-    position: absolute;
-    right: -150px;
-    bottom: 10px;
-    box-shadow: 0 2px 4px -4px #000000ba, 0 6px 16px 0 #00000098,
-      0 9px 28px 8px #00000077;
-    transition: all 0.4s;
-    overflow: hidden;
-
-    .ant-image,
-    .el-image {
-      height: 375px;
-      width: 252px;
-      border-radius: 5px;
-      border: 1px solid #ffffff;
-
-      img {
-        height: auto;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    .hd-brand {
-      padding: 5px 50px;
-      color: #fff;
-
-      // background-color: #ff2600;
-      background-image: linear-gradient(
-        to right,
-        var(--app-background-color3),
-        var(--app-background-color1),
-        var(--app-background-color6)
-      );
-      position: absolute;
-      top: 6px;
-      right: -40px;
-      transform: rotate(45deg);
-      font-size: 1.5rem;
-      box-shadow: 0 2px 4px -4px #000000ba, 0 2px 4px 0 #00000098,
-        0 2px 4px 8px #00000077;
-    }
-
-    .btn-play-now {
-      position: absolute;
-      bottom: 5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      opacity: 0.4;
-      color: #fff;
-      padding: 10px 15px;
-      border-radius: 3px;
-      display: inline-block;
-      white-space: nowrap;
-      cursor: pointer;
-      text-align: center;
-      background-image: linear-gradient(
-        to right,
-        var(--app-background-color3),
-        var(--app-background-color1),
-        var(--app-background-color6)
-      );
-      box-shadow: #000000bf 0px 5px 15px;
-      transition: all 0.5s;
-      background-size: 100% 100%;
-      background-position: 100% center;
-
-      &:hover {
-        opacity: 1;
-        transform: translateX(-50%) scale(1.105);
-        background-size: 200% 100%;
-        background-position: 100% center;
-      }
-    }
-  }
-
-  .poster-img-mobile {
-    display: none;
-    position: relative;
-    height: 262px;
-    margin: 0px auto;
-    overflow: hidden;
-
-    .ant-image,
-    .el-image {
-      height: 100%;
-      border-radius: 5px;
-
-      img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
-    }
-
-    .btn-play-now {
-      position: absolute;
-      bottom: 5px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0.8;
-      width: 95%;
-      color: #fff;
-      padding: 10px 15px;
-      border-radius: 3px;
-      display: inline-block;
-      white-space: nowrap;
-      cursor: pointer;
-      text-align: center;
-      background-image: linear-gradient(
-        to right,
-        var(--app-background-color3),
-        var(--app-background-color1),
-        var(--app-background-color6)
-      );
-      box-shadow: #000000bf 0px 5px 15px;
-      transition: all 0.5s;
-      background-size: 100% 100%;
-      background-position: 100% center;
-
-      &:hover {
-        opacity: 1;
-        transform: translateX(-50%) scale(1.105);
-        background-size: 200% 100%;
-        background-position: 100% center;
-      }
-    }
-
-    .hd-brand {
-      padding: 5px 50px;
-      color: #fff;
-
-      background-image: linear-gradient(
-        to right,
-        var(--app-background-color3),
-        var(--app-background-color1),
-        var(--app-background-color6)
-      );
-      position: absolute;
-      top: 5px;
-      right: -40px;
-      transform: rotate(45deg);
-      font-size: 1.5rem;
-      box-shadow: 0 2px 4px -4px #000000ba, 0 2px 4px 0 #00000098,
-        0 2px 4px 8px #00000077;
     }
   }
 

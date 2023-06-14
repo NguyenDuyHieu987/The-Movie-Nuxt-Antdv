@@ -24,8 +24,6 @@
       <nuxt-img
         class="ant-image"
         :src="getBackdrop(item?.backdrop_path)"
-        :preview="false"
-        :lazy="true"
         loading="lazy"
       />
     </div>

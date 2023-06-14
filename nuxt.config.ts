@@ -117,7 +117,7 @@ export default defineNuxtConfig({
     'nuxt-icon',
     // 'vue-social-sharing/nuxt',
     '@nuxt/image',
-    'nuxt-lazy-load',
+    // 'nuxt-lazy-load',
   ],
   elementPlus: {
     /** Options */

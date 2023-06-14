@@ -19,10 +19,10 @@
                       .toLowerCase()}/tap-1`,
                   }"
                 >
-                  <img
+                  <nuxt-img
                     class="ant-image"
-                    v-lazy="getBackdrop(topicImage, ',250')"
-                    :preview="false"
+                    :src="getBackdrop(topicImage, ',250')"
+                    loading="lazy"
                   />
 
                   <div class="play-now">
@@ -44,10 +44,10 @@
                       .toLowerCase()}`,
                   }"
                 >
-                  <img
+                  <nuxt-img
                     class="ant-image"
-                    v-lazy="getBackdrop(topicImage, ',250')"
-                    :preview="false"
+                    :src="getBackdrop(topicImage, ',250')"
+                    loading="lazy"
                   />
 
                   <div class="play-now">
@@ -55,14 +55,18 @@
                     <span>PHÁT NGAY</span>
                   </div>
                 </NuxtLink>
-                <img
-                  class="ant-image"
+                <nuxt-img
                   v-if="!dataHistory?.length"
-                  v-lazy="getBackdrop(topicImage, ',250')"
-                  :preview="false"
+                  class="ant-image"
+                  :src="getBackdrop(topicImage, ',250')"
+                  loading="lazy"
                 />
               </div>
-              <img class="overlay-image" v-lazy="getBackdrop(topicImage)" />
+              <nuxt-img
+                class="overlay-image"
+                :src="getBackdrop(topicImage)"
+                loading="lazy"
+              />
 
               <div class="info">
                 <h2 class="title">
@@ -179,10 +183,10 @@
                       .toLowerCase()}/tap-1`,
                   }"
                 >
-                  <img
+                  <nuxt-img
                     class="ant-image"
-                    v-lazy="getBackdrop(topicImage, ',250')"
-                    :preview="false"
+                    :src="getBackdrop(topicImage, ',250')"
+                    loading="lazy"
                   />
 
                   <div class="play-now">
@@ -204,10 +208,10 @@
                       .toLowerCase()}`,
                   }"
                 >
-                  <img
+                  <nuxt-img
                     class="ant-image"
-                    v-lazy="getBackdrop(topicImage, ',250')"
-                    :preview="false"
+                    :src="getBackdrop(topicImage, ',250')"
+                    loading="lazy"
                   />
 
                   <div class="play-now">
@@ -215,14 +219,18 @@
                     <span>PHÁT NGAY</span>
                   </div>
                 </NuxtLink>
-                <img
-                  class="ant-image"
+                <nuxt-img
                   v-if="!dataHistory?.length"
-                  v-lazy="getBackdrop(topicImage, ',250')"
-                  :preview="false"
+                  class="ant-image"
+                  :src="getBackdrop(topicImage, ',250')"
+                  loading="lazy"
                 />
               </div>
-              <img class="overlay-image" v-lazy="getBackdrop(topicImage)" />
+              <nuxt-img
+                class="overlay-image"
+                :src="getBackdrop(topicImage)"
+                loading="lazy"
+              />
               <div class="info">
                 <h2 class="title">
                   <strong>Phim đã xem</strong>

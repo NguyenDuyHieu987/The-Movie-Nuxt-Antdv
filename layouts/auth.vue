@@ -1,15 +1,15 @@
 <template>
   <div class="auth-container">
     <div class="image-auth">
-      <img
+      <nuxt-img
         :src="`/images/background_auth/Background_Auth${image}.jpg`"
-        alt=""
+        loading="lazy"
       />
     </div>
     <div class="image-auth responsive">
-      <img
+      <nuxt-img
         :src="`/images/background_auth_responsive/Background_Auth${image_mobile}.jpg`"
-        alt=""
+        loading="lazy"
       />
     </div>
 

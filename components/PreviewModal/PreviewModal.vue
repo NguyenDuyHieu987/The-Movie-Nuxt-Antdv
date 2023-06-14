@@ -7,12 +7,12 @@
         @mouseover="onClickPreviewModal"
       >
         <div class="backdrop-box">
-          <el-image
+          <nuxt-img
             class="ant-image"
             :src="getBackdrop(item?.backdrop_path, ',250')"
-            :preview="false"
+            loading="lazy"
           />
-          <!-- :lazy="true" loading="lazy" -->
+
           <div
             v-if="isInHistory"
             class="percent-viewed"

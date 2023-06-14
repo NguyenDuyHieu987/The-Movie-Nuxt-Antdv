@@ -37,7 +37,7 @@ import Header from '@/components/layouts/Header/Header.vue';
 import Drawer from '@/components/layouts/Drawer/Drawer.vue';
 import Sider from '@/components/layouts/Sider/Sider.vue';
 import Footer from '@/components/layouts/Footer/Footer.vue';
-// import BreadCrumb from '@/components/BreadCrumb/BreadCrumb.vue';
+// import BreadCrumb from '@/components/layouts/BreadCrumb/BreadCrumb.vue';
 import { storeToRefs } from 'pinia';
 import RequireAuthDialog from '@/components/RequireAuthDialog/RequireAuthDialog.vue';
 

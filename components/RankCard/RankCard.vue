@@ -21,12 +21,7 @@
         loading="lazy"
       /> -->
       <div class="ant-image">
-        <nuxt-img
-          :src="getPoster(item?.poster_path)"
-          :preview="false"
-          :lazy="true"
-          loading="lazy"
-        />
+        <img v-lazy="getPoster(item?.poster_path)" loading="lazy" />
       </div>
     </div>
 

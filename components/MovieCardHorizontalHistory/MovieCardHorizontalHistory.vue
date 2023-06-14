@@ -40,10 +40,8 @@
         >
           <div class="img-box">
             <div class="ant-image">
-              <nuxt-img
-                :src="getBackdrop(item?.backdrop_path, ',250')"
-                :preview="false"
-                :lazy="true"
+              <img
+                v-lazy="getBackdrop(item?.backdrop_path, ',250')"
                 loading="lazy"
               />
             </div>
