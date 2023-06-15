@@ -53,6 +53,9 @@
 }
 
 .ant-select-dropdown {
+  padding: 0px;
+  border: 0.1px solid #4d4d4d;
+
   .rc-virtual-list-holder-inner {
     .ant-select-item {
       padding: 10px 15px;
@@ -117,43 +120,8 @@
   box-shadow: var(--input-border-color-focused);
 }
 
-.ant-btn.default {
-  display: flex;
-  align-items: center;
-  border-color: var(--border-regular);
-  color: #fff;
-  transition: all 0.25s;
-  height: auto;
-  background-color: transparent;
-
-  &.gradient {
-    background: linear-gradient(
-      to right,
-      var(--app-background-color3),
-      var(--app-background-color2),
-      var(--app-background-color3)
-    );
-    border: none;
-    background-size: 200% 100%;
-    padding: 11px 35px;
-
-    &:hover {
-      background-size: 200% 100%;
-      background-position: 100% center;
-    }
-  }
-
-  &:hover {
-    border-color: var(--btn-border-color-hover);
-  }
-
-  &:active {
-    opacity: 0.8;
-  }
-
-  &::after {
-    box-shadow: none !important;
-  }
+[ant-click-animating-without-extra-node]:after {
+  content: none;
 }
 
 .ant-tooltip {

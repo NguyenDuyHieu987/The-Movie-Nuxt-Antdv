@@ -79,8 +79,9 @@ const getData = async () => {
   }, 2000);
 };
 
-onBeforeMount(() => {});
-getData();
+onBeforeMount(() => {
+  getData();
+});
 </script>
 
 <style lang="scss" scoped src="./assets/style/app.scss"></style>

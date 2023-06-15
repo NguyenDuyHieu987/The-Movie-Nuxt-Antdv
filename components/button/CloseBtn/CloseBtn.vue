@@ -2,7 +2,7 @@
   <Icon name="ic:twotone-close" class="close" :class="class" />
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" scoped>
 defineProps({ class: { type: String } });
 </script>
 

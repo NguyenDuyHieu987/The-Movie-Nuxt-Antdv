@@ -19,20 +19,17 @@
       :quote="'Xem phim thỏa thích cùng Phimhay247'"
       hashtags="phimhay247.site"
     >
-      <a-button round type="primary" shape="round">
+      <a-button class="modern" type="text" size="large">
         <template #icon>
-          <share-alt-outlined />
+          <Icon name="ph:share-fat-bold" class="share" />
         </template>
-        Chia sẻ
+        <span> Chia sẻ</span>
       </a-button>
     </ShareNetwork>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ShareAltOutlined } from '@ant-design/icons-vue';
-import { getBackdrop } from '~/services/appMovieService';
-
 const props = defineProps<{ dataMovie: any }>();
 // const route = useRoute();
 

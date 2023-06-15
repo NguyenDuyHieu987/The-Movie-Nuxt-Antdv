@@ -68,7 +68,7 @@
                     .toLowerCase()}/tap-1`,
           }"
         >
-          <a-button size="large" type="text" class="play">
+          <a-button size="large" type="text" class="play modern">
             <template #icon>
               <Icon name="ic:play-arrow" class="play" />
             </template>
@@ -88,7 +88,7 @@
                     .toLowerCase()}`,
           }"
         >
-          <a-button size="large" type="text" class="info">
+          <a-button size="large" type="text" class="info modern">
             <template #icon>
               <Icon name="bi:info-circle" class="info" />
             </template>
@@ -97,7 +97,7 @@
         </NuxtLink>
 
         <NuxtLink @click.prevent="handelAddToList">
-          <a-button size="large" type="text" class="add">
+          <a-button size="large" type="text" class="add modern">
             <template #icon>
               <Icon v-if="isAddToList" name="ic:baseline-check" />
               <Icon v-else name="ic:baseline-plus" />

@@ -96,8 +96,8 @@ body {
 }
 
 body {
+  font-size: 1.5rem;
   line-height: 1.43;
-  font-size: 1.6rem;
   // font-size: clamp(1.4rem, 1vw, 10rem);
   font-family: 'Roboto Flex', sans-serif;
   text-rendering: optimizeSpeed;
@@ -337,6 +337,72 @@ button,
   .owl-stage-outer {
     clip-path: inset(-100vh 0 -100vh 0);
     overflow: visible !important;
+  }
+}
+
+.ant-btn {
+  &.default {
+    display: flex;
+    align-items: center;
+    border-color: var(--border-regular);
+    color: #fff;
+    transition: all 0.25s;
+    height: auto;
+    background-color: transparent;
+
+    &.gradient {
+      background: linear-gradient(
+        to right,
+        var(--app-background-color3),
+        var(--app-background-color2),
+        var(--app-background-color3)
+      );
+      border: none;
+      background-size: 200% 100%;
+      padding: 11px 35px;
+
+      &:hover {
+        background-size: 200% 100%;
+        background-position: 100% center;
+      }
+    }
+
+    &:hover {
+      border-color: var(--btn-border-color-hover);
+    }
+
+    &:active {
+      opacity: 0.8;
+    }
+
+    &::after {
+      box-shadow: none !important;
+    }
+  }
+
+  &.modern {
+    color: #fff;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: transparent;
+    height: 100%;
+    // padding: 9px 27px;
+    // font-size: 1.8rem;
+    padding: 0.35vw 1.5vw;
+    transition: all 0.15s;
+
+    svg {
+      // margin-right: 7px;
+      // font-size: 1.8rem;
+      margin-right: 0.4vw;
+      font-size: 1.1vw;
+    }
+
+    &:active {
+      opacity: 0.8;
+    }
   }
 }
 

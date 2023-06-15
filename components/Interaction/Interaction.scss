@@ -1,22 +1,44 @@
 .like-share {
-  margin-top: 10px;
-  // display: flex;
-  // flex-direction: column;
-
-  // a {
-  //   color: #fff;
-  //   padding: 5px 10px;
-  //   background-color: #0072ca;
-  //   border-radius: 3px;
-  //   transition: all 0.3s;
-
-  //   &:hover {
-  //     background-color: #0072caa6;
-  //   }
-  // }
-
   a {
     display: inline-block;
     white-space: nowrap;
+    min-height: 40px;
+
+    .ant-btn {
+      font-size: 0.9vw;
+      padding: 0.35vw 1vw;
+
+      svg {
+        font-size: 1.4vw;
+        margin-right: 0.5vw;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .like-share {
+    a {
+      height: 40px;
+
+      .ant-btn {
+        font-size: 1.5rem;
+
+        svg {
+          font-size: 2.1rem;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .like-share {
+    a {
+      .ant-btn {
+        padding: 9px 13px;
+      }
+    }
   }
 }

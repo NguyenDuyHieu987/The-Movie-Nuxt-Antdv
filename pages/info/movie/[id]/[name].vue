@@ -1,6 +1,6 @@
 <template>
-  <div class="movie-info-conainer">
-    <div class="main-info">
+  <div class="movie-info">
+    <div class="info-conainer" v-if="!loading">
       <div class="backdrop-img">
         <div class="backdrop-wrapper">
           <!-- <el-image
@@ -10,26 +10,169 @@
             :lazy="true"
             loading="lazy"
           /> -->
-          <img
+          <nuxt-img
             class="ant-image"
-            v-lazy="getBackdrop(dataMovie?.backdrop_path)"
+            :src="getBackdrop(dataMovie?.backdrop_path)"
             loading="lazy"
           />
         </div>
         <div class="poster-img">
-          <img
+          <nuxt-img
             class="ant-image"
-            v-lazy="getPoster(dataMovie?.poster_path)"
+            :src="getPoster(dataMovie?.poster_path)"
             loading="lazy"
           />
         </div>
 
         <div class="overlay-backdrop">
-          <img v-lazy="getBackdrop(dataMovie?.backdrop_path)" loading="lazy" />
+          <nuxt-img
+            :src="getBackdrop(dataMovie?.backdrop_path)"
+            loading="lazy"
+          />
         </div>
       </div>
 
-      <div class="info-movie"></div>
+      <div class="movie-content">
+        <div class="main-content">
+          <div class="detail-content-left">
+            <div class="head-content">
+              <h1 class="movie-title">{{ dataMovie?.name }}</h1>
+              <div class="action">
+                <div class="left">
+                  <NuxtLink
+                    :to="{
+                      path: `/play/movie/${dataMovie?.id}/${dataMovie?.name
+                        ?.replace(/\s/g, '+')
+                        .toLowerCase()}`,
+                    }"
+                  >
+                    <a-button size="large" type="text" class="play modern">
+                      <template #icon>
+                        <Icon name="ic:play-arrow" class="play" />
+                      </template>
+                      Xem ngay
+                    </a-button>
+                  </NuxtLink>
+
+                  <NuxtLink @click.prevent="handelAddToList">
+                    <a-button size="large" type="text" class="add modern">
+                      <template #icon>
+                        <Icon v-if="isAddToList" name="ic:baseline-check" />
+                        <Icon v-else name="ic:baseline-plus" />
+                      </template>
+                      <span> Danh sách</span>
+                    </a-button>
+                  </NuxtLink>
+
+                  <NuxtLink @click.prevent>
+                    <a-button size="large" type="text" class="trailer modern">
+                      <template #icon>
+                        <Icon name="fa6-brands:youtube" class="trailer" />
+                      </template>
+                      <span> Trailer</span>
+                    </a-button>
+                  </NuxtLink>
+                </div>
+
+                <div class="right">
+                  <Interaction :dataMovie="dataMovie" />
+                </div>
+              </div>
+            </div>
+
+            <div class="overview">
+              <Tags tagsLabel="Nội dung:">
+                <template #tagsInfo>
+                  <span class="text">{{ dataMovie?.overview }}</span>
+                </template>
+              </Tags>
+            </div>
+          </div>
+          <div class="detail-content-right">
+            <Tags tagsLabel="Tên gốc:">
+              <template #tagsInfo>
+                <span class="tags-item">
+                  {{ dataMovie?.original_name }}
+                </span>
+              </template>
+            </Tags>
+
+            <Tags tagsLabel="Đang phát:">
+              <template #tagsInfo>
+                <span class="tags-item">HD - Vietsub</span>
+              </template>
+            </Tags>
+
+            <Tags tagsLabel="Ngày phát hành:">
+              <template #tagsInfo>
+                <span class="tags-item">
+                  <NuxtLink
+                    :to="`/discover/year/${dataMovie?.release_date.slice(
+                      0,
+                      4
+                    )}`"
+                  >
+                    {{ dataMovie?.release_date.slice(0, 4) }}
+                  </NuxtLink>
+                  <span>
+                    {{ dataMovie?.release_date.slice(4).trim() }}
+                  </span>
+                </span>
+              </template>
+            </Tags>
+
+            <Tags tagsLabel="Quốc gia:">
+              <template #tagsInfo>
+                <span class="tags-item">
+                  <NuxtLink
+                    :to="`/discover/country/${
+                      getCountryByOriginalLanguage(
+                        dataMovie?.original_language,
+                        store.$state.allCountries
+                      )?.short_name || 'au-my'
+                    }`"
+                  >
+                    {{
+                      getCountryByOriginalLanguage(
+                        dataMovie?.original_language,
+                        store.$state.allCountries
+                      )?.name || ''
+                    }}
+                  </NuxtLink>
+                </span>
+              </template>
+            </Tags>
+
+            <Tags tagsLabel="Thể loại:">
+              <template #tagsInfo>
+                <span
+                  class="tags-item"
+                  v-for="(item, index) in dataMovie?.genres"
+                  :key="item?.id"
+                  :index="index"
+                >
+                  <NuxtLink>{{ item?.name }} </NuxtLink>
+                  {{ index + 1 != dataMovie?.genres?.length ? ', ' : '' }}
+                </span>
+              </template>
+            </Tags>
+
+            <Tags tagsLabel="Thời lượng:">
+              <template #tagsInfo>
+                <span class="tags-item">
+                  {{ dataMovie?.runtime + ' phút' }}</span
+                >
+              </template>
+            </Tags>
+
+            <Tags tagsLabel="Trạng thái:">
+              <template #tagsInfo>
+                <span class="tags-item"> {{ dataMovie?.status }}</span>
+              </template>
+            </Tags>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- <CastCrew :dataCredit="dataCredit" :loading="loading" />-->
@@ -48,6 +191,7 @@ import { getItemList } from '~/services/list';
 import { getPoster, getBackdrop } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getCountryByOriginalLanguage } from '~/services/country';
+import Tags from '@/components/Tags/Tags.vue';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
