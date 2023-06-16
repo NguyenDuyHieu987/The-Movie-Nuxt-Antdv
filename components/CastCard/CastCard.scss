@@ -1,42 +1,70 @@
 .cast-item {
-  color: #fff;
+  position: relative;
   cursor: pointer;
-  display: block;
-  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  border-radius: 7px;
+  height: 300px;
+  overflow: hidden;
 
   .cast-img-box {
     position: relative;
-    height: 210px;
+    width: 100%;
     overflow: hidden;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
 
-    .ant-image,
-    .el-image {
-      height: 100%;
+    .ant-image {
       width: 100%;
+      height: 0px !important;
+      padding-bottom: 130%;
       transition: all 0.3s;
 
       img {
-        height: 100%;
         width: 100%;
         transition: all 0.3s;
         object-fit: cover;
-      }
 
-      // &.error {
-      //   background: var(--el-fill-color-light);
-      // }
+        &[lazy='error'] {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: url('/images/svgs/error-user.svg');
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+      }
     }
   }
 
   .info {
-    padding: 0px 5px;
+    padding: 10px 10px;
+    border: 1px solid var(--border-regular);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-top: none;
+    flex-grow: 1;
+
+    .name,
+    .character {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .character {
+      line-height: 1.2;
+      color: #a4a4a4;
+    }
   }
 
   &:hover {
     img {
-      transform: scale(1.05);
+      transform: scale(1.1);
       opacity: 0.8;
     }
 
@@ -63,22 +91,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-  }
-}
-
-@media only screen and (min-width: 2150px) {
-  .cast-item {
-    .cast-img-box {
-      height: 280px;
-    }
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  .cast-item {
-    .cast-img-box {
-      height: 280px;
     }
   }
 }

@@ -2,7 +2,7 @@
   &.expand {
     .home-container {
       .home-content {
-        .carousel-group {
+        .slider-group {
           .swiper-button-prev,
           .swiper-button-next {
             width: var(--padding-home-expand);
@@ -21,12 +21,16 @@
   }
 }
 
-.carousel-group {
+.slider-group {
   // overflow: visible;
   position: relative;
 
   .swiper-wrapper {
     // gap: var(--card-movie-gap);
+    margin-bottom: 27px;
+
+    &::-webkit-scrollbar {
+    }
 
     .swiper-slide {
       &:first-child {
@@ -68,8 +72,9 @@
     align-items: center;
     justify-content: center;
     padding: 0px 0px;
-    width: 30px;
-    opacity: 0;
+    // width: 30px;
+    width: 70px;
+    opacity: 1;
     transition: 0.15s all;
 
     i,
@@ -112,13 +117,29 @@
     right: -5px;
   }
 
-  &:hover {
-    .swiper-button-prev,
-    .swiper-button-next {
-      opacity: 1;
+  // &:hover {
+  //   .swiper-button-prev,
+  //   .swiper-button-next {
+  //     opacity: 1;
 
-      &.swiper-button-disabled {
-        opacity: 0;
+  //     &.swiper-button-disabled {
+  //       opacity: 0;
+  //     }
+  //   }
+  // }
+
+  .swiper-scrollbar {
+    height: 8px;
+
+    .swiper-scrollbar-drag {
+      background-color: #686868;
+
+      &:hover {
+        background-color: #7e7e7e;
+      }
+
+      &:active {
+        background-color: #7e7e7e;
       }
     }
   }
@@ -128,7 +149,7 @@
   .body-content:has(.home-container) {
     .home-container {
       .home-content {
-        .carousel-group {
+        .slider-group {
           .swiper-button-prev,
           .swiper-button-next {
             width: 30px;
@@ -148,7 +169,7 @@
     &.expand {
       .home-container {
         .home-content {
-          .carousel-group {
+          .slider-group {
             .swiper-button-prev {
               left: calc(-30px);
             }

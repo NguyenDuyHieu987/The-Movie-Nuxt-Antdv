@@ -12,18 +12,21 @@
     <template #default>
       <div class="cast-item">
         <div class="cast-img-box">
-          <el-image
-            class="ant-image"
-            :src="getPosterCast(item?.profile_path)"
-            :preview="false"
-            :lazy="true"
-            loading="lazy"
-          />
+          <div class="ant-image">
+            <img
+              v-lazy="getPosterCast(item?.profile_path)"
+              :lazy="true"
+              loading="lazy"
+            />
+          </div>
         </div>
 
         <div class="info">
           <p class="name">
             {{ item?.name }}
+          </p>
+          <p class="character">
+            {{ item?.character }}
           </p>
         </div>
       </div>

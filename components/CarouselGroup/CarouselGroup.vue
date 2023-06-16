@@ -1,5 +1,5 @@
 <template>
-  <div class="slider-container">
+  <div class="carousel-container">
     <Swiper
       class="carousel-group"
       :modules="[
@@ -9,6 +9,8 @@
       ]"
       :breakpoints="responsive"
       :space-between="0"
+      :rewind="true"
+      :speed="500"
       effect="creative"
       :navigation="{
         prevEl: '.swiper-button-prev',
@@ -19,8 +21,6 @@
         pauseOnMouseEnter: true,
         reverseDirection: true,
       }"
-      :rewind="true"
-      :speed="500"
     >
       <slot name="content" />
       <div class="swiper-button-prev">

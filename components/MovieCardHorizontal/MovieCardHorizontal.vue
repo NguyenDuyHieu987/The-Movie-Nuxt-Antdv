@@ -55,7 +55,12 @@
             </p>
           </div> -->
 
-          <div class="release-date-box">
+          <div
+            v-if="
+              item?.release_date || item?.last_air_date || item?.first_air_date
+            "
+            class="release-date-box"
+          >
             <p class="release-date" v-if="!isEpisodes">
               {{ item?.release_date?.slice(0, 4) }}
             </p>

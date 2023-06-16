@@ -175,7 +175,7 @@
       </div>
     </div>
 
-    <!-- <CastCrew :dataCredit="dataCredit" :loading="loading" />-->
+    <CastCrew :dataCredit="dataCredit" :loading="loading" />
 
     <!--  <MovieSuggest
       v-if="!checkEmptyDataMovies"

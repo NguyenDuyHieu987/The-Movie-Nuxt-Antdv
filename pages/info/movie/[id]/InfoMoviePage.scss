@@ -129,6 +129,8 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          margin-top: 15px;
+          margin-bottom: 20px;
 
           .left {
             display: flex;
@@ -136,8 +138,6 @@
             align-items: center;
             // gap: 15px;
             gap: 0.7vw;
-            margin-top: 15px;
-            margin-bottom: 20px;
 
             a {
               min-height: 40px;
@@ -311,6 +311,32 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .movie-info {
+    .info-conainer {
+      .movie-content {
+        position: relative;
+        z-index: 1;
+        margin-top: -20%;
+
+        .head-content {
+          .action {
+            gap: 10px;
+            justify-content: unset;
+            align-items: unset;
+            flex-wrap: wrap;
+          }
+        }
+
+        .main-content {
+          justify-content: space-between;
+          gap: 30px;
         }
       }
     }

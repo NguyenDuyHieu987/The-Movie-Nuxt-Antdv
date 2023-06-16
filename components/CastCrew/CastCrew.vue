@@ -2,7 +2,7 @@
   <div class="cast-crew">
     <a-tabs v-model:activeKey="activeTabCast" v-show="dataCredit?.cast?.length">
       <a-tab-pane key="cast" tab="Diễn viên">
-        <CarouselGroup
+        <SliderGroup
           :data="dataCredit?.cast?.slice(0, 20)"
           :responsive="responsiveCarousel"
         >
@@ -18,10 +18,10 @@
               />
             </SwiperSlide>
           </template>
-        </CarouselGroup>
+        </SliderGroup>
       </a-tab-pane>
       <a-tab-pane key="crew" tab="Đội ngũ" force-render>
-        <CarouselGroup
+        <SliderGroup
           :data="dataCredit?.crew?.slice(0, 20)"
           :responsive="responsiveCarousel"
         >
@@ -37,7 +37,7 @@
               />
             </SwiperSlide>
           </template>
-        </CarouselGroup>
+        </SliderGroup>
       </a-tab-pane>
     </a-tabs>
   </div>
@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import CastCard from '@/components/CastCard/CastCard.vue';
-import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
+import SliderGroup from '@/components/SliderGroup/SliderGroup.vue';
 
 defineProps<{
   dataCredit: any;
@@ -53,101 +53,51 @@ defineProps<{
 }>();
 
 const activeTabCast = ref<string>('cast');
-// const responsiveCarousel = ref<any>({
-//   0: {
-//     items: 2,
-//     slideBy: 2,
-//   },
-//   520: {
-//     items: 3,
-//     slideBy: 3,
-//   },
-//   750: {
-//     items: 4,
-//     slideBy: 4,
-//   },
-//   830: {
-//     items: 4,
-//     slideBy: 4,
-//   },
-//   1000: {
-//     items: 5,
-//     slideBy: 5,
-//   },
-//   1175: {
-//     items: 6,
-//     slideBy: 6,
-//   },
-//   1300: {
-//     items: 7,
-//     slideBy: 7,
-//   },
-//   1400: {
-//     items: 7,
-//     slideBy: 7,
-//   },
-//   1500: {
-//     items: 8,
-//     slideBy: 8,
-//   },
-//   1700: {
-//     items: 9,
-//     slideBy: 9,
-//   },
-//   2000: {
-//     items: 10,
-//     slideBy: 10,
-//   },
-//   2200: {
-//     items: 12,
-//     slideBy: 12,
-//   },
-// });
 
 const responsiveCarousel = ref<any>({
   0: {
     slidesPerView: 2,
-    slidesPerGroup: 2,
+    // slidesPerGroup: 2,
   },
   450: {
     slidesPerView: 3,
-    slidesPerGroup: 3,
+    // slidesPerGroup: 3,
   },
   600: {
     slidesPerView: 4,
-    slidesPerGroup: 4,
+    // slidesPerGroup: 4,
   },
   700: {
     slidesPerView: 5,
-    slidesPerGroup: 5,
+    // slidesPerGroup: 5,
   },
   900: {
     slidesPerView: 4,
-    slidesPerGroup: 4,
+    // slidesPerGroup: 4,
   },
   1000: {
     slidesPerView: 5,
-    slidesPerGroup: 5,
+    // slidesPerGroup: 5,
   },
   1100: {
     slidesPerView: 6,
-    slidesPerGroup: 6,
+    // slidesPerGroup: 6,
   },
   1300: {
     slidesPerView: 7,
-    slidesPerGroup: 7,
+    // slidesPerGroup: 7,
   },
   1550: {
     slidesPerView: 8,
-    slidesPerGroup: 8,
+    // slidesPerGroup: 8,
   },
   1700: {
     slidesPerView: 9,
-    slidesPerGroup: 9,
+    // slidesPerGroup: 9,
   },
   2000: {
     slidesPerView: 10,
-    slidesPerGroup: 10,
+    // slidesPerGroup: 10,
   },
 });
 </script>

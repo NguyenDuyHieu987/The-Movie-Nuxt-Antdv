@@ -73,6 +73,10 @@
         min-height: 100%;
         max-height: 100%;
 
+        &[lazy='error'] {
+          background-size: 30%;
+        }
+
         img {
           object-fit: cover;
           transition: all 0.3s;
