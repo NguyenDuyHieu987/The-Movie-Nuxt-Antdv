@@ -7,7 +7,7 @@
   --background-admin-color: #181818;
   --loading-background: #101010;
 
-  --text-color: #ffff;
+  --text-color: #fffffff5;
 
   --search-background: #0a0a0a41;
   --search-focus-background: #141414;
@@ -23,6 +23,7 @@
 
   --tooltip-background-color: #222222;
 
+  --app-background-color: #0082c7;
   --app-background-color1: #c30061;
   --app-background-color2: #000046;
   --app-background-color3: #1cb5e0;
@@ -102,6 +103,7 @@ body {
   font-family: 'Roboto Flex', sans-serif;
   text-rendering: optimizeSpeed;
   // user-select: none;
+  color: var(--text-color);
   background-color: var(--background-content-color);
 }
 

@@ -6,36 +6,51 @@
       .ant-tabs-tab {
         &:hover {
           .ant-tabs-tab-btn {
-            color: transparent;
-            display: inline;
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-            background-image: linear-gradient(
-              to right,
-              var(--app-background-color2),
-              var(--app-background-color3)
-            );
+            color: var(--text-color);
+            // color: transparent;
+            // display: inline;
+            // -webkit-text-fill-color: transparent;
+            // -webkit-background-clip: text;
+            // background-image: linear-gradient(
+            //   to right,
+            //   var(--app-background-color2),
+            //   var(--app-background-color3)
+            // );
           }
         }
 
         .ant-tabs-tab-btn {
-          font-weight: bold;
-          font-size: 1.8rem;
+          color: var(--text-color);
+          font-weight: 600;
+          font-size: 1.7rem;
+          transition: all 0.1s;
         }
       }
 
       .ant-tabs-tab-active {
-        .ant-tabs-tab-btn {
-          color: transparent;
-          display: inline;
-          -webkit-text-fill-color: transparent;
-          -webkit-background-clip: text;
-          background-image: linear-gradient(
-            to right,
-            var(--app-background-color2),
-            var(--app-background-color3)
-          );
+        &:hover {
+          .ant-tabs-tab-btn {
+            color: var(--app-background-color);
+          }
         }
+
+        .ant-tabs-tab-btn {
+          color: var(--app-background-color);
+          // color: transparent;
+          // display: inline;
+          // -webkit-text-fill-color: transparent;
+          // -webkit-background-clip: text;
+          // background-image: linear-gradient(
+          //   to right,
+          //   var(--app-background-color2),
+          //   var(--app-background-color3)
+          // );
+        }
+      }
+
+      .ant-tabs-ink-bar {
+        height: 2px;
+        background: var(--app-background-color);
       }
     }
   }

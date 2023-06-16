@@ -25,10 +25,11 @@
     <div class="info">
       <h3 class="title">
         {{ item?.name ? item?.name : item?.title }}
-        <span v-if="isEpisodes">
+        <span v-if="type == 'tv'">
           {{ ' - Phần ' + item?.last_episode_to_air?.season_number }}
         </span>
       </h3>
+
       <p class="genres">
         {{ Array?.from(item?.genres, (x: any) => x.name).join(' • ') }}
       </p>
@@ -37,17 +38,14 @@
         Năm:
         {{ item?.release_date ? item?.release_date : item?.first_air_date }}
       </p>
-      <p v-if="item?.last_episode_to_air" class="duration-episode">
-        Tập mới nhất:
-        {{
-          item?.last_episode_to_air?.episode_number
-            ? 'Tập ' + item?.last_episode_to_air?.episode_number
-            : ''
-        }}
-      </p>
-      <p v-else-if="item?.runtime" class="duration-episode">
+      <p v-if="type == 'movie'" class="duration-episode">
         Thời lượng:
-        {{ item?.runtime ? item?.runtime + ' phút' : '' }}
+        {{ item?.runtime + ' phút' || '' }}
+      </p>
+
+      <p v-if="type == 'tv'" class="duration-episode">
+        Tập mới nhất:
+        {{ 'Tập ' + item?.last_episode_to_air?.episode_number || '' }}
       </p>
 
       <p class="views">
@@ -63,11 +61,10 @@ import { getPoster } from '~/services/appMovieService';
 
 const props = defineProps<{
   item: any;
-  type: string | undefined;
+  type: string;
 }>();
 
 const utils = useUtils();
-const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
 
 onBeforeMount(() => {

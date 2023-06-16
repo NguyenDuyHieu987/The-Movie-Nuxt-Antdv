@@ -8,20 +8,52 @@
   height: 300px;
   overflow: hidden;
 
-  .cast-img-box {
+  .el-skeleton.is-animated {
+    .img-box {
+      width: 100%;
+      height: 0px !important;
+      padding-bottom: 130%;
+      transition: all 0.3s;
+      overflow: hidden;
+
+      .el-skeleton__item.skeleton-img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: opacity 0.3s;
+        object-fit: cover;
+      }
+    }
+
+    .content-skeleton {
+      margin-top: 10px;
+
+      .el-skeleton__item.el-skeleton__text {
+        // height: 18px;
+      }
+    }
+  }
+
+  .img-box {
     position: relative;
     width: 100%;
     overflow: hidden;
 
     .ant-image {
+      display: block;
       width: 100%;
       height: 0px !important;
       padding-bottom: 130%;
       transition: all 0.3s;
+      overflow: hidden;
 
       img {
         width: 100%;
-        transition: all 0.3s;
+        transition: opacity 0.3s;
         object-fit: cover;
 
         &[lazy='error'] {
@@ -48,7 +80,8 @@
     flex-grow: 1;
 
     .name,
-    .character {
+    .character,
+    .job {
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -56,7 +89,8 @@
       text-overflow: ellipsis;
     }
 
-    .character {
+    .character,
+    .job {
       line-height: 1.2;
       color: #a4a4a4;
     }
@@ -64,7 +98,6 @@
 
   &:hover {
     img {
-      transform: scale(1.1);
       opacity: 0.8;
     }
 

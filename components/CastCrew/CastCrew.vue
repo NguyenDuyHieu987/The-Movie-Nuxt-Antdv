@@ -1,6 +1,6 @@
 <template>
-  <div class="cast-crew">
-    <a-tabs v-model:activeKey="activeTabCast" v-show="dataCredit?.cast?.length">
+  <div class="cast-crew" v-show="!loading">
+    <a-tabs v-model:activeKey="activeTabCast">
       <a-tab-pane key="cast" tab="Diễn viên">
         <SliderGroup
           :data="dataCredit?.cast?.slice(0, 20)"
@@ -14,7 +14,7 @@
                 :item="item"
                 :index="index"
                 :key="item.id"
-                :loading="loading"
+                type="cast"
               />
             </SwiperSlide>
           </template>
@@ -33,7 +33,7 @@
                 :item="item"
                 :index="index"
                 :key="item.id"
-                :loading="loading"
+                type="crew"
               />
             </SwiperSlide>
           </template>

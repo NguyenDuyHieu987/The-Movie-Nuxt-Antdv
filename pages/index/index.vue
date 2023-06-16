@@ -37,7 +37,7 @@
 
         <section
           class="movie-group vertical"
-          :class="{ viewmore: viewMoreRecommend }"
+          :class="{ expand: viewMoreRecommend }"
         >
           <MovieCardVertical
             v-for="(item, index) in recommends"
@@ -46,35 +46,26 @@
             :item="item"
             :type="item.media_type"
           />
-          <el-button
-            v-show="recommends.length"
-            class="loadmore-btn"
-            type="primary"
-            :loading="loadMoreRecommend"
-            @click="handleLoadMoreRecommend"
-          >
-            <template #icon>
-              <PlusOutlined />
-            </template>
-            {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
-          </el-button>
         </section>
 
-        <div
-          class="viewmore-group"
-          @click="viewMoreRecommend = !viewMoreRecommend"
+        <ViewMoreBar
           v-show="recommends.length"
+          :isOpen="viewMoreRecommend"
+          @clickBtn="viewMoreRecommend = !viewMoreRecommend"
+        />
+
+        <a-button
+          v-show="recommends.length"
+          class="loadmore-btn"
+          type="text"
+          :loading="loadMoreRecommend"
+          @click="handleLoadMoreRecommend"
         >
-          <a-tooltip
-            :teleported="false"
-            :title="!viewMoreRecommend ? 'Hiện thêm' : 'Ẩn bớt'"
-            :content="!viewMoreRecommend ? 'Hiện thêm' : 'Ẩn bớt'"
-            placement="bottom"
-          >
-            <Icon v-if="!viewMoreRecommend" name="ci:chevron-down" />
-            <Icon v-else name="ci:chevron-big-up" />
-          </a-tooltip>
-        </div>
+          <template #icon>
+            <Icon name="ic:baseline-add" />
+          </template>
+          {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
+        </a-button>
       </div>
 
       <section class="home-section cartoon">
@@ -216,12 +207,12 @@ import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHoriz
 import MovieCardVertical from '@/components/MovieCardVertical/MovieCardVertical.vue';
 import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontalTrailer from '@/components/MovieCardHorizontalTrailer/MovieCardHorizontalTrailer.vue';
+import ViewMoreBar from '~/components/ViewMoreBar/ViewMoreBar.vue';
 import { getTrending } from '~/services/trending';
 import { getNowPlaying, getTopRated, getUpComing } from '~/services/movieSlug';
 import { getMoviesByGenres } from '~/services/discover';
 import { getMyRecommend } from '~/services/recommend';
 import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
-import { PlusOutlined } from '@ant-design/icons-vue';
 
 definePageMeta({
   // layout: 'home',

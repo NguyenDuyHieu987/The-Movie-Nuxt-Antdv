@@ -250,8 +250,6 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
 };
 
 const onLoadImg = (e: any) => {
-  // const image = document.querySelector('.img-box img') as HTMLImageElement;
-  // console.log(image.getAttribute('lazy'));
   loadingImg.value = true;
 };
 </script>

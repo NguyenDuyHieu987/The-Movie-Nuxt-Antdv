@@ -2,11 +2,12 @@
   display: flex;
   position: relative;
   padding: 5px 5px;
+  transition: all 0.25s;
   gap: 10px;
 
   &:hover {
     .info {
-      color: #fff;
+      // color: #fff;
     }
   }
 
@@ -22,7 +23,7 @@
       // width: 100px;
       width: 100%;
       height: 0px !important;
-      padding-bottom: 155%;
+      padding-bottom: 150%;
 
       img {
         position: absolute;
@@ -41,17 +42,27 @@
 
   .info {
     font-size: 1.4rem;
-    color: #fff;
+    color: #d0d0d0;
     width: 100%;
 
-    p {
-      color: #d0d0d0;
+    .top {
+      background-color: #111111;
+
+      .title {
+        font-size: 1.6rem;
+        color: #fff;
+      }
     }
 
-    .views {
+    .bottom {
+      color: #aaa;
       display: flex;
+      margin-top: 14px;
+      margin-right: 5px;
       justify-content: flex-end;
-      margin-top: 5px;
+      .views {
+        font-size: 1.3rem;
+      }
     }
   }
 }

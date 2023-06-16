@@ -152,7 +152,9 @@
                   :index="index"
                 >
                   <NuxtLink>{{ item?.name }} </NuxtLink>
-                  {{ index + 1 != dataMovie?.genres?.length ? ', ' : '' }}
+                  <span>
+                    {{ index + 1 != dataMovie?.genres?.length ? ', ' : '' }}
+                  </span>
                 </span>
               </template>
             </Tags>
