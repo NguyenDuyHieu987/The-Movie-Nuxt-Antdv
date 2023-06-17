@@ -129,7 +129,7 @@ import ModalTrailer from '@/components/ModalTrailer/ModalTrailer.vue';
 
 const props = defineProps<{
   item: any;
-  type: string | undefined;
+  type: string;
 }>();
 
 const utils = useUtils();

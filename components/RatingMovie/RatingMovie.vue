@@ -3,10 +3,11 @@
     <div class="rate-bar">
       <span class="label">Đánh giá: </span>
       <a-rate
-        v-model:value="vote_Average"
+        v-model:value="temp"
         allow-half
         :count="10"
         :tooltips="tooltipRating"
+        :disabled="disabled"
         @change="handleRating"
       >
         <template #character>
@@ -46,9 +47,11 @@ const props = defineProps<{
   voteAverage: number;
   voteCount: number;
   movieId: number;
-  isEpisodes: boolean;
+  type: string;
 }>();
 
+const temp = ref<number>(props.voteAverage);
+const disabled = ref<boolean>(false);
 const vote_Average = ref<number>(props.voteAverage);
 const vote_Count = ref<number>(props.voteCount);
 
@@ -66,7 +69,7 @@ const tooltipRating = ref<string[]>([
 ]);
 
 const handleRating = (value: number) => {
-  if (props?.isEpisodes) {
+  if (props.type == 'tv') {
     ratingTV(props?.movieId, { value: value })
       .then((response) => {
         if (response?.success == true) {
@@ -91,6 +94,7 @@ const handleRating = (value: number) => {
           // });
           vote_Average.value = response?.vote_average;
           vote_Count.value = response?.vote_count;
+          disabled.value = true;
         }
       })
       .catch((e) => {
@@ -104,7 +108,7 @@ const handleRating = (value: number) => {
         });
         if (axios.isCancel(e)) return;
       });
-  } else {
+  } else if (props.type == 'movie') {
     ratingMovie(props?.movieId, { value: value })
       .then((response) => {
         if (response?.success == true) {
@@ -119,6 +123,7 @@ const handleRating = (value: number) => {
 
           vote_Average.value = response?.vote_average;
           vote_Count.value = response?.vote_count;
+          disabled.value = true;
         }
       })
       .catch((e) => {

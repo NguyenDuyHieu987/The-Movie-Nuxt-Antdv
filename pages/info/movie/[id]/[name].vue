@@ -91,9 +91,9 @@
                       </a-button>
                     </NuxtLink>
 
-                    <div class="ellipsis">
+                    <!-- <div class="ellipsis">
                       <Icon name="fa6-solid:ellipsis" />
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -110,7 +110,7 @@
                 :voteAverage="dataMovie?.vote_average"
                 :voteCount="dataMovie?.vote_count"
                 :movieId="dataMovie?.id"
-                :isEpisodes="isEpisodes"
+                type="movie"
               />
 
               <Tags tagsLabel="Lượt xem:">
@@ -150,7 +150,7 @@
                       {{ dataMovie?.release_date.slice(0, 4) }}
                     </NuxtLink>
                     <span>
-                      {{ dataMovie?.release_date.slice(4).trim() }}
+                      {{ dataMovie?.release_date.slice(4) }}
                     </span>
                   </span>
                 </template>
