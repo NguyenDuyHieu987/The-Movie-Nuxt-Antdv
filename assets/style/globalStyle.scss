@@ -4,10 +4,12 @@
 :root {
   --background-content-color: #070707;
   --background-content-color1: #181818;
+  --background-content-color2: #111111;
   --background-admin-color: #181818;
   --loading-background: #101010;
 
-  --text-color: #fffffff5;
+  --text-color: #ffffffe8;
+  --text-color-gray: #a4a4a4;
 
   --search-background: #0a0a0a41;
   --search-focus-background: #141414;
@@ -59,6 +61,7 @@
 
   --box-shadow-small: 0 3px 10px #000000bf;
   --box-shadow-medium: 0 8px 20px #070707;
+  --box-shadow-medium1: 0 8px 10px #070707;
   --box-shadow-large: 0 10px 25px #070707;
 
   --padding-home: 30px;
@@ -217,6 +220,16 @@ button,
     to {
       background-position: 200% center;
     }
+  }
+}
+
+.padding-content {
+  padding: 15px 20px;
+}
+
+@media only screen and (max-width: 900px) {
+  .padding-content {
+    padding: 15px 15px;
   }
 }
 

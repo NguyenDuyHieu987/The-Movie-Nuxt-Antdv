@@ -1,5 +1,5 @@
 <template>
-  <div class="search-container">
+  <div class="search padding-content">
     <h2 class="gradient-title-default underline">
       <span
         >Kết quả tìm kiếm cho: {{ route.query.q?.replaceAll('+', ' ') }}

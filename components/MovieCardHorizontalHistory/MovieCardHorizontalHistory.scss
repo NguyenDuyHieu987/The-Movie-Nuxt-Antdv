@@ -126,20 +126,19 @@
   .info {
     position: relative;
     font-size: 1.4rem;
-    color: #fff;
     width: 100%;
 
     .title {
-      color: #fff;
+      color: var(--text-color);
       max-width: 70%;
     }
 
     .duration-episode {
-      color: #aaa;
+      color: var(--text-color-gray);
     }
 
     .year-views {
-      color: #aaa;
+      color: var(--text-color-gray);
       display: flex;
       flex-direction: row;
       gap: 10px;
@@ -147,7 +146,7 @@
 
     .overview {
       margin-top: 7px;
-      color: #aaa;
+      color: var(--text-color-gray);
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;

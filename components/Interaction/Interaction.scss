@@ -6,7 +6,8 @@
 
     .ant-btn {
       font-size: 0.9vw;
-      padding: 0.35vw 1vw;
+      // padding: 0.35vw 1vw;
+      padding: 0.35vw 0.7vw;
 
       svg {
         font-size: 1.4vw;
@@ -37,7 +38,7 @@
   .like-share {
     a {
       .ant-btn {
-        padding: 9px 13px;
+        padding: 9px 10px;
       }
     }
   }

@@ -122,7 +122,7 @@ const props = defineProps<{
   type: string | undefined;
 }>();
 
-const store: any = useStore();
+const store = useStore();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);

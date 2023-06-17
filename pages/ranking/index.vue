@@ -1,5 +1,5 @@
 <template>
-  <div class="ranking-container">
+  <div class="ranking-container padding-content">
     <a-layout>
       <a-layout-content>
         <h2 class="gradient-title-default underline">

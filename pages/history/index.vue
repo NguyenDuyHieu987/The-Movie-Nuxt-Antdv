@@ -1,5 +1,5 @@
 <template>
-  <div class="history">
+  <div class="history padding-content">
     <div v-if="isLogin" class="history-container">
       <a-layout>
         <a-layout-sider
@@ -27,7 +27,7 @@
 
                   <div class="play-now">
                     <span>
-                      <font-awesome-icon icon="fa-solid fa-play" />
+                      <Icon name="ic:play-arrow" class="play" />
                       PHÁT NGAY
                     </span>
                   </div>
@@ -51,7 +51,7 @@
                   />
 
                   <div class="play-now">
-                    <font-awesome-icon icon="fa-solid fa-play" />
+                    <Icon name="ic:play-arrow" class="play" />
                     <span>PHÁT NGAY</span>
                   </div>
                 </NuxtLink>
@@ -99,10 +99,6 @@
                       @click.prevent=""
                     >
                       <template #icon>
-                        <!-- <font-awesome-icon
-                          icon="fa-solid fa-ellipsis-vertical"
-                        /> -->
-
                         <Icon name="fa6-solid:ellipsis-vertical" />
                       </template>
                     </el-button>
@@ -152,14 +148,7 @@
                   @change="searchWatchList"
                 >
                   <template #prefix>
-                    <!-- <el-tooltip
-                      title="Tìm kiếm"
-                      content="Tìm kiếm"
-                      effect="dark"
-                      placement="top"
-                    > -->
-                    <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-                    <!-- </el-tooltip> -->
+                    <Icon name="fa6-solid:magnifying-glass" />
                   </template>
                 </a-input>
               </div>
@@ -191,7 +180,7 @@
 
                   <div class="play-now">
                     <span>
-                      <font-awesome-icon icon="fa-solid fa-play" />
+                      <Icon name="ic:play-arrow" class="play" />
                       PHÁT NGAY
                     </span>
                   </div>
@@ -215,7 +204,7 @@
                   />
 
                   <div class="play-now">
-                    <font-awesome-icon icon="fa-solid fa-play" />
+                    <Icon name="ic:play-arrow" class="play" />
                     <span>PHÁT NGAY</span>
                   </div>
                 </NuxtLink>
@@ -260,10 +249,6 @@
                       @click.prevent=""
                     >
                       <template #icon>
-                        <!-- <font-awesome-icon
-                          icon="fa-solid fa-ellipsis-vertical"
-                        /> -->
-
                         <Icon name="fa6-solid:ellipsis-vertical" />
                       </template>
                     </el-button>
@@ -295,14 +280,7 @@
                   @change="searchWatchList"
                 >
                   <template #prefix>
-                    <!-- <el-tooltip
-                      title="Tìm kiếm"
-                      content="Tìm kiếm"
-                      effect="dark"
-                      placement="top"
-                    > -->
-                    <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-                    <!-- </el-tooltip> -->
+                    <Icon name="fa6-solid:magnifying-glass" />
                   </template>
                 </a-input>
 

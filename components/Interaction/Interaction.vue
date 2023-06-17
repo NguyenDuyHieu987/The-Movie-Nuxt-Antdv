@@ -21,7 +21,7 @@
     >
       <a-button class="modern" type="text" size="large">
         <template #icon>
-          <Icon name="ph:share-fat-bold" class="share" />
+          <Icon name="ph:share-fat" class="share" />
         </template>
         <span> Chia sẻ</span>
       </a-button>

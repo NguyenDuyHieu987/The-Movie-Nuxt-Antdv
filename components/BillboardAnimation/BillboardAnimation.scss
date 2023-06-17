@@ -1,9 +1,6 @@
 .body-content {
   &.expand {
     .billboard-animation-container {
-      .overlay-backdrop {
-      }
-
       .el-carousel.billboard-slide {
         .el-carousel__container {
           height: 112vh;
@@ -39,7 +36,7 @@
   //     // border-radius: 35%;
   //   }
   // }
-  .overlay-backdrop {
+  .variant-backdrop {
     position: relative;
     left: 0;
     right: 0;

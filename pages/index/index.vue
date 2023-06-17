@@ -3,7 +3,6 @@
     <BillboardAnimation :data1="trendings" v-model:data="trendings" />
 
     <div class="home-content">
-      <div class="temp"></div>
       <section class="home-section outstanding">
         <h2 class="gradient-title-default">
           <span>Phim nổi bật</span>

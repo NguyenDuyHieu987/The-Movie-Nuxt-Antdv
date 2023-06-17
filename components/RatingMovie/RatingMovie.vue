@@ -1,6 +1,7 @@
 <template>
   <div class="rating-movie">
     <div class="rate-bar">
+      <span class="label">Đánh giá: </span>
       <a-rate
         v-model:value="vote_Average"
         allow-half
@@ -12,8 +13,8 @@
           <svg
             class="icon star"
             xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
+            width="20"
+            height="20"
             viewBox="0 0 1024 1024"
           >
             <path
@@ -27,9 +28,9 @@
         tooltipRating[Math.round(vote_Average) - 1]
       }}</span>
     </div>
-    <p>
+    <span>
       {{ `(${vote_Average?.toFixed(2)} điểm / ${vote_Count} lượt)` }}
-    </p>
+    </span>
   </div>
 </template>
 
@@ -37,6 +38,7 @@
 import { ratingMovie } from '~/services/movie';
 import { ratingTV } from '~/services/tv';
 import { notification } from 'ant-design-vue';
+import { ElNotification } from 'element-plus';
 import { CheckCircleFilled } from '@ant-design/icons-vue';
 import axios from 'axios';
 
@@ -68,42 +70,70 @@ const handleRating = (value: number) => {
     ratingTV(props?.movieId, { value: value })
       .then((response) => {
         if (response?.success == true) {
-          notification.open({
-            message: 'Cảm ơn bạn đã đánh giá!',
-            description: `Đánh giá thành công ${value} điểm.`,
-            icon: () =>
-              h(CheckCircleFilled, {
-                style: 'color: green',
-              }),
+          ElNotification({
+            title: 'Thành công!',
+            message: `Đánh giá thành công ${value} điểm.`,
+            type: 'success',
+            position: 'bottom-right',
+            duration: 3000,
+            showClose: false,
           });
+
+          // notification.open({
+          //   message: 'Cảm ơn bạn đã đánh giá!',
+          //   description: `Đánh giá thành công ${value} điểm.`,
+          //   placement: 'bottomRight',
+          //   closeIcon: '',
+          //   icon: () =>
+          //     h(CheckCircleFilled, {
+          //       style: 'color: green',
+          //     }),
+          // });
           vote_Average.value = response?.vote_average;
           vote_Count.value = response?.vote_count;
         }
       })
       .catch((e) => {
+        ElNotification({
+          title: 'Thất bại!',
+          message: 'Đánh giá phim thất bại.',
+          type: 'error',
+          position: 'bottom-right',
+          duration: 3000,
+          showClose: false,
+        });
         if (axios.isCancel(e)) return;
       });
   } else {
     ratingMovie(props?.movieId, { value: value })
       .then((response) => {
         if (response?.success == true) {
-          notification.open({
-            message: 'Cảm ơn bạn đã đánh giá!',
-            description: `Đánh giá thành công ${value} điểm.`,
-            icon: () =>
-              h(CheckCircleFilled, {
-                style: 'color: green',
-              }),
+          ElNotification({
+            title: 'Thành công!',
+            message: `Đánh giá thành công ${value} điểm.`,
+            type: 'success',
+            position: 'bottom-right',
+            duration: 3000,
+            showClose: false,
           });
+
           vote_Average.value = response?.vote_average;
           vote_Count.value = response?.vote_count;
         }
       })
       .catch((e) => {
+        ElNotification({
+          title: 'Thất bại!',
+          message: 'Đánh giá phim thất bại.',
+          type: 'error',
+          position: 'bottom-right',
+          duration: 3000,
+          showClose: false,
+        });
         if (axios.isCancel(e)) return;
       });
   }
 };
 </script>
 
-<style lang="scss" scoped src="./RatingMovie.scss"></style>
+<style lang="scss" src="./RatingMovie.scss"></style>

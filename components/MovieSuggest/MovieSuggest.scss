@@ -1,11 +1,12 @@
-.similar-container,
-.recommend-container {
-  .movie-carousel-vertical-item {
-    .img-box {
-      height: 230px;
+.suggest {
+  .gradient-title-default {
+    // margin-top: 0px;
+    margin-top: 15px;
+  }
+
+  .recommend-section {
+    .gradient-title-default {
+      // margin-top: 20px;
     }
-    // .ant-image {
-    //   height: 230px;
-    // }
   }
 }

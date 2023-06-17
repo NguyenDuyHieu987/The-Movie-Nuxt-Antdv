@@ -3,7 +3,7 @@
     <!-- <div class="overlay-backdrop">
       <img :src="getBackdrop(trendings[0]?.backdrop_path)" />
     </div> -->
-    <div class="overlay-backdrop"></div>
+    <div class="variant-backdrop"></div>
 
     <el-carousel
       :interval="7000"

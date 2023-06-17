@@ -128,7 +128,7 @@ const props = defineProps<{
   type: string | undefined;
 }>();
 
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
 const router = useRouter();
 const dataMovie = ref<any>({});

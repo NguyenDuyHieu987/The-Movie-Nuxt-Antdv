@@ -1,5 +1,5 @@
 <template>
-  <div class="playtv-container">
+  <div class="playtv-container padding-content">
     <div class="video-player">
       <div class="video-player-wrapper">
         <iframe

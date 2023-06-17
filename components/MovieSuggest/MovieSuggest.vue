@@ -1,40 +1,42 @@
 <template>
-  <div class="similar-stage">
-    <h2 class="gradient-title-default underline" v-show="dataSimilar?.length">
-      <strong>Phim tương tự</strong>
-    </h2>
+  <div class="suggest">
+    <div class="similar-section">
+      <h2 class="gradient-title-default" v-show="dataSimilar?.length">
+        <span>Phim tương tự</span>
+      </h2>
 
-    <CarouselGroup :data="dataSimilar" :responsive="responsive">
-      <template #content>
-        <SwiperSlide v-for="(item, index) in dataSimilar">
-          <MovieCardVertical
-            :index="index"
-            :key="item.id"
-            :item="item"
-            :type="item.media_type"
-          />
-        </SwiperSlide>
-      </template>
-    </CarouselGroup>
-  </div>
+      <CarouselGroup :data="dataSimilar" :responsive="responsive">
+        <template #content>
+          <SwiperSlide v-for="(item, index) in dataSimilar">
+            <MovieCardVertical
+              :index="index"
+              :key="item.id"
+              :item="item"
+              :type="item.media_type"
+            />
+          </SwiperSlide>
+        </template>
+      </CarouselGroup>
+    </div>
 
-  <div class="recommend-stage">
-    <h2 class="gradient-title-default underline" v-show="dataRecommend?.length">
-      <strong>Có thể bạn quan tâm</strong>
-    </h2>
+    <div class="recommend-section">
+      <h2 class="gradient-title-default" v-show="dataRecommend?.length">
+        <span>Có thể bạn quan tâm</span>
+      </h2>
 
-    <CarouselGroup :data="dataRecommend" :responsive="responsive">
-      <template #content>
-        <SwiperSlide v-for="(item, index) in dataRecommend">
-          <MovieCardVertical
-            :index="index"
-            :key="item.id"
-            :item="item"
-            :type="item.media_type"
-          />
-        </SwiperSlide>
-      </template>
-    </CarouselGroup>
+      <CarouselGroup :data="dataRecommend" :responsive="responsive">
+        <template #content>
+          <SwiperSlide v-for="(item, index) in dataRecommend">
+            <MovieCardVertical
+              :index="index"
+              :key="item.id"
+              :item="item"
+              :type="item.media_type"
+            />
+          </SwiperSlide>
+        </template>
+      </CarouselGroup>
+    </div>
   </div>
 </template>
 
@@ -52,64 +54,6 @@ const props = defineProps<{
 const dataSimilar = ref<any[]>([]);
 const dataRecommend = ref<any[]>([]);
 const randomRecommend = ref<number>(Math.floor(Math.random() * 50) + 1);
-// const responsive = ref({
-//   0: {
-//     items: 2,
-//     slideBy: 2,
-//   },
-//   500: {
-//     items: 2,
-//     slideBy: 2,
-//   },
-//   520: {
-//     items: 3,
-//     slideBy: 3,
-//   },
-//   700: {
-//     items: 4,
-//     slideBy: 4,
-//   },
-//   800: {
-//     items: 3,
-//     slideBy: 3,
-//   },
-//   900: {
-//     items: 4,
-//     slideBy: 4,
-//   },
-//   1175: {
-//     items: 5,
-//     slideBy: 5,
-//   },
-//   1300: {
-//     items: 6,
-//     slideBy: 6,
-//   },
-//   1400: {
-//     items: 6,
-//     slideBy: 6,
-//   },
-//   1550: {
-//     items: 7,
-//     slideBy: 7,
-//   },
-//   1700: {
-//     items: 8,
-//     slideBy: 8,
-//   },
-//   1900: {
-//     items: 9,
-//     slideBy: 9,
-//   },
-//   2000: {
-//     items: 10,
-//     slideBy: 10,
-//   },
-//   2200: {
-//     items: 11,
-//     slideBy: 11,
-//   },
-// });
 
 const responsive = computed<any>((): any => ({
   0: {

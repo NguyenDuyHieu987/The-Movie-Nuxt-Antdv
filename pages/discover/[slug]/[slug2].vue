@@ -1,5 +1,5 @@
 <template>
-  <div class="discover-container">
+  <div class="discover padding-content">
     <FilterBar
       @dataFiltered="(data: any[], formSelect: formFilter) => setDataFiltered(data, formSelect)"
       :cancelFilter="cancelFilter"
@@ -378,4 +378,4 @@ const cancelFilter = () => {
 };
 </script>
 
-<style scoped lang="scss" src="../DiscoverMovieView.scss"></style>
+<style scoped lang="scss" src="../DiscoverMoviePage.scss"></style>

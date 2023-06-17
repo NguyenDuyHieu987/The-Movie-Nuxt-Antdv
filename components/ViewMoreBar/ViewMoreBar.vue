@@ -1,5 +1,5 @@
 <template>
-  <div class="viewmore-bar">
+  <div class="viewmore-bar" :class="{ open: isOpen }">
     <a-button
       class="viewmore-btn"
       type="text"

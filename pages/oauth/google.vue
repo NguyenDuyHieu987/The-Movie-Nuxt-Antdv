@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <div class="oauth padding-content"></div>
+</template>
 
 <script setup lang="ts">
 definePageMeta({
