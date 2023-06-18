@@ -5,6 +5,7 @@
     :class="{
       scrubbing: isScrubbingProgressBar,
       'hide-controls': isHideControls,
+      pause: !isPlayVideo,
     }"
   >
     <video
@@ -18,13 +19,14 @@
       @mousemove="mouseMoveVideo"
       @mouseleave="mouseLeaveVideo"
       @ended="onEndedVideo"
+      @keypress.prevent="onKeyDownVideo"
     >
       <source :src="videoUrl" type="video/mp4" />
     </video>
 
     <div
       class="overlay-controls-animation"
-      :class="{ active: isActiveControlsAnimation }"
+      :class="{ active: isActiveControlsAnimation, replay: isEndedVideo }"
     >
       <Icon
         v-if="isEndedVideo"
@@ -37,14 +39,14 @@
         v-if="!isPlayVideo && !isEndedVideo"
         name="ic:play-arrow"
         class="play"
-        @click="onClickPlay"
+        @click="onClickVideo"
       />
 
       <Icon
         v-else-if="isPlayVideo && !isEndedVideo"
         name="ic:baseline-pause"
         class="play"
-        @click="onClickPause"
+        @click="onClickVideo"
       />
     </div>
 
@@ -136,6 +138,7 @@
             </div>
             <a-slider
               class="volume-slider"
+              :class="{ muted: isVolumeOff }"
               v-model:value="volume"
               :tooltipVisible="false"
               @change="onChangeVolume"
@@ -306,21 +309,28 @@ const onClickPause = () => {
 const onReplayVideo = () => {
   video.value.load();
   video.value.play();
+  isPlayVideo.value = true;
   isEndedVideo.value = false;
 };
 
 const onClickVideo = () => {
+  if (isEndedVideo.value) {
+    return;
+  }
+
   if (isPlayVideo.value) {
     video.value.pause();
     isPlayVideo.value = false;
-
-    isActiveControlsAnimation.value = false;
   } else {
     video.value.play();
     isPlayVideo.value = true;
-
-    isActiveControlsAnimation.value = true;
   }
+
+  new Promise((resolve, reject) => {
+    resolve((isActiveControlsAnimation.value = false));
+  }).then(() => {
+    isActiveControlsAnimation.value = true;
+  });
 };
 
 const onClickReplay = () => {
@@ -328,6 +338,12 @@ const onClickReplay = () => {
 
   const percent = video.value.currentTime / video.value.duration;
   progressBar.value.style.setProperty('--progress-width', percent);
+
+  new Promise((resolve, reject) => {
+    resolve((isActiveControlsAnimation.value = false));
+  }).then(() => {
+    isActiveControlsAnimation.value = true;
+  });
 };
 
 const onClickForward = () => {
@@ -335,6 +351,12 @@ const onClickForward = () => {
 
   const percent = video.value.currentTime / video.value.duration;
   progressBar.value.style.setProperty('--progress-width', percent);
+
+  new Promise((resolve, reject) => {
+    resolve((isActiveControlsAnimation.value = false));
+  }).then(() => {
+    isActiveControlsAnimation.value = true;
+  });
 };
 
 const onMouseDownProgressBar = (e: any) => {
@@ -426,6 +448,10 @@ const onChangeVolume = (value: number) => {
 
 const onClickPictureInPicture = () => {
   video.value.requestPictureInPicture();
+};
+
+const onKeyDownVideo = (e: any) => {
+  console.log(e);
 };
 </script>
 

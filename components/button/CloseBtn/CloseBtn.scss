@@ -8,6 +8,7 @@
   cursor: pointer;
   background-color: #07070785;
   border-radius: 50%;
+  filter: drop-shadow(2px 2px 2px #000);
 
   &:active {
     opacity: 0.8;
