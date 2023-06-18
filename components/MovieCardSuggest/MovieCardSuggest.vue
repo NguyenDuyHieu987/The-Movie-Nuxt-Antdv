@@ -72,7 +72,7 @@
                 "
                 class="release-date-box"
               >
-                <span class="release-date" v-if="!isEpisodes">
+                <span v-if="!isEpisodes" class="release-date">
                   {{ item?.release_date?.slice(0, 4) }}
                 </span>
                 <span v-else class="release-date">
@@ -104,7 +104,10 @@
           </div>
           <div class="bottom">
             <p class="overview">
-              {{ item?.overview }}
+              {{
+                item?.overview ||
+                'Sorry! This movie has not been updated overview content.'
+              }}
             </p>
           </div>
         </NuxtLink>

@@ -10,6 +10,7 @@
 
   --text-color: #ffffffe8;
   --text-color-gray: #a4a4a4;
+  --text-label-color: #777;
 
   --search-background: #0a0a0a41;
   --search-focus-background: #141414;
@@ -101,7 +102,7 @@ body {
 
 body {
   font-size: 1.5rem;
-  line-height: 1.43;
+  line-height: 2.2rem;
   // font-size: clamp(1.4rem, 1vw, 10rem);
   font-family: 'Roboto Flex', sans-serif;
   text-rendering: optimizeSpeed;

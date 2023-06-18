@@ -1,10 +1,8 @@
 <template>
   <div class="lastest-episodes">
-    <h3 class="section-title">
-      <span>Tập mới nhất</span>
-    </h3>
+    <span class="label">Tâp mới nhất: </span>
 
-    <div v-if="loading" class="list-lastest-episodes skeleton">
+    <!-- <div v-if="loading" class="list-lastest-episodes skeleton">
       <a-skeleton-button
         :loading="loading"
         :active="true"
@@ -14,18 +12,18 @@
           (_, i) => i + 1
         )
           .reverse()
-          .slice(0, 10)"
+          .slice(0, 7)"
         :index="index"
         :key="index"
       >
       </a-skeleton-button>
-    </div>
+    </div> -->
 
-    <ul v-else class="list-lastest-episodes">
+    <ul class="list-lastest-episodes">
       <li
         v-for="(item, index) in dataSeason.episodes
           ?.slice(0, dataMovie?.last_episode_to_air?.episode_number)
-          ?.slice(-10)
+          ?.slice(-7)
           .reverse()"
         :index="index"
         :key="index"
@@ -70,6 +68,7 @@ const props = defineProps({
     type: Boolean,
   },
 });
+
 const route: any = useRoute();
 const dataSeason = ref<any>({});
 const loadingLastestEpisodes = ref<boolean>(false);
@@ -87,11 +86,12 @@ onBeforeMount(() => {
   )
     .then((episodesRespones: any) => {
       dataSeason.value = episodesRespones.data.value;
-      loadingLastestEpisodes.value = false;
     })
     .catch((e) => {
-      loadingLastestEpisodes.value = false;
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingLastestEpisodes.value = false;
     });
 });
 </script>

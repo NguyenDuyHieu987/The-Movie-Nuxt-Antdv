@@ -100,7 +100,10 @@
             </div>
 
             <p class="overview">
-              {{ dataMovie?.overview }}
+              {{
+                dataMovie?.overview ||
+                'Sorry! This movie has not been updated overview content.'
+              }}
             </p>
 
             <div class="action">

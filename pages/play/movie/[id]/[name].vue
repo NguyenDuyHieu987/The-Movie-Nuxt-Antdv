@@ -1,179 +1,92 @@
 <template>
-  <div class="play-container padding-content">
-    <div class="video-player">
-      <div class="video-player-wrapper">
-        <iframe
-          id="vimeo-player"
-          :src="`https://player.vimeo.com/video/${urlCodeMovie}`"
-          width="100%"
-          height="100%"
-          frameborder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+  <div class="play-movie padding-content">
+    <div v-if="dataMovie?.id" class="play-container">
+      <div class="video">
+        <div class="video-wrapper">
+          <!-- <iframe
+            id="vimeo-player"
+            :src="`https://player.vimeo.com/video/${urlCodeMovie}`"
+            width="100%"
+            height="100%"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe> -->
+
+          <!-- <iframe
+            id="okru-player"
+            width="100%"
+            height="100%"
+            :src="`//ok.ru/videoembed/${'3056793684585'}`"
+            frameborder="0"
+            allow="autoplay"
+            allowfullscreen
+          ></iframe> -->
+
+          <VideoPlayer
+            :videoUrl="getVideoFeature('Transformer_5.mov')"
+            :backdrop="getBackdrop(dataMovie?.backdrop_path)"
+            :loading="loading"
+          />
+        </div>
+        <div class="overlay-backdrop">
+          <img :src="getBackdrop(dataMovie?.backdrop_path)" />
+        </div>
       </div>
-      <div class="overlay-backdrop">
-        <img :src="getBackdrop(dataMovie?.backdrop_path)" />
+
+      <div class="reaction-view">
+        <a-skeleton-button
+          v-if="loading"
+          :loading="loading"
+          :active="true"
+          :size="'default'"
+          :block="false"
+          class="skeleton-interaction"
+        >
+        </a-skeleton-button>
+        <Interaction :dataMovie="dataMovie" />
+
+        <a-button
+          round
+          shape="round"
+          type="primary"
+          class="add-to-list-btn"
+          :class="{ active: isAddToList }"
+          @click="handelAddToList"
+        >
+          <template #icon>
+            <Icon v-if="isAddToList" name="ic:twotone-playlist-add-check" />
+            <Icon v-else name="ic:twotone-playlist-add" />
+          </template>
+          <span v-if="!isAddToList"> Thêm vòa danh sách</span>
+          <span v-else style="margin-left: 8px"> Xóa khỏi danh sách</span>
+        </a-button>
       </div>
+
+      <RatingMovie
+        :voteAverage="dataMovie?.vote_average"
+        :voteCount="dataMovie?.vote_count"
+        :movieId="dataMovie?.id"
+        type="movie"
+      />
+
+      <MovieRelated :movieId="dataMovie?.id" type="movie" />
     </div>
-
-    <h3 class="section-title width-fit" style="margin-top: 15px">
-      <strong> Đánh giá phim</strong>
-    </h3>
-
-    <div class="reaction-view">
-      <a-skeleton-button
-        v-if="loading"
-        :loading="loading"
-        :active="true"
-        :size="'default'"
-        :block="false"
-        class="skeleton-interaction"
-      >
-      </a-skeleton-button>
-      <Interaction v-else :dataMovie="dataMovie" />
-      <a-skeleton-button
-        v-if="loading"
-        :loading="loading"
-        :active="true"
-        :size="'default'"
-        :block="false"
-        class="skeleton-add-to-list"
-      >
-      </a-skeleton-button>
-      <a-button
-        v-else
-        round
-        shape="round"
-        type="primary"
-        class="add-to-list-btn"
-        :class="{ active: isAddToList }"
-        @click="handelAddToList"
-      >
-        <template #icon>
-          <!-- <svg
-            v-if="isAddToList"
-            class="material-icons-outlined"
-            xmlns="http://www.w3.org/2000/svg"
-            enable-background="new 0 0 24 24"
-            height="24px"
-            viewBox="0 0 24 24"
-            width="24px"
-            fill="#fff"
-          >
-            <g><rect fill="none" height="24" width="24" /></g>
-            <g>
-              <g>
-                <rect height="2" width="11" x="3" y="10" />
-                <rect height="2" width="11" x="3" y="6" />
-                <rect height="2" width="7" x="3" y="14" />
-                <polygon
-                  points="20.59,11.93 16.34,16.17 14.22,14.05 12.81,15.46 16.34,19 22,13.34"
-                />
-              </g>
-            </g>
-          </svg>
-          <svg
-            v-else
-            class="material-icons-outlined"
-            xmlns="http://www.w3.org/2000/svg"
-            enable-background="new 0 0 24 24"
-            height="24px"
-            viewBox="0 0 24 24"
-            width="24px"
-            fill="#fff"
-          >
-            <g><rect fill="none" height="24" width="24" /></g>
-            <g>
-              <path
-                d="M14,10H3v2h11V10z M14,6H3v2h11V6z M18,14v-4h-2v4h-4v2h4v4h2v-4h4v-2H18z M3,16h7v-2H3V16z"
-              />
-            </g>
-          </svg> -->
-
-          <Icon v-if="isAddToList" name="ic:twotone-playlist-add-check" />
-          <Icon v-else name="ic:twotone-playlist-add" />
-        </template>
-        <span v-if="!isAddToList"> Thêm vòa danh sách</span>
-        <span v-else style="margin-left: 8px"> Xóa khỏi danh sách</span>
-      </a-button>
-    </div>
-
-    <div style="margin-top: 15px">
-      <a-skeleton
-        style="width: 360px"
-        :loading="loading"
-        :active="true"
-        :paragraph="{ rows: 2, width: '50%' }"
-        :title="false"
-      >
-        <RatingMovie
-          v-show="!checkEmptyDataMovies"
-          :voteAverage="dataMovie?.vote_average"
-          :voteCount="dataMovie?.vote_count"
-          :movieId="dataMovie?.id"
-          :isEpisodes="isEpisodes"
-        />
-      </a-skeleton>
-    </div>
-
-    <h3 class="section-title">
-      <span v-if="!checkEmptyDataMovies">
-        {{ dataMovie?.name }}
-        {{
-          ` (${
-            dataMovie?.last_air_date?.slice(0, 4)
-              ? dataMovie?.last_air_date?.slice(0, 4)
-              : dataMovie?.release_date?.slice(0, 4)
-          })`
-        }}
-      </span>
-      <strong v-else> Nội dung phim </strong>
-    </h3>
-    <div class="movie-content">
-      <a-skeleton
-        :loading="loading"
-        :active="true"
-        :paragraph="{ rows: 3, width: '40%' }"
-        :title="false"
-      >
-        <p :class="{ open: isOpenContent }">
-          {{ dataMovie?.overview }}
-          <NuxtLink
-            :to="{
-              path: `/info/movie/${dataMovie?.id}/${dataMovie?.name
-                ?.replace(/\s/g, '+')
-                .toLowerCase()}`,
-            }"
-          >
-            <strong class="toggle-content"> Chi tiết </strong>
-          </NuxtLink>
-        </p>
-      </a-skeleton>
-    </div>
-
-    <Comment :urlComment="urlComment" />
-
-    <MovieSuggest
-      v-if="!checkEmptyDataMovies"
-      :movieId="dataMovie?.id"
-      type="movie"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
 import axios from 'axios';
 import { getBackdrop } from '~/services/image';
+import { getVideoFeature } from '~/services/video';
 import { getMovieById } from '~/services/movie';
 import { getItemList } from '~/services/list';
 import { getItemHistory, add_update_History } from '~/services/history';
 import { UpdateViewMovie } from '~/services/movie';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
-import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
-import Comment from '@/components/Comment/Comment.vue';
-
+import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
+import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.vue';
 import Player from '@vimeo/player';
 
 const store: any = useStore();
@@ -253,44 +166,44 @@ onBeforeRouteLeave(() => {
   }
 });
 
-onMounted(() => {
-  const iframe = document.querySelector('#vimeo-player') as HTMLIFrameElement;
-  const player = new Player(iframe);
+// onMounted(() => {
+//   const iframe = document.querySelector('#vimeo-player') as HTMLIFrameElement;
+//   const player = new Player(iframe);
 
-  player.on('play', function (e: any) {
-    // alert('play');
-    duration.value = e.duration;
-    isPlayVideo.value = true;
-  });
+//   player.on('play', function (e: any) {
+//     // alert('play');
+//     duration.value = e.duration;
+//     isPlayVideo.value = true;
+//   });
 
-  player.on('timeupdate', function (e: any) {
-    if (e?.seconds > 0) {
-      if (e.seconds > seconds.value && e.percent > percent.value) {
-        if (seconds.value > e.duration - 6) {
-          seconds.value = e.seconds;
-          percent.value = e.percent;
-        } else {
-          setTimeout(() => {
-            seconds.value = e.seconds;
-            percent.value = e.percent;
-          }, 5000);
-        }
+//   player.on('timeupdate', function (e: any) {
+//     if (e?.seconds > 0) {
+//       if (e.seconds > seconds.value && e.percent > percent.value) {
+//         if (seconds.value > e.duration - 6) {
+//           seconds.value = e.seconds;
+//           percent.value = e.percent;
+//         } else {
+//           setTimeout(() => {
+//             seconds.value = e.seconds;
+//             percent.value = e.percent;
+//           }, 5000);
+//         }
 
-        if (seconds.value > e.duration / 2) {
-          if (isUpdateView.value == true) {
-            UpdateViewMovie(route.params?.id);
-            isUpdateView.value = false;
-          }
-        }
-      }
+//         if (seconds.value > e.duration / 2) {
+//           if (isUpdateView.value == true) {
+//             UpdateViewMovie(route.params?.id);
+//             isUpdateView.value = false;
+//           }
+//         }
+//       }
 
-      // console.log('seconds:', seconds.value);
-      // console.log('percent:', percent.value);
+//       // console.log('seconds:', seconds.value);
+//       // console.log('percent:', percent.value);
 
-      // alert('Time update');
-    }
-  });
-});
+//       // alert('Time update');
+//     }
+//   });
+// });
 
 const getData = async () => {
   loading.value = true;
@@ -373,11 +286,6 @@ const getData = async () => {
 
 onBeforeMount(() => {
   getData();
-});
-
-const checkEmptyDataMovies = computed(() => {
-  if (Object.keys(dataMovie.value).length == 0) return true;
-  else return false;
 });
 
 const handelAddToList = () => {

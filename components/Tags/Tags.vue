@@ -1,5 +1,5 @@
 <template>
-  <div class="tags">
+  <div class="tags" :class="class">
     <label class="tags-label">{{ tagsLabel }}</label>
     <slot name="tagsInfo" />
   </div>
@@ -10,6 +10,7 @@ defineProps<{
   tagsLabel: string;
   link?: boolean | false;
   multiple?: boolean | false;
+  class?: string;
 }>();
 </script>
 

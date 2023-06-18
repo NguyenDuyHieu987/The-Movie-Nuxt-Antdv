@@ -108,7 +108,10 @@
               <div class="overview">
                 <Tags tagsLabel="Nội dung:">
                   <template #tagsInfo>
-                    <span class="text">{{ dataMovie?.overview }}</span>
+                    <span class="text">{{
+                      dataMovie?.overview ||
+                      'Sorry! This movie has not been updated overview content.'
+                    }}</span>
                   </template>
                 </Tags>
               </div>
@@ -129,7 +132,20 @@
                   }}</span>
                 </template>
               </Tags>
+
+              <LastestEpisodes
+                :dataMovie="dataMovie"
+                :numberOfEpisodes="
+                  dataMovie?.seasons?.find(
+                    (item:any) =>
+                      item.season_number ===
+                      dataMovie?.last_episode_to_air?.season_number
+                  )?.episode_count
+                "
+                :loading="loading"
+              />
             </div>
+
             <div class="detail-content-right">
               <Tags tagsLabel="Tên gốc:">
                 <template #tagsInfo>
@@ -247,6 +263,7 @@ import { getCountryByOriginalLanguage } from '~/services/country';
 import Tags from '@/components/Tags/Tags.vue';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
+import LastestEpisodes from '~/components/LastestEpisodes/LastestEpisodes.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
 
@@ -388,7 +405,6 @@ const handelAddToList = () => {
 router.beforeEach((to) => {
   if (to.params.slug == 'info') {
     dataCredit.value = [];
-
     getData();
   }
 });
@@ -401,11 +417,6 @@ watch(route, () => {
   // });
   // dataCredit.value = [];
   // getData();
-});
-
-const checkEmptyDataMovies = computed(() => {
-  if (Object.keys(dataMovie.value).length == 0) return true;
-  else return false;
 });
 
 window.scrollTo({

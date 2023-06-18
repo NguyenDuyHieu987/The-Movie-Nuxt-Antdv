@@ -1,0 +1,339 @@
+video::-webkit-media-controls {
+  display: none;
+}
+
+.video-player {
+  position: relative;
+
+  #video-player {
+    height: 100%;
+    width: 100%;
+    background-color: var(--background-content-color);
+  }
+
+  @keyframes controls-animation {
+    0% {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+      opacity: 0;
+    }
+    50% {
+      transform: translateX(-50%) translateY(-50%) scale(1.5);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateX(-50%) translateY(-50%) scale(2);
+      opacity: 0;
+    }
+  }
+
+  .overlay-controls-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+    background-color: #10101081;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s;
+    opacity: 0;
+    padding: 8px;
+
+    &.active {
+      animation: controls-animation 0.5s ease;
+    }
+
+    svg {
+      font-size: 3rem;
+      cursor: pointer;
+      transition: all 0.15s;
+
+      &:active {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    // background-image: linear-gradient(
+    //   0deg,
+    //   var(--background-content-color) 0%,
+    //   rgba(7, 7, 7, 0) 100%
+    // );
+    opacity: 0;
+    transition: all 0.15s;
+    padding: 0px 10px;
+
+    .timeline {
+      position: absolute;
+      top: -20px;
+      // left: calc(var(--timeline-position) * 100%);
+      left: var(--timeline-position);
+      transform: translateY(-100%);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.15s;
+
+      &.active {
+        opacity: 1;
+        z-index: 1;
+      }
+
+      .timeline-container {
+        width: 160px;
+        background-color: #101010;
+
+        .img-box {
+          width: 100%;
+          height: 0px;
+          padding-bottom: 56.25%;
+
+          .preview-img {
+          }
+
+          .canvas-preview-img {
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+        }
+      }
+
+      .timeline-indicator {
+        display: block;
+        position: relative;
+        bottom: 0;
+        transform: translateY(50%);
+        text-align: center;
+      }
+    }
+
+    .overlay-progress {
+      position: relative;
+      height: 4px;
+      width: 100%;
+      background-color: rgba(21, 21, 21, 0.357);
+      cursor: pointer;
+      transition: all 0.1s;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      user-select: none;
+
+      &:hover {
+        height: 5.5px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          height: 100%;
+          width: calc(var(--preview-width) * 100%);
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .progress-bar {
+          &::after {
+            content: '';
+            position: absolute;
+            height: 12px;
+            width: 12px;
+            background-color: var(--app-background-color);
+          }
+        }
+      }
+    }
+
+    .progress-bar {
+      position: relative;
+      height: 100%;
+      width: calc(var(--progress-width) * 100%);
+      background-color: var(--app-background-color);
+      transition: all 0s;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateX(50%) translateY(-50%);
+        height: 0px;
+        width: 0px;
+        border-radius: 50%;
+        z-index: 1;
+        background-color: var(--app-background-color);
+        transition: all 0.1s;
+      }
+    }
+
+    .main-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 10px;
+      padding-top: 6px;
+
+      svg {
+        font-size: 3.3rem;
+        cursor: pointer;
+        transition: all 0.15s;
+
+        &:active {
+          opacity: 0.8;
+        }
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+
+        .play-pause {
+          svg.play {
+            margin-right: -7px;
+          }
+
+          svg.replay {
+            font-size: 2.6rem;
+          }
+        }
+
+        .replay-forward {
+          display: flex;
+          align-items: center;
+          gap: 13px;
+
+          svg {
+            font-size: 2.6rem;
+
+            &:active {
+              &.replay {
+                transform: rotate(-25deg);
+              }
+
+              &.forward {
+                transform: rotate(25deg);
+              }
+            }
+          }
+        }
+
+        .volume {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-left: 3px;
+
+          &:hover {
+            .volume-slider {
+              width: 70px;
+              overflow: visible;
+              margin-right: 7px;
+            }
+          }
+
+          svg {
+            font-size: 2.7rem;
+          }
+
+          .volume-slider {
+            width: 0px;
+            margin: 0px;
+            transition: all 0.15s;
+            overflow: hidden;
+
+            .ant-slider-track {
+              background-color: var(--background-content-color);
+            }
+
+            .ant-slider-handle {
+              border: none;
+
+              &:focus {
+                box-shadow: none;
+              }
+            }
+          }
+        }
+
+        .timeupdate-duration {
+          .separate {
+            margin: 0px 3px;
+          }
+        }
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+
+        .setting {
+          svg.setting {
+            font-size: 2.5rem;
+          }
+        }
+
+        .picture-in-picture {
+          svg {
+            font-size: 2.7rem;
+          }
+        }
+
+        .fullscreen-exit {
+          svg.fullscreen {
+            @keyframes scale {
+              from {
+                transform: scale(1);
+              }
+
+              to {
+                transform: scale(1.2);
+              }
+            }
+
+            &:hover {
+              animation: scale 0.15s;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.scrubbing {
+    .controls {
+      opacity: 1;
+
+      .overlay-progress {
+        height: 5.5px;
+      }
+
+      .progress-bar {
+        &::after {
+          height: 12px;
+          width: 12px;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .controls {
+      opacity: 1;
+    }
+
+    &.hide-controls {
+      cursor: none;
+
+      .controls {
+        opacity: 0;
+      }
+    }
+  }
+}

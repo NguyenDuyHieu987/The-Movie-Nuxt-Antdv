@@ -101,7 +101,10 @@
               <div class="overview">
                 <Tags tagsLabel="Nội dung:">
                   <template #tagsInfo>
-                    <span class="text">{{ dataMovie?.overview }}</span>
+                    <span class="text">{{
+                      dataMovie?.overview ||
+                      'Sorry! This movie has not been updated overview content.'
+                    }}</span>
                   </template>
                 </Tags>
               </div>
@@ -365,7 +368,6 @@ const handelAddToList = () => {
 router.beforeEach((to) => {
   if (to.params.slug == 'info') {
     dataCredit.value = [];
-
     getData();
   }
 });
@@ -378,11 +380,6 @@ watch(route, () => {
   // });
   // dataCredit.value = [];
   // getData();
-});
-
-const checkEmptyDataMovies = computed(() => {
-  if (Object.keys(dataMovie.value).length == 0) return true;
-  else return false;
 });
 
 window.scrollTo({

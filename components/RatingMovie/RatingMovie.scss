@@ -6,9 +6,10 @@
     align-items: center;
 
     .label {
+      white-space: nowrap;
       // margin-right: 0.3rem;
       margin-right: 1rem;
-      color: #777;
+      color: var(--text-label-color);
     }
 
     .ant-rate {
