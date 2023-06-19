@@ -19,7 +19,7 @@
       @mousemove="mouseMoveVideo"
       @mouseleave="mouseLeaveVideo"
       @ended="onEndedVideo"
-      @keypress.prevent="onKeyDownVideo"
+      @keydown="onKeyDownVideo"
     >
       <source :src="videoUrl" type="video/mp4" />
     </video>
@@ -272,7 +272,6 @@ const loadedDataVideo = () => {
 
 const timeUpdateVideo = (e: any) => {
   timeUpdate.value = formatDuration(e.target.currentTime);
-  timelineUpdate.value = formatDuration(e.target.currentTime);
   const progressWidth = e.target.currentTime / e.target.duration;
   progressBar.value.style.setProperty('--progress-width', progressWidth);
 };
@@ -451,7 +450,7 @@ const onClickPictureInPicture = () => {
 };
 
 const onKeyDownVideo = (e: any) => {
-  console.log(e);
+  alert('G');
 };
 </script>
 

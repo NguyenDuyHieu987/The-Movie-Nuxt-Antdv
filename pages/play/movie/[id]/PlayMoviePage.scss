@@ -40,46 +40,12 @@
     }
   }
 
-  .reaction-view {
+  .actions {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 
-    .like-share {
-      margin-top: 0px;
-    }
-
-    .add-to-list-btn {
-      display: flex;
-      align-items: center;
-      background-color: #006999;
-      border: none;
-      height: 34px;
-
-      .material-icons-outlined {
-        margin-right: 3px;
-      }
-
-      svg.icon {
-        font-size: 2.6rem;
-      }
-
-      span {
-        margin-left: 4px !important;
-      }
-
-      &:hover {
-        background-color: #006999bb;
-      }
-
-      &.active {
-        background-color: #006d4e;
-
-        &:hover {
-          background-color: #006d4ebd;
-        }
-      }
+    .ant-btn {
     }
 
     .skeleton-interaction {

@@ -34,23 +34,10 @@
         </div>
       </div>
 
-      <div class="reaction-view">
-        <a-skeleton-button
-          v-if="loading"
-          :loading="loading"
-          :active="true"
-          :size="'default'"
-          :block="false"
-          class="skeleton-interaction"
-        >
-        </a-skeleton-button>
-        <Interaction :dataMovie="dataMovie" />
-
+      <div class="actions">
         <a-button
-          round
-          shape="round"
-          type="primary"
-          class="add-to-list-btn"
+          type="text"
+          class="add"
           :class="{ active: isAddToList }"
           @click="handelAddToList"
         >
@@ -58,9 +45,10 @@
             <Icon v-if="isAddToList" name="ic:twotone-playlist-add-check" />
             <Icon v-else name="ic:twotone-playlist-add" />
           </template>
-          <span v-if="!isAddToList"> Thêm vòa danh sách</span>
-          <span v-else style="margin-left: 8px"> Xóa khỏi danh sách</span>
+          <span v-if="!isAddToList"> Danh sách</span>
         </a-button>
+
+        <Interaction :dataMovie="dataMovie" />
       </div>
 
       <RatingMovie
