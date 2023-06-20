@@ -1,5 +1,5 @@
 <template>
-  <div class="cast-crew" v-show="!loading">
+  <div class="cast-crew">
     <a-tabs v-model:activeKey="activeTabCast">
       <a-tab-pane key="cast" tab="Diễn viên">
         <SliderGroup

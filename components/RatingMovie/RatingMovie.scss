@@ -25,7 +25,23 @@
     }
   }
 
-  span,
-  p {
+  .rate-info {
+    .rate-score {
+      &.low {
+        color: #d00000;
+      }
+
+      &.medium {
+        color: #d4aa00;
+      }
+
+      &.high {
+        color: #008049;
+      }
+    }
+
+    .separate {
+      margin: 0px 3px;
+    }
   }
 }

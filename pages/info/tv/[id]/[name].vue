@@ -57,9 +57,9 @@
                   <div class="left">
                     <NuxtLink
                       :to="{
-                        path: `/play/movie/${dataMovie?.id}/${dataMovie?.name
+                        path: `/play/tv/${dataMovie?.id}/${dataMovie?.name
                           ?.replace(/\s/g, '+')
-                          .toLowerCase()}`,
+                          .toLowerCase()}/tap-1`,
                       }"
                     >
                       <a-button size="large" type="text" class="play modern">
@@ -80,7 +80,7 @@
                       </a-button>
                     </NuxtLink>
 
-                    <NuxtLink @click.prevent>
+                    <NuxtLink @click.prevent="scrollToTrailer">
                       <a-button size="large" type="text" class="trailer modern">
                         <template #icon>
                           <Icon name="fa6-brands:youtube" class="trailer" />
@@ -93,7 +93,7 @@
                   <div class="right">
                     <Interaction :dataMovie="dataMovie" />
 
-                    <NuxtLink @click.prevent>
+                    <NuxtLink @click.prevent="scrollToComment">
                       <a-button size="large" type="text" class="comment modern">
                         <template #icon>
                           <Icon name="ic:outline-comment" class="comment" />
@@ -253,6 +253,26 @@
         <MovieRelated :movieId="dataMovie?.id" type="tv" />
 
         <CastCrew :dataCredit="dataCredit" :loading="loading" />
+
+        <div class="trailer">
+          <h2>Trailer</h2>
+          <iframe
+            height="100%"
+            width="100%"
+            :src="// dataMovie?.videos?.results?.length != 0
+            //   ? `https://www.youtube.com/embed/${dataMovie?.videos?.results[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.results?.length)
+            //   :
+
+            'https://www.youtube.com/embed/ndl1W4ltcmg'"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+          gyroscope; picture-in-picture"
+            allowFullScreen
+            frameBorder="{0}"
+          />
+        </div>
+
+        <Comment :urlComment="urlComment" />
       </div>
     </div>
   </div>
@@ -266,6 +286,7 @@ import { getTvById } from '~/services/tv';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '@/components/BackPage/BackPage.vue';
 import Tags from '@/components/Tags/Tags.vue';
+import Comment from '@/components/Comment/Comment.vue';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import LastestEpisodes from '~/components/LastestEpisodes/LastestEpisodes.vue';
@@ -279,15 +300,12 @@ const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const dataCredit = ref<any>({});
-const isOpenContent = ref<boolean>(false);
-const isOpenTrailerYoutube = ref<boolean>(false);
+const urlComment = computed<string>((): string => window.location.href);
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
-const release_date = computed<string>(() =>
-  dataMovie?.last_air_date
-    ? dataMovie?.last_air_date
-    : dataMovie?.first_air_date
+const release_date = computed<string>(
+  () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date
 );
 
 const internalInstance: any = getCurrentInstance();
@@ -304,11 +322,11 @@ const setBackgroundColor = (color: string[]) => {
 
 const getData = async () => {
   isAddToList.value = false;
+  isEpisodes.value = true;
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   srcBackdropList.value = [];
-  isEpisodes.value = true;
 
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
     getTvById(route.params?.id, 'images,credits')
@@ -379,12 +397,18 @@ onBeforeMount(() => {
   getData();
 });
 
-const scrolltoTrailerYoutube = () => {
-  const trailer_youtube = document.getElementById(
-    'trailer-youtube'
-  ) as HTMLElement;
-  trailer_youtube.scrollIntoView();
-};
+// router.beforeEach((to) => {
+//   if (to.params.slug == 'info') {
+//     dataCredit.value = [];
+//     getData();
+//   }
+// });
+
+// window.scrollTo({
+//   top: 0,
+//   left: 0,
+//   behavior: 'smooth',
+// });
 
 const handelAddToList = () => {
   if (!store.$state?.isLogin) {
@@ -406,28 +430,15 @@ const handelAddToList = () => {
   }
 };
 
-router.beforeEach((to) => {
-  if (to.params.slug == 'info') {
-    dataCredit.value = [];
-    getData();
-  }
-});
+const scrollToTrailer = () => {
+  const trailer = document.getElementById('trailer') as HTMLElement;
+  trailer.scrollIntoView();
+};
 
-watch(route, () => {
-  // window.scrollTo({
-  //   top: 0,
-  //   left: 0,
-  //   behavior: 'smooth',
-  // });
-  // dataCredit.value = [];
-  // getData();
-});
-
-window.scrollTo({
-  top: 0,
-  left: 0,
-  behavior: 'smooth',
-});
+const scrollToComment = () => {
+  const comment = document.getElementById('comment') as HTMLElement;
+  comment.scrollIntoView();
+};
 </script>
 
 <style lang="scss" src="./InfoTvPage.scss"></style>

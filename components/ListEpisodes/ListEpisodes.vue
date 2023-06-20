@@ -26,7 +26,7 @@
         Tập tiếp
       </el-button>
     </div>
-    <h3 class="section-title" style="display: flex; align-items: center">
+    <h3 class="movie-title">
       <span style="margin-right: 10px">
         {{ dataMovie?.name }}
         - Tập

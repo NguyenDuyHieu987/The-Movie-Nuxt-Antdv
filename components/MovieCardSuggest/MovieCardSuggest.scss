@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   width: calc((100% - (4 * 20px)) / 5);
-  height: 365px;
+  height: 355px;
   border-radius: 5px;
   overflow: hidden;
   // box-shadow: var(--box-shadow-medium1);
@@ -222,6 +222,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 1500px) {
   .movie-card-item-suggest {
     width: calc((100% - (3 * 20px)) / 4);
@@ -230,7 +231,7 @@
 
 @media only screen and (max-width: 1300px) {
   .movie-card-item-suggest {
-    height: 365px;
+    height: 370px;
     width: calc((100% - (2 * 20px)) / 3);
   }
 }

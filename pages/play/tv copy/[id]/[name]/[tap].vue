@@ -1,10 +1,21 @@
 <template>
-  <div class="play-container padding-content">
+  <div class="playtv-container padding-content">
     <div class="video-player">
       <div class="video-player-wrapper">
         <iframe
+          v-if="urlCodeMovie"
+          id="okru-player"
+          width="100%"
+          height="100%"
+          :src="`//ok.ru/videoembed/${urlCodeMovie || '3056793684585'}`"
+          frameborder="0"
+          allow="autoplay"
+          allowfullscreen
+        ></iframe>
+        <iframe
+          v-else
           id="vimeo-player"
-          :src="`https://player.vimeo.com/video/${urlCodeMovie}`"
+          src="https://player.vimeo.com/video/809431505"
           width="100%"
           height="100%"
           frameborder="0"
@@ -12,10 +23,24 @@
           allowfullscreen
         ></iframe>
       </div>
+
       <div class="overlay-backdrop">
         <img :src="getBackdrop(dataMovie?.backdrop_path)" />
       </div>
     </div>
+
+    <ListEpisodes
+      v-if="!checkEmptyDataMovies"
+      :dataMovie="dataMovie"
+      :numberOfEpisodes="
+        dataMovie?.seasons?.find((item: any) =>
+          item.season_number === dataMovie?.last_episode_to_air?.season_number
+            ? item
+            : null
+        )?.episode_count
+      "
+      @setUrlCodeMovie="(data: string) => getUrlCodeMovie(data)"
+    />
 
     <h3 class="section-title width-fit" style="margin-top: 15px">
       <strong> Đánh giá phim</strong>
@@ -112,7 +137,7 @@
           :voteAverage="dataMovie?.vote_average"
           :voteCount="dataMovie?.vote_count"
           :movieId="dataMovie?.id"
-          type="movie"
+          type="tv"
         />
       </a-skeleton>
     </div>
@@ -141,7 +166,7 @@
           {{ dataMovie?.overview }}
           <NuxtLink
             :to="{
-              path: `/info/movie/${dataMovie?.id}/${dataMovie?.name
+              path: `/info/tv/${dataMovie?.id}/${dataMovie?.name
                 ?.replace(/\s/g, '+')
                 .toLowerCase()}`,
             }"
@@ -157,7 +182,7 @@
     <MovieSuggest
       v-if="!checkEmptyDataMovies"
       :movieId="dataMovie?.id"
-      type="movie"
+      type="tv"
     />
   </div>
 </template>
@@ -165,27 +190,28 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getBackdrop } from '~/services/image';
-import { getMovieById } from '~/services/movie';
+import { getTvById } from '~/services/tv';
 import { getItemList } from '~/services/list';
 import { getItemHistory, add_update_History } from '~/services/history';
-import { UpdateViewMovie } from '~/services/movie';
+import { UpdateViewTv } from '~/services/tv';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieSuggest from '@/components/MovieSuggest/MovieSuggest.vue';
 import Comment from '@/components/Comment/Comment.vue';
+import ListEpisodes from '@/components/ListEpisodes/ListEpisodes.vue';
 
 import Player from '@vimeo/player';
 
-const store: any = useStore();
-const utils = useUtils();
 const route: any = useRoute();
+const utils = useUtils();
+const store: any = useStore();
 const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const isOpenContent = ref<boolean>(false);
 const urlComment = computed<string>((): string => window.location.href);
 const loading = ref<boolean>(false);
-const urlCodeMovie = ref<string>('809431505');
+const urlCodeMovie = ref<string>('');
 const isAddToList = ref<boolean>(false);
 const seconds = ref<number>(0);
 const percent = ref<number>(0);
@@ -206,7 +232,7 @@ onBeforeRouteLeave(() => {
     //     dataItemHistory.value?.seconds < duration.value
     //   ) {
     //     add_update_History( {
-    //       media_type: 'movie',
+    //       media_type: 'tv',
     //       media_id: dataMovie.value?.id,
     //       duration: duration.value,
     //       percent: percent.value,
@@ -217,7 +243,7 @@ onBeforeRouteLeave(() => {
     //   } else {
     //     if (seconds.value > 0 && percent.value > 0) {
     //       add_update_History( {
-    //         media_type: 'movie',
+    //         media_type: 'tv',
     //         media_id: dataMovie.value?.id,
     //         duration: dataItemHistory.value?.duration,
     //         percent: dataItemHistory.value?.percent,
@@ -229,7 +255,7 @@ onBeforeRouteLeave(() => {
     //   }
     // } else {
     //   add_update_History( {
-    //     media_type: 'movie',
+    //     media_type: 'tv',
     //     media_id: dataMovie.value?.id,
     //     duration: duration.value,
     //     percent: percent.value,
@@ -241,7 +267,7 @@ onBeforeRouteLeave(() => {
 
     if (seconds.value > 0 && percent.value > 0 && duration.value > 0) {
       add_update_History({
-        media_type: 'movie',
+        media_type: 'tv',
         media_id: dataMovie.value?.id,
         duration: duration.value,
         percent: percent.value,
@@ -278,7 +304,7 @@ onMounted(() => {
 
         if (seconds.value > e.duration / 2) {
           if (isUpdateView.value == true) {
-            UpdateViewMovie(route.params?.id);
+            UpdateViewTv(route.params?.id);
             isUpdateView.value = false;
           }
         }
@@ -296,24 +322,37 @@ const getData = async () => {
   loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  isEpisodes.value = false;
-
-  await useAsyncData(`movie/short/${route.params?.id}`, () =>
-    getMovieById(route.params?.id)
+  await useAsyncData(`tv/short/${route.params?.id}`, () =>
+    getTvById(route.params?.id)
   )
-    .then((movieResponed: any) => {
-      dataMovie.value = movieResponed.data.value;
+    .then((tvResponed: any) => {
+      isEpisodes.value = true;
+      dataMovie.value = tvResponed.data.value;
 
       useHead({
         title:
-          'Xem phim - Phim lẻ - ' + dataMovie.value?.name + ' | Phimhay247',
+          'Xem phim - Phim bộ - ' +
+          dataMovie.value?.name +
+          ' - Phần ' +
+          dataMovie.value?.last_episode_to_air?.season_number +
+          ' | Phimhay247',
         htmlAttrs: { lang: 'vi' },
       });
 
       useSeoMeta({
-        title: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',
+        title:
+          'Xem phim - Phim bộ - ' +
+          dataMovie.value?.name +
+          ' - Phần ' +
+          dataMovie.value?.last_episode_to_air?.season_number +
+          ' | Phimhay247',
         description: dataMovie.value?.overview,
-        ogTitle: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',
+        ogTitle:
+          'Xem phim - Phim bộ - ' +
+          dataMovie.value?.name +
+          ' - Phần ' +
+          dataMovie.value?.last_episode_to_air?.season_number +
+          ' | Phimhay247',
         ogType: 'video.movie',
         ogUrl: window.location.href,
         ogDescription: dataMovie.value?.overview,
@@ -342,9 +381,10 @@ const getData = async () => {
 
     // await useAsyncData(
     //   `itemlist/${store.$state?.userAccount?.id}/${route.params?.id}`,
-    //   () => getItemList(route.params?.id)
-    // )
-    //   .then((movieRespone: any) => {
+    //   () => getItemHistory(route.params?.id)
+    // );
+    // getItemList(route.params?.id)
+    //   .then((movieRespone) => {
     //     if (movieRespone.data.value.data.success == true) {
     //       isAddToList.value = true;
     //     }
@@ -375,6 +415,10 @@ onBeforeMount(() => {
   getData();
 });
 
+const getUrlCodeMovie = (data: string) => {
+  urlCodeMovie.value = data;
+};
+
 const checkEmptyDataMovies = computed(() => {
   if (Object.keys(dataMovie.value).length == 0) return true;
   else return false;
@@ -387,7 +431,7 @@ const handelAddToList = () => {
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (!utils.handelAddItemToList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handelAddItemToList(dataMovie.value?.id, 'tv')) {
       isAddToList.value = false;
     }
     return;
@@ -407,4 +451,4 @@ window.scrollTo({
 });
 </script>
 
-<style lang="scss" src="./PlayMoviePage.scss"></style>
+<style lang="scss" src="./PlayTvPage.scss"></style>

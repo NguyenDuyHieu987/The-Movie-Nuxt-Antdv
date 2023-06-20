@@ -29,8 +29,21 @@
         tooltipRating[Math.round(vote_Average) - 1]
       }}</span>
     </div>
-    <span>
-      {{ `(${vote_Average?.toFixed(2)} điểm / ${vote_Count} lượt)` }}
+    <span class="rate-info">
+      <span>(</span>
+      <span
+        class="rate-score"
+        :class="{
+          low: vote_Average <= 4,
+          medium: vote_Average > 4 && vote_Average <= 7,
+          high: vote_Average > 7,
+        }"
+      >
+        {{ vote_Average?.toFixed(2) }}
+      </span>
+      {{ ' điểm' }}
+      <span class="separate">/</span>
+      {{ `${vote_Count} lượt)` }}
     </span>
   </div>
 </template>

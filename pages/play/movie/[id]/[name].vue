@@ -46,32 +46,157 @@
 
       <div class="movie-content">
         <div class="main-content">
-          <div class="left"></div>
-          <div class="right">
-            <div class="action">
-              <NuxtLink @click.prevent="handelAddToList">
-                <a-button type="text" class="modern add">
-                  <template #icon>
-                    <Icon v-if="isAddToList" name="ic:baseline-check" />
-                    <Icon v-else name="ic:baseline-plus" />
-                  </template>
-                  <span> Danh sách</span>
-                </a-button>
-              </NuxtLink>
+          <div class="detail-content-left">
+            <h2 class="movie-title">{{ dataMovie?.name }}</h2>
 
-              <Interaction :dataMovie="dataMovie" />
+            <Tags tagsLabel="Lượt xem:">
+              <template #tagsInfo>
+                <span class="text">{{
+                  dataMovie?.views
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' lượt xem'
+                }}</span>
+              </template>
+            </Tags>
+
+            <div class="overview">
+              <Tags tagsLabel="Nội dung:">
+                <template #tagsInfo>
+                  <span class="text">{{
+                    dataMovie?.overview ||
+                    'Sorry! This movie has not been updated overview content.'
+                  }}</span>
+                </template>
+              </Tags>
+            </div>
+
+            <RatingMovie
+              :voteAverage="dataMovie?.vote_average"
+              :voteCount="dataMovie?.vote_count"
+              :movieId="dataMovie?.id"
+              type="movie"
+            />
+
+            <div class="action">
+              <div class="left">
+                <NuxtLink @click.prevent="handelAddToList">
+                  <a-button type="text" class="modern add">
+                    <template #icon>
+                      <Icon v-if="isAddToList" name="ic:baseline-check" />
+                      <Icon v-else name="ic:baseline-plus" />
+                    </template>
+                    <span> Danh sách</span>
+                  </a-button>
+                </NuxtLink>
+              </div>
+              <div class="right">
+                <Interaction :dataMovie="dataMovie" />
+
+                <NuxtLink @click.prevent="scrollToComment">
+                  <a-button size="large" type="text" class="comment modern">
+                    <template #icon>
+                      <Icon name="ic:outline-comment" class="comment" />
+                    </template>
+                    <span> Bình luận</span>
+                  </a-button>
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
+          <div class="detail-content-right">
+            <div class="box-short-content">
+              <Tags tagsLabel="Tên gốc:">
+                <template #tagsInfo>
+                  <span class="tags-item">
+                    {{ dataMovie?.original_name }}
+                  </span>
+                </template>
+              </Tags>
+
+              <Tags tagsLabel="Đang phát:">
+                <template #tagsInfo>
+                  <span class="tags-item">HD - Vietsub</span>
+                </template>
+              </Tags>
+
+              <Tags tagsLabel="Ngày phát hành:">
+                <template #tagsInfo>
+                  <span class="tags-item">
+                    <NuxtLink
+                      :to="`/discover/year/${dataMovie?.release_date.slice(
+                        0,
+                        4
+                      )}`"
+                    >
+                      {{ dataMovie?.release_date.slice(0, 4) }}
+                    </NuxtLink>
+                    <span>
+                      {{ dataMovie?.release_date.slice(4) }}
+                    </span>
+                  </span>
+                </template>
+              </Tags>
+
+              <Tags tagsLabel="Quốc gia:">
+                <template #tagsInfo>
+                  <span class="tags-item">
+                    <NuxtLink
+                      :to="`/discover/country/${
+                        getCountryByOriginalLanguage(
+                          dataMovie?.original_language,
+                          store.$state.allCountries
+                        )?.short_name || 'au-my'
+                      }`"
+                    >
+                      {{
+                        getCountryByOriginalLanguage(
+                          dataMovie?.original_language,
+                          store.$state.allCountries
+                        )?.name || ''
+                      }}
+                    </NuxtLink>
+                  </span>
+                </template>
+              </Tags>
+
+              <Tags tagsLabel="Thể loại:">
+                <template #tagsInfo>
+                  <span
+                    class="tags-item"
+                    v-for="(item, index) in dataMovie?.genres"
+                    :key="item?.id"
+                    :index="index"
+                  >
+                    <NuxtLink>{{ item?.name }} </NuxtLink>
+                    <span>
+                      {{ index + 1 != dataMovie?.genres?.length ? ', ' : '' }}
+                    </span>
+                  </span>
+                </template>
+              </Tags>
+
+              <Tags tagsLabel="Thời lượng:">
+                <template #tagsInfo>
+                  <span class="tags-item">
+                    {{ dataMovie?.runtime + ' phút' }}</span
+                  >
+                </template>
+              </Tags>
+
+              <Tags tagsLabel="Trạng thái:">
+                <template #tagsInfo>
+                  <span class="tags-item"> {{ dataMovie?.status }}</span>
+                </template>
+              </Tags>
             </div>
           </div>
         </div>
 
-        <RatingMovie
-          :voteAverage="dataMovie?.vote_average"
-          :voteCount="dataMovie?.vote_count"
-          :movieId="dataMovie?.id"
-          type="movie"
-        />
+        <div class="related-content">
+          <MovieRelated :movieId="dataMovie?.id" type="movie" />
 
-        <MovieRelated :movieId="dataMovie?.id" type="movie" />
+          <Comment :urlComment="urlComment" />
+        </div>
       </div>
     </div>
   </div>
@@ -85,12 +210,13 @@ import { getMovieById } from '~/services/movie';
 import { getItemList } from '~/services/list';
 import { getItemHistory, add_update_History } from '~/services/history';
 import { UpdateViewMovie } from '~/services/movie';
+import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '@/components/BackPage/BackPage.vue';
+import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.vue';
+import Tags from '@/components/Tags/Tags.vue';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
-import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.vue';
-import Player from '@vimeo/player';
 
 const store: any = useStore();
 const utils = useUtils();
@@ -98,7 +224,6 @@ const route: any = useRoute();
 const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
-const isOpenContent = ref<boolean>(false);
 const urlComment = computed<string>((): string => window.location.href);
 const loading = ref<boolean>(false);
 const urlCodeMovie = ref<string>('809431505');
@@ -212,6 +337,12 @@ onBeforeMount(() => {
   getData();
 });
 
+// window.scrollTo({
+//   top: 0,
+//   left: 0,
+//   behavior: 'smooth',
+// });
+
 const onPLayVideoPlayer = (e: any) => {
   duration.value = e?.duration;
   isPlayVideo.value = true;
@@ -260,11 +391,10 @@ const handelAddToList = () => {
   }
 };
 
-window.scrollTo({
-  top: 0,
-  left: 0,
-  behavior: 'smooth',
-});
+const scrollToComment = () => {
+  const comment = document.getElementById('comment') as HTMLElement;
+  comment.scrollIntoView();
+};
 </script>
 
 <style lang="scss" src="./PlayMoviePage.scss"></style>

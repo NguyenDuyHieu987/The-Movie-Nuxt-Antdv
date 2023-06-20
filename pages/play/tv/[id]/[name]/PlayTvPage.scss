@@ -1,231 +1,237 @@
-@media only screen and (max-width: 2050px) {
-  .playtv-container {
-    .video-player {
-      height: 50vh !important;
-    }
-  }
-}
+.play-tv {
+  position: relative;
 
-@media only screen and (max-width: 1900px) {
-  .playtv-container {
-    .video-player {
-      height: 50vh !important;
-    }
-  }
-}
+  .play-container {
+    .back-page {
+      z-index: 2;
 
-@media only screen and (max-width: 1800px) {
-  .playtv-container {
-    .video-player {
-      height: 50vh !important;
+      .ant-btn {
+        // background-color: transparent;
+        // box-shadow: none;
+        // background: linear-gradient(
+        //   0deg,
+        //   var(--background-content-color) 0%,
+        //   rgba(7, 7, 7, 0) 100%
+        // );
+      }
     }
-  }
-}
 
-@media only screen and (max-width: 1650px) {
-  .playtv-container {
-    .video-player {
-      height: 45vh !important;
+    .video {
+      width: 100%;
+      position: relative;
+
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        z-index: 1;
+
+        iframe {
+        }
+      }
+    }
+
+    .movie-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 10px;
+
+      .main-content {
+        display: flex;
+        gap: 10vw;
+        padding: 10px 0px;
+
+        .detail-content-left {
+          max-width: 65%;
+
+          .movie-title {
+            font-weight: 600;
+          }
+
+          .tags {
+            margin-top: 10px;
+          }
+
+          .rating-movie {
+            margin-top: 10px;
+          }
+
+          .action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 13px;
+
+            a {
+              min-height: 40px;
+              height: 2vw;
+            }
+
+            .left {
+              .ant-btn {
+                font-size: 0.9vw;
+                padding: 0.35vw 1.2vw;
+
+                &.add {
+                  border-color: var(--border-regular);
+                  background-color: rgba(55, 55, 55, 0.3);
+
+                  svg {
+                    margin-left: -5px;
+                    // font-size: 2.5rem;
+                    font-size: 1.3vw;
+                  }
+
+                  &:hover {
+                    border-color: var(--btn-border-color-hover);
+                    background-color: rgba(97, 97, 97, 0);
+                  }
+                }
+              }
+            }
+
+            .right {
+              display: flex;
+              align-items: center;
+
+              .ant-btn {
+                padding: 0.35vw 0.7vw;
+              }
+
+              svg {
+                font-size: 2.1rem;
+                margin-right: 8px;
+              }
+            }
+          }
+        }
+
+        .detail-content-right {
+          display: flex;
+          max-width: 35%;
+          gap: 10px;
+
+          .box-short-content {
+            .tags + .tags {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+
+      .list-episodes {
+        margin-top: 20px;
+      }
+
+      .related-content {
+        .comment {
+          margin-top: 30px;
+
+          h2 {
+            margin-bottom: 10px;
+          }
+        }
+      }
     }
   }
 }
 
 @media only screen and (max-width: 1500px) {
-  .playtv-container {
-    .video-player {
-      height: 500px !important;
+  .play-tv {
+    .play-container {
+      .movie-content {
+        .main-content {
+          gap: 70px;
+
+          .detail-content-left {
+            .action {
+              a {
+                height: 40px;
+              }
+
+              .left {
+                .ant-btn {
+                  font-size: 1.5rem;
+
+                  svg {
+                    margin-right: 7px;
+                    font-size: 1.9rem;
+                  }
+
+                  &.add {
+                    svg {
+                      margin-left: -7px;
+                      font-size: 2.3rem;
+                    }
+                  }
+                }
+              }
+
+              .right {
+                .ant-btn {
+                  font-size: 1.5rem;
+
+                  svg {
+                    font-size: 2.1rem;
+                    margin-right: 8px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
 
 @media only screen and (max-width: 1300px) {
-  .playtv-container {
-    .video-player {
-      height: 450px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .playtv-container {
-    .video-player {
-      height: 400px !important;
+  .play-tv {
+    .play-container {
+      .movie-content {
+        .main-content {
+          .detail-content-left {
+            .action {
+              .left {
+                .ant-btn {
+                  padding: 9px 20px;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
 
 @media only screen and (max-width: 1100px) {
-  .playtv-container {
-    .video-player {
-      height: 350px !important;
-    }
-  }
-}
+  .play-tv {
+    .play-container {
+      .movie-content {
+        .main-content {
+          flex-direction: column;
+          justify-content: unset;
+          gap: 20px;
 
-@media only screen and (max-width: 1000px) {
-  .playtv-container {
-    .video-player {
-      height: 330px !important;
-    }
-  }
-}
+          .detail-content-left {
+            max-width: 100%;
 
-@media only screen and (max-width: 900px) {
-  .playtv-container {
-    .video-player {
-      height: 300px !important;
-    }
-  }
-}
+            .action {
+              .right {
+                .ant-btn {
+                  padding: 9px 10px;
+                }
+              }
+            }
+          }
 
-@media only screen and (max-width: 850px) {
-  .playtv-container {
-    .video-player {
-      height: 250px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .playtv-container {
-    .video-player {
-      height: 350px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 750px) {
-  .playtv-container {
-    .video-player {
-      height: 300px !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 650px) {
-  .playtv-container {
-    .video-player {
-      height: 250px !important;
-    }
-  }
-}
-
-.playtv-container {
-  .video-player {
-    height: 55vh;
-    max-width: 1500px;
-    margin: 0px auto;
-    position: relative;
-
-    .video-player-wrapper {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      z-index: 1;
-
-      iframe {
-        // z-index: 1;
-      }
-    }
-
-    .overlay-backdrop {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      // width: 150%;
-      // height: 150%;
-      // margin-top: calc(var(--header-height) + 150px);
-      height: 110%;
-      width: 110%;
-      z-index: 0;
-      transform: translateX(-50%) translateY(-50%);
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.4;
-        filter: blur(150px);
-        // border-radius: 23%;
-      }
-    }
-  }
-
-  .reaction-view {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-
-    .like-share {
-      margin-top: 0px;
-    }
-
-    .add-to-list-btn {
-      display: flex;
-      align-items: center;
-      background-color: #006999;
-      border: none;
-      height: 34px;
-
-      .material-icons-outlined {
-        margin-right: 3px;
-      }
-
-      svg.icon {
-        font-size: 2.6rem;
-      }
-
-      span {
-        margin-left: 4px !important;
-      }
-
-      &:hover {
-        background-color: #006999bb;
-      }
-
-      &.active {
-        background-color: #006d4e;
-
-        &:hover {
-          background-color: #006d4ebd;
+          .detail-content-right {
+            align-items: flex-start;
+            max-width: 100%;
+          }
         }
-      }
-    }
-
-    .skeleton-interaction {
-      display: block;
-      .ant-skeleton-button {
-        padding: 17px 50px;
-        border-radius: 32px;
-      }
-    }
-
-    .skeleton-add-to-list {
-      .ant-skeleton-button {
-        padding: 17px 100px;
-        border-radius: 32px;
-      }
-    }
-  }
-
-  .movie-content {
-    position: relative;
-    padding: 0px 10px;
-    color: #fff;
-    z-index: 1;
-
-    p {
-      text-align: justify;
-    }
-  }
-
-  .list-episodes {
-    .ant-skeleton {
-      margin: 7px 7px 0px 0px;
-
-      .ant-skeleton-button {
-        padding: 19px 35px;
       }
     }
   }

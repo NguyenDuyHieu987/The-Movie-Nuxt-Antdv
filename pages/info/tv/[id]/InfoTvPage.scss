@@ -301,6 +301,23 @@
     .related-content {
       position: relative;
       background-color: var(--background-content-color);
+
+      .trailer {
+        margin-top: 30px;
+        height: 47vw;
+
+        h2 {
+          margin-bottom: 10px;
+        }
+      }
+
+      .comment {
+        margin-top: 10px;
+
+        h2 {
+          margin-bottom: 10px;
+        }
+      }
     }
   }
 }
@@ -475,6 +492,20 @@
               margin-top: 0px;
               max-width: 100%;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .tv-info {
+    .info-conainer {
+      .main-info {
+        .backdrop-img {
+          .poster {
+            display: none;
           }
         }
       }

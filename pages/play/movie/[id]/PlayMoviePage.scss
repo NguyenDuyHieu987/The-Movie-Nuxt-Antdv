@@ -36,37 +36,98 @@
       padding-top: 10px;
 
       .main-content {
-        .right {
+        display: flex;
+        gap: 10vw;
+        padding: 10px 0px;
+
+        .detail-content-left {
+          max-width: 65%;
+
+          .movie-title {
+            font-weight: 600;
+          }
+
+          .tags {
+            margin-top: 10px;
+          }
+
+          .rating-movie {
+            margin-top: 10px;
+          }
+
           .action {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
             gap: 10px;
+            margin-top: 13px;
 
             a {
               min-height: 40px;
               height: 2vw;
             }
 
-            .ant-btn {
-              font-size: 0.9vw;
-              padding: 0.35vw 0.7vw;
+            .left {
+              .ant-btn {
+                font-size: 0.9vw;
+                padding: 0.35vw 1.2vw;
 
-              &.add {
-                svg {
-                  margin-left: -5px;
-                  // font-size: 2.5rem;
-                  font-size: 1.3vw;
+                &.add {
+                  border-color: var(--border-regular);
+                  background-color: rgba(55, 55, 55, 0.3);
+
+                  svg {
+                    margin-left: -5px;
+                    // font-size: 2.5rem;
+                    font-size: 1.3vw;
+                  }
+
+                  &:hover {
+                    border-color: var(--btn-border-color-hover);
+                    background-color: rgba(97, 97, 97, 0);
+                  }
                 }
               }
             }
 
-            .skeleton-interaction {
-              display: block;
-              .ant-skeleton-button {
-                padding: 17px 50px;
-                border-radius: 32px;
+            .right {
+              display: flex;
+              align-items: center;
+
+              .ant-btn {
+                padding: 0.35vw 0.7vw;
+              }
+
+              svg {
+                font-size: 2.1rem;
+                margin-right: 8px;
               }
             }
+          }
+        }
+
+        .detail-content-right {
+          max-width: 35%;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: center;
+
+          .box-short-content {
+            .tags + .tags {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+
+      .related-content {
+        .comment {
+          margin-top: 30px;
+
+          h2 {
+            margin-bottom: 10px;
           }
         }
       }
@@ -79,24 +140,39 @@
     .play-container {
       .movie-content {
         .main-content {
-          .right {
+          gap: 70px;
+
+          .detail-content-left {
             .action {
               a {
                 height: 40px;
               }
 
-              .ant-btn {
-                font-size: 1.5rem;
+              .left {
+                .ant-btn {
+                  font-size: 1.5rem;
 
-                svg {
-                  margin-right: 7px;
-                  font-size: 1.9rem;
-                }
-
-                &.add {
                   svg {
-                    margin-left: -7px;
-                    font-size: 2.3rem;
+                    margin-right: 7px;
+                    font-size: 1.9rem;
+                  }
+
+                  &.add {
+                    svg {
+                      margin-left: -7px;
+                      font-size: 2.3rem;
+                    }
+                  }
+                }
+              }
+
+              .right {
+                .ant-btn {
+                  font-size: 1.5rem;
+
+                  svg {
+                    font-size: 2.1rem;
+                    margin-right: 8px;
                   }
                 }
               }
@@ -108,17 +184,50 @@
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1300px) {
   .play-movie {
     .play-container {
       .movie-content {
         .main-content {
-          .right {
+          .detail-content-left {
             .action {
-              .ant-btn {
-                padding: 9px 10px;
+              .left {
+                .ant-btn {
+                  padding: 9px 20px;
+                }
               }
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .play-movie {
+    .play-container {
+      .movie-content {
+        .main-content {
+          flex-direction: column;
+          justify-content: unset;
+          gap: 20px;
+
+          .detail-content-left {
+            max-width: 100%;
+
+            .action {
+              .right {
+                .ant-btn {
+                  padding: 9px 10px;
+                }
+              }
+            }
+          }
+
+          .detail-content-right {
+            align-items: flex-start;
+            max-width: 100%;
           }
         }
       }
