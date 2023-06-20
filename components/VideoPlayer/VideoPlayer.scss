@@ -4,6 +4,29 @@ video::-webkit-media-controls {
 
 .video-player {
   position: relative;
+  display: flex;
+
+  .overlay-backdrop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    // width: 150%;
+    // height: 150%;
+    // margin-top: calc(var(--header-height) + 150px);
+    height: 110%;
+    width: 110%;
+    z-index: -2;
+    transform: translateX(-50%) translateY(-50%);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+      filter: blur(150px);
+      // border-radius: 23%;
+    }
+  }
 
   #video-player {
     height: 100%;
@@ -31,19 +54,36 @@ video::-webkit-media-controls {
   }
 
   .overlay-controls-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%) scale(1);
-    background-color: #10101081;
-    border-radius: 50%;
     transition: all 0.15s;
     opacity: 0;
-    padding: 8px;
     z-index: -1;
 
     &.active {
       animation: controls-animation 0.5s ease-in-out;
+    }
+
+    .box-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #10101081;
+      transition: all 0.15s;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+    }
+
+    .text {
+      user-select: none;
+      transition: all 0.15s;
     }
 
     &.replay {
@@ -56,12 +96,24 @@ video::-webkit-media-controls {
       }
     }
 
+    &.rewind {
+      .box-icon {
+        padding: 15px;
+      }
+    }
+
     svg {
       font-size: 3rem;
       transition: all 0.15s;
 
       &:active {
         opacity: 0.8;
+      }
+    }
+
+    .replay-forward {
+      span {
+        font-size: 1.8rem;
       }
     }
   }
@@ -187,8 +239,7 @@ video::-webkit-media-controls {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 13px 10px;
-      padding-top: 6px;
+      padding: 6px 10px;
 
       svg {
         font-size: 3.3rem;
@@ -238,9 +289,10 @@ video::-webkit-media-controls {
         .volume {
           display: flex;
           align-items: center;
-          gap: 10px;
 
           &:hover {
+            gap: 10px;
+
             .volume-slider {
               width: 70px;
               overflow: visible;
@@ -295,6 +347,12 @@ video::-webkit-media-controls {
         gap: 13px;
 
         .setting {
+          &.active {
+            svg.setting {
+              transform: rotate(30deg);
+            }
+          }
+
           svg.setting {
             font-size: 2.5rem;
           }
@@ -320,6 +378,144 @@ video::-webkit-media-controls {
 
             &:hover {
               animation: scale 0.15s;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .settings {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    bottom: 58px;
+    font-size: 1.4rem;
+    // border-radius: 8px;
+    background-color: var(--background-content-opacity);
+    user-select: none;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.15s;
+    overflow: hidden;
+
+    &.active {
+      z-index: 0;
+      opacity: 1;
+    }
+
+    &.general {
+      align-items: center;
+      width: 270px;
+      height: 140px;
+
+      .setting-options {
+        flex-grow: 1;
+        padding: 10px 0px;
+        overflow: hidden;
+
+        .setting-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 7px 10px;
+          cursor: pointer;
+          transition: background 0.15s;
+          height: 40px;
+
+          .left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            svg {
+              font-size: 2rem;
+            }
+          }
+
+          .right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            span {
+              font-size: 1.2rem;
+            }
+          }
+
+          &:hover {
+            background-color: #07070721;
+          }
+
+          &:active {
+          }
+        }
+      }
+    }
+
+    &.sub-setting {
+      &:has(.sub-setting.playback) {
+        width: 230px;
+        height: 377px;
+      }
+
+      &:has(.sub-setting.quality) {
+        width: 230px;
+        height: 337px;
+      }
+
+      .sub-setting {
+        flex-grow: 1;
+        overflow: hidden;
+
+        .sub-setting-item {
+          .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 10px;
+            border-bottom: 1px solid var(--border-regular-light);
+
+            span {
+              font-size: 1.3rem;
+            }
+
+            .left {
+              cursor: pointer;
+            }
+
+            .right {
+              cursor: pointer;
+              text-decoration: underline;
+            }
+          }
+
+          ul.menu {
+            list-style-type: none;
+            padding: 7px 0px;
+
+            li {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              padding: 7px 10px;
+              padding-left: 38px;
+              cursor: pointer;
+              height: 40px;
+              font-size: 1.3rem;
+              transition: background 0.15s;
+
+              &.active {
+                padding: 7px 12px;
+              }
+
+              svg {
+                font-size: 1.8rem;
+              }
+
+              &:hover {
+                background-color: #07070721;
+              }
             }
           }
         }
@@ -360,6 +556,82 @@ video::-webkit-media-controls {
 
       .controls {
         opacity: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .video-player {
+    .overlay-controls-animation {
+      width: 40px;
+      height: 40px;
+
+      svg {
+        font-size: 2.5rem;
+      }
+
+      .replay-forward {
+        span {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .video-player {
+    .overlay-controls-animation {
+      width: 30px;
+      height: 30px;
+
+      svg {
+        font-size: 2rem;
+      }
+
+      &.replay {
+        svg {
+          font-size: 3rem;
+        }
+      }
+
+      .replay-forward {
+        span {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .controls {
+      .main-controls {
+        padding: 5px 10px;
+
+        svg {
+          font-size: 2.8rem;
+        }
+
+        .left {
+          .volume {
+            svg {
+              font-size: 2.5rem;
+            }
+          }
+        }
+
+        .right {
+          .setting {
+            svg.setting {
+              font-size: 2.2rem;
+            }
+          }
+
+          .picture-in-picture {
+            svg {
+              font-size: 2.2rem;
+            }
+          }
+        }
       }
     }
   }

@@ -3,11 +3,15 @@
     class="video-player"
     ref="videoPlayer"
     :class="{
-      scrubbing: isScrubbingProgressBar,
-      'hide-controls': isHideControls,
-      pause: !isPlayVideo,
+      scrubbing: videoStates.isScrubbingProgressBar,
+      'hide-controls': videoStates.isHideControls,
+      pause: !videoStates.isPlayVideo,
     }"
   >
+    <div v-if="settingStates.switchBackgroud" class="overlay-backdrop">
+      <img :src="backdrop" />
+    </div>
+
     <video
       id="video-player"
       ref="video"
@@ -20,41 +24,68 @@
       @mouseleave="mouseLeaveVideo"
       @ended="onEndedVideo"
       @keydown="onKeyDownVideo"
+      @play="(e:any)=>
+       emits('onPlay', {
+        seconds:  e!.target!.currentTime,
+        percent:  e!.target!.currentTime /  e!.target!.duration,
+        duration:  e!.target!.duration
+      })
+      "
     >
       <source :src="videoUrl" type="video/mp4" />
     </video>
 
     <div
       class="overlay-controls-animation"
-      :class="{ active: isActiveControlsAnimation, replay: isEndedVideo }"
+      :class="{
+        active: videoStates.isActiveControlsAnimation,
+        replay: videoStates.isEndedVideo,
+        rewind: videoStates.isRewind,
+      }"
     >
-      <Icon
-        v-if="isEndedVideo"
-        name="ic:baseline-replay"
-        class="replay"
-        @click="onReplayVideo"
-      />
+      <div class="box-icon">
+        <div v-show="!videoStates.isRewind.enable" class="play-pause">
+          <Icon
+            v-show="videoStates.isEndedVideo"
+            name="ic:baseline-replay"
+            class="replay"
+            @click="onReplayVideo"
+          />
 
-      <Icon
-        v-if="!isPlayVideo && !isEndedVideo"
-        name="ic:play-arrow"
-        class="play"
-        @click="onClickVideo"
-      />
+          <Icon
+            v-show="!videoStates.isPlayVideo && !videoStates.isEndedVideo"
+            name="ic:play-arrow"
+            class="play"
+            @click="onClickVideo"
+          />
 
-      <Icon
-        v-else-if="isPlayVideo && !isEndedVideo"
-        name="ic:baseline-pause"
-        class="play"
-        @click="onClickVideo"
-      />
+          <Icon
+            v-show="videoStates.isPlayVideo && !videoStates.isEndedVideo"
+            name="ic:baseline-pause"
+            class="play"
+            @click="onClickVideo"
+          />
+        </div>
+
+        <div v-show="videoStates.isRewind.enable" class="replay-forward">
+          <span v-show="videoStates.isRewind.replay">-10</span>
+          <span v-show="videoStates.isRewind.forward">+10</span>
+        </div>
+      </div>
+      <div class="text">
+        <span v-show="videoStates.isEndedVideo" @click="onReplayVideo"
+          >Phát lại</span
+        >
+      </div>
     </div>
 
-    <div class="controls" v-show="!loading">
+    <div class="controls" v-show="videoStates.isLoaded">
       <div
         class="timeline"
         :class="{
-          active: isMouseMoveOverlayProgress || isScrubbingProgressBar,
+          active:
+            videoStates.isMouseMoveOverlayProgress ||
+            videoStates.isScrubbingProgressBar,
         }"
         ref="timeline"
       >
@@ -72,7 +103,7 @@
         @mousemove="onMouseMoveProgressBar"
         @mousedown="onMouseDownProgressBar"
         @mouseup="onMouseUpProgressBar"
-        @mouseleave="isMouseMoveOverlayProgress = false"
+        @mouseleave="videoStates.isMouseMoveOverlayProgress = false"
         ref="overlayProgress"
       >
         <div class="progress-bar" ref="progressBar"></div>
@@ -82,21 +113,21 @@
         <div class="left">
           <div class="play-pause">
             <Icon
-              v-if="isEndedVideo"
+              v-show="videoStates.isEndedVideo"
               name="ic:baseline-replay"
               class="replay"
               @click="onReplayVideo"
             />
 
             <Icon
-              v-if="!isPlayVideo && !isEndedVideo"
+              v-show="!videoStates.isPlayVideo && !videoStates.isEndedVideo"
               name="ic:play-arrow"
               class="play"
               @click="onClickPlay"
             />
 
             <Icon
-              v-else-if="isPlayVideo && !isEndedVideo"
+              v-show="videoStates.isPlayVideo && !videoStates.isEndedVideo"
               name="ic:baseline-pause"
               class="play"
               @click="onClickPause"
@@ -118,27 +149,27 @@
           <div class="volume">
             <div>
               <Icon
-                v-if="!isVolumeOff && volume <= 30"
+                v-show="!videoStates.isVolumeOff && volume <= 30"
                 name="ic:baseline-volume-down"
                 class="fullscreen"
                 @click="onClickVolumeUp"
               />
 
               <Icon
-                v-if="!isVolumeOff && volume > 30"
+                v-show="!videoStates.isVolumeOff && volume > 30"
                 name="ic:baseline-volume-up"
                 @click="onClickVolumeUp"
               />
 
               <Icon
-                v-else-if="isVolumeOff"
+                v-show="videoStates.isVolumeOff"
                 name="ic:baseline-volume-off"
                 @click="onClickVolumeOff"
               />
             </div>
             <a-slider
               class="volume-slider"
-              :class="{ muted: isVolumeOff }"
+              :class="{ muted: videoStates.isVolumeOff }"
               v-model:value="volume"
               :tooltipVisible="false"
               @change="onChangeVolume"
@@ -153,8 +184,15 @@
         </div>
 
         <div class="right">
-          <div class="setting">
-            <Icon name="ic:baseline-settings" class="setting" />
+          <div class="setting" :class="{ active: settingStates.enable }">
+            <Icon
+              name="ic:baseline-settings"
+              class="setting"
+              @click="
+                settingStates.enable = !settingStates.enable;
+                onCloseSettings();
+              "
+            />
           </div>
 
           <div class="picture-in-picture">
@@ -166,14 +204,14 @@
 
           <div class="fullscreen-exit">
             <Icon
-              v-if="!isFullScreen"
+              v-show="!videoStates.isFullScreen"
               name="ic:baseline-fullscreen"
               class="fullscreen"
               @click="onClickFullScreen"
             />
 
             <Icon
-              v-else
+              v-show="videoStates.isFullScreen"
               name="ic:baseline-fullscreen-exit"
               @click="onClickFullScreenExit"
             />
@@ -181,16 +219,162 @@
         </div>
       </div>
     </div>
+
+    <div
+      class="settings"
+      :class="{
+        active: settingStates.enable && !videoStates.isHideControls,
+        general: !settingStates.subSetting.enable,
+        'sub-setting': settingStates.subSetting.enable,
+      }"
+    >
+      <div v-show="!settingStates.subSetting.enable" class="setting-options">
+        <div
+          class="setting-item switch-background"
+          @click="
+            settingStates.switchBackgroud = !settingStates.switchBackgroud
+          "
+        >
+          <div class="left">
+            <Icon name="ic:outline-light-mode" />
+            <span>Nền sáng</span>
+          </div>
+          <div class="right">
+            <a-switch
+              @click="
+                settingStates.switchBackgroud = !settingStates.switchBackgroud
+              "
+              v-model:checked="settingStates.switchBackgroud"
+            />
+          </div>
+        </div>
+        <div
+          class="setting-item playback"
+          @click="
+            settingStates.subSetting.enable = true;
+            settingStates.subSetting.playback = true;
+          "
+        >
+          <div class="left">
+            <Icon name="ic:baseline-fast-forward" />
+            <span>Tốc độ phát</span>
+          </div>
+
+          <div class="right">
+            <span>{{ settings.playback.current }}</span>
+            <Icon name="ic:baseline-arrow-forward-ios" />
+          </div>
+        </div>
+
+        <div
+          class="setting-item quality"
+          @click="
+            settingStates.subSetting.enable = true;
+            settingStates.subSetting.quality = true;
+          "
+        >
+          <div class="left">
+            <Icon name="ic:baseline-high-quality" />
+            <span>Chất lượng</span>
+          </div>
+
+          <div class="right">
+            <span>{{ settings.quality.current }}</span>
+            <Icon name="ic:baseline-arrow-forward-ios" />
+          </div>
+        </div>
+      </div>
+
+      <div
+        v-show="settingStates.subSetting.enable"
+        class="sub-setting"
+        :class="{
+          playback: settingStates.subSetting.playback,
+          quality: settingStates.subSetting.quality,
+        }"
+      >
+        <div
+          v-show="settingStates.subSetting.playback"
+          class="sub-setting-item play-back"
+        >
+          <div
+            class="header"
+            @click="
+              settingStates.subSetting.enable = false;
+              settingStates.subSetting.playback = false;
+            "
+          >
+            <div class="left">
+              <Icon name="ic:baseline-arrow-back-ios" />
+              <span>Tốc độ phát</span>
+            </div>
+            <div class="right">
+              <span>Tùy chỉnh</span>
+            </div>
+          </div>
+
+          <ul class="menu">
+            <li
+              v-for="(item, index) in settings.playback.all"
+              :key="index"
+              :class="{ active: settings.playback.current == item }"
+              @click="onClickItemPlayback(item)"
+            >
+              <Icon
+                v-if="settings.playback.current == item"
+                name="ic:baseline-check"
+              />
+              <span> {{ item }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          v-show="settingStates.subSetting.quality"
+          class="sub-setting-item quality"
+        >
+          <div
+            class="header"
+            @click="
+              settingStates.subSetting.enable = false;
+              settingStates.subSetting.quality = false;
+            "
+          >
+            <div class="left">
+              <Icon name="ic:baseline-arrow-back-ios" />
+              <span>Chất lượng</span>
+            </div>
+          </div>
+
+          <ul class="menu">
+            <li
+              v-for="(item, index) in settings.quality.all"
+              :key="index"
+              :class="{ active: settings.quality.current == item }"
+              @click="settings.quality.current = item"
+            >
+              <Icon
+                v-if="settings.quality.current == item"
+                name="ic:baseline-check"
+              />
+              <span> {{ item }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { clearInterval } from 'timers';
-
 const props = defineProps<{
   backdrop: string;
   videoUrl: string;
-  loading?: boolean;
+}>();
+
+const emits = defineEmits<{
+  onPlay: [e: any];
+  onTimeUpdate: [e: any];
 }>();
 
 const videoPlayer = ref();
@@ -199,14 +383,50 @@ const overlayProgress = ref();
 const progressBar = ref();
 const timeline = ref();
 const canvasPreviewImg = ref();
-const isPlayVideo = ref<boolean>(false);
-const isScrubbingProgressBar = ref<boolean>(false);
-const isFullScreen = ref<boolean>(false);
-const isVolumeOff = ref<boolean>(false);
-const isEndedVideo = ref<boolean>(false);
-const isMouseMoveOverlayProgress = ref<boolean>(false);
-const isHideControls = ref<boolean>(false);
-const isActiveControlsAnimation = ref<boolean>(false);
+const videoStates = reactive({
+  isLoaded: false,
+  isPlayVideo: false,
+  isScrubbingProgressBar: false,
+  isFullScreen: false,
+  isVolumeOff: false,
+  isEndedVideo: false,
+  isMouseMoveOverlayProgress: false,
+  isHideControls: false,
+  isActiveControlsAnimation: false,
+  isRewind: {
+    enable: false,
+    replay: false,
+    forward: false,
+  },
+});
+const settingStates = reactive({
+  enable: false,
+  switchBackgroud: true,
+  subSetting: {
+    enable: false,
+    playback: false,
+    quality: false,
+  },
+});
+
+const settings = reactive({
+  playback: {
+    all: ['0.25', '0.5', '0.75', 'Bình thường', '1.25', '1.5', '1.75', '2'],
+    current: 'Bình thường',
+  },
+  quality: {
+    all: [
+      '2560 - 4K',
+      '1440 - 2K',
+      '1080 - HD',
+      '720',
+      '480',
+      '360',
+      'Tự động',
+    ],
+    current: '1080 - HD',
+  },
+});
 const volume = ref<number>(70);
 const timeUpdate = ref<string>('00:00');
 const timelineUpdate = ref<string>('00:00');
@@ -218,21 +438,42 @@ onMounted(() => {
   progressBar.value.style.setProperty('--progress-width', 0);
 
   window.onmouseup = () => {
-    isScrubbingProgressBar.value = false;
+    videoStates.isScrubbingProgressBar = false;
+    if (videoStates.isPlayVideo) {
+      video.value.play();
+    }
   };
 
   window.onmousemove = (e) => {
-    if (isScrubbingProgressBar.value) {
+    if (videoStates.isScrubbingProgressBar) {
       handleTimeUpdate(e);
+    }
+  };
+
+  window.onclick = (e: any) => {
+    if (settingStates.enable) {
+      if (
+        !e.target.closest('.video-player .settings') &&
+        !e.target.closest(
+          '.video-player .controls .main-controls .right svg.setting'
+        )
+      ) {
+        settingStates.enable = false;
+        onCloseSettings();
+      }
     }
   };
 });
 
 watch(volume, () => {
-  isVolumeOff.value = video.value.volume == 0;
+  videoStates.isVolumeOff = video.value.volume == 0;
 });
 
 const handleTimeUpdate = (e: any) => {
+  if (videoStates.isPlayVideo) {
+    video.value.pause();
+  }
+
   const rect = overlayProgress.value.getBoundingClientRect();
 
   const percent =
@@ -243,9 +484,9 @@ const handleTimeUpdate = (e: any) => {
   video.value.currentTime = percent * video.value.duration;
 
   if (video.value.currentTime == video.value.duration) {
-    isEndedVideo.value = true;
+    videoStates.isEndedVideo = true;
   } else {
-    isEndedVideo.value = false;
+    videoStates.isEndedVideo = false;
   }
 
   drawTimeLine(e);
@@ -267,6 +508,7 @@ const formatDuration = (time: number) => {
 };
 
 const loadedDataVideo = () => {
+  videoStates.isLoaded = true;
   duration.value = formatDuration(video.value.duration);
 };
 
@@ -274,62 +516,84 @@ const timeUpdateVideo = (e: any) => {
   timeUpdate.value = formatDuration(e.target.currentTime);
   const progressWidth = e.target.currentTime / e.target.duration;
   progressBar.value.style.setProperty('--progress-width', progressWidth);
+
+  emits('onTimeUpdate', {
+    seconds: video.value?.currentTime,
+    percent: video.value?.currentTime / video.value?.duration,
+    duration: video.value?.duration,
+  });
 };
 
 const mouseLeaveVideo = () => {
   clearTimeout(interval.value);
 
-  isHideControls.value = false;
+  videoStates.isHideControls = false;
 };
 
 const mouseMoveVideo = () => {
-  isHideControls.value = false;
+  if (videoStates.isPlayVideo) {
+    videoStates.isHideControls = false;
+    clearTimeout(interval.value);
 
-  clearTimeout(interval.value);
-  interval.value = setTimeout(() => {
-    isHideControls.value = true;
-  }, 5000);
+    interval.value = setTimeout(() => {
+      videoStates.isHideControls = true;
+    }, 5000);
+  }
 };
 
 const onEndedVideo = () => {
-  isEndedVideo.value = true;
+  videoStates.isEndedVideo = true;
 };
 
 const onClickPlay = () => {
-  isPlayVideo.value = true;
+  videoStates.isPlayVideo = true;
   video.value.play();
 };
 
 const onClickPause = () => {
-  isPlayVideo.value = false;
+  videoStates.isPlayVideo = false;
   video.value.pause();
 };
 
 const onReplayVideo = () => {
   video.value.load();
   video.value.play();
-  isPlayVideo.value = true;
-  isEndedVideo.value = false;
+  videoStates.isPlayVideo = true;
+  videoStates.isEndedVideo = false;
 };
 
 const onClickVideo = () => {
-  if (isEndedVideo.value) {
+  if (videoStates.isEndedVideo) {
     return;
   }
 
-  if (isPlayVideo.value) {
+  if (videoStates.isPlayVideo) {
     video.value.pause();
-    isPlayVideo.value = false;
+    videoStates.isPlayVideo = false;
+
+    // hide controls
+    clearTimeout(interval.value);
+    videoStates.isHideControls = false;
   } else {
     video.value.play();
-    isPlayVideo.value = true;
+    videoStates.isPlayVideo = true;
+
+    // hide controls
+    videoStates.isHideControls = false;
+    clearTimeout(interval.value);
+
+    interval.value = setTimeout(() => {
+      videoStates.isHideControls = true;
+    }, 5000);
   }
 
   new Promise((resolve, reject) => {
-    resolve((isActiveControlsAnimation.value = false));
+    resolve((videoStates.isActiveControlsAnimation = false));
   }).then(() => {
-    isActiveControlsAnimation.value = true;
+    videoStates.isActiveControlsAnimation = true;
   });
+
+  videoStates.isRewind.enable = false;
 };
 
 const onClickReplay = () => {
@@ -339,10 +603,14 @@ const onClickReplay = () => {
   progressBar.value.style.setProperty('--progress-width', percent);
 
   new Promise((resolve, reject) => {
-    resolve((isActiveControlsAnimation.value = false));
+    resolve((videoStates.isActiveControlsAnimation = false));
   }).then(() => {
-    isActiveControlsAnimation.value = true;
+    videoStates.isActiveControlsAnimation = true;
   });
+
+  videoStates.isRewind.enable = true;
+  videoStates.isRewind.replay = true;
+  videoStates.isRewind.forward = false;
 };
 
 const onClickForward = () => {
@@ -352,24 +620,31 @@ const onClickForward = () => {
   progressBar.value.style.setProperty('--progress-width', percent);
 
   new Promise((resolve, reject) => {
-    resolve((isActiveControlsAnimation.value = false));
+    resolve((videoStates.isActiveControlsAnimation = false));
   }).then(() => {
-    isActiveControlsAnimation.value = true;
+    videoStates.isActiveControlsAnimation = true;
   });
+
+  videoStates.isRewind.enable = true;
+  videoStates.isRewind.replay = false;
+  videoStates.isRewind.forward = true;
 };
 
 const onMouseDownProgressBar = (e: any) => {
-  isScrubbingProgressBar.value = true;
+  videoStates.isScrubbingProgressBar = true;
 
   handleTimeUpdate(e);
 };
 
 const onMouseUpProgressBar = () => {
-  isScrubbingProgressBar.value = false;
+  videoStates.isScrubbingProgressBar = false;
+  if (videoStates.isPlayVideo) {
+    video.value.play();
+  }
 };
 
 const onMouseMoveProgressBar = (e: any) => {
-  isMouseMoveOverlayProgress.value = true;
+  videoStates.isMouseMoveOverlayProgress = true;
   const rect = overlayProgress.value.getBoundingClientRect();
 
   const percent =
@@ -379,7 +654,7 @@ const onMouseMoveProgressBar = (e: any) => {
 
   drawTimeLine(e);
 
-  if (isScrubbingProgressBar.value) {
+  if (videoStates.isScrubbingProgressBar) {
     handleTimeUpdate(e);
   }
 };
@@ -421,23 +696,23 @@ const drawTimeLine = (e: any) => {
 };
 
 const onClickFullScreen = () => {
-  isFullScreen.value = true;
+  videoStates.isFullScreen = true;
   videoPlayer.value.requestFullscreen();
 };
 
 const onClickFullScreenExit = () => {
-  isFullScreen.value = false;
+  videoStates.isFullScreen = false;
   document.exitFullscreen();
 };
 
 const onClickVolumeUp = () => {
   video.value.muted = true;
-  isVolumeOff.value = true;
+  videoStates.isVolumeOff = true;
 };
 
 const onClickVolumeOff = () => {
   video.value.muted = false;
-  isVolumeOff.value = false;
+  videoStates.isVolumeOff = false;
 };
 
 const onChangeVolume = (value: number) => {
@@ -447,6 +722,24 @@ const onChangeVolume = (value: number) => {
 
 const onClickPictureInPicture = () => {
   video.value.requestPictureInPicture();
+};
+
+const onClickItemPlayback = (item: string) => {
+  settings.playback.current = item;
+
+  if (item == 'Bình thường') {
+    video.value.playbackRate = 1;
+  } else {
+    video.value.playbackRate = +item;
+  }
+};
+
+const onCloseSettings = () => {
+  setTimeout(() => {
+    settingStates.subSetting.enable = false;
+    settingStates.subSetting.playback = false;
+    settingStates.subSetting.quality = false;
+  }, 150);
 };
 
 const onKeyDownVideo = (e: any) => {

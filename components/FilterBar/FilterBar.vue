@@ -124,7 +124,9 @@ import axios from 'axios';
 import { CaretRightFilled } from '@ant-design/icons-vue';
 import type { genre, country, year, sortby } from '@/types';
 
-const emit = defineEmits<{ dataFiltered: [data: any[], formSelect: any] }>();
+const emits = defineEmits<{
+  dataFiltered: [data: any[], formSelect: any];
+}>();
 const props = defineProps<{
   cancelFilter: () => void;
 }>();
@@ -204,7 +206,7 @@ const handleFilterMovie = async () => {
     FilterDataMovie(formSelect)
   )
     .then((movieResponse) => {
-      emit('dataFiltered', movieResponse?.data.value.results, formSelect);
+      emits('dataFiltered', movieResponse?.data.value.results, formSelect);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

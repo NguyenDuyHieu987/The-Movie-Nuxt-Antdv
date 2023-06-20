@@ -50,7 +50,7 @@
         <ViewMoreBar
           v-show="recommends.length"
           :isOpen="viewMoreRecommend"
-          @clickBtn="viewMoreRecommend = !viewMoreRecommend"
+          @onClick="viewMoreRecommend = !viewMoreRecommend"
         />
 
         <a-button

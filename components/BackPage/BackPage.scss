@@ -1,0 +1,40 @@
+.back-page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  &.sticky {
+    position: fixed;
+    z-index: 10;
+    top: var(--header-height);
+
+    .ant-btn {
+      background-color: var(--background-content-opacity);
+      box-shadow: var(--box-shadow-small);
+      // border-top-right-radius: 3px;
+      // border-bottom-right-radius: 3px;
+    }
+  }
+
+  .ant-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: auto;
+    padding: 10px 0px;
+    padding-right: 10px;
+    padding-left: 3px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s;
+
+    svg {
+      font-size: 2.3rem;
+    }
+
+    &:active {
+      opacity: 0.8;
+    }
+  }
+}

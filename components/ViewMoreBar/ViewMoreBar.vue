@@ -5,7 +5,7 @@
       type="text"
       shape="circle"
       size="large"
-      @click="emits('clickBtn')"
+      @click="emits('onClick')"
     >
       <Icon v-if="!isOpen" name="ci:chevron-down" />
       <Icon v-else name="ci:chevron-big-up" />
@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{ isOpen: boolean }>();
-const emits = defineEmits();
+const emits = defineEmits<{ onClick: [] }>();
 </script>
 
 <style lang="scss" scoped src="./ViewMoreBar.scss"></style>

@@ -1,6 +1,22 @@
 .movie-info {
+  position: relative;
+
   .info-conainer {
     position: relative;
+
+    .back-page {
+      position: fixed;
+      top: calc(var(--header-height));
+      // left: calc(var(--sider-width) + 5px);
+      z-index: 10;
+
+      .ant-btn {
+        background-color: var(--background-content-opacity);
+        box-shadow: var(--box-shadow-small);
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
+    }
 
     .variant-backdrop {
       position: relative;

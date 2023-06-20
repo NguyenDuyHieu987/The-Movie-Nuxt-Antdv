@@ -211,3 +211,38 @@
 .ant-notification-notice {
   box-shadow: var(--box-shadow-medium);
 }
+
+.ant-click-animating-node {
+  box-shadow: none !important;
+}
+
+.ant-switch {
+  height: 18px;
+  line-height: 18px;
+  transition: all 0s;
+  box-shadow: none !important;
+
+  &.ant-switch-checked {
+    background-color: var(--app-background-color);
+
+    .ant-switch-handle {
+      background-color: #000;
+      border-radius: 50%;
+    }
+  }
+
+  .ant-switch-handle {
+    top: -1px;
+    height: 20px;
+    width: 20px;
+    background-color: #3f3f3f;
+    border-radius: 50%;
+    transition: all 0s;
+
+    &::before {
+      background-color: transparent;
+      box-shadow: none;
+      border-radius: 50%;
+    }
+  }
+}

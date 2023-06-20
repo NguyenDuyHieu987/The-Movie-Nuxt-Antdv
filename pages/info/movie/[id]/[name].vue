@@ -1,6 +1,10 @@
 <template>
   <div class="movie-info">
-    <div class="info-conainer" v-if="!loading">
+    <div class="info-conainer" v-if="loading">
+      <BackPage @onclick="$router.back()">
+        <span> Quay lại</span>
+      </BackPage>
+
       <div class="variant-backdrop"></div>
 
       <div class="main-info">
@@ -229,11 +233,16 @@ import { getItemList } from '~/services/list';
 import { getPoster, getBackdrop } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getCountryByOriginalLanguage } from '~/services/country';
+import BackPage from '@/components/BackPage/BackPage.vue';
 import Tags from '@/components/Tags/Tags.vue';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
+
+definePageMeta({
+  middleware: (to, from) => {},
+});
 
 const store = useStore();
 const utils = useUtils();
@@ -247,6 +256,7 @@ const isOpenTrailerYoutube = ref<boolean>(false);
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
+const isActiveBackPage = ref<boolean>(false);
 
 const internalInstance: any = getCurrentInstance();
 
@@ -262,7 +272,6 @@ const setBackgroundColor = (color: string[]) => {
 
 const getData = async () => {
   isAddToList.value = false;
-  loading.value = true;
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
@@ -304,13 +313,13 @@ const getData = async () => {
         (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       );
 
-      loading.value = false;
       setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
+      loading.value = true;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 
@@ -335,6 +344,7 @@ const getData = async () => {
 };
 
 onBeforeMount(() => {
+  // console.log(router.options.history.state);
   getData();
 });
 

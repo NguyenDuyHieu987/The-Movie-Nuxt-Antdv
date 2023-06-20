@@ -17,7 +17,7 @@
       <ViewMoreBar
         v-show="dataSimilar.length"
         :isOpen="viewMore"
-        @clickBtn="viewMore = !viewMore"
+        @onClick="viewMore = !viewMore"
       />
     </div>
 
@@ -38,7 +38,7 @@
       <ViewMoreBar
         v-show="dataRecommend.length"
         :isOpen="viewMore"
-        @clickBtn="viewMore = !viewMore"
+        @onClick="viewMore = !viewMore"
       />
     </div>
   </div>
