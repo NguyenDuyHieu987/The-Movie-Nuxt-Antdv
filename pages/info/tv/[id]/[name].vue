@@ -305,7 +305,7 @@ const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
 const release_date = computed<string>(
-  () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date
+  () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
 
 const internalInstance: any = getCurrentInstance();
@@ -366,6 +366,7 @@ const getData = async () => {
       setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })
     .catch((e) => {
+      navigateTo('/404');
       if (axios.isCancel(e)) return;
     })
     .finally(() => {

@@ -106,17 +106,6 @@
     &.el-loading-parent--relative {
       z-index: 1;
     }
-    .el-loading-mask {
-      .el-loading-spinner {
-        svg .path {
-          stroke: var(--link-text-color);
-        }
-
-        .el-loading-text {
-          color: var(--link-text-color);
-        }
-      }
-    }
   }
 }
 

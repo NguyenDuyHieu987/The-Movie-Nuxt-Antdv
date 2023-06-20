@@ -1,14 +1,12 @@
 <template>
   <div class="list-episodes">
-    <div class="control-episodes">
+    <!-- <div class="control-episodes">
       <el-button
         type="primary"
         plain
         :disabled="currentEpisode == 1"
         @click="handleChangeEpisode(--currentEpisode)"
       >
-        <!-- @click="router.push({ params: { tap: `tap-${--currentEpisode}` } })" -->
-
         Tập trước
       </el-button>
       <el-button
@@ -21,11 +19,10 @@
         "
         @click="handleChangeEpisode(++currentEpisode)"
       >
-        <!-- @click="router.push({ params: { tap: `tap-${++currentEpisode}` } })" -->
-
         Tập tiếp
       </el-button>
-    </div>
+    </div> -->
+
     <h3 class="movie-title">
       <span style="margin-right: 10px">
         {{ dataMovie?.name }}
@@ -60,57 +57,58 @@
     </h3>
 
     <div
-      v-if="loading"
-      class="ul-list"
+      v-if="true"
+      class="list"
       v-loading="loading"
       element-loading-text="Đang tải tập..."
       element-loading-background="rgba(0, 0, 0, 0.6)"
     >
-      <a-skeleton-button
-        :active="true"
-        :shape="'default'"
-        v-for="(item, index) in dataSeason?.episodes?.slice(
-          0,
-          dataMovie?.last_episode_to_air?.season_number == selectedSeason
-            ? dataMovie?.last_episode_to_air?.episode_number
-            : dataSeason?.episodes.length
-        )"
-        :index="index"
-        :key="index"
-      >
-      </a-skeleton-button>
-    </div>
+      <el-skeleton :loading="loading" animated>
+        <template #template>
+          <el-skeleton-item
+            variant="button"
+            v-for="(item, index) in dataSeason?.episodes?.slice(
+              0,
+              dataMovie?.last_episode_to_air?.season_number == selectedSeason
+                ? dataMovie?.last_episode_to_air?.episode_number
+                : dataSeason?.episodes.length
+            )"
+            :index="index"
+            :key="index"
+          >
+          </el-skeleton-item>
+        </template>
 
-    <ul class="ul-list" v-else>
-      <li
-        v-for="(item, index) in dataSeason?.episodes?.slice(
-          0,
-          dataMovie?.last_episode_to_air?.season_number == selectedSeason
-            ? dataMovie?.last_episode_to_air?.episode_number
-            : dataSeason?.episodes.length
-        )"
-        :index="index"
-        :key="item.id"
-        :class="{ active: currentEpisode == item?.episode_number }"
-      >
-        <NuxtLink @click.prevent="handleChangeEpisode(item?.episode_number)">
-          <!-- :to="{
-            path: `/play/tv/${dataMovie?.id}/${dataMovie?.name
-              ?.replace(/\s/g, '+')
-              .toLowerCase()}/tap-${item.episode_number}`,
-          }" -->
-          {{
-            item?.episode_number === dataSeason?.episodes.length
-              ? item?.episode_number < 10
-                ? '0' + item?.episode_number + '-End'
-                : item?.episode_number + '-End'
-              : +item?.episode_number < 10
-              ? '0' + item?.episode_number
-              : item?.episode_number
-          }}
-        </NuxtLink>
-      </li>
-    </ul>
+        <template #default>
+          <ul class="list-container">
+            <li
+              v-for="(item, index) in dataSeason?.episodes?.slice(
+                0,
+                dataMovie?.last_episode_to_air?.season_number == selectedSeason
+                  ? dataMovie?.last_episode_to_air?.episode_number
+                  : dataSeason?.episodes.length
+              )"
+              :index="index"
+              :key="item.id"
+              :class="{ active: currentEpisode == item?.episode_number }"
+              @click.prevent="handleChangeEpisode(item?.episode_number)"
+            >
+              <NuxtLink>
+                {{
+                  item?.episode_number === dataSeason?.episodes.length
+                    ? item?.episode_number < 10
+                      ? '0' + item?.episode_number + '-End'
+                      : item?.episode_number + '-End'
+                    : +item?.episode_number < 10
+                    ? '0' + item?.episode_number
+                    : item?.episode_number
+                }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </template>
+      </el-skeleton>
+    </div>
   </div>
 </template>
 
@@ -138,17 +136,23 @@ const currentEpisode = ref<number>(
 const loading = ref(false);
 
 const emitUrlCode = (dataSeason: any) => {
-  const url_code_movie = dataSeason.episodes?.find(
-    (item: any) => item.episode_number == currentEpisode.value
-  )?.url_code;
+  // const url_code_movie = dataSeason.episodes?.find(
+  //   (item: any) => item.episode_number == currentEpisode.value
+  // )?.url_code;
+
+  let url_code_movie = `The_Witcher_S1_Ep1.mp4`;
+
+  if (currentEpisode.value > 1 && currentEpisode.value <= 8) {
+    url_code_movie = `The_Witcher_S1_Ep${currentEpisode.value}.mp4`;
+  } else if (currentEpisode.value > 8) {
+    url_code_movie = `The_Witcher_S1_Ep8.mp4`;
+  }
 
   emit('setUrlCodeMovie', url_code_movie);
 };
 
 onBeforeMount(async () => {
   loading.value = true;
-
-  // console.log(route.params?.tap?.replace('tap-', ''));
 
   await useAsyncData(
     `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
@@ -158,14 +162,14 @@ onBeforeMount(async () => {
       dataSeason.value = episodesRespones.data.value;
 
       emitUrlCode(dataSeason.value);
-
-      setTimeout(() => {
-        loading.value = false;
-      }, 1000);
     })
     .catch((e) => {
-      loading.value = false;
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      setTimeout(() => {
+        loading.value = false;
+      }, 500);
     });
 });
 
@@ -176,6 +180,12 @@ const handleChangeSeason = (value: number) => {
 const handleChangeEpisode = (value: number) => {
   currentEpisode.value = value;
   emitUrlCode(dataSeason.value);
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
 };
 
 watch(selectedSeason, async () => {

@@ -2,6 +2,7 @@
   position: relative;
 
   .control-episodes {
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
 
@@ -22,72 +23,79 @@
     }
   }
 
-  .ul-list,
-  ul {
-    // display: flex;
-    // flex-direction: row;
-    list-style-type: none;
-    margin-top: 7px;
-    padding: 0px 10px;
-    padding-bottom: 7px;
-    overflow: hidden;
-    max-height: 275px;
-    overflow-y: scroll;
+  .list {
+    .el-skeleton.is-animated {
+      padding-top: 7px;
+      width: auto !important;
 
-    & > li,
-    li + li {
-      margin-top: 7px;
-      margin-right: 7px;
+      .el-skeleton__item.el-skeleton__button {
+        display: inline-block;
+        margin-right: 7px;
+        min-width: 70px;
+        padding: 8px 23px;
+      }
     }
 
-    li {
-      float: left;
+    ul.list-container {
+      width: 100%;
+      list-style-type: none;
+      max-height: 275px;
+      overflow-y: scroll;
 
-      a {
-        min-width: 75px;
-        // max-width: 75px;
-        text-align: center;
-        padding: 8px 23px;
-        color: #fff;
-        transition: all 0.5s;
-        border-radius: 3px;
-        white-space: nowrap;
-        vertical-align: middle;
+      li {
         display: inline-block;
-        background-image: linear-gradient(
-          to right,
-          #006a88,
-          var(--app-background-color2),
-          var(--app-background-color1)
-        );
-        background-size: 200% 100%;
+        margin-top: 7px;
+        margin-right: 7px;
 
-        &:hover {
-          background-size: 200% 100%;
-          // background-position: -65px center;
-          background-position: 100% center;
-        }
-      }
-      &.active {
         a {
-          background-image: none;
-          background-color: #006a88;
-          transition: all 0.7s ease;
-          animation: episode-fade-out 2s infinite linear;
+          display: inline-block;
+          min-width: 70px;
+          // max-width: 75px;
+          text-align: center;
+          padding: 8px 23px;
+          color: var(--text-color);
+          border-radius: 3px;
+          transition: all 0.3s;
+          user-select: none;
+
+          background: linear-gradient(to right, #2f2f2f, #101010);
+          // background-size: 200% 100%;
+
+          // background-image: linear-gradient(
+          //   to right,
+          //   #006a88,
+          //   var(--app-background-color2),
+          //   var(--app-background-color1)
+          // );
+          // background-size: 200% 100%;
+
+          // &:hover {
+          //   background-size: 200% 100%;
+          //   // background-position: -65px center;
+          //   background-position: 100% center;
+          // }
         }
 
-        @keyframes episode-fade-out {
-          0% {
-            box-shadow: 0 0 0 0 #006a88;
+        &.active {
+          a {
+            background: var(--app-background-color);
+            // transition: all 0.7s ease;
+            // animation: episode-fade-out 2s infinite linear;
           }
-          40% {
-            box-shadow: 0 0 0 5px #004b5f;
-          }
-          80% {
-            box-shadow: 0 0 0 5px #003746;
-          }
-          100% {
-            box-shadow: 0 0 0 5px #001d25;
+
+          @keyframes episode-fade-out {
+            0% {
+              box-shadow: 0 0 0 0 #006a88;
+            }
+            40% {
+              box-shadow: 0 0 0 5px #004b5f;
+            }
+            80% {
+              box-shadow: 0 0 0 5px #003746;
+            }
+            100% {
+              box-shadow: 0 0 0 5px #001d25;
+            }
           }
         }
       }

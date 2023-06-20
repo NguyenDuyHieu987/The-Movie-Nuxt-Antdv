@@ -15,9 +15,8 @@
 
 .el-image__wrapper,
 .el-image__error {
-  color: #fff;
-  // background-color: rgba(190, 190, 190, 0.17) !important;
-  background-color: rgb(58, 58, 58) !important;
+  color: var(--text-color);
+  background-color: #3a3a3a !important;
 
   .el-image__placeholder {
     background-color: var(--background-content-color) !important;
@@ -25,20 +24,40 @@
 }
 
 .el-select {
-  border: 1px solid #fff;
+  border: 1px solid var(--border-dropdown);
+
+  .el-input__wrapper {
+    &.is-focus {
+      box-shadow: none !important;
+    }
+  }
 
   .el-input {
+    .el-input__wrapper {
+      box-shadow: none !important;
+      border-radius: 0px;
+    }
+
     &.is-focus {
       .el-input__wrapper {
-        box-shadow: 0 0 0 1px #fff !important;
+        // box-shadow: 0 0 0 1px #fff !important;
+
+        &.is-focus {
+          box-shadow: 0 0 0 1px #a0a0a0 !important;
+        }
       }
     }
   }
 
   .el-input__wrapper {
     box-shadow: none;
-    color: #fff;
+    color: var(--text-color);
   }
+}
+
+.el-select-dropdown {
+  border-radius: 2px !important;
+  // border: 0.1px solid var(--border-regular-light);
 }
 
 .el-overlay {
@@ -86,4 +105,16 @@
   background-color: var(--background-content-color1) !important;
   border: none !important;
   box-shadow: var(--box-shadow-medium) !important;
+}
+
+.el-loading-mask {
+  .el-loading-spinner {
+    svg .path {
+      stroke: var(--link-text-color);
+    }
+
+    .el-loading-text {
+      color: var(--link-text-color);
+    }
+  }
 }

@@ -15,7 +15,7 @@
           >
             Lọc phim
           </a-button>
-          <ClientOnly>
+          <!-- <ClientOnly>
             <el-select
               ref="select"
               v-model="formSelect.country"
@@ -95,7 +95,105 @@
               <el-option value="movieall" label="Phim lẻ" />
               <el-option value="tvall" label="Phim bộ" />
             </el-select>
-          </ClientOnly>
+          </ClientOnly> -->
+
+          <a-select
+            ref="select"
+            v-model:value="formSelect.country"
+            style="width: 150px"
+            @change="handleChange"
+            size="large"
+            placeholder="Quốc gia"
+          >
+            <a-select-option v-if="formSelect.country == ''" value="">
+              Quốc gia
+            </a-select-option>
+
+            <a-select-option
+              v-for="(item, index) in countries"
+              :index="index"
+              :key="item?.iso_639_1"
+              :value="item?.iso_639_1"
+            >
+              {{ item?.name }}
+            </a-select-option>
+          </a-select>
+
+          <a-select
+            ref="select"
+            v-model:value="formSelect.year"
+            style="width: 170px"
+            @change="handleChange"
+            size="large"
+            placeholder="Năm phát hành"
+          >
+            <a-select-option v-if="formSelect.year == ''" value="">
+              Năm phát hành
+            </a-select-option>
+            <a-select-option
+              v-for="(item, index) in years"
+              :index="index"
+              :key="item?.name"
+              :value="item?.name"
+            >
+              {{ item?.name }}
+            </a-select-option>
+          </a-select>
+
+          <a-select
+            ref="select"
+            v-model:value="formSelect.genre"
+            style="width: 170px"
+            @change="handleChange"
+            size="large"
+            placeholder="Thể loại"
+          >
+            <a-select-option v-if="formSelect.genre == ''" value="">
+              Thể loại
+            </a-select-option>
+            <a-select-option
+              v-for="(item, index) in genres"
+              :index="index"
+              :key="item?.id"
+              :value="item?.id"
+            >
+              {{ item?.name_vietsub }}
+            </a-select-option>
+          </a-select>
+
+          <a-select
+            ref="select"
+            v-model:value="formSelect.sortBy"
+            style="width: 170px"
+            @change="handleChange"
+            size="large"
+            placeholder="Sắp xếp theo"
+          >
+            <a-select-option v-if="formSelect.sortBy == ''" value="">
+              Sắp xếp theo
+            </a-select-option>
+            <a-select-option
+              v-for="(item, index) in listSortBy"
+              :index="index"
+              :key="item?.id"
+              :value="item?.id"
+            >
+              {{ item?.name }}
+            </a-select-option>
+          </a-select>
+
+          <a-select
+            ref="select"
+            v-model:value="formSelect.type"
+            style="width: 170px"
+            @change="handleChange"
+            size="large"
+            placeholder="Tất cả"
+          >
+            <a-select-option value="all"> Tất cả </a-select-option>
+            <a-select-option value="movieall"> Phim lẻ </a-select-option>
+            <a-select-option value="tvall"> Phim bộ </a-select-option>
+          </a-select>
 
           <a-button
             class="cancel-filter-btn"
@@ -127,6 +225,7 @@ import type { genre, country, year, sortby } from '@/types';
 const emits = defineEmits<{
   dataFiltered: [data: any[], formSelect: any];
 }>();
+
 const props = defineProps<{
   cancelFilter: () => void;
 }>();
@@ -136,7 +235,6 @@ const genres = ref<genre[]>([]);
 const years = ref<year[]>([]);
 const countries = ref<country[]>([]);
 const listSortBy = ref<sortby[]>([]);
-
 const movieType = computed(() => {
   if (route.params?.slug?.includes('movie')) {
     if (route.params?.slug2?.replace('/', '') == 'all') {
@@ -229,4 +327,4 @@ const handleCancelFilter = () => {
 const handleChange = () => {};
 </script>
 
-<style lang="scss" scoped src="./FilterBar.scss"></style>
+<style lang="scss" src="./FilterBar.scss"></style>

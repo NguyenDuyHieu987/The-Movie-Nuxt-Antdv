@@ -266,9 +266,10 @@
         .main-content {
           display: flex;
           justify-content: space-around;
+          gap: 10vw;
 
           .detail-content-left {
-            max-width: 65%;
+            width: 65%;
 
             .overview {
               .text {
@@ -287,7 +288,7 @@
           }
 
           .detail-content-right {
-            max-width: 35%;
+            width: 35%;
             margin-top: 68px;
 
             .tags + .tags {
@@ -485,12 +486,12 @@
             gap: 15px;
 
             .detail-content-left {
-              max-width: 100%;
+              width: 100%;
             }
 
             .detail-content-right {
               margin-top: 0px;
-              max-width: 100%;
+              width: 100%;
             }
           }
         }

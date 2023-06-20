@@ -41,7 +41,7 @@
         padding: 10px 0px;
 
         .detail-content-left {
-          max-width: 65%;
+          width: 65%;
 
           .movie-title {
             font-weight: 600;
@@ -108,7 +108,7 @@
         }
 
         .detail-content-right {
-          max-width: 35%;
+          width: 35%;
           display: flex;
           flex-direction: column;
           gap: 10px;
@@ -123,6 +123,8 @@
       }
 
       .related-content {
+        margin-top: 20px;
+
         .comment {
           margin-top: 30px;
 
@@ -214,7 +216,7 @@
           gap: 20px;
 
           .detail-content-left {
-            max-width: 100%;
+            width: 100%;
 
             .action {
               .right {
@@ -227,7 +229,7 @@
 
           .detail-content-right {
             align-items: flex-start;
-            max-width: 100%;
+            width: 100%;
           }
         }
       }

@@ -283,8 +283,7 @@ const getData = async () => {
       });
     })
     .catch((e) => {
-      loading.value = false;
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
+      navigateTo('/404');
       if (axios.isCancel(e)) return;
     })
     .finally(() => {

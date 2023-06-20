@@ -9,7 +9,7 @@
     }"
   >
     <div v-if="settingStates.switchBackgroud" class="overlay-backdrop">
-      <img :src="backdrop" />
+      <nuxt-img :src="backdrop" loading="lazy" />
     </div>
 
     <video
@@ -465,6 +465,18 @@ onMounted(() => {
   };
 });
 
+watch(props, () => {
+  video.value.load();
+  video.value.currentTime = 0;
+  progressBar.value.style.setProperty('--progress-width', 0);
+
+  if (videoStates.isPlayVideo) {
+    video.value.play();
+  } else {
+    video.value.pause();
+  }
+});
+
 watch(volume, () => {
   videoStates.isVolumeOff = video.value.volume == 0;
 });
@@ -514,8 +526,8 @@ const loadedDataVideo = () => {
 
 const timeUpdateVideo = (e: any) => {
   timeUpdate.value = formatDuration(e.target.currentTime);
-  const progressWidth = e.target.currentTime / e.target.duration;
-  progressBar.value.style.setProperty('--progress-width', progressWidth);
+  const percent = e.target.currentTime / e.target.duration;
+  progressBar.value.style.setProperty('--progress-width', percent);
 
   emits('onTimeUpdate', {
     seconds: video.value?.currentTime,

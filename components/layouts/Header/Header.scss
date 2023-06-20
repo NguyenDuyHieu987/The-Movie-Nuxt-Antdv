@@ -72,6 +72,7 @@
     .logo {
     }
   }
+
   .center-search-header {
     .ant-input-group {
     }
@@ -110,7 +111,7 @@
       }
 
       .ant-input {
-        color: #fff;
+        color: var(--text-color);
         background: transparent;
         font-size: 1.5rem;
       }
@@ -128,6 +129,7 @@
         padding: 0px 20px;
 
         svg {
+          color: var(--text-color);
           font-size: 1.8rem;
         }
 
@@ -155,7 +157,7 @@
 
           .fa-bell {
             font-size: 1.7rem;
-            color: #919191;
+            color: var(--text-color);
           }
 
           .ant-badge-count {
@@ -189,8 +191,12 @@
         }
 
         .antitcon,
+        .ant-menu-item-icon,
         .ant-menu-title-content {
+          color: var(--text-color);
+
           svg {
+            color: var(--text-color);
             transition: all 0.2s;
           }
         }
@@ -203,7 +209,10 @@
           color: #fff;
 
           .antitcon,
+          .ant-menu-item-icon,
           .ant-menu-title-content {
+            color: var(--text-color);
+
             svg {
               color: #fff;
             }
@@ -292,7 +301,7 @@
   width: 480px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: #000000bf 0px 3px 10px;
+  // box-shadow: var(--box-shadow-small);
   border: none;
 
   .ant-dropdown-menu,
@@ -306,7 +315,7 @@
       background: transparent;
       border-bottom: 1px solid var(--border-regular-light);
       font-size: 1.5rem;
-      color: #fff;
+      color: var(--text-color);
     }
 
     .ant-dropdown-menu-item-group {
@@ -456,7 +465,7 @@
       }
 
       .ant-input {
-        color: #fff;
+        color: var(--text-color);
         background: transparent;
       }
     }

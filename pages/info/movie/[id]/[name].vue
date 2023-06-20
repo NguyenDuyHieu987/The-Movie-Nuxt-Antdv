@@ -124,7 +124,7 @@
                 <template #tagsInfo>
                   <span class="text">{{
                     dataMovie?.views
-                      .toString()
+                      ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' lượt xem'
                   }}</span>
                 </template>
@@ -149,15 +149,15 @@
                 <template #tagsInfo>
                   <span class="tags-item">
                     <NuxtLink
-                      :to="`/discover/year/${dataMovie?.release_date.slice(
+                      :to="`/discover/year/${dataMovie?.release_date?.slice(
                         0,
                         4
                       )}`"
                     >
-                      {{ dataMovie?.release_date.slice(0, 4) }}
+                      {{ dataMovie?.release_date?.slice(0, 4) }}
                     </NuxtLink>
                     <span>
-                      {{ dataMovie?.release_date.slice(4) }}
+                      {{ dataMovie?.release_date?.slice(4) }}
                     </span>
                   </span>
                 </template>
@@ -335,6 +335,7 @@ const getData = async () => {
       setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })
     .catch((e) => {
+      navigateTo('/404');
       if (axios.isCancel(e)) return;
     })
     .finally(() => {

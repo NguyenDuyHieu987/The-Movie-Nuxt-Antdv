@@ -14,7 +14,7 @@ video::-webkit-media-controls {
     // height: 150%;
     // margin-top: calc(var(--header-height) + 150px);
     height: 110%;
-    width: 110%;
+    width: 100%;
     z-index: -2;
     transform: translateX(-50%) translateY(-50%);
 
@@ -216,7 +216,9 @@ video::-webkit-media-controls {
     .progress-bar {
       position: relative;
       height: 100%;
-      width: calc(var(--progress-width) * 100%);
+      width: calc(var(--progress-width, 0) * 100%);
+      min-width: 0%;
+      max-width: 100%;
       background-color: var(--app-background-color);
       transition: all 0s;
 

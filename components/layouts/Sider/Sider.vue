@@ -8,13 +8,14 @@
     <a-layout-header class="sider-header">
       <div style="display: flex; justify-content: center; align-items: center">
         <div class="user-image-container" v-if="!collapsed && isLogin">
-          <img
+          <nuxt-img
             class="avatar"
             :src="
               !isNaN(+userAccount?.avatar)
                 ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
                 : userAccount?.avatar
             "
+            loading="lazy"
           />
         </div>
 

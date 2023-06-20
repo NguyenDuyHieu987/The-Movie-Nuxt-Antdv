@@ -4,7 +4,7 @@
       <BackPage
         @onclick="
           navigateTo({
-            path: `/info/movie/${dataMovie?.id}/${dataMovie?.name
+            path: `/info/tv/${dataMovie?.id}/${dataMovie?.name
               .replaceAll(' ', '+')
               .toLowerCase()}
           `,
@@ -36,7 +36,7 @@
             ></iframe> -->
 
           <VideoPlayer
-            :videoUrl="getVideoTelevisons('The_Witcher_S1_Ep1.mov')"
+            :videoUrl="getVideoTelevisons(urlCodeMovie)"
             :backdrop="getBackdrop(dataMovie?.backdrop_path)"
             @onPlay="(e) => onPLayVideoPlayer(e)"
             @onTimeUpdate="(e) => onTimeUpdateVideoPlayer(e)"
@@ -251,7 +251,7 @@ const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const urlComment = computed<string>((): string => window.location.href);
 const loading = ref<boolean>(false);
-const urlCodeMovie = ref<string>('');
+const urlCodeMovie = ref<string>('The_Witcher_S1_Ep1.mp4');
 const isAddToList = ref<boolean>(false);
 const seconds = ref<number>(0);
 const percent = ref<number>(0);
@@ -261,7 +261,7 @@ const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
 const dataItemHistory = ref<any>({});
 const release_date = computed<string>(
-  () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date
+  () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
 
 const internalInstance: any = getCurrentInstance();
@@ -324,6 +324,7 @@ const getData = async () => {
       });
     })
     .catch((e) => {
+      navigateTo('/404');
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
