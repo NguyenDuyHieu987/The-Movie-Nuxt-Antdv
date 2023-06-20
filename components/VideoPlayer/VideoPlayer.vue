@@ -469,12 +469,16 @@ watch(props, () => {
   video.value.load();
   video.value.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
-
-  if (videoStates.isPlayVideo) {
-    video.value.play();
-  } else {
-    video.value.pause();
+  video.value.play();
+  if (!videoStates.isPlayVideo) {
+    videoStates.isPlayVideo = true;
   }
+
+  // if (videoStates.isPlayVideo) {
+  //   video.value.play();
+  // } else {
+  //   video.value.pause();
+  // }
 });
 
 watch(volume, () => {
