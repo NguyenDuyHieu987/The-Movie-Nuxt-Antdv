@@ -71,21 +71,21 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          src: 'https://apis.google.com/js/platform.js',
-          type: 'text/javascript',
-        },
-        {
           src: '/js/jquery/jquery-3.6.4.min.js',
           type: 'text/javascript',
         },
-        {
-          src: 'https://api.ok.ru/js/fapi5.js',
-          type: 'text/javascript',
-        },
-        {
-          src: 'https://player.vimeo.com/api/player.js',
-          type: 'text/javascript',
-        },
+        // {
+        //   src: 'https://apis.google.com/js/platform.js',
+        //   type: 'text/javascript',
+        // },
+        // {
+        //   src: 'https://api.ok.ru/js/fapi5.js',
+        //   type: 'text/javascript',
+        // },
+        // {
+        //   src: 'https://player.vimeo.com/api/player.js',
+        //   type: 'text/javascript',
+        // },
       ],
     },
   },

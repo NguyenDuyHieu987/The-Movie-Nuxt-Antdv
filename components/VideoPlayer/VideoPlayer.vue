@@ -12,10 +12,12 @@
       <nuxt-img :src="backdrop" loading="lazy" />
     </div>
 
+    <!-- preload="auto" -->
+
     <video
       id="video-player"
       ref="video"
-      preload="metadata"
+      tabindex="-1"
       :poster="backdrop"
       @click="onClickVideo"
       @loadeddata="loadedDataVideo"
@@ -24,16 +26,17 @@
       @mouseleave="mouseLeaveVideo"
       @ended="onEndedVideo"
       @keydown="onKeyDownVideo"
-      @play="(e:any)=>
-       emits('onPlay', {
-        seconds:  e!.target!.currentTime,
-        percent:  e!.target!.currentTime /  e!.target!.duration,
-        duration:  e!.target!.duration
-      })
-      "
+      @waiting="onProgressVideo"
+      @play="onPlayVideo"
+      @playing="onPLayingVideo"
     >
-      <source :src="videoUrl" type="video/mp4" />
+      <!-- <source :src="''" ref="srcVideo" type="video/mp4" /> -->
     </video>
+
+    <div class="loading-video" v-show="videoStates.isLoading">
+      <Icon name="line-md:loading-twotone-loop" />
+      <!-- <Icon name="eos-icons:loading" /> -->
+    </div>
 
     <div
       class="overlay-controls-animation"
@@ -140,11 +143,12 @@
               class="replay"
               @click="onClickReplay"
             />
-            <Icon
+
+            <!-- <Icon
               name="ic:baseline-forward-10"
               class="forward"
               @click="onClickForward"
-            />
+            /> -->
           </div>
           <div class="volume">
             <div>
@@ -184,6 +188,11 @@
         </div>
 
         <div class="right">
+          <div class="rewind-forward">
+            <Icon name="ic:baseline-fast-rewind" @click="onClickReplay" />
+            <Icon name="ic:baseline-fast-forward" @click="onClickForward" />
+          </div>
+
           <div class="setting" :class="{ active: settingStates.enable }">
             <Icon
               name="ic:baseline-settings"
@@ -384,6 +393,7 @@ const progressBar = ref();
 const timeline = ref();
 const canvasPreviewImg = ref();
 const videoStates = reactive({
+  isLoading: false,
   isLoaded: false,
   isPlayVideo: false,
   isScrubbingProgressBar: false,
@@ -432,6 +442,32 @@ const timeUpdate = ref<string>('00:00');
 const timelineUpdate = ref<string>('00:00');
 const duration = ref<string>('00:00');
 const interval = ref<any>();
+
+const setBlobSrcVideo = async () => {
+  videoStates.isLoading = true;
+  fetch(props.videoUrl)
+    .then((response) => response.blob())
+    .then((blob) => {
+      // const metadata = {
+      //   type: data.type || 'video/mp4',
+      // };
+
+      // const file = new File([data], 'test.mp4', metadata);
+
+      // console.log(file);
+
+      const blobSrc = URL.createObjectURL(blob);
+
+      video.value.src = blobSrc;
+    })
+    .finally(() => {
+      videoStates.isLoading = false;
+    });
+};
+
+onBeforeMount(() => {
+  setBlobSrcVideo();
+});
 
 onMounted(() => {
   video.value.volume = volume.value / 100;
@@ -540,6 +576,12 @@ const timeUpdateVideo = (e: any) => {
   });
 };
 
+const onProgressVideo = (e: any) => {
+  console.log('loading');
+
+  videoStates.isLoading = true;
+};
+
 const mouseLeaveVideo = () => {
   clearTimeout(interval.value);
 
@@ -555,6 +597,20 @@ const mouseMoveVideo = () => {
       videoStates.isHideControls = true;
     }, 5000);
   }
+};
+
+const onPLayingVideo = () => {
+  videoStates.isLoading = false;
+
+  console.log('play');
+};
+
+const onPlayVideo = (e: any) => {
+  emits('onPlay', {
+    seconds: e!.target!.currentTime,
+    percent: e!.target!.currentTime / e!.target!.duration,
+    duration: e!.target!.duration,
+  });
 };
 
 const onEndedVideo = () => {
@@ -579,7 +635,7 @@ const onReplayVideo = () => {
 };
 
 const onClickVideo = () => {
-  if (videoStates.isEndedVideo) {
+  if (videoStates.isEndedVideo || videoStates.isLoading) {
     return;
   }
 
@@ -759,7 +815,7 @@ const onCloseSettings = () => {
 };
 
 const onKeyDownVideo = (e: any) => {
-  alert('G');
+  console.log('G');
 };
 </script>
 

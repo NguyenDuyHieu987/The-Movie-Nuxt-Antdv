@@ -28,13 +28,13 @@
         {{ dataMovie?.name }}
         - Tập
         {{ route.params?.tap?.replace('tap-', '') }}
-        |
+        <!-- |
         {{
           dataSeason?.name?.split(' ')[0] === 'Phần' ||
           dataSeason?.name === 'Specials'
             ? dataSeason?.name
             : dataSeason?.name?.replace('Season', 'Phần')
-        }}
+        }} -->
       </span>
       <a-select
         ref="select"
@@ -91,9 +91,9 @@
               :index="index"
               :key="item.id"
               :class="{ active: currentEpisode == item?.episode_number }"
-              @click.prevent="handleChangeEpisode(item?.episode_number)"
+              @click="handleChangeEpisode(item?.episode_number)"
             >
-              <NuxtLink>
+              <span>
                 {{
                   item?.episode_number === dataSeason?.episodes.length
                     ? item?.episode_number < 10
@@ -103,7 +103,7 @@
                     ? '0' + item?.episode_number
                     : item?.episode_number
                 }}
-              </NuxtLink>
+              </span>
             </li>
           </ul>
         </template>
@@ -180,6 +180,12 @@ const handleChangeSeason = (value: number) => {
 const handleChangeEpisode = (value: number) => {
   currentEpisode.value = value;
   emitUrlCode(dataSeason.value);
+  router.replace({
+    path: route.path,
+    params: {
+      tap: 'tap-' + value,
+    },
+  });
 
   window.scrollTo({
     top: 0,
@@ -190,7 +196,7 @@ const handleChangeEpisode = (value: number) => {
 
 watch(selectedSeason, async () => {
   loading.value = true;
-  router.push({ params: { tap: 'tap-1' } });
+  router.replace({ params: { tap: 'tap-1' } });
 
   await useAsyncData(
     `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
