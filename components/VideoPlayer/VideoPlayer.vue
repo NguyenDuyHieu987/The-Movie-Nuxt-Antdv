@@ -35,28 +35,31 @@
       <!-- <source :src="''" ref="srcVideo" type="video/mp4" /> -->
     </video>
 
-    <div class="loading-video" v-show="videoStates.isLoading">
-      <Icon name="line-md:loading-twotone-loop" />
-      <!-- <Icon name="eos-icons:loading" /> -->
+    <div class="float-center">
+      <div class="loading-video" v-show="videoStates.isLoading">
+        <Icon name="line-md:loading-twotone-loop" />
+        <!-- <Icon name="eos-icons:loading" /> -->
+      </div>
+
+      <div class="replay" v-show="videoStates.isEndedVideo">
+        <Icon
+          name="ic:baseline-replay"
+          class="replay"
+          @click="onClickReplayVideo"
+        />
+        <span @click="onClickReplayVideo"> Phát lại </span>
+      </div>
     </div>
 
     <div
       class="overlay-controls-animation"
       :class="{
         active: videoStates.isActiveControlsAnimation,
-        replay: videoStates.isEndedVideo,
         rewind: videoStates.isRewind,
       }"
     >
       <div class="box-icon">
         <div v-show="!videoStates.isRewind.enable" class="play-pause">
-          <Icon
-            v-show="videoStates.isEndedVideo"
-            name="ic:baseline-replay"
-            class="replay"
-            @click="onClickReplayVideo"
-          />
-
           <Icon
             v-show="!videoStates.isPlayVideo && !videoStates.isEndedVideo"
             name="ic:play-arrow"
@@ -77,11 +80,6 @@
           <span v-show="videoStates.isRewind.forward">+10</span>
         </div>
       </div>
-      <div class="text">
-        <span v-show="videoStates.isEndedVideo" @click="onClickReplayVideo">
-          Phát lại
-        </span>
-      </div>
     </div>
 
     <div class="controls" v-show="videoStates.isLoaded">
@@ -96,8 +94,8 @@
       >
         <div class="timeline-container">
           <div class="img-box">
-            <img class="preview-img" />
-            <canvas class="canvas-preview-img" ref="canvasPreviewImg"></canvas>
+            <!-- <img class="preview-img" /> -->
+            <canvas class="canvas-preview-img" ref="canvasPreviewImg"> </canvas>
           </div>
         </div>
         <span class="timeline-indicator">{{ timelineUpdate }} </span>
@@ -390,6 +388,7 @@ const emits = defineEmits<{
 
 const videoPlayer = ref();
 const video = ref();
+const videoTemp = ref();
 const overlayProgress = ref();
 const progressBar = ref();
 const timeline = ref();
@@ -462,6 +461,11 @@ const setBlobSrcVideo = async () => {
       const blobSrc = URL.createObjectURL(blob);
 
       video.value.src = blobSrc;
+
+      videoTemp.value = document.createElement('video');
+      videoTemp.value.src = blobSrc;
+      videoTemp.value.pause();
+      videoTemp.value.muted = true;
     })
     .finally(() => {
       videoStates.isLoading = false;
@@ -544,7 +548,6 @@ const handleTimeUpdate = (e: any) => {
   } else {
     videoStates.isEndedVideo = false;
   }
-
   drawTimeLine(e);
 };
 
@@ -615,6 +618,14 @@ const onPlayVideo = (e: any) => {
     percent: e!.target!.currentTime / e!.target!.duration,
     duration: e!.target!.duration,
   });
+};
+
+const checkEndedVideo = () => {
+  if (video.value.ended) {
+    videoStates.isEndedVideo = true;
+  } else {
+    videoStates.isEndedVideo = false;
+  }
 };
 
 const onEndedVideo = () => {
@@ -688,6 +699,7 @@ const onClickVideo = () => {
 
 const rewindVideo = (value: number) => {
   video.value.currentTime -= value;
+  checkEndedVideo();
 
   // const percent = video.value.currentTime / video.value.duration;
   // progressBar.value.style.setProperty('--progress-width', percent);
@@ -709,6 +721,7 @@ const onClickRewind = () => {
 
 const forwardVideo = (value: number) => {
   video.value.currentTime += value;
+  checkEndedVideo();
 
   // const percent = video.value.currentTime / video.value.duration;
   // progressBar.value.style.setProperty('--progress-width', percent);
@@ -763,6 +776,8 @@ const drawTimeLine = (e: any) => {
   const percent =
     Math.min(Math.max(0, e.x - rect.left), rect.width) / rect.width;
 
+  timelineUpdate.value = formatDuration(percent * video.value.duration);
+
   const timeLinePosition = Math.max(0, e.x - rect.left);
 
   const timeLinePositionFinnal = Math.min(
@@ -770,20 +785,23 @@ const drawTimeLine = (e: any) => {
     overlayProgress.value.offsetWidth - (timeline.value.offsetWidth - 10)
   );
 
-  timelineUpdate.value = formatDuration(percent * video.value.duration);
-
   timeline.value.style.setProperty(
     '--timeline-position',
     timeLinePositionFinnal + 'px'
   );
 
-  // video.value.currentTime = percent * video.value.duration;
-
-  canvasPreviewImg.value.width = 160;
-  canvasPreviewImg.value.height = 100;
-
   const ctx = canvasPreviewImg.value.getContext('2d');
-  ctx.drawImage(video.value, 0, 0, 160, 100);
+
+  videoTemp.value.currentTime = percent * videoTemp.value.duration;
+
+  ctx.drawImage(videoTemp.value, 0, 0, 160, 100);
+
+  // canvasPreviewImg.value.toBlob((blob: any) => {
+  //   const previewImg = timeline.value.querySelector(
+  //     '.preview-img'
+  //   ) as HTMLImageElement;
+  //   previewImg.src = URL.createObjectURL(blob);
+  // });
 
   // const img_url = canvasPreviewImg.value.toDataURL('image/jpeg');
 

@@ -34,6 +34,42 @@ video::-webkit-media-controls {
     background-color: var(--background-content-color);
   }
 
+  .float-center {
+    display: block !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+    transition: all 0.15s;
+
+    .loading-video {
+      user-select: none;
+
+      svg {
+        font-size: 5rem;
+      }
+    }
+
+    div.replay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+
+      &:active {
+        opacity: 0.8;
+      }
+
+      svg {
+        font-size: 4rem;
+      }
+    }
+  }
+
   @keyframes controls-animation {
     0% {
       transform: translateX(-50%) translateY(-50%) scale(1);
@@ -50,18 +86,6 @@ video::-webkit-media-controls {
       transform: translateX(-50%) translateY(-50%) scale(2);
       opacity: 0;
       z-index: 0;
-    }
-  }
-
-  .loading-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%) scale(1);
-    transition: all 0.15s;
-
-    svg {
-      font-size: 5rem;
     }
   }
 
@@ -96,16 +120,6 @@ video::-webkit-media-controls {
     .text {
       user-select: none;
       transition: all 0.15s;
-    }
-
-    &.replay {
-      opacity: 1;
-      z-index: 0;
-      cursor: pointer;
-
-      svg {
-        font-size: 4rem;
-      }
     }
 
     &.rewind {
@@ -147,7 +161,7 @@ video::-webkit-media-controls {
 
     .timeline {
       position: absolute;
-      top: -20px;
+      top: -30px;
       // left: calc(var(--timeline-position) * 100%);
       left: var(--timeline-position);
       transform: translateY(-100%);
@@ -157,7 +171,7 @@ video::-webkit-media-controls {
 
       &.active {
         opacity: 1;
-        z-index: 1;
+        z-index: 0;
       }
 
       .timeline-container {
@@ -165,17 +179,17 @@ video::-webkit-media-controls {
         background-color: #101010;
 
         .img-box {
+          height: 100px;
           width: 100%;
-          height: 0px;
-          padding-bottom: 56.25%;
+          // height: 0px;
+          // padding-bottom: 56.25%;
 
           .preview-img {
+            display: none;
           }
 
           .canvas-preview-img {
-            position: absolute;
-            left: 0;
-            top: 0;
+            // display: none;
           }
         }
       }
@@ -183,7 +197,7 @@ video::-webkit-media-controls {
       .timeline-indicator {
         display: block;
         position: relative;
-        bottom: 0;
+        font-size: 1.4rem;
         transform: translateY(50%);
         text-align: center;
       }
@@ -195,7 +209,7 @@ video::-webkit-media-controls {
       width: 100%;
       background-color: rgba(21, 21, 21, 0.357);
       cursor: pointer;
-      transition: all 0.1s;
+      transition: all 0.15s;
       left: 0;
       top: 0;
       z-index: 2;
@@ -589,11 +603,50 @@ video::-webkit-media-controls {
   }
 }
 
+@media only screen and (max-width: 1100px) {
+  .video-player {
+    .float-center {
+      .loading-video {
+        svg {
+          font-size: 4rem;
+        }
+      }
+    }
+
+    .overlay-controls-animation {
+      .box-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      svg {
+        font-size: 2.5rem;
+      }
+
+      .replay-forward {
+        span {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 900px) {
   .video-player {
+    .float-center {
+      .loading-video {
+        svg {
+          font-size: 4.5rem;
+        }
+      }
+    }
+
     .overlay-controls-animation {
-      width: 40px;
-      height: 40px;
+      .box-icon {
+        width: 40px;
+        height: 40px;
+      }
 
       svg {
         font-size: 2.5rem;
@@ -610,9 +663,19 @@ video::-webkit-media-controls {
 
 @media only screen and (max-width: 650px) {
   .video-player {
+    .float-center {
+      .loading-video {
+        svg {
+          font-size: 4rem;
+        }
+      }
+    }
+
     .overlay-controls-animation {
-      width: 30px;
-      height: 30px;
+      .box-icon {
+        width: 30px;
+        height: 30px;
+      }
 
       svg {
         font-size: 2rem;
