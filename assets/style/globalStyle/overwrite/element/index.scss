@@ -109,11 +109,22 @@
 
 .el-loading-mask {
   .el-loading-spinner {
+    margin-top: 0px;
+    transform: translateY(-50%);
+    user-select: none;
+
+    svg.circular {
+      height: 35px;
+      width: 35px;
+    }
+
     svg .path {
       stroke: var(--link-text-color);
     }
 
     .el-loading-text {
+      font-size: 1.4rem;
+      margin: 0px;
       color: var(--link-text-color);
     }
   }

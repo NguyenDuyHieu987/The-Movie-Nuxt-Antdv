@@ -57,7 +57,6 @@
     </h3>
 
     <div
-      v-if="true"
       class="list"
       v-loading="loading"
       element-loading-text="Đang tải tập..."

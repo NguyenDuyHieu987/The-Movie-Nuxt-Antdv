@@ -5,6 +5,7 @@
     :class="{
       scrubbing: videoStates.isScrubbingProgressBar,
       'hide-controls': videoStates.isHideControls,
+      'show-controls': videoStates.isShowControls,
       pause: !videoStates.isPlayVideo,
     }"
   >
@@ -26,7 +27,8 @@
       @mouseleave="mouseLeaveVideo"
       @ended="onEndedVideo"
       @keydown="onKeyDownVideo"
-      @waiting="onProgressVideo"
+      @waiting="onWaitingVideo"
+      @progress="onProgressVideo"
       @play="onPlayVideo"
       @playing="onPLayingVideo"
     >
@@ -52,7 +54,7 @@
             v-show="videoStates.isEndedVideo"
             name="ic:baseline-replay"
             class="replay"
-            @click="onReplayVideo"
+            @click="onClickReplayVideo"
           />
 
           <Icon
@@ -76,9 +78,9 @@
         </div>
       </div>
       <div class="text">
-        <span v-show="videoStates.isEndedVideo" @click="onReplayVideo"
-          >Phát lại</span
-        >
+        <span v-show="videoStates.isEndedVideo" @click="onClickReplayVideo">
+          Phát lại
+        </span>
       </div>
     </div>
 
@@ -119,7 +121,7 @@
               v-show="videoStates.isEndedVideo"
               name="ic:baseline-replay"
               class="replay"
-              @click="onReplayVideo"
+              @click="onClickReplayVideo"
             />
 
             <Icon
@@ -141,7 +143,7 @@
             <Icon
               name="ic:baseline-replay-10"
               class="replay"
-              @click="onClickReplay"
+              @click="onClickRewind"
             />
 
             <!-- <Icon
@@ -189,7 +191,7 @@
 
         <div class="right">
           <div class="rewind-forward">
-            <Icon name="ic:baseline-fast-rewind" @click="onClickReplay" />
+            <Icon name="ic:baseline-fast-rewind" @click="onClickRewind" />
             <Icon name="ic:baseline-fast-forward" @click="onClickForward" />
           </div>
 
@@ -402,6 +404,7 @@ const videoStates = reactive({
   isEndedVideo: false,
   isMouseMoveOverlayProgress: false,
   isHideControls: false,
+  isShowControls: false,
   isActiveControlsAnimation: false,
   isRewind: {
     enable: false,
@@ -502,6 +505,7 @@ onMounted(() => {
 });
 
 watch(props, () => {
+  setBlobSrcVideo();
   video.value.load();
   video.value.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
@@ -576,10 +580,12 @@ const timeUpdateVideo = (e: any) => {
   });
 };
 
-const onProgressVideo = (e: any) => {
-  console.log('loading');
-
+const onWaitingVideo = (e: any) => {
   videoStates.isLoading = true;
+};
+
+const onProgressVideo = (e: any) => {
+  console.log(e);
 };
 
 const mouseLeaveVideo = () => {
@@ -601,8 +607,6 @@ const mouseMoveVideo = () => {
 
 const onPLayingVideo = () => {
   videoStates.isLoading = false;
-
-  console.log('play');
 };
 
 const onPlayVideo = (e: any) => {
@@ -627,37 +631,16 @@ const onClickPause = () => {
   video.value.pause();
 };
 
-const onReplayVideo = () => {
+const onClickReplayVideo = () => {
   video.value.load();
   video.value.play();
   videoStates.isPlayVideo = true;
   videoStates.isEndedVideo = false;
 };
 
-const onClickVideo = () => {
-  if (videoStates.isEndedVideo || videoStates.isLoading) {
-    return;
-  }
-
-  if (videoStates.isPlayVideo) {
-    video.value.pause();
-    videoStates.isPlayVideo = false;
-
-    // hide controls
-    clearTimeout(interval.value);
-    videoStates.isHideControls = false;
-  } else {
-    video.value.play();
-    videoStates.isPlayVideo = true;
-
-    // hide controls
-    videoStates.isHideControls = false;
-    clearTimeout(interval.value);
-
-    interval.value = setTimeout(() => {
-      videoStates.isHideControls = true;
-    }, 5000);
-  }
+const playVideo = () => {
+  video.value.play();
+  videoStates.isPlayVideo = true;
 
   new Promise((resolve, reject) => {
     resolve((videoStates.isActiveControlsAnimation = false));
@@ -668,11 +651,46 @@ const onClickVideo = () => {
   videoStates.isRewind.enable = false;
 };
 
-const onClickReplay = () => {
-  video.value.currentTime -= 10;
+const pauseVideo = () => {
+  video.value.pause();
+  videoStates.isPlayVideo = false;
 
-  const percent = video.value.currentTime / video.value.duration;
-  progressBar.value.style.setProperty('--progress-width', percent);
+  new Promise((resolve, reject) => {
+    resolve((videoStates.isActiveControlsAnimation = false));
+  }).then(() => {
+    videoStates.isActiveControlsAnimation = true;
+  });
+
+  videoStates.isRewind.enable = false;
+};
+
+const onClickVideo = () => {
+  if (videoStates.isEndedVideo || videoStates.isLoading) {
+    return;
+  }
+
+  if (videoStates.isPlayVideo) {
+    pauseVideo();
+    // hide controls
+    clearTimeout(interval.value);
+    videoStates.isHideControls = false;
+  } else {
+    playVideo();
+    // hide controls
+    videoStates.isHideControls = false;
+    clearTimeout(interval.value);
+
+    interval.value = setTimeout(() => {
+      videoStates.isHideControls = true;
+    }, 5000);
+  }
+};
+
+const rewindVideo = (value: number) => {
+  video.value.currentTime -= value;
+
+  // const percent = video.value.currentTime / video.value.duration;
+  // progressBar.value.style.setProperty('--progress-width', percent);
 
   new Promise((resolve, reject) => {
     resolve((videoStates.isActiveControlsAnimation = false));
@@ -685,11 +703,15 @@ const onClickReplay = () => {
   videoStates.isRewind.forward = false;
 };
 
-const onClickForward = () => {
-  video.value.currentTime += 10;
+const onClickRewind = () => {
+  rewindVideo(10);
+};
 
-  const percent = video.value.currentTime / video.value.duration;
-  progressBar.value.style.setProperty('--progress-width', percent);
+const forwardVideo = (value: number) => {
+  video.value.currentTime += value;
+
+  // const percent = video.value.currentTime / video.value.duration;
+  // progressBar.value.style.setProperty('--progress-width', percent);
 
   new Promise((resolve, reject) => {
     resolve((videoStates.isActiveControlsAnimation = false));
@@ -700,6 +722,10 @@ const onClickForward = () => {
   videoStates.isRewind.enable = true;
   videoStates.isRewind.replay = false;
   videoStates.isRewind.forward = true;
+};
+
+const onClickForward = () => {
+  forwardVideo(10);
 };
 
 const onMouseDownProgressBar = (e: any) => {
@@ -815,7 +841,53 @@ const onCloseSettings = () => {
 };
 
 const onKeyDownVideo = (e: any) => {
-  console.log('G');
+  // show controls
+  if ([32, 37, 39].includes(e.keyCode)) {
+    videoStates.isShowControls = true;
+    clearTimeout(interval.value);
+
+    interval.value = setTimeout(() => {
+      videoStates.isShowControls = false;
+    }, 5000);
+  }
+
+  switch (e.keyCode) {
+    case 32:
+      e.preventDefault();
+
+      if (videoStates.isPlayVideo) {
+        pauseVideo();
+      } else {
+        playVideo();
+      }
+      break;
+    case 37:
+      rewindVideo(10);
+      break;
+    case 39:
+      forwardVideo(10);
+      break;
+    case 77:
+      if (videoStates.isVolumeOff) {
+        video.value.muted = false;
+        videoStates.isVolumeOff = false;
+      } else {
+        video.value.muted = true;
+        videoStates.isVolumeOff = true;
+      }
+      break;
+    case 70:
+      if (videoStates.isFullScreen) {
+        videoStates.isFullScreen = false;
+        document.exitFullscreen();
+      } else {
+        videoStates.isFullScreen = true;
+        videoPlayer.value.requestFullscreen();
+      }
+      break;
+    default:
+      break;
+  }
 };
 </script>
 

@@ -259,6 +259,9 @@ video::-webkit-media-controls {
         font-size: 3.3rem;
         cursor: pointer;
         transition: all 0.15s;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
 
         &:active {
           opacity: 0.8;
@@ -564,7 +567,8 @@ video::-webkit-media-controls {
     }
   }
 
-  &.pause {
+  &.pause,
+  &.show-controls {
     .controls {
       opacity: 1;
     }
