@@ -6,7 +6,7 @@
       scrubbing: videoStates.isScrubbingProgressBar,
       'hide-controls': videoStates.isHideControls,
       'show-controls': videoStates.isShowControls,
-      pause: !videoStates.isPlayVideo,
+      pause: !videoStates.isPlayVideo || videoStates.isEndedVideo,
     }"
   >
     <div v-if="settingStates.switchBackgroud" class="overlay-backdrop">
@@ -36,9 +36,12 @@
     </video>
 
     <div class="float-center">
-      <div class="loading-video" v-show="videoStates.isLoading">
+      <div
+        class="loading-video"
+        v-show="videoStates.isLoading && !videoStates.isEndedVideo"
+      >
         <Icon name="line-md:loading-twotone-loop" />
-        <!-- <Icon name="eos-icons:loading" /> -->
+        <!-- <Icon name="line-md:loading-loop" /> -->
       </div>
 
       <div class="replay" v-show="videoStates.isEndedVideo">
@@ -445,9 +448,9 @@ const timelineUpdate = ref<string>('00:00');
 const duration = ref<string>('00:00');
 const interval = ref<any>();
 
-const setBlobSrcVideo = async () => {
+const setBlobSrcVideo = async (value: string) => {
   videoStates.isLoading = true;
-  fetch(props.videoUrl)
+  fetch(value)
     .then((response) => response.blob())
     .then((blob) => {
       // const metadata = {
@@ -473,7 +476,7 @@ const setBlobSrcVideo = async () => {
 };
 
 onBeforeMount(() => {
-  setBlobSrcVideo();
+  setBlobSrcVideo(props.videoUrl);
 });
 
 onMounted(() => {
@@ -482,6 +485,15 @@ onMounted(() => {
 
   window.onmouseup = () => {
     videoStates.isScrubbingProgressBar = false;
+
+    if (
+      video.value.ended ||
+      videoStates.isEndedVideo ||
+      videoStates.isLoading
+    ) {
+      return;
+    }
+
     if (videoStates.isPlayVideo) {
       video.value.play();
     }
@@ -508,8 +520,8 @@ onMounted(() => {
   };
 });
 
-watch(props, () => {
-  setBlobSrcVideo();
+watch(props, (newVal, oldVal) => {
+  setBlobSrcVideo(newVal.videoUrl);
   video.value.load();
   video.value.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
@@ -543,11 +555,8 @@ const handleTimeUpdate = (e: any) => {
 
   video.value.currentTime = percent * video.value.duration;
 
-  if (video.value.currentTime == video.value.duration) {
-    videoStates.isEndedVideo = true;
-  } else {
-    videoStates.isEndedVideo = false;
-  }
+  videoStates.isEndedVideo = video.value.currentTime == video.value.duration;
+
   drawTimeLine(e);
 };
 
@@ -598,7 +607,7 @@ const mouseLeaveVideo = () => {
 };
 
 const mouseMoveVideo = () => {
-  if (videoStates.isPlayVideo) {
+  if (videoStates.isPlayVideo && !videoStates.isEndedVideo) {
     videoStates.isHideControls = false;
     clearTimeout(interval.value);
 
@@ -643,7 +652,8 @@ const onClickPause = () => {
 };
 
 const onClickReplayVideo = () => {
-  video.value.load();
+  video.value.currentTime = 0;
+  progressBar.value.style.setProperty('--progress-width', 0);
   video.value.play();
   videoStates.isPlayVideo = true;
   videoStates.isEndedVideo = false;
@@ -675,8 +685,8 @@ const pauseVideo = () => {
   videoStates.isRewind.enable = false;
 };
 
-const onClickVideo = () => {
-  if (videoStates.isEndedVideo || videoStates.isLoading) {
+const onClickVideo = (e: any) => {
+  if (video.value.ended || videoStates.isEndedVideo || videoStates.isLoading) {
     return;
   }
 

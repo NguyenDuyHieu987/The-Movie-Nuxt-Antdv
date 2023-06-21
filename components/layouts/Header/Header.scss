@@ -235,13 +235,13 @@
 
 @media only screen and (max-width: 900px) {
   .ant-layout-header.header {
-    padding-left: 20px;
+    padding-left: 20px !important;
+    padding-right: 0px !important;
+
     .left-header {
       .menu-btn {
-        // padding: 16px 15px;
-
         &.mobile {
-          display: block !important;
+          display: flex !important;
         }
 
         &.desktop {
@@ -288,10 +288,31 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
-  // .ant-popover.ant-popover-placement-bottom {
-  //   width: 100vw;
-  // }
+@media only screen and (max-width: 650px) {
+  .ant-layout-header.header {
+    padding-left: 15px !important;
+    padding-right: 0px !important;
+
+    .left-header {
+      gap: 15px;
+
+      .menu-btn {
+        &.mobile {
+        }
+      }
+
+      .logo {
+      }
+    }
+
+    .right-header {
+      .ant-menu {
+        .ant-menu-item {
+          padding: 0px 15px;
+        }
+      }
+    }
+  }
 }
 
 .ant-dropdown.dropdown-notification {
