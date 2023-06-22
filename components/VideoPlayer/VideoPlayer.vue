@@ -21,6 +21,7 @@
       tabindex="-1"
       :poster="backdrop"
       @click="onClickVideo"
+      @loadstart="onLoadStartVideo"
       @loadeddata="loadedDataVideo"
       @timeupdate="timeUpdateVideo"
       @mousemove="mouseMoveVideo"
@@ -85,7 +86,12 @@
       </div>
     </div>
 
-    <div class="controls" v-show="videoStates.isLoaded">
+    <div
+      v-show="videoStates.isLoaded"
+      class="controls"
+      tabindex="-1"
+      @keydown="onKeyDownVideo"
+    >
       <div
         class="timeline"
         :class="{
@@ -450,6 +456,7 @@ const interval = ref<any>();
 
 const setBlobSrcVideo = async (value: string) => {
   videoStates.isLoading = true;
+
   fetch(value)
     .then((response) => response.blob())
     .then((blob) => {
@@ -521,20 +528,25 @@ onMounted(() => {
 });
 
 watch(props, (newVal, oldVal) => {
-  setBlobSrcVideo(newVal.videoUrl);
-  video.value.load();
-  video.value.currentTime = 0;
-  progressBar.value.style.setProperty('--progress-width', 0);
-  video.value.play();
-  if (!videoStates.isPlayVideo) {
-    videoStates.isPlayVideo = true;
-  }
+  new Promise((resolve, reject) => {
+    resolve(
+      (setBlobSrcVideo(newVal.videoUrl),
+      (video.value.currentTime = 0),
+      progressBar.value.style.setProperty('--progress-width', 0))
+    );
+  }).then(() => {
+    // video.value.play();
+    // if (!videoStates.isPlayVideo) {
+    //   videoStates.isPlayVideo = true;
+    // }
+    video.value.load();
 
-  // if (videoStates.isPlayVideo) {
-  //   video.value.play();
-  // } else {
-  //   video.value.pause();
-  // }
+    if (videoStates.isPlayVideo) {
+      video.value.play();
+    } else {
+      video.value.pause();
+    }
+  });
 });
 
 watch(volume, () => {
@@ -575,6 +587,11 @@ const formatDuration = (time: number) => {
   }
 };
 
+const onLoadStartVideo = () => {
+  video.value.currentTime = 0;
+  progressBar.value.style.setProperty('--progress-width', 0);
+};
+
 const loadedDataVideo = () => {
   videoStates.isLoaded = true;
   duration.value = formatDuration(video.value.duration);
@@ -597,7 +614,7 @@ const onWaitingVideo = (e: any) => {
 };
 
 const onProgressVideo = (e: any) => {
-  console.log(e);
+  // console.log(e);
 };
 
 const mouseLeaveVideo = () => {
@@ -639,6 +656,7 @@ const checkEndedVideo = () => {
 
 const onEndedVideo = () => {
   videoStates.isEndedVideo = true;
+  videoStates.isShowControls = true;
 };
 
 const onClickPlay = () => {
@@ -711,8 +729,8 @@ const rewindVideo = (value: number) => {
   video.value.currentTime -= value;
   checkEndedVideo();
 
-  // const percent = video.value.currentTime / video.value.duration;
-  // progressBar.value.style.setProperty('--progress-width', percent);
+  const percent = video.value.currentTime / video.value.duration;
+  progressBar.value.style.setProperty('--progress-width', percent);
 
   new Promise((resolve, reject) => {
     resolve((videoStates.isActiveControlsAnimation = false));
@@ -733,8 +751,8 @@ const forwardVideo = (value: number) => {
   video.value.currentTime += value;
   checkEndedVideo();
 
-  // const percent = video.value.currentTime / video.value.duration;
-  // progressBar.value.style.setProperty('--progress-width', percent);
+  const percent = video.value.currentTime / video.value.duration;
+  progressBar.value.style.setProperty('--progress-width', percent);
 
   new Promise((resolve, reject) => {
     resolve((videoStates.isActiveControlsAnimation = false));
