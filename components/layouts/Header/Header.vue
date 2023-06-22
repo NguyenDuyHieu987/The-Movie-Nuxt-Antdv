@@ -350,7 +350,7 @@ const handleSearch = (value: string) => {
       // query: { q: value?.replaceAll(' ', '+').toLowerCase() },
     );
 
-    valueInput.value = '';
+    // valueInput.value = '';
     isOpenAutoComplete.value = false;
   }
 };

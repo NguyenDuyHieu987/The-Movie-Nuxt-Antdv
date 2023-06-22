@@ -13,8 +13,8 @@
       <iframe
         height="650px"
         width="100%"
-        :src="// dataMovie?.videos?.results?.length != 0
-        //   ? `https://www.youtube.com/embed/${dataMovie?.videos?.results[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.results?.length)
+        :src="// dataMovie?.videos?.length != 0
+        //   ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.length)
         //   :
 
         'https://www.youtube.com/embed/ndl1W4ltcmg'"
@@ -109,7 +109,7 @@ watch(isTeleport, async () => {
   if (props.isOpenModalTrailer == true) {
     if (props.isEpisodes) {
       await useAsyncData(`tv/short/${props.item?.id}`, () =>
-        getTvById(props.item?.id)
+        getTvById(props.item?.id, 'videos')
       )
         .then((tvResponed: any) => {
           dataMovie.value = tvResponed.data.value.data;
@@ -122,7 +122,7 @@ watch(isTeleport, async () => {
         });
     } else {
       await useAsyncData(`movie/short/${props.item?.id}`, () =>
-        getMovieById(props.item?.id)
+        getMovieById(props.item?.id, 'videos')
       )
         .then((movieRespone: any) => {
           dataMovie.value = movieRespone.data.value.data;

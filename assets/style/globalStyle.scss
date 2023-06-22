@@ -11,6 +11,7 @@
 
   --text-color: #ffffffe8;
   --text-color-gray: #a4a4a4;
+  --text-color-gray1: #d3d3d3;
   --text-label-color: #777;
 
   --search-background: #0a0a0a41;
@@ -364,7 +365,7 @@ button,
     display: flex;
     align-items: center;
     border-color: var(--border-regular);
-    color: #fff;
+    color: var(--text-color);
     transition: all 0.25s;
     height: auto;
     background-color: transparent;
@@ -400,7 +401,7 @@ button,
   }
 
   &.modern {
-    color: #fff;
+    color: var(--text-color);
     background-color: transparent;
     display: flex;
     align-items: center;

@@ -120,12 +120,7 @@
                 </Tags>
               </div>
 
-              <RatingMovie
-                :voteAverage="dataMovie?.vote_average"
-                :voteCount="dataMovie?.vote_count"
-                :movieId="dataMovie?.id"
-                type="tv"
-              />
+              <RatingMovie :dataMovie="dataMovie" type="tv" />
 
               <Tags tagsLabel="Lượt xem:">
                 <template #tagsInfo>
@@ -252,15 +247,15 @@
       <div class="related-content padding-content">
         <MovieRelated :movieId="dataMovie?.id" type="tv" />
 
-        <CastCrew :dataCredit="dataCredit" :loading="loading" />
+        <CastCrew :dataMovie="dataMovie" />
 
         <div class="trailer">
           <h2>Trailer</h2>
           <iframe
             height="100%"
             width="100%"
-            :src="// dataMovie?.videos?.results?.length != 0
-            //   ? `https://www.youtube.com/embed/${dataMovie?.videos?.results[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.results?.length)
+            :src="// dataMovie?.videos?.length != 0
+            //   ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.length)
             //   :
 
             'https://www.youtube.com/embed/ndl1W4ltcmg'"
@@ -329,11 +324,11 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
-    getTvById(route.params?.id, 'images,credits')
+    getTvById(route.params?.id, 'videos')
   )
     .then((movieResponed: any) => {
       dataMovie.value = movieResponed.data.value;
-      dataCredit.value = movieResponed.data.value?.credits;
+      // dataCredit.value = movieResponed.data.value?.credits;
 
       useHead({
         title:
@@ -358,10 +353,10 @@ const getData = async () => {
       //   );
       // });
 
-      srcBackdropList.value = Array.from(
-        movieResponed.data.value.images?.backdrops,
-        (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
-      );
+      // srcBackdropList.value = Array.from(
+      //   movieResponed.data.value.images?.backdrops,
+      //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
+      // );
 
       setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })

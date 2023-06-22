@@ -70,12 +70,7 @@
               </Tags>
             </div>
 
-            <RatingMovie
-              :voteAverage="dataMovie?.vote_average"
-              :voteCount="dataMovie?.vote_count"
-              :movieId="dataMovie?.id"
-              type="tv"
-            />
+            <RatingMovie :dataMovie="dataMovie" type="tv" />
 
             <div class="action">
               <div class="left">

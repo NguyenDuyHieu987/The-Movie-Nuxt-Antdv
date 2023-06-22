@@ -31,6 +31,7 @@
       @waiting="onWaitingVideo"
       @progress="onProgressVideo"
       @play="onPlayVideo"
+      @pause="onPauseVideo"
       @playing="onPLayingVideo"
     >
       <!-- <source :src="''" ref="srcVideo" type="video/mp4" /> -->
@@ -479,6 +480,7 @@ const setBlobSrcVideo = async (value: string) => {
     })
     .finally(() => {
       videoStates.isLoading = false;
+      video.value.play();
     });
 };
 
@@ -528,25 +530,21 @@ onMounted(() => {
 });
 
 watch(props, (newVal, oldVal) => {
-  new Promise((resolve, reject) => {
-    resolve(
-      (setBlobSrcVideo(newVal.videoUrl),
-      (video.value.currentTime = 0),
-      progressBar.value.style.setProperty('--progress-width', 0))
-    );
-  }).then(() => {
-    // video.value.play();
-    // if (!videoStates.isPlayVideo) {
-    //   videoStates.isPlayVideo = true;
-    // }
-    video.value.load();
+  setBlobSrcVideo(newVal.videoUrl);
+  video.value.currentTime = 0;
+  progressBar.value.style.setProperty('--progress-width', 0);
+  video.value.load();
 
-    if (videoStates.isPlayVideo) {
-      video.value.play();
-    } else {
-      video.value.pause();
-    }
-  });
+  // video.value.play();
+  // if (!videoStates.isPlayVideo) {
+  //   videoStates.isPlayVideo = true;
+  // }
+
+  // if (videoStates.isPlayVideo) {
+  //   video.value.play();
+  // } else {
+  //   video.value.pause();
+  // }
 });
 
 watch(volume, () => {
@@ -639,11 +637,16 @@ const onPLayingVideo = () => {
 };
 
 const onPlayVideo = (e: any) => {
+  videoStates.isPlayVideo = true;
   emits('onPlay', {
     seconds: e!.target!.currentTime,
     percent: e!.target!.currentTime / e!.target!.duration,
     duration: e!.target!.duration,
   });
+};
+
+const onPauseVideo = () => {
+  videoStates.isPlayVideo = false;
 };
 
 const checkEndedVideo = () => {
