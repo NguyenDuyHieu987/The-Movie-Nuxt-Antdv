@@ -29,10 +29,10 @@
         <NuxtLink
           :to="{
             path: isEpisodes
-              ? `/info/tv/${item?.id}/${item?.name
+              ? `/info-tv/${item?.id}/${item?.name
                   ?.replace(/\s/g, '+')
                   .toLowerCase()}`
-              : `/info/movie/${item?.id}/${item?.name
+              : `/info-movie/${item?.id}/${item?.name
                   ?.replace(/\s/g, '+')
                   .toLowerCase()}`,
           }"

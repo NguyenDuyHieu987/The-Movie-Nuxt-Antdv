@@ -3,10 +3,10 @@
     :to="{
       path:
         item?.media_type == 'movie'
-          ? `/info/movie/${item?.id}/${item?.name
+          ? `/info-movie/${item?.id}/${item?.name
               ?.replace(/\s/g, '+')
               .toLowerCase()}`
-          : `/info/tv/${item?.id}/${item?.name
+          : `/info-tv/${item?.id}/${item?.name
               ?.replace(/\s/g, '+')
               .toLowerCase()}`,
     }"
@@ -60,10 +60,10 @@
           :to="{
             path:
               item?.media_type == 'movie'
-                ? `/play/movie/${item?.id}/${item?.name
+                ? `/play-movie/${item?.id}/${item?.name
                     ?.replace(/\s/g, '+')
                     .toLowerCase()}`
-                : `/play/tv/${item?.id}/${item?.name
+                : `/play-tv/${item?.id}/${item?.name
                     ?.replace(/\s/g, '+')
                     .toLowerCase()}/tap-1`,
           }"
@@ -80,10 +80,10 @@
           :to="{
             path:
               item?.media_type == 'movie'
-                ? `/info/movie/${item?.id}/${item?.name
+                ? `/info-movie/${item?.id}/${item?.name
                     ?.replace(/\s/g, '+')
                     .toLowerCase()}`
-                : `/info/tv/${item?.id}/${item?.name
+                : `/info-tv/${item?.id}/${item?.name
                     ?.replace(/\s/g, '+')
                     .toLowerCase()}`,
           }"

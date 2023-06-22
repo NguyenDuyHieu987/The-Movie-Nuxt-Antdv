@@ -1,11 +1,14 @@
 <template>
   <NuxtLink
     :to="{
-      path: `/info/${type}/${item?.id}/${
-        item?.name
-          ? item?.name?.replace(/\s/g, '+').toLowerCase()
-          : item?.title?.replace(/\s/g, '+').toLowerCase()
-      }`,
+      path:
+        item?.type || item?.media_type == 'tv'
+          ? `/info-tv/${item?.id}/${item?.name
+              ?.replace(/\s/g, '+')
+              .toLowerCase()}`
+          : `/info-movie/${item?.id}/${item?.name
+              ?.replace(/\s/g, '+')
+              .toLowerCase()}`,
     }"
     class="movie-search-item"
   >

@@ -4,7 +4,7 @@
       <BackPage
         @onclick="
           navigateTo({
-            path: `/info/movie/${dataMovie?.id}/${dataMovie?.name
+            path: `/info-movie/${dataMovie?.id}/${dataMovie?.name
               .replaceAll(' ', '+')
               .toLowerCase()}
           `,
