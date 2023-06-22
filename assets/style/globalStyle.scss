@@ -9,7 +9,7 @@
   --background-admin-color: #181818;
   --loading-background: #101010;
 
-  --text-color: #ffffffe8;
+  --text-color: #f4f4f4;
   --text-color-gray: #a4a4a4;
   --text-color-gray1: #d3d3d3;
   --text-label-color: #777;
@@ -167,6 +167,15 @@ li,
 dl {
   margin: 0px;
   padding: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-color);
 }
 
 a {

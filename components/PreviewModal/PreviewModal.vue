@@ -33,7 +33,7 @@
                 <NuxtLink
                   v-if="isEpisodes"
                   :to="{
-                    path: `/play/tv/${item?.id}/${item?.name
+                    path: `/play-tv/${item?.id}/${item?.name
                       ?.replace(/\s/g, '+')
                       .toLowerCase()}/tap-1`,
                   }"
@@ -49,7 +49,7 @@
                 <NuxtLink
                   v-else
                   :to="{
-                    path: `/play/movie/${item?.id}/${item?.name
+                    path: `/play-movie/${item?.id}/${item?.name
                       ?.replace(/\s/g, '+')
                       .toLowerCase()}`,
                   }"

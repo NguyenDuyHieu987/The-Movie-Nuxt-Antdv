@@ -166,9 +166,11 @@
       user-select: none;
       background-color: var(--tooltip-background-color);
       // padding: 10px 18px;
-      padding: 7px 12px;
+      padding: 7px 15px;
       font-size: 1.4rem;
-      // clip-path: inset(0px round 3px);
+      line-height: 1.5;
+      border-radius: 2px;
+      // clip-path: inset(0px round 2px) !important;
     }
   }
 }

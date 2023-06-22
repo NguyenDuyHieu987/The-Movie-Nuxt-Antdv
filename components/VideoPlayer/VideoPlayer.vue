@@ -10,6 +10,7 @@
     }"
   >
     <div v-if="settingStates.switchBackgroud" class="overlay-backdrop">
+      <!-- <canvas ref="canvasOverlayBackdrop"> </canvas> -->
       <nuxt-img :src="backdrop" loading="lazy" />
     </div>
 
@@ -19,13 +20,15 @@
       id="video-player"
       ref="video"
       tabindex="-1"
+      autoplay
+      muted
       :poster="backdrop"
       @click="onClickVideo"
       @loadstart="onLoadStartVideo"
-      @loadeddata="loadedDataVideo"
-      @timeupdate="timeUpdateVideo"
-      @mousemove="mouseMoveVideo"
-      @mouseleave="mouseLeaveVideo"
+      @loadeddata="onLoadedDataVideo"
+      @timeupdate="onTimeUpdateVideo"
+      @mousemove="onMouseMoveVideo"
+      @mouseleave="onMouseLeaveVideo"
       @ended="onEndedVideo"
       @keydown="onKeyDownVideo"
       @waiting="onWaitingVideo"
@@ -42,7 +45,8 @@
         class="loading-video"
         v-show="videoStates.isLoading && !videoStates.isEndedVideo"
       >
-        <Icon name="line-md:loading-twotone-loop" />
+        <Icon name="icon-park-outline:loading-four" />
+        <!-- <Icon name="line-md:loading-twotone-loop" /> -->
         <!-- <Icon name="line-md:loading-loop" /> -->
       </div>
 
@@ -93,147 +97,150 @@
       tabindex="-1"
       @keydown="onKeyDownVideo"
     >
-      <div
-        class="timeline"
-        :class="{
-          active:
-            videoStates.isMouseMoveOverlayProgress ||
-            videoStates.isScrubbingProgressBar,
-        }"
-        ref="timeline"
-      >
-        <div class="timeline-container">
-          <div class="img-box">
-            <!-- <img class="preview-img" /> -->
-            <canvas class="canvas-preview-img" ref="canvasPreviewImg"> </canvas>
+      <div class="controls-container">
+        <div
+          class="timeline"
+          :class="{
+            active:
+              videoStates.isMouseMoveOverlayProgress ||
+              videoStates.isScrubbingProgressBar,
+          }"
+          ref="timeline"
+        >
+          <div class="timeline-container">
+            <div class="img-box">
+              <canvas class="canvas-preview-img" ref="canvasPreviewImg">
+              </canvas>
+              <!-- <nuxt-img class="preview-img" loading="lazy" /> -->
+            </div>
           </div>
+          <span class="timeline-indicator">{{ timelineUpdate }} </span>
         </div>
-        <span class="timeline-indicator">{{ timelineUpdate }} </span>
-      </div>
 
-      <div
-        class="overlay-progress"
-        @mousemove="onMouseMoveProgressBar"
-        @mousedown="onMouseDownProgressBar"
-        @mouseup="onMouseUpProgressBar"
-        @mouseleave="videoStates.isMouseMoveOverlayProgress = false"
-        ref="overlayProgress"
-      >
-        <div class="progress-bar" ref="progressBar"></div>
-      </div>
+        <div
+          class="overlay-progress"
+          @mousemove="onMouseMoveProgressBar"
+          @mousedown="onMouseDownProgressBar"
+          @mouseup="onMouseUpProgressBar"
+          @mouseleave="videoStates.isMouseMoveOverlayProgress = false"
+          ref="overlayProgress"
+        >
+          <div class="progress-bar" ref="progressBar"></div>
+        </div>
 
-      <div class="main-controls">
-        <div class="left">
-          <div class="play-pause">
-            <Icon
-              v-show="videoStates.isEndedVideo"
-              name="ic:baseline-replay"
-              class="replay"
-              @click="onClickReplayVideo"
-            />
-
-            <Icon
-              v-show="!videoStates.isPlayVideo && !videoStates.isEndedVideo"
-              name="ic:play-arrow"
-              class="play"
-              @click="onClickPlay"
-            />
-
-            <Icon
-              v-show="videoStates.isPlayVideo && !videoStates.isEndedVideo"
-              name="ic:baseline-pause"
-              class="play"
-              @click="onClickPause"
-            />
-          </div>
-
-          <div class="replay-forward">
-            <Icon
-              name="ic:baseline-replay-10"
-              class="replay"
-              @click="onClickRewind"
-            />
-
-            <!-- <Icon
-              name="ic:baseline-forward-10"
-              class="forward"
-              @click="onClickForward"
-            /> -->
-          </div>
-          <div class="volume">
-            <div>
+        <div class="main-controls">
+          <div class="left">
+            <div class="play-pause">
               <Icon
-                v-show="!videoStates.isVolumeOff && volume <= 30"
-                name="ic:baseline-volume-down"
-                class="fullscreen"
-                @click="onClickVolumeUp"
+                v-show="videoStates.isEndedVideo"
+                name="ic:baseline-replay"
+                class="replay"
+                @click="onClickReplayVideo"
               />
 
               <Icon
-                v-show="!videoStates.isVolumeOff && volume > 30"
-                name="ic:baseline-volume-up"
-                @click="onClickVolumeUp"
+                v-show="!videoStates.isPlayVideo && !videoStates.isEndedVideo"
+                name="ic:play-arrow"
+                class="play"
+                @click="onClickPlay"
               />
 
               <Icon
-                v-show="videoStates.isVolumeOff"
-                name="ic:baseline-volume-off"
-                @click="onClickVolumeOff"
+                v-show="videoStates.isPlayVideo && !videoStates.isEndedVideo"
+                name="ic:baseline-pause"
+                class="play"
+                @click="onClickPause"
               />
             </div>
-            <a-slider
-              class="volume-slider"
-              :class="{ muted: videoStates.isVolumeOff }"
-              v-model:value="volume"
-              :tooltipVisible="false"
-              @change="onChangeVolume"
-            />
+
+            <div class="replay-forward">
+              <Icon
+                name="ic:baseline-replay-10"
+                class="replay"
+                @click="onClickRewind"
+              />
+
+              <!-- <Icon
+                name="ic:baseline-forward-10"
+                class="forward"
+                @click="onClickForward"
+              /> -->
+            </div>
+            <div class="volume">
+              <div>
+                <Icon
+                  v-show="!videoStates.isVolumeOff && volume <= 30"
+                  name="ic:baseline-volume-down"
+                  class="fullscreen"
+                  @click="onClickVolumeUp"
+                />
+
+                <Icon
+                  v-show="!videoStates.isVolumeOff && volume > 30"
+                  name="ic:baseline-volume-up"
+                  @click="onClickVolumeUp"
+                />
+
+                <Icon
+                  v-show="videoStates.isVolumeOff"
+                  name="ic:baseline-volume-off"
+                  @click="onClickVolumeOff"
+                />
+              </div>
+              <a-slider
+                class="volume-slider"
+                :class="{ muted: videoStates.isVolumeOff }"
+                v-model:value="volume"
+                :tooltipVisible="false"
+                @change="onChangeVolume"
+              />
+            </div>
+
+            <div class="timeupdate-duration">
+              <span class="timeupdate">{{ timeUpdate }} </span>
+              <span class="separate"> / </span>
+              <span class="duration">{{ duration }} </span>
+            </div>
           </div>
 
-          <div class="timeupdate-duration">
-            <span class="timeupdate">{{ timeUpdate }} </span>
-            <span class="separate"> / </span>
-            <span class="duration">{{ duration }} </span>
-          </div>
-        </div>
+          <div class="right">
+            <div class="rewind-forward">
+              <Icon name="ic:baseline-fast-rewind" @click="onClickRewind" />
+              <Icon name="ic:baseline-fast-forward" @click="onClickForward" />
+            </div>
 
-        <div class="right">
-          <div class="rewind-forward">
-            <Icon name="ic:baseline-fast-rewind" @click="onClickRewind" />
-            <Icon name="ic:baseline-fast-forward" @click="onClickForward" />
-          </div>
+            <div class="setting" :class="{ active: settingStates.enable }">
+              <Icon
+                name="ic:baseline-settings"
+                class="setting"
+                @click="
+                  settingStates.enable = !settingStates.enable;
+                  onCloseSettings();
+                "
+              />
+            </div>
 
-          <div class="setting" :class="{ active: settingStates.enable }">
-            <Icon
-              name="ic:baseline-settings"
-              class="setting"
-              @click="
-                settingStates.enable = !settingStates.enable;
-                onCloseSettings();
-              "
-            />
-          </div>
+            <div class="picture-in-picture">
+              <Icon
+                name="ic:baseline-picture-in-picture-alt"
+                @click="onClickPictureInPicture"
+              />
+            </div>
 
-          <div class="picture-in-picture">
-            <Icon
-              name="ic:baseline-picture-in-picture-alt"
-              @click="onClickPictureInPicture"
-            />
-          </div>
+            <div class="fullscreen-exit">
+              <Icon
+                v-show="!videoStates.isFullScreen"
+                name="ic:baseline-fullscreen"
+                class="fullscreen"
+                @click="onClickFullScreen"
+              />
 
-          <div class="fullscreen-exit">
-            <Icon
-              v-show="!videoStates.isFullScreen"
-              name="ic:baseline-fullscreen"
-              class="fullscreen"
-              @click="onClickFullScreen"
-            />
-
-            <Icon
-              v-show="videoStates.isFullScreen"
-              name="ic:baseline-fullscreen-exit"
-              @click="onClickFullScreenExit"
-            />
+              <Icon
+                v-show="videoStates.isFullScreen"
+                name="ic:baseline-fullscreen-exit"
+                @click="onClickFullScreenExit"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -400,6 +407,7 @@ const videoPlayer = ref();
 const video = ref();
 const videoTemp = ref();
 const overlayProgress = ref();
+const canvasOverlayBackdrop = ref();
 const progressBar = ref();
 const timeline = ref();
 const canvasPreviewImg = ref();
@@ -480,7 +488,9 @@ const setBlobSrcVideo = async (value: string) => {
     })
     .finally(() => {
       videoStates.isLoading = false;
-      video.value.play();
+      videoStates.isPlayVideo = true;
+      // video.value.play();
+      video.value.muted = false;
     });
 };
 
@@ -533,7 +543,7 @@ watch(props, (newVal, oldVal) => {
   setBlobSrcVideo(newVal.videoUrl);
   video.value.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
-  video.value.load();
+  // video.value.load();
 
   // video.value.play();
   // if (!videoStates.isPlayVideo) {
@@ -590,12 +600,12 @@ const onLoadStartVideo = () => {
   progressBar.value.style.setProperty('--progress-width', 0);
 };
 
-const loadedDataVideo = () => {
+const onLoadedDataVideo = () => {
   videoStates.isLoaded = true;
   duration.value = formatDuration(video.value.duration);
 };
 
-const timeUpdateVideo = (e: any) => {
+const onTimeUpdateVideo = (e: any) => {
   timeUpdate.value = formatDuration(e.target.currentTime);
   const percent = e.target.currentTime / e.target.duration;
   progressBar.value.style.setProperty('--progress-width', percent);
@@ -605,6 +615,19 @@ const timeUpdateVideo = (e: any) => {
     percent: video.value?.currentTime / video.value?.duration,
     duration: video.value?.duration,
   });
+
+  // set source overlay backdrop
+  // const ctx = canvasOverlayBackdrop.value.getContext('2d');
+
+  // ctx.drawImage(video.value, 0, 0);
+
+  // canvasOverlayBackdrop.value.toBlob((blob: any) => {
+  //   const overlayBackdrop = videoPlayer.value.querySelector(
+  //     '.overlay-backdrop img'
+  //   ) as HTMLImageElement;
+
+  //   overlayBackdrop.src = URL.createObjectURL(blob);
+  // });
 };
 
 const onWaitingVideo = (e: any) => {
@@ -615,13 +638,13 @@ const onProgressVideo = (e: any) => {
   // console.log(e);
 };
 
-const mouseLeaveVideo = () => {
+const onMouseLeaveVideo = () => {
   clearTimeout(interval.value);
 
   videoStates.isHideControls = false;
 };
 
-const mouseMoveVideo = () => {
+const onMouseMoveVideo = () => {
   if (videoStates.isPlayVideo && !videoStates.isEndedVideo) {
     videoStates.isHideControls = false;
     clearTimeout(interval.value);
@@ -637,7 +660,7 @@ const onPLayingVideo = () => {
 };
 
 const onPlayVideo = (e: any) => {
-  videoStates.isPlayVideo = true;
+  // videoStates.isPlayVideo = true;
   emits('onPlay', {
     seconds: e!.target!.currentTime,
     percent: e!.target!.currentTime / e!.target!.duration,
@@ -646,7 +669,7 @@ const onPlayVideo = (e: any) => {
 };
 
 const onPauseVideo = () => {
-  videoStates.isPlayVideo = false;
+  // videoStates.isPlayVideo = false;
 };
 
 const checkEndedVideo = () => {
@@ -735,6 +758,10 @@ const rewindVideo = (value: number) => {
   const percent = video.value.currentTime / video.value.duration;
   progressBar.value.style.setProperty('--progress-width', percent);
 
+  if (videoStates.isPlayVideo) {
+    video.value.play();
+  }
+
   new Promise((resolve, reject) => {
     resolve((videoStates.isActiveControlsAnimation = false));
   }).then(() => {
@@ -751,21 +778,23 @@ const onClickRewind = () => {
 };
 
 const forwardVideo = (value: number) => {
-  video.value.currentTime += value;
-  checkEndedVideo();
+  if (!videoStates.isEndedVideo) {
+    video.value.currentTime += value;
+    checkEndedVideo();
 
-  const percent = video.value.currentTime / video.value.duration;
-  progressBar.value.style.setProperty('--progress-width', percent);
+    const percent = video.value.currentTime / video.value.duration;
+    progressBar.value.style.setProperty('--progress-width', percent);
 
-  new Promise((resolve, reject) => {
-    resolve((videoStates.isActiveControlsAnimation = false));
-  }).then(() => {
-    videoStates.isActiveControlsAnimation = true;
-  });
+    new Promise((resolve, reject) => {
+      resolve((videoStates.isActiveControlsAnimation = false));
+    }).then(() => {
+      videoStates.isActiveControlsAnimation = true;
+    });
 
-  videoStates.isRewind.enable = true;
-  videoStates.isRewind.replay = false;
-  videoStates.isRewind.forward = true;
+    videoStates.isRewind.enable = true;
+    videoStates.isRewind.replay = false;
+    videoStates.isRewind.forward = true;
+  }
 };
 
 const onClickForward = () => {
@@ -828,10 +857,10 @@ const drawTimeLine = (e: any) => {
   ctx.drawImage(videoTemp.value, 0, 0, 160, 100);
 
   // canvasPreviewImg.value.toBlob((blob: any) => {
-  //   const previewImg = timeline.value.querySelector(
-  //     '.preview-img'
-  //   ) as HTMLImageElement;
-  //   previewImg.src = URL.createObjectURL(blob);
+  // const previewImg = timeline.value.querySelector(
+  //   '.preview-img'
+  // ) as HTMLImageElement;
+  // previewImg.src = URL.createObjectURL(blob);
   // });
 
   // const img_url = canvasPreviewImg.value.toDataURL('image/jpeg');

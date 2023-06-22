@@ -31,7 +31,7 @@
         <NuxtLink
           v-if="item?.episode_number === numberOfEpisodes"
           :to="{
-            path: `/play/tv/${dataMovie?.id}/${dataMovie?.name
+            path: `/play-tv/${dataMovie?.id}/${dataMovie?.name
               ?.replace(/\s/g, '+')
               .toLowerCase()}/tap-${item?.episode_number}`,
           }"
@@ -41,7 +41,7 @@
         <NuxtLink
           v-else-if="item?.episode_number !== numberOfEpisodes"
           :to="{
-            path: `/play/tv/${dataMovie?.id}/${dataMovie?.name
+            path: `/play-tv/${dataMovie?.id}/${dataMovie?.name
               ?.replace(/\s/g, '+')
               .toLowerCase()}/tap-${item?.episode_number}`,
           }"

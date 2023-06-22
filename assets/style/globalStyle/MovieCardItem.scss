@@ -1,8 +1,8 @@
 .movie-card-item {
-  color: #fff;
   cursor: pointer;
   position: relative;
   display: block;
+  color: var(--text-color);
 
   .el-skeleton__item .el-skeleton__text {
     padding: 7px 0px;
@@ -51,7 +51,7 @@
   }
 
   .duration-episode-box {
-    color: #fff;
+    color: var(--text-color);
     background-image: linear-gradient(
       to right,
       var(--app-background-color1),
@@ -79,7 +79,7 @@
   }
 
   .release-date-box {
-    color: #fff;
+    color: var(--text-color);
     background-image: linear-gradient(
       to right,
       var(--app-background-color3),
@@ -109,7 +109,7 @@
   .info {
     padding: 7px 5px;
     padding-top: 15px;
-    color: #d0d0d0;
+    color: var(--text-color);
     font-size: 0.9vw;
     position: absolute;
     left: 0;
@@ -152,8 +152,9 @@
 
         &:not(:first-child) {
           &::before {
-            color: #d0d0d0;
             content: '\2022';
+            // color: #d0d0d0;
+            color: var(--text-color);
             display: inline-block;
             padding-right: 0.4vw;
           }

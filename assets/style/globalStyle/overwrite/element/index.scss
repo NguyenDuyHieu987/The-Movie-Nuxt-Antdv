@@ -76,11 +76,14 @@
 .el-popper.el-tooltip {
   background-color: var(--tooltip-background-color) !important;
   border: none !important;
-  padding: 10px 18px;
+  // padding: 10px 18px;
+  padding: 7px 15px;
   box-shadow: var(--box-shadow-small);
   width: max-content;
   max-width: 250px;
   transition: opacity 0.15s ease-in-out;
+  line-height: 1.5;
+  border-radius: 2px;
 
   & > span {
     font-size: 1.4rem;
