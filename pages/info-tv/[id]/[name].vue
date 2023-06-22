@@ -57,7 +57,7 @@
                   <div class="left">
                     <NuxtLink
                       :to="{
-                        path: `/play/tv/${dataMovie?.id}/${dataMovie?.name
+                        path: `/play-tv/${dataMovie?.id}/${dataMovie?.name
                           ?.replace(/\s/g, '+')
                           .toLowerCase()}/tap-1`,
                       }"
