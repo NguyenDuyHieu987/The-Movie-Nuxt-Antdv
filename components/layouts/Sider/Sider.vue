@@ -8,7 +8,7 @@
     <a-layout-header class="sider-header">
       <div style="display: flex; justify-content: center; align-items: center">
         <div class="user-image-container" v-if="!collapsed && isLogin">
-          <nuxt-img
+          <img
             class="avatar"
             :src="
               !isNaN(+userAccount?.avatar)

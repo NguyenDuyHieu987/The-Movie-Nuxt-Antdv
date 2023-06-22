@@ -447,6 +447,7 @@
 .el-popper.popover-search {
   background-color: var(--loading-background) !important;
   box-shadow: var(--box-shadow-medium);
+  border: none;
 
   .search-poppover {
     .ant-input-group {
