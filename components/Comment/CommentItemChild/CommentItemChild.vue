@@ -34,8 +34,8 @@
             class="reply"
             type="text"
             @click="isShowFormComment = !isShowFormComment"
+            :disabled="userAccount?.id == item?.user_id"
           >
-            <!-- :disabled="userAccount?.id == item?.user_id" -->
             Phản hồi
           </a-button>
         </div>
@@ -54,17 +54,64 @@
         />
       </div>
     </div>
+
+    <div class="more-actions">
+      <a-dropdown
+        v-if="userAccount?.id == item?.user_id"
+        :trigger="['click']"
+        placement="bottomRight"
+        overlayClassName="dropdown-item-viewmore"
+        class="dropdown-item-viewmore"
+      >
+        <el-button
+          circle
+          shape="circle"
+          size="large"
+          class="more-actions-btn"
+          text
+        >
+          <template #icon>
+            <Icon name="fa6-solid:ellipsis-vertical" />
+          </template>
+        </el-button>
+
+        <template #overlay>
+          <a-menu>
+            <!-- <div class="main-action"></div>
+            <hr /> -->
+
+            <div class="danger-zone">
+              <a-menu-item
+                key="remove-comment"
+                class="remove-item"
+                @click="handleRemoveComment"
+              >
+                <template #icon>
+                  <font-awesome-icon icon="fa-solid fa-trash-can" />
+                </template>
+                <span>Xóa bình luận</span>
+              </a-menu-item>
+            </div>
+          </a-menu>
+        </template>
+      </a-dropdown>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
+import { DeleteComment } from '~/services/comment';
 import FormComment from '@/components/Comment/FormComment/FormComment.vue';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
+import _ from 'lodash';
+import { ElNotification } from 'element-plus';
 
 const props = defineProps<{
   item: any;
   movieId: string;
+  parent: any;
   movieType: string;
 }>();
 
@@ -73,6 +120,7 @@ const emits = defineEmits<{
 }>();
 
 const store = useStore();
+const { userAccount } = storeToRefs<any>(store);
 const listReplies = defineModel<any[]>('listReplies');
 const isShowFormComment = ref<boolean>(false);
 
@@ -80,6 +128,44 @@ onBeforeMount(() => {});
 
 const handleSuccessCommentChild = (data: any) => {
   emits('onSuccessCommentChild', data);
+};
+
+const handleRemoveComment = () => {
+  DeleteComment({
+    id: props.item?.id,
+    movieId: props.movieId,
+    parentId: props.parent?.id,
+    movieType: props.movieType,
+    commentType: 'children',
+  })
+    .then((response) => {
+      ElNotification({
+        title: 'Thành công!',
+        message: 'Xóa bình luận thành công.',
+        type: 'success',
+        position: 'bottom-right',
+        duration: 3000,
+        showClose: false,
+      });
+
+      if (response?.success) {
+        listReplies.value = _.reject(listReplies.value, (x) => {
+          return x.id === props.item?.id;
+        });
+      }
+    })
+    .catch((e) => {
+      ElNotification({
+        title: 'Thất bại!',
+        message: 'Xóa bình luận thất bại',
+        type: 'error',
+        position: 'bottom-right',
+        duration: 3000,
+        showClose: false,
+      });
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
 };
 </script>
 

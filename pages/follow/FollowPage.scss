@@ -202,7 +202,8 @@
               justify-content: center;
               transition: all 0.15s;
               opacity: 0;
-              color: #fff;
+              color: var(--text-color);
+
               gap: 10px;
               font-size: 1.4rem;
 
@@ -229,12 +230,12 @@
             gap: 13px;
             position: relative;
             width: 100%;
-            color: #fff;
+            color: var(--text-color);
 
             .title {
               margin-bottom: 13px;
               max-width: 90%;
-              color: #fff;
+              color: var(--text-color);
             }
 
             .user-info {
@@ -260,7 +261,8 @@
                 position: absolute;
                 right: -10px;
                 top: 0px;
-                color: #fff;
+                color: var(--text-color);
+
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -314,7 +316,7 @@
               padding: 6px 30px;
               background-color: #000000;
               transition: all 0.15s;
-              color: #fff;
+              color: var(--text-color);
 
               &:hover {
                 color: #b90016;
@@ -337,7 +339,7 @@
               padding-left: 2px;
 
               .ant-input-prefix {
-                color: #fff;
+                color: var(--text-color);
               }
 
               .ant-input {
@@ -511,7 +513,8 @@
           justify-content: center;
           transition: all 0.15s;
           opacity: 0;
-          color: #fff;
+          color: var(--text-color);
+
           gap: 10px;
           font-size: 1.4rem;
 
@@ -548,11 +551,11 @@
       .info {
         margin-top: 17px;
         gap: 13px;
-        color: #fff;
+        color: var(--text-color);
 
         .title {
           margin-bottom: 13px;
-          color: #fff;
+          color: var(--text-color);
         }
 
         .user-info {
@@ -567,7 +570,8 @@
             position: absolute;
             right: -17px;
             top: 0px;
-            color: #fff;
+            color: var(--text-color);
+
             display: flex;
             justify-content: center;
             align-items: center;
@@ -610,7 +614,7 @@
           padding-left: 2px;
 
           .ant-input-prefix {
-            color: #fff;
+            color: var(--text-color);
           }
 
           .ant-input {

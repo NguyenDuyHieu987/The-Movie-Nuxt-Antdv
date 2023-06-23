@@ -1,96 +1,191 @@
 .comment-item {
+  position: relative;
   display: flex;
-  gap: 10px;
+  flex-direction: row;
 
   & + .comment-item {
     margin-top: 10px;
   }
 
-  & > .author {
-    .author-image {
-      height: 31px;
-      width: 31px;
-      border-radius: 50%;
-      overflow: hidden;
+  .comment-item-container {
+    display: flex;
+    width: 100%;
+    gap: 10px;
 
-      img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
+    & > .author {
+      .author-image {
+        height: 31px;
+        width: 31px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    & > .right-side {
+      flex-grow: 1;
+
+      .content-comment-box {
+        display: flex;
+        flex-direction: row;
+
+        &:hover {
+          .more-actions {
+            .el-button {
+              transition: all 0s;
+              opacity: 1;
+            }
+          }
+        }
+
+        .main-content {
+          width: 100%;
+
+          .top {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            gap: 10px;
+
+            .created-at {
+              font-size: 1.3rem;
+              color: var(--text-color-gray);
+            }
+          }
+
+          .content {
+            font-size: 1.4rem;
+            margin-top: 3px;
+          }
+
+          .actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .like-dislike {
+              svg + svg {
+                margin-left: 13px;
+              }
+
+              svg {
+                cursor: pointer;
+                font-size: 2rem;
+                transition: all 0.15s;
+
+                &:active {
+                  opacity: 0.8;
+                }
+              }
+            }
+
+            .ant-btn {
+              font-size: 1.3rem;
+              transition: all 0.15s;
+
+              &:active {
+                opacity: 0.8;
+              }
+            }
+          }
+        }
+
+        .more-actions {
+          svg {
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.15s;
+
+            &:active {
+              opacity: 0.8;
+            }
+          }
+
+          .el-button {
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border: none;
+            transition: all 0.15s;
+            opacity: 0;
+
+            &:hover,
+            &:focus {
+              border: 1px solid var(--border-regular-light);
+              background: transparent !important;
+            }
+
+            &:focus {
+              opacity: 1;
+            }
+
+            &:active {
+              border: 1px solid var(--border-regular-light);
+            }
+          }
+        }
+      }
+
+      .comment-form {
+        margin-top: 5px;
+      }
+
+      .replies {
+        margin-top: 3px;
+
+        & > .ant-btn.reply {
+          display: flex;
+          align-items: center;
+          height: auto;
+          padding: 0px;
+          color: var(--link-text-color);
+
+          svg.caret {
+            margin-right: 5px;
+            font-size: 2.8rem;
+
+            &.active {
+              transform: rotate(180deg);
+            }
+          }
+
+          &:active {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ant-dropdown.dropdown-item-viewmore {
+  .ant-dropdown-menu {
+    .main-action {
+    }
+
+    hr {
+    }
+
+    .danger-zone {
+      .ant-dropdown-menu-item {
+        &.remove-item {
+          color: #b90016;
+          span,
+          a {
+            color: #b90016;
+          }
+        }
       }
     }
   }
 
-  & > .right-side {
-    flex-grow: 1;
-
-    .top {
-      display: flex;
-      font-size: 1.4rem;
-      gap: 10px;
-
-      .created-at {
-        font-size: 1.3rem;
-        color: var(--text-color-gray);
-      }
-    }
-
-    .content {
-      font-size: 1.4rem;
-      margin-top: 3px;
-    }
-
-    & > .actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      .like-dislike {
-        svg + svg {
-          margin-left: 13px;
-        }
-
-        svg {
-          font-size: 2rem;
-        }
-      }
-
-      .ant-btn {
-        transition: all 0.15s;
-
-        &:active {
-          opacity: 0.8;
-        }
-      }
-    }
-
-    .comment-form {
-      margin-top: 5px;
-    }
-
-    .replies {
-      margin-top: 3px;
-
-      & > .ant-btn.reply {
-        display: flex;
-        align-items: center;
-        height: auto;
-        padding: 0px;
-        color: var(--link-text-color);
-
-        svg.caret {
-          margin-right: 5px;
-          font-size: 2.8rem;
-
-          &.active {
-            transform: rotate(180deg);
-          }
-        }
-
-        &:active {
-          opacity: 0.8;
-        }
-      }
-    }
+  .ant-dropdown-menu-item {
   }
 }

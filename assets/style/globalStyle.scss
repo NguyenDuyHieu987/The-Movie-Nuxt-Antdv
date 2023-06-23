@@ -482,7 +482,7 @@ button,
 
     span,
     a {
-      color: #fff;
+      color: var(--text-color);
     }
 
     svg,
@@ -554,7 +554,7 @@ button,
 
     span,
     a {
-      color: #fff;
+      color: var(--text-color);
     }
   }
 }

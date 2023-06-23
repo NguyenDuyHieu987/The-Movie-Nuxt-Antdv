@@ -30,10 +30,7 @@
         :autoSize="{ minRows: 1, maxRows: 4 }"
         placeholder="Viết bình luận..."
         @change="handleChange"
-        @focus="
-          isFocus = true;
-          isShowActions = true;
-        "
+        @focus="handleFocus"
         @blur="isFocus = false"
       />
 
@@ -110,6 +107,16 @@ onBeforeMount(() => {
 
 const handleChange = (e: any) => {
   disabledButton.value = content.value.length == 0;
+};
+
+const handleFocus = () => {
+  if (!store.$state?.isLogin) {
+    store.$state.openRequireAuthDialog = true;
+    return;
+  }
+
+  isFocus.value = true;
+  isShowActions.value = true;
 };
 
 const onSubmit = () => {
