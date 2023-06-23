@@ -1,19 +1,22 @@
 <template>
   <div class="comment" id="comment">
-    <h2>Bình luận</h2>
+    <h2 class="gradient-title-default">Bình luận</h2>
     <div class="comment-body">
-      <div
+      <!-- <div
         class="fb-comments"
         :data-href="urlComment"
         data-width="100%"
         data-numposts="10"
-      ></div>
+      ></div> -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ urlComment: string }>();
+const props = defineProps<{
+  dataMovie: any;
+  urlComment: string;
+}>();
 </script>
 
 <style lang="scss" src="./Comment.scss"></style>

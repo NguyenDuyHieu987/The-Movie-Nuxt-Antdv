@@ -5,12 +5,14 @@
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
+    gap: 10px;
 
-    .el-button {
-      height: 36px;
+    button {
       background-color: #006999;
       color: #fff;
-      min-width: 91px;
+      padding: 6px 15px;
+      height: auto;
+      min-width: 90px;
 
       &:hover {
         background-color: #006999bb;
@@ -44,45 +46,42 @@
 
       li {
         display: inline-block;
+        min-width: 70px;
+        // max-width: 75px;
         margin-top: 7px;
         margin-right: 7px;
+        text-align: center;
+        padding: 8px 23px;
+        color: var(--text-color);
+        border-radius: 3px;
+        user-select: none;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        background: linear-gradient(to right, #2f2f2f, #101010);
+        // background-size: 200% 100%;
+
+        // background-image: linear-gradient(
+        //   to right,
+        //   #006a88,
+        //   var(--app-background-color2),
+        //   var(--app-background-color1)
+        // );
+        // background-size: 200% 100%;
+
+        // &:hover {
+        //   background-size: 200% 100%;
+        //   // background-position: -65px center;
+        //   background-position: 100% center;
+        // }
 
         span {
-          display: inline-block;
-          min-width: 70px;
-          // max-width: 75px;
-          text-align: center;
-          padding: 8px 23px;
-          color: var(--text-color);
-          border-radius: 3px;
-          user-select: none;
-          cursor: pointer;
-          transition: all 0.3s;
-
-          background: linear-gradient(to right, #2f2f2f, #101010);
-          // background-size: 200% 100%;
-
-          // background-image: linear-gradient(
-          //   to right,
-          //   #006a88,
-          //   var(--app-background-color2),
-          //   var(--app-background-color1)
-          // );
-          // background-size: 200% 100%;
-
-          // &:hover {
-          //   background-size: 200% 100%;
-          //   // background-position: -65px center;
-          //   background-position: 100% center;
-          // }
         }
 
         &.active {
-          span {
-            background: var(--app-background-color);
-            // transition: all 0.7s ease;
-            // animation: episode-fade-out 2s infinite linear;
-          }
+          background: var(--app-background-color);
+          // transition: all 0.7s ease;
+          // animation: episode-fade-out 2s infinite linear;
 
           @keyframes episode-fade-out {
             0% {

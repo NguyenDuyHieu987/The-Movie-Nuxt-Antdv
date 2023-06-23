@@ -1,16 +1,16 @@
 <template>
   <div class="list-episodes">
     <!-- <div class="control-episodes">
-      <el-button
-        type="primary"
+      <a-button
+        type="text"
         plain
         :disabled="currentEpisode == 1"
         @click="handleChangeEpisode(--currentEpisode)"
       >
         Tập trước
-      </el-button>
-      <el-button
-        type="primary"
+      </a-button>
+      <a-button
+        type="text"
         plain
         :disabled="
           dataMovie?.last_episode_to_air?.season_number == selectedSeason
@@ -20,7 +20,7 @@
         @click="handleChangeEpisode(++currentEpisode)"
       >
         Tập tiếp
-      </el-button>
+      </a-button>
     </div> -->
 
     <h3 class="movie-title">
@@ -90,7 +90,10 @@
               :index="index"
               :key="item.id"
               :class="{ active: currentEpisode == item?.episode_number }"
-              @click="handleChangeEpisode(item?.episode_number)"
+              @click="
+                handleChangeEpisode(item?.episode_number);
+                scrollToTop();
+              "
             >
               <span>
                 {{
@@ -176,21 +179,24 @@ const handleChangeSeason = (value: number) => {
   selectedSeason.value = value;
 };
 
-const handleChangeEpisode = (value: number) => {
-  currentEpisode.value = value;
-  emitUrlCode(dataSeason.value);
-  router.replace({
-    path: route.path,
-    params: {
-      tap: 'tap-' + value,
-    },
-  });
-
+const scrollToTop = () => {
   window.scrollTo({
     top: 0,
     left: 0,
     behavior: 'smooth',
   });
+};
+
+const handleChangeEpisode = (value: number) => {
+  currentEpisode.value = value;
+  emitUrlCode(dataSeason.value);
+
+  // router.replace({
+  //   path: route.path,
+  //   params: {
+  //     tap: 'tap-' + value,
+  //   },
+  // });
 };
 
 watch(selectedSeason, async () => {

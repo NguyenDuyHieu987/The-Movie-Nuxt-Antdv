@@ -213,7 +213,7 @@
         <div class="related-content">
           <MovieRelated :movieId="dataMovie?.id" type="tv" />
 
-          <Comment :urlComment="urlComment" />
+          <Comment :dataMovie="dataMovie" :urlComment="urlComment" />
         </div>
       </div>
     </div>

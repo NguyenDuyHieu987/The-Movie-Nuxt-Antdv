@@ -267,7 +267,7 @@
           />
         </div>
 
-        <Comment :urlComment="urlComment" />
+        <Comment :dataMovie="dataMovie" :urlComment="urlComment" />
       </div>
     </div>
   </div>

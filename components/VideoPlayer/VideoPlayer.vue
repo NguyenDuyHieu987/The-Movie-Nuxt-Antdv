@@ -26,6 +26,7 @@
       @click="onClickVideo"
       @loadstart="onLoadStartVideo"
       @loadeddata="onLoadedDataVideo"
+      @canplay="onCanPlayVideo"
       @timeupdate="onTimeUpdateVideo"
       @mousemove="onMouseMoveVideo"
       @mouseleave="onMouseLeaveVideo"
@@ -43,7 +44,12 @@
     <div class="float-center">
       <div
         class="loading-video"
-        v-show="videoStates.isLoading && !videoStates.isEndedVideo"
+        v-show="
+          videoStates.isLoading &&
+          !videoStates.isEndedVideo &&
+          !videoStates.isRewind.enable &&
+          !videoStates.isLoaded
+        "
       >
         <Icon name="icon-park-outline:loading-four" />
         <!-- <Icon name="line-md:loading-twotone-loop" /> -->
@@ -491,6 +497,7 @@ const setBlobSrcVideo = async (value: string) => {
       videoStates.isPlayVideo = true;
       // video.value.play();
       video.value.muted = false;
+      video.value.load();
     });
 };
 
@@ -596,11 +603,17 @@ const formatDuration = (time: number) => {
 };
 
 const onLoadStartVideo = () => {
+  // console.log('load start video');
   video.value.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
 };
 
+const onCanPlayVideo = () => {
+  // console.log('can play video');
+};
+
 const onLoadedDataVideo = () => {
+  // console.log('loaded start video');
   videoStates.isLoaded = true;
   duration.value = formatDuration(video.value.duration);
 };
@@ -630,12 +643,9 @@ const onTimeUpdateVideo = (e: any) => {
   // });
 };
 
-const onWaitingVideo = (e: any) => {
-  videoStates.isLoading = true;
-};
-
 const onProgressVideo = (e: any) => {
   // console.log(e);
+  videoStates.isLoading = true;
 };
 
 const onMouseLeaveVideo = () => {
@@ -653,6 +663,10 @@ const onMouseMoveVideo = () => {
       videoStates.isHideControls = true;
     }, 5000);
   }
+};
+
+const onWaitingVideo = (e: any) => {
+  videoStates.isLoading = true;
 };
 
 const onPLayingVideo = () => {
