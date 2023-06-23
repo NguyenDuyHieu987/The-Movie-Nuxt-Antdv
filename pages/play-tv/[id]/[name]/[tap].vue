@@ -227,7 +227,7 @@ import { getVideoTelevisons } from '~/services/video';
 import { getTvById } from '~/services/tv';
 import { getItemList } from '~/services/list';
 import { getItemHistory, add_update_History } from '~/services/history';
-import { UpdateViewTv } from '~/services/tv';
+import { UpdateView } from '~/services/updateView';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '@/components/BackPage/BackPage.vue';
 import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.vue';
@@ -403,7 +403,7 @@ const onTimeUpdateVideoPlayer = (e: any) => {
 
       if (seconds.value > e.duration / 2) {
         if (isUpdateView.value == true) {
-          UpdateViewTv(route.params?.id);
+          UpdateView(route.params?.id, 'tv');
           isUpdateView.value = false;
         }
       }

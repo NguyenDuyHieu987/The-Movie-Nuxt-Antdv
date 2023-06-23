@@ -512,16 +512,18 @@ onMounted(() => {
   window.onmouseup = () => {
     videoStates.isScrubbingProgressBar = false;
 
-    if (
-      video.value.ended ||
-      videoStates.isEndedVideo ||
-      videoStates.isLoading
-    ) {
-      return;
-    }
+    if (videoStates.isLoaded) {
+      if (
+        video.value.ended ||
+        videoStates.isEndedVideo ||
+        videoStates.isLoading
+      ) {
+        return;
+      }
 
-    if (videoStates.isPlayVideo) {
-      video.value.play();
+      if (videoStates.isPlayVideo) {
+        video.value.play();
+      }
     }
   };
 

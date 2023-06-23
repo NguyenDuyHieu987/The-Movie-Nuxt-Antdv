@@ -204,7 +204,7 @@ import { getVideoFeature } from '~/services/video';
 import { getMovieById } from '~/services/movie';
 import { getItemList } from '~/services/list';
 import { getItemHistory, add_update_History } from '~/services/history';
-import { UpdateViewMovie } from '~/services/movie';
+import { UpdateView } from '~/services/updateView';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '@/components/BackPage/BackPage.vue';
 import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.vue';
@@ -357,7 +357,7 @@ const onTimeUpdateVideoPlayer = (e: any) => {
 
       if (seconds.value > e.duration / 2) {
         if (isUpdateView.value == true) {
-          UpdateViewMovie(route.params?.id);
+          UpdateView(route.params?.id, 'movie');
           isUpdateView.value = false;
         }
       }

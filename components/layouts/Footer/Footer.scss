@@ -15,7 +15,6 @@
   text-align: center;
   flex-direction: column;
   z-index: 0;
-  color: #fff;
   font-size: 1.4rem;
 
   .footer-container {
@@ -23,7 +22,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    color: #fff;
 
     .logo {
       a {
@@ -53,23 +51,12 @@
       }
 
       a {
-        color: #fff;
+        color: var(--text-color);
         transition: all 0.25s;
       }
 
+      .email,
       .facebook {
-        color: #d4d4d4;
-
-        &:hover {
-          color: #fff;
-        }
-
-        &:active {
-          opacity: 0.8;
-        }
-      }
-
-      .email {
         color: #d4d4d4;
 
         &:hover {

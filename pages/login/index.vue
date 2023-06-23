@@ -5,6 +5,7 @@
         :model="formState"
         name="login-form"
         class="login-form"
+        @submit="handleSubmit"
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
@@ -74,7 +75,6 @@
             html-type="submit"
             class="login-form-button"
             size="large"
-            @click="handleSubmit"
             :loading="loadingLogin"
             style="background: transparent"
           >
@@ -87,7 +87,7 @@
         </a-form-item>
 
         <div class="bottom-form">
-          <p style="color: #fff">Hoặc</p>
+          <p>Hoặc</p>
           <NuxtLink :to="{ name: 'signup' }">Dăng ký ngay!</NuxtLink>
         </div>
 
@@ -177,6 +177,7 @@ useSeoMeta({
 });
 
 const store = useStore();
+const router: any = useRouter();
 const route = useRoute();
 const utils = useUtils();
 const loadingLogin = ref<boolean>(false);
@@ -188,6 +189,11 @@ const formState = reactive<any>({
   remember: false,
 });
 const tokenClient = ref<any>({});
+const urlBack = computed(() =>
+  ['/signup', '/oauth'].includes(router.options.history.state.back)
+    ? '/'
+    : router.options.history.state.back
+);
 
 const reset = () => {
   formState.username = '';
@@ -231,7 +237,9 @@ const handleSubmit = () => {
           30
         );
 
-        navigateTo({ path: '/' });
+        // navigateTo({ path: '/' });
+
+        navigateTo({ path: urlBack.value });
 
         reset();
       } else if (response?.isNotExist == true) {
@@ -315,7 +323,8 @@ const handleFacebookLogin = async () => {
           30
         );
 
-        navigateTo({ path: '/' });
+        // navigateTo({ path: '/' });
+        navigateTo({ path: urlBack.value });
       } else if (response.isLogin == true) {
         store.$state.userAccount = response?.result;
         store.$state.isLogin = true;
@@ -326,7 +335,8 @@ const handleFacebookLogin = async () => {
           30
         );
 
-        navigateTo({ path: '/' });
+        // navigateTo({ path: '/' });
+        navigateTo({ path: urlBack.value });
       }
     })
     .catch((e) => {
@@ -413,7 +423,8 @@ const handleGooglePopupCallback = (authResponse: any) => {
             30
           );
 
-          navigateTo({ path: '/' });
+          // navigateTo({ path: '/' });
+          navigateTo({ path: urlBack.value });
         } else if (response.isLogin == true) {
           store.$state.userAccount = response?.result;
           store.$state.isLogin = true;
@@ -426,7 +437,8 @@ const handleGooglePopupCallback = (authResponse: any) => {
             30
           );
 
-          navigateTo({ path: '/' });
+          // navigateTo({ path: '/' });
+          navigateTo({ path: urlBack.value });
         } else if (response.isLogin == false) {
           ElNotification.error({
             title: 'Lỗi!',

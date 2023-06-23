@@ -66,7 +66,7 @@
       .play-now {
         margin-top: 15px;
         display: block;
-        color: #fff;
+        color: var(--text-color);
         text-align: center;
         padding: 8px 0px;
         flex-grow: 1;
@@ -96,7 +96,7 @@
           text-align: left;
 
           & > label {
-            color: #fff;
+            color: var(--text-color);
           }
         }
 
@@ -104,7 +104,7 @@
         }
 
         .ant-checkbox-wrapper {
-          color: #fff;
+          color: var(--text-color);
         }
 
         .ant-col.ant-form-item-control {
@@ -124,7 +124,7 @@
           }
 
           input {
-            color: #fff;
+            color: var(--text-color);
             background-color: transparent;
           }
         }
@@ -135,12 +135,12 @@
       }
 
       .login-form-button {
+        font-size: 1.5rem;
         width: 100%;
-        // color: #fff;
       }
 
       .login-form-button[disabled] {
-        color: #707070;
+        // color: #707070;
       }
 
       .social-login {
@@ -152,7 +152,13 @@
         .el-button {
           padding: 13px 17px;
           background-color: var(--btn-backgroud-color-gray);
-          color: #e0e0e0;
+          color: var(--text-color);
+
+          span {
+            width: 100%;
+            font-weight: normal;
+            font-size: 1.5rem;
+          }
         }
 
         .facebook-login-btn {
@@ -164,8 +170,6 @@
           }
 
           span {
-            font-size: 1.6rem;
-            width: 100%;
             margin-left: 0px;
           }
 
@@ -189,8 +193,6 @@
           }
 
           span {
-            font-size: 1.6rem;
-            width: 100%;
             margin-left: 0px;
           }
         }

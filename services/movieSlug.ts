@@ -1,5 +1,9 @@
 import { makeRequest } from './makeRequest';
 
+export function getMovies(page: number = 1) {
+  return makeRequest(`/movie/all?page=${page}`);
+}
+
 export function getNowPlaying(page: number = 1) {
   return makeRequest(`/movie/nowplaying?page=${page}`);
 }

@@ -2,7 +2,12 @@
   <div class="signup-container">
     <Transition name="slide-fade">
       <div v-if="isSignUp" class="verify-form-container">
-        <a-form :model="formStateVerify" name="verify-form" class="verify-form">
+        <a-form
+          :model="formStateVerify"
+          name="verify-form"
+          class="verify-form"
+          @submit="handleVerify"
+        >
           <h1 class="title-verify gradient-title-default">
             <span> Xác nhận Email</span>
           </h1>
@@ -68,8 +73,9 @@
               :disabled="disabled_countdown"
               :loading="loadingResend"
               class="count-down-button"
-              :class="{ disabled: disabled_countdown }"
             >
+              <!-- :class="{ disabled: disabled_countdown }" -->
+
               <span v-if="!loadingResend"> {{ countdown }}</span>
             </a-button>
           </a-form-item>
@@ -80,7 +86,6 @@
               html-type="submit"
               class="verify-form-button"
               size="large"
-              @click="handleVerify"
               :loading="loadingVerify"
               :disabled="disabledVerifyEmail"
             >
@@ -97,6 +102,7 @@
         :rules="rules"
         name="signup-form"
         class="signup-form"
+        @submit="handleSignUp"
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
@@ -224,7 +230,6 @@
             html-type="submit"
             class="signup-form-button"
             size="large"
-            @click="handleSignUp"
             style="background: transparent"
             :loading="loadingSignUp"
           >
@@ -232,9 +237,7 @@
           </a-button>
         </a-form-item>
 
-        <p style="text-align: center; margin: 20px 0px 15px 0px; color: #fff">
-          Hoặc
-        </p>
+        <p style="text-align: center; margin: 20px 0px 15px 0px">Hoặc</p>
 
         <div style="display: flex; justify-content: center">
           <NuxtLink :to="{ name: 'login' }">Đăng nhập ngay!</NuxtLink>

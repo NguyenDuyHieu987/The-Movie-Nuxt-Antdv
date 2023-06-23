@@ -1,0 +1,146 @@
+.comment-form {
+  display: flex;
+  gap: 12px;
+
+  .author {
+    .author-image {
+      height: 31px;
+      width: 31px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .comment-input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    &.focus {
+      .ant-input-textarea.ant-input-textarea-show-count {
+        &::before {
+          transition: all 0.2s;
+          width: 100%;
+        }
+      }
+    }
+
+    .ant-input-textarea.ant-input-textarea-show-count {
+      position: relative;
+      .ant-input-affix-wrapper {
+        width: 100%;
+        background-color: transparent;
+        color: var(--text-color);
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 0;
+          z-index: 1;
+          height: 1px;
+          width: 0%;
+          background-color: #6c6c6c;
+          transition: all 0s;
+        }
+
+        textarea {
+          position: relative;
+          background-color: transparent;
+          color: var(--text-color);
+          // height: 25px !important;
+          // min-height: 25px !important;
+          // max-height: 100px !important;
+          padding-left: 3px;
+          padding-top: 0px;
+          padding-bottom: 2px;
+          border: none;
+          border-bottom: 1px solid var(--border-regular-btn);
+          box-shadow: none;
+          font-size: 1.4rem;
+
+          &:focus {
+            //   border-color: var(--border-regular-btn);
+          }
+        }
+      }
+
+      &::after {
+        display: none;
+        position: absolute;
+        font-size: 1.3rem;
+        // top: 50%;
+        // transform: translateY(-50%);
+        bottom: 5px;
+        // right: 8px;
+        right: 2px;
+        z-index: 1;
+      }
+    }
+
+    .el-textarea {
+      textarea {
+        color: var(--text-color);
+        border-radius: 2px;
+      }
+    }
+
+    .actions {
+      max-height: 0px;
+      overflow: hidden;
+      padding: 0px;
+      transition: all 0.15s;
+
+      &.active {
+        max-height: 50px;
+        overflow: visible;
+      }
+
+      .actions-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 7px 0px;
+        width: 100%;
+
+        svg {
+          transition: all 0.15s;
+
+          &:active {
+            opacity: 0.8;
+          }
+        }
+
+        .left {
+          svg {
+            font-size: 2.2rem;
+          }
+        }
+
+        .right {
+          display: flex;
+          gap: 7px;
+
+          .ant-btn {
+            transition: all 0.15s;
+
+            &:active {
+              opacity: 0.8;
+            }
+
+            &.comment-btn {
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,9 @@
 import { makeRequest } from './makeRequest';
 
+export function getTvs(page: number = 1) {
+  return makeRequest(`/tv/all?page=${page}`);
+}
+
 export function getTvAiringToday(page: number = 1) {
   return makeRequest(`/tv/airingtoday?page=${page}&api=hieu987`);
 }

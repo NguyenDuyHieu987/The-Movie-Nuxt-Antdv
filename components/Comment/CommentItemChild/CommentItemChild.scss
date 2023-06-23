@@ -1,0 +1,74 @@
+.comment-item-child {
+  margin-top: 10px;
+
+  & + .comment-item-child {
+  }
+
+  .comment-item-child-container {
+    display: flex;
+    gap: 10px;
+  }
+
+  .author {
+    .author-image {
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .right-side {
+    flex-grow: 1;
+
+    .top {
+      display: flex;
+      font-size: 1.4rem;
+      gap: 10px;
+
+      .created-at {
+        font-size: 1.3rem;
+        color: var(--text-color-gray);
+      }
+    }
+
+    .content {
+      font-size: 1.4rem;
+      margin-top: 3px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .like-dislike {
+        svg + svg {
+          margin-left: 13px;
+        }
+
+        svg {
+          font-size: 2rem;
+        }
+      }
+
+      .ant-btn {
+        transition: all 0.15s;
+
+        &:active {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .comment-form {
+      margin-top: 5px;
+    }
+  }
+}

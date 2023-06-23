@@ -13,6 +13,9 @@
   --text-color-gray: #a4a4a4;
   --text-color-gray1: #d3d3d3;
   --text-label-color: #777;
+  --text-button-disabled-color: #707070;
+  --link-text-color: #006999;
+  --link-text-color-hover: #009ac5;
 
   --search-background: #0a0a0a41;
   --search-focus-background: #141414;
@@ -35,9 +38,6 @@
   --app-background-color4: #470024;
   --app-background-color5: #6d026d;
   --app-background-color6: #e82b00;
-
-  --link-text-color: #006999;
-  --link-text-color-hover: #009ac5;
 
   --menu-item-background-color: #07070780;
   --menu-inline-submenu-background-color: #2828284d;
@@ -370,6 +370,37 @@ button,
 }
 
 .ant-btn {
+  color: var(--text-color);
+  transition: all 0.15s;
+
+  &:hover {
+    color: var(--text-color);
+  }
+
+  &:focus {
+    color: var(--text-color);
+  }
+
+  &:active {
+    color: var(--text-color);
+  }
+
+  &[disabled] {
+    color: var(--text-button-disabled-color);
+
+    &:hover {
+      color: var(--text-button-disabled-color);
+    }
+
+    &:focus {
+      color: var(--text-button-disabled-color);
+    }
+
+    &:active {
+      opacity: 1 !important;
+    }
+  }
+
   &.default {
     display: flex;
     align-items: center;

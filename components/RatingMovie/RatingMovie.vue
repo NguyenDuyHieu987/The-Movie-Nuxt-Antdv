@@ -50,8 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { ratingMovie } from '~/services/movie';
-import { ratingTV } from '~/services/tv';
+import { rating } from '~/services/rating';
 import { notification } from 'ant-design-vue';
 import { ElNotification } from 'element-plus';
 import { CheckCircleFilled } from '@ant-design/icons-vue';
@@ -62,6 +61,7 @@ const props = defineProps<{
   type: string;
 }>();
 
+const store = useStore();
 const disabled = ref<boolean>(false);
 const temp = ref<number>(props.dataMovie?.vote_average);
 const vote_Average = ref<number>(props.dataMovie?.vote_average);
@@ -81,75 +81,49 @@ const tooltipRating = ref<string[]>([
 ]);
 
 const handleRating = (value: number) => {
-  if (props.type == 'tv') {
-    ratingTV(props.dataMovie?.id, { value: value })
-      .then((response) => {
-        if (response?.success == true) {
-          ElNotification({
-            title: 'Thành công!',
-            message: `Đánh giá thành công ${value} điểm.`,
-            type: 'success',
-            position: 'bottom-right',
-            duration: 3000,
-            showClose: false,
-          });
-
-          // notification.open({
-          //   message: 'Cảm ơn bạn đã đánh giá!',
-          //   description: `Đánh giá thành công ${value} điểm.`,
-          //   placement: 'bottomRight',
-          //   closeIcon: '',
-          //   icon: () =>
-          //     h(CheckCircleFilled, {
-          //       style: 'color: green',
-          //     }),
-          // });
-          vote_Average.value = response?.vote_average;
-          vote_Count.value = response?.vote_count;
-          disabled.value = true;
-        }
-      })
-      .catch((e) => {
-        ElNotification({
-          title: 'Thất bại!',
-          message: 'Đánh giá phim thất bại.',
-          type: 'error',
-          position: 'bottom-right',
-          duration: 3000,
-          showClose: false,
-        });
-        if (axios.isCancel(e)) return;
-      });
-  } else if (props.type == 'movie') {
-    ratingMovie(props.dataMovie?.id, { value: value })
-      .then((response) => {
-        if (response?.success == true) {
-          ElNotification({
-            title: 'Thành công!',
-            message: `Đánh giá thành công ${value} điểm.`,
-            type: 'success',
-            position: 'bottom-right',
-            duration: 3000,
-            showClose: false,
-          });
-
-          vote_Average.value = response?.vote_average;
-          vote_Count.value = response?.vote_count;
-          disabled.value = true;
-        }
-      })
-      .catch((e) => {
-        ElNotification({
-          title: 'Thất bại!',
-          message: 'Đánh giá phim thất bại.',
-          type: 'error',
-          position: 'bottom-right',
-          duration: 3000,
-          showClose: false,
-        });
-        if (axios.isCancel(e)) return;
-      });
+  if (!store.$state?.isLogin) {
+    store.$state.openRequireAuthDialog = true;
+    return;
   }
+
+  rating(props.dataMovie?.id, props.type, value)
+    .then((response) => {
+      if (response?.success == true) {
+        ElNotification({
+          title: 'Thành công!',
+          message: `Đánh giá thành công ${value} điểm.`,
+          type: 'success',
+          position: 'bottom-right',
+          duration: 3000,
+          showClose: false,
+        });
+
+        // notification.open({
+        //   message: 'Cảm ơn bạn đã đánh giá!',
+        //   description: `Đánh giá thành công ${value} điểm.`,
+        //   placement: 'bottomRight',
+        //   closeIcon: '',
+        //   icon: () =>
+        //     h(CheckCircleFilled, {
+        //       style: 'color: green',
+        //     }),
+        // });
+        vote_Average.value = response?.vote_average;
+        vote_Count.value = response?.vote_count;
+        disabled.value = true;
+      }
+    })
+    .catch((e) => {
+      ElNotification({
+        title: 'Thất bại!',
+        message: 'Đánh giá phim thất bại.',
+        type: 'error',
+        position: 'bottom-right',
+        duration: 3000,
+        showClose: false,
+      });
+      if (axios.isCancel(e)) return;
+    });
 };
 </script>
 

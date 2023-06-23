@@ -45,19 +45,19 @@ import {
   getMovieByCountry,
 } from '~/services/discover';
 import {
+  getMovies,
   getNowPlaying,
   getUpComing,
   getPopular,
   getTopRated,
 } from '~/services/movieSlug';
 import {
+  getTvs,
   getTvAiringToday,
   getTvOntheAir,
   getTvPopular,
   getTvTopRated,
 } from '~/services/TvSlug';
-import { getMovies } from '~/services/movie';
-import { getTvs } from '~/services/tv';
 import { FilterDataMovie } from '~/services/discover';
 import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '@/components/FilterBar/FilterBar.vue';

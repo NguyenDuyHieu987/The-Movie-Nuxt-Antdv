@@ -84,7 +84,7 @@
 
                   &:hover {
                     border-color: var(--btn-border-color-hover);
-                    background-color: rgba(97, 97, 97, 0);
+                    background-color: rgba(97, 97, 97, 0.4);
                   }
                 }
               }
@@ -196,7 +196,7 @@
             .action {
               .left {
                 .ant-btn {
-                  padding: 9px 20px;
+                  padding: 7px 20px;
                 }
               }
             }
@@ -222,7 +222,7 @@
             .action {
               .right {
                 .ant-btn {
-                  padding: 9px 10px;
+                  padding: 7px 10px;
                 }
               }
             }

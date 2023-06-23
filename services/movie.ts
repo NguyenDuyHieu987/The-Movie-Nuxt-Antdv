@@ -16,25 +16,8 @@ export function getMovieById(
   );
 }
 
-export function getMovies(page: number = 1) {
-  return makeRequest(`/movie/phimle?page=${page}`);
-}
-
 export function UpdateViewMovie(movieId: number | string) {
   return makeRequest(`/movie/updateview/${movieId}`, {
     method: 'POST',
-  });
-}
-
-export function ratingMovie(
-  moveid: number | string,
-  { value }: { value: number }
-) {
-  const bodyFormData = new FormData();
-  bodyFormData.append('value', value.toString());
-
-  return makeRequest(`/rating/movie/${moveid}`, {
-    method: 'POST',
-    data: bodyFormData,
   });
 }
