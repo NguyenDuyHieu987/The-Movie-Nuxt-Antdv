@@ -1,5 +1,10 @@
 .ant-modal.modal-trailer {
   .ant-modal-content {
+    iframe {
+      height: 40vw;
+      width: 100%;
+    }
+
     .icon.close {
       right: 10px;
     }
@@ -35,23 +40,23 @@
         }
 
         .action {
-          display: flex;
+          display: inline-flex;
           gap: 10px;
 
           .ant-btn {
-            padding: 9px 23px;
+            padding: 8px 23px;
           }
 
           .btn-play-now {
-            color: #fff;
-            padding: 9px 23px;
+            color: var(--text-color);
+            padding: 8px 23px;
             background-color: #ba0025;
             transition: all 0.3s;
             border-radius: 3px;
             white-space: nowrap;
             display: flex;
             align-items: center;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
 
             &:hover {
               background-color: #ba0025ae;
@@ -63,10 +68,12 @@
   }
 }
 
-@media only screen and (min-width: 1700px) {
+@media only screen and (min-width: 1500px) {
   .ant-modal.modal-trailer {
-    iframe {
-      height: 650px;
+    .ant-modal-content {
+      iframe {
+        // height: 40vw;
+      }
     }
   }
 }
@@ -74,8 +81,20 @@
 @media only screen and (max-width: 1500px) {
   .ant-modal.modal-trailer {
     width: 1000px !important;
-    iframe {
-      height: 550px;
+
+    .ant-modal-content {
+      iframe {
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1350px) {
+  .ant-modal.modal-trailer {
+    .ant-modal-content {
+      iframe {
+        height: 45vw;
+      }
     }
   }
 }
@@ -83,32 +102,22 @@
 @media only screen and (max-width: 1100px) {
   .ant-modal.modal-trailer {
     width: 900px !important;
-    iframe {
-      height: 450px;
-    }
-  }
-}
 
-@media only screen and (max-width: 900px) {
-  .ant-modal.modal-trailer {
-    iframe {
-      height: 400px;
-    }
-  }
-}
+    .ant-modal-content {
+      iframe {
+        height: 50vw;
+      }
 
-@media only screen and (max-width: 700px) {
-  .ant-modal.modal-trailer {
-    iframe {
-      height: 300px;
-    }
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .ant-modal.modal-trailer {
-    iframe {
-      height: 200px;
+      .ant-modal-footer {
+        .content {
+          .action {
+            .ant-btn,
+            .btn-play-now {
+              padding: 7px 20px;
+            }
+          }
+        }
+      }
     }
   }
 }

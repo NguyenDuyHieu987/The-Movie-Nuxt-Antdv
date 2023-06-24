@@ -9,8 +9,19 @@
 }
 
 .ant-modal-mask {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0px;
+}
+
+.ant-modal-wrap {
+  padding: 20px 0px;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
 }
 
 .ant-modal {

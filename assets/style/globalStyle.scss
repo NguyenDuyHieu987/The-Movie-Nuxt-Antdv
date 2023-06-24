@@ -405,8 +405,9 @@ button,
     display: flex;
     align-items: center;
     border-color: var(--border-regular);
+    font-size: 1.5rem;
     color: var(--text-color);
-    transition: all 0.25s;
+    transition: all 0.15s;
     height: auto;
     background-color: transparent;
 
@@ -444,6 +445,7 @@ button,
     color: var(--text-color);
     background-color: transparent;
     display: flex;
+    font-size: 1.5rem;
     align-items: center;
     justify-content: center;
     border-color: transparent;

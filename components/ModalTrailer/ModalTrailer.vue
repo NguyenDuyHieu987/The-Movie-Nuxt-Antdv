@@ -10,8 +10,9 @@
     >
       <CloseBtn @click="isTeleport = false" />
 
+      <!-- height="650px" -->
       <iframe
-        height="650px"
+        height="100%"
         width="100%"
         :src="// dataMovie?.videos?.length != 0
         //   ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.length)
@@ -53,7 +54,7 @@
             <NuxtLink
               v-if="isEpisodes"
               :to="{
-                path: `/play/tv/${item?.id}/${item?.name
+                path: `/play-tv/${item?.id}/${item?.name
                   ?.replace(/\s/g, '+')
                   .toLowerCase()}/tap-1`,
               }"
@@ -64,7 +65,7 @@
             <NuxtLink
               v-else-if="!isEpisodes"
               :to="{
-                path: `/play/movie/${item?.id}/${item?.name
+                path: `/play-movie/${item?.id}/${item?.name
                   ?.replace(/\s/g, '+')
                   .toLowerCase()}`,
               }"

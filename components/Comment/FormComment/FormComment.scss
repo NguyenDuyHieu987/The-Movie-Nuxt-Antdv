@@ -4,8 +4,8 @@
 
   .author {
     .author-image {
-      height: 31px;
-      width: 31px;
+      height: 35px;
+      width: 35px;
       border-radius: 50%;
       overflow: hidden;
 
@@ -71,6 +71,11 @@
             //   border-color: var(--border-regular-btn);
           }
         }
+      }
+
+      .ant-input-clear-icon {
+        top: 5px;
+        right: 3px;
       }
 
       &::after {

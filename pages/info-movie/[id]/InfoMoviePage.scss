@@ -311,24 +311,15 @@
       background-color: var(--background-content-color);
 
       .trailer {
-        margin-top: 30px;
+        margin-top: 25px;
 
         iframe {
           height: 47vw;
           width: 100%;
         }
-
-        h2 {
-          margin-bottom: 10px;
-        }
       }
 
       .comment {
-        margin-top: 10px;
-
-        h2 {
-          margin-bottom: 10px;
-        }
       }
     }
   }

@@ -14,8 +14,8 @@
 
     & > .author {
       .author-image {
-        height: 31px;
-        width: 31px;
+        height: 35px;
+        width: 35px;
         border-radius: 50%;
         overflow: hidden;
 
@@ -135,6 +135,25 @@
 
       .comment-form {
         margin-top: 5px;
+      }
+
+      .loading-replies {
+        padding: 5px 50px;
+
+        @keyframes loading {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        svg {
+          margin: 0px auto;
+          font-size: 2rem;
+          animation: loading 1.2s linear infinite;
+        }
       }
 
       .replies {

@@ -15,7 +15,11 @@
         :movieType="dataMovie?.media_type"
       />
 
-      <div class="list-comment" v-if="loading">
+      <div v-if="loading" class="loading-comment">
+        <Icon name="icon-park-outline:loading-four" />
+      </div>
+
+      <div v-else class="list-comment">
         <CommentItem
           v-for="(item, index) in commentsList"
           :key="item?.id"
@@ -45,6 +49,8 @@ const commentsList = ref<any[]>([]);
 const loading = ref<boolean>(false);
 
 onBeforeMount(() => {
+  loading.value = true;
+
   getCommentByMovidId(props.dataMovie?.id)
     .then((response) => {
       commentsList.value = response?.results;
@@ -53,7 +59,7 @@ onBeforeMount(() => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = true;
+      loading.value = false;
     });
 });
 </script>

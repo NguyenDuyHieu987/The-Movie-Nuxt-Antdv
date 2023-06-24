@@ -23,6 +23,7 @@
       }"
     >
       <a-textarea
+        :id="comment?.id"
         v-model:value="content"
         allowClear
         show-count
@@ -75,7 +76,6 @@
 import axios from 'axios';
 import { CommentMovie } from '~/services/comment';
 import { storeToRefs } from 'pinia';
-import { find } from 'lodash';
 
 const props = defineProps({
   movieId: { type: String },
@@ -84,6 +84,7 @@ const props = defineProps({
   contentComment: { type: String, default: '' },
   commentType: { type: String, default: 'parent' },
   showActions: { type: Boolean, default: false },
+  isShowFormComment: { type: Boolean, default: false },
 });
 
 const emits = defineEmits<{
@@ -100,8 +101,17 @@ const disabledButton = ref<boolean>(true);
 const loading = ref<boolean>(false);
 const commentsList = defineModel<any[]>('commentsList');
 
-onBeforeMount(() => {
-  if (props.contentComment?.length > 0) {
+onBeforeMount(() => {});
+
+watch(props, () => {
+  if (props.isShowFormComment) {
+    const currentTextArea = document.getElementById(
+      props.comment?.id
+    ) as HTMLTextAreaElement;
+
+    setTimeout(() => {
+      currentTextArea.focus();
+    }, 10);
   }
 });
 

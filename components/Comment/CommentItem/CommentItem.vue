@@ -87,13 +87,14 @@
         </div>
 
         <FormComment
-          v-if="isShowFormComment"
+          v-show="isShowFormComment"
           v-model:commentsList="commentsList"
           v-model:listReplies="listReplies"
           :movieId="movieId"
           :movieType="movieType"
           :showActions="true"
           :comment="item"
+          :isShowFormComment="isShowFormComment"
           commentType="children"
           @onClickCancel="isShowFormComment = false"
           @onSuccessCommentChild="handleSuccessCommentChild"
@@ -116,7 +117,14 @@
             {{ numberReplies + ' Phản hồi' }}
           </a-button>
 
-          <div class="list-replies" v-if="isShowReplies">
+          <div v-if="loadingReplies" class="loading-replies">
+            <Icon name="icon-park-outline:loading-four" />
+          </div>
+
+          <div
+            v-else-if="isShowReplies && !loadingReplies"
+            class="list-replies"
+          >
             <CommentItemChild
               v-for="(item1, index) in listReplies"
               :key="item1?.id"
@@ -162,6 +170,7 @@ const isShowFormComment = ref<boolean>(false);
 const isShowReplies = ref<boolean>(false);
 const listReplies = ref<any[]>([]);
 const loading = ref<boolean>(false);
+const loadingReplies = ref<boolean>(false);
 const numberReplies = ref<number>(props.item?.childrens);
 
 onBeforeMount(() => {});
@@ -170,7 +179,7 @@ const onClickShowReplies = () => {
   isShowReplies.value = !isShowReplies.value;
 
   if (listReplies.value.length == 0) {
-    loading.value = true;
+    loadingReplies.value = true;
 
     getCommentByMovidId_ParentId(props.movieId, props.item?.id)
       .then((response) => {
@@ -180,7 +189,7 @@ const onClickShowReplies = () => {
         if (axios.isCancel(e)) return;
       })
       .finally(() => {
-        loading.value = true;
+        loadingReplies.value = false;
       });
   }
 };

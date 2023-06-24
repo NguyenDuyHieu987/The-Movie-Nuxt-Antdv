@@ -231,10 +231,10 @@ const handelAddToList = (e: any) => {
 const onClickPlay = () => {
   navigateTo({
     path: isEpisodes.value
-      ? `/play/tv/${props.item?.id}/${props.item?.name
+      ? `/play-tv/${props.item?.id}/${props.item?.name
           ?.replace(/\s/g, '+')
           .toLowerCase()}/tap-1`
-      : `/play/movie/${props.item?.id}/${props.item?.name
+      : `/play-movie/${props.item?.id}/${props.item?.name
           ?.replace(/\s/g, '+')
           .toLowerCase()}`,
   });

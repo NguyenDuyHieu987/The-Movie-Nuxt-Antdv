@@ -309,20 +309,19 @@
       background-color: var(--background-content-color);
 
       .trailer {
-        margin-top: 30px;
-        height: 47vw;
+        margin-top: 25px;
 
-        h2 {
-          margin-bottom: 10px;
+        .gradient-title-default {
+          margin-top: 0px;
+        }
+
+        iframe {
+          height: 47vw;
+          width: 100%;
         }
       }
 
       .comment {
-        margin-top: 10px;
-
-        h2 {
-          margin-bottom: 10px;
-        }
       }
     }
   }
