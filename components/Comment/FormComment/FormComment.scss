@@ -34,23 +34,24 @@
 
     .ant-input-textarea.ant-input-textarea-show-count {
       position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        z-index: 2;
+        height: 1px;
+        width: 0%;
+        background-color: #838383;
+        transition: all 0s;
+      }
+
       .ant-input-affix-wrapper {
         width: 100%;
         background-color: transparent;
         color: var(--text-color);
-
-        &::before {
-          content: '';
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          bottom: 0;
-          z-index: 1;
-          height: 1px;
-          width: 0%;
-          background-color: #6c6c6c;
-          transition: all 0s;
-        }
 
         textarea {
           position: relative;
@@ -58,7 +59,7 @@
           color: var(--text-color);
           // height: 25px !important;
           // min-height: 25px !important;
-          // max-height: 100px !important;
+          // max-height: 25px !important;
           padding-left: 3px;
           padding-top: 0px;
           padding-bottom: 2px;
@@ -125,8 +126,17 @@
         }
 
         .left {
-          svg {
+          svg.emoticon {
             font-size: 2.2rem;
+            cursor: pointer;
+          }
+
+          .v3-emoji-picker {
+            position: absolute;
+            z-index: 1;
+            top: 100%;
+
+            --v3-picker-bg: var(--background-content-color1);
           }
         }
 

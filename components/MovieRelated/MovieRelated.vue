@@ -66,7 +66,7 @@ const getData = async () => {
       getSimilar(props?.type, props?.movieId)
     ),
     useAsyncData(`trending/all/${randomRecommend.value}`, () =>
-      getTrending(randomRecommend.value)
+      getTrending(randomRecommend.value, 10)
     ),
   ])
     .then((response: any) => {

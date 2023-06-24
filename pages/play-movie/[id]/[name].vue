@@ -190,7 +190,7 @@
         <div class="related-content">
           <MovieRelated :movieId="dataMovie?.id" type="movie" />
 
-          <Comment :dataMovie="dataMovie" :urlComment="urlComment" />
+          <Comment :dataMovie="dataMovie" />
         </div>
       </div>
     </div>
@@ -212,6 +212,7 @@ import Tags from '@/components/Tags/Tags.vue';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
+import Comment from '@/components/Comment/Comment.vue';
 
 const store: any = useStore();
 const utils = useUtils();
@@ -219,7 +220,6 @@ const route: any = useRoute();
 const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
-const urlComment = computed<string>((): string => window.location.href);
 const loading = ref<boolean>(false);
 const urlCodeMovie = ref<string>('809431505');
 const isAddToList = ref<boolean>(false);

@@ -303,6 +303,41 @@
             }
           }
         }
+
+        .progress-history-tags {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-top: 7px;
+          width: 100%;
+
+          .progress-history {
+            display: inline;
+
+            .ant-progress-inner {
+              // height: 80px !important;
+              // width: 80px !important;
+              background-color: #35353563;
+
+              .ant-progress-bg {
+                height: 6px !important;
+              }
+            }
+
+            .ant-progress-text {
+              font-size: 1.4rem;
+
+              &:has(.success) {
+                white-space: normal;
+                color: #008049;
+              }
+
+              // & > span {
+              //   font-size: 1.3rem;
+              // }
+            }
+          }
+        }
       }
     }
 

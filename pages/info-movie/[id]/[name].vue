@@ -125,6 +125,7 @@
                 </template>
               </Tags>
             </div>
+
             <div class="detail-content-right">
               <Tags tagsLabel="Tên gốc:">
                 <template #tagsInfo>
@@ -211,6 +212,34 @@
               </Tags>
             </div>
           </div>
+
+          <Tags
+            v-if="dataMovie?.in_history"
+            tagsLabel="Xem được:"
+            class="progress-history-tags"
+          >
+            <template #tagsInfo>
+              <a-progress
+                class="progress-history"
+                :stroke-color="{
+                  from: '#108ee9',
+                  to: '#87d068',
+                }"
+                :percent="dataMovie?.history_progress?.percent.toFixed(3) * 100"
+                status="active"
+              >
+                <template #format="percent">
+                  <!-- <span>Xem được</span> -->
+                  <!-- <div :class="{ success: percent == 100 }">
+                    {{ percent == 100 ? 'Hoàn thành' : percent + ' %' }}
+                  </div> -->
+                  <div>
+                    {{ percent + ' %' }}
+                  </div>
+                </template>
+              </a-progress>
+            </template>
+          </Tags>
         </div>
       </div>
       <div class="related-content padding-content">
@@ -236,7 +265,7 @@
           />
         </div>
 
-        <Comment :dataMovie="dataMovie" :urlComment="urlComment" />
+        <Comment :dataMovie="dataMovie" />
       </div>
     </div>
   </div>
@@ -267,7 +296,6 @@ const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const dataCredit = ref<any>({});
-const urlComment = computed<string>((): string => window.location.href);
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);

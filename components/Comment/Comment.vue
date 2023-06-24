@@ -2,13 +2,6 @@
   <div class="comment" id="comment">
     <h2 class="gradient-title-default">Bình luận</h2>
     <div class="comment-body">
-      <!-- <div
-        class="fb-comments"
-        :data-href="urlComment"
-        data-width="100%"
-        data-numposts="10"
-      ></div> -->
-
       <FormComment
         v-model:commentsList="commentsList"
         :movieId="dataMovie?.id"
@@ -41,7 +34,6 @@ import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
 
 const props = defineProps<{
   dataMovie: any;
-  urlComment: string;
 }>();
 
 const commentsList = ref<any[]>([]);
@@ -50,7 +42,7 @@ const loading = ref<boolean>(false);
 onBeforeMount(() => {
   loading.value = true;
 
-  getCommentByMovidId(props.dataMovie?.id)
+  getCommentByMovidId(props.dataMovie?.id, props.dataMovie?.media_type)
     .then((response) => {
       commentsList.value = response?.results;
     })

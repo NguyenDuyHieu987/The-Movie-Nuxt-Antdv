@@ -16,7 +16,7 @@
       </div>
       <div class="right-side">
         <div class="content-comment-box">
-          <div class="main-content">
+          <div class="main-comment-content">
             <div class="top">
               <span class="author-username">{{ item?.username }}</span>
               <span class="created-at">{{
@@ -28,8 +28,11 @@
 
             <div class="actions">
               <div class="like-dislike">
-                <Icon name="ph:thumbs-up" />
-                <Icon name="ph:thumbs-down" />
+                <!-- <Icon name="ph:thumbs-up" />
+                <Icon name="ph:thumbs-down" /> -->
+
+                <LikeOutlined />
+                <DislikeOutlined />
               </div>
 
               <a-button
@@ -131,7 +134,6 @@
               :movieId="item1?.movie_id"
               :parent="item"
               :movieType="movieType"
-              commentType="children"
               v-model:listReplies="listReplies"
               @onSuccessCommentChild="handleSuccessCommentChild"
               @omSuccessRemoveCommentChild="handleSuccessRemoveCommentChild"
@@ -156,6 +158,7 @@ import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import { ElNotification } from 'element-plus';
+import { LikeOutlined, DislikeOutlined } from '@ant-design/icons-vue';
 
 const props = defineProps<{
   item: any;
@@ -181,7 +184,7 @@ const onClickShowReplies = () => {
   if (listReplies.value.length == 0) {
     loadingReplies.value = true;
 
-    getCommentByMovidId_ParentId(props.movieId, props.item?.id)
+    getCommentByMovidId_ParentId(props.movieId, props.item?.id, props.movieType)
       .then((response) => {
         listReplies.value = response?.results;
       })

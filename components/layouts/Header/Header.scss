@@ -328,6 +328,7 @@
   .ant-dropdown-menu,
   .el-menu.dropdown-notification {
     border: none;
+    background-color: var(--background-content-color1);
 
     .notification-header {
       padding: 13px 20px;
@@ -391,10 +392,14 @@
       font-size: 1.5rem;
     }
 
-    .ant-dropdown-menu-item {
+    .ant-menu-item {
       padding-left: 35px;
       border: none;
       font-size: 1.4rem;
+
+      &:hover {
+        background-color: var(--hover-dropdown-color);
+      }
     }
   }
 }
@@ -404,6 +409,10 @@
     .ant-dropdown-menu {
       .ant-dropdown-menu-item {
         padding: 13px 20px;
+
+        &:first-child {
+          border-bottom: 1px solid var(--border-regular-light);
+        }
       }
     }
   }

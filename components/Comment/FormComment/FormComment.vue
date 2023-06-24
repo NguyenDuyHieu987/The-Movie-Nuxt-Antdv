@@ -28,7 +28,7 @@
         allowClear
         show-count
         :maxlength="3000"
-        :autoSize="{ minRows: 1, maxRows: 4 }"
+        :autoSize="{ minRows: 1, maxRows: 10 }"
         placeholder="Viết bình luận..."
         @change="handleChange"
         @focus="handleFocus"
@@ -51,7 +51,25 @@
         }"
       >
         <div class="actions-container">
-          <div class="left"><Icon name="ic:baseline-insert-emoticon" /></div>
+          <div class="left">
+            <Icon
+              name="ic:baseline-insert-emoticon"
+              class="emoticon"
+              @click="isShowEmoji = !isShowEmoji"
+            />
+            <EmojiPicker
+              v-show="isShowEmoji"
+              :native="true"
+              :display-recent="true"
+              :static-texts="{
+                placeholder: 'Tìm kiếm biểu tượng cảm xúc',
+              }"
+              :hide-group-names="true"
+              :disable-sticky-group-names="true"
+              :disable-skin-tones="true"
+              @select="onSelectEmoji"
+            />
+          </div>
           <div class="right">
             <a-button class="cancel" type="text" @click="handleClickCanel">
               Hủy
@@ -76,6 +94,8 @@
 import axios from 'axios';
 import { CommentMovie } from '~/services/comment';
 import { storeToRefs } from 'pinia';
+import EmojiPicker from 'vue3-emoji-picker';
+import 'vue3-emoji-picker/css';
 
 const props = defineProps({
   movieId: { type: String },
@@ -99,6 +119,7 @@ const isFocus = ref<boolean>(false);
 const isShowActions = ref<boolean>(false);
 const disabledButton = ref<boolean>(true);
 const loading = ref<boolean>(false);
+const isShowEmoji = ref<boolean>(false);
 const commentsList = defineModel<any[]>('commentsList');
 
 onBeforeMount(() => {});
@@ -155,6 +176,7 @@ const onSubmit = () => {
       content.value = '';
       loading.value = false;
       disabledButton.value = true;
+      isShowEmoji.value = false;
     });
 };
 
@@ -162,6 +184,12 @@ const handleClickCanel = () => {
   isShowActions.value = false;
   content.value = '';
   emits('onClickCancel');
+};
+
+const onSelectEmoji = (emoji: any) => {
+  // console.log(emoji);
+  content.value += emoji.i;
+  disabledButton.value = content.value.length == 0;
 };
 </script>
 

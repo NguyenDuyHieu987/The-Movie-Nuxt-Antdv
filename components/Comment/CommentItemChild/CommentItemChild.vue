@@ -26,8 +26,11 @@
 
         <div class="actions">
           <div class="like-dislike">
-            <Icon name="ph:thumbs-up" />
-            <Icon name="ph:thumbs-down" />
+            <!-- <Icon name="ph:thumbs-up" />
+            <Icon name="ph:thumbs-down" /> -->
+
+            <LikeOutlined />
+            <DislikeOutlined />
           </div>
 
           <a-button
@@ -46,7 +49,7 @@
           :movieId="movieId"
           :movieType="movieType"
           :showActions="true"
-          :comment="item"
+          :comment="parent"
           :isShowFormComment="isShowFormComment"
           commentType="children"
           :contentComment="item?.username"
@@ -108,6 +111,7 @@ import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import { ElNotification } from 'element-plus';
+import { LikeOutlined, DislikeOutlined } from '@ant-design/icons-vue';
 
 const props = defineProps<{
   item: any;

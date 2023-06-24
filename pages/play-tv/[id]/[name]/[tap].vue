@@ -213,7 +213,7 @@
         <div class="related-content">
           <MovieRelated :movieId="dataMovie?.id" type="tv" />
 
-          <Comment :dataMovie="dataMovie" :urlComment="urlComment" />
+          <Comment :dataMovie="dataMovie" />
         </div>
       </div>
     </div>
@@ -244,7 +244,6 @@ const store: any = useStore();
 const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
-const urlComment = computed<string>((): string => window.location.href);
 const loading = ref<boolean>(false);
 const urlCodeMovie = ref<string>('The_Witcher_S1_Ep1.mp4');
 const isAddToList = ref<boolean>(false);
