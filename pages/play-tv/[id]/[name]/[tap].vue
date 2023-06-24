@@ -1,18 +1,26 @@
 <template>
   <div class="play-tv padding-content">
     <div v-if="loading" class="play-container">
-      <BackPage
-        @onclick="
-          navigateTo({
-            path: `/info-tv/${dataMovie?.id}/${dataMovie?.name
-              .replaceAll(' ', '+')
-              .toLowerCase()}
-          `,
-          })
-        "
-      >
-        <span> {{ dataMovie?.name }}</span>
-      </BackPage>
+      <div class="top-page">
+        <BackPage
+          @onclick="
+            navigateTo({
+              path: `/info-tv/${dataMovie?.id}/${dataMovie?.name
+                .replaceAll(' ', '+')
+                .toLowerCase()}
+            `,
+            })
+          "
+        >
+          <span> {{ dataMovie?.name }}</span>
+        </BackPage>
+
+        <HistoryProgressBar
+          v-show="store.$state.isLogin"
+          :historyProgress="percentProgressHistory"
+        />
+      </div>
+
       <div class="video">
         <div class="video-wrapper">
           <!-- <iframe
@@ -36,6 +44,7 @@
             ></iframe> -->
 
           <VideoPlayer
+            :dataMovie="dataMovie"
             :videoUrl="getVideoTelevisons(urlCodeMovie)"
             :backdrop="getBackdrop(dataMovie?.backdrop_path)"
             @onPlay="(e) => onPLayVideoPlayer(e)"
@@ -230,6 +239,7 @@ import { getItemHistory, add_update_History } from '~/services/history';
 import { UpdateView } from '~/services/updateView';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '@/components/BackPage/BackPage.vue';
+import HistoryProgressBar from '@/components/HistoryProgressBar/HistoryProgressBar.vue';
 import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.vue';
 import Tags from '@/components/Tags/Tags.vue';
 import Interaction from '@/components/Interaction/Interaction.vue';
@@ -253,28 +263,12 @@ const duration = ref<number>(0);
 const isPlayVideo = ref<boolean>(false);
 const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
-const dataItemHistory = ref<any>({});
+const percentProgressHistory = ref<number>(0);
 const release_date = computed<string>(
   () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
 
 const internalInstance: any = getCurrentInstance();
-
-onBeforeRouteLeave(() => {
-  if (isPlayVideo.value == true && store.$state.isLogin) {
-    if (seconds.value > 0 && percent.value > 0 && duration.value > 0) {
-      add_update_History({
-        media_type: 'tv',
-        media_id: dataMovie.value?.id,
-        duration: duration.value,
-        percent: percent.value,
-        seconds: seconds.value,
-      }).catch((e) => {
-        if (axios.isCancel(e)) return;
-      });
-    }
-  }
-});
 
 const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
@@ -333,7 +327,7 @@ const getData = async () => {
 
     if (dataMovie.value?.in_history) {
       isInHistory.value = true;
-      dataItemHistory.value = dataMovie.value?.history_progress;
+      percentProgressHistory.value = dataMovie.value?.history_progress?.percent;
     }
 
     // await useAsyncData(
@@ -378,6 +372,37 @@ onBeforeMount(() => {
 //   behavior: 'smooth',
 // });
 
+onBeforeRouteLeave(() => {
+  updateHistory();
+});
+
+const updateHistory = () => {
+  if (isPlayVideo.value == true && store.$state.isLogin) {
+    if (
+      seconds.value > 0 &&
+      percent.value > 0 &&
+      // percent.value > percentProgressHistory.value &&
+      duration.value > 0
+    ) {
+      add_update_History({
+        media_type: 'tv',
+        media_id: dataMovie.value?.id,
+        duration: duration.value,
+        percent: percent.value,
+        seconds: seconds.value,
+      })
+        .then((response) => {
+          if (response?.success) {
+            // percentProgressHistory.value = percent.value;
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        });
+    }
+  }
+};
+
 const getUrlCodeMovie = (data: string) => {
   urlCodeMovie.value = data;
 };
@@ -389,14 +414,20 @@ const onPLayVideoPlayer = (e: any) => {
 
 const onTimeUpdateVideoPlayer = (e: any) => {
   if (e?.seconds > 0) {
+    percentProgressHistory.value = e.percent;
+
     if (e.seconds > seconds.value && e.percent > percent.value) {
       if (seconds.value > e.duration - 6) {
         seconds.value = e.seconds;
         percent.value = e.percent;
+
+        updateHistory();
       } else {
         setTimeout(() => {
           seconds.value = e.seconds;
           percent.value = e.percent;
+
+          updateHistory();
         }, 5000);
       }
 

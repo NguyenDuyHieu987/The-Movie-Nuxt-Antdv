@@ -214,30 +214,14 @@
           </div>
 
           <Tags
-            v-if="dataMovie?.in_history"
-            tagsLabel="Xem được:"
+            v-show="dataMovie?.in_history"
+            tagsLabel="Đã xem:"
             class="progress-history-tags"
           >
             <template #tagsInfo>
-              <a-progress
-                class="progress-history"
-                :stroke-color="{
-                  from: '#108ee9',
-                  to: '#87d068',
-                }"
-                :percent="dataMovie?.history_progress?.percent.toFixed(3) * 100"
-                status="active"
-              >
-                <template #format="percent">
-                  <!-- <span>Xem được</span> -->
-                  <!-- <div :class="{ success: percent == 100 }">
-                    {{ percent == 100 ? 'Hoàn thành' : percent + ' %' }}
-                  </div> -->
-                  <div>
-                    {{ percent + ' %' }}
-                  </div>
-                </template>
-              </a-progress>
+              <HistoryProgressBar
+                :historyProgress="dataMovie?.history_progress?.percent"
+              />
             </template>
           </Tags>
         </div>
@@ -284,6 +268,7 @@ import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
+import HistoryProgressBar from '@/components/HistoryProgressBar/HistoryProgressBar.vue';
 
 definePageMeta({
   middleware: (to, from) => {},

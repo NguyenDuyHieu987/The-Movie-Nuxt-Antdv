@@ -2,17 +2,31 @@
   position: relative;
 
   .play-container {
-    .back-page {
+    .top-page {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
       z-index: 2;
 
-      .ant-btn {
-        // background-color: transparent;
-        // box-shadow: none;
-        // background: linear-gradient(
-        //   0deg,
-        //   var(--background-content-color) 0%,
-        //   rgba(7, 7, 7, 0) 100%
-        // );
+      .back-page {
+        .ant-btn {
+          // background-color: transparent;
+          // box-shadow: none;
+          // background: linear-gradient(
+          //   0deg,
+          //   var(--background-content-color) 0%,
+          //   rgba(7, 7, 7, 0) 100%
+          // );
+        }
+      }
+
+      .progress-history {
+        .ant-progress-text {
+          // margin-left: 0px;
+          font-size: 1.3rem;
+        }
       }
     }
 
@@ -225,6 +239,21 @@
             align-items: flex-start;
             width: 100%;
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .play-movie {
+    .play-container {
+      .top-page {
+        flex-direction: column;
+        gap: 5px;
+
+        .back-page {
+          align-self: flex-start;
         }
       }
     }

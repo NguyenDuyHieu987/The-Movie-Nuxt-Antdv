@@ -2,17 +2,19 @@
   <a-layout-header class="header">
     <div class="left-header">
       <button class="menu-btn mobile" @click="store.setOpendrawer()">
-        <menu-outlined v-if="openDrawer == false" />
-        <el-icon v-else><Close /></el-icon>
-        <!-- <Icon v-else name="ic:sharp-close" /> -->
+        <Icon
+          v-show="!openDrawer"
+          name="ant-design:menu-outlined"
+          class="menu"
+        />
+        <Icon v-show="openDrawer" name="ic:baseline-close" class="close" />
       </button>
       <button
         v-if="collapsed == true"
         class="menu-btn desktop"
         @click="store.setCollapsed()"
       >
-        <menu-outlined />
-        <!-- <el-icon v-else><Close /></el-icon> -->
+        <Icon name="ant-design:menu-outlined" />
       </button>
       <div class="logo">
         <NuxtLink :to="{ path: '/' }">
@@ -149,8 +151,8 @@
                 <svg
                   class="fa-bell fa-regular"
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="22"
+                  height="22"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -162,8 +164,8 @@
                 <svg
                   class="fa-bell fa-solid"
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="22"
+                  height="22"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -204,10 +206,6 @@
         </a-menu-item>
 
         <a-menu-item class="account" key="account">
-          <template #icon>
-            <UserOutlined />
-          </template>
-
           <a-dropdown
             :trigger="['click']"
             class="dropdown-account"
@@ -215,6 +213,8 @@
             placement="bottomLeft"
           >
             <a class="ant-dropdown-link" @click.prevent>
+              <UserOutlined />
+
               <CaretDownOutlined />
             </a>
             <template #overlay>
@@ -257,16 +257,11 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import {
-  UserOutlined,
-  CaretDownOutlined,
-  MenuOutlined,
-} from '@ant-design/icons-vue';
 import { getDaTaSearch } from '~/services/search';
 import SearchCard from '@/components/SearchCard/SearchCard.vue';
-import { Close } from '@element-plus/icons-vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
+import { UserOutlined, CaretDownOutlined } from '@ant-design/icons-vue';
 
 const store = useStore();
 const { openDrawer, collapsed, isLogin, userAccount, role } =

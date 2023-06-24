@@ -64,6 +64,29 @@
         />
         <span @click="onClickReplayVideo"> Phát lại </span>
       </div>
+
+      <div
+        v-show="
+          videoStates.isShowNotify &&
+          dataMovie?.in_history &&
+          videoStates.isLoaded &&
+          !videoStates.isLoading
+        "
+        class="notify"
+      >
+        <div>
+          <a-button type="text" @click="onClickPlayAgain">
+            Xem lại từ đầu
+          </a-button>
+          <a-button
+            v-show="video?.duration - dataMovie?.history_progress?.seconds > 10"
+            type="text"
+            @click="onClickKeepWatching"
+          >
+            Xem tiếp: {{ formatDuration(dataMovie?.history_progress?.seconds) }}
+          </a-button>
+        </div>
+      </div>
     </div>
 
     <div
@@ -400,6 +423,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
+  dataMovie: any;
   backdrop: string;
   videoUrl: string;
 }>();
@@ -413,10 +437,10 @@ const videoPlayer = ref();
 const video = ref();
 const videoTemp = ref();
 const overlayProgress = ref();
-const canvasOverlayBackdrop = ref();
 const progressBar = ref();
 const timeline = ref();
 const canvasPreviewImg = ref();
+const canvasOverlayBackdrop = ref();
 const videoStates = reactive({
   isLoading: false,
   isLoaded: false,
@@ -428,6 +452,7 @@ const videoStates = reactive({
   isMouseMoveOverlayProgress: false,
   isHideControls: false,
   isShowControls: false,
+  isShowNotify: props.dataMovie?.in_history || false,
   isActiveControlsAnimation: false,
   isRewind: {
     enable: false,
@@ -467,7 +492,7 @@ const volume = ref<number>(70);
 const timeUpdate = ref<string>('00:00');
 const timelineUpdate = ref<string>('00:00');
 const duration = ref<string>('00:00');
-const interval = ref<any>();
+const timeOut = ref<any>();
 
 const setBlobSrcVideo = async (value: string) => {
   videoStates.isLoading = true;
@@ -487,10 +512,10 @@ const setBlobSrcVideo = async (value: string) => {
 
       video.value.src = blobSrc;
 
-      videoTemp.value = document.createElement('video');
-      videoTemp.value.src = blobSrc;
-      videoTemp.value.pause();
-      videoTemp.value.muted = true;
+      // videoTemp.value = document.createElement('video');
+      // videoTemp.value.src = blobSrc;
+      // videoTemp.value.pause();
+      // videoTemp.value.muted = true;
     })
     .finally(() => {
       videoStates.isLoading = false;
@@ -651,7 +676,7 @@ const onProgressVideo = (e: any) => {
 };
 
 const onMouseLeaveVideo = () => {
-  clearTimeout(interval.value);
+  clearTimeout(timeOut.value);
 
   videoStates.isHideControls = false;
 };
@@ -659,9 +684,9 @@ const onMouseLeaveVideo = () => {
 const onMouseMoveVideo = () => {
   if (videoStates.isPlayVideo && !videoStates.isEndedVideo) {
     videoStates.isHideControls = false;
-    clearTimeout(interval.value);
+    clearTimeout(timeOut.value);
 
-    interval.value = setTimeout(() => {
+    timeOut.value = setTimeout(() => {
       videoStates.isHideControls = true;
     }, 5000);
   }
@@ -753,15 +778,15 @@ const onClickVideo = (e: any) => {
   if (videoStates.isPlayVideo) {
     pauseVideo();
     // hide controls
-    clearTimeout(interval.value);
+    clearTimeout(timeOut.value);
     videoStates.isHideControls = false;
   } else {
     playVideo();
     // hide controls
     videoStates.isHideControls = false;
-    clearTimeout(interval.value);
+    clearTimeout(timeOut.value);
 
-    interval.value = setTimeout(() => {
+    timeOut.value = setTimeout(() => {
       videoStates.isHideControls = true;
     }, 5000);
   }
@@ -866,11 +891,11 @@ const drawTimeLine = (e: any) => {
     timeLinePositionFinnal + 'px'
   );
 
+  // videoTemp.value.currentTime = percent * videoTemp.value.duration;
+
   const ctx = canvasPreviewImg.value.getContext('2d');
 
-  videoTemp.value.currentTime = percent * videoTemp.value.duration;
-
-  ctx.drawImage(videoTemp.value, 0, 0, 160, 100);
+  ctx.drawImage(video.value, 0, 0, 160, 100);
 
   // canvasPreviewImg.value.toBlob((blob: any) => {
   // const previewImg = timeline.value.querySelector(
@@ -934,13 +959,28 @@ const onCloseSettings = () => {
   }, 150);
 };
 
+const onClickPlayAgain = () => {
+  video.value.currentTime = 0;
+  progressBar.value.style.setProperty('--progress-width', 0);
+  videoStates.isShowNotify = false;
+};
+
+const onClickKeepWatching = () => {
+  video.value.currentTime = props.dataMovie?.history_progress?.seconds;
+  progressBar.value.style.setProperty(
+    '--progress-width',
+    props.dataMovie?.history_progress?.percent
+  );
+  videoStates.isShowNotify = false;
+};
+
 const onKeyDownVideo = (e: any) => {
   // show controls
   if ([32, 37, 39].includes(e.keyCode)) {
     videoStates.isShowControls = true;
-    clearTimeout(interval.value);
+    clearTimeout(timeOut.value);
 
-    interval.value = setTimeout(() => {
+    timeOut.value = setTimeout(() => {
       videoStates.isShowControls = false;
     }, 5000);
   }

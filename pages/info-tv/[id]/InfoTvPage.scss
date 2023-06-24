@@ -307,33 +307,6 @@
           flex-direction: row;
           align-items: center;
           margin-top: 2px;
-
-          .progress-history {
-            display: inline;
-
-            .ant-progress-inner {
-              // height: 80px !important;
-              // width: 80px !important;
-              background-color: #35353563;
-
-              .ant-progress-bg {
-                height: 6px !important;
-                background-image: linear-gradient(
-                  to right,
-                  var(--app-background-color),
-                  var(--loading-progress-bar2)
-                ) !important;
-              }
-            }
-
-            .ant-progress-text {
-              font-size: 1.4rem;
-
-              // & > span {
-              //   font-size: 1.3rem;
-              // }
-            }
-          }
         }
       }
     }

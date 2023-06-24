@@ -12,6 +12,7 @@
     var(--background-content-color) 0%,
     rgba(7, 7, 7, 0) 100%
   );
+  z-index: 2;
 
   &.open {
     background: none;
@@ -34,7 +35,7 @@
 
     i,
     svg {
-      color: #fff;
+      color: var(--text-color);
       font-size: 2rem;
     }
 
