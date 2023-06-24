@@ -178,6 +178,38 @@
             opacity: 0.8;
           }
         }
+
+        .list-replies {
+          // height: 0px;
+          // overflow: hidden;
+
+          // &.show {
+          //   height: auto;
+          //   overflow: visible;
+          // }
+
+          .load-more {
+            margin: 8px 0px;
+            padding-left: 13px;
+
+            .ant-btn {
+              display: flex;
+              align-items: center;
+              height: auto;
+              padding: 0px;
+              color: var(--link-text-color);
+
+              svg {
+                margin-right: 5px;
+                font-size: 2.2rem;
+              }
+
+              &:active {
+                opacity: 0.8;
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -1,11 +1,11 @@
 import { makeRequest } from './makeRequest';
 
-export function getList(skip: number = 0) {
+export function getList(skip: number = 1, limit: number = 20) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/list/getlist?skip=${skip}`, {
+  return makeRequest(`/list/getlist?skip=${skip}&limit=${limit}`, {
     headers: headers,
   });
 }

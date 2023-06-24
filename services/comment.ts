@@ -1,15 +1,26 @@
 import { makeRequest } from './makeRequest';
 
-export function getCommentByMovidId(movieId: string, movieType: string) {
-  return makeRequest(`/comment/get-all/${movieType}/${movieId}`);
+export function getCommentByMovidId(
+  movieId: string,
+  movieType: string,
+  skip: number = 1,
+  limit: number = 20
+) {
+  return makeRequest(
+    `/comment/get-all/${movieType}/${movieId}?skip=${skip}&limit=${limit}`
+  );
 }
 
 export function getCommentByMovidId_ParentId(
   movieId: string,
   parentId: string,
-  movieType: string
+  movieType: string,
+  skip: number = 1,
+  limit: number = 10
 ) {
-  return makeRequest(`/comment/get/${movieType}/${movieId}/${parentId}`);
+  return makeRequest(
+    `/comment/get/${movieType}/${movieId}/${parentId}?skip=${skip}&limit=${limit}`
+  );
 }
 
 export function CommentMovie(params: any) {

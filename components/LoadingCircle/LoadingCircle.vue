@@ -1,6 +1,10 @@
 <template>
   <div class="loading-circle" :class="class">
-    <Icon name="icon-park-outline:loading-four" />
+    <Icon name="icon-park-outline:loading-four" class="loading-icon" />
+
+    <!-- <Icon name="eos-icons:loading" /> -->
+    <!-- <Icon name="line-md:loading-twotone-loop" /> -->
+    <!-- <Icon name="line-md:loading-loop" /> -->
   </div>
 </template>
 

@@ -511,13 +511,14 @@ const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(`history/get/${store.$state.userAccount?.id}/1`, () =>
-    getHistory(0)
+    getHistory(1)
   )
     .then((movieRespone: any) => {
       if (movieRespone.data.value?.result?.items?.length > 0) {
         dataHistory.value = movieRespone.data.value?.result?.items;
         total.value = movieRespone.data.value?.total;
         topicImage.value = dataHistory.value[0]?.backdrop_path;
+        skip.value++;
 
         setTimeout(() => {
           const color = dataHistory.value[0]?.dominant_backdrop_color;

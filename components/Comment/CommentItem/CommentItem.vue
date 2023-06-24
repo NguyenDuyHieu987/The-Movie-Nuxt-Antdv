@@ -120,12 +120,7 @@
             {{ numberReplies != 0 && numberReplies + ' Phản hồi' }}
           </a-button>
 
-          <LoadingCircle v-if="loadingReplies" class="loading-replies" />
-
-          <div
-            v-else-if="isShowReplies && !loadingReplies"
-            class="list-replies"
-          >
+          <div v-show="isShowReplies && !loadingReplies" class="list-replies">
             <CommentItemChild
               v-for="(item1, index) in listReplies"
               :key="item1?.id"
@@ -138,7 +133,29 @@
               @onSuccessCommentChild="handleSuccessCommentChild"
               @omSuccessRemoveCommentChild="handleSuccessRemoveCommentChild"
             />
+
+            <div
+              class="load-more"
+              v-show="numberReplies > listReplies?.length && !isLoadmoreReplies"
+            >
+              <a-button
+                v-show="numberReplies > 0"
+                class="reply"
+                type="text"
+                @click="onLoadMoreReplies"
+              >
+                <template #icon>
+                  <Icon name="material-symbols:subdirectory-arrow-right" />
+                </template>
+                Hiện thêm phản hồi
+              </a-button>
+            </div>
           </div>
+
+          <LoadingCircle
+            v-show="loadingReplies || isLoadmoreReplies"
+            class="loading-replies"
+          />
         </div>
       </div>
     </div>
@@ -175,6 +192,8 @@ const listReplies = ref<any[]>([]);
 const loading = ref<boolean>(false);
 const loadingReplies = ref<boolean>(false);
 const numberReplies = ref<number>(+props.item?.childrens || 0);
+const skip = ref<number>(1);
+const isLoadmoreReplies = ref<boolean>(false);
 
 onBeforeMount(() => {});
 
@@ -187,6 +206,7 @@ const onClickShowReplies = () => {
     getCommentByMovidId_ParentId(props.movieId, props.item?.id, props.movieType)
       .then((response) => {
         listReplies.value = response?.results;
+        skip.value++;
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
@@ -195,6 +215,28 @@ const onClickShowReplies = () => {
         loadingReplies.value = false;
       });
   }
+};
+
+const onLoadMoreReplies = () => {
+  isLoadmoreReplies.value = true;
+
+  getCommentByMovidId_ParentId(
+    props.movieId,
+    props.item?.id,
+    props.movieType,
+    skip.value,
+    10
+  )
+    .then((response) => {
+      listReplies.value = listReplies.value.concat(response?.results);
+      skip.value++;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      isLoadmoreReplies.value = false;
+    });
 };
 
 const handleSuccessCommentChild = (data: any) => {

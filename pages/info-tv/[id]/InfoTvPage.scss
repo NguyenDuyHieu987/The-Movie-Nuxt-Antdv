@@ -306,6 +306,7 @@
           display: flex;
           flex-direction: row;
           align-items: center;
+          margin-top: 2px;
 
           .progress-history {
             display: inline;
@@ -317,6 +318,11 @@
 
               .ant-progress-bg {
                 height: 6px !important;
+                background-image: linear-gradient(
+                  to right,
+                  var(--app-background-color),
+                  var(--loading-progress-bar2)
+                ) !important;
               }
             }
 

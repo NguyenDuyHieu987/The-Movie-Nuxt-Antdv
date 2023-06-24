@@ -1,11 +1,11 @@
 import { makeRequest } from './makeRequest';
 
-export function getHistory(skip: number = 0) {
+export function getHistory(skip: number = 1, limit: number = 20) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/history/gethistory?skip=${skip}`, {
+  return makeRequest(`/history/gethistory?skip=${skip}&limit=${limit}`, {
     headers: headers,
   });
 }
@@ -39,7 +39,7 @@ export function add_update_History(params: any) {
   bodyFormData.append('media_type', params.media_type);
   bodyFormData.append('media_id', params.media_id);
   bodyFormData.append('duration', params.duration);
-  bodyFormData.append('percent', params.percent);
+  bodyFormData.append('percent', params.percent.toFixed(3));
   bodyFormData.append('seconds', params.seconds);
 
   return makeRequest(`/history/add_item`, {

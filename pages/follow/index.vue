@@ -476,13 +476,14 @@ const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () =>
-    getList(0)
+    getList(1)
   )
     .then((movieRespone: any) => {
       if (movieRespone.data.value?.result?.items?.length > 0) {
         dataList.value = movieRespone.data.value?.result?.items;
         total.value = movieRespone.data.value?.total;
         topicImage.value = dataList.value[0]?.backdrop_path;
+        skip.value++;
 
         setTimeout(() => {
           const color = dataList.value[0]?.dominant_backdrop_color;

@@ -13,6 +13,9 @@
   svg {
     margin: 0px auto;
     font-size: inherit;
+  }
+
+  svg.loading-icon {
     animation: loading 1.2s linear infinite;
   }
 }
