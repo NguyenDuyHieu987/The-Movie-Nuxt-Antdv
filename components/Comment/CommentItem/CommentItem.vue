@@ -134,6 +134,7 @@
               commentType="children"
               v-model:listReplies="listReplies"
               @onSuccessCommentChild="handleSuccessCommentChild"
+              @omSuccessRemoveCommentChild="handleSuccessRemoveCommentChild"
             />
           </div>
         </div>
@@ -201,6 +202,10 @@ const handleSuccessCommentChild = (data: any) => {
   numberReplies.value++;
 };
 
+const handleSuccessRemoveCommentChild = () => {
+  numberReplies.value--;
+};
+
 const handleRemoveComment = () => {
   DeleteComment({
     id: props.item?.id,
@@ -209,18 +214,18 @@ const handleRemoveComment = () => {
     commentType: 'parent',
   })
     .then((response) => {
-      ElNotification({
-        title: 'Thành công!',
-        message: 'Xóa bình luận thành công.',
-        type: 'success',
-        position: 'bottom-right',
-        duration: 3000,
-        showClose: false,
-      });
-
       if (response?.success) {
         commentsList.value = _.reject(commentsList.value, (x) => {
           return x.id === props.item?.id;
+        });
+
+        ElNotification({
+          title: 'Thành công!',
+          message: 'Xóa bình luận thành công.',
+          type: 'success',
+          position: 'bottom-right',
+          duration: 3000,
+          showClose: false,
         });
       }
     })

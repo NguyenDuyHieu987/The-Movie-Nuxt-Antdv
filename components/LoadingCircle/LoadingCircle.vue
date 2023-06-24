@@ -8,4 +8,4 @@
 defineProps({ class: { type: String } });
 </script>
 
-<style scoped lang="scss" src="./LoadingCircle.scss"></style>
+<style lang="scss" src="./LoadingCircle.scss"></style>

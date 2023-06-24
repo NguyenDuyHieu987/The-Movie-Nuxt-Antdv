@@ -118,6 +118,7 @@ const props = defineProps<{
 
 const emits = defineEmits<{
   onSuccessCommentChild: [data: any];
+  omSuccessRemoveCommentChild: [];
 }>();
 
 const store = useStore();
@@ -140,19 +141,21 @@ const handleRemoveComment = () => {
     commentType: 'children',
   })
     .then((response) => {
-      ElNotification({
-        title: 'Thành công!',
-        message: 'Xóa bình luận thành công.',
-        type: 'success',
-        position: 'bottom-right',
-        duration: 3000,
-        showClose: false,
-      });
-
       if (response?.success) {
         listReplies.value = _.reject(listReplies.value, (x) => {
           return x.id === props.item?.id;
         });
+
+        ElNotification({
+          title: 'Thành công!',
+          message: 'Xóa bình luận thành công.',
+          type: 'success',
+          position: 'bottom-right',
+          duration: 3000,
+          showClose: false,
+        });
+
+        emits('omSuccessRemoveCommentChild');
       }
     })
     .catch((e) => {
