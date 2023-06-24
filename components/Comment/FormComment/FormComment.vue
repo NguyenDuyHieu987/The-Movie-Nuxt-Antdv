@@ -139,6 +139,7 @@ const onSubmit = () => {
     commentType: props.commentType,
   })
     .then((response) => {
+      console.log(response);
       if (response?.success) {
         if (props.commentType == 'parent') {
           commentsList.value?.unshift(response?.result);

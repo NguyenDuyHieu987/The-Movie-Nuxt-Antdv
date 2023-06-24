@@ -15,9 +15,7 @@
         :movieType="dataMovie?.media_type"
       />
 
-      <div v-if="loading" class="loading-comment">
-        <Icon name="icon-park-outline:loading-four" />
-      </div>
+      <LoadingCircle v-if="loading" class="loading-comment" />
 
       <div v-else class="list-comment">
         <CommentItem
@@ -39,6 +37,7 @@ import axios from 'axios';
 import { getCommentByMovidId } from '~/services/comment';
 import FormComment from '@/components/Comment/FormComment/FormComment.vue';
 import CommentItem from '@/components/Comment/CommentItem/CommentItem.vue';
+import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
 
 const props = defineProps<{
   dataMovie: any;
@@ -64,4 +63,4 @@ onBeforeMount(() => {
 });
 </script>
 
-<style lang="scss" src="./Comment.scss"></style>
+<style lang="scss" src="./Comment.scss" scoped></style>

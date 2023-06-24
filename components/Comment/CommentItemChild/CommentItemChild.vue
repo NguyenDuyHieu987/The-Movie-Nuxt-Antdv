@@ -34,8 +34,8 @@
             class="reply"
             type="text"
             @click="isShowFormComment = !isShowFormComment"
-            :disabled="userAccount?.id == item?.user_id"
           >
+            <!-- :disabled="userAccount?.id == item?.user_id" -->
             Phản hồi
           </a-button>
         </div>

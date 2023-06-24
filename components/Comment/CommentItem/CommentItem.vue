@@ -36,8 +36,8 @@
                 class="reply"
                 type="text"
                 @click="isShowFormComment = !isShowFormComment"
-                :disabled="userAccount?.id == item?.user_id"
               >
+                <!-- :disabled="userAccount?.id == item?.user_id" -->
                 Phản hồi
               </a-button>
             </div>
@@ -102,7 +102,7 @@
 
         <div class="replies">
           <a-button
-            v-show="item?.childrens > 0"
+            v-show="numberReplies > 0"
             class="reply"
             type="text"
             @click="onClickShowReplies"
@@ -114,12 +114,10 @@
                 :class="{ active: isShowReplies }"
               />
             </template>
-            {{ numberReplies + ' Phản hồi' }}
+            {{ numberReplies != 0 && numberReplies + ' Phản hồi' }}
           </a-button>
 
-          <div v-if="loadingReplies" class="loading-replies">
-            <Icon name="icon-park-outline:loading-four" />
-          </div>
+          <LoadingCircle v-if="loadingReplies" class="loading-replies" />
 
           <div
             v-else-if="isShowReplies && !loadingReplies"
@@ -152,6 +150,7 @@ import {
 } from '~/services/comment';
 import FormComment from '@/components/Comment/FormComment/FormComment.vue';
 import CommentItemChild from '@/components/Comment/CommentItemChild/CommentItemChild.vue';
+import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
@@ -171,7 +170,7 @@ const isShowReplies = ref<boolean>(false);
 const listReplies = ref<any[]>([]);
 const loading = ref<boolean>(false);
 const loadingReplies = ref<boolean>(false);
-const numberReplies = ref<number>(props.item?.childrens);
+const numberReplies = ref<number>(+props.item?.childrens || 0);
 
 onBeforeMount(() => {});
 
@@ -195,6 +194,9 @@ const onClickShowReplies = () => {
 };
 
 const handleSuccessCommentChild = (data: any) => {
+  if (!isShowReplies.value) {
+    isShowReplies.value = true;
+  }
   listReplies.value.push(data);
   numberReplies.value++;
 };
