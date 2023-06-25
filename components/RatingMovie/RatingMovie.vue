@@ -114,6 +114,7 @@ const handleRating = (value: number) => {
         //       style: 'color: green',
         //     }),
         // });
+
         vote_Average.value = response?.vote_average;
         vote_Count.value = response?.vote_count;
         disabledRate.value = true;
