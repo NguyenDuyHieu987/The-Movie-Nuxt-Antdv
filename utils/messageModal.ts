@@ -23,6 +23,7 @@ export function conrfirmMessageModal(options: optionsConfirm) {
       type: 'primary',
       danger: true,
     },
+    cancelButtonProps: { type: 'default' },
     cancelText: 'Không',
     centered: true,
     onOk() {

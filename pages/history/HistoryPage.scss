@@ -116,14 +116,16 @@
 
 @media only screen and (max-width: 480px) {
   .history .history-container .history-main-content {
-    .el-skeleton {
-      flex-direction: column !important;
-      gap: 5px !important;
+    .skeleton-loadmore {
+      .el-skeleton.is-animated {
+        flex-direction: column !important;
+        gap: 5px !important;
 
-      .img-box {
-        flex: 1 0 auto !important;
-        width: 100% !important ;
-        height: 160px !important;
+        .img-box {
+          flex: 1 0 auto !important;
+          width: 100% !important ;
+          height: 160px !important;
+        }
       }
     }
   }
@@ -395,44 +397,42 @@
         gap: 15px;
       }
 
-      .el-skeleton {
-        // margin-left: 28px;
-        position: relative;
-        display: flex;
-        width: 100%;
-        gap: 15px;
-        margin-top: 15px;
-        flex-direction: row;
-        // align-items: center;
-
-        .index-item {
-        }
-
-        .img-box {
+      .skeleton-loadmore {
+        .el-skeleton.is-animated {
           position: relative;
-          flex: 1 0 250px;
-          width: 250px;
-          height: 141px;
-          overflow: hidden;
-          border-radius: 7px;
-
-          .image-skeleton {
-            height: 100%;
-            width: 100%;
-          }
-        }
-
-        .info {
           display: flex;
-          flex-direction: column;
-          gap: 10px;
+          flex-direction: row;
           width: 100%;
+          gap: 15px;
+          margin-top: 15px;
 
-          .overview {
-            margin-top: 5px;
+          .img-box {
+            position: relative;
+            flex: 1 0 250px;
+            width: 250px;
+            height: 141px;
+            overflow: hidden;
+            border-radius: 7px;
+
+            .el-skeleton__item.skeleton-img {
+              height: 100%;
+              width: 100%;
+            }
+          }
+
+          .content-skeleton {
             display: flex;
             flex-direction: column;
             gap: 10px;
+            width: 100%;
+            margin-top: 7px;
+
+            .overview {
+              margin-top: 5px;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+            }
           }
         }
       }
@@ -442,10 +442,10 @@
 
 #topic-history-column-teleport {
   position: relative;
-  padding: 17px 0px 0px 0px;
+  padding: 15px 0px 0px 0px;
   min-width: 342px;
   max-width: 342px;
-  margin-left: 3px;
+  // margin-left: 3px;
 
   .topic-history-column {
     flex: 0 0 342px;

@@ -20,7 +20,6 @@
   &.horizontal {
     .el-skeleton.is-animated {
       position: relative;
-      height: 8vw;
       overflow: hidden;
       // border-top-right-radius: 5px;
       // border-top-left-radius: 5px;
@@ -87,7 +86,7 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 2px;
+        height: 2.5px;
         width: var(--percent-viewed);
         background-color: var(--app-background-color3);
         z-index: 2;
@@ -97,7 +96,7 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 2px;
+        height: 2.5px;
         width: 100%;
         z-index: 1;
         background-color: #3c3c3c59;

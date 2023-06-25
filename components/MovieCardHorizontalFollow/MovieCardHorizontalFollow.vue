@@ -3,18 +3,16 @@
     <p class="index-item">{{ index + 1 }}</p>
     <el-skeleton :loading="loading" animated>
       <template #template>
-        <div class="item-skeleton">
-          <div class="img-box">
-            <el-skeleton-item class="image-skeleton" />
-          </div>
-          <div style="margin-top: 7px" class="info">
-            <el-skeleton-item variant="text" style="width: 40%" />
-            <el-skeleton-item variant="text" style="width: 20%" />
-            <el-skeleton-item variant="text" style="width: 30%" />
-            <div class="overview">
-              <el-skeleton-item variant="text" />
-              <el-skeleton-item variant="text" style="width: 50%" />
-            </div>
+        <div class="img-box">
+          <el-skeleton-item class="skeleton-img" />
+        </div>
+        <div class="content-skeleton">
+          <el-skeleton-item variant="text" style="width: 40%" />
+          <el-skeleton-item variant="text" style="width: 20%" />
+          <el-skeleton-item variant="text" style="width: 30%" />
+          <div class="overview">
+            <el-skeleton-item variant="text" />
+            <el-skeleton-item variant="text" style="width: 50%" />
           </div>
         </div>
       </template>

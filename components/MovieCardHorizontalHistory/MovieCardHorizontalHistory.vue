@@ -13,9 +13,9 @@
     <el-skeleton :loading="loading" animated>
       <template #template>
         <div class="img-box">
-          <el-skeleton-item class="image-skeleton" />
+          <el-skeleton-item class="skeleton-img" />
         </div>
-        <div style="margin-top: 7px" class="info">
+        <div class="content-skeleton">
           <el-skeleton-item variant="text" style="width: 40%" />
           <el-skeleton-item variant="text" style="width: 20%" />
           <el-skeleton-item variant="text" style="width: 30%" />
@@ -324,8 +324,8 @@ const getData = async () => {
 
   if (props?.prevItem) {
     if (
-      prev_date_old.toISOString().slice(0, 10) !=
-      date_old.toISOString().slice(0, 10)
+      prev_date_old.toISOString().slice(0, 9) !=
+      date_old.toISOString().slice(0, 9)
     ) {
       switch (totalDays) {
         case 0:

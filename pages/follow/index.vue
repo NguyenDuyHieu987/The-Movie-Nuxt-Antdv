@@ -10,9 +10,9 @@
             <div class="top">
               <div class="backdrop">
                 <NuxtLink
-                  v-if="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
+                  v-show="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
                   :to="{
-                    path: `/play/tv/${dataList[0]?.id}/${dataList[0]?.name
+                    path: `/play-tv/${dataList[0]?.id}/${dataList[0]?.name
                       ?.replace(/\s/g, '+')
                       .toLowerCase()}/tap-1`,
                   }"
@@ -28,11 +28,9 @@
                   </div>
                 </NuxtLink>
                 <NuxtLink
-                  v-else-if="
-                    dataList[0]?.media_type == 'movie' && dataList[0]?.id
-                  "
+                  v-show="dataList[0]?.media_type == 'movie' && dataList[0]?.id"
                   :to="{
-                    path: `/play/movie/${dataList[0]?.id}/${dataList[0]?.name
+                    path: `/play-movie/${dataList[0]?.id}/${dataList[0]?.name
                       ?.replace(/\s/g, '+')
                       .toLowerCase()}`,
                   }"
@@ -49,7 +47,7 @@
                   </div>
                 </NuxtLink>
                 <nuxt-img
-                  v-if="!dataList?.length"
+                  v-show="!dataList?.length"
                   class="ant-image"
                   :src="getBackdrop(topicImage, ',250')"
                   loading="lazy"
@@ -144,14 +142,15 @@
             </div>
           </div>
         </a-layout-sider>
-        <Teleport v-if="dataList?.length" to="#topic-follow-column-teleport">
+
+        <Teleport v-if="loading" to="#topic-follow-column-teleport">
           <a-layout-sider class="topic-follow-column" :width="340">
             <div class="column-container">
               <div class="backdrop">
                 <NuxtLink
-                  v-if="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
+                  v-show="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
                   :to="{
-                    path: `/play/tv/${dataList[0]?.id}/${dataList[0]?.name
+                    path: `/play-tv/${dataList[0]?.id}/${dataList[0]?.name
                       ?.replace(/\s/g, '+')
                       .toLowerCase()}/tap-1`,
                   }"
@@ -167,12 +166,11 @@
                     <span> PHÁT NGAY </span>
                   </div>
                 </NuxtLink>
+
                 <NuxtLink
-                  v-else-if="
-                    dataList[0]?.media_type == 'movie' && dataList[0]?.id
-                  "
+                  v-show="dataList[0]?.media_type == 'movie' && dataList[0]?.id"
                   :to="{
-                    path: `/play/movie/${dataList[0]?.id}/${dataList[0]?.name
+                    path: `/play-movie/${dataList[0]?.id}/${dataList[0]?.name
                       ?.replace(/\s/g, '+')
                       .toLowerCase()}`,
                   }"
@@ -188,8 +186,9 @@
                     <span>PHÁT NGAY</span>
                   </div>
                 </NuxtLink>
+
                 <nuxt-img
-                  v-if="!dataList?.length"
+                  v-show="!dataList?.length"
                   class="ant-image"
                   :src="getBackdrop(topicImage, ',250')"
                   loading="lazy"
@@ -296,7 +295,7 @@
             />
           </section>
 
-          <div class="skeleton-loadmore" v-if="loadMore">
+          <div class="skeleton-loadmore" v-show="loadMore">
             <el-skeleton
               :loading="true"
               animated
@@ -304,12 +303,12 @@
               :key="index"
             >
               <template #template>
-                <span class="index-item">{{ dataList?.length + index }} </span>
+                <p class="index-item">{{ dataList?.length + index }}</p>
                 <div class="item-skeleton">
                   <div class="img-box">
-                    <el-skeleton-item class="image-skeleton" variant="image" />
+                    <el-skeleton-item class="skeleton-img" />
                   </div>
-                  <div style="margin-top: 7px" class="info">
+                  <div class="content-skeleton">
                     <el-skeleton-item variant="text" style="width: 40%" />
                     <el-skeleton-item variant="text" style="width: 20%" />
                     <el-skeleton-item variant="text" style="width: 30%" />
@@ -472,7 +471,6 @@ onMounted(() => {
 });
 
 const getData = async () => {
-  loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () =>
@@ -491,24 +489,24 @@ const getData = async () => {
         });
       }
 
-      if (dataList.value?.length == 0) {
-        useAsyncData(`image/color/${topicImage.value}`, () =>
-          getColorImage(topicImage.value)
-        )
-          .then((colorResponse: any) => {
-            const color = colorResponse.data.value?.color;
-            setBackgroundColor(color);
-          })
-          .catch((e) => {
-            if (axios.isCancel(e)) return;
-          });
-      }
+      // if (dataList.value?.length == 0) {
+      //   useAsyncData(`image/color/${topicImage.value}`, () =>
+      //     getColorImage(topicImage.value)
+      //   )
+      //     .then((colorResponse: any) => {
+      //       const color = colorResponse.data.value?.color;
+      //       setBackgroundColor(color);
+      //     })
+      //     .catch((e) => {
+      //       if (axios.isCancel(e)) return;
+      //     });
+      // }
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = false;
+      loading.value = true;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };

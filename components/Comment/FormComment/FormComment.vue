@@ -122,7 +122,18 @@ const loading = ref<boolean>(false);
 const isShowEmoji = ref<boolean>(false);
 const commentsList = defineModel<any[]>('commentsList');
 
-onBeforeMount(() => {});
+onMounted(() => {
+  // window.onclick = (e: any) => {
+  //   if (
+  //     !e.target.closest('.v3-emoji-picker') &&
+  //     !e.target.closest('.comment-form .emoticon')
+  //   ) {
+  //     isShowEmoji.value = false;
+  //     if (isShowEmoji.value) {
+  //     }
+  //   }
+  // };
+});
 
 watch(props, () => {
   if (props.isShowFormComment) {

@@ -10,11 +10,11 @@
             <div class="top">
               <div class="backdrop">
                 <NuxtLink
-                  v-if="
+                  v-show="
                     dataHistory[0]?.media_type == 'tv' && dataHistory[0]?.id
                   "
                   :to="{
-                    path: `/play/tv/${dataHistory[0]?.id}/${dataHistory[0]?.name
+                    path: `/play-tv/${dataHistory[0]?.id}/${dataHistory[0]?.name
                       ?.replace(/\s/g, '+')
                       .toLowerCase()}/tap-1`,
                   }"
@@ -33,11 +33,11 @@
                   </div>
                 </NuxtLink>
                 <NuxtLink
-                  v-else-if="
+                  v-show="
                     dataHistory[0]?.media_type == 'movie' && dataHistory[0]?.id
                   "
                   :to="{
-                    path: `/play/movie/${
+                    path: `/play-movie/${
                       dataHistory[0]?.id
                     }/${dataHistory[0]?.name
                       ?.replace(/\s/g, '+')
@@ -56,7 +56,7 @@
                   </div>
                 </NuxtLink>
                 <nuxt-img
-                  v-if="!dataHistory?.length"
+                  v-show="!dataHistory?.length"
                   class="ant-image"
                   :src="getBackdrop(topicImage, ',250')"
                   loading="lazy"
@@ -155,19 +155,16 @@
             </div>
           </div>
         </a-layout-sider>
-        <Teleport
-          v-if="dataHistory?.length"
-          to="#topic-history-column-teleport"
-        >
+        <Teleport v-if="loading" to="#topic-history-column-teleport">
           <a-layout-sider class="topic-history-column" :width="340">
             <div class="column-container">
               <div class="backdrop">
                 <NuxtLink
-                  v-if="
+                  v-show="
                     dataHistory[0]?.media_type == 'tv' && dataHistory[0]?.id
                   "
                   :to="{
-                    path: `/play/tv/${dataHistory[0]?.id}/${dataHistory[0]?.name
+                    path: `/play-tv/${dataHistory[0]?.id}/${dataHistory[0]?.name
                       ?.replace(/\s/g, '+')
                       .toLowerCase()}/tap-1`,
                   }"
@@ -185,12 +182,13 @@
                     </span>
                   </div>
                 </NuxtLink>
+
                 <NuxtLink
-                  v-else-if="
+                  v-show="
                     dataHistory[0]?.media_type == 'movie' && dataHistory[0]?.id
                   "
                   :to="{
-                    path: `/play/movie/${
+                    path: `/play-movie/${
                       dataHistory[0]?.id
                     }/${dataHistory[0]?.name
                       ?.replace(/\s/g, '+')
@@ -208,8 +206,9 @@
                     <span>PHÁT NGAY</span>
                   </div>
                 </NuxtLink>
+
                 <nuxt-img
-                  v-if="!dataHistory?.length"
+                  v-show="!dataHistory?.length"
                   class="ant-image"
                   :src="getBackdrop(topicImage, ',250')"
                   loading="lazy"
@@ -317,7 +316,7 @@
               :getDataWhenRemoveHistory="getDataWhenRemoveHistory"
             />
           </section>
-          <div class="skeleton-loadmore" v-if="loadMore">
+          <div class="skeleton-loadmore" v-show="loadMore">
             <el-skeleton
               :loading="true"
               animated
@@ -326,9 +325,9 @@
             >
               <template #template>
                 <div class="img-box">
-                  <el-skeleton-item class="image-skeleton" variant="image" />
+                  <el-skeleton-item class="skeleton-img" />
                 </div>
-                <div style="margin-top: 7px" class="info">
+                <div class="content-skeleton">
                   <el-skeleton-item variant="text" style="width: 40%" />
                   <el-skeleton-item variant="text" style="width: 20%" />
                   <el-skeleton-item variant="text" style="width: 30%" />
@@ -507,7 +506,6 @@ onMounted(() => {
 });
 
 const getData = async () => {
-  loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(`history/get/${store.$state.userAccount?.id}/1`, () =>
@@ -526,24 +524,24 @@ const getData = async () => {
         });
       }
 
-      if (dataHistory.value?.length == 0) {
-        useAsyncData(`image/color/${topicImage.value}`, () =>
-          getColorImage(topicImage.value)
-        )
-          .then((colorResponse: any) => {
-            const color = colorResponse.data.value?.color;
-            setBackgroundColor(color);
-          })
-          .catch((e) => {
-            if (axios.isCancel(e)) return;
-          });
-      }
+      // if (dataHistory.value?.length == 0) {
+      //   useAsyncData(`image/color/${topicImage.value}`, () =>
+      //     getColorImage(topicImage.value)
+      //   )
+      //     .then((colorResponse: any) => {
+      //       const color = colorResponse.data.value?.color;
+      //       setBackgroundColor(color);
+      //     })
+      //     .catch((e) => {
+      //       if (axios.isCancel(e)) return;
+      //     });
+      // }
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = false;
+      loading.value = true;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };

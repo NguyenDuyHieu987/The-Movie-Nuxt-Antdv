@@ -42,6 +42,34 @@
       color: var(--text-color);
     }
   }
+
+  &.ant-modal-confirm {
+    .ant-modal-content {
+      .ant-modal-confirm-body-wrapper {
+        .ant-modal-confirm-body {
+          .ant-modal-confirm-content {
+            margin-top: 20px;
+            margin-left: 0px !important;
+          }
+        }
+
+        .ant-modal-confirm-btns {
+          .ant-btn {
+            height: auto;
+            min-width: 60px;
+            font-size: 1.5rem;
+          }
+
+          .ant-btn:first-child {
+            &:hover,
+            &:focus {
+              border: 1px solid var(--border-regular-btn);
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .ant-select {

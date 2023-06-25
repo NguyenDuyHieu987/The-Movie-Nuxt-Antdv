@@ -15,10 +15,7 @@
           <span> {{ dataMovie?.name }}</span>
         </BackPage>
 
-        <HistoryProgressBar
-          v-show="store.$state.isLogin"
-          :historyProgress="percentProgressHistory"
-        />
+        <HistoryProgressBar :historyProgress="percentProgressHistory" />
       </div>
 
       <div class="video">

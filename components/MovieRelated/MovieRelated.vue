@@ -1,7 +1,7 @@
 <template>
   <div class="movie-related">
     <div class="similar-section">
-      <h2 class="gradient-title-default" v-show="dataSimilar?.length">
+      <h2 class="gradient-title-default">
         <span>Phim tương tự</span>
       </h2>
 
@@ -22,7 +22,7 @@
     </div>
 
     <div class="recommend-section">
-      <h2 class="gradient-title-default" v-show="dataRecommend?.length">
+      <h2 class="gradient-title-default">
         <span>Có thể bạn quan tâm</span>
       </h2>
 
