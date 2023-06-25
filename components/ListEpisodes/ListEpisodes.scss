@@ -1,6 +1,12 @@
 .list-episodes {
   position: relative;
 
+  .movie-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .control-episodes {
     margin-bottom: 20px;
     display: flex;

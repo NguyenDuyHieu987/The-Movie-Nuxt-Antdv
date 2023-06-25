@@ -40,6 +40,16 @@ video::-webkit-media-controls {
     }
   }
 
+  .video-mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+  }
+
   #video-player {
     height: 100%;
     width: 100%;
@@ -201,6 +211,7 @@ video::-webkit-media-controls {
 
     .controls-container {
       position: relative;
+      z-index: 1;
     }
 
     .timeline {
@@ -258,7 +269,7 @@ video::-webkit-media-controls {
       transform: translateY(-50%);
       z-index: 2;
       user-select: none;
-      transition: all 0.15s;
+      transition: all 0.3s;
 
       &:hover {
         height: 5.5px;
@@ -281,6 +292,16 @@ video::-webkit-media-controls {
             background-color: var(--app-background-color);
           }
         }
+      }
+
+      .overlay-progress-padding {
+        position: absolute;
+        height: 15px;
+        bottom: 0;
+        // top: 50%;
+        // transform: translateY(-50%);
+        width: 100%;
+        z-index: 1;
       }
     }
 
@@ -469,6 +490,17 @@ video::-webkit-media-controls {
         }
       }
     }
+
+    .background-controls {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 20vh;
+      background-image: url('/images/backgrounds/background-gradient-opacity.png');
+      opacity: 0;
+    }
   }
 
   .settings {
@@ -630,12 +662,20 @@ video::-webkit-media-controls {
   &.show-controls {
     .controls {
       opacity: 1;
+
+      .background-controls {
+        opacity: 1;
+      }
     }
   }
 
   &:hover {
     .controls {
       opacity: 1;
+
+      .background-controls {
+        opacity: 1;
+      }
     }
 
     &.hide-controls {

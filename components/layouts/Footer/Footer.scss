@@ -15,6 +15,7 @@
   text-align: center;
   flex-direction: column;
   font-size: 1.4rem;
+  color: var(--text-color);
 
   .footer-container {
     display: flex;
@@ -56,11 +57,7 @@
 
       .email,
       .facebook {
-        color: #d4d4d4;
-
-        &:hover {
-          color: #fff;
-        }
+        color: var(--text-color);
 
         &:active {
           opacity: 0.8;

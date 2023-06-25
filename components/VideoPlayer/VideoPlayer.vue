@@ -8,6 +8,8 @@
       'show-controls': videoStates.isShowControls,
       pause: !videoStates.isPlayVideo || videoStates.isEndedVideo,
     }"
+    @mousemove="onMouseMoveVideo"
+    @mouseleave="onMouseLeaveVideo"
   >
     <div v-if="settingStates.switchBackgroud" class="overlay-backdrop">
       <!-- <canvas ref="canvasOverlayBackdrop"> </canvas> -->
@@ -23,13 +25,10 @@
       autoplay
       muted
       :poster="backdrop"
-      @click="onClickVideo"
       @loadstart="onLoadStartVideo"
       @loadeddata="onLoadedDataVideo"
       @canplay="onCanPlayVideo"
       @timeupdate="onTimeUpdateVideo"
-      @mousemove="onMouseMoveVideo"
-      @mouseleave="onMouseLeaveVideo"
       @ended="onEndedVideo"
       @keydown="onKeyDownVideo"
       @waiting="onWaitingVideo"
@@ -154,6 +153,12 @@
           @mouseleave="videoStates.isMouseMoveOverlayProgress = false"
           ref="overlayProgress"
         >
+          <div
+            class="overlay-progress-padding"
+            ref="overlayProgressPadding"
+            @mousemove="onMouseMoveOverlayProgress"
+          ></div>
+
           <div class="progress-bar" ref="progressBar"></div>
         </div>
 
@@ -273,7 +278,11 @@
           </div>
         </div>
       </div>
+
+      <div class="background-controls"></div>
     </div>
+
+    <div class="video-mask" @click="onClickVideo"></div>
 
     <div
       class="settings"
@@ -437,6 +446,7 @@ const videoPlayer = ref();
 const video = ref();
 const videoTemp = ref();
 const overlayProgress = ref();
+const overlayProgressPadding = ref();
 const progressBar = ref();
 const timeline = ref();
 const canvasPreviewImg = ref();
@@ -855,6 +865,10 @@ const onMouseUpProgressBar = () => {
   }
 };
 
+const onMouseMoveOverlayProgress = (e: any) => {
+  drawTimeLine(e);
+};
+
 const onMouseMoveProgressBar = (e: any) => {
   videoStates.isMouseMoveOverlayProgress = true;
   const rect = overlayProgress.value.getBoundingClientRect();
@@ -863,8 +877,6 @@ const onMouseMoveProgressBar = (e: any) => {
     Math.min(Math.max(0, e.x - rect.left), rect.width) / rect.width;
 
   overlayProgress.value.style.setProperty('--preview-width', percent);
-
-  drawTimeLine(e);
 
   if (videoStates.isScrubbingProgressBar) {
     handleTimeUpdate(e);
@@ -882,8 +894,9 @@ const drawTimeLine = (e: any) => {
   const timeLinePosition = Math.max(0, e.x - rect.left);
 
   const timeLinePositionFinnal = Math.min(
-    Math.max(10, timeLinePosition - timeline.value.offsetWidth / 2 + 10),
-    overlayProgress.value.offsetWidth - (timeline.value.offsetWidth - 10)
+    // Math.max(10, timeLinePosition - timeline.value.offsetWidth / 2 + 10),
+    Math.max(0, timeLinePosition - timeline.value.offsetWidth / 2),
+    overlayProgress.value.offsetWidth - timeline.value.offsetWidth //- 10
   );
 
   timeline.value.style.setProperty(
@@ -893,9 +906,9 @@ const drawTimeLine = (e: any) => {
 
   // videoTemp.value.currentTime = percent * videoTemp.value.duration;
 
-  const ctx = canvasPreviewImg.value.getContext('2d');
+  // const ctx = canvasPreviewImg.value.getContext('2d');
 
-  ctx.drawImage(video.value, 0, 0, 160, 100);
+  // ctx.drawImage(video.value, 0, 0, 160, 100);
 
   // canvasPreviewImg.value.toBlob((blob: any) => {
   // const previewImg = timeline.value.querySelector(

@@ -146,6 +146,7 @@ const getData = async (activeKey: string) => {
 };
 
 onBeforeMount(async () => {});
+
 await useAsyncData(`ranking/all/1`, () => getRanking(1))
   .then((movieRespone: any) => {
     rankData.value = movieRespone.data.value?.results;

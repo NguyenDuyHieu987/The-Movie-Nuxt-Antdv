@@ -43,8 +43,11 @@
     transition: width 0s !important;
     margin-bottom: 0px;
     color: var(--text-color-gray1);
+    transition: all 0.15s !important;
 
-    & > span > a {
+    & > span > a,
+    svg {
+      transition: all 0s;
       color: var(--text-color-gray1);
     }
 
@@ -55,6 +58,18 @@
 
     &:hover {
       background-color: var(--menu-item-background-color) !important;
+
+      & > span > a,
+      svg {
+        color: #fff;
+      }
+    }
+
+    &.ant-menu-item-selected {
+      & > span > a,
+      svg {
+        color: #fff;
+      }
     }
   }
 
@@ -87,6 +102,24 @@
     margin-left: 3px !important;
     margin-top: 4px;
     color: var(--text-color-gray1);
+
+    .ant-menu-submenu-title {
+      svg {
+        transition: all 0s;
+      }
+    }
+
+    &:hover {
+      .ant-menu-submenu-title {
+        svg {
+        }
+        color: #fff;
+      }
+    }
+
+    &.ant-menu-submenu-selected {
+      color: #fff;
+    }
 
     .ant-menu-submenu-title {
       height: 45px !important;

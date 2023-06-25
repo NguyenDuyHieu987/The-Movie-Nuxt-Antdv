@@ -42,9 +42,20 @@
               }}
             </p>
 
-            <p class="genres">
+            <!-- <p class="genres">
               {{ Array.from(item?.genres, (x: any) => x.name).join(' • ') }}
-            </p>
+            </p> -->
+
+            <div class="genres">
+              <span
+                class="genre-item"
+                v-for="(genre, index) in Array.from(item?.genres, (x: any) => x.name)"
+                :index="index"
+                :key="index"
+              >
+                {{ genre }}
+              </span>
+            </div>
           </div>
         </div>
 

@@ -71,10 +71,10 @@ const props = defineProps({
 
 const route: any = useRoute();
 const dataSeason = ref<any>({});
-const loadingLastestEpisodes = ref<boolean>(false);
+const loading = ref<boolean>(false);
 
 onBeforeMount(() => {
-  loadingLastestEpisodes.value = true;
+  loading.value = true;
 
   useAsyncData(
     `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
@@ -91,7 +91,7 @@ onBeforeMount(() => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loadingLastestEpisodes.value = false;
+      loading.value = false;
     });
 });
 </script>

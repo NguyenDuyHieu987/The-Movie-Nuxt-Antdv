@@ -5,7 +5,11 @@
       from: '#108ee9',
       to: '#87d068',
     }"
-    :percent="(historyProgress * 100).toFixed(2)"
+    :percent="
+      historyProgress == 1
+        ? historyProgress * 100
+        : (historyProgress * 100).toFixed(2)
+    "
     status="active"
   >
     <template #format="percent">

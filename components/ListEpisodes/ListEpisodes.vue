@@ -24,7 +24,7 @@
     </div> -->
 
     <h3 class="movie-title">
-      <span style="margin-right: 10px">
+      <span>
         {{ dataMovie?.name }}
         - Tập
         {{ route.params?.tap?.replace('tap-', '') }}

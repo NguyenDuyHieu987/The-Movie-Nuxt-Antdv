@@ -70,6 +70,7 @@
 
   .img-box {
     position: relative;
+    display: flex;
     overflow: hidden;
     width: 100%;
     transition: all 0.3s;
@@ -94,7 +95,8 @@
         background-image: url('/images/svgs/error-image.svg');
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: 30%;
+        background-size: 27%;
+        transition: background-position 0s;
       }
 
       img {

@@ -66,6 +66,7 @@
           background-image: url('/images/svgs/error-user.svg');
           background-repeat: no-repeat;
           background-position: center center;
+          transition: background-position 0s;
         }
       }
     }
