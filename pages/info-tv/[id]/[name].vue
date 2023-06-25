@@ -120,7 +120,11 @@
                 </Tags>
               </div>
 
-              <RatingMovie :dataMovie="dataMovie" type="tv" />
+              <RatingMovie
+                :dataMovie="dataMovie"
+                type="tv"
+                :disabled="disabledRate"
+              />
 
               <Tags tagsLabel="Lượt xem:">
                 <template #tagsInfo>
@@ -314,6 +318,7 @@ const isAddToList = ref<boolean>(false);
 const release_date = computed<string>(
   () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
+const disabledRate = ref<boolean>(false);
 
 const internalInstance: any = getCurrentInstance();
 
@@ -338,9 +343,10 @@ const getData = async () => {
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
     getTvById(route.params?.id, 'videos')
   )
-    .then((movieResponed: any) => {
-      dataMovie.value = movieResponed.data.value;
-      // dataCredit.value = movieResponed.data.value?.credits;
+    .then((tvResponed: any) => {
+      dataMovie.value = tvResponed.data.value;
+      // dataCredit.value = tvResponed.data.value?.credits;
+      disabledRate.value = tvResponed.data.value?.is_rated == true;
 
       useHead({
         title:

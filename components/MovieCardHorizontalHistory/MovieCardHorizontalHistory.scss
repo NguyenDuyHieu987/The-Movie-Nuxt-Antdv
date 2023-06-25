@@ -115,6 +115,7 @@
 
   .img-box {
     position: relative;
+    display: flex;
     flex: 1 0 250px;
     max-width: 250px;
     overflow: hidden;

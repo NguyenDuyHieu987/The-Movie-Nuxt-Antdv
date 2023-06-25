@@ -96,6 +96,7 @@
           :movieId="movieId"
           :movieType="movieType"
           :showActions="true"
+          :parent="item"
           :comment="item"
           :isShowFormComment="isShowFormComment"
           commentType="children"

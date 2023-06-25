@@ -23,7 +23,7 @@
       }"
     >
       <a-textarea
-        :id="comment?.id"
+        :id="'textarea-' + comment?.id"
         v-model:value="content"
         allowClear
         show-count
@@ -58,6 +58,7 @@
               @click="isShowEmoji = !isShowEmoji"
             />
             <EmojiPicker
+              :class="'emoji-picker-' + comment?.id"
               v-show="isShowEmoji"
               :native="true"
               :display-recent="true"
@@ -99,9 +100,10 @@ import 'vue3-emoji-picker/css';
 
 const props = defineProps({
   movieId: { type: String },
+  parent: { type: Object },
   comment: { type: Object },
   movieType: { type: String },
-  contentComment: { type: String, default: '' },
+  replyTo: { type: String, default: '' },
   commentType: { type: String, default: 'parent' },
   showActions: { type: Boolean, default: false },
   isShowFormComment: { type: Boolean, default: false },
@@ -125,11 +127,12 @@ const commentsList = defineModel<any[]>('commentsList');
 onMounted(() => {
   // window.onclick = (e: any) => {
   //   if (
-  //     !e.target.closest('.v3-emoji-picker') &&
-  //     !e.target.closest('.comment-form .emoticon')
+  //     !e.target.closest('.emoji-picker-' + props.comment?.id) &&
+  //     !e.target.closest('.comment-form .actions-container .left .emoticon')
   //   ) {
-  //     isShowEmoji.value = false;
+  //     console.log(isShowEmoji.value);
   //     if (isShowEmoji.value) {
+  //       isShowEmoji.value = false;
   //     }
   //   }
   // };
@@ -138,7 +141,7 @@ onMounted(() => {
 watch(props, () => {
   if (props.isShowFormComment) {
     const currentTextArea = document.getElementById(
-      props.comment?.id
+      'textarea-' + props.comment?.id
     ) as HTMLTextAreaElement;
 
     setTimeout(() => {
@@ -166,7 +169,10 @@ const onSubmit = () => {
   CommentMovie({
     content: content.value,
     movieId: props.movieId,
-    parentId: props.commentType == 'children' && props.comment?.id,
+    parentId:
+      (props.commentType == 'children' ||
+        props.commentType == 'sub-children') &&
+      props.parent?.id,
     movieType: props.movieType,
     commentType: props.commentType,
   })
@@ -174,7 +180,10 @@ const onSubmit = () => {
       if (response?.success) {
         if (props.commentType == 'parent') {
           commentsList.value?.unshift(response?.result);
-        } else if (props.commentType == 'children') {
+        } else if (
+          props.commentType == 'children' ||
+          props.commentType == 'sub-children'
+        ) {
           emits('onClickCancel');
           emits('onSuccessCommentChild', response?.result);
         }

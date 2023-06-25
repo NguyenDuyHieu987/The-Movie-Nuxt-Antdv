@@ -8,8 +8,6 @@
       'show-controls': videoStates.isShowControls,
       pause: !videoStates.isPlayVideo || videoStates.isEndedVideo,
     }"
-    @mousemove="onMouseMoveVideo"
-    @mouseleave="onMouseLeaveVideo"
   >
     <div v-if="settingStates.switchBackgroud" class="overlay-backdrop">
       <!-- <canvas ref="canvasOverlayBackdrop"> </canvas> -->
@@ -17,20 +15,17 @@
     </div>
 
     <!-- preload="auto" -->
-
+    <!-- autoplay
+      muted -->
     <video
       id="video-player"
       ref="video"
-      tabindex="-1"
-      autoplay
-      muted
       :poster="backdrop"
       @loadstart="onLoadStartVideo"
       @loadeddata="onLoadedDataVideo"
       @canplay="onCanPlayVideo"
       @timeupdate="onTimeUpdateVideo"
       @ended="onEndedVideo"
-      @keydown="onKeyDownVideo"
       @waiting="onWaitingVideo"
       @progress="onProgressVideo"
       @play="onPlayVideo"
@@ -73,7 +68,19 @@
         "
         class="notify"
       >
-        <div>
+        <CloseBtn
+          class="transparent close-notify"
+          @click="videoStates.isShowNotify = false"
+        />
+
+        <div class="notify-content">
+          <span>
+            Bạn đã xem đến:
+            {{ formatDuration(dataMovie?.history_progress?.seconds) }}
+          </span>
+        </div>
+
+        <div class="notify-footer">
           <a-button type="text" @click="onClickPlayAgain">
             Xem lại từ đầu
           </a-button>
@@ -82,7 +89,7 @@
             type="text"
             @click="onClickKeepWatching"
           >
-            Xem tiếp: {{ formatDuration(dataMovie?.history_progress?.seconds) }}
+            Xem tiếp
           </a-button>
         </div>
       </div>
@@ -120,31 +127,30 @@
     </div>
 
     <div
+      class="timeline"
+      :class="{
+        active:
+          videoStates.isMouseMoveOverlayProgress ||
+          videoStates.isScrubbingProgressBar,
+      }"
+      ref="timeline"
+    >
+      <div class="timeline-container">
+        <div class="img-box">
+          <canvas class="canvas-preview-img" ref="canvasPreviewImg"> </canvas>
+          <!-- <nuxt-img class="preview-img" loading="lazy" /> -->
+        </div>
+      </div>
+      <span class="timeline-indicator">{{ timelineUpdate }} </span>
+    </div>
+
+    <div
       v-show="videoStates.isLoaded"
       class="controls"
       tabindex="-1"
       @keydown="onKeyDownVideo"
     >
       <div class="controls-container">
-        <div
-          class="timeline"
-          :class="{
-            active:
-              videoStates.isMouseMoveOverlayProgress ||
-              videoStates.isScrubbingProgressBar,
-          }"
-          ref="timeline"
-        >
-          <div class="timeline-container">
-            <div class="img-box">
-              <canvas class="canvas-preview-img" ref="canvasPreviewImg">
-              </canvas>
-              <!-- <nuxt-img class="preview-img" loading="lazy" /> -->
-            </div>
-          </div>
-          <span class="timeline-indicator">{{ timelineUpdate }} </span>
-        </div>
-
         <div
           class="overlay-progress"
           @mousemove="onMouseMoveProgressBar"
@@ -278,11 +284,18 @@
           </div>
         </div>
       </div>
-
-      <div class="background-controls"></div>
     </div>
 
-    <div class="video-mask" @click="onClickVideo"></div>
+    <div
+      class="video-mask"
+      tabindex="-1"
+      @click="onClickVideo"
+      @mousemove="onMouseMoveVideo"
+      @mouseleave="onMouseLeaveVideo"
+      @keydown="onKeyDownVideo"
+    ></div>
+
+    <div class="background-controls"></div>
 
     <div
       class="settings"
@@ -431,6 +444,8 @@
 </template>
 
 <script setup lang="ts">
+import CloseBtn from '@/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
+
 const props = defineProps<{
   dataMovie: any;
   backdrop: string;
@@ -529,9 +544,9 @@ const setBlobSrcVideo = async (value: string) => {
     })
     .finally(() => {
       videoStates.isLoading = false;
-      videoStates.isPlayVideo = true;
+      // videoStates.isPlayVideo = true;
       // video.value.play();
-      video.value.muted = false;
+      // video.value.muted = false;
       video.value.load();
     });
 };
@@ -682,13 +697,14 @@ const onTimeUpdateVideo = (e: any) => {
 
 const onProgressVideo = (e: any) => {
   // console.log(e);
-  videoStates.isLoading = true;
+  // videoStates.isLoading = true;
 };
 
 const onMouseLeaveVideo = () => {
-  clearTimeout(timeOut.value);
-
-  videoStates.isHideControls = false;
+  if (videoStates.isLoaded) {
+    clearTimeout(timeOut.value);
+    videoStates.isHideControls = false;
+  }
 };
 
 const onMouseMoveVideo = () => {
@@ -749,9 +765,10 @@ const onClickPause = () => {
 const onClickReplayVideo = () => {
   video.value.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
-  video.value.play();
   videoStates.isPlayVideo = true;
   videoStates.isEndedVideo = false;
+  videoStates.isShowControls = false;
+  video.value.play();
 };
 
 const playVideo = () => {
@@ -803,25 +820,27 @@ const onClickVideo = (e: any) => {
 };
 
 const rewindVideo = (value: number) => {
-  video.value.currentTime -= value;
-  checkEndedVideo();
+  if (video.value.currentTime != 0) {
+    video.value.currentTime -= value;
+    checkEndedVideo();
 
-  const percent = video.value.currentTime / video.value.duration;
-  progressBar.value.style.setProperty('--progress-width', percent);
+    const percent = video.value.currentTime / video.value.duration;
+    progressBar.value.style.setProperty('--progress-width', percent);
 
-  if (videoStates.isPlayVideo) {
-    video.value.play();
+    if (videoStates.isPlayVideo) {
+      video.value.play();
+    }
+
+    new Promise((resolve, reject) => {
+      resolve((videoStates.isActiveControlsAnimation = false));
+    }).then(() => {
+      videoStates.isActiveControlsAnimation = true;
+    });
+
+    videoStates.isRewind.enable = true;
+    videoStates.isRewind.replay = true;
+    videoStates.isRewind.forward = false;
   }
-
-  new Promise((resolve, reject) => {
-    resolve((videoStates.isActiveControlsAnimation = false));
-  }).then(() => {
-    videoStates.isActiveControlsAnimation = true;
-  });
-
-  videoStates.isRewind.enable = true;
-  videoStates.isRewind.replay = true;
-  videoStates.isRewind.forward = false;
 };
 
 const onClickRewind = () => {
@@ -865,9 +884,7 @@ const onMouseUpProgressBar = () => {
   }
 };
 
-const onMouseMoveOverlayProgress = (e: any) => {
-  drawTimeLine(e);
-};
+const onMouseMoveOverlayProgress = (e: any) => {};
 
 const onMouseMoveProgressBar = (e: any) => {
   videoStates.isMouseMoveOverlayProgress = true;
@@ -880,6 +897,8 @@ const onMouseMoveProgressBar = (e: any) => {
 
   if (videoStates.isScrubbingProgressBar) {
     handleTimeUpdate(e);
+  } else {
+    drawTimeLine(e);
   }
 };
 

@@ -76,7 +76,11 @@
               </Tags>
             </div>
 
-            <RatingMovie :dataMovie="dataMovie" type="tv" />
+            <RatingMovie
+              :dataMovie="dataMovie"
+              type="tv"
+              :disabled="disabledRate"
+            />
 
             <div class="action">
               <div class="left">
@@ -264,6 +268,7 @@ const percentProgressHistory = ref<number>(0);
 const release_date = computed<string>(
   () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
+const disabledRate = ref<boolean>(false);
 
 const internalInstance: any = getCurrentInstance();
 
@@ -276,6 +281,7 @@ const getData = async () => {
   )
     .then((tvResponed: any) => {
       dataMovie.value = tvResponed.data.value;
+      disabledRate.value = tvResponed.data.value?.is_rated == true;
 
       useHead({
         title:

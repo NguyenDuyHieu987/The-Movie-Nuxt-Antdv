@@ -1,13 +1,16 @@
 <template>
   <div class="rating-movie">
     <div class="rate-bar">
-      <span class="label">Đánh giá: </span>
+      <span class="label">{{
+        disabledRate ? 'Đã đánh giá: ' : 'Đánh giá: '
+      }}</span>
       <a-rate
         v-model:value="temp"
+        :class="{ rated: disabledRate }"
         allow-half
         :count="10"
         :tooltips="tooltipRating"
-        :disabled="disabled"
+        :disabled="disabledRate"
         @change="handleRating"
       >
         <template #character>
@@ -59,11 +62,14 @@ import axios from 'axios';
 const props = defineProps<{
   dataMovie: any;
   type: string;
+  disabled?: boolean;
 }>();
 
 const store = useStore();
-const disabled = ref<boolean>(false);
-const temp = ref<number>(props.dataMovie?.vote_average);
+const disabledRate = ref<boolean>(props.disabled || false);
+const temp = ref<number>(
+  props.disabled ? props.dataMovie.rated_value : props.dataMovie?.vote_average
+);
 const vote_Average = ref<number>(props.dataMovie?.vote_average);
 const vote_Count = ref<number>(props.dataMovie?.vote_count);
 
@@ -110,7 +116,7 @@ const handleRating = (value: number) => {
         // });
         vote_Average.value = response?.vote_average;
         vote_Count.value = response?.vote_count;
-        disabled.value = true;
+        disabledRate.value = true;
       }
     })
     .catch((e) => {

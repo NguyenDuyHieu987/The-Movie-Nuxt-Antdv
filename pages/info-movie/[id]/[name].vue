@@ -113,7 +113,11 @@
                 </Tags>
               </div>
 
-              <RatingMovie :dataMovie="dataMovie" type="movie" />
+              <RatingMovie
+                :dataMovie="dataMovie"
+                type="movie"
+                :disabled="disabledRate"
+              />
 
               <Tags tagsLabel="Lượt xem:">
                 <template #tagsInfo>
@@ -284,6 +288,7 @@ const dataCredit = ref<any>({});
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
+const disabledRate = ref<boolean>(false);
 
 const internalInstance: any = getCurrentInstance();
 
@@ -311,6 +316,7 @@ const getData = async () => {
     .then((movieResponed: any) => {
       dataMovie.value = movieResponed.data.value;
       // dataCredit.value = movieResponed.data.value?.credits;
+      disabledRate.value = movieResponed.data.value?.is_rated == true;
 
       useHead({
         title:

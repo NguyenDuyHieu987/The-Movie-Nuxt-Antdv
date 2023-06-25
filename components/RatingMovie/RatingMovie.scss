@@ -17,6 +17,20 @@
       // height: 22px;
       overflow: hidden;
 
+      &.rated {
+        .ant-rate-star-full {
+          svg {
+            color: #00e5a4;
+          }
+        }
+
+        .ant-rate-star-half {
+          .ant-rate-star-first {
+            color: #00e5a4;
+          }
+        }
+      }
+
       .ant-rate-star {
       }
 

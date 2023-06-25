@@ -277,6 +277,8 @@
             width: 65%;
 
             .overview {
+              margin-top: 22px;
+
               .text {
                 // display: block;
                 // text-align: justify;
@@ -284,7 +286,8 @@
             }
 
             .rating-movie {
-              margin-top: 10px;
+              // margin-top: 10px;
+              margin-top: 5px;
             }
 
             .tags {
@@ -307,6 +310,10 @@
           flex-direction: row;
           align-items: center;
           margin-top: 2px;
+
+          .tags-label {
+            margin-right: 0.7rem;
+          }
         }
       }
     }

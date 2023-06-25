@@ -76,7 +76,11 @@
               </Tags>
             </div>
 
-            <RatingMovie :dataMovie="dataMovie" type="movie" />
+            <RatingMovie
+              :dataMovie="dataMovie"
+              type="movie"
+              :disabled="disabledRate"
+            />
 
             <div class="action">
               <div class="left">
@@ -237,6 +241,7 @@ const isPlayVideo = ref<boolean>(false);
 const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
 const percentProgressHistory = ref<number>(0);
+const disabledRate = ref<boolean>(false);
 
 const internalInstance: any = getCurrentInstance();
 
@@ -250,6 +255,7 @@ const getData = async () => {
   )
     .then((movieResponed: any) => {
       dataMovie.value = movieResponed.data.value;
+      disabledRate.value = movieResponed.data.value?.is_rated == true;
 
       useHead({
         title:
