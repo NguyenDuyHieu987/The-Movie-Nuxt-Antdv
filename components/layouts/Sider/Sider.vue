@@ -23,13 +23,13 @@
         </div>
 
         <div v-show="isLogin">
-          <h4 style="color: #fff" v-if="!collapsed">
+          <h4 v-if="!collapsed">
             {{ userAccount?.username }}
           </h4>
 
           <a-tooltip v-else :title="userAccount?.username" placement="rightTop">
             <a-avatar class="user-name-container">
-              <h4 style="color: #fff">
+              <h4>
                 {{ userAccount?.username?.slice(0, 2).toUpperCase() }}
               </h4>
             </a-avatar>

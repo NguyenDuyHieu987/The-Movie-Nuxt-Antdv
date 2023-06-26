@@ -118,13 +118,14 @@ export default defineNuxtConfig({
     // 'vue-social-sharing/nuxt',
     '@nuxt/image',
     'nuxt-lazy-load',
+    '@nuxtjs/fontaine',
   ],
   lazyLoad: {
     // These are the default values
     images: false,
     videos: true,
     audios: true,
-    iframes: true,
+    iframes: false,
     native: false,
     directiveOnly: true,
 

@@ -186,7 +186,7 @@
             &:hover {
               .play-now {
                 opacity: 1;
-                background-color: #000000bd;
+                background-color: #000000b1;
               }
             }
 
@@ -202,7 +202,7 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              transition: all 0.15s;
+              transition: all 0.2s;
               opacity: 0;
               color: var(--text-color);
 
@@ -262,9 +262,9 @@
                 background: transparent;
                 position: absolute;
                 right: -10px;
-                top: 0px;
+                top: 50%;
+                transform: translateY(-50%);
                 color: var(--text-color);
-
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -504,7 +504,7 @@
         &:hover {
           .play-now {
             opacity: 1;
-            background-color: #000000bd;
+            background-color: #000000b1;
           }
         }
 
@@ -520,7 +520,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: all 0.15s;
+          transition: all 0.2s;
           opacity: 0;
           color: var(--text-color);
 
@@ -578,9 +578,9 @@
             background: transparent;
             position: absolute;
             right: -17px;
-            top: 0px;
+            top: 50%;
+            transform: translateY(-50%);
             color: var(--text-color);
-
             display: flex;
             justify-content: center;
             align-items: center;
