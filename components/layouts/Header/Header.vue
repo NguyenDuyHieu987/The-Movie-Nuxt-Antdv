@@ -223,7 +223,7 @@
                   <NuxtLink :to="{ path: '/profile' }"
                     ><span>My Profile</span>
                     <br />
-                    <span style="font-size: 12px">{{
+                    <span style="font-size: 1.2rem">{{
                       userAccount?.email
                     }}</span>
                   </NuxtLink>
