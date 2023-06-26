@@ -117,8 +117,29 @@ export default defineNuxtConfig({
     'nuxt-icon',
     // 'vue-social-sharing/nuxt',
     '@nuxt/image',
-    // 'nuxt-lazy-load',
+    'nuxt-lazy-load',
   ],
+  lazyLoad: {
+    // These are the default values
+    images: false,
+    videos: true,
+    audios: true,
+    iframes: true,
+    native: false,
+    directiveOnly: true,
+
+    // Default image must be in the public folder
+    // defaultImage: '/images/default-image.jpg',
+
+    // To remove class set value to false
+    loadingClass: 'isLoading',
+    loadedClass: 'isLoaded',
+    appendClass: 'lazyLoad',
+
+    observerConfig: {
+      // See IntersectionObserver documentation
+    },
+  },
   elementPlus: {
     /** Options */
   },

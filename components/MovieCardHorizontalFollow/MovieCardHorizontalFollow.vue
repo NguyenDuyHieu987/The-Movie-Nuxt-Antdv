@@ -140,7 +140,7 @@
                         <NuxtLink
                           v-if="isEpisodes && !loading"
                           :to="{
-                            path: `/play/tv/${item?.id}/${item?.name
+                            path: `/play-tv/${item?.id}/${item?.name
                               ?.replace(/\s/g, '+')
                               .toLowerCase()}/tap-1`,
                           }"
@@ -151,7 +151,7 @@
                         <NuxtLink
                           v-else-if="!isEpisodes && !loading"
                           :to="{
-                            path: `/play/movie/${item?.id}/${item?.name
+                            path: `/play-movie/${item?.id}/${item?.name
                               ?.replace(/\s/g, '+')
                               .toLowerCase()}`,
                           }"

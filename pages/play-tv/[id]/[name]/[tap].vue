@@ -376,7 +376,7 @@ onBeforeMount(() => {
 // });
 
 onBeforeRouteLeave(() => {
-  updateHistory();
+  // updateHistory();
 });
 
 const updateHistory = () => {

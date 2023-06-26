@@ -31,8 +31,9 @@
       @play="onPlayVideo"
       @pause="onPauseVideo"
       @playing="onPLayingVideo"
+      v-lazy-load
     >
-      <!-- <source :src="''" ref="srcVideo" type="video/mp4" /> -->
+      <!-- <source :data-src="blobVideoSrc" ref="srcVideo" type="video/mp4" /> -->
     </video>
 
     <div class="float-center">
@@ -457,6 +458,7 @@ const emits = defineEmits<{
   onTimeUpdate: [e: any];
 }>();
 
+const blobVideoSrc = ref<string>('');
 const videoPlayer = ref();
 const video = ref();
 const videoTemp = ref();
@@ -494,7 +496,6 @@ const settingStates = reactive({
     quality: false,
   },
 });
-
 const settings = reactive({
   playback: {
     all: ['0.25', '0.5', '0.75', 'Bình thường', '1.25', '1.5', '1.75', '2'],
@@ -536,6 +537,8 @@ const setBlobSrcVideo = async (value: string) => {
       const blobSrc = URL.createObjectURL(blob);
 
       video.value.src = blobSrc;
+      // video.value.setAttribute('data-src', blobSrc);
+      // blobVideoSrc.value = blobSrc;
 
       // videoTemp.value = document.createElement('video');
       // videoTemp.value.src = blobSrc;
@@ -995,6 +998,8 @@ const onClickPlayAgain = () => {
   video.value.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
   videoStates.isShowNotify = false;
+  video.value.play();
+  videoStates.isPlayVideo = true;
 };
 
 const onClickKeepWatching = () => {
@@ -1004,6 +1009,8 @@ const onClickKeepWatching = () => {
     props.dataMovie?.history_progress?.percent
   );
   videoStates.isShowNotify = false;
+  video.value.play();
+  videoStates.isPlayVideo = true;
 };
 
 const onKeyDownVideo = (e: any) => {
