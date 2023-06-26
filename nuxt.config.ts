@@ -122,7 +122,7 @@ export default defineNuxtConfig({
   ],
   image: {
     cloudflare: {
-      baseURL: 'https://www.phimhay247.tech',
+      baseURL: 'http://127.0.0.1:5001/image/',
     },
   },
   lazyLoad: {
