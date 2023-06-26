@@ -123,7 +123,7 @@ export default defineNuxtConfig({
   image: {
     provider: 'cloudflare',
     cloudflare: {
-      baseURL: 'http://127.0.0.1:5001',
+      baseURL: '',
     },
     domains: ['http://127.0.0.1:5001'],
   },
