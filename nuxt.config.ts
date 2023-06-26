@@ -166,7 +166,7 @@ export default defineNuxtConfig({
       routes: [
         '/',
         '/search',
-        'discover',
+        '/discover',
         '/follow',
         '/history',
         '/ranking',
@@ -196,7 +196,7 @@ export default defineNuxtConfig({
     routes: [
       '/',
       '/search',
-      'discover',
+      '/discover',
       '/follow',
       '/history',
       '/ranking',
