@@ -122,8 +122,9 @@ export default defineNuxtConfig({
   ],
   image: {
     cloudflare: {
-      baseURL: 'http://127.0.0.1:5001/image/',
+      baseURL: 'http://127.0.0.1:5001',
     },
+    domains: ['http://127.0.0.1:5001'],
   },
   lazyLoad: {
     // These are the default values
