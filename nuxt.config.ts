@@ -121,6 +121,7 @@ export default defineNuxtConfig({
     '@nuxtjs/fontaine',
   ],
   image: {
+    provider: 'static',
     cloudflare: {
       baseURL: 'http://127.0.0.1:5001',
     },
@@ -160,7 +161,7 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    // preset: 'static',
+    preset: 'static',
     prerender: {
       routes: [
         '/',
