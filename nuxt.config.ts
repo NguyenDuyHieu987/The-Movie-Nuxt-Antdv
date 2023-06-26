@@ -191,7 +191,23 @@ export default defineNuxtConfig({
     //   console.log('ctx', ctx);
     // },
   },
-  generate: {},
+  generate: {
+    routes: [
+      '/',
+      '/search',
+      '/follow',
+      '/history',
+      '/ranking',
+      '/billing',
+      '/profile',
+      '/login',
+      '/signup',
+      '/info-movie',
+      '/info-tv',
+      '/play-movie',
+      '/play-tv',
+    ],
+  },
   build: {},
   vite: {
     vue: {
