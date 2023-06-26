@@ -120,9 +120,14 @@ export default defineNuxtConfig({
     'nuxt-lazy-load',
     '@nuxtjs/fontaine',
   ],
+  image: {
+    cloudflare: {
+      baseURL: 'http://127.0.0.1:5001',
+    },
+  },
   lazyLoad: {
     // These are the default values
-    images: true,
+    images: false,
     videos: true,
     audios: true,
     iframes: false,
