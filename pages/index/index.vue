@@ -29,7 +29,10 @@
         </CarouselGroup>
       </section>
 
-      <div class="home-section recommend" v-if="store.$state?.isLogin">
+      <div
+        class="home-section recommend"
+        v-show="store.$state?.isLogin && recommends?.length"
+      >
         <h2 class="gradient-title-default">
           <span>Gợi ý cho bạn</span>
         </h2>

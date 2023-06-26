@@ -253,4 +253,5 @@ const onLoadImg = (e: any) => {
   loadingImg.value = true;
 };
 </script>
+
 <style lang="scss" src="./MovieCardVertical.scss"></style>
