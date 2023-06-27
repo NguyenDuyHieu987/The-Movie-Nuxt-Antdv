@@ -193,8 +193,10 @@ const onSubmit = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
+      setTimeout(() => {
+        loading.value = false;
+      }, 500);
       content.value = '';
-      loading.value = false;
       disabledButton.value = true;
       isShowEmoji.value = false;
     });

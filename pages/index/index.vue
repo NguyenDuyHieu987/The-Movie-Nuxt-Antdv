@@ -246,7 +246,7 @@ const topRateds = ref<any>([]);
 const recommends = ref<any>([]);
 const viewMoreRecommend = ref<boolean>(false);
 const loadMoreRecommend = ref<boolean>(false);
-const skipRecommend = ref<number>(2);
+const skipRecommend = ref<number>(1);
 
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
@@ -374,9 +374,12 @@ const getData = async () => {
     });
 
   if (store.$state.isLogin) {
-    await useAsyncData('recommend/get/1', () => getMyRecommend(1))
+    await useAsyncData('recommend/get/1', () =>
+      getMyRecommend(skipRecommend.value)
+    )
       .then((response) => {
         recommends.value = response.data.value?.results;
+        skipRecommend.value++;
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
@@ -400,7 +403,11 @@ const handleLoadMoreRecommend = async () => {
         recommends.value = recommends.value.concat(
           movieResponse.data.value?.results
         );
-        skipRecommend.value += 1;
+        skipRecommend.value++;
+
+        if (viewMoreRecommend.value == false) {
+          viewMoreRecommend.value = true;
+        }
       }
     })
     .catch((e) => {

@@ -6,7 +6,7 @@ export function getMyRecommend(page: number = 1, limit: number = 6) {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/recommend/getrecommend?skip=${page}&limit=${limit}`, {
+  return makeRequest(`/recommend/getrecommend?page=${page}&limit=${limit}`, {
     headers: headers,
   });
 }
