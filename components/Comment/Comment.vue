@@ -21,6 +21,11 @@
           v-model:commentsList="commentsList"
         />
       </div>
+
+      <LoadingCircle
+        v-show="loadMore && !disabledLoadMore"
+        class="loading-comment"
+      />
     </div>
   </div>
 </template>
@@ -38,13 +43,21 @@ const props = defineProps<{
 
 const commentsList = ref<any[]>([]);
 const loading = ref<boolean>(false);
+const skip = ref<number>(1);
+const loadMore = ref<boolean>(false);
+const disabledLoadMore = ref<boolean>(false);
 
 onBeforeMount(() => {
   loading.value = true;
 
-  getCommentByMovidId(props.dataMovie?.id, props.dataMovie?.media_type)
+  getCommentByMovidId(
+    props.dataMovie?.id,
+    props.dataMovie?.media_type,
+    skip.value
+  )
     .then((response) => {
       commentsList.value = response?.results;
+      skip.value++;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -52,6 +65,44 @@ onBeforeMount(() => {
     .finally(() => {
       loading.value = false;
     });
+});
+
+onMounted(() => {
+  window.onscroll = () => {
+    if (commentsList.value?.length == 0) {
+      return;
+    }
+
+    const scrollHeight = Math.round(window.scrollY + window.innerHeight);
+
+    if (
+      scrollHeight == document.documentElement.scrollHeight &&
+      commentsList.value?.length >= 20
+    ) {
+      loadMore.value = true;
+
+      getCommentByMovidId(
+        props.dataMovie?.id,
+        props.dataMovie?.media_type,
+        skip.value
+      )
+        .then((response) => {
+          commentsList.value = commentsList.value.concat(response?.results);
+          if (response?.results?.length == 0) {
+            disabledLoadMore.value = true;
+            return;
+          }
+
+          skip.value++;
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loadMore.value = false;
+        });
+    }
+  };
 });
 </script>
 

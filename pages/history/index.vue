@@ -470,6 +470,10 @@ onMounted(() => {
   });
 
   window.addEventListener('scroll', () => {
+    if (dataHistory.value?.length == 0) {
+      return;
+    }
+
     isScroll.value = true;
     // console.log(window.scrollY + window.innerHeight);
     // console.log(document.documentElement.scrollHeight);
