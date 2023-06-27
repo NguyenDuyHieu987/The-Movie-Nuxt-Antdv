@@ -52,7 +52,7 @@ import ViewMoreBar from '~/components/ViewMoreBar/ViewMoreBar.vue';
 import MovieCardSuggest from '../MovieCardSuggest/MovieCardSuggest.vue';
 
 const props = defineProps<{
-  movieId: number;
+  movieId: string;
   type: string;
 }>();
 const dataSimilar = ref<any[]>([]);
@@ -61,17 +61,37 @@ const randomRecommend = ref<number>(Math.floor(Math.random() * 50) + 1);
 const viewMore = ref<boolean>(false);
 
 const getData = async () => {
-  Promise.all([
-    useAsyncData(`similar/${props?.type}/${props?.movieId}`, () =>
-      getSimilar(props?.type, props?.movieId)
-    ),
-    useAsyncData(`trending/all/${randomRecommend.value}`, () =>
-      getTrending(randomRecommend.value, 10)
-    ),
-  ])
+  // Promise.all([
+  //   useAsyncData(`similar/${props?.type}/${props?.movieId}`, () =>
+  //     getSimilar(props?.type, props?.movieId)
+  //   ),
+  //   useAsyncData(`trending/all/${randomRecommend.value}`, () =>
+  //     getTrending(randomRecommend.value, 10)
+  //   ),
+  // ])
+  //   .then((response: any) => {
+  //     dataSimilar.value = response[0].data.value?.results;
+  //     dataRecommend.value = response[1].data.value?.results;
+  //   })
+  //   .catch((e) => {
+  //     if (axios.isCancel(e)) return;
+  //   });
+
+  useAsyncData(`similar/${props?.type}/${props?.movieId}`, () =>
+    getSimilar(props?.type, props?.movieId, 1, 10)
+  )
     .then((response: any) => {
-      dataSimilar.value = response[0].data.value?.results;
-      dataRecommend.value = response[1].data.value?.results;
+      dataSimilar.value = response.data.value?.results;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  useAsyncData(`trending/all/${randomRecommend.value}`, () =>
+    getTrending(randomRecommend.value, 10)
+  )
+    .then((response: any) => {
+      dataRecommend.value = response.data.value?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

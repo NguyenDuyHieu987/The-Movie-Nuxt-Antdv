@@ -1,12 +1,12 @@
 import { makeRequest } from './makeRequest';
 import { getWithExpiry } from '@/utils/customlocalStorage';
 
-export function getMyRecommend(skip: number = 1, limit: number = 6) {
+export function getMyRecommend(page: number = 1, limit: number = 6) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/recommend/getrecommend?skip=${skip}&limit=${limit}`, {
+  return makeRequest(`/recommend/getrecommend?skip=${page}&limit=${limit}`, {
     headers: headers,
   });
 }

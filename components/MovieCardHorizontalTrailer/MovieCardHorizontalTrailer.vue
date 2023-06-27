@@ -28,12 +28,12 @@
             loading="lazy"
           />
 
-          <div
-            v-if="isInHistory"
-            class="percent-viewed"
-            :style="{ width: percent * 100 + '%' }"
-          ></div>
-          <div v-if="isInHistory" class="viewed-overlay-bar"></div>
+          <div v-show="isInHistory" class="viewed-overlay-bar">
+            <div
+              class="percent-viewed"
+              :style="{ width: percent * 100 + '%' }"
+            ></div>
+          </div>
 
           <!-- <div v-if="!loading" class="duration-episode-box">
             <p v-if="!isEpisodes" class="duration-episode">

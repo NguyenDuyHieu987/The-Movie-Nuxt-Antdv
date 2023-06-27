@@ -46,11 +46,12 @@
               />
             </div>
 
-            <div
-              class="percent-viewed"
-              :style="{ width: percent * 100 + '%' }"
-            ></div>
-            <div class="viewed-overlay-bar"></div>
+            <div class="viewed-overlay-bar">
+              <div
+                class="percent-viewed"
+                :style="{ width: percent * 100 + '%' }"
+              ></div>
+            </div>
           </div>
 
           <div class="info">
