@@ -15,6 +15,18 @@
     font-size: inherit;
   }
 
+  &.loading-page {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+
+    svg {
+      color: var(--loading-app-color);
+    }
+  }
+
   svg.loading-icon {
     animation: loading 1.2s linear infinite;
   }

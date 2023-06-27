@@ -1,6 +1,8 @@
 <template>
   <div class="tv-info">
-    <div class="info-conainer" v-if="loading">
+    <LoadingCircle v-if="loading" class="loading-page" />
+
+    <div class="info-conainer" v-else>
       <BackPage @onclick="$router.back()">
         <span> Quay lại</span>
       </BackPage>
@@ -304,6 +306,7 @@ import LastestEpisodes from '~/components/LastestEpisodes/LastestEpisodes.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
 import HistoryProgressBar from '@/components/HistoryProgressBar/HistoryProgressBar.vue';
+import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
 
 const store = useStore();
 const utils = useUtils();
@@ -335,6 +338,7 @@ const setBackgroundColor = (color: string[]) => {
 const getData = async () => {
   isAddToList.value = false;
   isEpisodes.value = true;
+  loading.value = true;
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
@@ -383,7 +387,9 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = true;
+      setTimeout(() => {
+        loading.value = false;
+      }, 500);
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 

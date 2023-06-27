@@ -1,6 +1,8 @@
 <template>
   <div class="play-movie padding-content">
-    <div v-if="loading" class="play-container">
+    <LoadingCircle v-if="loading" class="loading-page" />
+
+    <div v-else class="play-container">
       <div class="top-page">
         <BackPage
           @onclick="
@@ -224,6 +226,7 @@ import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
 import Comment from '@/components/Comment/Comment.vue';
+import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
 
 const store: any = useStore();
 const utils = useUtils();
@@ -248,6 +251,7 @@ const internalInstance: any = getCurrentInstance();
 const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
+  loading.value = true;
   isEpisodes.value = false;
 
   await useAsyncData(`movie/short/${route.params?.id}`, () =>
@@ -279,7 +283,9 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = true;
+      setTimeout(() => {
+        loading.value = false;
+      }, 500);
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 

@@ -122,13 +122,13 @@
     }
 
     svg .path {
-      stroke: var(--link-text-color);
+      stroke: var(--loading-app-color);
     }
 
     .el-loading-text {
       font-size: 1.4rem;
       margin: 0px;
-      color: var(--link-text-color);
+      stroke: var(--loading-app-color);
     }
   }
 }

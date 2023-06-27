@@ -1,6 +1,8 @@
 <template>
   <div class="movie-info">
-    <div class="info-conainer" v-if="loading">
+    <LoadingCircle v-if="loading" class="loading-page" />
+
+    <div class="info-conainer" v-else>
       <BackPage @onclick="$router.back()">
         <span> Quay lại</span>
       </BackPage>
@@ -273,6 +275,7 @@ import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
 import HistoryProgressBar from '@/components/HistoryProgressBar/HistoryProgressBar.vue';
+import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
 
 definePageMeta({
   middleware: (to, from) => {},
@@ -305,6 +308,7 @@ const setBackgroundColor = (color: string[]) => {
 const getData = async () => {
   isAddToList.value = false;
   isEpisodes.value = false;
+  loading.value = true;
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
@@ -353,7 +357,9 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = true;
+      setTimeout(() => {
+        loading.value = false;
+      }, 500);
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 
