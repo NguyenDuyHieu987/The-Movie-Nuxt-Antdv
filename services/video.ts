@@ -1,16 +1,34 @@
-import { makeRequest } from './makeRequest';
+import axios from 'axios';
 
-const URL_API_MEDIA = 'http://127.0.0.1:5002';
-// const URL_API_MEDIA = 'https://media.phimhay247.site';
+export function makeRequestVideo(url: string, options: any = {}) {
+  // const nuxtConfig = useRuntimeConfig();
+  // console.log(nuxtConfig);
 
-export function getVideos(id: string) {
-  return makeRequest(`/videos/${id}`);
+  const api = axios.create({
+    baseURL: 'http://127.0.0.1:5002',
+    // baseURL: 'https://media.phimhay247.site',
+    // withCredentials: true,
+    headers: { Accept: 'video/mp4;charset=UTF-8' },
+    responseType: 'blob',
+  });
+
+  return api(url, options)
+    .then((res) => {
+      return res;
+    })
+    .catch((error) =>
+      Promise.reject(error?.response?.data?.message ?? 'Error')
+    );
+}
+
+export function getVideo(path: string) {
+  return makeRequestVideo(`/video/${path}`);
 }
 
 export function getVideoFeature(path: string) {
-  return `${URL_API_MEDIA}/video/feature/${path}`;
+  return makeRequestVideo(`/video/feature/${path}`);
 }
 
 export function getVideoTelevisons(path: string) {
-  return `${URL_API_MEDIA}/video/televisons/${path}`;
+  return makeRequestVideo(`/video/televisons/${path}`);
 }

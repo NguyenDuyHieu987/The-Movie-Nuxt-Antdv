@@ -446,6 +446,8 @@
 
 <script setup lang="ts">
 import CloseBtn from '@/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
+import axios from 'axios';
+import { getVideo } from '~/services/video';
 
 const props = defineProps<{
   dataMovie: any;
@@ -523,22 +525,21 @@ const timeOut = ref<any>();
 const setBlobSrcVideo = async (value: string) => {
   videoStates.isLoading = true;
 
-  fetch(value)
-    .then((response) => response.blob())
-    .then((blob) => {
+  await getVideo(value)
+    .then((response) => {
       // const metadata = {
       //   type: data.type || 'video/mp4',
       // };
 
       // const file = new File([data], 'test.mp4', metadata);
 
-      // console.log(file);
+      const blobSrc = (window.URL || window.webkitURL).createObjectURL(
+        new Blob([response.data])
+      );
 
-      const blobSrc = URL.createObjectURL(blob);
+      // const blobSrc = URL.createObjectURL(blob);
 
       video.value.src = blobSrc;
-      // video.value.setAttribute('data-src', blobSrc);
-      // blobVideoSrc.value = blobSrc;
 
       // videoTemp.value = document.createElement('video');
       // videoTemp.value.src = blobSrc;

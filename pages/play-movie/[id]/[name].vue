@@ -44,7 +44,7 @@
 
           <VideoPlayer
             :dataMovie="dataMovie"
-            :videoUrl="getVideoFeature('Transformer_5.mp4')"
+            videoUrl="feature/Transformer_5.mp4"
             :backdrop="getBackdrop(dataMovie?.backdrop_path)"
             @onPlay="(e) => onPLayVideoPlayer(e)"
             @onTimeUpdate="(e) => onTimeUpdateVideoPlayer(e)"

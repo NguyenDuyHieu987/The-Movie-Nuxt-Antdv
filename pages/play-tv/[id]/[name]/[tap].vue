@@ -44,7 +44,7 @@
 
           <VideoPlayer
             :dataMovie="dataMovie"
-            :videoUrl="getVideoTelevisons(urlCodeMovie)"
+            :videoUrl="'television/' + urlCodeMovie"
             :backdrop="getBackdrop(dataMovie?.backdrop_path)"
             @onPlay="(e) => onPLayVideoPlayer(e)"
             @onTimeUpdate="(e) => onTimeUpdateVideoPlayer(e)"
