@@ -1,7 +1,7 @@
 import { makeRequest } from './makeRequest';
 
-// const URL_API_IMAGE = 'http://127.0.0.1:5001';
-const URL_API_IMAGE = 'https://img.phimhay247.site';
+const URL_API_IMAGE = 'http://127.0.0.1:5001';
+// const URL_API_IMAGE = 'https://img.phimhay247.site';
 
 export function getImages(id: string) {
   return makeRequest(`/images/${id}`);

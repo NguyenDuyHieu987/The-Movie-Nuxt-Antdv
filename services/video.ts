@@ -1,7 +1,7 @@
 import { makeRequest } from './makeRequest';
 
-// const URL_API_MEDIA = 'http://127.0.0.1:5002';
-const URL_API_MEDIA = 'https://media.phimhay247.site';
+const URL_API_MEDIA = 'http://127.0.0.1:5002';
+// const URL_API_MEDIA = 'https://media.phimhay247.site';
 
 export function getVideos(id: string) {
   return makeRequest(`/videos/${id}`);

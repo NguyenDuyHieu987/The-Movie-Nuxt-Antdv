@@ -92,7 +92,7 @@
           <template #title> </template>
           <template #default>
             <h3 class="section-title search">
-              <strong> Tìm kiếm </strong>
+              <span> Tìm kiếm </span>
             </h3>
             <a-auto-complete
               v-model:value="valueInput"
