@@ -5,8 +5,8 @@ export function makeRequest(url: string, options: any = {}) {
   // console.log(nuxtConfig);
 
   const api = axios.create({
-    baseURL: 'http://127.0.0.1:5000',
-    // baseURL: 'https://api.phimhay247.site',
+    // baseURL: 'http://127.0.0.1:5000',
+    baseURL: 'https://api.phimhay247.site',
     // withCredentials: true,
   });
 
