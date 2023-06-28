@@ -15,7 +15,7 @@
         />
       </div>
       <ViewMoreBar
-        v-show="dataSimilar.length"
+        v-show="dataSimilar?.length"
         :isOpen="viewMore"
         @onClick="viewMore = !viewMore"
       />
@@ -36,7 +36,7 @@
         />
       </div>
       <ViewMoreBar
-        v-show="dataRecommend.length"
+        v-show="dataRecommend?.length"
         :isOpen="viewMore"
         @onClick="viewMore = !viewMore"
       />
@@ -62,10 +62,10 @@ const viewMore = ref<boolean>(false);
 
 const getData = async () => {
   // Promise.all([
-  //   useAsyncData(`similar/${props?.type}/${props?.movieId}`, () =>
+  // await  useAsyncData(`similar/${props?.type}/${props?.movieId}`, () =>
   //     getSimilar(props?.type, props?.movieId)
   //   ),
-  //   useAsyncData(`trending/all/${randomRecommend.value}`, () =>
+  // await  useAsyncData(`trending/all/${randomRecommend.value}`, () =>
   //     getTrending(randomRecommend.value, 10)
   //   ),
   // ])
@@ -77,7 +77,7 @@ const getData = async () => {
   //     if (axios.isCancel(e)) return;
   //   });
 
-  useAsyncData(`similar/${props?.type}/${props?.movieId}`, () =>
+  await useAsyncData(`similar/${props?.type}/${props?.movieId}/1`, () =>
     getSimilar(props?.type, props?.movieId, 1, 10)
   )
     .then((response: any) => {
@@ -87,7 +87,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  useAsyncData(`trending/all/${randomRecommend.value}`, () =>
+  await useAsyncData(`trending/all/${randomRecommend.value}`, () =>
     getTrending(randomRecommend.value, 10)
   )
     .then((response: any) => {
@@ -98,7 +98,9 @@ const getData = async () => {
     });
 };
 
-getData();
+onBeforeMount(() => {
+  getData();
+});
 </script>
 
 <style lang="scss" src="./MovieRelated.scss"></style>

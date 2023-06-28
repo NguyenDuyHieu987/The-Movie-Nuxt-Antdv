@@ -1,9 +1,9 @@
 <template>
   <div class="rating-movie">
     <div class="rate-bar">
-      <span class="label">{{
-        disabledRate ? 'Đã đánh giá: ' : 'Đánh giá: '
-      }}</span>
+      <label class="label">
+        {{ disabledRate ? 'Đã đánh giá: ' : 'Đánh giá: ' }}
+      </label>
       <a-rate
         v-model:value="temp"
         :class="{ rated: disabledRate }"

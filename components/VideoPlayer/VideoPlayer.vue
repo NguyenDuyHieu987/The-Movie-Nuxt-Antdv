@@ -707,6 +707,7 @@ const onMouseLeaveVideo = () => {
   if (videoStates.isLoaded) {
     clearTimeout(timeOut.value);
     videoStates.isHideControls = false;
+    videoStates.isShowControls = false;
   }
 };
 

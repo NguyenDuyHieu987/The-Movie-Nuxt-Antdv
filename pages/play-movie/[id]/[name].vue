@@ -67,16 +67,11 @@
               </template>
             </Tags>
 
-            <div class="overview">
-              <Tags tagsLabel="Nội dung:">
-                <template #tagsInfo>
-                  <span class="text">{{
-                    dataMovie?.overview ||
-                    'Sorry! This movie has not been updated overview content.'
-                  }}</span>
-                </template>
-              </Tags>
-            </div>
+            <Tags tagsLabel="Nội dung:" class="tags-overview">
+              <template #tagsInfo>
+                <Overview :content="dataMovie?.overview" />
+              </template>
+            </Tags>
 
             <RatingMovie
               :dataMovie="dataMovie"
@@ -222,6 +217,7 @@ import BackPage from '@/components/BackPage/BackPage.vue';
 import HistoryProgressBar from '@/components/HistoryProgressBar/HistoryProgressBar.vue';
 import VideoPlayer from '@/components/VideoPlayer/VideoPlayer.vue';
 import Tags from '@/components/Tags/Tags.vue';
+import Overview from '@/components/Overview/Overview.vue';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';

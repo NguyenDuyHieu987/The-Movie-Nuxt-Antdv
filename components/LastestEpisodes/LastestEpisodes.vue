@@ -1,6 +1,6 @@
 <template>
   <div class="lastest-episodes">
-    <span class="label">Tâp mới nhất: </span>
+    <label class="label">Tâp mới nhất: </label>
 
     <!-- <div v-if="loading" class="list-lastest-episodes skeleton">
       <a-skeleton-button

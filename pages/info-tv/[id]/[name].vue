@@ -111,16 +111,11 @@
                 </div>
               </div>
 
-              <div class="overview">
-                <Tags tagsLabel="Nội dung:">
-                  <template #tagsInfo>
-                    <span class="text">{{
-                      dataMovie?.overview ||
-                      'Sorry! This movie has not been updated overview content.'
-                    }}</span>
-                  </template>
-                </Tags>
-              </div>
+              <Tags tagsLabel="Nội dung:" class="tags-overview">
+                <template #tagsInfo>
+                  <Overview :content="dataMovie?.overview" />
+                </template>
+              </Tags>
 
               <RatingMovie
                 :dataMovie="dataMovie"
@@ -299,13 +294,14 @@ import { getTvById } from '~/services/tv';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '@/components/BackPage/BackPage.vue';
 import Tags from '@/components/Tags/Tags.vue';
-import Comment from '@/components/Comment/Comment.vue';
+import Overview from '@/components/Overview/Overview.vue';
 import Interaction from '@/components/Interaction/Interaction.vue';
 import RatingMovie from '@/components/RatingMovie/RatingMovie.vue';
 import LastestEpisodes from '~/components/LastestEpisodes/LastestEpisodes.vue';
 import CastCrew from '@/components/CastCrew/CastCrew.vue';
 import MovieRelated from '@/components/MovieRelated/MovieRelated.vue';
 import HistoryProgressBar from '@/components/HistoryProgressBar/HistoryProgressBar.vue';
+import Comment from '@/components/Comment/Comment.vue';
 import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
 
 const store = useStore();
