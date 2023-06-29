@@ -56,24 +56,24 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        {
-          rel: 'stylesheet',
-          href: '/icons/fontawesome-pro-6.0.0-alpha3/fontawesome6/pro/css/all.min.css',
-        },
-        {
-          rel: 'stylesheet',
-          href: '/icons/google-material-icons/iconfont/material-icons.css',
-        },
-        {
-          rel: 'stylesheet',
-          href: '/icons/google-material-icons/css/material-icons.min.css',
-        },
+        // {
+        //   rel: 'stylesheet',
+        //   href: '/icons/fontawesome-pro-6.0.0-alpha3/fontawesome6/pro/css/all.min.css',
+        // },
+        // {
+        //   rel: 'stylesheet',
+        //   href: '/icons/google-material-icons/iconfont/material-icons.css',
+        // },
+        // {
+        //   rel: 'stylesheet',
+        //   href: '/icons/google-material-icons/css/material-icons.min.css',
+        // },
       ],
       script: [
-        {
-          src: '/js/jquery/jquery-3.6.4.min.js',
-          type: 'text/javascript',
-        },
+        // {
+        //   src: '/js/jquery/jquery-3.6.4.min.js',
+        //   type: 'text/javascript',
+        // },
         // {
         //   src: 'https://apis.google.com/js/platform.js',
         //   type: 'text/javascript',
