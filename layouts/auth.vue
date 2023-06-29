@@ -2,13 +2,18 @@
   <div class="auth-container">
     <div class="image-auth">
       <nuxt-img
-        :src="`/images/background_auth/Background_Auth${image}.jpg`"
+        :src="getImage(`Background_Auth${image}.jpg`, '/background/auth')"
         loading="lazy"
       />
     </div>
     <div class="image-auth responsive">
       <nuxt-img
-        :src="`/images/background_auth_responsive/Background_Auth${image_mobile}.jpg`"
+        :src="
+          getImage(
+            `Background_Auth${image_mobile}.jpg`,
+            '/background/auth_mobile'
+          )
+        "
         loading="lazy"
       />
     </div>
@@ -18,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import { getImage } from '~/services/image';
+
 const image = ref<number>(Math.floor(Math.random() * 3) + 1);
 const image_mobile = ref<number>(Math.floor(Math.random() * 3) + 1);
 </script>

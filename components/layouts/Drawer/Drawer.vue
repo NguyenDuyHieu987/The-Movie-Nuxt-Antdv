@@ -41,7 +41,7 @@
             class="avatar"
             :src="
               !isNaN(+userAccount?.avatar)
-                ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
+                ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
                 : userAccount?.avatar
             "
             alt=""
@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-// import { MenufoldOutlined } from '@ant-design/icons-vue';
+import { getImage } from '~/services/image';
 import TheMenu from '@/components/TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';
 

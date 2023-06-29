@@ -123,6 +123,7 @@ export default defineNuxtConfig({
   image: {
     provider: 'imagekit',
     imagekit: {
+      // baseURL: 'https://ik.imagekit.io/8toa5f2rp/images',
       baseURL: '',
     },
     domains: ['http://127.0.0.1:5001'],

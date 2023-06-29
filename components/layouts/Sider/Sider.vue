@@ -14,8 +14,8 @@
           <nuxt-img
             class="avatar"
             :src="
-              !isNaN(+userAccount?.avatar)
-                ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
+              !isNaN(+userAccount?.avatar) // ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
+                ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
                 : userAccount?.avatar
             "
             loading="lazy"
@@ -42,6 +42,7 @@
     <a-layout-footer @click="store.setCollapsed()">
       <div :class="['trigger-collapse', { active: collapsed }]">
         <!-- <DoubleLeftOutlined
+          style="transition: all 0.3s"
           v-if="!collapsed"
         />
         <DoubleRightOutlined v-else /> -->
@@ -63,6 +64,7 @@
 
 <script setup lang="ts">
 // import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
+import { getImage } from '~/services/image';
 import TheMenu from '@/components/TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';
 

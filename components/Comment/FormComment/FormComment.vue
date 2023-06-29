@@ -7,13 +7,17 @@
           class="avatar"
           :src="
             !isNaN(+userAccount?.avatar)
-              ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
+              ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
               : userAccount?.avatar
           "
           loading="lazy"
         />
 
-        <nuxt-img v-else src="/images/users/user2.png" loading="lazy" />
+        <nuxt-img
+          v-else
+          :src="getImage(`user2.png`, 'comment_avatar')"
+          loading="lazy"
+        />
       </div>
     </div>
     <div
@@ -93,6 +97,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+import { getImage } from '~/services/image';
 import { CommentMovie } from '~/services/comment';
 import { storeToRefs } from 'pinia';
 import EmojiPicker from 'vue3-emoji-picker';

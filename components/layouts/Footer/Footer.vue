@@ -4,7 +4,7 @@
       <div class="logo">
         <NuxtLink :to="{ path: '/' }">
           <img
-            src="/images/logo.png"
+            :src="getImage('logo.png', 'logo')"
             loading="lazy"
             alt=""
             :height="50"
@@ -45,4 +45,7 @@
   </a-layout-footer>
 </template>
 
+<script setup lang="ts">
+import { getImage } from '~/services/image';
+</script>
 <style scoped lang="scss" src="./Footer.scss"></style>
