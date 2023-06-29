@@ -44,8 +44,8 @@
         z-index: 2;
         height: 1px;
         width: 0%;
-        background-color: #838383;
-        transition: all 0s;
+        background-color: var(--app-background-color);
+        transition: all 0.15s;
       }
 
       .ant-input-affix-wrapper {
