@@ -3,7 +3,7 @@
     <div class="footer-container">
       <div class="logo">
         <NuxtLink :to="{ path: '/' }">
-          <img
+          <nuxt-img
             :src="getImage('logo.png', 'logo')"
             loading="lazy"
             alt=""
