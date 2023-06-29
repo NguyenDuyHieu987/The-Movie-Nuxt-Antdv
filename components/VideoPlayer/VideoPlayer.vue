@@ -11,7 +11,7 @@
   >
     <div v-if="settingStates.switchBackgroud" class="overlay-backdrop">
       <!-- <canvas ref="canvasOverlayBackdrop"> </canvas> -->
-      <nuxt-img :src="backdrop" loading="lazy" />
+      <nuxt-img :src="backdrop" loading="lazy" alt="" />
     </div>
 
     <!-- preload="auto" -->
