@@ -146,17 +146,12 @@
 }
 
 @media only screen and (min-width: 900px) {
-  .ant-drawer-content,
+  .el-overlay:has(.el-drawer) {
+    display: none;
+  }
+
   .el-drawer,
   .ant-drawer-mask {
-    display: none;
-  }
-
-  .el-popover {
-    display: none;
-  }
-
-  .el-overlay:has(.el-drawer) {
     display: none;
   }
 }

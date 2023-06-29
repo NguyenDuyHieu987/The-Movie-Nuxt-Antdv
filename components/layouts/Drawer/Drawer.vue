@@ -1,5 +1,5 @@
 <template>
-  <a-drawer
+  <!-- <a-drawer
     class="menu-drawer"
     v-model:visible="openDrawer"
     placement="left"
@@ -25,9 +25,9 @@
       </div>
     </template>
     <TheMenu />
-  </a-drawer>
+  </a-drawer> -->
 
-  <!-- <el-drawer
+  <el-drawer
     class="menu-drawer"
     v-model="openDrawer"
     direction="ltr"
@@ -54,7 +54,7 @@
       </div>
     </template>
     <TheMenu />
-  </el-drawer> -->
+  </el-drawer>
 </template>
 
 <script setup lang="ts">

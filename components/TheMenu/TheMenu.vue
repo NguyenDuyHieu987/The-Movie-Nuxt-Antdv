@@ -9,7 +9,7 @@
     :subMenuCloseDelay="0.1"
     :subMenuOpenDelay="0.1"
   >
-    <a-menu-item key="">
+    <a-menu-item key="home">
       <template #icon>
         <HomeOutlined />
       </template>
