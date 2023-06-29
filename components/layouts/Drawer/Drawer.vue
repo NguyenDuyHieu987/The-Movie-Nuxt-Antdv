@@ -1,23 +1,36 @@
 <template>
-  <!-- <a-drawer
+  <a-drawer
+    v-if="openDrawer"
+    class="menu-drawer"
+    v-model:visible="openDrawer"
     placement="left"
-    :visible="openDrawer"
-    @close="onClose"
-    :width="250"
-    :closable="true"
+    :closable="false"
   >
-    <template #extra>
-      <div class="logo">
-        <NuxtLink :to="{ path: '/' }">
-          <h1>Phimhay247</h1>
-        </NuxtLink>
+    <template #title>
+      <div class="user-header">
+        <div class="user-image-container" v-if="!collapsed && isLogin">
+          <nuxt-img
+            class="avatar"
+            :src="
+              !isNaN(+userAccount?.avatar)
+                ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
+                : userAccount?.avatar
+            "
+            alt=""
+          />
+        </div>
+
+        <h4>
+          {{ userAccount?.username }}
+        </h4>
       </div>
     </template>
     <TheMenu />
-  </a-drawer> -->
+  </a-drawer>
 
-  <el-drawer
+  <!-- <el-drawer
     v-if="openDrawer"
+    class="menu-drawer"
     v-model="openDrawer"
     direction="ltr"
     placement="left"
@@ -29,24 +42,25 @@
           style="display: flex; justify-content: center; align-items: center"
         >
           <div class="user-image-container" v-if="!collapsed && isLogin">
-            <img
+            <nuxt-img
               class="avatar"
               :src="
                 !isNaN(+userAccount?.avatar)
                   ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
                   : userAccount?.avatar
               "
+              alt=""
             />
           </div>
 
-          <h4 style="color: #fff">
+          <h4>
             {{ userAccount?.username }}
           </h4>
         </div>
       </div>
     </template>
     <TheMenu />
-  </el-drawer>
+  </el-drawer> -->
 </template>
 
 <script setup lang="ts">

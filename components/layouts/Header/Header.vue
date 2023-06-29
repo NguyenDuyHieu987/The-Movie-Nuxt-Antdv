@@ -70,7 +70,7 @@
     </a-auto-complete>
 
     <div class="right-header">
-      <ClientOnly>
+      <!-- <ClientOnly>
         <el-popover
           trigger="click"
           placement="bottom"
@@ -80,7 +80,6 @@
           <template #reference>
             <a-button type="text" shape="circle" class="search-btn-mobile">
               <template #icon>
-                <!-- <SearchOutlined /> -->
                 <Icon
                   name="fa6-solid:magnifying-glass"
                   class="fa-magnifying-glass"
@@ -131,7 +130,64 @@
             </a-auto-complete>
           </template>
         </el-popover>
-      </ClientOnly>
+      </ClientOnly> -->
+
+      <a-popover
+        trigger="click"
+        placement="bottom"
+        overlayClassName="popover-search"
+        effect="dark"
+      >
+        <a-button type="text" shape="circle" class="search-btn-mobile">
+          <template #icon>
+            <Icon
+              name="fa6-solid:magnifying-glass"
+              class="fa-magnifying-glass"
+            />
+          </template>
+        </a-button>
+
+        <template #content>
+          <h3 class="section-title search">
+            <span> Tìm kiếm </span>
+          </h3>
+          <a-auto-complete
+            v-model:value="valueInput"
+            class="search-poppover"
+            dropdown-class-name="certain-category-search-dropdown"
+            :options="dataSearch"
+            style="width: 100%"
+            :open="isOpenAutoComplete"
+            @change="handleChangeInput"
+            @focus="isOpenAutoComplete = true"
+            @blur="isOpenAutoComplete = false"
+          >
+            <template #option="item">
+              <SearchCard
+                :key="item?.id"
+                :item="item"
+                :type="item.media_type"
+              />
+            </template>
+            <a-input-search
+              class="search-poppover"
+              placeholder="Nhập tên phim để tìm kiếm..."
+              size="large"
+              allowClear
+              bordered
+              :loading="loadingSearch"
+              @search="handleSearch"
+            >
+              <template #enterButton>
+                <Icon
+                  name="fa6-solid:magnifying-glass"
+                  class="fa-magnifying-glass"
+                />
+              </template>
+            </a-input-search>
+          </a-auto-complete>
+        </template>
+      </a-popover>
 
       <a-menu theme="dark" mode="horizontal" :selectable="false">
         <a-menu-item key="notification" v-if="isLogin" v-once>

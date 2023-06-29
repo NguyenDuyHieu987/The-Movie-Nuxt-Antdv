@@ -111,7 +111,7 @@ export default defineNuxtConfig({
     // 'material-icons/iconfont/material-icons.css',
   ],
   modules: [
-    // '@element-plus/nuxt',
+    '@element-plus/nuxt',
     '@pinia/nuxt',
     'nuxt-swiper',
     'nuxt-icon',
@@ -148,9 +148,9 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  // elementPlus: {
-  //   /** Options */
-  // },
+  elementPlus: {
+    /** Options */
+  },
   plugins: [
     '@/plugins/antd',
     '@/plugins/fontawesome',

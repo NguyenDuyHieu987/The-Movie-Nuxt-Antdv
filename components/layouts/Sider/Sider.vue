@@ -42,17 +42,18 @@
     <a-layout-footer @click="store.setCollapsed()">
       <div :class="['trigger-collapse', { active: collapsed }]">
         <!-- <DoubleLeftOutlined
-          style="transition: all 0.3s"
           v-if="!collapsed"
         />
         <DoubleRightOutlined v-else /> -->
-        <i
-          style="transition: all 0.3s"
+        <!-- <i
           v-if="!collapsed"
           class="fa-solid fa-chevrons-left"
         ></i>
 
-        <i v-else class="fa-solid fa-chevrons-right"></i>
+        <i v-else class="fa-solid fa-chevrons-right"></i> -->
+
+        <Icon v-if="!collapsed" name="ic:baseline-keyboard-double-arrow-left" />
+        <Icon v-else name="ic:baseline-keyboard-double-arrow-right" />
 
         <span class="title-trigger-collapse">Đóng</span>
       </div>

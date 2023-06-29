@@ -129,7 +129,8 @@
       align-items: center;
 
       .title-trigger-collapse {
-        margin-left: 13px;
+        // margin-left: 13px;
+        margin-left: 6px;
         user-select: none;
         opacity: 1;
         transition: all 0s;
@@ -139,6 +140,12 @@
         font-size: 1.5rem;
         height: 15px;
         width: 15px;
+
+        &.icon {
+          width: auto;
+          height: auto;
+          font-size: 2.2rem;
+        }
       }
     }
 
