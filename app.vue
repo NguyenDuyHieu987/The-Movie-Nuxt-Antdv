@@ -17,13 +17,13 @@
       <NuxtLayout>
         <NuxtPage />
 
-        <a-back-top
+        <el-backtop
           class="app-back-top"
           :visibilityHeight="600"
           @click="onBackTop"
         >
-          <Icon name="fa6-solid:chevron-up" />
-        </a-back-top>
+          <font-awesome-icon icon="fa-solid fa-chevron-up" />
+        </el-backtop>
       </NuxtLayout>
     </div>
   </div>
@@ -87,7 +87,7 @@ onBeforeMount(() => {
   getData();
 });
 
-const onBackTop = (e: any) => {
+const onBackTop = () => {
   window.scrollTo({
     top: 0,
     left: 0,
