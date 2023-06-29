@@ -143,7 +143,7 @@
             v-if="isLogin"
             v-once
           >
-            <a class="ant-dropdown-link" @click.prevent>
+            <span class="ant-dropdown-link" @click.prevent>
               <a-badge :count="3" :overflow-count="9">
                 <!-- <Icon name="fa6-regular:bell" class="fa-bell fa-regular" />
                 <Icon name="fa6-solid:bell" class="fa-bell fa-solid" /> -->
@@ -174,7 +174,7 @@
                   />
                 </svg>
               </a-badge>
-            </a>
+            </span>
 
             <template #overlay>
               <el-menu class="dropdown-notification">
@@ -212,11 +212,11 @@
             overlayClassName="dropdown-account"
             placement="bottomLeft"
           >
-            <a class="ant-dropdown-link" @click.prevent>
+            <span class="ant-dropdown-link" @click.prevent>
               <UserOutlined />
 
               <CaretDownOutlined />
-            </a>
+            </span>
             <template #overlay>
               <a-menu class="dropdown-account">
                 <a-menu-item key="my-profile" v-if="isLogin" v-once>
