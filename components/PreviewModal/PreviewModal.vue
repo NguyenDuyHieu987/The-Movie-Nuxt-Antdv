@@ -10,7 +10,7 @@
           <!-- :src="getBackdrop(item?.backdrop_path, ',250')" -->
           <nuxt-img
             class="ant-image"
-            v-lazy="getImage(item?.backdrop_path, 'backdrop')"
+            :src="getImage(item?.backdrop_path, 'backdrop')"
             loading="lazy"
           />
 
