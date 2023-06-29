@@ -7,9 +7,10 @@
         @mouseover="onClickPreviewModal"
       >
         <div class="backdrop-box">
+          <!-- :src="getBackdrop(item?.backdrop_path, ',250')" -->
           <nuxt-img
             class="ant-image"
-            :src="getBackdrop(item?.backdrop_path, ',250')"
+            v-lazy="getImage(item?.backdrop_path, 'backdrop')"
             loading="lazy"
           />
 
@@ -221,7 +222,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { PlusOutlined, InfoOutlined } from '@ant-design/icons-vue';
-import { getBackdrop } from '~/services/image';
+import { getBackdrop, getImage } from '~/services/image';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';

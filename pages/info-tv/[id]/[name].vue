@@ -21,21 +21,21 @@
             /> -->
             <nuxt-img
               class="ant-image"
-              :src="getBackdrop(dataMovie?.backdrop_path)"
+              :src="getImage(dataMovie?.backdrop_path, 'backdrop')"
               loading="lazy"
             />
           </div>
           <div class="poster">
             <nuxt-img
               class="ant-image"
-              :src="getPoster(dataMovie?.poster_path)"
+              :src="getImage(dataMovie?.poster_path, 'poster')"
               loading="lazy"
             />
           </div>
 
           <div class="overlay-backdrop">
             <nuxt-img
-              :src="getBackdrop(dataMovie?.backdrop_path)"
+              :src="getImage(dataMovie?.backdrop_path, 'backdrop')"
               loading="lazy"
             />
           </div>
@@ -289,7 +289,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getItemList } from '~/services/list';
-import { getPoster, getBackdrop } from '~/services/image';
+import { getPoster, getBackdrop, getImage } from '~/services/image';
 import { getTvById } from '~/services/tv';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '@/components/BackPage/BackPage.vue';

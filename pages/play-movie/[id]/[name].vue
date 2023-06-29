@@ -45,7 +45,7 @@
           <VideoPlayer
             :dataMovie="dataMovie"
             videoUrl="feature/Transformer_5.mp4"
-            :backdrop="getBackdrop(dataMovie?.backdrop_path)"
+            :backdrop="getImage(dataMovie?.backdrop_path, 'backdrop')"
             @onPlay="(e) => onPLayVideoPlayer(e)"
             @onTimeUpdate="(e) => onTimeUpdateVideoPlayer(e)"
           />
@@ -206,7 +206,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop } from '~/services/image';
+import { getBackdrop, getImage } from '~/services/image';
 import { getVideoFeature } from '~/services/video';
 import { getMovieById } from '~/services/movie';
 import { getItemList } from '~/services/list';

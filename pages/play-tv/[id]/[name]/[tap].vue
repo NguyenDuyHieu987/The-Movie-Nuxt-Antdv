@@ -45,7 +45,7 @@
           <VideoPlayer
             :dataMovie="dataMovie"
             :videoUrl="'television/' + urlCodeMovie"
-            :backdrop="getBackdrop(dataMovie?.backdrop_path)"
+            :backdrop="getImage(dataMovie?.backdrop_path, 'backdrop')"
             @onPlay="(e) => onPLayVideoPlayer(e)"
             @onTimeUpdate="(e) => onTimeUpdateVideoPlayer(e)"
           />
@@ -229,7 +229,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop } from '~/services/image';
+import { getBackdrop, getImage } from '~/services/image';
 import { getVideoTelevisons } from '~/services/video';
 import { getTvById } from '~/services/tv';
 import { getItemList } from '~/services/list';
