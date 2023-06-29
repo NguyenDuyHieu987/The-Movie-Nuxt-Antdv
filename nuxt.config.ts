@@ -212,7 +212,7 @@ export default defineNuxtConfig({
   },
   build: {},
   vite: {
-    build: { sourcemap: true },
+    build: { sourcemap: true, ssr: true },
     vue: {
       script: {
         defineModel: true,
