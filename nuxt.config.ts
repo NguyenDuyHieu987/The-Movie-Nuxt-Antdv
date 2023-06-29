@@ -225,6 +225,7 @@ export default defineNuxtConfig({
     },
   },
   ssr: false,
+  sourcemap: true,
   routeRules: {
     '/': { swr: true, prerender: true },
     '/search/**': { swr: true, prerender: true },
