@@ -31,9 +31,9 @@
     <div class="billboard-item-body">
       <div class="info">
         <div class="head">
-          <img class="pngegg" src="/images/pngegg.png" />
+          <nuxt-img class="pngegg" src="/images/pngegg.png" alt="" />
           <div>
-            <p class="release-date" v-if="item.media_type == 'movie'">
+            <p class="release-date" v-if="item?.media_type == 'movie'">
               {{ item?.release_date }}
             </p>
             <p v-else class="release-date">

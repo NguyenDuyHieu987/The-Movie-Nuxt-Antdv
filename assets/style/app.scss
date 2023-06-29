@@ -3,17 +3,19 @@
 }
 
 .app-back-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   bottom: 30px !important;
   right: 20px !important;
   height: 45px;
   width: 45px;
-  line-height: 45px;
   border-radius: 50%;
   border: 1px solid #fff;
   background-color: var(--background-content-color1);
   color: var(--text-color);
-  text-align: center;
   font-size: 2rem;
+  // font-size: 3rem;
   box-shadow: var(--box-shadow-small) !important;
   transition: all 0.15s;
 
@@ -26,7 +28,6 @@
   .app-back-top {
     height: 40px;
     width: 40px;
-    line-height: 40px;
     bottom: 30px;
     right: 20px;
     font-size: 1.8rem;
@@ -37,7 +38,6 @@
   .app-back-top {
     height: 35px;
     width: 35px;
-    line-height: 35px;
     bottom: 20px;
     right: 15px;
     font-size: 1.6rem;
