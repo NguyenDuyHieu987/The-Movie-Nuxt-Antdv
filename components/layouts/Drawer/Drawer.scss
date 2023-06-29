@@ -1,19 +1,5 @@
-@media only screen and (min-width: 900px) {
-  .ant-drawer-content,
-  .el-drawer,
-  .ant-drawer-mask {
-    display: none;
-  }
-
-  .el-popover {
-    display: none;
-  }
-  .el-overlay:has(.el-drawer) {
-    display: none;
-  }
-}
-
 .ant-drawer.menu-drawer {
+  display: none;
   margin-top: var(--header-height);
 
   .ant-drawer-content-wrapper {
@@ -41,6 +27,7 @@
               display: flex;
               justify-content: center;
               align-items: center;
+              font-size: 1.7rem;
 
               .user-image-container {
                 margin-right: 10px;
@@ -106,20 +93,27 @@
     line-height: 65px;
     border-bottom: 0.25px solid var(--border-regular);
 
-    .user-image-container {
-      margin-right: 10px;
-      height: 35px;
-      width: 35px;
-      border-radius: 50%;
-      overflow: hidden;
+    .user-header {
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-self: center;
+      font-size: 1.7rem;
 
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+      .user-image-container {
+        margin-right: 10px;
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-self: center;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
     }
   }
@@ -149,4 +143,26 @@
 .menu-drawer::-webkit-scrollbar {
   // display: none;
   width: 7px;
+}
+
+@media only screen and (min-width: 900px) {
+  .ant-drawer-content,
+  .el-drawer,
+  .ant-drawer-mask {
+    display: none;
+  }
+
+  .el-popover {
+    display: none;
+  }
+
+  .el-overlay:has(.el-drawer) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .ant-drawer.menu-drawer {
+    display: block;
+  }
 }
