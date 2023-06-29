@@ -25,9 +25,10 @@
 
       <template #default>
         <div class="img-box">
+          <!-- v-lazy="getBackdrop(item?.backdrop_path, ',250')" -->
           <img
             class="ant-image"
-            v-lazy="getBackdrop(item?.backdrop_path, ',250')"
+            v-lazy="getImage(item?.backdrop_path, 'backdrop')"
             loading="lazy"
             @load="onLoadImg"
           />
@@ -119,7 +120,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop } from '~/services/image';
+import { getBackdrop, getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import PreviewModal from '@/components/PreviewModal/PreviewModal.vue';
 

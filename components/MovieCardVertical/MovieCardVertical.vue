@@ -27,7 +27,7 @@
         <div class="img-box">
           <img
             class="ant-image"
-            v-lazy="getPoster(item?.poster_path)"
+            v-lazy="getImage(item?.poster_path, 'poster')"
             loading="lazy"
             @load="onLoadImg"
           />
@@ -125,7 +125,7 @@
 </template>
 <script setup lang="ts">
 import axios from 'axios';
-import { getPoster } from '~/services/image';
+import { getPoster, getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import PreviewModal from '@/components/PreviewModal/PreviewModal.vue';
 

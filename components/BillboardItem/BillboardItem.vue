@@ -23,7 +23,7 @@
     <div class="img-wrapper">
       <nuxt-img
         class="ant-image"
-        :src="getBackdrop(item?.backdrop_path)"
+        :src="getImage(item?.backdrop_path, 'backdrop')"
         loading="lazy"
       />
     </div>
@@ -123,7 +123,8 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getItemList, getBackdrop } from '~/services/appMovieService';
+import { getBackdrop, getImage } from '~/services/image';
+import { getItemList } from '~/services/list';
 
 const props = defineProps<{
   item: any;

@@ -121,8 +121,8 @@ export default defineNuxtConfig({
     '@nuxtjs/fontaine',
   ],
   image: {
-    provider: 'cloudflare',
-    cloudflare: {
+    provider: 'imagekit',
+    imagekit: {
       baseURL: '',
     },
     domains: ['http://127.0.0.1:5001'],

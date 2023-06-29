@@ -21,7 +21,7 @@
         loading="lazy"
       /> -->
       <div class="ant-image">
-        <img v-lazy="getPoster(item?.poster_path)" loading="lazy" />
+        <img v-lazy="getImage(item?.poster_path, 'poster')" loading="lazy" />
       </div>
     </div>
 
@@ -60,7 +60,7 @@
 </template>
 <script setup lang="ts">
 // import axios from 'axios';
-import { getPoster } from '~/services/appMovieService';
+import { getPoster, getImage } from '~/services/image';
 
 const props = defineProps<{
   item: any;

@@ -22,9 +22,10 @@
 
       <template #default>
         <div class="img-box">
+          <!-- v-lazy="getBackdrop, getImage(item?.backdrop_path, ',250')" -->
           <img
             class="ant-image"
-            v-lazy="getBackdrop(item?.backdrop_path, ',250')"
+            v-lazy="getImage(item?.backdrop_path, 'backdrop')"
             loading="lazy"
           />
 
@@ -113,7 +114,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop } from '~/services/image';
+import { getBackdrop, getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import ModalTrailer from '@/components/ModalTrailer/ModalTrailer.vue';
 

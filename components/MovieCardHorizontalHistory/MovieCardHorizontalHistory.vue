@@ -40,8 +40,9 @@
         >
           <div class="img-box">
             <div class="ant-image">
+              <!-- v-lazy="getBackdrop(item?.backdrop_path, ',250')" -->
               <img
-                v-lazy="getBackdrop(item?.backdrop_path, ',250')"
+                v-lazy="getImage(item?.backdrop_path, 'backdrop')"
                 loading="lazy"
               />
             </div>
@@ -257,7 +258,7 @@
 
 <script setup lang="ts">
 // import axios from 'axios';
-import { getBackdrop } from '~/services/image';
+import { getBackdrop, getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
 import disableScroll from 'disable-scroll';
