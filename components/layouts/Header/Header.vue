@@ -143,7 +143,7 @@
             v-if="isLogin"
             v-once
           >
-            <span class="ant-dropdown-link" @click.prevent>
+            <span class="ant-dropdown-link">
               <a-badge :count="3" :overflow-count="9">
                 <!-- <Icon name="fa6-regular:bell" class="fa-bell fa-regular" />
                 <Icon name="fa6-solid:bell" class="fa-bell fa-solid" /> -->
@@ -212,7 +212,7 @@
             overlayClassName="dropdown-account"
             placement="bottomLeft"
           >
-            <span class="ant-dropdown-link" @click.prevent>
+            <span class="ant-dropdown-link">
               <UserOutlined />
 
               <CaretDownOutlined />
