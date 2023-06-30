@@ -28,7 +28,7 @@
   </a-drawer> -->
 
   <el-drawer
-    v-show="openDrawer"
+    v-if="openDrawer"
     class="menu-drawer"
     v-model="openDrawer"
     direction="ltr"
