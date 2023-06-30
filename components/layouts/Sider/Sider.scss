@@ -22,8 +22,13 @@
   z-index: 10;
   transition: all 0s;
 
-  ::-webkit-scrollbar,
+  ::-webkit-scrollbar {
+    background-color: transparent;
+    width: 9px;
+  }
+
   ::-webkit-scrollbar-thumb {
+    border: none;
     background-color: transparent;
   }
 
@@ -107,6 +112,7 @@
     position: sticky;
     bottom: 0;
     z-index: 2;
+    width: 100%;
     height: calc(var(--header-height) - 5px);
     display: flex;
     align-items: center;
@@ -169,12 +175,12 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .ant-layout-sider.sider-bar {
-    width: 0px !important;
-    min-width: 0px !important;
-    max-width: 0px !important;
-    overflow: hidden;
-    border: none;
-    // display: none;
-  }
+  // .ant-layout-sider.sider-bar {
+  //   width: 0px !important;
+  //   min-width: 0px !important;
+  //   max-width: 0px !important;
+  //   overflow: hidden;
+  //   border: none;
+  //   // display: none;
+  // }
 }

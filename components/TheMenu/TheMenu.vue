@@ -1,6 +1,5 @@
 <template>
   <a-menu
-    :forceSubMenuRender="true"
     v-model:openKeys="state.openKeys"
     v-model:selectedKeys="state.selectedKeys"
     mode="inline"
@@ -8,6 +7,7 @@
     theme="dark"
     :subMenuCloseDelay="0.1"
     :subMenuOpenDelay="0.1"
+    :forceSubMenuRender="true"
   >
     <a-menu-item key="home">
       <template #icon>

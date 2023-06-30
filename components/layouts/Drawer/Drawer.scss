@@ -1,5 +1,4 @@
 .ant-drawer.menu-drawer {
-  display: none;
   margin-top: var(--header-height);
 
   .ant-drawer-content-wrapper {
@@ -150,14 +149,13 @@
     display: none;
   }
 
-  .el-drawer,
-  .ant-drawer-mask {
+  .el-drawer {
     display: none;
   }
 }
 
 @media only screen and (max-width: 900px) {
   .ant-drawer.menu-drawer {
-    display: block;
+    // display: block;
   }
 }

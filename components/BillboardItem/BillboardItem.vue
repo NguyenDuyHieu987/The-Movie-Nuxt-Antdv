@@ -31,7 +31,11 @@
     <div class="billboard-item-body">
       <div class="info">
         <div class="head">
-          <nuxt-img class="pngegg" src="/images/pngegg.png" alt="" />
+          <nuxt-img
+            class="pngegg"
+            :src="getImage('pngegg.png', 'misc')"
+            alt=""
+          />
           <div>
             <p class="release-date" v-if="item?.media_type == 'movie'">
               {{ item?.release_date }}

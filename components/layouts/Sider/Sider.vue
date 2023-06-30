@@ -39,19 +39,20 @@
     </a-layout-header>
 
     <TheMenu />
+
     <a-layout-footer @click="store.setCollapsed()">
       <div :class="['trigger-collapse', { active: collapsed }]">
         <!-- <DoubleLeftOutlined
-          style="transition: all 0.3s"
-          v-if="!collapsed"
-        />
-        <DoubleRightOutlined v-else /> -->
+            style="transition: all 0.3s"
+            v-if="!collapsed"
+          />
+          <DoubleRightOutlined v-else /> -->
         <!-- <i
-          v-if="!collapsed"
-          class="fa-solid fa-chevrons-left"
-        ></i>
-
-        <i v-else class="fa-solid fa-chevrons-right"></i> -->
+            v-if="!collapsed"
+            class="fa-solid fa-chevrons-left"
+          ></i>
+  
+          <i v-else class="fa-solid fa-chevrons-right"></i> -->
 
         <Icon v-if="!collapsed" name="ic:baseline-keyboard-double-arrow-left" />
         <Icon v-else name="ic:baseline-keyboard-double-arrow-right" />
@@ -67,10 +68,25 @@
 import { getImage } from '~/services/image';
 import TheMenu from '@/components/TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';
+import { useBreakpoints } from '@vueuse/core';
+const breakpoints = useBreakpoints({
+  tablet: 900,
+  desktop: 1280,
+});
 
+const isResponsive = breakpoints.isSmaller('tablet');
 const store = useStore();
 const { collapsed, isLogin, userAccount } = storeToRefs<any>(store);
+
 onMounted(() => {
+  window.onresize = () => {
+    if (window.innerWidth <= 900) {
+      store.setCollapsed();
+    } else {
+      store.$state.collapsed = false;
+    }
+  };
+
   const menu: HTMLElement | null = document.querySelector(
     '.sider-bar .ant-layout-sider-children'
   );

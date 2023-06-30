@@ -66,6 +66,14 @@ import { storeToRefs } from 'pinia';
 
 const store = useStore();
 const { collapsed, isLogin, openDrawer, userAccount } = storeToRefs<any>(store);
+
+onMounted(() => {
+  window.onresize = () => {
+    if (window.innerWidth > 900) {
+      store.$state.openDrawer = false;
+    }
+  };
+});
 </script>
 
 <style lang="scss" src="./Drawer.scss"></style>
