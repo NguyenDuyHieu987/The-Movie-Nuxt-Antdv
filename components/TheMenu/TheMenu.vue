@@ -13,7 +13,7 @@
       <template #icon>
         <HomeOutlined />
       </template>
-      <NuxtLink :to="{ path: '/' }"><span>Trang chủ</span> </NuxtLink>
+      <NuxtLink :to="{ path: '/' }">Trang chủ</NuxtLink>
     </a-menu-item>
 
     <a-sub-menu key="movie">
@@ -273,7 +273,7 @@
           name="ic:baseline-playlist-play"
         />
       </template>
-      <NuxtLink :to="{ path: '/follow' }"> <span>Theo dõi</span></NuxtLink>
+      <NuxtLink :to="{ path: '/follow' }"> Theo dõi</NuxtLink>
     </a-menu-item>
 
     <a-menu-item key="history">
@@ -281,9 +281,7 @@
         <!-- <font-awesome-icon icon="fa-solid fa-clock-rotate-left" /> -->
         <Icon name="fa6-solid:clock-rotate-left" />
       </template>
-      <NuxtLink :to="{ path: '/history' }">
-        <span>Lịch sử Xem </span>
-      </NuxtLink>
+      <NuxtLink :to="{ path: '/history' }"> Lịch sử Xem </NuxtLink>
     </a-menu-item>
 
     <a-menu-item key="ranking">
@@ -291,7 +289,7 @@
         <!-- <font-awesome-icon icon="fa-solid fa-ranking-star" /> -->
         <Icon name="fa6-solid:ranking-star" />
       </template>
-      <NuxtLink :to="{ path: '/ranking' }"> <span>Xếp hạng</span></NuxtLink>
+      <NuxtLink :to="{ path: '/ranking' }"> Xếp hạng</NuxtLink>
     </a-menu-item>
 
     <a-menu-item key="pricing">
@@ -300,7 +298,7 @@
         <!-- <i class="fa-regular fa-money-check-dollar-pen"></i> -->
         <Icon name="material-symbols:price-change-outline"></Icon>
       </template>
-      <NuxtLink :to="{ path: '/pricing' }"> <span>Pricing</span></NuxtLink>
+      <NuxtLink :to="{ path: '/pricing' }"> Pricing</NuxtLink>
     </a-menu-item>
   </a-menu>
 </template>
