@@ -99,7 +99,7 @@ export default defineNuxtConfig({
     '@': resolve(__dirname, './'),
   },
   experimental: {
-    // payloadExtraction: false,
+    payloadExtraction: false,
   },
   typescript: {
     strict: true,
