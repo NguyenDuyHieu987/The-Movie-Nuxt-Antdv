@@ -130,6 +130,7 @@ import { getBackdrop, getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import { getItemList } from '~/services/list';
 import ModalTrailer from '@/components/ModalTrailer/ModalTrailer.vue';
+import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
   item: any;

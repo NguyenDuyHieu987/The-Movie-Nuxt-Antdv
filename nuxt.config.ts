@@ -106,12 +106,13 @@ export default defineNuxtConfig({
   },
   css: [
     'ant-design-vue/dist/antd.min.css',
+    'element-plus/dist/index.css',
     '@/assets/style/globalStyle.scss',
     '@fortawesome/fontawesome-svg-core/styles.css',
     // 'material-icons/iconfont/material-icons.css',
   ],
   modules: [
-    '@element-plus/nuxt',
+    // '@element-plus/nuxt',
     '@pinia/nuxt',
     'nuxt-swiper',
     'nuxt-icon',
@@ -150,9 +151,9 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  elementPlus: {
-    /** Options */
-  },
+  // elementPlus: {
+  //   /** Options */
+  // },
   plugins: [
     '@/plugins/antd',
     '@/plugins/fontawesome',

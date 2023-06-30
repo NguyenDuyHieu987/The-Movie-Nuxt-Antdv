@@ -117,6 +117,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getSeasonTV } from '~/services/tv';
+import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
   dataMovie: any;

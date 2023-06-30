@@ -120,7 +120,6 @@ body {
 ::-webkit-scrollbar {
   width: 14px;
   background-color: transparent;
-  transition: all 0.1s;
   height: 14px;
 }
 
@@ -129,17 +128,16 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 15px;
-  transition: all 0.1s;
-  background-color: #7e7e7e;
   border: 3px solid transparent;
   background-clip: padding-box;
+  background-color: #686868;
 
   &:hover {
-    background-color: #686868;
+    background-color: #7e7e7e;
   }
 
   &:active {
-    background-color: #686868;
+    background-color: #7e7e7e;
   }
 }
 

@@ -212,6 +212,7 @@ import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
 import axios from 'axios';
 import disableScroll from 'disable-scroll';
+import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
   item: any;

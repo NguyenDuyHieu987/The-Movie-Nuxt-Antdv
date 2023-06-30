@@ -117,6 +117,7 @@ import axios from 'axios';
 import { getBackdrop, getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import ModalTrailer from '@/components/ModalTrailer/ModalTrailer.vue';
+import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
   item: any;

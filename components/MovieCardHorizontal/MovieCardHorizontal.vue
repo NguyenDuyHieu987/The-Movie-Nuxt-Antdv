@@ -123,6 +123,7 @@ import axios from 'axios';
 import { getBackdrop, getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import PreviewModal from '@/components/PreviewModal/PreviewModal.vue';
+import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
   item: any;
