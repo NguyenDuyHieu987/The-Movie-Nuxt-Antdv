@@ -28,7 +28,8 @@
         <Icon name="fa6-solid:video"></Icon>
       </template>
       <template #title>Phim lẻ</template>
-      <a-menu-item key="all">
+
+      <a-menu-item key="all" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/movie/all`,
@@ -37,7 +38,8 @@
           <span>Tất cả</span>
         </NuxtLink>
       </a-menu-item>
-      <a-menu-item key="nowplaying">
+
+      <a-menu-item key="nowplaying" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/movie/nowplaying`,
@@ -47,7 +49,7 @@
         </NuxtLink>
       </a-menu-item>
 
-      <a-menu-item key="popular">
+      <a-menu-item key="popular" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/movie/popular`,
@@ -56,7 +58,8 @@
           <span>Phổ biến</span>
         </NuxtLink>
       </a-menu-item>
-      <a-menu-item key="toprated">
+
+      <a-menu-item key="toprated" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/movie/toprated`,
@@ -65,7 +68,8 @@
           <span>Top đánh giá</span>
         </NuxtLink>
       </a-menu-item>
-      <a-menu-item key="upcoming">
+
+      <a-menu-item key="upcoming" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/movie/upcoming`,
@@ -87,7 +91,8 @@
         <Icon name="fa6-solid:film"></Icon>
       </template>
       <template #title>Phim bộ</template>
-      <a-menu-item key="all">
+
+      <a-menu-item key="all" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/tv/all`,
@@ -97,7 +102,7 @@
         </NuxtLink>
       </a-menu-item>
 
-      <a-menu-item key="airingtoday">
+      <a-menu-item key="airingtoday" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/tv/airingtoday`,
@@ -107,7 +112,7 @@
         </NuxtLink>
       </a-menu-item>
 
-      <a-menu-item key="ontheair">
+      <a-menu-item key="ontheair" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/tv/ontheair`,
@@ -115,7 +120,7 @@
         >
           <span>On the air </span>
         </NuxtLink> </a-menu-item
-      ><a-menu-item key="tvpopular">
+      ><a-menu-item key="tvpopular" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvpopular`,
@@ -123,7 +128,7 @@
         >
           <span>Phổ biến </span>
         </NuxtLink> </a-menu-item
-      ><a-menu-item key="tvtoprated">
+      ><a-menu-item key="tvtoprated" role="sub-menu-item">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvtoprated`,
