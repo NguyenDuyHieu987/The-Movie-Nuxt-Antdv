@@ -119,16 +119,20 @@
           }"
         >
           On the air
-        </NuxtLink> </a-menu-item
-      ><a-menu-item key="tvpopular">
+        </NuxtLink>
+      </a-menu-item>
+
+      <a-menu-item key="tvpopular">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvpopular`,
           }"
         >
           Phổ biến
-        </NuxtLink> </a-menu-item
-      ><a-menu-item key="tvtoprated">
+        </NuxtLink>
+      </a-menu-item>
+
+      <a-menu-item key="tvtoprated">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvtoprated`,
