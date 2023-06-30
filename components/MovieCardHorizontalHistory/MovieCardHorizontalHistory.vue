@@ -67,7 +67,7 @@
               </strong>
             </h2>
 
-            <p v-if="isEpisodes" class="duration-episode">
+            <!-- <p v-if="isEpisodes" class="duration-episode">
               Tập mới nhất:
               {{
                 dataMovie?.last_episode_to_air?.episode_number
@@ -79,7 +79,7 @@
             <p v-else class="duration-episode">
               Thời lượng:
               {{ dataMovie?.runtime ? dataMovie?.runtime + ' phút' : '' }}
-            </p>
+            </p> -->
 
             <div class="year-views">
               <p class="year" v-if="!isEpisodes">
