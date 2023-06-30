@@ -24,11 +24,11 @@
 
   ::-webkit-scrollbar {
     background-color: transparent;
-    width: 9px;
+    // width: 9px;
   }
 
   ::-webkit-scrollbar-thumb {
-    border: none;
+    // border: none;
     background-color: transparent;
   }
 
@@ -100,6 +100,8 @@
   }
 
   .ant-layout-sider-children {
+    display: flex;
+    flex-direction: column;
     min-height: 100%;
     overflow-y: auto;
 
@@ -175,12 +177,13 @@
 }
 
 @media only screen and (max-width: 900px) {
-  // .ant-layout-sider.sider-bar {
-  //   width: 0px !important;
-  //   min-width: 0px !important;
-  //   max-width: 0px !important;
-  //   overflow: hidden;
-  //   border: none;
-  //   // display: none;
-  // }
+  .ant-layout-sider.sider-bar {
+    width: 0px !important;
+    min-width: 0px !important;
+    max-width: 0px !important;
+    flex: 0 0 0 !important;
+    overflow: hidden;
+    border: none;
+    // display: none;
+  }
 }

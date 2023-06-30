@@ -7,7 +7,7 @@
   background-color: transparent !important;
   overflow: hidden;
   min-height: calc(100% - calc(2 * var(--header-height)));
-  height: 100%;
+  flex-grow: 1;
 
   &.ant-menu-inline-collapsed {
     width: 100%;
