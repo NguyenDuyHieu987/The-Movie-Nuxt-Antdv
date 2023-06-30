@@ -35,7 +35,7 @@
             path: `/discover/movie/all`,
           }"
         >
-          <span>Tất cả</span>
+          Tất cả
         </NuxtLink>
       </a-menu-item>
 
@@ -45,7 +45,7 @@
             path: `/discover/movie/nowplaying`,
           }"
         >
-          <span>Now playing</span>
+          Now playing
         </NuxtLink>
       </a-menu-item>
 
@@ -55,7 +55,7 @@
             path: `/discover/movie/popular`,
           }"
         >
-          <span>Phổ biến</span>
+          Phổ biến
         </NuxtLink>
       </a-menu-item>
 
@@ -65,7 +65,7 @@
             path: `/discover/movie/toprated`,
           }"
         >
-          <span>Top đánh giá</span>
+          Top đánh giá
         </NuxtLink>
       </a-menu-item>
 
@@ -75,7 +75,7 @@
             path: `/discover/movie/upcoming`,
           }"
         >
-          <span>Sắp công chiếu</span>
+          Sắp công chiếu
         </NuxtLink>
       </a-menu-item>
     </a-sub-menu>
@@ -98,7 +98,7 @@
             path: `/discover/tv/all`,
           }"
         >
-          <span>Tất cả </span>
+          Tất cả
         </NuxtLink>
       </a-menu-item>
 
@@ -108,7 +108,7 @@
             path: `/discover/tv/airingtoday`,
           }"
         >
-          <span>Airing today </span>
+          Airing today
         </NuxtLink>
       </a-menu-item>
 
@@ -118,7 +118,7 @@
             path: `/discover/tv/ontheair`,
           }"
         >
-          <span>On the air </span>
+          On the air
         </NuxtLink> </a-menu-item
       ><a-menu-item key="tvpopular">
         <NuxtLink
@@ -126,7 +126,7 @@
             path: `/discover/tv/tvpopular`,
           }"
         >
-          <span>Phổ biến </span>
+          Phổ biến
         </NuxtLink> </a-menu-item
       ><a-menu-item key="tvtoprated">
         <NuxtLink
@@ -134,7 +134,7 @@
             path: `/discover/tv/tvtoprated`,
           }"
         >
-          <span>Top đánh giá</span>
+          Top đánh giá
         </NuxtLink>
       </a-menu-item>
     </a-sub-menu>
@@ -165,7 +165,7 @@
               path: `/discover/genre/${item?.short_name}`,
             }"
           >
-            <span>{{ item?.name_vietsub }}</span>
+            {{ item?.name_vietsub }}
           </NuxtLink>
         </a-tooltip>
         <NuxtLink
@@ -176,7 +176,7 @@
         >
           <!-- @click="$store.$state.breadCrumbValue = item?.name_vietsub" -->
 
-          <span>{{ item?.name_vietsub }}</span>
+          {{ item?.name_vietsub }}
         </NuxtLink>
       </a-menu-item>
     </a-sub-menu>
@@ -210,7 +210,7 @@
             }`,
           }"
         >
-          <span>{{ item?.name }}</span>
+          {{ item?.name }}
         </NuxtLink>
       </a-menu-item>
     </a-sub-menu>
@@ -239,7 +239,7 @@
         >
           <!-- @click="$store.$state.breadCrumbValue = item?.name" -->
 
-          <span>{{ item?.name }}</span>
+          {{ item?.name }}
         </NuxtLink>
       </a-menu-item>
     </a-sub-menu>
