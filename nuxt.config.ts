@@ -228,7 +228,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  ssr: true,
+  ssr: false,
   sourcemap: {
     server: true,
     client: true,
