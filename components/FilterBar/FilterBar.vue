@@ -324,7 +324,9 @@ const handleCancelFilter = () => {
   props.cancelFilter();
 };
 
-const handleChange = () => {};
+const handleChange = () => {
+  // console.log(formSelect);
+};
 </script>
 
 <style lang="scss" src="./FilterBar.scss"></style>

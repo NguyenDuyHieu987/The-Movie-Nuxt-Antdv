@@ -1,6 +1,6 @@
 import { makeRequest } from './makeRequest';
 import ALLGENRES from '../constants/Genres';
-import { getGenresNameByShortName, getIdGenresByName } from './genres';
+import { getGenreByShortName, getGenreByName } from './genres';
 import type { country, genre } from '@/types';
 import { getCountryByShortName } from './country';
 
@@ -13,19 +13,19 @@ export function FilterDataMovie(formSelect: any) {
         : formSelect.year.slice(-4) + '-01-01'
       : '';
 
-  const genreStr =
-    formSelect.genre !== ''
-      ? /^\d+$/.test(formSelect.genre)
-        ? formSelect.genre
-        : getIdGenresByName(formSelect.genre)?.id
-      : '';
+  // const genreStr =
+  //   formSelect.genre !== ''
+  //     ? /^\d+$/.test(formSelect.genre)
+  //       ? formSelect.genre
+  //       : getGenreByName(formSelect.genre)?.id
+  //     : '';
 
   return /^\d+$/.test(formSelect.year)
     ? makeRequest(
-        `/discover/${formSelect.type}?sort_by=${formSelect.sortBy}&primary_release_date_gte=${yearGte}&primary_release_date_lte=${yearLte}&with_genres=${genreStr}&with_original_language=${formSelect.country}&page=${formSelect.pageFilter}`
+        `/discover/${formSelect.type}?sort_by=${formSelect.sortBy}&primary_release_date_gte=${yearGte}&primary_release_date_lte=${yearLte}&with_genres=${formSelect.genre}&with_original_language=${formSelect.country}&page=${formSelect.pageFilter}`
       )
     : makeRequest(
-        `/discover/${formSelect.type}?sort_by=${formSelect.sortBy}&primary_release_date_lte=${yearGte}&with_genres=${genreStr}&with_original_language=${formSelect.country}&page=${formSelect.pageFilter}`
+        `/discover/${formSelect.type}?sort_by=${formSelect.sortBy}&primary_release_date_lte=${yearGte}&with_genres=${formSelect.genre}&with_original_language=${formSelect.country}&page=${formSelect.pageFilter}`
       );
 }
 
@@ -34,7 +34,7 @@ export function getMoviesByGenres(
   sort_by: string = '',
   page: number = 1
 ) {
-  const genre: genre | undefined = getGenresNameByShortName(
+  const genre: genre | undefined = getGenreByShortName(
     genre_short_name,
     ALLGENRES
   );

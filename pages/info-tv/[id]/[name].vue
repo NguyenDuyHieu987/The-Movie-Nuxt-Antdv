@@ -206,7 +206,14 @@
                     :key="item?.id"
                     :index="index"
                   >
-                    <NuxtLink>{{ item?.name }} </NuxtLink>
+                    <NuxtLink
+                      :to="`/discover/genre/${
+                        getGenreById(item?.id, store.$state.allGenres)
+                          ?.short_name
+                      }`"
+                    >
+                      {{ item?.name }}
+                    </NuxtLink>
                     <span>
                       {{ index + 1 != dataMovie?.genres?.length ? ', ' : '' }}
                     </span>
@@ -291,6 +298,7 @@ import axios from 'axios';
 import { getItemList } from '~/services/list';
 import { getPoster, getBackdrop, getImage } from '~/services/image';
 import { getTvById } from '~/services/tv';
+import { getGenreById } from '~/services/genres';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '@/components/BackPage/BackPage.vue';
 import Tags from '@/components/Tags/Tags.vue';

@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getCountryByShortName } from '~/services/country';
-import { getGenresNameByShortName } from '~/services/genres';
+import { getGenreByShortName } from '~/services/genres';
 import {
   getMoviesByGenres,
   getMoviesByYear,
@@ -266,7 +266,7 @@ const getData = async () => {
           });
         metaHead.value =
           'Thể loại: ' +
-          getGenresNameByShortName(route.params?.slug2, store.$state?.allGenres)
+          getGenreByShortName(route.params?.slug2, store.$state?.allGenres)
             ?.name_vietsub;
 
         break;
