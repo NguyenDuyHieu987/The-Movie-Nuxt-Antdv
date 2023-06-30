@@ -155,8 +155,16 @@
 
           span {
             width: 100%;
+            margin-left: 0px;
             font-weight: normal;
             font-size: 1.5rem;
+          }
+        }
+
+        .ant-btn {
+          span {
+            margin-left: 0px;
+            width: 100%;
           }
         }
 
@@ -165,10 +173,6 @@
 
           .el-icon {
             font-size: 1.8rem;
-            margin-left: 0px;
-          }
-
-          span {
             margin-left: 0px;
           }
 
@@ -187,12 +191,10 @@
           }
 
           img {
-            height: 100%;
-            width: 100%;
-          }
-
-          span {
-            margin-left: 0px;
+            // height: 100%;
+            // width: 100%;
+            width: 18px;
+            height: 18px;
           }
         }
       }

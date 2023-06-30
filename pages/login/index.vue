@@ -92,39 +92,34 @@
         </div>
 
         <div class="social-login">
-          <el-button
+          <a-button
             class="facebook-login-btn"
-            @click="handleFacebookLogin"
             size="large"
             :loading="loadingFacebookLogin"
+            @click="handleFacebookLogin"
           >
-            <el-icon class="el-icon--right">
+            <template #icon>
               <Icon class="fa-facebook-f" name="fa6-brands:facebook-f" />
-
-              <!-- <font-awesome-icon icon="fa-brands fa-facebook-f" /> -->
-            </el-icon>
-            <!-- <template #icon>
-                  <font-awesome-icon icon="fa-brands fa-facebook-f" />
-                </template> -->
+            </template>
             <span>Đăng nhập bằng Facebook</span>
-          </el-button>
+          </a-button>
 
-          <el-button
+          <a-button
             class="google-login-btn"
             id="google-login-btn"
             size="large"
             :loading="loadingGoogleLogin"
             @click="handleGoogleLogin"
           >
-            <el-icon class="el-icon--right">
+            <template #icon>
               <nuxt-img
                 :src="getImage('google.png', 'social_media')"
                 alt=""
                 loading="lazy"
               />
-            </el-icon>
+            </template>
             <span>Đăng nhập bằng Google</span>
-          </el-button>
+          </a-button>
 
           <!-- <el-button
               class="google-login-btn"
