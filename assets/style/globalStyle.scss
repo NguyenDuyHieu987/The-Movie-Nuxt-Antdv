@@ -33,7 +33,7 @@
 
   --tooltip-background-color: #222222;
 
-  --app-background-color: #0082c7;
+  --app-background-color: #00649d;
   --app-background-color1: #c30061;
   --app-background-color2: #000046;
   --app-background-color3: #1cb5e0;
@@ -326,7 +326,11 @@ button,
 
 @media only screen and (max-width: 900px) {
   html {
-    font-size: 9px;
+    // font-size: 9px;
+  }
+
+  body {
+    font-size: 1.4rem;
   }
 
   .gradient-title-default {

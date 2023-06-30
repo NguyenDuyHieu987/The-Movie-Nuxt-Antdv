@@ -162,6 +162,12 @@
         }
 
         .ant-btn {
+          transition: all 0s;
+
+          &:hover {
+            border-color: var(--app-background-color);
+          }
+
           span {
             margin-left: 0px;
             width: 100%;

@@ -1,7 +1,7 @@
 import { makeRequest } from './makeRequest';
 
-const URL_API_IMAGE = 'http://127.0.0.1:5001';
-// const URL_API_IMAGE = 'https://img.phimhay247.site';
+// const URL_API_IMAGE = 'http://127.0.0.1:5001';
+const URL_API_IMAGE = 'https://img.phimhay247.site';
 // const URL_API_IMAGE1 = 'https://ik.imagekit.io/8toa5f2rp';
 const URL_API_IMAGE1 =
   'https://res.cloudinary.com/dvbhjlrdf/image/upload/v1688106333';
@@ -19,9 +19,5 @@ export function getBackdrop(path: string, size = 'full') {
 }
 
 export function getColorImage(path: string) {
-  return makeRequest(
-    path === null || path === undefined
-      ? ''
-      : `${URL_API_IMAGE}/imagecolor/backdrop/${path}`
-  );
+  return makeRequest(`${URL_API_IMAGE}/imagecolor/backdrop/${path}`);
 }
