@@ -213,7 +213,7 @@ export default defineNuxtConfig({
   },
   build: {},
   vite: {
-    build: { sourcemap: true, ssr: true },
+    build: { sourcemap: true },
     vue: {
       script: {
         defineModel: true,
@@ -229,7 +229,7 @@ export default defineNuxtConfig({
   ssr: true,
   sourcemap: {
     server: true,
-    // client: true,
+    client: true,
   },
   routeRules: {
     '/': { swr: true, prerender: true },
