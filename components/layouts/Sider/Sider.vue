@@ -1,6 +1,6 @@
 <template>
   <a-layout-sider
-    :collapsed="collapsed"
+    v-model:collapsed="collapsed"
     width="var(--sider-width)"
     collapsedWidth="var(--sider-collapsed-width)"
     class="sider-bar"
