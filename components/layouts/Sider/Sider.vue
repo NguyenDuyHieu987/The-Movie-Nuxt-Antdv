@@ -1,6 +1,7 @@
 <template>
   <a-layout-sider
-    v-model:collapsed="collapsed"
+    v-if="isResponsive"
+    :collapsed="collapsed"
     width="var(--sider-width)"
     collapsedWidth="var(--sider-collapsed-width)"
     class="sider-bar"
@@ -69,24 +70,18 @@ import { getImage } from '~/services/image';
 import TheMenu from '@/components/TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';
 import { useBreakpoints } from '@vueuse/core';
+
 const breakpoints = useBreakpoints({
   tablet: 900,
   desktop: 1280,
 });
 
-const isResponsive = breakpoints.isSmaller('tablet');
+const isResponsive = breakpoints.isGreater('tablet');
+
 const store = useStore();
 const { collapsed, isLogin, userAccount } = storeToRefs<any>(store);
 
 onMounted(() => {
-  window.onresize = () => {
-    if (window.innerWidth <= 900) {
-      store.setCollapsed();
-    } else {
-      store.setCollapsed();
-    }
-  };
-
   const menu: HTMLElement | null = document.querySelector(
     '.sider-bar .ant-layout-sider-children'
   );
