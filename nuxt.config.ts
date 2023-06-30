@@ -164,7 +164,7 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    preset: 'cloudflare-pages',
+    preset: 'static',
     prerender: {
       routes: [
         '/',
