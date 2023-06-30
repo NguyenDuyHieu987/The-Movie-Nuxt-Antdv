@@ -199,12 +199,13 @@
               color: var(--text-color);
 
               &:hover {
-                color: #b90016;
+                color: var(--text-danger-color);
                 background-color: #141414;
               }
 
               .el-icon {
-                margin-right: 8px;
+                font-size: 2rem;
+                margin-right: 2px;
               }
             }
           }
@@ -550,7 +551,8 @@
           }
 
           .el-icon {
-            margin-right: 8px;
+            font-size: 2rem;
+            margin-right: 2px;
           }
         }
       }

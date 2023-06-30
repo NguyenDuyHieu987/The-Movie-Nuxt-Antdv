@@ -112,7 +112,8 @@
                         <a-menu-item key="remove-list">
                           <template #icon>
                             <!-- <InfoCircleOutlined /> -->
-                            <i class="fa-regular fa-circle-info"></i>
+                            <!-- <i class="fa-regular fa-circle-info"></i> -->
+                            <Icon name="bi:info-circle" class="info" />
                           </template>
                           <span>Thông tin chi tiết</span>
                         </a-menu-item>
@@ -134,7 +135,8 @@
                 >
                   <template #icon>
                     <!-- <span class="material-icons-outlined"> delete_sweep </span> -->
-                    <i class="fa-regular fa-trash-can-list"></i>
+                    <!-- <i class="fa-regular fa-trash-can-list"></i> -->
+                    <Icon name="ic:sharp-delete-sweep" />
                   </template>
                   Xóa tất cả phim đã xem
                 </el-button>
@@ -266,7 +268,8 @@
                         <a-menu-item key="remove-list">
                           <template #icon>
                             <!-- <InfoCircleOutlined /> -->
-                            <i class="fa-regular fa-circle-info"></i>
+                            <!-- <i class="fa-regular fa-circle-info"></i> -->
+                            <Icon name="bi:info-circle" class="info" />
                           </template>
                           <span>Thông tin chi tiết</span>
                         </a-menu-item>
@@ -301,7 +304,8 @@
                 >
                   <template #icon>
                     <!-- <span class="material-icons-outlined"> delete_sweep </span> -->
-                    <i class="fa-regular fa-trash-can-list"></i>
+                    <!-- <i class="fa-regular fa-trash-can-list"></i> -->
+                    <Icon name="ic:sharp-delete-sweep" />
                   </template>
                   Xóa tất cả Phim đã xem
                 </el-button>

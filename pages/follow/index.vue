@@ -106,7 +106,9 @@
                         <a-menu-item key="info-list">
                           <template #icon>
                             <!-- <InfoCircleOutlined /> -->
-                            <i class="fa-regular fa-circle-info"></i>
+                            <!-- <i class="fa-regular fa-circle-info"></i> -->
+
+                            <Icon name="bi:info-circle" class="info" />
                           </template>
                           <span>Thông tin chi tiết</span>
                         </a-menu-item>
@@ -250,7 +252,9 @@
                         <a-menu-item key="info-list">
                           <template #icon>
                             <!-- <InfoCircleOutlined /> -->
-                            <i class="fa-regular fa-circle-info"></i>
+                            <!-- <i class="fa-regular fa-circle-info"></i> -->
+
+                            <Icon name="bi:info-circle" class="info" />
                           </template>
                           <span>Thông tin chi tiết</span>
                         </a-menu-item>
