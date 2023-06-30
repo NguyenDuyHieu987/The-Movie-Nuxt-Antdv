@@ -117,7 +117,11 @@
             @click="handleGoogleLogin"
           >
             <el-icon class="el-icon--right">
-              <img src="/images/socials/icons8-google-48.png" alt="" />
+              <nuxt-img
+                :src="getImage('google.png', 'social_media')"
+                alt=""
+                loading="lazy"
+              />
             </el-icon>
             <span>Đăng nhập bằng Google</span>
           </el-button>
@@ -153,6 +157,7 @@ import {
   CloseCircleFilled,
 } from '@ant-design/icons-vue';
 import axios from 'axios';
+import { getImage } from '~/services/image';
 import { signIn, loginFacebook, loginGoogle } from '~/services/authentication';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';

@@ -21,7 +21,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getBackdrop(topicImage, ',250')"
+                    :src="getImage(topicImage, 'backdrop')"
                     loading="lazy"
                   />
 
@@ -46,7 +46,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getBackdrop(topicImage, ',250')"
+                    :src="getImage(topicImage, 'backdrop')"
                     loading="lazy"
                   />
 
@@ -58,7 +58,7 @@
                 <nuxt-img
                   v-show="!dataHistory?.length"
                   class="ant-image"
-                  :src="getBackdrop(topicImage, ',250')"
+                  :src="getImage(topicImage, 'backdrop')"
                   loading="lazy"
                 />
               </div>
@@ -171,7 +171,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getBackdrop(topicImage, ',250')"
+                    :src="getImage(topicImage, 'backdrop')"
                     loading="lazy"
                   />
 
@@ -197,7 +197,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getBackdrop(topicImage, ',250')"
+                    :src="getImage(topicImage, 'backdrop')"
                     loading="lazy"
                   />
 
@@ -210,7 +210,7 @@
                 <nuxt-img
                   v-show="!dataHistory?.length"
                   class="ant-image"
-                  :src="getBackdrop(topicImage, ',250')"
+                  :src="getImage(topicImage, 'backdrop')"
                   loading="lazy"
                 />
               </div>
@@ -351,8 +351,7 @@
 import axios from 'axios';
 import MovieCardHorizontalHistory from '@/components/MovieCardHorizontalHistory/MovieCardHorizontalHistory.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
-
-import { getBackdrop, getColorImage } from '~/services/image';
+import { getBackdrop, getImage, getColorImage } from '~/services/image';
 import { getHistory, searchHistory } from '~/services/history';
 import disableScroll from 'disable-scroll';
 import { storeToRefs } from 'pinia';

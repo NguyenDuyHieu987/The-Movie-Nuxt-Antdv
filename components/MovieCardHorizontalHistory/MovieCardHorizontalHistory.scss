@@ -141,6 +141,16 @@
         left: 0;
         right: 0;
         bottom: 0;
+
+        &[lazy='error'] {
+          // width: auto;
+          // margin: 0px auto;
+          background-image: url('https://ik.imagekit.io/8toa5f2rp/images/svg/error-image.svg');
+          background-size: 30%;
+          background-repeat: no-repeat;
+          background-position: center center;
+          transition: background-position 0s !important;
+        }
       }
     }
 

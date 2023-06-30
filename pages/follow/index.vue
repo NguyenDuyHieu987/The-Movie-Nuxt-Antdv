@@ -19,7 +19,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getBackdrop(topicImage, ',250')"
+                    :src="getImage(topicImage, 'backdrop')"
                     loading="lazy"
                   />
                   <div class="play-now">
@@ -37,7 +37,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getBackdrop(topicImage, ',250')"
+                    :src="getImage(topicImage, 'backdrop')"
                     loading="lazy"
                   />
 
@@ -49,7 +49,7 @@
                 <nuxt-img
                   v-show="!dataList?.length"
                   class="ant-image"
-                  :src="getBackdrop(topicImage, ',250')"
+                  :src="getImage(topicImage, 'backdrop')"
                   loading="lazy"
                 />
               </div>
@@ -157,7 +157,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getBackdrop(topicImage, ',250')"
+                    :src="getImage(topicImage, 'backdrop')"
                     loading="lazy"
                   />
 
@@ -177,7 +177,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getBackdrop(topicImage, ',250')"
+                    :src="getImage(topicImage, 'backdrop')"
                     loading="lazy"
                   />
 
@@ -190,7 +190,7 @@
                 <nuxt-img
                   v-show="!dataList?.length"
                   class="ant-image"
-                  :src="getBackdrop(topicImage, ',250')"
+                  :src="getImage(topicImage, 'backdrop')"
                   loading="lazy"
                 />
               </div>
@@ -333,7 +333,7 @@
 import axios from 'axios';
 import MovieCardHorizontalFollow from '@/components/MovieCardHorizontalFollow/MovieCardHorizontalFollow.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
-import { getBackdrop, getColorImage } from '~/services/image';
+import { getBackdrop, getImage, getColorImage } from '~/services/image';
 import { getList, searchList } from '~/services/list';
 import disableScroll from 'disable-scroll';
 import _ from 'lodash';
