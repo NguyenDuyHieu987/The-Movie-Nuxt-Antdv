@@ -68,14 +68,6 @@
 import { getImage } from '~/services/image';
 import TheMenu from '@/components/TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';
-import { useBreakpoints } from '@vueuse/core';
-
-const breakpoints = useBreakpoints({
-  tablet: 900,
-  desktop: 1280,
-});
-
-const isResponsive = breakpoints.isGreater('tablet');
 
 const store = useStore();
 const { collapsed, isLogin, userAccount } = storeToRefs<any>(store);
