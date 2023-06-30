@@ -213,7 +213,6 @@ export default defineNuxtConfig({
       '/play-tv',
     ],
   },
-  build: {},
   vite: {
     build: { sourcemap: true, ssrManifest: true },
     vue: {
