@@ -1,6 +1,5 @@
 <template>
   <a-layout-sider
-    v-if="isResponsive"
     :collapsed="collapsed"
     width="var(--sider-width)"
     collapsedWidth="var(--sider-collapsed-width)"

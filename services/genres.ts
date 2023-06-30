@@ -1,10 +1,8 @@
 import { makeRequest } from './makeRequest';
 import type { genre } from '@/types';
 import ALLGENRES from '../constants/Genres';
-// const store = useStore();
 
 export function getAllGenre() {
-  // console.log(store.$state.allGenres);
   return makeRequest(`/genre/all`);
 }
 
