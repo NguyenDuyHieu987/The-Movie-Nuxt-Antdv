@@ -315,7 +315,7 @@ const responsiveVertical = computed<any>((): any => ({
 }));
 
 const getData = async () => {
-  await useAsyncData(`trending1/all/1`, () => getTrending(1))
+  await useAsyncData(`trending/all/1`, () => getTrending(1))
     .then((response: any) => {
       trendings.value = response.data.value?.results;
     })
