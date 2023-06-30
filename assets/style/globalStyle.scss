@@ -68,7 +68,7 @@
   --box-shadow-small: 0 3px 10px #000000bf;
   --box-shadow-medium: 0 8px 20px #070707;
   --box-shadow-medium1: 0 8px 10px #070707;
-  --box-shadow-large: 0 10px 25px #070707;
+  --box-shadow-large: 0 20px 30px #070707;
 
   --padding-home: 30px;
   --padding-home-expand: 50px;
@@ -376,16 +376,13 @@ button,
   transition: all 0.15s;
   font-size: 1.5rem;
   box-shadow: none;
-  border: 1px solid var(--border-regular);
 
   &:hover {
     color: var(--text-color);
-    border: 1px solid var(--border-regular);
   }
 
   &:focus {
     color: var(--text-color);
-    border: 1px solid var(--border-regular);
   }
 
   &:active {

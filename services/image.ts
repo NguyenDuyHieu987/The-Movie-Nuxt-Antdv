@@ -6,16 +6,16 @@ const URL_API_IMAGE = 'https://img.phimhay247.site';
 const URL_API_IMAGE1 =
   'https://res.cloudinary.com/dvbhjlrdf/image/upload/v1688106333';
 
-export function getImage(path: string, type: string) {
-  return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : '';
+export function getImage(path: string | any, type: string) {
+  return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
 }
 
 export function getPoster(path: string, size = 'full') {
-  return path ? `${URL_API_IMAGE}/image/poster/${path}?size=${size}` : '';
+  return path ? `${URL_API_IMAGE}/image/poster/${path}?size=${size}` : ' ';
 }
 
 export function getBackdrop(path: string, size = 'full') {
-  return path ? `${URL_API_IMAGE}/image/backdrop/${path}?size=${size}` : '';
+  return path ? `${URL_API_IMAGE}/image/backdrop/${path}?size=${size}` : ' ';
 }
 
 export function getColorImage(path: string) {
