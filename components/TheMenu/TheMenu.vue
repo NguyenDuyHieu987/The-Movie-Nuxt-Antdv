@@ -243,7 +243,7 @@
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-bookmark" /> -->
         <!-- <span class="material-icons-outlined"> playlist_play </span> -->
-        <svg
+        <!-- <svg
           class="material-icons-outlined playlist"
           xmlns="http://www.w3.org/2000/svg"
           enable-background="new 0 0 24 24"
@@ -261,7 +261,12 @@
               <polygon points="16,13 16,21 22,17" />
             </g>
           </g>
-        </svg>
+        </svg> -->
+
+        <Icon
+          class="material-icons-outlined playlist"
+          name="ic:baseline-playlist-play"
+        />
       </template>
       <NuxtLink :to="{ path: '/follow' }"> <span>Theo dõi</span></NuxtLink>
     </a-menu-item>
