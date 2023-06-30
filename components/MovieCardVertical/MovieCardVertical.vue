@@ -219,7 +219,7 @@ const getData = async () => {
 getData();
 
 const onMouseEnter = ({ target }: { target: HTMLElement }) => {
-  if (target) {
+  if (target != null) {
     const rect = target.getBoundingClientRect();
 
     const offsetX = rect.left;
