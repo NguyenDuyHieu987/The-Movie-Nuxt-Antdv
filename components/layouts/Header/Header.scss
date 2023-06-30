@@ -426,8 +426,10 @@
       .ant-dropdown-menu-item {
         padding: 13px 20px;
 
-        &:first-child {
-          border-bottom: 1px solid var(--border-regular-light);
+        &.active {
+          &:first-child {
+            border-bottom: 1px solid var(--border-regular-light);
+          }
         }
       }
     }

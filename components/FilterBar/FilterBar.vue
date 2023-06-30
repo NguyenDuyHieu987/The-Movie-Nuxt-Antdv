@@ -198,8 +198,8 @@
           <a-button
             class="cancel-filter-btn"
             :disabled="disableBtnFilter"
+            danger
             @click="handleCancelFilter"
-            :danger="true"
           >
             Hủy lọc
           </a-button>

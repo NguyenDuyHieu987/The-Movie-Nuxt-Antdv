@@ -71,7 +71,6 @@
         <a-form-item>
           <a-button
             :disabled="disabled"
-            type="primary"
             html-type="submit"
             class="login-form-button"
             size="large"

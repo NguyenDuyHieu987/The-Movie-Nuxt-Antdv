@@ -275,7 +275,12 @@
             </span>
             <template #overlay>
               <a-menu class="dropdown-account">
-                <a-menu-item key="my-profile" v-if="isLogin" v-once>
+                <a-menu-item
+                  :class="{ active: isLogin }"
+                  key="my-profile"
+                  v-if="isLogin"
+                  v-once
+                >
                   <NuxtLink :to="{ path: '/profile' }"
                     ><span>My Profile</span>
                     <br />

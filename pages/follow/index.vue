@@ -10,7 +10,8 @@
             <div class="top">
               <div class="backdrop">
                 <NuxtLink
-                  v-show="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
+                  v-if="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
+                  class="img-box"
                   :to="{
                     path: `/play-tv/${dataList[0]?.id}/${dataList[0]?.name
                       ?.replace(/\s/g, '+')
@@ -27,8 +28,12 @@
                     <span> PHÁT NGAY </span>
                   </div>
                 </NuxtLink>
+
                 <NuxtLink
-                  v-show="dataList[0]?.media_type == 'movie' && dataList[0]?.id"
+                  v-else-if="
+                    dataList[0]?.media_type == 'movie' && dataList[0]?.id
+                  "
+                  class="img-box"
                   :to="{
                     path: `/play-movie/${dataList[0]?.id}/${dataList[0]?.name
                       ?.replace(/\s/g, '+')
@@ -46,13 +51,16 @@
                     <span>PHÁT NGAY</span>
                   </div>
                 </NuxtLink>
-                <nuxt-img
-                  v-show="!dataList?.length"
-                  class="ant-image"
-                  :src="getImage(topicImage, 'backdrop')"
-                  loading="lazy"
-                />
+
+                <div v-if="!dataList?.length" class="img-box">
+                  <nuxt-img
+                    class="ant-image"
+                    :src="getImage(topicImage, 'backdrop')"
+                    loading="lazy"
+                  />
+                </div>
               </div>
+
               <nuxt-img
                 class="overlay-image"
                 :src="getBackdrop(topicImage)"
@@ -148,7 +156,8 @@
             <div class="column-container">
               <div class="backdrop">
                 <NuxtLink
-                  v-show="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
+                  v-if="dataList[0]?.media_type == 'tv' && dataList[0]?.id"
+                  class="img-box"
                   :to="{
                     path: `/play-tv/${dataList[0]?.id}/${dataList[0]?.name
                       ?.replace(/\s/g, '+')
@@ -168,7 +177,10 @@
                 </NuxtLink>
 
                 <NuxtLink
-                  v-show="dataList[0]?.media_type == 'movie' && dataList[0]?.id"
+                  v-else-if="
+                    dataList[0]?.media_type == 'movie' && dataList[0]?.id
+                  "
+                  class="img-box"
                   :to="{
                     path: `/play-movie/${dataList[0]?.id}/${dataList[0]?.name
                       ?.replace(/\s/g, '+')
@@ -187,13 +199,15 @@
                   </div>
                 </NuxtLink>
 
-                <nuxt-img
-                  v-show="!dataList?.length"
-                  class="ant-image"
-                  :src="getImage(topicImage, 'backdrop')"
-                  loading="lazy"
-                />
+                <div v-if="!dataList?.length" class="img-box">
+                  <nuxt-img
+                    class="ant-image"
+                    :src="getImage(topicImage, 'backdrop')"
+                    loading="lazy"
+                  />
+                </div>
               </div>
+
               <nuxt-img
                 class="overlay-image"
                 :src="getBackdrop(topicImage)"

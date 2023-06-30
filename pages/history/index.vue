@@ -10,9 +10,10 @@
             <div class="top">
               <div class="backdrop">
                 <NuxtLink
-                  v-show="
+                  v-if="
                     dataHistory[0]?.media_type == 'tv' && dataHistory[0]?.id
                   "
+                  class="img-box"
                   :to="{
                     path: `/play-tv/${dataHistory[0]?.id}/${dataHistory[0]?.name
                       ?.replace(/\s/g, '+')
@@ -33,9 +34,10 @@
                   </div>
                 </NuxtLink>
                 <NuxtLink
-                  v-show="
+                  v-else-if="
                     dataHistory[0]?.media_type == 'movie' && dataHistory[0]?.id
                   "
+                  class="img-box"
                   :to="{
                     path: `/play-movie/${
                       dataHistory[0]?.id
@@ -49,19 +51,21 @@
                     :src="getImage(topicImage, 'backdrop')"
                     loading="lazy"
                   />
-
                   <div class="play-now">
                     <Icon name="ic:play-arrow" class="play" />
                     <span>PHÁT NGAY</span>
                   </div>
                 </NuxtLink>
-                <nuxt-img
-                  v-show="!dataHistory?.length"
-                  class="ant-image"
-                  :src="getImage(topicImage, 'backdrop')"
-                  loading="lazy"
-                />
+
+                <div v-if="!dataHistory?.length" class="img-box">
+                  <nuxt-img
+                    class="ant-image"
+                    :src="getImage(topicImage, 'backdrop')"
+                    loading="lazy"
+                  />
+                </div>
               </div>
+
               <nuxt-img
                 class="overlay-image"
                 :src="getBackdrop(topicImage)"
@@ -160,9 +164,10 @@
             <div class="column-container">
               <div class="backdrop">
                 <NuxtLink
-                  v-show="
+                  v-if="
                     dataHistory[0]?.media_type == 'tv' && dataHistory[0]?.id
                   "
+                  class="img-box"
                   :to="{
                     path: `/play-tv/${dataHistory[0]?.id}/${dataHistory[0]?.name
                       ?.replace(/\s/g, '+')
@@ -184,9 +189,10 @@
                 </NuxtLink>
 
                 <NuxtLink
-                  v-show="
+                  v-else-if="
                     dataHistory[0]?.media_type == 'movie' && dataHistory[0]?.id
                   "
+                  class="img-box"
                   :to="{
                     path: `/play-movie/${
                       dataHistory[0]?.id
@@ -207,18 +213,21 @@
                   </div>
                 </NuxtLink>
 
-                <nuxt-img
-                  v-show="!dataHistory?.length"
-                  class="ant-image"
-                  :src="getImage(topicImage, 'backdrop')"
-                  loading="lazy"
-                />
+                <div v-if="!dataHistory?.length" class="img-box">
+                  <nuxt-img
+                    class="ant-image"
+                    :src="getImage(topicImage, 'backdrop')"
+                    loading="lazy"
+                  />
+                </div>
               </div>
+
               <nuxt-img
                 class="overlay-image"
                 :src="getBackdrop(topicImage)"
                 loading="lazy"
               />
+
               <div class="info">
                 <h2 class="title">
                   <strong>Phim đã xem</strong>

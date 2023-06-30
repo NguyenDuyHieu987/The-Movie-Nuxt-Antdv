@@ -128,7 +128,8 @@
                 >
                   <template #icon>
                     <!-- <Close /> -->
-                    <i class="fa-light fa-xmark"></i>
+                    <!-- <i class="fa-light fa-xmark"></i> -->
+                    <Icon name="ic:baseline-close" />
                   </template>
                 </el-button>
               </a-tooltip>

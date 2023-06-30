@@ -214,6 +214,7 @@
     right: -12px;
     opacity: 0;
     transition: all 0.1s;
+    gap: 5px;
 
     &:has(.viewmore-btn.ant-dropdown-open) {
       opacity: 1;
@@ -241,7 +242,10 @@
       align-items: center;
       background: inherit;
       border: none;
+      height: auto;
+      width: auto;
       transition: all 0.1s;
+      padding: 5px;
 
       &:hover,
       &:focus {
@@ -253,6 +257,9 @@
       }
 
       &.remove-btn {
+        svg {
+          font-size: 5rem;
+        }
       }
 
       &.viewmore-btn {

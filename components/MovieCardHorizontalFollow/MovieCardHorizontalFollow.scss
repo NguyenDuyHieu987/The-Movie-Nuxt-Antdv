@@ -236,7 +236,10 @@
       align-items: center;
       background: inherit;
       border: none;
+      height: auto;
+      width: auto;
       transition: all 0.1s;
+      padding: 5px;
 
       &:hover,
       &:focus {

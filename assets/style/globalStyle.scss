@@ -16,6 +16,7 @@
   --text-button-disabled-color: #707070;
   --link-text-color: #006999;
   --link-text-color-hover: #009ac5;
+  --text-danger-color: #b90016;
 
   --search-background: #0a0a0a41;
   --search-focus-background: #141414;
@@ -33,7 +34,7 @@
 
   --tooltip-background-color: #222222;
 
-  --app-background-color: #00649d;
+  --app-background-color: #0080ca;
   --app-background-color1: #c30061;
   --app-background-color2: #000046;
   --app-background-color3: #1cb5e0;
@@ -49,13 +50,12 @@
   --btn-backgroud-color-gray-hover: #303030;
   --btn-border-color: #e3e3e3;
   --btn-border-color-hover: #c7c7c7;
-  --btn-backgroud-color: #004671;
-  --btn-backgroud-color-hover: #003b60;
-  --btn-delete-background-color: #f10606;
-  --btn-delete-hover-color: #af0000;
+  --btn-color: #0080ca;
+  --btn-danger-color: #ff4d4f;
 
-  --input-border-color-focused: #00649d;
-  --input-border-color-hover: #00649d;
+  --input-border-color: #d9d9d9;
+  --input-border-color-focused: #0080ca;
+  --input-border-color-hover: #0080ca;
 
   --border-regular: #e3e3e3;
   --border-regular-btn: #ffffff;
@@ -375,17 +375,39 @@ button,
   color: var(--text-color);
   transition: all 0.15s;
   font-size: 1.5rem;
+  box-shadow: none;
+  border: 1px solid var(--border-regular);
 
   &:hover {
     color: var(--text-color);
+    border: 1px solid var(--border-regular);
   }
 
   &:focus {
     color: var(--text-color);
+    border: 1px solid var(--border-regular);
   }
 
   &:active {
     color: var(--text-color);
+  }
+
+  &.ant-btn-dangerous:not([disabled]) {
+    color: var(--btn-danger-color);
+    border-color: var(--btn-danger-color);
+
+    &:hover {
+      color: var(--btn-danger-color);
+      border-color: var(--btn-danger-color);
+    }
+  }
+
+  &.ant-btn-primary:not([disabled]) {
+    border-color: var(--app-background-color);
+
+    &:hover {
+      border-color: var(--app-background-color);
+    }
   }
 
   &[disabled] {
@@ -541,10 +563,11 @@ button,
 
       .ant-dropdown-menu-item {
         &.remove-item {
-          color: #b90016;
+          color: var(--text-danger-color);
+
           span,
           a {
-            color: #b90016;
+            color: var(--text-danger-color);
           }
         }
       }

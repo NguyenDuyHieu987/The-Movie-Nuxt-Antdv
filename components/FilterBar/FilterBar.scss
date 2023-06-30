@@ -30,13 +30,13 @@
     padding: 8px 25px;
     margin-left: 10px;
     width: 109px;
-    border: 1px solid var(--border-dropdown);
 
-    &:hover {
-      border: 1px solid var(--border-dropdown);
+    &:active {
+      opacity: 0.8;
     }
 
     &.filter-btn {
+      border: 1px solid var(--border-dropdown);
       background-color: var(--link-text-color);
     }
 
