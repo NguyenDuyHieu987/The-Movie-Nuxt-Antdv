@@ -87,7 +87,7 @@
         <Icon name="fa6-solid:film"></Icon>
       </template>
       <template #title>Phim bộ</template>
-      <a-menu-item key="tv">
+      <a-menu-item key="all">
         <NuxtLink
           :to="{
             path: `/discover/tv/all`,
@@ -148,7 +148,7 @@
       <a-menu-item
         v-for="(item, index) in genres"
         :index="index"
-        :key="item?.short_name"
+        :key="item?.id"
       >
         <a-tooltip
           :title="item?.name_vietsub"
