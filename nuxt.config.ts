@@ -214,7 +214,7 @@ export default defineNuxtConfig({
   },
   build: {},
   vite: {
-    build: { sourcemap: true },
+    build: { sourcemap: true, ssrManifest: true },
     vue: {
       script: {
         defineModel: true,
@@ -227,7 +227,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  ssr: false,
+  ssr: true,
   sourcemap: {
     server: true,
     client: true,
