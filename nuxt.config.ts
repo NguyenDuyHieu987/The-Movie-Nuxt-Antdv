@@ -121,6 +121,7 @@ export default defineNuxtConfig({
     '@nuxtjs/fontaine',
   ],
   image: {
+    // provider: 'cloudinary',
     provider: 'imagekit',
     imagekit: {
       // baseURL: 'https://ik.imagekit.io/8toa5f2rp/images',
@@ -226,7 +227,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  ssr: true,
+  ssr: false,
   sourcemap: {
     server: true,
     client: true,

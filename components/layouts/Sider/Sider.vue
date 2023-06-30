@@ -83,7 +83,7 @@ onMounted(() => {
     if (window.innerWidth <= 900) {
       store.setCollapsed();
     } else {
-      store.$state.collapsed = false;
+      store.setCollapsed();
     }
   };
 
