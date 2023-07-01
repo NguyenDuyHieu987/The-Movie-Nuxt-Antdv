@@ -169,6 +169,7 @@ export default defineNuxtConfig({
     '@/plugins/elementPlus',
     '@/plugins/antd',
     '@/plugins/fontawesome',
+    '@/plugins/iconify',
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/googlelogin',
