@@ -25,6 +25,7 @@
         class="ant-image"
         :src="getImage(item?.backdrop_path, 'backdrop')"
         loading="lazy"
+        alt=""
       />
     </div>
 
