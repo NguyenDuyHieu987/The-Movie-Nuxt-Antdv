@@ -8,7 +8,7 @@
     list-style-type: none;
     display: grid;
     grid-template-columns: repeat(4, minmax(10%, auto));
-    gap: 0px;
+    gap: 20px;
   }
 
   .rank-side-header {
@@ -16,6 +16,7 @@
     padding: 10px 15px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    width: 100%;
 
     .rank-side-title {
       font-size: 2rem;
@@ -24,8 +25,8 @@
     .tabs-rank {
       list-style-type: none;
       display: grid;
-      grid-template-columns: repeat(4, minmax(25%, auto));
-      gap: 0px;
+      grid-template-columns: repeat(4, minmax(10%, auto));
+      gap: 2px;
 
       li span {
         position: relative;

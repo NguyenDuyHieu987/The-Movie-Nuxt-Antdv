@@ -6,7 +6,7 @@
     class="sider-bar"
   >
     <a-layout-header class="sider-header">
-      <div style="display: flex; justify-content: center; align-items: center">
+      <div class="user-header">
         <div
           class="user-image-container"
           v-if="!collapsed && isLogin && userAccount?.avatar"
