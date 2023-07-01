@@ -35,11 +35,13 @@
             >
           </el-radio-group> -->
     </div>
+
     <div
       class="rank-side-content"
       v-loading="loading"
       element-loading-text="Đang tải..."
       element-loading-background="rgba(0, 0, 0, 0.75)"
+      ref="rankSideContent"
     >
       <RankCard
         v-for="(item, index) in rankData"
@@ -62,6 +64,7 @@ interface tab {
   tabName: string;
 }
 
+const rankSideContent = ref();
 const activeTab = ref<string>('day');
 const loading = ref(false);
 const rankData = ref<any[]>([]);
@@ -159,6 +162,11 @@ onBeforeMount(async () => {
 });
 
 const handleTabClick = (activeKey: any) => {
+  rankSideContent.value.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
   getData(activeKey);
 };
 </script>
