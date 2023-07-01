@@ -6,9 +6,9 @@
           <nuxt-img
             class="avatar"
             :src="
-              !isNaN(+item?.user_avatar)
-                ? `/images/account_avatar/account${item?.user_avatar}.jpg`
-                : item?.user_avatar
+              !isNaN(+userAccount?.avatar)
+                ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
+                : userAccount?.avatar
             "
             loading="lazy"
           />
@@ -169,6 +169,7 @@ import {
   getCommentByMovidId_ParentId,
   DeleteComment,
 } from '~/services/comment';
+import { getImage } from '~/services/image';
 import FormComment from '@/components/Comment/FormComment/FormComment.vue';
 import CommentItemChild from '@/components/Comment/CommentItemChild/CommentItemChild.vue';
 import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
