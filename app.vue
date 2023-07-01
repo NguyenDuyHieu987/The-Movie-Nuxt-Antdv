@@ -34,7 +34,7 @@ import axios from 'axios';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
 import { getUserToken } from '~/services/authentication';
 import LoadingApp from '@/components/LoadingApp/LoadingApp.vue';
-import { ElBacktop } from 'element-plus';
+import { ElNotification, ElBacktop } from 'element-plus';
 import { disableCache } from '@iconify/vue';
 
 disableCache('all');
