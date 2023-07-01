@@ -32,29 +32,29 @@
         padding: 7px 0px;
         width: 100%;
         font-size: 1.4rem;
-        transition: all 0.3s;
-        border-radius: 3px;
+        transition: all 0.15s;
+        border-radius: 20px;
 
         &:hover {
-          background-color: #00607e;
+          background-color: var(--app-background-color);
         }
       }
 
       li {
         width: 100%;
         cursor: pointer;
-        border-radius: 3px;
+        border-radius: 20px;
         user-select: none;
         white-space: nowrap;
 
         &.active {
-          background-color: #00607e;
+          background-color: var(--app-background-color);
 
           span {
             &::before {
               content: '';
               position: absolute;
-              border-top: 10px solid #007ca1;
+              border-top: 10px solid #009fd0;
               border-right: 10px solid transparent;
               border-left: 10px solid transparent;
 
