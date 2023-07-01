@@ -241,7 +241,7 @@
                 <a-menu-item-group class="public" key="public">
                   <template #title>
                     <p>Thông báo chung</p>
-                    <p>1</p>
+                    <p class="count-message">1</p>
                   </template>
                   <a-menu-item>Chào mừng bạn đến với Phimhay247</a-menu-item>
                 </a-menu-item-group>
@@ -251,7 +251,7 @@
                 <a-menu-item-group class="private" key="private">
                   <template #title>
                     <p>Thông báo cá nhân</p>
-                    <p>2</p>
+                    <p class="count-message">1</p>
                   </template>
                   <a-menu-item>Message 1</a-menu-item>
                   <a-menu-item>Message 2</a-menu-item>
