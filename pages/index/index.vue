@@ -75,7 +75,7 @@
           <span>Hoạt hình - Anime đặc sắc</span>
           <NuxtLink
             :to="{
-              path: `/discover/genres/hoat-hinh`,
+              path: `/discover/genre/hoat-hinh`,
             }"
           >
             <span class="view-all">Xem tất cả</span>
