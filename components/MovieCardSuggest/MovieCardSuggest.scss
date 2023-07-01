@@ -10,10 +10,9 @@
   display: flex;
   flex-direction: column;
   width: calc((100% - (5 * 20px)) / 6);
-  height: 380px;
+  // height: 380px;
   border-radius: 5px;
   overflow: hidden;
-  // box-shadow: var(--box-shadow-medium1);
 
   .el-skeleton.is-animated {
     .ing-box {
@@ -161,6 +160,7 @@
   .info {
     color: var(--text-color);
     padding: 10px;
+    padding-bottom: 15px;
     background-color: var(--background-content-color1);
     flex-grow: 1;
 
@@ -226,7 +226,7 @@
 @media only screen and (max-width: 2000px) {
   .movie-card-item-suggest {
     width: calc((100% - (4 * 20px)) / 5);
-    height: 365px;
+    // height: 365px;
   }
 }
 
@@ -238,26 +238,26 @@
 
 @media only screen and (max-width: 1300px) {
   .movie-card-item-suggest {
-    height: 370px;
     width: calc((100% - (2 * 20px)) / 3);
+    // height: 370px;
   }
 }
 
 @media only screen and (max-width: 1100px) {
   .movie-card-item-suggest {
-    height: 335px;
+    // height: 335px;
   }
 }
 
 @media only screen and (max-width: 900px) {
   .movie-card-item-suggest {
-    height: 330px;
+    // height: 330px;
   }
 }
 
 @media only screen and (max-width: 650px) {
   .movie-card-item-suggest {
-    height: 340px;
     width: calc((100% - (1 * 20px)) / 2);
+    // height: 340px;
   }
 }
