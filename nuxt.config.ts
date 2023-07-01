@@ -161,7 +161,7 @@ export default defineNuxtConfig({
     '@/plugins/sharenetwork',
     '@/plugins/googlelogin',
     '@/plugins/vuelazyload',
-    { src: '@/plugins/loadFacebookSdk', mode: 'client' },
+    '@/plugins/loadFacebookSdk',
   ],
   nitro: {
     preset: 'static',
