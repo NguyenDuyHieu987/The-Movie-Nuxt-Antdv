@@ -31,6 +31,7 @@
             v-lazy="getImage(item?.backdrop_path + '/tr:h-250', 'backdrop')"
             loading="lazy"
             @load="onLoadImg"
+            alt=""
           />
 
           <div v-show="isInHistory" class="viewed-overlay-bar">

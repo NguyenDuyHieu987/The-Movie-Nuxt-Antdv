@@ -29,6 +29,7 @@
             class="ant-image"
             v-lazy="getImage(item?.poster_path, 'poster')"
             loading="lazy"
+            alt=""
             @load="onLoadImg"
           />
 
