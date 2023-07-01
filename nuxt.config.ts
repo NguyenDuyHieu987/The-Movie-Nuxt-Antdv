@@ -92,7 +92,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // apiKey: process.env.NUXT_API_KEY || 'default_api_url',
     adminWebsiteUrl: 'https://www.dash.phimhay247.site',
-    app: {},
+    app: {
+      apiGateway: 'https://api.phimhay247.site',
+    },
     public: {},
   },
   alias: {
@@ -237,15 +239,15 @@ export default defineNuxtConfig({
     client: true,
   },
   routeRules: {
-    '/': { swr: true, prerender: true },
-    '/search/**': { swr: true, prerender: true },
-    '/discover/**': { swr: true, prerender: true },
-    '/list/**': { swr: true, prerender: true },
-    '/history/**': { swr: true, prerender: true },
-    '/ranking/**': { swr: true, prerender: true },
-    '/info-movie/**': { swr: true, prerender: true },
-    '/info-tv/**': { swr: true, prerender: true },
-    '/play-movie/**': { swr: true, prerender: true },
-    '/play-tv/**': { swr: true, prerender: true },
+    '/': { swr: true, prerender: true, static: true },
+    '/search/**': { swr: true, prerender: true, static: true },
+    '/discover/**': { swr: true, prerender: true, static: true },
+    '/list/**': { swr: true, prerender: true, static: true },
+    '/history/**': { swr: true, prerender: true, static: true },
+    '/ranking/**': { swr: true, prerender: true, static: true },
+    '/info-movie/**': { swr: true, prerender: true, static: true },
+    '/info-tv/**': { swr: true, prerender: true, static: true },
+    '/play-movie/**': { swr: true, prerender: true, static: true },
+    '/play-tv/**': { swr: true, prerender: true, static: true },
   },
 });
