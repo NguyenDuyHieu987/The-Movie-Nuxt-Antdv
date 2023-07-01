@@ -176,7 +176,6 @@ export default defineNuxtConfig({
   ],
   nitro: {
     preset: 'static',
-    sourceMap: true,
     prerender: {
       routes: [
         '/',
