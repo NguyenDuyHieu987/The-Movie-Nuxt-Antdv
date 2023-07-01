@@ -18,7 +18,6 @@ export function conrfirmMessageModal(options: optionsConfirm) {
     icon: createVNode(QuestionCircleOutlined),
     content: createVNode('h3', {}, options.message),
     okText: 'Có',
-    okType: 'primary',
     okButtonProps: {
       type: 'primary',
       danger: true,

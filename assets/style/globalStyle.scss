@@ -389,21 +389,23 @@ button,
     color: var(--text-color);
   }
 
-  &.ant-btn-dangerous:not([disabled]) {
-    color: var(--btn-danger-color);
-    border-color: var(--btn-danger-color);
-
-    &:hover {
-      color: var(--btn-danger-color);
-      border-color: var(--btn-danger-color);
-    }
-  }
-
   &.ant-btn-primary:not([disabled]) {
     border-color: var(--app-background-color);
 
     &:hover {
       border-color: var(--app-background-color);
+    }
+  }
+
+  &.ant-btn-dangerous:not([disabled]) {
+    background-color: var(--btn-danger-color);
+    color: var(--btn-danger-color);
+    border-color: var(--btn-danger-color);
+
+    &:hover {
+      background-color: var(--btn-danger-color);
+      color: var(--btn-danger-color);
+      border-color: var(--btn-danger-color);
     }
   }
 
