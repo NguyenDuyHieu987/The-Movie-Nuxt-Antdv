@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export function makeRequest(url: string, options: any = {}) {
   const nuxtConfig = useRuntimeConfig();
+  console.log('secret: ', nuxtConfig.apiGateway);
   console.log(nuxtConfig);
 
   const api = axios.create({
