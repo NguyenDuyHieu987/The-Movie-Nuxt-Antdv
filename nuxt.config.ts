@@ -101,6 +101,8 @@ export default defineNuxtConfig({
       serverImageUrl:
         process.env.NUXT_SERVER_IMAGE_URL ||
         'https://res.cloudinary.com/dvbhjlrdf/image/upload/v1688106333',
+      videoImageUrl:
+        process.env.NUXT_SERVER_VIDEO_URL || 'https://media.phimhay247.site',
     },
     public: {},
   },

@@ -2,11 +2,11 @@ import axios from 'axios';
 
 export function makeRequest(url: string, options: any = {}) {
   const nuxtConfig = useRuntimeConfig();
-  console.log('secret: ', nuxtConfig.apiGateway);
-  console.log(nuxtConfig);
+  // console.log('secret: ', nuxtConfig.apiGateway);
+  // console.log(nuxtConfig);
 
   const api = axios.create({
-    baseURL: 'http://127.0.0.1:5000',
+    baseURL: nuxtConfig.app.apiGateway || 'http://127.0.0.1:5000',
     // baseURL: 'https://api.phimhay247.site',
     // withCredentials: true,
   });

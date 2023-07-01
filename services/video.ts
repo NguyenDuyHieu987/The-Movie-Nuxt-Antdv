@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export function makeRequestVideo(url: string, options: any = {}) {
-  // const nuxtConfig = useRuntimeConfig();
+  const nuxtConfig = useRuntimeConfig();
   // console.log(nuxtConfig);
 
   const api = axios.create({
-    baseURL: 'http://127.0.0.1:5002',
+    baseURL: nuxtConfig.app.videoImageUrl || 'http://127.0.0.1:5002',
     // baseURL: 'https://media.phimhay247.site',
     // withCredentials: true,
     headers: { Accept: 'video/mp4;charset=UTF-8' },
