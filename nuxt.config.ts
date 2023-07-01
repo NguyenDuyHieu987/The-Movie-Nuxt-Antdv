@@ -93,7 +93,9 @@ export default defineNuxtConfig({
     // apiKey: process.env.NUXT_API_KEY || 'default_api_url',
     adminWebsiteUrl: 'https://www.dash.phimhay247.site',
     app: {
-      apiGateway: 'https://api.phimhay247.site',
+      apiGateway: process.env.API_GATEWAY || 'https://api.phimhay247.site',
+      serverImageUrl:
+        process.env.SERVER_IMAGE_URL || 'https://api.phimhay247.site',
     },
     public: {},
   },
