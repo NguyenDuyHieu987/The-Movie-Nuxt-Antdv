@@ -12,7 +12,7 @@
             class="avatar"
             :src="
               !isNaN(+userAccount?.avatar)
-                ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
+                ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
                 : userAccount?.avatar
             "
             alt=""
