@@ -5,7 +5,9 @@ export function makeRequestVideo(url: string, options: any = {}) {
   // console.log(nuxtConfig);
 
   const api = axios.create({
-    baseURL: nuxtConfig.app.videoImageUrl || 'http://127.0.0.1:5002',
+    baseURL:
+      // nuxtConfig.app.videoImageUrl ||
+      'https://res.cloudinary.com/dvbhjlrdf/video/upload/v1688148335',
     // baseURL: 'https://media.phimhay247.site',
     // withCredentials: true,
     headers: { Accept: 'video/mp4;charset=UTF-8' },
@@ -22,7 +24,7 @@ export function makeRequestVideo(url: string, options: any = {}) {
 }
 
 export function getVideo(path: string) {
-  return makeRequestVideo(`/video/${path}`);
+  return makeRequestVideo(`/videos/${path}`);
 }
 
 export function getVideoFeature(path: string) {
