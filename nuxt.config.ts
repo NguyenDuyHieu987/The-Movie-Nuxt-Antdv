@@ -178,8 +178,6 @@ export default defineNuxtConfig({
     preset: 'static',
     sourceMap: true,
     static: true,
-    serveStatic: true,
-    minify: true,
     prerender: {
       routes: [
         '/',
