@@ -92,9 +92,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     adminWebsiteUrl: 'https://www.dash.phimhay247.site',
     app: {
-      apiGateway: process.env.API_GATEWAY || 'https://api.phimhay247.site',
+      apiGateway: process.env.NUXT_API_GATEWAY || 'https://api.phimhay247.site',
       serverImageUrl:
-        process.env.SERVER_IMAGE_URL || 'https://img.phimhay247.site',
+        process.env.NUXT_SERVER_IMAGE_URL || 'https://img.phimhay247.site',
     },
     public: {},
   },
