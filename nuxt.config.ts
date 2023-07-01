@@ -176,6 +176,13 @@ export default defineNuxtConfig({
   ],
   nitro: {
     preset: 'static',
+    sourceMap: true,
+    static: true,
+    serveStatic: true,
+    future: {
+      nativeSWR: true,
+    },
+    minify: true,
     prerender: {
       routes: [
         '/',
