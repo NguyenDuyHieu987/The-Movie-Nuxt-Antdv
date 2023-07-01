@@ -179,9 +179,6 @@ export default defineNuxtConfig({
     sourceMap: true,
     static: true,
     serveStatic: true,
-    future: {
-      nativeSWR: true,
-    },
     minify: true,
     prerender: {
       routes: [
