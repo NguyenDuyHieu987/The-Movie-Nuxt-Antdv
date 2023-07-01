@@ -166,6 +166,7 @@ export default defineNuxtConfig({
   //   /** Options */
   // },
   plugins: [
+    '@/plugins/elementPlus',
     '@/plugins/antd',
     '@/plugins/fontawesome',
     '@/plugins/vueprogressbar',

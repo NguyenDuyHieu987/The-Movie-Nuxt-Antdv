@@ -35,9 +35,6 @@ import { CloseCircleFilled } from '@ant-design/icons-vue';
 import { getUserToken } from '~/services/authentication';
 import LoadingApp from '@/components/LoadingApp/LoadingApp.vue';
 import { ElNotification, ElBacktop } from 'element-plus';
-import { disableCache } from '@iconify/vue';
-
-disableCache('all');
 
 const store = useStore();
 const utils = useUtils();
