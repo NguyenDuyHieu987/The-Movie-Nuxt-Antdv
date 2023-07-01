@@ -216,9 +216,7 @@ export default defineNuxtConfig({
   vite: {
     build: {
       sourcemap: true,
-      cssMinify: true,
       modulePreload: true,
-      manifest: true,
       minify: 'esbuild',
     },
     vue: {
