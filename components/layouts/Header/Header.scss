@@ -323,8 +323,10 @@
 
     .right-header {
       .ant-menu {
+        margin-right: -5px;
+
         .ant-menu-item {
-          padding: 0px 15px;
+          // padding: 0px 15px;
         }
       }
     }
