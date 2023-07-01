@@ -227,8 +227,7 @@ export default defineNuxtConfig({
   vite: {
     build: {
       sourcemap: true,
-      modulePreload: true,
-      minify: 'esbuild',
+      ssrManifest: true,
     },
     vue: {
       script: {
