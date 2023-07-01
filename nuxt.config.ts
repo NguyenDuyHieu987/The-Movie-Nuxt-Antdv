@@ -95,7 +95,7 @@ export default defineNuxtConfig({
     app: {
       apiGateway: process.env.API_GATEWAY || 'https://api.phimhay247.site',
       serverImageUrl:
-        process.env.SERVER_IMAGE_URL || 'https://api.phimhay247.site',
+        process.env.SERVER_IMAGE_URL || 'https://img.phimhay247.site',
     },
     public: {},
   },
