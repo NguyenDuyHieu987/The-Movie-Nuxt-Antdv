@@ -68,17 +68,11 @@
         overlayClassName="dropdown-item-viewmore"
         class="dropdown-item-viewmore"
       >
-        <el-button
-          circle
-          shape="circle"
-          size="large"
-          class="more-actions-btn"
-          text
-        >
+        <a-button size="large" type="text" class="more-actions-btn">
           <template #icon>
             <Icon name="fa6-solid:ellipsis-vertical" />
           </template>
-        </el-button>
+        </a-button>
 
         <template #overlay>
           <a-menu>
