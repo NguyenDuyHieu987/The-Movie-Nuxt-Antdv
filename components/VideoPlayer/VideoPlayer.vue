@@ -567,11 +567,7 @@ onMounted(() => {
     videoStates.isScrubbingProgressBar = false;
 
     if (videoStates.isLoaded) {
-      if (
-        video.value.ended ||
-        videoStates.isEndedVideo ||
-        videoStates.isLoading
-      ) {
+      if (videoStates.isEndedVideo || videoStates.isLoading) {
         return;
       }
 
