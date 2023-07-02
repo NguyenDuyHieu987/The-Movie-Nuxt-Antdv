@@ -154,7 +154,7 @@
           </div>
         </a-layout-sider>
 
-        <Teleport v-if="loading" to="#topic-follow-column-teleport">
+        <Teleport v-show="loading" to="#topic-follow-column-teleport">
           <a-layout-sider class="topic-follow-column" :width="340">
             <div class="column-container">
               <div class="backdrop">
