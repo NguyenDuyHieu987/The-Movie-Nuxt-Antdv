@@ -22,6 +22,7 @@
     top: var(--top);
     transform: translateX(-50%) translateY(-50%);
     animation: preview-modal-effect 0.4s ease;
+    background-color: var(--preview-modal-background-color);
 
     @keyframes preview-modal-effect {
       // from {
@@ -68,7 +69,49 @@
       }
     }
 
+    .el-skeleton.is-animated {
+      position: relative;
+      overflow: hidden;
+
+      .el-skeleton__item.skeleton-img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .content-skeleton {
+        padding: 10px 15px;
+
+        .el-skeleton__item.el-skeleton__text {
+          &.circle {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+          }
+        }
+
+        .widget {
+          display: flex;
+          justify-content: space-between;
+
+          .left {
+            display: flex;
+            gap: 10px;
+          }
+        }
+
+        .info {
+          margin-top: 5px;
+        }
+      }
+    }
+
     .backdrop-box {
+      display: flex;
       position: relative;
       // height: 240px;
       height: 0px;
@@ -87,17 +130,7 @@
         -webkit-user-drag: none;
         -webkit-user-select: none;
         -ms-user-select: none;
-
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          user-select: none;
-          -moz-user-select: none;
-          -webkit-user-drag: none;
-          -webkit-user-select: none;
-          -ms-user-select: none;
-        }
+        background-color: var(--background-content-color);
       }
 
       .percent-viewed {
@@ -156,7 +189,6 @@
       flex-direction: column;
       gap: 10px;
       padding: 10px 15px;
-      background-color: var(--preview-modal-background-color);
 
       .widget {
         display: flex;

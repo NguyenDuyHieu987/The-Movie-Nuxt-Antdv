@@ -6,84 +6,112 @@
         class="preview-modal"
         @mouseover="onClickPreviewModal"
       >
-        <div class="backdrop-box">
-          <!-- :src="getBackdrop(item?.backdrop_path, ',250')" -->
-          <nuxt-img
-            class="ant-image"
-            :src="getImage(item?.backdrop_path + '/tr:h-250', 'backdrop')"
-            loading="lazy"
-          />
+        <el-skeleton :loading="loading" animated>
+          <template #template>
+            <div class="backdrop-box">
+              <el-skeleton-item class="skeleton-img" />
+            </div>
 
-          <div
-            v-if="isInHistory"
-            class="percent-viewed"
-            :style="{ width: percent * 100 + '%' }"
-          ></div>
-          <div v-if="isInHistory" class="viewed-overlay-bar"></div>
-        </div>
-        <div class="bottom-content">
-          <div class="widget">
-            <div class="left">
-              <a-tooltip
-                :teleported="false"
-                title="Xem ngay"
-                content="Xem ngay"
-                placement="top"
-                :mouseLeaveDelay="0"
-              >
-                <NuxtLink
-                  v-if="isEpisodes"
-                  :to="{
-                    path: `/play-tv/${item?.id}/${item?.name
-                      ?.replace(/\s/g, '+')
-                      .toLowerCase()}/tap-1`,
-                  }"
-                  class="btn-play-now"
-                >
-                  <a-button shape="circle" size="large" type="text">
-                    <template #icon>
-                      <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
-                      <Icon name="ic:play-arrow" />
-                    </template>
-                  </a-button>
-                </NuxtLink>
-                <NuxtLink
-                  v-else
-                  :to="{
-                    path: `/play-movie/${item?.id}/${item?.name
-                      ?.replace(/\s/g, '+')
-                      .toLowerCase()}`,
-                  }"
-                  class="btn-play-now"
-                >
-                  <a-button shape="circle" size="large" type="text">
-                    <template #icon>
-                      <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
-                      <Icon name="ic:play-arrow" />
-                    </template>
-                  </a-button>
-                </NuxtLink>
-              </a-tooltip>
+            <div class="content-skeleton">
+              <div class="widget">
+                <div class="left">
+                  <el-skeleton-item class="circle" />
+                  <el-skeleton-item class="circle" />
+                  <el-skeleton-item class="circle" />
+                </div>
+                <div class="right">
+                  <el-skeleton-item class="circle" />
+                </div>
+              </div>
+              <div class="info">
+                <el-skeleton-item variant="text" />
+                <el-skeleton-item variant="text" style="width: 60%" />
+                <el-skeleton-item variant="text" style="width: 80%" />
+              </div>
+            </div>
+          </template>
 
-              <a-tooltip
-                :teleported="false"
-                :title="
-                  !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
-                "
-                :content="
-                  !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
-                "
-                placement="top"
-                :mouseLeaveDelay="0"
-              >
-                <a-button
-                  shape="circle"
-                  size="large"
-                  type="text"
-                  @click.prevent="handelAddToList"
-                >
-                  <template #icon>
-                    <!-- <Icon
+          <template #default>
+            <div class="backdrop-box">
+              <!-- :src="getBackdrop(item?.backdrop_path, ',250')" -->
+              <nuxt-img
+                class="ant-image"
+                :src="getImage(item?.backdrop_path + '/tr:h-250', 'backdrop')"
+                loading="lazy"
+                alt=""
+              />
+
+              <div
+                v-if="isInHistory"
+                class="percent-viewed"
+                :style="{ width: percent * 100 + '%' }"
+              ></div>
+              <div v-if="isInHistory" class="viewed-overlay-bar"></div>
+            </div>
+
+            <div class="bottom-content">
+              <div class="widget">
+                <div class="left">
+                  <a-tooltip
+                    :teleported="false"
+                    title="Xem ngay"
+                    content="Xem ngay"
+                    placement="top"
+                    :mouseLeaveDelay="0"
+                  >
+                    <NuxtLink
+                      v-if="isEpisodes"
+                      :to="{
+                        path: `/play-tv/${item?.id}/${item?.name
+                          ?.replace(/\s/g, '+')
+                          .toLowerCase()}/tap-1`,
+                      }"
+                      class="btn-play-now"
+                    >
+                      <a-button shape="circle" size="large" type="text">
+                        <template #icon>
+                          <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
+                          <Icon name="ic:play-arrow" />
+                        </template>
+                      </a-button>
+                    </NuxtLink>
+                    <NuxtLink
+                      v-else
+                      :to="{
+                        path: `/play-movie/${item?.id}/${item?.name
+                          ?.replace(/\s/g, '+')
+                          .toLowerCase()}`,
+                      }"
+                      class="btn-play-now"
+                    >
+                      <a-button shape="circle" size="large" type="text">
+                        <template #icon>
+                          <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
+                          <Icon name="ic:play-arrow" />
+                        </template>
+                      </a-button>
+                    </NuxtLink>
+                  </a-tooltip>
+
+                  <a-tooltip
+                    :teleported="false"
+                    :title="
+                      !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
+                    "
+                    :content="
+                      !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
+                    "
+                    placement="top"
+                    :mouseLeaveDelay="0"
+                  >
+                    <a-button
+                      shape="circle"
+                      size="large"
+                      type="text"
+                      @click.prevent="handelAddToList"
+                    >
+                      <template #icon>
+                        <!-- <Icon
                       v-if="isAddToList"
                       name="fa6-solid:check"
                       class="fa6-solid"
@@ -91,129 +119,138 @@
 
                     <Icon v-else name="ic:baseline-plus" /> -->
 
-                    <Icon v-if="isAddToList" name="ic:baseline-check" />
-                    <Icon v-else name="ic:baseline-plus" />
-                  </template>
-                </a-button>
-              </a-tooltip>
+                        <Icon v-if="isAddToList" name="ic:baseline-check" />
+                        <Icon v-else name="ic:baseline-plus" />
+                      </template>
+                    </a-button>
+                  </a-tooltip>
 
-              <a-tooltip
-                :teleported="false"
-                title="Chia sẻ"
-                content="Chia sẻ"
-                placement="top"
-                :mouseLeaveDelay="0"
-                @click.prevent
-              >
-                <ShareNetwork
-                  network="facebook"
-                  :url="urlShare"
-                  :title="item?.name"
-                  hashtags="phimhay247.site,vite"
-                  style="white-space: nowrap; display: block"
-                >
-                  <a-button
-                    shape="circle"
-                    size="large"
-                    type="text"
+                  <a-tooltip
+                    :teleported="false"
+                    title="Chia sẻ"
+                    content="Chia sẻ"
+                    placement="top"
+                    :mouseLeaveDelay="0"
                     @click.prevent
                   >
-                    <template #icon>
-                      <!-- <font-awesome-icon icon="fa-solid fa-share" /> -->
+                    <ShareNetwork
+                      network="facebook"
+                      :url="urlShare"
+                      :title="item?.name"
+                      hashtags="phimhay247.site,vite"
+                      style="white-space: nowrap; display: block"
+                    >
+                      <a-button
+                        shape="circle"
+                        size="large"
+                        type="text"
+                        @click.prevent
+                      >
+                        <template #icon>
+                          <!-- <font-awesome-icon icon="fa-solid fa-share" /> -->
 
-                      <Icon name="fa6-solid:share" class="fa6-solid" />
-                    </template>
-                  </a-button>
-                </ShareNetwork>
-              </a-tooltip>
-            </div>
+                          <Icon name="fa6-solid:share" class="fa6-solid" />
+                        </template>
+                      </a-button>
+                    </ShareNetwork>
+                  </a-tooltip>
+                </div>
 
-            <div class="right">
-              <a-tooltip
-                :teleported="false"
-                title="Chi tiết phim"
-                content="Chi tiết phim"
-                placement="top"
-                :mouseLeaveDelay="0"
-              >
-                <NuxtLink
-                  :to="{
-                    path: isEpisodes
-                      ? `/info-tv/${item?.id}/${item?.name
-                          ?.replace(/\s/g, '+')
-                          .toLowerCase()}`
-                      : `/info-movie/${item?.id}/${item?.name
-                          ?.replace(/\s/g, '+')
-                          .toLowerCase()}`,
-                  }"
-                >
-                  <a-button shape="circle" size="large" type="text">
-                    <template #icon>
-                      <!-- <InfoOutlined /> -->
-                      <Icon name="mdi:information-variant" class="info-icon" />
-                    </template>
-                  </a-button>
-                </NuxtLink>
-              </a-tooltip>
-            </div>
-          </div>
-          <div class="info">
-            <h3 class="title">
-              {{ item?.name }}
-              <span v-if="isEpisodes">
-                {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
-              </span>
-            </h3>
-            <div class="evidence-tags">
-              <span class="evidence-item country">
-                {{
-                  getCountryByOriginalLanguage(
-                    item?.original_language,
-                    store.$state.allCountries
-                  )?.name || ''
-                }}
-              </span>
-              <span v-if="isEpisodes" class="evidence-item lastest-episode">
-                {{
-                  dataMovie?.last_episode_to_air?.episode_number
-                    ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
-                    : ''
-                }}
-              </span>
-            </div>
+                <div class="right">
+                  <a-tooltip
+                    :teleported="false"
+                    title="Chi tiết phim"
+                    content="Chi tiết phim"
+                    placement="top"
+                    :mouseLeaveDelay="0"
+                  >
+                    <NuxtLink
+                      :to="{
+                        path: isEpisodes
+                          ? `/info-tv/${item?.id}/${item?.name
+                              ?.replace(/\s/g, '+')
+                              .toLowerCase()}`
+                          : `/info-movie/${item?.id}/${item?.name
+                              ?.replace(/\s/g, '+')
+                              .toLowerCase()}`,
+                      }"
+                    >
+                      <a-button shape="circle" size="large" type="text">
+                        <template #icon>
+                          <!-- <InfoOutlined /> -->
+                          <Icon
+                            name="mdi:information-variant"
+                            class="info-icon"
+                          />
+                        </template>
+                      </a-button>
+                    </NuxtLink>
+                  </a-tooltip>
+                </div>
+              </div>
+              <div class="info">
+                <h3 class="title">
+                  {{ item?.name }}
+                  <span v-if="isEpisodes">
+                    {{
+                      ' - Phần ' + dataMovie?.last_episode_to_air?.season_number
+                    }}
+                  </span>
+                </h3>
+                <div class="evidence-tags">
+                  <span class="evidence-item country">
+                    {{
+                      getCountryByOriginalLanguage(
+                        item?.original_language,
+                        store.$state.allCountries
+                      )?.name || ''
+                    }}
+                  </span>
+                  <span v-if="isEpisodes" class="evidence-item lastest-episode">
+                    {{
+                      dataMovie?.last_episode_to_air?.episode_number
+                        ? 'Tập ' +
+                          dataMovie?.last_episode_to_air?.episode_number
+                        : ''
+                    }}
+                  </span>
+                </div>
 
-            <div class="views-imdb">
-              <p class="views">
-                {{ utils.viewFormatter(dataMovie?.views) }} lượt xem
-              </p>
+                <div class="views-imdb">
+                  <p class="views">
+                    {{ utils.viewFormatter(dataMovie?.views) }} lượt xem
+                  </p>
 
-              <p>
-                <span
-                  style="color: green; font-weight: bold"
-                  v-if="dataMovie?.vote_average >= 8"
-                >
-                  {{ dataMovie?.vote_average.toFixed(2) }}
-                </span>
-                <span
-                  style="color: yellow; font-weight: bold"
-                  v-if="
-                    dataMovie?.vote_average >= 5 && dataMovie?.vote_average < 8
-                  "
-                >
-                  {{ dataMovie?.vote_average.toFixed(2) }}
-                </span>
-                <span
-                  style="color: red; font-weight: bold"
-                  v-if="dataMovie?.vote_average < 5"
-                >
-                  {{ dataMovie?.vote_average.toFixed(2) }}
-                </span>
-                diểm /
-                {{ dataMovie?.vote_count + ' lượt' }}
-              </p>
+                  <p>
+                    <span
+                      style="color: green; font-weight: bold"
+                      v-if="dataMovie?.vote_average >= 8"
+                    >
+                      {{ dataMovie?.vote_average.toFixed(2) }}
+                    </span>
+                    <span
+                      style="color: yellow; font-weight: bold"
+                      v-if="
+                        dataMovie?.vote_average >= 5 &&
+                        dataMovie?.vote_average < 8
+                      "
+                    >
+                      {{ dataMovie?.vote_average.toFixed(2) }}
+                    </span>
+                    <span
+                      style="color: red; font-weight: bold"
+                      v-if="dataMovie?.vote_average < 5"
+                    >
+                      {{ dataMovie?.vote_average.toFixed(2) }}
+                    </span>
+                    diểm /
+                    {{ dataMovie?.vote_count + ' lượt' }}
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </template>
+        </el-skeleton>
       </div>
     </div>
   </Teleport>
@@ -226,6 +263,7 @@ import { getBackdrop, getImage } from '~/services/image';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
+import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
   isTeleportPreviewModal: boolean;
@@ -319,12 +357,12 @@ watch(isTeleport, async () => {
         )
           .then((tvResponed: any) => {
             dataMovie.value = tvResponed.data.value;
-
-            loading.value = false;
           })
           .catch((e) => {
-            loading.value = false;
             if (axios.isCancel(e)) return;
+          })
+          .finally(() => {
+            loading.value = false;
           });
       } else {
         await useAsyncData(`movie/short/${props.item?.id}`, () =>
@@ -332,12 +370,12 @@ watch(isTeleport, async () => {
         )
           .then((movieRespone: any) => {
             dataMovie.value = movieRespone.data.value;
-
-            loading.value = false;
           })
           .catch((e) => {
-            loading.value = false;
             if (axios.isCancel(e)) return;
+          })
+          .finally(() => {
+            loading.value = false;
           });
       }
 
