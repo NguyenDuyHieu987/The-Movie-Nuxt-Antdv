@@ -48,15 +48,24 @@
       li {
         width: 100%;
         cursor: pointer;
-        border-radius: 20px;
+        border-radius: 25px;
         user-select: none;
         white-space: nowrap;
+        overflow: hidden;
 
         &.active {
           // background-color: var(--app-background-color);
           background-color: #242424;
 
           span {
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-image: linear-gradient(
+              to right,
+              var(--app-background-color2),
+              var(--app-background-color3)
+            );
+
             // &::before {
             //   content: '';
             //   position: absolute;
@@ -97,15 +106,6 @@
             //   // left: 50%;
             //   // transform: translate(-50%);
             // }
-
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-            font-weight: 500;
-            background-image: linear-gradient(
-              to right,
-              var(--app-background-color2),
-              var(--app-background-color3)
-            );
           }
         }
       }
