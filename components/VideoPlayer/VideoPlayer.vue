@@ -156,7 +156,9 @@
           class="overlay-progress"
           @mousemove="onMouseMoveProgressBar"
           @touchmove="onMouseMoveProgressBar"
+          @touchstart="onMouseDownProgressBar"
           @mousedown="onMouseDownProgressBar"
+          @touchend="onMouseUpProgressBar"
           @mouseup="onMouseUpProgressBar"
           @mouseleave="videoStates.isMouseMoveOverlayProgress = false"
           ref="overlayProgress"
@@ -580,7 +582,27 @@ onMounted(() => {
     }
   };
 
+  window.ontouchend = () => {
+    videoStates.isScrubbingProgressBar = false;
+
+    if (videoStates.isLoaded) {
+      if (videoStates.isEndedVideo || videoStates.isLoading) {
+        return;
+      }
+
+      if (videoStates.isPlayVideo) {
+        video.value.play();
+      }
+    }
+  };
+
   window.onmousemove = (e) => {
+    if (videoStates.isScrubbingProgressBar) {
+      handleTimeUpdate(e);
+    }
+  };
+
+  window.ontouchmove = (e) => {
     if (videoStates.isScrubbingProgressBar) {
       handleTimeUpdate(e);
     }
@@ -629,6 +651,7 @@ const handleTimeUpdate = (e: any) => {
   }
 
   const rect = overlayProgress.value.getBoundingClientRect();
+  console.log(rect);
 
   const percent =
     Math.min(Math.max(0, e.x - rect.left), rect.width) / rect.width;
