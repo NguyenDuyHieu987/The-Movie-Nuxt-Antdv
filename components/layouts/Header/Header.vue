@@ -2,12 +2,8 @@
   <a-layout-header class="header">
     <div class="left-header">
       <button class="menu-btn mobile" @click="store.setOpendrawer()">
-        <Icon
-          v-show="!openDrawer"
-          name="ant-design:menu-outlined"
-          class="menu"
-        />
-        <Icon v-show="openDrawer" name="ic:baseline-close" class="close" />
+        <Icon v-if="!openDrawer" name="ant-design:menu-outlined" class="menu" />
+        <Icon v-else name="ic:baseline-close" class="close" />
       </button>
       <button
         v-if="collapsed == true"

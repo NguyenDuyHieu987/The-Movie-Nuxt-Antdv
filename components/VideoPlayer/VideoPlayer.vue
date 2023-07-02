@@ -155,6 +155,7 @@
         <div
           class="overlay-progress"
           @mousemove="onMouseMoveProgressBar"
+          @touchmove="onMouseMoveProgressBar"
           @mousedown="onMouseDownProgressBar"
           @mouseup="onMouseUpProgressBar"
           @mouseleave="videoStates.isMouseMoveOverlayProgress = false"
@@ -164,6 +165,7 @@
             class="overlay-progress-padding"
             ref="overlayProgressPadding"
             @mousemove="onMouseMoveOverlayProgress"
+            @touchmove="onMouseMoveOverlayProgress"
           ></div>
 
           <div class="progress-bar" ref="progressBar"></div>
@@ -292,6 +294,7 @@
       tabindex="-1"
       @click="onClickVideo"
       @mousemove="onMouseMoveVideo"
+      @touchmove="onMouseMoveVideo"
       @mouseleave="onMouseLeaveVideo"
       @keydown="onKeyDownVideo"
     ></div>
