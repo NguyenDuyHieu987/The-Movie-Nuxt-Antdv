@@ -6,9 +6,9 @@
           <nuxt-img
             class="avatar"
             :src="
-              !isNaN(+userAccount?.avatar)
-                ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
-                : userAccount?.avatar
+              !isNaN(+item?.user_avatar)
+                ? getImage(`account${item?.user_avatar}.jpg`, 'user_avatar')
+                : item?.user_avatar
             "
             loading="lazy"
           />
