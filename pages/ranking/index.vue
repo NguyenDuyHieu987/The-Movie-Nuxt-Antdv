@@ -1,6 +1,6 @@
 <template>
-  <div class="ranking-container padding-content">
-    <a-layout>
+  <div class="ranking padding-content">
+    <a-layout class="ranking-container">
       <a-layout-content>
         <h2 class="gradient-title-default underline">
           <span>Trending</span>
