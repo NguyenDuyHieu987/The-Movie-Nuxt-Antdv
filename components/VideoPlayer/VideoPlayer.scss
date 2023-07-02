@@ -94,10 +94,10 @@ video::-webkit-media-controls {
 
     .notify {
       position: relative;
-      background-color: #1313139a;
+      background-color: #131313a6;
       border-radius: 2px;
       z-index: 2;
-      box-shadow: var(--box-shadow-medium);
+      // box-shadow: var(--box-shadow-medium);
 
       .close-notify {
         position: absolute;
