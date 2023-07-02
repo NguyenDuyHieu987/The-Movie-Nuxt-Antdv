@@ -83,7 +83,7 @@
         bottom: 0;
       }
 
-      .content-skeleton {
+      .bottom-content {
         padding: 10px 15px;
 
         .el-skeleton__item.el-skeleton__text {
@@ -94,19 +94,19 @@
           }
         }
 
-        .widget {
-          display: flex;
-          justify-content: space-between;
+        // .widget {
+        //   display: flex;
+        //   justify-content: space-between;
 
-          .left {
-            display: flex;
-            gap: 10px;
-          }
-        }
+        //   .left {
+        //     display: flex;
+        //     gap: 10px;
+        //   }
+        // }
 
-        .info {
-          margin-top: 5px;
-        }
+        // .info {
+        //   margin-top: 5px;
+        // }
       }
     }
 

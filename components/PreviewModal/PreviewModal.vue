@@ -12,7 +12,7 @@
               <el-skeleton-item class="skeleton-img" />
             </div>
 
-            <div class="content-skeleton">
+            <div class="bottom-content">
               <div class="widget">
                 <div class="left">
                   <el-skeleton-item class="circle" />
