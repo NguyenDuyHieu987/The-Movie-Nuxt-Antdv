@@ -109,6 +109,10 @@
         .ant-col.ant-form-item-control {
           flex: 0 1 auto;
 
+          .ant-form-item-control-input {
+            min-height: auto;
+          }
+
           .ant-input-affix-wrapper {
             background-color: transparent;
             padding: 7px 11px;
