@@ -216,35 +216,33 @@ onBeforeMount(() => {});
 getData();
 
 const onMouseEnter = ({ target }: { target: HTMLElement }) => {
-  if (target != null) {
-    const rect = target.getBoundingClientRect();
+  const rect = target.getBoundingClientRect();
 
-    const offsetX = rect.left;
-    const offsetY = window.scrollY + rect.top;
+  const offsetX = rect.left;
+  const offsetY = window.scrollY + rect.top;
 
-    // left.value = offsetX + target.offsetWidth / 2 - width / 2;
-    // top.value = offsetY + target.offsetHeight / 2 - height / 2;
+  // left.value = offsetX + target.offsetWidth / 2 - width / 2;
+  // top.value = offsetY + target.offsetHeight / 2 - height / 2;
 
-    left.value = offsetX + target.offsetWidth / 2;
-    top.value = offsetY + target.offsetHeight / 2;
+  left.value = offsetX + target.offsetWidth / 2;
+  top.value = offsetY + target.offsetHeight / 2;
 
-    offsetWidth.value = target.offsetWidth;
-    offsetHeight.value = target.offsetHeight;
+  offsetWidth.value = target.offsetWidth;
+  offsetHeight.value = target.offsetHeight;
 
-    imgHeight.value = target.querySelector('img')!.offsetHeight;
-    imgWidth.value = target.querySelector('img')!.offsetWidth;
+  imgHeight.value = target.querySelector('img')!.offsetHeight;
+  imgWidth.value = target.querySelector('img')!.offsetWidth;
 
-    rectBound.value = rect;
+  rectBound.value = rect;
 
-    interval.value = setTimeout(() => {
-      isTeleportPreviewModal.value = true;
-    }, 2000);
+  interval.value = setTimeout(() => {
+    isTeleportPreviewModal.value = true;
+  }, 2000);
 
-    target.addEventListener('mouseleave', () => {
-      // isTeleportPreviewModal.value = false;
-      clearInterval(interval.value);
-    });
-  }
+  target.addEventListener('mouseleave', () => {
+    // isTeleportPreviewModal.value = false;
+    clearInterval(interval.value);
+  });
 };
 
 const onLoadImg = (e: any) => {
