@@ -88,8 +88,8 @@
 
         .el-skeleton__item.el-skeleton__text {
           &.circle {
-            height: 40px;
-            width: 40px;
+            height: 43px;
+            width: 43px;
             border-radius: 50%;
           }
         }
@@ -307,6 +307,40 @@
       .bottom-content {
         .info {
           font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .preview-overlay {
+    .preview-modal {
+      .el-skeleton.is-animated {
+        .bottom-content {
+          .el-skeleton__item.el-skeleton__text {
+            &.circle {
+              height: 40px;
+              width: 40px;
+            }
+          }
+        }
+      }
+
+      .bottom-content {
+        .widget {
+          .ant-btn {
+            height: 40px;
+            width: 40px;
+
+            svg.icon {
+              font-size: 2.4rem;
+
+              &.fa6-solid {
+                font-size: 1.9rem;
+              }
+            }
+          }
         }
       }
     }

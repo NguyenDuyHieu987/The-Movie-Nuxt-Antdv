@@ -147,9 +147,8 @@
                         @click.prevent
                       >
                         <template #icon>
-                          <!-- <font-awesome-icon icon="fa-solid fa-share" /> -->
-
-                          <Icon name="fa6-solid:share" class="fa6-solid" />
+                          <!-- <Icon name="fa6-solid:share" class="fa6-solid" /> -->
+                          <Icon name="mdi:share" />
                         </template>
                       </a-button>
                     </ShareNetwork>
@@ -302,6 +301,13 @@ const isTeleport = defineModel<boolean>('isTeleport');
 //     emit('setIsTeleportModal', value);
 //   },
 // });
+
+onMounted(() => {
+  window.onmousemove = (e: any) => {
+    if (isTeleport.value == true && !e.target.closest('.preview-modal'))
+      isTeleport.value = false;
+  };
+});
 
 watch(previewModal, () => {
   if (previewModal.value) {
