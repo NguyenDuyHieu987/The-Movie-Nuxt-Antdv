@@ -651,7 +651,6 @@ const handleTimeUpdate = (e: any) => {
   }
 
   const rect = overlayProgress.value.getBoundingClientRect();
-  console.log(rect);
 
   const percent =
     Math.min(Math.max(0, e.x - rect.left), rect.width) / rect.width;
@@ -957,10 +956,10 @@ const drawTimeLine = (e: any) => {
   // ctx.drawImage(video.value, 0, 0, 160, 100);
 
   // canvasPreviewImg.value.toBlob((blob: any) => {
-  // const previewImg = timeline.value.querySelector(
-  //   '.preview-img'
-  // ) as HTMLImageElement;
-  // previewImg.src = URL.createObjectURL(blob);
+  //   const previewImg = timeline.value.querySelector(
+  //     '.preview-img'
+  //   ) as HTMLImageElement;
+  //   previewImg.src = URL.createObjectURL(blob);
   // });
 
   // const img_url = canvasPreviewImg.value.toDataURL('image/jpeg');
