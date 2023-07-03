@@ -317,7 +317,6 @@ const responsiveVertical = computed<any>((): any => ({
 const getData = async () => {
   await useAsyncData(`trending/all/1`, () => getTrending(1))
     .then((response: any) => {
-      console.log(response?.value);
       trendings.value = response.data.value?.results;
     })
     .catch((e) => {
@@ -388,8 +387,9 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {});
-getData();
+onBeforeMount(() => {
+  getData();
+});
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;
