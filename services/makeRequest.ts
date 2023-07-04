@@ -7,7 +7,7 @@ export function makeRequest(url: string, options: any = {}) {
 
   const api = axios.create({
     baseURL: nuxtConfig.app.apiGateway || 'http://127.0.0.1:5000',
-    // baseURL: 'https://api.phimhay247.site',
+    // baseURL: 'http://127.0.0.1:5000',
     // withCredentials: true,
   });
 

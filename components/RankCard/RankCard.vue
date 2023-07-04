@@ -36,7 +36,7 @@
       /> -->
           <div class="ant-image">
             <img
-              v-lazy="getImage(item?.poster_path, 'poster')"
+              v-lazy="getImage(item?.poster_path, 'poster', 'w_120')"
               loading="lazy"
             />
           </div>

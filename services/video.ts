@@ -5,10 +5,8 @@ export function makeRequestVideo(url: string, options: any = {}) {
   // console.log(nuxtConfig);
 
   const api = axios.create({
-    baseURL:
-      // nuxtConfig.app.videoImageUrl ||
-      'https://res.cloudinary.com/dvbhjlrdf/video/upload/v1688148335',
-    // baseURL: 'https://media.phimhay247.site',
+    baseURL: nuxtConfig.app.serverVideoUrl || 'http://127.0.0.1:5002',
+    // baseURL: 'http://127.0.0.1:5002',
     // withCredentials: true,
     headers: { Accept: 'video/mp4;charset=UTF-8' },
     responseType: 'blob',

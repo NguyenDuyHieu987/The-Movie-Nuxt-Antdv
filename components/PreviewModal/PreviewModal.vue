@@ -36,7 +36,7 @@
               <!-- :src="getBackdrop(item?.backdrop_path, ',250')" -->
               <nuxt-img
                 class="ant-image"
-                :src="getImage(item?.backdrop_path + '/tr:h-250', 'backdrop')"
+                :src="getImage(item?.backdrop_path, 'backdrop', 'h_250')"
                 loading="lazy"
                 alt=""
               />

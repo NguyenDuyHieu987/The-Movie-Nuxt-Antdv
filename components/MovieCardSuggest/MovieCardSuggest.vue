@@ -29,7 +29,7 @@
           <!-- v-lazy="getBackdrop(item?.backdrop_path, ',300')" -->
           <img
             class="ant-image"
-            v-lazy="getImage(item?.backdrop_path + '/tr:h-250', 'backdrop')"
+            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h_250')"
             loading="lazy"
           />
 

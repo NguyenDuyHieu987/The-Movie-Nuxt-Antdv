@@ -2,12 +2,13 @@ import { makeRequest } from './makeRequest';
 
 // const URL_API_IMAGE = 'http://127.0.0.1:5001';
 const URL_API_IMAGE = 'https://img.phimhay247.site';
-const URL_API_IMAGE1 = 'https://ik.imagekit.io/8toa5f2rp';
-// const URL_API_IMAGE1 =
-// 'https://res.cloudinary.com/dvbhjlrdf/image/upload/v1688106333';
+// const URL_API_IMAGE1 = 'https://ik.imagekit.io/8toa5f2rp';
+const URL_API_IMAGE1 = 'https://res.cloudinary.com/dvbhjlrdf/image/upload';
 
-export function getImage(path: string | any, type: string) {
-  return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
+export function getImage(path: string, type: string, crop: string = '') {
+  return path
+    ? `${URL_API_IMAGE1}/${crop}/v1688106333/images/${type}/${path}`
+    : ' ';
 }
 
 export function getPoster(path: string, size = 'full') {

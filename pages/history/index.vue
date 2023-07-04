@@ -22,7 +22,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop')"
+                    :src="getImage(topicImage, 'backdrop', 'h_250')"
                     loading="lazy"
                   />
 
@@ -48,7 +48,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop')"
+                    :src="getImage(topicImage, 'backdrop', 'h_250')"
                     loading="lazy"
                   />
                   <div class="play-now">
@@ -60,7 +60,7 @@
                 <div v-if="!dataHistory?.length" class="img-box">
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop')"
+                    :src="getImage(topicImage, 'backdrop', 'h_250')"
                     loading="lazy"
                   />
                 </div>
@@ -179,7 +179,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop')"
+                    :src="getImage(topicImage, 'backdrop', 'h_250')"
                     loading="lazy"
                   />
 
@@ -206,7 +206,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop')"
+                    :src="getImage(topicImage, 'backdrop', 'h_250')"
                     loading="lazy"
                   />
 
@@ -219,7 +219,7 @@
                 <div v-if="!dataHistory?.length" class="img-box">
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop')"
+                    :src="getImage(topicImage, 'backdrop', 'h_250')"
                     loading="lazy"
                   />
                 </div>

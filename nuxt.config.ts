@@ -94,17 +94,17 @@ export default defineNuxtConfig({
       process.env.NUXT_ADMIN_WEBSITE_URL || 'https://www.dash.phimhay247.site',
     apiGateway: process.env.NUXT_API_GATEWAY || 'https://api.phimhay247.site',
     serverImageUrl:
-      process.env.NUXT_SERVER_IMAGE_URL ||
-      'https://res.cloudinary.com/dvbhjlrdf/image/upload/v1688106333',
-    videoImageUrl:
+      process.env.NUXT_SERVER_IMAGE_URL || 'https://img.phimhay247.site',
+    serverVideoUrl:
       process.env.NUXT_SERVER_VIDEO_URL || 'https://media.phimhay247.site',
     app: {
       apiGateway: process.env.NUXT_API_GATEWAY || 'https://api.phimhay247.site',
       serverImageUrl:
         process.env.NUXT_SERVER_IMAGE_URL ||
         'https://res.cloudinary.com/dvbhjlrdf/image/upload/v1688106333',
-      videoImageUrl:
-        process.env.NUXT_SERVER_VIDEO_URL || 'https://media.phimhay247.site',
+      serverVideoUrl:
+        process.env.NUXT_SERVER_VIDEO_URL ||
+        'https://res.cloudinary.com/dvbhjlrdf/video/upload/v1688106333',
     },
     public: {},
   },

@@ -453,6 +453,7 @@
 import CloseBtn from '@/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
 import axios from 'axios';
 import { getVideo } from '~/services/video';
+import { getMetadata, getThumbnails } from 'video-metadata-thumbnails';
 
 const props = defineProps<{
   dataMovie: any;
@@ -468,13 +469,11 @@ const emits = defineEmits<{
 const blobVideoSrc = ref<string>('');
 const videoPlayer = ref();
 const video = ref();
-const videoTemp = ref();
 const overlayProgress = ref();
 const overlayProgressPadding = ref();
 const progressBar = ref();
 const timeline = ref();
 const canvasPreviewImg = ref();
-const canvasOverlayBackdrop = ref();
 const videoStates = reactive({
   isLoading: false,
   isLoaded: false,
@@ -545,11 +544,6 @@ const setBlobSrcVideo = async (value: string) => {
       // const blobSrc = URL.createObjectURL(blob);
 
       video.value.src = blobSrc;
-
-      // videoTemp.value = document.createElement('video');
-      // videoTemp.value.src = blobSrc;
-      // videoTemp.value.pause();
-      // videoTemp.value.muted = true;
     })
     .finally(() => {
       videoStates.isLoading = false;
@@ -705,19 +699,6 @@ const onTimeUpdateVideo = (e: any) => {
     percent: video.value?.currentTime / video.value?.duration,
     duration: video.value?.duration,
   });
-
-  // set source overlay backdrop
-  // const ctx = canvasOverlayBackdrop.value.getContext('2d');
-
-  // ctx.drawImage(video.value, 0, 0);
-
-  // canvasOverlayBackdrop.value.toBlob((blob: any) => {
-  //   const overlayBackdrop = videoPlayer.value.querySelector(
-  //     '.overlay-backdrop img'
-  //   ) as HTMLImageElement;
-
-  //   overlayBackdrop.src = URL.createObjectURL(blob);
-  // });
 };
 
 const onProgressVideo = (e: any) => {
@@ -953,7 +934,7 @@ const drawTimeLine = (e: any) => {
 
   // const ctx = canvasPreviewImg.value.getContext('2d');
 
-  // ctx.drawImage(video.value, 0, 0, 160, 100);
+  // ctx.drawImage(video.value, 0, 0, 160, 90);
 
   // canvasPreviewImg.value.toBlob((blob: any) => {
   //   const previewImg = timeline.value.querySelector(
