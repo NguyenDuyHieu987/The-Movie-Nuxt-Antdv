@@ -593,14 +593,14 @@ onMounted(() => {
 
   window.onmousemove = (e) => {
     if (videoStates.isScrubbingProgressBar) {
-      videoStates.isShowControls = true;
-
       handleTimeUpdate(e);
     }
   };
 
   window.ontouchmove = (e) => {
     if (videoStates.isScrubbingProgressBar) {
+      videoStates.isShowControls = true;
+
       [...e.changedTouches].forEach((touch) => {
         handleTimeUpdate({ x: touch.pageX });
       });
