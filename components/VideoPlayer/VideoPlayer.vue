@@ -577,6 +577,8 @@ onMounted(() => {
 
   window.ontouchend = () => {
     videoStates.isScrubbingProgressBar = false;
+    videoStates.isShowControls = false;
+    videoStates.isMouseMoveOverlayProgress = false;
 
     if (videoStates.isLoaded) {
       if (videoStates.isEndedVideo || videoStates.isLoading) {
@@ -591,6 +593,8 @@ onMounted(() => {
 
   window.onmousemove = (e) => {
     if (videoStates.isScrubbingProgressBar) {
+      videoStates.isShowControls = true;
+
       handleTimeUpdate(e);
     }
   };
@@ -895,6 +899,9 @@ const onMouseDownProgressBar = (e: any) => {
 
 const onTouchEndProgressBar = (e: any) => {
   videoStates.isScrubbingProgressBar = false;
+  videoStates.isShowControls = false;
+  videoStates.isMouseMoveOverlayProgress = false;
+
   if (videoStates.isPlayVideo) {
     video.value.play();
   }
@@ -902,6 +909,7 @@ const onTouchEndProgressBar = (e: any) => {
 
 const onMouseUpProgressBar = () => {
   videoStates.isScrubbingProgressBar = false;
+
   if (videoStates.isPlayVideo) {
     video.value.play();
   }
@@ -911,6 +919,7 @@ const onMouseMoveOverlayProgress = (e: any) => {};
 
 const onTouchMoveProgressBar = (e: any) => {
   videoStates.isMouseMoveOverlayProgress = true;
+  videoStates.isShowControls = true;
   const rect = overlayProgress.value.getBoundingClientRect();
 
   [...e.changedTouches].forEach((touch) => {
