@@ -839,15 +839,21 @@ video::-webkit-media-controls {
           margin-left: -15px;
           gap: 7px;
 
+          .play-pause {
+            svg.play {
+              font-size: 2.9rem;
+            }
+          }
+
           .replay-forward {
             svg {
-              font-size: 2.5rem;
+              font-size: 2.4rem;
             }
           }
 
           .volume {
             svg {
-              font-size: 2.5rem;
+              font-size: 2.4rem;
             }
           }
         }
@@ -857,7 +863,7 @@ video::-webkit-media-controls {
           gap: 7px;
 
           .rewind-forward {
-            gap: 5px;
+            gap: 2px;
 
             svg {
               font-size: 2.7rem;
