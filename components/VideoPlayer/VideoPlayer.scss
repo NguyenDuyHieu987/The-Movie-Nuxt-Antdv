@@ -805,12 +805,18 @@ video::-webkit-media-controls {
     }
 
     .timeline {
+      bottom: 50px;
+
       .timeline-container {
         width: 100px;
 
         .img-box {
           height: 55px;
         }
+      }
+
+      .timeline-indicator {
+        margin-top: 2px;
       }
     }
 
