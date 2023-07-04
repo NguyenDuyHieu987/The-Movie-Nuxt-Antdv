@@ -155,11 +155,11 @@
         <div
           class="overlay-progress"
           @mousemove="onMouseMoveProgressBar"
-          @touchmove="onMouseMoveProgressBar"
-          @touchstart="onMouseDownProgressBar"
+          @touchmove="onTouchMoveProgressBar"
           @mousedown="onMouseDownProgressBar"
-          @touchend="onMouseUpProgressBar"
+          @touchstart="onTouchStartProgressBar"
           @mouseup="onMouseUpProgressBar"
+          @touchend="onTouchEndProgressBar"
           @mouseleave="videoStates.isMouseMoveOverlayProgress = false"
           ref="overlayProgress"
         >
@@ -167,7 +167,6 @@
             class="overlay-progress-padding"
             ref="overlayProgressPadding"
             @mousemove="onMouseMoveOverlayProgress"
-            @touchmove="onMouseMoveOverlayProgress"
           ></div>
 
           <div class="progress-bar" ref="progressBar"></div>
@@ -598,7 +597,9 @@ onMounted(() => {
 
   window.ontouchmove = (e) => {
     if (videoStates.isScrubbingProgressBar) {
-      handleTimeUpdate(e);
+      [...e.changedTouches].forEach((touch) => {
+        handleTimeUpdate({ x: touch.pageX });
+      });
     }
   };
 
@@ -878,10 +879,25 @@ const onClickForward = () => {
   forwardVideo(10);
 };
 
+const onTouchStartProgressBar = (e: any) => {
+  videoStates.isScrubbingProgressBar = true;
+
+  [...e.changedTouches].forEach((touch) => {
+    handleTimeUpdate({ x: touch.pageX });
+  });
+};
+
 const onMouseDownProgressBar = (e: any) => {
   videoStates.isScrubbingProgressBar = true;
 
   handleTimeUpdate(e);
+};
+
+const onTouchEndProgressBar = (e: any) => {
+  videoStates.isScrubbingProgressBar = false;
+  if (videoStates.isPlayVideo) {
+    video.value.play();
+  }
 };
 
 const onMouseUpProgressBar = () => {
@@ -892,6 +908,23 @@ const onMouseUpProgressBar = () => {
 };
 
 const onMouseMoveOverlayProgress = (e: any) => {};
+
+const onTouchMoveProgressBar = (e: any) => {
+  videoStates.isMouseMoveOverlayProgress = true;
+  const rect = overlayProgress.value.getBoundingClientRect();
+
+  [...e.changedTouches].forEach((touch) => {
+    const percent =
+      Math.min(Math.max(0, touch.pageX - rect.left), rect.width) / rect.width;
+    overlayProgress.value.style.setProperty('--preview-width', percent);
+
+    if (videoStates.isScrubbingProgressBar) {
+      handleTimeUpdate({ x: touch.pageX });
+    } else {
+      drawTimeLine({ x: touch.pageX });
+    }
+  });
+};
 
 const onMouseMoveProgressBar = (e: any) => {
   videoStates.isMouseMoveOverlayProgress = true;
