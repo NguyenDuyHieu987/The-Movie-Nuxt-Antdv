@@ -1059,6 +1059,7 @@ const onKeyDownVideo = (e: any) => {
         document.exitFullscreen();
       } else {
         videoStates.isFullScreen = true;
+        window.screen.orientation.lock('landscape');
         videoPlayer.value.requestFullscreen();
       }
       break;

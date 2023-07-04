@@ -832,11 +832,18 @@ video::-webkit-media-controls {
         padding: 5px 10px;
 
         svg {
-          font-size: 2.8rem;
+          font-size: 2.7rem;
         }
 
         .left {
           margin-left: -15px;
+          gap: 7px;
+
+          .replay-forward {
+            svg {
+              font-size: 2.5rem;
+            }
+          }
 
           .volume {
             svg {
@@ -847,6 +854,15 @@ video::-webkit-media-controls {
 
         .right {
           margin-right: -10px;
+          gap: 7px;
+
+          .rewind-forward {
+            gap: 5px;
+
+            svg {
+              font-size: 2.7rem;
+            }
+          }
 
           .setting {
             svg.setting {
