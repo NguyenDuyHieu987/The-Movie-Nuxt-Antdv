@@ -804,6 +804,16 @@ video::-webkit-media-controls {
       }
     }
 
+    .timeline {
+      .timeline-container {
+        width: 100px;
+
+        .img-box {
+          height: 55px;
+        }
+      }
+    }
+
     .overlay-controls-animation {
       .box-icon {
         width: 30px;

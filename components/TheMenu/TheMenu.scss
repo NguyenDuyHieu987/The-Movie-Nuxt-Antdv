@@ -5,8 +5,8 @@
   //   var(--sider-header-background-color2)
   // ) !important;
   background-color: transparent !important;
-  overflow: hidden;
-  min-height: calc(100% - calc(2 * var(--header-height)));
+  // overflow: hidden;
+  // min-height: calc(100% - calc(2 * var(--header-height)));
   flex-grow: 1;
 
   &.ant-menu-inline-collapsed {
