@@ -6,24 +6,34 @@
     :closable="false"
   >
     <template #title>
-      <div class="user-header">
-        <div class="user-image-container" v-if="!collapsed && isLogin">
-          <nuxt-img
-            class="avatar"
-            :src="
-              !isNaN(+userAccount?.avatar)
-                ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
-                : userAccount?.avatar
-            "
-            alt=""
-          />
-        </div>
+      <Icon
+        @click="store.setOpendrawer()"
+        name="ic:baseline-close"
+        class="close"
+      />
 
-        <h4>
-          {{ userAccount?.username }}
-        </h4>
+      <div class="logo">
+        <NuxtLink :to="{ path: '/' }"> PhimHay247 </NuxtLink>
       </div>
     </template>
+
+    <div class="user-header">
+      <div class="user-image-container" v-if="!collapsed && isLogin">
+        <nuxt-img
+          class="avatar"
+          :src="
+            !isNaN(+userAccount?.avatar)
+              ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
+              : userAccount?.avatar
+          "
+          alt=""
+        />
+      </div>
+
+      <h4>
+        {{ userAccount?.username }}
+      </h4>
+    </div>
     <TheMenu />
   </a-drawer>
 

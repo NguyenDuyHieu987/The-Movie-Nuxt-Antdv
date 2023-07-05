@@ -2,8 +2,9 @@
   <a-layout-header class="header">
     <div class="left-header">
       <button class="menu-btn mobile" @click="store.setOpendrawer()">
-        <Icon v-if="!openDrawer" name="ant-design:menu-outlined" class="menu" />
-        <Icon v-else name="ic:baseline-close" class="close" />
+        <!-- v-if="!openDrawer" -->
+        <Icon name="ant-design:menu-outlined" class="menu" />
+        <!-- <Icon v-else name="ic:baseline-close" class="close" /> -->
       </button>
       <button
         v-if="collapsed == true"
@@ -13,9 +14,7 @@
         <Icon name="ant-design:menu-outlined" />
       </button>
       <div class="logo">
-        <NuxtLink :to="{ path: '/' }">
-          <h1>PhimHay247</h1>
-        </NuxtLink>
+        <NuxtLink :to="{ path: '/' }"> PhimHay247 </NuxtLink>
       </div>
     </div>
 

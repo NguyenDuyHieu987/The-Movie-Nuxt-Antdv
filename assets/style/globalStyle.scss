@@ -198,9 +198,9 @@ button,
 }
 
 .logo {
-  h1,
-  h2,
-  h3 {
+  display: flex;
+
+  a {
     // #290070,
     // #ff1361,
     // #ffc400,
