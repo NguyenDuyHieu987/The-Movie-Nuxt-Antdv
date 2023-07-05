@@ -237,6 +237,8 @@
         font-size: 1.5rem;
         margin-top: 10px;
         width: 100%;
+        background-color: var(--btn-backgroud-color-gray);
+        border: 1px solid var(--border-regular);
       }
 
       .signup-form-button[disabled] {

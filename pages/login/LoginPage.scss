@@ -140,6 +140,7 @@
       .login-form-button {
         font-size: 1.5rem;
         width: 100%;
+        background-color: var(--btn-backgroud-color-gray);
         border: 1px solid var(--border-regular);
       }
 
@@ -172,6 +173,8 @@
 
         .ant-btn {
           transition: all 0s;
+          background-color: var(--btn-backgroud-color-gray);
+          border: 1px solid var(--border-regular);
 
           &:hover {
             // border-color: var(--app-background-color);
