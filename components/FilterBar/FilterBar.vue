@@ -1,12 +1,12 @@
 <template>
-  <a-collapse :bordered="false">
+  <a-collapse class="filter-bar" :bordered="false">
     <!-- ghost -->
     <template #expandIcon="{ isActive }">
       <CaretRightFilled :rotate="isActive ? 90 : 0" />
     </template>
 
     <a-collapse-panel key="1" header="Tìm kiếm nâng cao">
-      <div class="filter-bar">
+      <div class="filter-body">
         <div class="list-input-filter">
           <a-button
             class="filter-btn"

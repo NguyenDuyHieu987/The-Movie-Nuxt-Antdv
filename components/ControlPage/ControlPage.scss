@@ -25,27 +25,16 @@
 
   .pagination {
     font-size: 1.6rem;
-    .ant-pagination-prev {
+
+    .ant-pagination-prev,
+    .ant-pagination-next {
       background-color: transparent;
       border: none;
+
       .ant-pagination-item-link {
         background-color: transparent;
         border: none;
-
-        &:hover {
-          color: #fff;
-        }
-      }
-
-      &.ant-pagination-disabled {
-        display: none;
-      }
-    }
-
-    .ant-pagination-next {
-      .ant-pagination-item-link {
-        background-color: transparent;
-        border: none;
+        color: var(--text-color);
 
         &:hover {
           color: #fff;
@@ -62,6 +51,8 @@
       border: none;
 
       a {
+        color: var(--text-color);
+
         &:hover {
           color: #fff;
         }
@@ -75,10 +66,14 @@
         }
       }
     }
-
+    .ant-pagination-jump-prev,
     .ant-pagination-jump-next {
-      .anticon-double-right {
-        color: #fff;
+      svg {
+        color: var(--text-color);
+      }
+
+      .ant-pagination-item-ellipsis {
+        color: var(--text-color-gray);
       }
     }
   }

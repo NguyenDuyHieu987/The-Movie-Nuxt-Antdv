@@ -10,7 +10,7 @@
             :height="50"
             :width="50"
           />
-          <h1>Phimhay247</h1>
+          Phimhay247
         </NuxtLink>
       </div>
 
