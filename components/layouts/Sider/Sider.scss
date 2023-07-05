@@ -109,7 +109,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 
     // .ant-spin-container {
