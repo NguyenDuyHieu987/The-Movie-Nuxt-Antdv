@@ -101,6 +101,8 @@
             .ant-btn {
               font-size: 1.3rem;
               transition: all 0.15s;
+              background-color: transparent;
+              border: none;
 
               &:active {
                 opacity: 0.8;
@@ -110,38 +112,18 @@
         }
 
         .more-actions {
-          svg {
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: all 0.15s;
-
-            &:active {
-              opacity: 0.8;
-            }
-          }
-
-          .el-button {
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: transparent;
+          .ant-btn {
+            background-color: transparent;
             border: none;
-            transition: all 0.15s;
-            opacity: 0;
 
-            &:hover,
-            &:focus {
-              border: 1px solid var(--border-regular-light);
-              background: transparent !important;
-            }
+            svg {
+              font-size: 1.8rem;
+              cursor: pointer;
+              transition: all 0.15s;
 
-            &:focus {
-              opacity: 1;
-            }
-
-            &:active {
-              border: 1px solid var(--border-regular-light);
+              &:active {
+                opacity: 0.8;
+              }
             }
           }
         }
@@ -165,6 +147,8 @@
           padding: 0px;
           color: var(--link-text-color);
           font-size: 1.4rem;
+          border: none;
+          background-color: transparent;
 
           svg.caret {
             margin-right: 5px;
@@ -199,6 +183,8 @@
               height: auto;
               padding: 0px;
               color: var(--link-text-color);
+              border: none;
+              background-color: transparent;
 
               svg {
                 margin-right: 5px;

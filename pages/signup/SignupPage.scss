@@ -243,6 +243,15 @@
         // color: #707070;
       }
 
+      .bottom-form {
+        text-align: center;
+        color: var(--text-color);
+
+        p {
+          margin-bottom: 10px;
+        }
+      }
+
       &::-webkit-scrollbar {
         display: none !important;
       }

@@ -237,9 +237,8 @@
           </a-button>
         </a-form-item>
 
-        <p style="text-align: center; margin: 20px 0px 15px 0px">Hoặc</p>
-
-        <div style="display: flex; justify-content: center">
+        <div class="bottom-form">
+          <p>Hoặc</p>
           <NuxtLink :to="{ name: 'login' }">Đăng nhập ngay!</NuxtLink>
         </div>
       </a-form>

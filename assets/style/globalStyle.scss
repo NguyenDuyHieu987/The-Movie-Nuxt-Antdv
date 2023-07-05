@@ -2,7 +2,7 @@
 @import './fonts';
 
 :root {
-  --background-content-color: #101010;
+  --background-content-color: #090909;
   --background-content-color1: #181818;
   --background-content-color2: #111111;
   --background-content-opacity: #111111e3;
@@ -13,7 +13,7 @@
   --text-color-gray1: #d3d3d3;
   --text-label-color: #777;
   --text-button-disabled-color: #f4f4f4;
-  --link-text-color: #006999;
+  --link-text-color: #007db6;
   --link-text-color-hover: #009ac5;
   --text-danger-color: #b90016;
 
@@ -52,11 +52,11 @@
 
   --btn-backgroud-color-gray: #1e1e1e;
   --btn-backgroud-color-gray1: #252525;
-  --btn-backgroud-color-gray-hover: #303030;
+  --btn-backgroud-color-gray-hover: #101010;
   --btn-color: #0080ca;
   --btn-danger-color: #ff4d4f;
 
-  --input-border-color: #d9d9d9;
+  --input-border-color: #545454;
   --input-border-color-focused: #0080ca;
   --input-border-color-hover: #0080ca;
 
@@ -65,8 +65,8 @@
   --border-regular-light: #ffffff4d;
   --border-dropdown: #787878;
 
-  --breadcrumb-background-color: #070707;
-  --footer-background-color: #070707;
+  --breadcrumb-background-color: #101010;
+  --footer-background-color: #101010;
 
   --box-shadow-small: 0 3px 10px rgba(0, 0, 0, 0.7);
   --box-shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.7);
@@ -379,6 +379,12 @@ button,
   transition: all 0.15s;
   font-size: 1.5rem;
   box-shadow: none;
+  background-color: var(--btn-backgroud-color-gray);
+  border: 1px solid var(--border-regular);
+
+  &:hover {
+    background-color: var(--btn-backgroud-color-gray-hover);
+  }
 
   &:hover {
     color: var(--text-color);
