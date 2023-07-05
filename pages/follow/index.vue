@@ -20,8 +20,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop', 'h_250')"
-                    loading="lazy"
+                    :src="getImage(topicImage, 'backdrop', 'h_300')"
                   />
                   <div class="play-now">
                     <Icon name="ic:play-arrow" class="play" />
@@ -42,8 +41,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop', 'h_250')"
-                    loading="lazy"
+                    :src="getImage(topicImage, 'backdrop', 'h_300')"
                   />
 
                   <div class="play-now">
@@ -55,16 +53,14 @@
                 <div v-if="!dataList?.length" class="img-box">
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop', 'h_250')"
-                    loading="lazy"
+                    :src="getImage(topicImage, 'backdrop', 'h_300')"
                   />
                 </div>
               </div>
 
               <nuxt-img
                 class="overlay-image"
-                :src="getBackdrop(topicImage)"
-                loading="lazy"
+                :src="getImage(topicImage, 'backdrop', 'h_300')"
               />
 
               <div class="info">
@@ -154,7 +150,7 @@
           </div>
         </a-layout-sider>
 
-        <Teleport v-show="loading" to="#topic-follow-column-teleport">
+        <Teleport v-if="loading" to="#topic-follow-column-teleport">
           <a-layout-sider class="topic-follow-column" :width="340">
             <div class="column-container">
               <div class="backdrop">
@@ -169,8 +165,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop', 'h_250')"
-                    loading="lazy"
+                    :src="getImage(topicImage, 'backdrop', 'h_300')"
                   />
 
                   <div class="play-now">
@@ -192,8 +187,7 @@
                 >
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop', 'h_250')"
-                    loading="lazy"
+                    :src="getImage(topicImage, 'backdrop', 'h_300')"
                   />
 
                   <div class="play-now">
@@ -205,16 +199,14 @@
                 <div v-if="!dataList?.length" class="img-box">
                   <nuxt-img
                     class="ant-image"
-                    :src="getImage(topicImage, 'backdrop', 'h_250')"
-                    loading="lazy"
+                    :src="getImage(topicImage, 'backdrop', 'h_300')"
                   />
                 </div>
               </div>
 
               <nuxt-img
                 class="overlay-image"
-                :src="getBackdrop(topicImage)"
-                loading="lazy"
+                :src="getImage(topicImage, 'backdrop', 'h_300')"
               />
               <div class="info">
                 <h2 class="title">
