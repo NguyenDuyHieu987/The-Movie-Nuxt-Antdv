@@ -264,3 +264,9 @@
     // height: 340px;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .movie-card-item-suggest {
+    width: 100%;
+  }
+}
