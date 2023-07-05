@@ -163,11 +163,7 @@
           @mouseleave="videoStates.isMouseMoveOverlayProgress = false"
           ref="overlayProgress"
         >
-          <div
-            class="overlay-progress-padding"
-            ref="overlayProgressPadding"
-            @mousemove="onMouseMoveOverlayProgress"
-          ></div>
+          <div class="overlay-progress-padding"></div>
 
           <div class="progress-bar" ref="progressBar"></div>
         </div>
@@ -469,7 +465,6 @@ const blobVideoSrc = ref<string>('');
 const videoPlayer = ref();
 const video = ref();
 const overlayProgress = ref();
-const overlayProgressPadding = ref();
 const progressBar = ref();
 const timeline = ref();
 const canvasPreviewImg = ref();
@@ -914,8 +909,6 @@ const onMouseUpProgressBar = () => {
     video.value.play();
   }
 };
-
-const onMouseMoveOverlayProgress = (e: any) => {};
 
 const onTouchMoveProgressBar = (e: any) => {
   videoStates.isMouseMoveOverlayProgress = true;

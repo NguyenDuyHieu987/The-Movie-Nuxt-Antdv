@@ -221,8 +221,7 @@ video::-webkit-media-controls {
 
   .timeline {
     position: absolute;
-    // top: -30px;
-    bottom: 60px;
+    bottom: 65px;
     // left: calc(var(--timeline-position) * 100%);
     left: var(--timeline-position);
     // transform: translateX(10px) translateY(-100%);
@@ -289,16 +288,16 @@ video::-webkit-media-controls {
 
     .overlay-progress {
       position: absolute;
+      cursor: pointer;
       height: 4px;
       width: 100%;
       background-color: rgba(21, 21, 21, 0.357);
-      cursor: pointer;
       left: 0;
-      // top: -2px;
+      top: 0;
       transform: translateY(-50%);
-      z-index: 2;
+      z-index: 1;
       user-select: none;
-      transition: all 0.15s;
+      transition: all 0.25s;
 
       &::before {
         content: '';
@@ -319,8 +318,8 @@ video::-webkit-media-controls {
 
         .progress-bar {
           &::after {
-            height: 12px;
-            width: 12px;
+            height: 14px;
+            width: 14px;
           }
         }
       }
@@ -333,13 +332,14 @@ video::-webkit-media-controls {
       }
 
       .progress-bar {
-        position: relative;
+        position: absolute;
+        left: 0;
         height: 100%;
         width: calc(var(--progress-width, 0) * 100%);
         min-width: 0%;
         max-width: 100%;
         background-color: var(--app-background-color);
-        transition: all 0s;
+        z-index: 1;
 
         &::after {
           content: '';
