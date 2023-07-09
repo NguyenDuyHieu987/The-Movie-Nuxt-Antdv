@@ -189,7 +189,7 @@
                         @click="handleRemoveFromList"
                       >
                         <template #icon>
-                          <font-awesome-icon icon="fa-solid fa-trash-can" />
+                          <Icon name="fa6-solid:trash-can" />
                         </template>
                         <span>Xóa khỏi Danh sách phát</span>
                       </a-menu-item>

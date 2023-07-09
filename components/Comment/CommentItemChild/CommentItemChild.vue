@@ -52,48 +52,61 @@
           :parent="parent"
           :comment="item"
           :isShowFormComment="isShowFormComment"
-          commentType="sub-children"
+          commentType="children"
+          action="post"
           :replyTo="item?.username"
           @onClickCancel="isShowFormComment = false"
           @onSuccessCommentChild="handleSuccessCommentChild"
         />
       </div>
-    </div>
 
-    <div class="more-actions">
-      <a-dropdown
-        v-if="userAccount?.id == item?.user_id"
-        :trigger="['click']"
-        placement="bottomRight"
-        overlayClassName="dropdown-item-viewmore"
-        class="dropdown-item-viewmore"
-      >
-        <a-button size="large" type="text" class="more-actions-btn">
-          <template #icon>
-            <Icon name="fa6-solid:ellipsis-vertical" />
+      <div class="more-actions">
+        <a-dropdown
+          v-if="userAccount?.id == item?.user_id"
+          :trigger="['click']"
+          placement="bottomRight"
+          overlayClassName="dropdown-item-viewmore"
+          class="dropdown-item-viewmore"
+        >
+          <a-button size="large" type="text" class="more-actions-btn">
+            <template #icon>
+              <Icon name="fa6-solid:ellipsis-vertical" />
+            </template>
+          </a-button>
+
+          <template #overlay>
+            <a-menu>
+              <div class="main-action">
+                <a-menu-item
+                  key="edit-comment"
+                  class="remove-item"
+                  @click="handleRemoveComment"
+                >
+                  <template #icon>
+                    <Icon name="ic:outline-edit" />
+                  </template>
+                  <span>Chỉnh sửa</span>
+                </a-menu-item>
+              </div>
+
+              <hr />
+
+              <div class="danger-zone">
+                <a-menu-item
+                  key="remove-comment"
+                  class="remove-item"
+                  @click="handleRemoveComment"
+                >
+                  <template #icon>
+                    <Icon name="fa6-solid:trash-can" />
+                  </template>
+                  <span>Xóa bình luận</span>
+                </a-menu-item>
+              </div>
+            </a-menu>
           </template>
-        </a-button>
-
-        <template #overlay>
-          <a-menu>
-            <!-- <div class="main-action"></div>
-            <hr /> -->
-
-            <div class="danger-zone">
-              <a-menu-item
-                key="remove-comment"
-                class="remove-item"
-                @click="handleRemoveComment"
-              >
-                <template #icon>
-                  <font-awesome-icon icon="fa-solid fa-trash-can" />
-                </template>
-                <span>Xóa bình luận</span>
-              </a-menu-item>
-            </div>
-          </a-menu>
-        </template>
-      </a-dropdown>
+        </a-dropdown>
+      </div>
     </div>
   </div>
 </template>

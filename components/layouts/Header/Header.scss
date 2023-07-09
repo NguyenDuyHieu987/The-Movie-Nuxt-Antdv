@@ -77,68 +77,72 @@
   }
 
   .center-search-header {
-    .ant-input-group {
-    }
+    .ant-select-selector {
+      background-color: transparent !important;
 
-    .ant-input-wrapper {
-      transition: all 0.15s;
-      border-radius: 20px;
-      background: var(--search-background);
-    }
+      .ant-input-group {
+      }
 
-    .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
-      background: var(--search-focus-background);
-    }
+      .ant-input-wrapper {
+        transition: all 0.15s;
+        border-radius: 20px;
+        background: var(--search-background);
+      }
 
-    .ant-input-affix-wrapper {
-      border: 1px solid var(--border-regular-light);
-      height: 40px;
-      padding-left: 16px;
-      // border-right: none;
-      transition: all 0s;
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
-      background: transparent;
-      cursor: auto;
+      .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
+        background: var(--search-focus-background);
+      }
 
-      // &:hover {
-      //   border-color: var(--border-regular-light);
-      // }
-
-      &.ant-input-affix-wrapper-focused {
-        // border-color: #00dac8;
+      .ant-input-affix-wrapper {
+        border: 1px solid var(--border-regular-light);
+        height: 40px;
+        padding-left: 16px;
+        // border-right: none;
+        transition: all 0s;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background: transparent;
+        cursor: auto;
 
         // &:hover {
-        //   border-color: #00dac8;
+        //   border-color: var(--border-regular-light);
         // }
-      }
 
-      .ant-input {
-        color: var(--text-color);
-        background: transparent;
-        font-size: 1.5rem;
-      }
-    }
+        &.ant-input-affix-wrapper-focused {
+          // border-color: #00dac8;
 
-    .ant-input-group-addon {
-      background: none;
-
-      .ant-input-search-button {
-        background: transparent;
-        border: 1px solid var(--border-regular-light);
-        transition: all 0.25s;
-        border-radius: 0 20px 20px 0;
-        border-left: none;
-        padding: 0px 18px;
-
-        svg {
-          color: var(--text-color);
-          font-size: 1.8rem;
+          // &:hover {
+          //   border-color: #00dac8;
+          // }
         }
 
-        &:active {
+        .ant-input {
+          color: var(--text-color);
+          background: transparent;
+          font-size: 1.5rem;
+        }
+      }
+
+      .ant-input-group-addon {
+        background: none;
+
+        .ant-input-search-button {
+          background: transparent;
+          border: 1px solid var(--border-regular-light);
+          transition: all 0.25s;
+          border-radius: 0 20px 20px 0;
+          border-left: none;
+          padding: 0px 18px;
+
           svg {
-            opacity: 0.8;
+            color: var(--text-color);
+            font-size: 1.8rem;
+          }
+
+          &:active {
+            svg {
+              opacity: 0.8;
+            }
           }
         }
       }

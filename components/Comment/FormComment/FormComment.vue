@@ -1,5 +1,11 @@
 <template>
-  <a-form class="comment-form" @submit="onSubmit">
+  <a-form
+    class="comment-form"
+    :class="{
+      small: props.commentType == 'children',
+    }"
+    @submit="onSubmit"
+  >
     <div class="author">
       <div class="author-image">
         <nuxt-img
@@ -86,7 +92,7 @@
               :disabled="disabledButton"
               :loading="loading"
             >
-              Bình luận
+              {{ action == 'edit' ? 'Lưu' : 'Bình luận' }}
             </a-button>
           </div>
         </div>
@@ -98,8 +104,9 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getImage } from '~/services/image';
-import { CommentMovie } from '~/services/comment';
+import { CommentMovie, EditComment } from '~/services/comment';
 import { storeToRefs } from 'pinia';
+import { ElNotification } from 'element-plus';
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
 
@@ -110,6 +117,7 @@ const props = defineProps({
   movieType: { type: String },
   replyTo: { type: String, default: '' },
   commentType: { type: String, default: 'parent' },
+  action: { type: String, default: 'post' },
   showActions: { type: Boolean, default: false },
   isShowFormComment: { type: Boolean, default: false },
 });
@@ -117,6 +125,7 @@ const props = defineProps({
 const emits = defineEmits<{
   onClickCancel: [];
   onSuccessCommentChild: [data: any];
+  onSuccessEditComment: [data: any];
 }>();
 
 const store = useStore();
@@ -153,10 +162,27 @@ watch(props, () => {
       currentTextArea.focus();
     }, 10);
   }
+
+  switch (props.action) {
+    case 'post':
+      content.value = '';
+      break;
+    case 'edit':
+      content.value = props.comment?.content;
+      break;
+  }
 });
 
 const handleChange = (e: any) => {
-  disabledButton.value = content.value.length == 0;
+  switch (props.action) {
+    case 'post':
+      disabledButton.value = content.value.length == 0;
+      break;
+    case 'edit':
+      disabledButton.value =
+        content.value.length == 0 || content.value == props.comment?.content;
+      break;
+  }
 };
 
 const handleFocus = () => {
@@ -171,40 +197,83 @@ const handleFocus = () => {
 
 const onSubmit = () => {
   loading.value = true;
-  CommentMovie({
-    content: content.value,
-    movieId: props.movieId,
-    parentId:
-      (props.commentType == 'children' ||
-        props.commentType == 'sub-children') &&
-      props.parent?.id,
-    movieType: props.movieType,
-    commentType: props.commentType,
-  })
-    .then((response) => {
-      if (response?.success) {
-        if (props.commentType == 'parent') {
-          commentsList.value?.unshift(response?.result);
-        } else if (
-          props.commentType == 'children' ||
-          props.commentType == 'sub-children'
-        ) {
-          emits('onClickCancel');
-          emits('onSuccessCommentChild', response?.result);
-        }
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      setTimeout(() => {
-        loading.value = false;
-      }, 500);
-      content.value = '';
-      disabledButton.value = true;
-      isShowEmoji.value = false;
-    });
+
+  switch (props.action) {
+    case 'post':
+      CommentMovie({
+        content: content.value,
+        movieId: props.movieId,
+        parentId: props.commentType == 'children' && props.parent?.id,
+        movieType: props.movieType,
+        commentType: props.commentType,
+      })
+        .then((response) => {
+          if (response?.success) {
+            if (props.commentType == 'parent') {
+              commentsList.value?.unshift(response?.result);
+            } else if (props.commentType == 'children') {
+              emits('onClickCancel');
+              emits('onSuccessCommentChild', response?.result);
+            }
+
+            content.value = '';
+            disabledButton.value = true;
+            isShowEmoji.value = false;
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          setTimeout(() => {
+            loading.value = false;
+          }, 500);
+        });
+      break;
+    case 'edit':
+      EditComment({
+        id: props.comment?.id,
+        movieId: props.movieId,
+        movieType: props.movieType,
+        commentType: props.commentType,
+        commentContent: content.value,
+      })
+        .then((response) => {
+          if (response?.success) {
+            ElNotification({
+              title: 'Thành công!',
+              message: 'Chỉnh sửa bình luận thành công.',
+              type: 'success',
+              position: 'bottom-right',
+              duration: 3000,
+              showClose: false,
+            });
+
+            content.value = '';
+            disabledButton.value = true;
+            isShowEmoji.value = false;
+
+            emits('onSuccessEditComment', response?.content);
+          }
+        })
+        .catch((e) => {
+          ElNotification({
+            title: 'Thất bại!',
+            message: 'Chỉnh sửa bình luận thất bại',
+            type: 'error',
+            position: 'bottom-right',
+            duration: 3000,
+            showClose: false,
+          });
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          setTimeout(() => {
+            loading.value = false;
+          }, 500);
+        });
+      break;
+  }
 };
 
 const handleClickCanel = () => {

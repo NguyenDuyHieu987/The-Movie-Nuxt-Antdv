@@ -15,35 +15,57 @@
         </div>
       </div>
       <div class="right-side">
-        <div class="content-comment-box">
-          <div class="main-comment-content">
-            <div class="top">
-              <span class="author-username">{{ item?.username }}</span>
-              <span class="created-at">{{
-                moment(item?.created_at).locale('vi').fromNow()
-              }}</span>
-            </div>
-
-            <p class="content">{{ item?.content }}</p>
-
-            <div class="actions">
-              <div class="like-dislike">
-                <!-- <Icon name="ph:thumbs-up" />
-                <Icon name="ph:thumbs-down" /> -->
-
-                <LikeOutlined />
-                <DislikeOutlined />
+        <div class="right-side-wrapper">
+          <div class="content-comment-box">
+            <div class="main-comment-content">
+              <div class="top">
+                <span class="author-username">{{ item?.username }}</span>
+                <span class="created-at">{{
+                  moment(item?.created_at).locale('vi').fromNow()
+                }}</span>
               </div>
 
-              <a-button
-                class="reply"
-                type="text"
-                @click="isShowFormComment = !isShowFormComment"
-              >
-                <!-- :disabled="userAccount?.id == item?.user_id" -->
-                Phản hồi
-              </a-button>
+              <p class="content">{{ commentContent }}</p>
+
+              <div class="actions">
+                <div class="like-dislike">
+                  <!-- <Icon name="ph:thumbs-up" />
+                  <Icon name="ph:thumbs-down" /> -->
+
+                  <LikeOutlined />
+                  <DislikeOutlined />
+                </div>
+
+                <a-button
+                  class="reply"
+                  type="text"
+                  @click="
+                    commentAction = 'post';
+                    isShowFormComment = !isShowFormComment;
+                  "
+                >
+                  <!-- :disabled="userAccount?.id == item?.user_id" -->
+                  Phản hồi
+                </a-button>
+              </div>
             </div>
+
+            <FormComment
+              v-show="isShowFormComment"
+              v-model:commentsList="commentsList"
+              v-model:listReplies="listReplies"
+              :movieId="movieId"
+              :movieType="movieType"
+              :showActions="true"
+              :parent="item"
+              :comment="item"
+              :isShowFormComment="isShowFormComment"
+              commentType="children"
+              :action="commentAction"
+              @onClickCancel="isShowFormComment = false"
+              @onSuccessCommentChild="handleSuccessCommentChild"
+              @onSuccessEditComment="handleSuccessEditComment"
+            />
           </div>
 
           <div class="more-actions">
@@ -62,8 +84,20 @@
 
               <template #overlay>
                 <a-menu>
-                  <!-- <div class="main-action"></div>
-            <hr /> -->
+                  <div class="main-action">
+                    <a-menu-item
+                      key="edit-comment"
+                      class="edit-item"
+                      @click="handleEditComment"
+                    >
+                      <template #icon>
+                        <Icon name="ic:outline-edit" />
+                      </template>
+                      <span>Chỉnh sửa</span>
+                    </a-menu-item>
+                  </div>
+
+                  <hr />
 
                   <div class="danger-zone">
                     <a-menu-item
@@ -72,7 +106,7 @@
                       @click="handleRemoveComment"
                     >
                       <template #icon>
-                        <font-awesome-icon icon="fa-solid fa-trash-can" />
+                        <Icon name="fa6-solid:trash-can" />
                       </template>
                       <span>Xóa bình luận</span>
                     </a-menu-item>
@@ -82,21 +116,6 @@
             </a-dropdown>
           </div>
         </div>
-
-        <FormComment
-          v-show="isShowFormComment"
-          v-model:commentsList="commentsList"
-          v-model:listReplies="listReplies"
-          :movieId="movieId"
-          :movieType="movieType"
-          :showActions="true"
-          :parent="item"
-          :comment="item"
-          :isShowFormComment="isShowFormComment"
-          commentType="children"
-          @onClickCancel="isShowFormComment = false"
-          @onSuccessCommentChild="handleSuccessCommentChild"
-        />
 
         <div class="replies">
           <a-button
@@ -190,6 +209,8 @@ const loadingReplies = ref<boolean>(false);
 const numberReplies = ref<number>(+props.item?.childrens || 0);
 const skip = ref<number>(1);
 const isLoadmoreReplies = ref<boolean>(false);
+const commentAction = ref<string>('post');
+const commentContent = ref<string>(props.item?.content);
 
 onBeforeMount(() => {});
 
@@ -247,6 +268,14 @@ const handleSuccessRemoveCommentChild = () => {
   numberReplies.value--;
 };
 
+const handleEditComment = () => {
+  isShowFormComment.value = !isShowFormComment.value;
+  if (isShowFormComment.value) {
+    commentAction.value = 'edit';
+    commentContent.value = props.item?.content;
+  }
+};
+
 const handleRemoveComment = () => {
   DeleteComment({
     id: props.item?.id,
@@ -282,6 +311,11 @@ const handleRemoveComment = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {});
+};
+
+const handleSuccessEditComment = (data: string) => {
+  isShowFormComment.value = false;
+  commentContent.value = data;
 };
 </script>
 

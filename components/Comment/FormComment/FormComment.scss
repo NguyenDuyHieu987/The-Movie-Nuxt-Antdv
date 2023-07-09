@@ -1,11 +1,28 @@
 .comment-form {
   display: flex;
-  gap: 12px;
+  gap: 13px;
 
   .author {
     .author-image {
       height: 35px;
       width: 35px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &.small {
+    gap: 11px;
+
+    .author-image {
+      height: 30px;
+      width: 30px;
       border-radius: 50%;
       overflow: hidden;
 

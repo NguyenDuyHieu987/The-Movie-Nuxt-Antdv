@@ -108,12 +108,12 @@
   }
 
   .swiper-button-prev {
-    background-image: linear-gradient(90deg, #050505 0, #05050500 100%);
+    background-image: linear-gradient(90deg, #101010 0, #10101000 100%);
     left: -5px;
   }
 
   .swiper-button-next {
-    background-image: linear-gradient(90deg, #05050500 0, #050505 100%);
+    background-image: linear-gradient(90deg, #10101000 0, #101010 100%);
     right: -5px;
   }
 
@@ -130,6 +130,7 @@
 
   .swiper-scrollbar {
     height: 8px;
+    background-color: transparent;
 
     .swiper-scrollbar-drag {
       background-color: #686868;

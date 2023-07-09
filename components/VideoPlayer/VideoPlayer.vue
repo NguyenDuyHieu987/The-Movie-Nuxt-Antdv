@@ -154,13 +154,13 @@
       <div class="controls-container">
         <div
           class="overlay-progress"
-          @mousemove="onMouseMoveProgressBar"
+          @pointermove="onMouseMoveProgressBar"
           @touchmove="onTouchMoveProgressBar"
-          @mousedown="onMouseDownProgressBar"
+          @pointerdown="onMouseDownProgressBar"
           @touchstart="onTouchStartProgressBar"
-          @mouseup="onMouseUpProgressBar"
+          @pointerup="onMouseUpProgressBar"
           @touchend="onTouchEndProgressBar"
-          @mouseleave="videoStates.isMouseMoveOverlayProgress = false"
+          @pointerleave="videoStates.isMouseMoveOverlayProgress = false"
           ref="overlayProgress"
         >
           <div class="overlay-progress-padding"></div>
@@ -290,9 +290,9 @@
       class="video-mask"
       tabindex="-1"
       @click="onClickVideo"
-      @mousemove="onMouseMoveVideo"
+      @pointermove="onMouseMoveVideo"
       @touchmove="onMouseMoveVideo"
-      @mouseleave="onMouseLeaveVideo"
+      @pointerleave="onMouseLeaveVideo"
       @keydown="onKeyDownVideo"
     ></div>
 
@@ -556,7 +556,7 @@ onMounted(() => {
   video.value.volume = volume.value / 100;
   progressBar.value.style.setProperty('--progress-width', 0);
 
-  window.onmouseup = () => {
+  window.onpointerup = () => {
     videoStates.isScrubbingProgressBar = false;
 
     if (videoStates.isLoaded) {
@@ -586,7 +586,7 @@ onMounted(() => {
     }
   };
 
-  window.onmousemove = (e) => {
+  window.onpointermove = (e) => {
     if (videoStates.isScrubbingProgressBar) {
       handleTimeUpdate(e);
     }

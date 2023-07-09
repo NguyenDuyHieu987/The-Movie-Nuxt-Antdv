@@ -40,6 +40,23 @@ export function CommentMovie(params: any) {
   });
 }
 
+export function EditComment(params: any) {
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
+
+  const bodyFormData = new FormData();
+  bodyFormData.append('id', params.id);
+  bodyFormData.append('type', params.commentType);
+  bodyFormData.append('content', params.commentContent);
+
+  return makeRequest(`/comment/edit/${params.movieType}/${params.movieId}`, {
+    method: 'PUT',
+    headers: headers,
+    data: bodyFormData,
+  });
+}
+
 export function DeleteComment(params: any) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
