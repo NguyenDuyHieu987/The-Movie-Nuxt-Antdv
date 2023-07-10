@@ -202,6 +202,13 @@ export default defineNuxtConfig({
       ],
       crawlLinks: true,
     },
+    storage: {
+      cache: {
+        driver: 'redis',
+        url: 'redis://default:iMtb5g4jlRhXANp0oP0LNm5iZeX3QeNT@redis-11171.c292.ap-southeast-1-1.ec2.cloud.redislabs.com:11171',
+        /* redis connector options */
+      },
+    },
     // output: {
     //   dir: '.output',
     //   serverDir: '.output/server',
@@ -253,7 +260,7 @@ export default defineNuxtConfig({
     client: true,
   },
   routeRules: {
-    '/': { prerender: true, swr: true },
+    '/': { static: true, swr: true },
     '/search/**': { prerender: true, swr: true },
     '/discover/**': { swr: true },
     '/list/**': { prerender: true, swr: true },
