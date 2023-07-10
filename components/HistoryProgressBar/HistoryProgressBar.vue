@@ -7,8 +7,8 @@
     }"
     :percent="
       historyProgress == 1
-        ? historyProgress * 100
-        : (historyProgress * 100).toFixed(2)
+        ? +historyProgress * 100
+        : +(historyProgress * 100).toFixed(2)
     "
     status="active"
   >
@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  historyProgress: number | any;
+  historyProgress: number;
 }>();
 </script>
 

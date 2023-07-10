@@ -39,22 +39,36 @@
   .home-section {
     position: relative;
 
+    &:hover {
+      .gradient-title-default {
+        .view-all {
+          transition: all 0.5s;
+          right: 0;
+        }
+      }
+    }
+
     .gradient-title-default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
       font-size: 1.44vw;
 
+      &:hover {
+        .view-all {
+          transition: all 0.5s;
+          right: 0;
+        }
+      }
+
       .view-all {
+        position: absolute;
+        right: -100%;
         font-size: 0.6em;
         color: var(--text-color);
         font-style: oblique;
-        transition: all 0.25s;
-
-        &:hover {
-          // background-position: 100% center;
-          // background-size: 200% 100%;
-        }
+        transition: all 0.3s;
 
         &:active {
           opacity: 0.8;

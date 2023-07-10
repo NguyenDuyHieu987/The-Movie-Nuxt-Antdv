@@ -14,6 +14,13 @@
         <Icon name="ant-design:menu-outlined" />
       </button>
       <div class="logo">
+        <nuxt-img
+          :src="getImage('logo.png', 'logo')"
+          loading="lazy"
+          alt=""
+          :height="30"
+          :width="30"
+        />
         <NuxtLink :to="{ path: '/' }"> PhimHay247 </NuxtLink>
       </div>
     </div>
@@ -185,16 +192,16 @@
       </a-popover>
 
       <a-menu theme="dark" mode="horizontal" :selectable="false">
-        <a-menu-item key="notification" v-if="isLogin" v-once>
+        <a-menu-item key="notification">
           <a-dropdown
+            v-if="isLogin"
+            v-once
             :trigger="['click']"
             class="dropdown-notification"
             overlayClassName="dropdown-notification"
             placement="bottomLeft"
-            v-if="isLogin"
-            v-once
           >
-            <span class="ant-dropdown-link">
+            <span v-if="isLogin" v-once class="ant-dropdown-link">
               <a-badge :count="3" :overflow-count="9">
                 <!-- <Icon name="fa6-regular:bell" class="fa-bell fa-regular" />
                 <Icon name="fa6-solid:bell" class="fa-bell fa-solid" /> -->
@@ -289,7 +296,7 @@
                   v-if="isLogin && role == 'admin'"
                   v-once
                 >
-                  <NuxtLink :to="$config.adminWebsiteUrl" target="_blank">
+                  <NuxtLink :to="$config.app.adminWebsiteUrl" target="_blank">
                     Bảng điều khiển
                   </NuxtLink>
                 </a-menu-item>
@@ -314,11 +321,12 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getDaTaSearch } from '~/services/search';
+import { getImage } from '~/services/image';
 import SearchCard from '@/components/SearchCard/SearchCard.vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import { UserOutlined, CaretDownOutlined } from '@ant-design/icons-vue';
-import { ElMenu, ElMenuItem } from 'element-plus';
+import { ElMenu } from 'element-plus';
 
 const store = useStore();
 const { openDrawer, collapsed, isLogin, userAccount, role } =

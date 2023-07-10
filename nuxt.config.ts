@@ -90,13 +90,13 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    adminWebsiteUrl:
-      process.env.NUXT_ADMIN_WEBSITE_URL || 'https://www.dash.phimhay247.site',
     apiGateway: process.env.NUXT_API_GATEWAY || 'https://api.phimhay247.site',
     serverImageUrl:
       process.env.NUXT_SERVER_IMAGE_URL || 'https://img.phimhay247.site',
     serverVideoUrl:
       process.env.NUXT_SERVER_VIDEO_URL || 'https://media.phimhay247.site',
+    adminWebsiteUrl:
+      process.env.NUXT_ADMIN_WEBSITE_URL || 'https://www.dash.phimhay247.site',
     app: {
       apiGateway: process.env.NUXT_API_GATEWAY || 'https://api.phimhay247.site',
       serverImageUrl:
@@ -105,6 +105,9 @@ export default defineNuxtConfig({
       serverVideoUrl:
         process.env.NUXT_SERVER_VIDEO_URL ||
         'https://res.cloudinary.com/dvbhjlrdf/video/upload/v1688106333',
+      adminWebsiteUrl:
+        process.env.NUXT_ADMIN_WEBSITE_URL ||
+        'https://www.dash.phimhay247.site',
     },
     public: {},
   },
@@ -244,7 +247,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  ssr: false,
+  ssr: true,
   sourcemap: {
     server: true,
     client: true,

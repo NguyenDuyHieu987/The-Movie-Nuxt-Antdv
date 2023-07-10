@@ -448,7 +448,6 @@
 import CloseBtn from '@/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
 import axios from 'axios';
 import { getVideo } from '~/services/video';
-import { getMetadata, getThumbnails } from 'video-metadata-thumbnails';
 
 const props = defineProps<{
   dataMovie: any;

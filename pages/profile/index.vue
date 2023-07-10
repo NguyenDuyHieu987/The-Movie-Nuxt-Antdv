@@ -25,4 +25,4 @@ useSeoMeta({
 });
 </script>
 
-<style lang="scss" scoped src="./ProfilePage.scss"></style>
+<style lang="scss" src="./ProfilePage.scss"></style>

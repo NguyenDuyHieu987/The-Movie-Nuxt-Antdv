@@ -11,7 +11,7 @@
     }"
     class="movie-card-item horizontal"
     ref="cardItem"
-    @mouseenter="onMouseEnter"
+    @pointerenter="onMouseEnter"
   >
     <el-skeleton :loading="loading" animated>
       <template #template>
@@ -239,7 +239,7 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
     isTeleportPreviewModal.value = true;
   }, 2000);
 
-  target.addEventListener('mouseleave', () => {
+  target.addEventListener('pointerleave', () => {
     // isTeleportPreviewModal.value = false;
     clearInterval(interval.value);
   });

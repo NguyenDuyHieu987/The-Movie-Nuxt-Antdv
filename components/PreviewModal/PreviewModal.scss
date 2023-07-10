@@ -1,11 +1,11 @@
 .preview-overlay {
+  display: flex;
   position: absolute;
+  justify-content: center;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
   z-index: 10;
-  transform-origin: center center;
 
   .preview-modal {
     display: inline-block;
@@ -117,7 +117,7 @@
       height: 0px;
       // aspect-ratio: 16/9;
       overflow: hidden;
-      animation: img-preview-modal 0.4s ease;
+      // animation: img-preview-modal 0.4s ease;
       padding-bottom: 56.25%;
 
       .ant-image {
@@ -215,12 +215,12 @@
         }
 
         .ant-btn {
-          color: #fff;
+          color: var(--text-color);
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: var(--btn-backgroud-color-gray);
-          border-color: #313131;
+          background-color: var(--btn-background-color-gray);
+          border-color: var(--border-regular);
           height: 43px;
           width: 43px;
           overflow: hidden;
@@ -238,9 +238,8 @@
           }
 
           &:hover {
-            color: #fff;
             border-color: var(--border-regular-light);
-            background-color: var(--btn-backgroud-color-gray-hover);
+            background-color: var(--btn-background-color-gray-hover);
           }
 
           &:focus {
@@ -258,7 +257,7 @@
         font-size: 0.8vw;
 
         .title {
-          color: #fff;
+          color: var(--text-color);
         }
 
         .title,

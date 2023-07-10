@@ -42,17 +42,18 @@
   --app-background-color: #0080ca;
   --app-background-color1: #c30061;
   --app-background-color2: #000046;
-  --app-background-color3: #1cb5e0;
+  --app-background-color3: #00b4dd;
   --app-background-color4: #470024;
   --app-background-color5: #6d026d;
-  --app-background-color6: #e82b00;
+  --app-background-color6: #00dc82;
+  --app-background-color7: #004298;
 
   --menu-item-background-color: #4d4d4d28;
   --menu-inline-submenu-background-color: #12121265;
 
-  --btn-backgroud-color-gray: #1e1e1e;
-  --btn-backgroud-color-gray1: #252525;
-  --btn-backgroud-color-gray-hover: #101010;
+  --btn-background-color-gray: #1e1e1e;
+  --btn-background-color-gray1: #252525;
+  --btn-background-color-gray-hover: #1b1b1b;
   --btn-color: #0080ca;
   --btn-danger-color: #ff4d4f;
 
@@ -204,21 +205,12 @@ button,
   display: flex;
 
   a {
-    // #290070,
-    // #ff1361,
-    // #ffc400,
-    // #ff5100,
-    // #9f0000,
-    // #25126b
-
     background-image: linear-gradient(
       90deg,
-      var(--app-background-color3),
-      var(--app-background-color2),
+      var(--app-background-color7),
       var(--app-background-color3)
     );
-
-    background-size: 200% auto;
+    // background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -262,7 +254,7 @@ button,
     font-weight: 500;
     background-image: linear-gradient(
       to right,
-      var(--app-background-color2),
+      var(--app-background-color7),
       var(--app-background-color3)
     );
   }
@@ -279,7 +271,7 @@ button,
       background-image: linear-gradient(
         to right,
         var(--app-background-color3),
-        var(--app-background-color2)
+        var(--app-background-color7)
       );
     }
   }
@@ -301,7 +293,7 @@ button,
     font-weight: 500;
     background-image: linear-gradient(
       to right,
-      var(--app-background-color2),
+      var(--app-background-color7),
       var(--app-background-color3)
     );
   }
@@ -314,7 +306,7 @@ button,
     background-image: linear-gradient(
       to right,
       var(--app-background-color3),
-      var(--app-background-color2)
+      var(--app-background-color7)
     );
     left: 0;
     bottom: -5px;

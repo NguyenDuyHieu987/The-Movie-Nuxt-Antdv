@@ -303,7 +303,7 @@ const isTeleport = defineModel<boolean>('isTeleport');
 // });
 
 onMounted(() => {
-  window.onmousemove = (e: any) => {
+  window.onpointermove = (e: any) => {
     if (isTeleport.value == true && !e.target.closest('.preview-modal'))
       isTeleport.value = false;
   };
@@ -332,8 +332,9 @@ watch(previewModal, () => {
       previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
     } else {
       const rectRight = window.innerWidth - props.style.rectBound.right;
+
       if (rectRight <= 100) {
-        previewModal.value.style.right = rectRight - 8 + 'px';
+        previewModal.value.style.right = rectRight - 15 + 'px';
         previewModal.value.style.setProperty('--left', 'auto');
         previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
       } else {
@@ -368,7 +369,9 @@ watch(isTeleport, async () => {
             if (axios.isCancel(e)) return;
           })
           .finally(() => {
-            loading.value = false;
+            setTimeout(() => {
+              loading.value = false;
+            }, 500);
           });
       } else {
         await useAsyncData(`movie/short/${props.item?.id}`, () =>
@@ -381,7 +384,9 @@ watch(isTeleport, async () => {
             if (axios.isCancel(e)) return;
           })
           .finally(() => {
-            loading.value = false;
+            setTimeout(() => {
+              loading.value = false;
+            }, 500);
           });
       }
 
