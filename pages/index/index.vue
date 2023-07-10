@@ -217,10 +217,6 @@ import { getMyRecommend } from '~/services/recommend';
 import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
 import { nextTick } from 'vue';
 
-definePageMeta({
-  // layout: 'home',
-});
-
 useHead({
   title: 'Phimhay247',
   htmlAttrs: { lang: 'vi' },
