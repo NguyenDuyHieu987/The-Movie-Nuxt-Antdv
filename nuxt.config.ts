@@ -182,7 +182,7 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    preset: 'static',
+    preset: 'node-server',
     prerender: {
       routes: [
         '/',
@@ -253,15 +253,15 @@ export default defineNuxtConfig({
     client: true,
   },
   routeRules: {
-    '/': {},
-    '/search/**': {},
-    '/discover/**': {},
-    '/list/**': {},
-    '/history/**': {},
-    '/ranking/**': {},
-    '/info-movie/**': {},
-    '/info-tv/**': {},
-    '/play-movie/**': {},
-    '/play-tv/**': {},
+    '/': { prerender: true, swr: true },
+    '/search/**': { prerender: true, swr: true },
+    '/discover/**': { prerender: true, swr: true },
+    '/list/**': { prerender: true, swr: true },
+    '/history/**': { prerender: true, swr: true },
+    '/ranking/**': { prerender: true, swr: true },
+    '/info-movie/**': { prerender: true, swr: true },
+    '/info-tv/**': { prerender: true, swr: true },
+    '/play-movie/**': { prerender: true, swr: true },
+    '/play-tv/**': { prerender: true, swr: true },
   },
 });
