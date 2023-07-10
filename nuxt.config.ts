@@ -182,7 +182,7 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    preset: 'node-server',
+    preset: 'static',
     prerender: {
       routes: [
         '/',
@@ -194,11 +194,11 @@ export default defineNuxtConfig({
         '/profile',
         '/login',
         '/signup',
-        // '/discover',
-        // '/info-movie',
-        // '/info-tv',
-        // '/play-movie',
-        // '/play-tv',
+        '/discover',
+        '/info-movie',
+        '/info-tv',
+        '/play-movie',
+        '/play-tv',
       ],
       crawlLinks: true,
     },

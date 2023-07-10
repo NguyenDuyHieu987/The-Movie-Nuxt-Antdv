@@ -1,5 +1,7 @@
 .ranking {
   .ranking-container {
+    display: flex;
+    flex-direction: row;
     gap: 15px;
     background-color: transparent;
 
@@ -7,8 +9,7 @@
       margin-top: 0px;
     }
 
-    .ant-layout-content,
-    .el-main {
+    .ant-layout-content {
       background-color: transparent;
     }
   }
