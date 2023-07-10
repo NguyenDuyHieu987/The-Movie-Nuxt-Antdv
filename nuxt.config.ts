@@ -200,7 +200,7 @@ export default defineNuxtConfig({
         '/play-movie',
         '/play-tv',
       ],
-      crawlLinks: true,
+      // crawlLinks: true,
     },
     storage: {
       cache: {
