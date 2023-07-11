@@ -268,7 +268,7 @@ export default defineNuxtConfig({
     '/ranking/**': { prerender: true, swr: true },
     '/info-movie/**': { ssr: false },
     '/info-tv/**': { ssr: false },
-    '/play-movie/**': { swr: true },
-    '/play-tv/**': { swr: true },
+    '/play-movie/**': { ssr: false },
+    '/play-tv/**': { ssr: false },
   },
 });
