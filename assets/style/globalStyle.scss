@@ -247,6 +247,7 @@ button,
   margin-bottom: 15px;
   font-size: 2.5rem;
   position: relative;
+  user-select: none;
 
   & > span {
     -webkit-text-fill-color: transparent;
