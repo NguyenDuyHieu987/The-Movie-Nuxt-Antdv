@@ -14,14 +14,16 @@
         <Icon name="ant-design:menu-outlined" />
       </button>
       <div class="logo">
-        <nuxt-img
-          :src="getImage('logo.png', 'logo')"
-          loading="lazy"
-          alt=""
-          :height="30"
-          :width="30"
-        />
-        <NuxtLink :to="{ path: '/' }"> PhimHay247 </NuxtLink>
+        <NuxtLink :to="{ path: '/' }">
+          <nuxt-img
+            :src="getImage('logo.png', 'logo')"
+            loading="lazy"
+            alt=""
+            :height="30"
+            :width="30"
+          />
+          <span> PhimHay247 </span>
+        </NuxtLink>
       </div>
     </div>
 

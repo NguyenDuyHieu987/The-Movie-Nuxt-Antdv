@@ -333,9 +333,7 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(async () => {
-  await nextTick();
-
+onBeforeMount(() => {
   getData();
 });
 

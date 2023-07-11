@@ -127,7 +127,7 @@
                   <span class="text">{{
                     dataMovie?.views
                       ?.toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' lượt xem'
+                      ?.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' lượt xem'
                   }}</span>
                 </template>
               </Tags>
@@ -394,8 +394,6 @@ const getData = async () => {
 };
 
 onBeforeMount(async () => {
-  await nextTick();
-
   // console.log(router.options.history.state);
   getData();
 });

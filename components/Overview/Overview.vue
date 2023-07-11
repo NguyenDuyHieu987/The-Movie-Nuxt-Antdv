@@ -23,7 +23,7 @@ const props = defineProps<{
   content: string;
 }>();
 
-const overview = ref<string>(props.content.slice(0, 500));
+const overview = ref<string>(props.content?.slice(0, 500));
 const viewMore = ref<boolean>(props.content?.length >= 500);
 
 const onClickViewMore = () => {

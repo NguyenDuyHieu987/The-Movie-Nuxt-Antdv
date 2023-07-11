@@ -21,7 +21,7 @@
 
     <ul class="list-lastest-episodes">
       <li
-        v-for="(item, index) in dataSeason.episodes
+        v-for="(item, index) in dataSeason?.episodes
           ?.slice(0, dataMovie?.last_episode_to_air?.episode_number)
           ?.slice(-7)
           .reverse()"
