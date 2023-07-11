@@ -1,8 +1,8 @@
 <template>
   <div class="follow">
     <div v-if="isLogin" class="follow-container">
-      <a-layout>
-        <section v-if="loading" class="topic-follow-row">
+      <a-layout v-if="loading">
+        <section v-if="responsive" class="topic-follow-row">
           <div class="row-container">
             <div class="top">
               <div class="backdrop">
@@ -147,8 +147,8 @@
           </div>
         </section>
 
-        <Teleport v-if="loading" to="#topic-follow-column-teleport">
-          <a-layout-sider class="topic-follow-column" :width="340">
+        <Teleport :disabled="!loading" to="#topic-follow-column-teleport">
+          <aside class="topic-follow-column">
             <div class="column-container">
               <div class="backdrop">
                 <NuxtLink
@@ -285,15 +285,15 @@
                 </el-button>
               </div>
             </div>
-          </a-layout-sider>
+          </aside>
         </Teleport>
 
-        <a-layout-content class="follow-main-content padding-content">
+        <section class="follow-main-content padding-content">
           <h2 class="gradient-title-default underline">
             <span>Danh sách phát</span>
           </h2>
 
-          <section class="movie-follow">
+          <div class="movie-follow">
             <MovieCardHorizontalFollow
               v-for="(item, index) in dataList"
               :index="index"
@@ -302,7 +302,7 @@
               :type="item?.media_type"
               :getDataWhenRemoveList="getDataWhenRemoveList"
             />
-          </section>
+          </div>
 
           <div class="skeleton-loadmore" v-show="loadMore">
             <el-skeleton
@@ -330,7 +330,7 @@
               </template>
             </el-skeleton>
           </div>
-        </a-layout-content>
+        </section>
       </a-layout>
     </div>
 
@@ -349,6 +349,7 @@ import _ from 'lodash';
 import { storeToRefs } from 'pinia';
 import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
 // import scrollBottom from 'scroll-bottom';
+import { useBreakpoints } from '@vueuse/core';
 
 definePageMeta({
   // requireAuth: true,
@@ -370,6 +371,11 @@ const loadingSearch = ref<boolean>(false);
 const loadMore = ref<boolean>(false);
 const isScroll = ref<boolean>(false);
 const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
+const breakpoints = useBreakpoints({
+  responsive: 1200,
+});
+
+const responsive = breakpoints.smallerOrEqual('responsive');
 
 useHead({
   title: 'Theo dõi - Danh sách ' + ' | Phimhay247',

@@ -8,7 +8,7 @@
     }
 
     .topic-follow-row {
-      display: none;
+      // display: none;
       position: relative;
       width: 100%;
       flex-grow: 1;
@@ -349,15 +349,12 @@
   // margin-right: 3px;
 
   .topic-follow-column {
-    flex: 0 0 340px;
-    max-width: 340px;
-    min-width: 340px;
+    position: fixed;
     width: 340px;
     height: 100%;
     border-top-right-radius: 13px;
     border-top-left-radius: 13px;
     padding: 22px 24px;
-    position: fixed;
     overflow: hidden;
     // background-image: linear-gradient(
     //   to bottom,

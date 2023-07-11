@@ -324,15 +324,12 @@
   // margin-left: 3px;
 
   .topic-history-column {
-    flex: 0 0 342px;
-    max-width: 342px;
-    min-width: 342px;
-    width: 342px;
+    position: fixed;
+    width: 340px;
     height: 100%;
     border-top-right-radius: 13px;
     border-top-left-radius: 13px;
     padding: 22px 24px;
-    position: fixed;
     overflow: hidden;
     // background-image: linear-gradient(
     //   to bottom,

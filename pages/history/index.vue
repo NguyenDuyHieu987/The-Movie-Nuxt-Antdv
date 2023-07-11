@@ -156,7 +156,7 @@
         </section>
 
         <Teleport v-if="loading" to="#topic-history-column-teleport">
-          <a-layout-sider class="topic-history-column" :width="340">
+          <aside class="topic-history-column" :width="340">
             <div class="column-container">
               <div class="backdrop">
                 <NuxtLink
@@ -301,14 +301,14 @@
                 </el-button>
               </div>
             </div>
-          </a-layout-sider>
+          </aside>
         </Teleport>
 
-        <a-layout-content class="history-main-content padding-content">
+        <section class="history-main-content padding-content">
           <h2 class="gradient-title-default underline">
             <span>Lịch sử xem</span>
           </h2>
-          <section class="movie-history">
+          <div class="movie-history">
             <MovieCardHorizontalHistory
               v-for="(item, index) in dataHistory"
               :index="index"
@@ -318,7 +318,7 @@
               :type="item?.media_type"
               :getDataWhenRemoveHistory="getDataWhenRemoveHistory"
             />
-          </section>
+          </div>
           <div class="skeleton-loadmore" v-show="loadMore">
             <el-skeleton
               :loading="true"
@@ -342,7 +342,7 @@
               </template>
             </el-skeleton>
           </div>
-        </a-layout-content>
+        </section>
       </a-layout>
     </div>
 
