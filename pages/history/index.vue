@@ -1,6 +1,6 @@
 <template>
   <div class="history">
-    <div v-show="isLogin" class="history-container">
+    <div v-show="states.isLogin" class="history-container">
       <div v-if="loading">
         <section v-if="responsive" class="topic-history-row">
           <div class="row-container">
@@ -346,7 +346,7 @@
       </div>
     </div>
 
-    <RequireAuth v-if="!isLogin" />
+    <RequireAuth v-if="!states.isLogin" />
   </div>
 </template>
 
@@ -370,6 +370,7 @@ definePageMeta({
 
 const store: any = useStore();
 const utils = useUtils();
+const states = useStates();
 const { isLogin } = storeToRefs<any>(store);
 const route: any = useRoute();
 const valueInput = ref<string>('');

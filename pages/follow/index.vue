@@ -1,6 +1,6 @@
 <template>
   <div class="follow">
-    <div v-show="isLogin" class="follow-container">
+    <div v-show="states.isLogin" class="follow-container">
       <div v-if="loading">
         <section v-if="responsive" class="topic-follow-row">
           <div class="row-container">
@@ -334,7 +334,7 @@
       </div>
     </div>
 
-    <RequireAuth v-if="!isLogin" />
+    <RequireAuth v-if="!states.isLogin" />
   </div>
 </template>
 
@@ -358,6 +358,7 @@ definePageMeta({
 
 const store: any = useStore();
 const utils = useUtils();
+const states = useStates();
 const { isLogin } = storeToRefs<any>(store);
 const route = useRoute();
 const dataList = ref<any[]>([]);
