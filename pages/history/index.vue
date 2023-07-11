@@ -1,6 +1,6 @@
 <template>
   <div class="history">
-    <div v-show="states.isLogin" class="history-container">
+    <div v-show="store.isLogin" class="history-container">
       <div v-if="loading">
         <section v-if="responsive" class="topic-history-row">
           <div class="row-container">
@@ -346,7 +346,7 @@
       </div>
     </div>
 
-    <RequireAuth v-if="!states.isLogin" />
+    <RequireAuth v-if="!store.isLogin" />
   </div>
 </template>
 
@@ -556,7 +556,7 @@ const getData = async () => {
 };
 
 onBeforeMount(async () => {
-  if (!states.isLogin) return;
+  // if (!store.isLogin) return;
 
   await nextTick();
 
