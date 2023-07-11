@@ -216,6 +216,8 @@ onBeforeMount(() => {});
 getData();
 
 const onMouseEnter = ({ target }: { target: HTMLElement }) => {
+  if (loading.value) return;
+
   const rect = target.getBoundingClientRect();
 
   const offsetX = rect.left;
