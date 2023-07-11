@@ -5,26 +5,28 @@
     <div>
       <Header />
       <div :class="[collapsed ? 'expand' : '', 'body-content']">
-        <Sider />
-        <Drawer />
+        <div class="body-wrapper">
+          <Sider />
+          <Drawer />
 
-        <section
-          v-show="isLogin && $route.path == '/follow'"
-          id="topic-follow-column-teleport"
-        ></section>
+          <section
+            v-show="isLogin && $route.path == '/follow'"
+            id="topic-follow-column-teleport"
+          ></section>
 
-        <main class="main-content">
-          <!-- <BreadCrumb /> -->
-          <div class="container">
-            <slot />
-          </div>
-          <Footer />
-        </main>
+          <main class="main-content">
+            <!-- <BreadCrumb /> -->
+            <div class="container">
+              <slot />
+            </div>
+            <Footer />
+          </main>
 
-        <section
-          v-show="isLogin && $route.path == '/history'"
-          id="topic-history-column-teleport"
-        ></section>
+          <section
+            v-show="isLogin && $route.path == '/history'"
+            id="topic-history-column-teleport"
+          ></section>
+        </div>
       </div>
     </div>
   </div>
