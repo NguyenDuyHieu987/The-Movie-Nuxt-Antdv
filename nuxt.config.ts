@@ -78,6 +78,11 @@ export default defineNuxtConfig({
         //   src: 'https://apis.google.com/js/platform.js',
         //   type: 'text/javascript',
         // },
+        {
+          src: 'https://accounts.google.com/gsi/client',
+          type: 'text/javascript',
+          async: true,
+        },
         // {
         //   src: 'https://api.ok.ru/js/fapi5.js',
         //   type: 'text/javascript',
@@ -178,6 +183,7 @@ export default defineNuxtConfig({
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/vuelazyload',
+    // '@/plugins/googlelogin',
     // { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
