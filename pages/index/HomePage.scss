@@ -1,10 +1,12 @@
 .body-content:has(.home-container) {
-  .ant-layout.main-content {
+  .body-wrapper {
     max-width: 100%;
   }
 
-  .ant-layout-content.container {
-    padding: 0px;
+  .main.main-content {
+    & > .container {
+      padding: 0px;
+    }
   }
 
   .carousel-group {
