@@ -262,14 +262,14 @@ const responsiveHorizoltal = computed<any>((): any => ({
     slidesPerView: 4,
     slidesPerGroup: 4,
   },
-  // 1500: {
-  //   slidesPerView: 5,
-  //   slidesPerGroup: 5,
-  // },
-  1700: {
+  1500: {
     slidesPerView: 5,
     slidesPerGroup: 5,
     spaceBetween: 5,
+  },
+  1700: {
+    slidesPerView: 5,
+    slidesPerGroup: 5,
   },
   2000: {
     slidesPerView: 6,
@@ -310,11 +310,11 @@ const responsiveVertical = computed<any>((): any => ({
   1550: {
     slidesPerView: 7,
     slidesPerGroup: 7,
+    spaceBetween: 5,
   },
   1700: {
     slidesPerView: 8,
     slidesPerGroup: 8,
-    spaceBetween: 5,
   },
   2000: {
     slidesPerView: 9,
