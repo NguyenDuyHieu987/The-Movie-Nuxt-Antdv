@@ -24,45 +24,47 @@
         <BillboardItem :item="item" />
       </el-carousel-item>
 
-      <div class="carousel-arrow" v-show="dataModel?.length">
-        <el-tooltip
-          :teleported="false"
-          :title="prevItemCarousel"
-          :content="prevItemCarousel"
-          popper-class="el-tooltip"
-          placement="top"
-        >
-          <a-button
-            @click="billboard.prev()"
-            size="large"
-            type="text"
-            shape="circle"
+      <ClientOnly>
+        <div class="carousel-arrow" v-show="dataModel?.length">
+          <el-tooltip
+            :teleported="false"
+            :title="prevItemCarousel"
+            :content="prevItemCarousel"
+            popper-class="el-tooltip"
+            placement="top"
           >
-            <template #icon>
-              <Icon name="fa6-solid:chevron-left"></Icon>
-            </template>
-          </a-button>
-        </el-tooltip>
+            <a-button
+              @click="billboard.prev()"
+              size="large"
+              type="text"
+              shape="circle"
+            >
+              <template #icon>
+                <Icon name="fa6-solid:chevron-left"></Icon>
+              </template>
+            </a-button>
+          </el-tooltip>
 
-        <el-tooltip
-          :teleported="false"
-          :title="nextItemCarousel"
-          :content="nextItemCarousel"
-          popper-class="el-tooltip"
-          placement="top"
-        >
-          <a-button
-            @click="billboard.next()"
-            size="large"
-            type="text"
-            shape="circle"
+          <el-tooltip
+            :teleported="false"
+            :title="nextItemCarousel"
+            :content="nextItemCarousel"
+            popper-class="el-tooltip"
+            placement="top"
           >
-            <template #icon>
-              <Icon name="fa6-solid:chevron-right"></Icon>
-            </template>
-          </a-button>
-        </el-tooltip>
-      </div>
+            <a-button
+              @click="billboard.next()"
+              size="large"
+              type="text"
+              shape="circle"
+            >
+              <template #icon>
+                <Icon name="fa6-solid:chevron-right"></Icon>
+              </template>
+            </a-button>
+          </el-tooltip>
+        </div>
+      </ClientOnly>
     </el-carousel>
   </div>
 </template>
@@ -74,7 +76,7 @@ import { ElCarousel, ElCarouselItem, ElTooltip } from 'element-plus';
 
 const props = defineProps<{ data1: any[] }>();
 
-const billboard = ref<any>();
+const billboard = ref();
 // const data = ref<any[]>([]);
 const prevItemCarousel = ref<string>('');
 const nextItemCarousel = ref<string>('');
