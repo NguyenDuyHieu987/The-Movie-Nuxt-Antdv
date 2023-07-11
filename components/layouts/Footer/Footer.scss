@@ -1,20 +1,22 @@
 @media (prefers-color-scheme: dark) {
-  .ant-layout-footer.footer {
+  footer.footer {
     // background-color: var(--background-content-color);
   }
 }
 
-.ant-layout-footer.footer {
-  // background-color: transparent;
-  background-color: var(--background-content-color);
-  border-top: 1px solid var(--border-regular-light);
-  margin-top: auto;
+footer.footer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  font-size: 1.4rem;
+  // background-color: transparent;
+  background-color: var(--background-content-color);
+  border-top: 1px solid var(--border-regular-light);
+  margin-top: auto;
+  font-size: 1.45rem;
+  padding: 24px 50px;
   color: var(--text-color);
   z-index: 1;
 
@@ -72,7 +74,8 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .ant-layout-footer.footer {
-    padding: 24px 25px;
+  footer.footer {
+    padding: 24px;
+    font-size: 1.4rem;
   }
 }

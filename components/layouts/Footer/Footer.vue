@@ -1,5 +1,5 @@
 <template>
-  <a-layout-footer class="footer">
+  <footer class="footer">
     <div class="footer-container">
       <div class="logo">
         <NuxtLink :to="{ path: '/' }">
@@ -42,7 +42,7 @@
       </div>
     </div>
     <p class="copyright">© Copyright by 2022 Phimhay247 All Right Reserved</p>
-  </a-layout-footer>
+  </footer>
 </template>
 
 <script setup lang="ts">

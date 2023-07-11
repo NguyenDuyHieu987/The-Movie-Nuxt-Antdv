@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header class="header-bar">
+  <header class="header-bar">
     <div class="left-header">
       <button class="menu-btn mobile" @click="store.setOpendrawer()">
         <!-- v-if="!openDrawer" -->
@@ -317,7 +317,7 @@
         </a-menu-item>
       </a-menu>
     </div>
-  </a-layout-header>
+  </header>
 </template>
 
 <script setup lang="ts">

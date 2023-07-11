@@ -1,7 +1,7 @@
 <template>
   <div class="follow">
     <div v-show="isLogin" class="follow-container">
-      <a-layout v-if="loading">
+      <div v-if="loading">
         <section v-if="responsive" class="topic-follow-row">
           <div class="row-container">
             <div class="top">
@@ -331,7 +331,7 @@
             </el-skeleton>
           </div>
         </section>
-      </a-layout>
+      </div>
     </div>
 
     <RequireAuth v-if="!isLogin" />

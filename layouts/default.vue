@@ -2,33 +2,31 @@
   <div>
     <RequireAuthDialog />
 
-    <a-layout class="app-wrapper">
+    <div>
       <Header />
-      <a-layout :class="[collapsed ? 'expand' : '', 'body-content']">
+      <div :class="[collapsed ? 'expand' : '', 'body-content']">
         <Sider />
         <Drawer />
 
-        <a-layout
+        <section
           v-show="isLogin && $route.path == '/follow'"
           id="topic-follow-column-teleport"
-        ></a-layout>
+        ></section>
 
-        <a-layout class="main-content">
+        <main class="main-content">
           <!-- <BreadCrumb /> -->
-          <a-layout-content class="container">
-            <div class="wrapper">
-              <slot />
-            </div>
-          </a-layout-content>
+          <div class="container">
+            <slot />
+          </div>
           <Footer />
-        </a-layout>
+        </main>
 
-        <a-layout
+        <section
           v-show="isLogin && $route.path == '/history'"
           id="topic-history-column-teleport"
-        ></a-layout>
-      </a-layout>
-    </a-layout>
+        ></section>
+      </div>
+    </div>
   </div>
 </template>
 

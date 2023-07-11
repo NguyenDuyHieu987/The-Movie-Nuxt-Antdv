@@ -343,6 +343,7 @@
 
 #topic-follow-column-teleport {
   position: relative;
+  flex: auto;
   padding: 15px 0px 0px 15px;
   max-width: 356px;
   // margin-right: 3px;
@@ -580,7 +581,7 @@
 }
 
 .body-content:has(.follow .follow-container) {
-  .ant-layout.main-content {
+  main.main-content {
     margin-left: 0px;
     margin-right: auto;
     max-width: 1100px;
@@ -589,13 +590,6 @@
   #topic-follow-column-teleport {
     margin-left: 0px;
     // margin-left: auto;
-  }
-
-  .ant-layout-content.container {
-    // margin-left: 360px !important;
-    & > .wrapper {
-      overflow: visible;
-    }
   }
 }
 

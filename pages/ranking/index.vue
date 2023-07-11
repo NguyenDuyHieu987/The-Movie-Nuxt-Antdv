@@ -1,7 +1,7 @@
 <template>
   <div class="ranking padding-content">
-    <a-layout class="ranking-container">
-      <a-layout-content>
+    <div class="ranking-container">
+      <div class="ranking-body">
         <h2 class="gradient-title-default underline">
           <span>Trending</span>
         </h2>
@@ -21,9 +21,9 @@
           :pageSize="pageSize"
           :onChangePage="onChangePage"
         />
-      </a-layout-content>
+      </div>
       <RankSide />
-    </a-layout>
+    </div>
   </div>
 </template>
 

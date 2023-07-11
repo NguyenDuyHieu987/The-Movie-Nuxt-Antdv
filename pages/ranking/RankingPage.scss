@@ -4,13 +4,14 @@
     flex-direction: row;
     gap: 15px;
     background-color: transparent;
+    width: 100%;
+
+    .ranking-body {
+      flex-grow: 1;
+    }
 
     .gradient-title-default {
       margin-top: 0px;
-    }
-
-    .ant-layout-content {
-      background-color: transparent;
     }
   }
 }
@@ -20,10 +21,6 @@
     .ranking-container {
       display: flex;
       flex-direction: column;
-
-      .ant-layout-content {
-        width: 100%;
-      }
     }
   }
 }

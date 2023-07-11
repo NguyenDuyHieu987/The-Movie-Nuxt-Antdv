@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <div v-show="isLogin" class="history-container">
-      <a-layout v-if="loading">
+      <div v-if="loading">
         <section v-if="responsive" class="topic-history-row">
           <div class="row-container">
             <div class="top">
@@ -343,7 +343,7 @@
             </el-skeleton>
           </div>
         </section>
-      </a-layout>
+      </div>
     </div>
 
     <RequireAuth v-if="!isLogin" />

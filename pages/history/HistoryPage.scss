@@ -318,6 +318,7 @@
 
 #topic-history-column-teleport {
   position: relative;
+  flex: auto;
   padding: 15px 0px 0px 0px;
   max-width: 341px;
   // margin-left: 3px;
@@ -566,14 +567,6 @@
   #topic-history-column-teleport {
     margin-right: auto;
     // margin-right: 0px;
-  }
-
-  .ant-layout-content.container {
-    // margin-left: 360px !important;
-
-    & > .wrapper {
-      overflow: visible;
-    }
   }
 }
 
