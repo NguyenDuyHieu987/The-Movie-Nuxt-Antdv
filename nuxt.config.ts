@@ -262,13 +262,13 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { static: true, swr: true },
     '/search/**': { prerender: true, swr: true },
-    '/discover/**': { ssr: false },
+    '/discover/**': { ssr: false, swr: true },
     '/list/**': { prerender: true, swr: true },
     '/history/**': { prerender: true, swr: true },
     '/ranking/**': { prerender: true, swr: true },
-    '/info-movie/**': { ssr: false },
-    '/info-tv/**': { ssr: false },
-    '/play-movie/**': { ssr: false },
-    '/play-tv/**': { ssr: false },
+    '/info-movie/**': { ssr: false, swr: true },
+    '/info-tv/**': { ssr: false, swr: true },
+    '/play-movie/**': { ssr: false, swr: true },
+    '/play-tv/**': { ssr: false, swr: true },
   },
 });
