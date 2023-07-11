@@ -393,7 +393,7 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(async () => {
+onBeforeMount(() => {
   // console.log(router.options.history.state);
   getData();
 });

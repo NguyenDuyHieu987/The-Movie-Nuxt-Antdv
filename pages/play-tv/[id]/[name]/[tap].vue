@@ -61,8 +61,8 @@
               <template #tagsInfo>
                 <span class="text">{{
                   dataMovie?.views
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' lượt xem'
+                    ?.toString()
+                    ?.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' lượt xem'
                 }}</span>
               </template>
             </Tags>
@@ -374,7 +374,7 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(async () => {
+onBeforeMount(() => {
   getData();
 });
 
