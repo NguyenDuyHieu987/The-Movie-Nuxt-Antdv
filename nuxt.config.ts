@@ -182,7 +182,7 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    // preset: 'node-server',
+    preset: 'static',
     prerender: {
       routes: [
         '/',
