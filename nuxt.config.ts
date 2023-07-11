@@ -262,7 +262,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { static: true, swr: true },
     '/search/**': { prerender: true, swr: true },
-    '/discover/**': { swr: true },
+    '/discover/**': { ssr: false },
     '/list/**': { prerender: true, swr: true },
     '/history/**': { prerender: true, swr: true },
     '/ranking/**': { prerender: true, swr: true },
