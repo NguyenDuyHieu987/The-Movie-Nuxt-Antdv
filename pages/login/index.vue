@@ -355,6 +355,10 @@ const handleFacebookLogin = async () => {
     });
 };
 
+onBeforeMount(() => {
+  utils.initFacebookSdk();
+});
+
 onMounted(() => {
   window.google.accounts.id.initialize({
     client_id:

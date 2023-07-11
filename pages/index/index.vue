@@ -72,7 +72,7 @@
 
       <section class="home-section cartoon">
         <h2 class="gradient-title-default">
-          <!-- <span>Hoạt hình - Anime đặc sắc</span> -->
+          <span>Hoạt hình - Anime đặc sắc</span>
           <NuxtLink
             :to="{
               path: `/discover/genre/hoat-hinh`,
