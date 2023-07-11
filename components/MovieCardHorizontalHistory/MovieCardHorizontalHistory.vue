@@ -431,6 +431,7 @@ const getData = async () => {
   //   });
 };
 
+onBeforeMount(() => {});
 getData();
 
 const handelAddToList = () => {

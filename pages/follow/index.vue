@@ -1,12 +1,9 @@
 <template>
-  <div class="follow padding-content">
+  <div class="follow">
     <div v-if="isLogin" class="follow-container">
       <a-layout>
-        <a-layout-sider
-          class="topic-follow-column-responsive"
-          width="calc(100% + 40px)"
-        >
-          <div class="column-container">
+        <section v-if="loading" class="topic-follow-row">
+          <div class="row-container">
             <div class="top">
               <div class="backdrop">
                 <NuxtLink
@@ -148,7 +145,7 @@
               </div>
             </div>
           </div>
-        </a-layout-sider>
+        </section>
 
         <Teleport v-if="loading" to="#topic-follow-column-teleport">
           <a-layout-sider class="topic-follow-column" :width="340">
@@ -291,12 +288,12 @@
           </a-layout-sider>
         </Teleport>
 
-        <a-layout-content class="follow-main-content">
+        <a-layout-content class="follow-main-content padding-content">
           <h2 class="gradient-title-default underline">
             <span>Danh sách phát</span>
           </h2>
 
-          <section class="movie-follow" v-show="dataList?.length">
+          <section class="movie-follow">
             <MovieCardHorizontalFollow
               v-for="(item, index) in dataList"
               :index="index"
@@ -411,20 +408,16 @@ const setBackgroundColor = (color: string[]) => {
     );
   }
 
-  const topic_follow_column_responsive = document.getElementsByClassName(
-    'topic-follow-column-responsive'
+  const topic_follow_row = document.getElementsByClassName(
+    'topic-follow-row'
   )[0] as HTMLElement;
 
-  if (topic_follow_column_responsive) {
-    topic_follow_column_responsive.setAttribute(
-      'style',
-      `background-image: ${main_color}`
-    );
+  if (topic_follow_row) {
+    topic_follow_row.setAttribute('style', `background-image: ${main_color}`);
 
-    const ant_input_affix_wrapper =
-      topic_follow_column_responsive.getElementsByClassName(
-        'ant-input-affix-wrapper'
-      )[0] as HTMLElement;
+    const ant_input_affix_wrapper = topic_follow_row.getElementsByClassName(
+      'ant-input-affix-wrapper'
+    )[0] as HTMLElement;
 
     ant_input_affix_wrapper.setAttribute(
       'style',

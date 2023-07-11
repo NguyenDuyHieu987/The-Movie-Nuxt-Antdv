@@ -48,6 +48,7 @@
 
     & > span > a,
     svg {
+      font-size: 1.45rem;
       transition: all 0s;
       color: var(--text-color-gray1);
     }
@@ -106,6 +107,8 @@
     color: var(--text-color-gray1);
 
     .ant-menu-submenu-title {
+      font-size: 1.45rem;
+
       svg {
         transition: all 0s;
       }
@@ -164,6 +167,21 @@
           overflow: hidden;
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .ant-menu-item {
+    & > span > a,
+    svg {
+      font-size: 1.4rem;
+    }
+  }
+
+  .ant-menu-submenu {
+    .ant-menu-submenu-title {
+      font-size: 1.4rem;
     }
   }
 }

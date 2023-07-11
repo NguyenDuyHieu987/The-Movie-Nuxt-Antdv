@@ -146,6 +146,7 @@
       .title-trigger-collapse {
         // margin-left: 13px;
         margin-left: 6px;
+        font-size: 1.45rem;
         user-select: none;
         opacity: 1;
         transition: all 0s;
@@ -192,5 +193,13 @@
     overflow: hidden;
     border: none;
     // display: none;
+
+    .ant-layout-footer {
+      .trigger-collapse {
+        .title-trigger-collapse {
+          font-size: 1.4rem;
+        }
+      }
+    }
   }
 }

@@ -310,6 +310,7 @@ const getData = async () => {
   //   });
 };
 
+onBeforeMount(() => {});
 getData();
 
 const handleRemoveFromList = async () => {

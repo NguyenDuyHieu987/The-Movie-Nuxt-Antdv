@@ -1,12 +1,9 @@
 <template>
-  <div class="history padding-content">
+  <div class="history">
     <div v-if="isLogin" class="history-container">
       <a-layout>
-        <a-layout-sider
-          class="topic-history-column-responsive"
-          width="calc(100% + 40px)"
-        >
-          <div class="column-container">
+        <section v-if="loading" class="topic-history-row">
+          <div class="row-container">
             <div class="top">
               <div class="backdrop">
                 <NuxtLink
@@ -156,7 +153,7 @@
               </div>
             </div>
           </div>
-        </a-layout-sider>
+        </section>
 
         <Teleport v-if="loading" to="#topic-history-column-teleport">
           <a-layout-sider class="topic-history-column" :width="340">
@@ -307,11 +304,11 @@
           </a-layout-sider>
         </Teleport>
 
-        <a-layout-content class="history-main-content">
+        <a-layout-content class="history-main-content padding-content">
           <h2 class="gradient-title-default underline">
             <span>Lịch sử xem</span>
           </h2>
-          <section class="movie-history" v-show="dataHistory?.length">
+          <section class="movie-history">
             <MovieCardHorizontalHistory
               v-for="(item, index) in dataHistory"
               :index="index"
@@ -427,23 +424,18 @@ const setBackgroundColor = (color: string[]) => {
     );
   }
 
-  const topic_history_column_responsive = document.getElementsByClassName(
-    'topic-history-column-responsive'
-  )[0];
+  const topic_history_row =
+    document.getElementsByClassName('topic-history-row')[0];
 
-  if (topic_history_column_responsive) {
-    topic_history_column_responsive.setAttribute(
-      'style',
-      `background-image: ${main_color}`
-    );
+  if (topic_history_row) {
+    topic_history_row.setAttribute('style', `background-image: ${main_color}`);
 
     // const search_history =
-    //   topic_history_column_responsive.querySelector('.search-history');
+    //   topic_history_row.querySelector('.search-history');
 
-    const ant_input_affix_wrapper =
-      topic_history_column_responsive.getElementsByClassName(
-        'ant-input-affix-wrapper'
-      )[0] as HTMLElement;
+    const ant_input_affix_wrapper = topic_history_row.getElementsByClassName(
+      'ant-input-affix-wrapper'
+    )[0] as HTMLElement;
     ant_input_affix_wrapper.setAttribute(
       'style',
       `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`
