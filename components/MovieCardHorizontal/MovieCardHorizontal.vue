@@ -230,8 +230,8 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   offsetWidth.value = target.offsetWidth;
   offsetHeight.value = target.offsetHeight;
 
-  imgHeight.value = target.querySelector('img')!.offsetHeight;
-  imgWidth.value = target.querySelector('img')!.offsetWidth;
+  imgHeight.value = target.querySelector('img')!?.offsetHeight;
+  imgWidth.value = target.querySelector('img')!?.offsetWidth;
 
   rectBound.value = rect;
 
