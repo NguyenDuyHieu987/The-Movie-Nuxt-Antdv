@@ -270,5 +270,8 @@ export default defineNuxtConfig({
     '/info-tv/**': { ssr: false, swr: true, prerender: true },
     '/play-movie/**': { ssr: false, swr: true, prerender: true },
     '/play-tv/**': { ssr: false, swr: true, prerender: true },
+    '/login': { ssr: false, swr: true, prerender: true },
+    '/signup': { ssr: false, swr: true, prerender: true },
+    '/oauth': { ssr: false, swr: true, prerender: true },
   },
 });
