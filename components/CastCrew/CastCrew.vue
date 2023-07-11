@@ -78,6 +78,7 @@ const responsiveCarousel = ref<any>({
   900: {
     slidesPerView: 4,
     // slidesPerGroup: 4,
+    spaceBetween: 3,
   },
   1000: {
     slidesPerView: 5,
@@ -94,6 +95,7 @@ const responsiveCarousel = ref<any>({
   1550: {
     slidesPerView: 8,
     // slidesPerGroup: 8,
+    spaceBetween: 5,
   },
   1700: {
     slidesPerView: 9,

@@ -10,7 +10,7 @@
         SwiperScrollbar,
       ]"
       :breakpoints="responsive"
-      :space-between="0"
+      :space-between="7"
       :speed="500"
       effect="creative"
       :freeMode="{
