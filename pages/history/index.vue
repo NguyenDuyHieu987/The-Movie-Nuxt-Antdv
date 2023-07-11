@@ -556,6 +556,8 @@ const getData = async () => {
 };
 
 onBeforeMount(async () => {
+  if (!states.isLogin) return;
+
   await nextTick();
 
   getData();

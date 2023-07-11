@@ -77,7 +77,7 @@ const getData = async () => {
   }
 
   // setTimeout(() => {
-  //   if (store.$state.loadingHomePage == false) {
+  //   if (store.loadingHomePage == false) {
   //     store.$state.loadingHomePage = true;
   //   }
   //   loadingHomePage.value = false;
