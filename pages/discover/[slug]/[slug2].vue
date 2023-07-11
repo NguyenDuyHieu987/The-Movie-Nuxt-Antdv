@@ -319,9 +319,7 @@ watch(route, () => {
   // internalInstance.appContext.config.globalProperties.$Progress.finish();
 });
 
-onBeforeMount(async () => {
-  await nextTick();
-
+onBeforeMount(() => {
   isFilter.value = false;
   loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
