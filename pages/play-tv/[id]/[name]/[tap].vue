@@ -374,7 +374,7 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
   getData();
 });
 
