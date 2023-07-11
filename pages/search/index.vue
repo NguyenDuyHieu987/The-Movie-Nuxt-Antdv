@@ -97,7 +97,9 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
+  await nextTick();
+
   internalInstance.appContext.config.globalProperties.$Progress.start();
   getData();
 });

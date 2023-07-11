@@ -62,8 +62,6 @@ useSeoMeta({
 });
 
 const getData = async () => {
-  await nextTick();
-
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
@@ -82,7 +80,9 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
+  await nextTick();
+
   getData();
 });
 

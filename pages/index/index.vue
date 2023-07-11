@@ -215,7 +215,6 @@ import { getNowPlaying, getTopRated, getUpComing } from '~/services/movieSlug';
 import { getMoviesByGenres } from '~/services/discover';
 import { getMyRecommend } from '~/services/recommend';
 import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
-import { nextTick } from 'vue';
 
 useHead({
   title: 'Phimhay247',
@@ -312,8 +311,6 @@ const responsiveVertical = computed<any>((): any => ({
 }));
 
 const getData = async () => {
-  await nextTick();
-
   await useAsyncData(`trending/all/1`, () => getTrending(1))
     .then((response: any) => {
       trendings.value = response.data.value?.results;
@@ -386,7 +383,9 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
+  await nextTick();
+
   getData();
 });
 

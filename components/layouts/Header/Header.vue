@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header class="header">
+  <a-layout-header class="header-bar">
     <div class="left-header">
       <button class="menu-btn mobile" @click="store.setOpendrawer()">
         <!-- v-if="!openDrawer" -->

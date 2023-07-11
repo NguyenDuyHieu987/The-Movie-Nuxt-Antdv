@@ -1,4 +1,4 @@
-.ant-layout-header.header {
+.ant-layout-header.header-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -261,7 +261,7 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .ant-layout-header.header {
+  .ant-layout-header.header-bar {
     padding-left: 20px;
     padding-right: 0px;
 
@@ -316,7 +316,7 @@
 }
 
 @media only screen and (max-width: 650px) {
-  .ant-layout-header.header {
+  .ant-layout-header.header-bar {
     padding-left: 15px;
     padding-right: 0px;
 
