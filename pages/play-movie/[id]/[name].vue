@@ -343,10 +343,6 @@ window.scrollTo({
   behavior: 'instant',
 });
 
-onBeforeRouteLeave(() => {
-  // updateHistory();
-});
-
 const updateHistory = () => {
   if (isPlayVideo.value == true && store.$state.isLogin) {
     if (
@@ -374,6 +370,10 @@ const updateHistory = () => {
   }
 };
 
+onBeforeRouteLeave(() => {
+  updateHistory();
+});
+
 const onPLayVideoPlayer = (e: any) => {
   duration.value = e?.duration;
   isPlayVideo.value = true;
@@ -388,13 +388,13 @@ const onTimeUpdateVideoPlayer = (e: any) => {
         seconds.value = e.seconds;
         percent.value = e.percent;
 
-        updateHistory();
+        // updateHistory();
       } else {
         setTimeout(() => {
           seconds.value = e.seconds;
           percent.value = e.percent;
 
-          updateHistory();
+          // updateHistory();
         }, 5000);
       }
 
