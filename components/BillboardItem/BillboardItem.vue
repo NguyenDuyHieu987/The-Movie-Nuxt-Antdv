@@ -139,9 +139,9 @@ const utils = useUtils();
 const isAddToList = ref<boolean>(false);
 
 onBeforeMount(async () => {
-  if (store.$state.isLogin) {
+  if (store.isLogin) {
     await useAsyncData(
-      `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
+      `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
       () => getItemList(props.item?.id)
     )
       .then((movieRespone: any) => {
@@ -156,8 +156,8 @@ onBeforeMount(async () => {
 });
 
 const handelAddToList = () => {
-  if (!store.$state?.isLogin) {
-    store.$state.openRequireAuthDialog = true;
+  if (!store?.isLogin) {
+    store.openRequireAuthDialog = true;
     return;
   }
   if (!isAddToList.value) {

@@ -31,7 +31,7 @@
 
       <div
         class="home-section recommend"
-        v-show="store.$state?.isLogin && recommends?.length"
+        v-show="store?.isLogin && recommends?.length"
       >
         <h2 class="gradient-title-default">
           <span>Gợi ý cho bạn</span>
@@ -381,7 +381,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  if (store.$state.isLogin) {
+  if (store.isLogin) {
     await useAsyncData('recommend/get/1', () =>
       getMyRecommend(skipRecommend.value)
     )

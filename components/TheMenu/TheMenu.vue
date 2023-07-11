@@ -189,7 +189,7 @@
             path: `/discover/genre/${item?.short_name}`,
           }"
         >
-          <!-- @click="$store.$state.breadCrumbValue = item?.name_vietsub" -->
+          <!-- @click="$store.breadCrumbValue = item?.name_vietsub" -->
 
           {{ item?.name_vietsub }}
         </NuxtLink>
@@ -252,7 +252,7 @@
             path: `/discover/country/${item?.short_name}`,
           }"
         >
-          <!-- @click="$store.$state.breadCrumbValue = item?.name" -->
+          <!-- @click="$store.breadCrumbValue = item?.name" -->
 
           {{ item?.name }}
         </NuxtLink>
@@ -367,13 +367,13 @@ const getData = async () => {
 
       countries.value = response[2].data.value?.result;
 
-      store.$state.allGenres = response[0].data.value?.result;
-      store.$state.allYears = response[1].data.value?.result.sort(
+      store.allGenres = response[0].data.value?.result;
+      store.allYears = response[1].data.value?.result.sort(
         (a: year, b: year) => {
           return +b.name.slice(-4) - +a.name.slice(-4);
         }
       );
-      store.$state.allCountries = response[2].data.value?.result;
+      store.allCountries = response[2].data.value?.result;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

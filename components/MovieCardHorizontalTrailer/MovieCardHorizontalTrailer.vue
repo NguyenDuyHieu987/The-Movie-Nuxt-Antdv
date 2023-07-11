@@ -155,13 +155,13 @@ const getData = async () => {
     }
   }
 
-  if (store.$state.isLogin) {
+  if (store.isLogin) {
     if (dataMovie.value?.in_history) {
       isInHistory.value = true;
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {
       await useAsyncData(
-        `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
+        `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
         () => getItemHistory(props.item?.id)
       )
         .then((movieRespone: any) => {

@@ -418,9 +418,9 @@ const handleSearch = (value: string) => {
 
 const handleLogout = () => {
   if (isLogin) {
-    store.$state.userAccount = {};
-    store.$state.isLogin = false;
-    store.$state.role = 'normal';
+    store.userAccount = {};
+    store.isLogin = false;
+    store.role = 'normal';
 
     window.localStorage.removeItem('userAccount');
     window.localStorage.removeItem('userToken');

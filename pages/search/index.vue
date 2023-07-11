@@ -20,10 +20,7 @@
         <a-select-option value="tv" label="Phim bộ">Phim bộ</a-select-option>
       </a-select>
     </h2>
-    <section
-      class="search-section"
-      :class="{ collapsed: store.$state.collapsed }"
-    >
+    <section class="search-section" :class="{ collapsed: store.collapsed }">
       <div class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in searchData"

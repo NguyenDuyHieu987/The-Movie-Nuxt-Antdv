@@ -169,12 +169,12 @@ const getData = async () => {
     }
   }
 
-  if (store.$state.isLogin) {
+  if (store.isLogin) {
     if (dataMovie.value?.in_list) {
       isAddToList.value = true;
     } else {
       await useAsyncData(
-        `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
+        `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
         () => getItemList(props.item?.id)
       )
         .then((movieRespone: any) => {
@@ -192,7 +192,7 @@ const getData = async () => {
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {
       await useAsyncData(
-        `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
+        `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
         () => getItemHistory(props.item?.id)
       )
         .then((movieRespone: any) => {
@@ -211,8 +211,8 @@ const getData = async () => {
 getData();
 
 const handelAddToList = (e: any) => {
-  if (!store.$state?.isLogin) {
-    store.$state.openRequireAuthDialog = true;
+  if (!store?.isLogin) {
+    store.openRequireAuthDialog = true;
     return;
   }
   if (!isAddToList.value) {

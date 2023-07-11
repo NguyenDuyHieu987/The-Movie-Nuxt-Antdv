@@ -146,14 +146,14 @@
                       :to="`/discover/country/${
                         getCountryByOriginalLanguage(
                           dataMovie?.original_language,
-                          store.$state.allCountries
+                          store.allCountries
                         )?.short_name || 'au-my'
                       }`"
                     >
                       {{
                         getCountryByOriginalLanguage(
                           dataMovie?.original_language,
-                          store.$state.allCountries
+                          store.allCountries
                         )?.name || ''
                       }}
                     </NuxtLink>
@@ -171,8 +171,7 @@
                   >
                     <NuxtLink
                       :to="`/discover/genre/${
-                        getGenreById(item?.id, store.$state.allGenres)
-                          ?.short_name
+                        getGenreById(item?.id, store.allGenres)?.short_name
                       }`"
                       >{{ item?.name }}
                     </NuxtLink>
@@ -292,7 +291,7 @@ const getData = async () => {
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 
-  if (store.$state.isLogin) {
+  if (store.isLogin) {
     if (dataMovie.value?.in_list) {
       isAddToList.value = true;
     }
@@ -303,7 +302,7 @@ const getData = async () => {
     }
 
     // await useAsyncData(
-    //   `itemlist/${store.$state?.userAccount?.id}/${route.params?.id}`,
+    //   `itemlist/${store?.userAccount?.id}/${route.params?.id}`,
     //   () => getItemList(route.params?.id)
     // )
     //   .then((movieRespone: any) => {
@@ -316,7 +315,7 @@ const getData = async () => {
     //   });
 
     // await useAsyncData(
-    //   `itemhistory/${store.$state?.userAccount?.id}/${route.params?.id}`,
+    //   `itemhistory/${store?.userAccount?.id}/${route.params?.id}`,
     //   () => getItemHistory(route.params?.id)
     // )
     //   .then((movieRespone: any) => {
@@ -344,7 +343,7 @@ window.scrollTo({
 });
 
 const updateHistory = () => {
-  if (isPlayVideo.value == true && store.$state.isLogin) {
+  if (isPlayVideo.value == true && store.isLogin) {
     if (
       seconds.value > 0 &&
       percent.value > 0 &&
@@ -409,8 +408,8 @@ const onTimeUpdateVideoPlayer = (e: any) => {
 };
 
 const handelAddToList = () => {
-  if (!store.$state?.isLogin) {
-    store.$state.openRequireAuthDialog = true;
+  if (!store?.isLogin) {
+    store.openRequireAuthDialog = true;
     return;
   }
   if (!isAddToList.value) {

@@ -418,7 +418,7 @@ const getData = async () => {
   }
 
   // await useAsyncData(
-  //   `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
+  //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
   //   () => getItemList( props.item?.id)
   // )
   //   .then((movieRespone: any) => {

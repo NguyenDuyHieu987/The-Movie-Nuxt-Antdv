@@ -10,10 +10,7 @@
         <span>{{ metaHead }}</span>
       </h2>
     </div>
-    <section
-      class="discover-section"
-      :class="{ collapsed: store.$state.collapsed }"
-    >
+    <section class="discover-section" :class="{ collapsed: store.collapsed }">
       <div class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in dataDiscover"
@@ -266,7 +263,7 @@ const getData = async () => {
           });
         metaHead.value =
           'Thể loại: ' +
-          getGenreByShortName(route.params?.slug2, store.$state?.allGenres)
+          getGenreByShortName(route.params?.slug2, store?.allGenres)
             ?.name_vietsub;
 
         break;

@@ -226,9 +226,9 @@ const handleSubmit = () => {
   })
     .then((response: any) => {
       if (response?.isLogin == true) {
-        store.$state.isLogin = true;
-        store.$state.userAccount = response?.result;
-        store.$state.role = response?.result?.role;
+        store.isLogin = true;
+        store.userAccount = response?.result;
+        store.role = response?.result?.role;
 
         utils.localStorage.setWithExpiry(
           'userAccount',
@@ -313,8 +313,8 @@ const handleFacebookLogin = async () => {
               style: 'color: green',
             }),
         });
-        store.$state.userAccount = response?.result;
-        store.$state.isLogin = true;
+        store.userAccount = response?.result;
+        store.isLogin = true;
 
         utils.localStorage.setWithExpiry(
           'userAccount',
@@ -325,8 +325,8 @@ const handleFacebookLogin = async () => {
         // navigateTo({ path: '/' });
         navigateTo({ path: urlBack.value });
       } else if (response.isLogin == true) {
-        store.$state.userAccount = response?.result;
-        store.$state.isLogin = true;
+        store.userAccount = response?.result;
+        store.isLogin = true;
 
         utils.localStorage.setWithExpiry(
           'userAccount',
@@ -416,8 +416,8 @@ const handleGooglePopupCallback = (authResponse: any) => {
               }),
           });
 
-          store.$state.userAccount = response?.result;
-          store.$state.isLogin = true;
+          store.userAccount = response?.result;
+          store.isLogin = true;
 
           utils.localStorage.setWithExpiry(
             'userAccount',
@@ -430,8 +430,8 @@ const handleGooglePopupCallback = (authResponse: any) => {
           // navigateTo({ path: '/' });
           navigateTo({ path: urlBack.value });
         } else if (response.isLogin == true) {
-          store.$state.userAccount = response?.result;
-          store.$state.isLogin = true;
+          store.userAccount = response?.result;
+          store.isLogin = true;
 
           utils.localStorage.setWithExpiry(
             'userAccount',

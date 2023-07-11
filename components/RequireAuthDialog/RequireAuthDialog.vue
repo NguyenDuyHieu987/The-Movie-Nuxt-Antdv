@@ -1,8 +1,8 @@
 <template>
-  <Teleport v-if="store.$state.openRequireAuthDialog" to="body">
+  <Teleport v-if="store.openRequireAuthDialog" to="body">
     <!-- <el-dialog
       class="require-auth-dialog"
-      v-model="store.$state.openRequireAuthDialog"
+      v-model="store.openRequireAuthDialog"
       width="30%"
       align-center
       center
@@ -42,7 +42,7 @@
 
     <a-modal
       class="require-auth-dialog"
-      v-model:visible="store.$state.openRequireAuthDialog"
+      v-model:visible="store.openRequireAuthDialog"
       width="30%"
       centered
       destroyOnClose

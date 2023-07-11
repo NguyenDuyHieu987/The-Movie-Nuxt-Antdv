@@ -79,7 +79,7 @@ onMounted(() => {
   const sider_header = document.querySelector('.sider-header') as HTMLElement;
   menu!.addEventListener('scroll', (e: any) => {
     if (e.target.scrollTop > 0) {
-      // if (store.$state.isLogin) {
+      // if (store.isLogin) {
       sider_header.style.backgroundColor = 'var(--background-content-color)';
       // }
     } else {

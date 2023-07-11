@@ -88,8 +88,8 @@ const tooltipRating = ref<string[]>([
 ]);
 
 const handleRating = (value: number) => {
-  if (!store.$state?.isLogin) {
-    store.$state.openRequireAuthDialog = true;
+  if (!store?.isLogin) {
+    store.openRequireAuthDialog = true;
     return;
   }
 

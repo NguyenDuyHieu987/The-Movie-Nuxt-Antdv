@@ -296,7 +296,7 @@ const getData = async () => {
   }
 
   // await useAsyncData(
-  //   `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
+  //   `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
   //   () => getItemHistory(props.item?.id)
   // )
   //   .then((movieRespone: any) => {

@@ -68,7 +68,7 @@
                 <div class="user-info">
                   <p>
                     <strong>
-                      {{ store.$state.userAccount?.username }}
+                      {{ store.userAccount?.username }}
                     </strong>
                   </p>
                   <p class="count-video">
@@ -212,7 +212,7 @@
                 <div class="user-info">
                   <p>
                     <strong>
-                      {{ store.$state.userAccount?.username }}
+                      {{ store.userAccount?.username }}
                     </strong>
                   </p>
                   <p class="count-video">
@@ -356,7 +356,7 @@ definePageMeta({
   // middleware: ['require-auth'],
 });
 
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
 const states = useStates();
 const { isLogin } = storeToRefs<any>(store);
@@ -466,9 +466,8 @@ onMounted(() => {
       dataList.value?.length < total.value
     ) {
       loadMore.value = true;
-      useAsyncData(
-        `list/get/${store.$state.userAccount?.id}/${skip.value}`,
-        () => getList(skip.value)
+      useAsyncData(`list/get/${store.userAccount?.id}/${skip.value}`, () =>
+        getList(skip.value)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.data?.result?.length > 0) {
@@ -491,9 +490,7 @@ onMounted(() => {
 const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  await useAsyncData(`list/get/${store.$state.userAccount?.id}/1`, () =>
-    getList(1)
-  )
+  await useAsyncData(`list/get/${store.userAccount?.id}/1`, () => getList(1))
     .then((movieRespone: any) => {
       if (movieRespone.data.value?.result?.items?.length > 0) {
         dataList.value = movieRespone.data.value?.result?.items;
@@ -565,7 +562,7 @@ const searchFollow = (e: any) => {
     clearTimeout(debounce.value);
     debounce.value = setTimeout(() => {
       useAsyncData(
-        `list/search/${store.$state.userAccount?.id}/${e.target.value}`,
+        `list/search/${store.userAccount?.id}/${e.target.value}`,
         () => searchList(e.target.value)
       )
         .then((movieRespone: any) => {

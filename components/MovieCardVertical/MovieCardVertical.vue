@@ -178,14 +178,14 @@ const getData = async () => {
     }
   }
 
-  if (store.$state.isLogin) {
+  if (store.isLogin) {
     if (dataMovie.value?.in_list) {
       isAddToList.value = true;
     }
 
     // await useAsyncData(
-    //   `itemlist/${store.$state?.userAccount?.id}/${props.item?.id}`,
-    //   () => getItemList(store.$state?.userAccount?.id, props.item?.id)
+    //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
+    //   () => getItemList(store?.userAccount?.id, props.item?.id)
     // )
     //   .then((movieRespone: any) => {
     //     if (movieRespone.data.value.data.success == true) {
@@ -201,7 +201,7 @@ const getData = async () => {
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {
       await useAsyncData(
-        `itemhistory/${store.$state?.userAccount?.id}/${props.item?.id}`,
+        `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
         () => getItemHistory(props.item?.id)
       )
         .then((movieRespone: any) => {

@@ -201,7 +201,7 @@
                     {{
                       getCountryByOriginalLanguage(
                         item?.original_language,
-                        store.$state.allCountries
+                        store.allCountries
                       )?.name || ''
                     }}
                   </span>
@@ -391,7 +391,7 @@ watch(isTeleport, async () => {
           });
       }
 
-      if (store.$state.isLogin) {
+      if (store.isLogin) {
         if (dataMovie.value?.in_list) {
           isAddToList.value = true;
         }
@@ -426,8 +426,8 @@ const onClickPreviewModal = (e: any) => {
 };
 
 const handelAddToList = (e: any) => {
-  if (!store.$state?.isLogin) {
-    store.$state.openRequireAuthDialog = true;
+  if (!store?.isLogin) {
+    store.openRequireAuthDialog = true;
     return;
   }
   if (!isAddToList.value) {

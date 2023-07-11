@@ -73,7 +73,7 @@
                 <div class="user-info">
                   <p>
                     <strong>
-                      {{ store.$state.userAccount?.username }}
+                      {{ store.userAccount?.username }}
                     </strong>
                   </p>
                   <p class="count-video">
@@ -227,7 +227,7 @@
                 <div class="user-info">
                   <p>
                     <strong>
-                      {{ store.$state.userAccount?.username }}
+                      {{ store.userAccount?.username }}
                     </strong>
                   </p>
                   <p class="count-video">
@@ -493,9 +493,8 @@ onMounted(() => {
       dataHistory.value?.length < total.value
     ) {
       loadMore.value = true;
-      useAsyncData(
-        `history/get/${store.$state.userAccount?.id}/${skip.value}`,
-        () => getHistory(skip.value)
+      useAsyncData(`history/get/${store.userAccount?.id}/${skip.value}`, () =>
+        getHistory(skip.value)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.data?.result?.length > 0) {
@@ -518,7 +517,7 @@ onMounted(() => {
 const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  await useAsyncData(`history/get/${store.$state.userAccount?.id}/1`, () =>
+  await useAsyncData(`history/get/${store.userAccount?.id}/1`, () =>
     getHistory(1)
   )
     .then((movieRespone: any) => {
@@ -596,7 +595,7 @@ const searchWatchList = (e: any) => {
     clearTimeout(debounce.value);
     debounce.value = setTimeout(() => {
       useAsyncData(
-        `history/search/${store.$state.userAccount?.id}/${e.target.value}`,
+        `history/search/${store.userAccount?.id}/${e.target.value}`,
         () => searchHistory(e.target.value)
       )
         .then((movieRespone: any) => {
