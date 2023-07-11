@@ -8,8 +8,7 @@ export const useStore = defineStore('store', {
       collapsed: false,
       openDrawer: false,
       openRequireAuthDialog: false,
-      isLogin:
-        utils.localStorage.getWithExpiry('userAccount') != null ? true : false,
+      isLogin: utils.localStorage.getWithExpiry('userAccount') || false,
       breadCrumbValue: '',
       role: 'normal',
       loadingHomePage: false,
