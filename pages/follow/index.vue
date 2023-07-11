@@ -1,6 +1,6 @@
 <template>
   <div class="follow">
-    <div v-if="isLogin" class="follow-container">
+    <div v-show="isLogin" class="follow-container">
       <a-layout v-if="loading">
         <section v-if="responsive" class="topic-follow-row">
           <div class="row-container">
@@ -334,7 +334,7 @@
       </a-layout>
     </div>
 
-    <RequireAuth v-else />
+    <RequireAuth v-if="!isLogin" />
   </div>
 </template>
 
@@ -371,6 +371,7 @@ const loadingSearch = ref<boolean>(false);
 const loadMore = ref<boolean>(false);
 const isScroll = ref<boolean>(false);
 const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
+
 const breakpoints = useBreakpoints({
   responsive: 1200,
 });

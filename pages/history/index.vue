@@ -1,8 +1,8 @@
 <template>
   <div class="history">
-    <div v-if="isLogin" class="history-container">
-      <a-layout>
-        <section v-if="loading" class="topic-history-row">
+    <div v-show="isLogin" class="history-container">
+      <a-layout v-if="loading">
+        <section v-if="responsive" class="topic-history-row">
           <div class="row-container">
             <div class="top">
               <div class="backdrop">
@@ -155,7 +155,7 @@
           </div>
         </section>
 
-        <Teleport v-if="loading" to="#topic-history-column-teleport">
+        <Teleport :disabled="!loading" to="#topic-history-column-teleport">
           <aside class="topic-history-column" :width="340">
             <div class="column-container">
               <div class="backdrop">
@@ -346,7 +346,7 @@
       </a-layout>
     </div>
 
-    <RequireAuth v-else />
+    <RequireAuth v-if="!isLogin" />
   </div>
 </template>
 
@@ -361,6 +361,7 @@ import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
 // import scrollBottom from 'scroll-bottom';
+import { useBreakpoints } from '@vueuse/core';
 
 definePageMeta({
   // requireAuth: true,
@@ -382,6 +383,12 @@ const loadingSearch = ref<boolean>(false);
 const loadMore = ref<boolean>(false);
 const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
 const internalInstance: any = getCurrentInstance();
+
+const breakpoints = useBreakpoints({
+  responsive: 1200,
+});
+
+const responsive = breakpoints.smallerOrEqual('responsive');
 
 useHead({
   title: 'Lịch sử xem ' + ' | Phimhay247',
