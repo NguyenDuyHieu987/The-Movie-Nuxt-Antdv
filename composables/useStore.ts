@@ -8,7 +8,7 @@ export default defineStore('store', {
       collapsed: false,
       openDrawer: false,
       openRequireAuthDialog: false,
-      isLogin: utils.localStorage.getWithExpiry('userAccount') || false,
+      isLogin: utils.localStorage.getWithExpiry('userAccount') ? true : false,
       breadCrumbValue: '',
       role: 'normal',
       loadingHomePage: false,
