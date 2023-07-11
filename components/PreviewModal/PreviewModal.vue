@@ -304,8 +304,9 @@ const isTeleport = defineModel<boolean>('isTeleport');
 
 onMounted(() => {
   window.onpointermove = (e: any) => {
-    if (isTeleport.value == true && !e.target.closest('.preview-modal'))
+    if (isTeleport.value == true && !e.target.closest('.preview-modal')) {
       isTeleport.value = false;
+    }
   };
 });
 

@@ -53,10 +53,11 @@
           :comment="item"
           :isShowFormComment="isShowFormComment"
           commentType="children"
-          action="post"
+          :action="commentAction"
           :replyTo="item?.username"
           @onClickCancel="isShowFormComment = false"
           @onSuccessCommentChild="handleSuccessCommentChild"
+          @onSuccessEditComment="handleSuccessEditComment"
         />
       </div>
 
@@ -80,7 +81,7 @@
                 <a-menu-item
                   key="edit-comment"
                   class="remove-item"
-                  @click="handleRemoveComment"
+                  @click="handleEditComment"
                 >
                   <template #icon>
                     <Icon name="ic:outline-edit" />
@@ -138,11 +139,21 @@ const store = useStore();
 const { userAccount } = storeToRefs<any>(store);
 const listReplies = defineModel<any[]>('listReplies');
 const isShowFormComment = ref<boolean>(false);
+const commentAction = ref<string>('post');
+const commentContent = ref<string>(props.item?.content);
 
 onBeforeMount(() => {});
 
 const handleSuccessCommentChild = (data: any) => {
   emits('onSuccessCommentChild', data);
+};
+
+const handleEditComment = () => {
+  isShowFormComment.value = !isShowFormComment.value;
+  if (isShowFormComment.value) {
+    commentAction.value = 'edit';
+    commentContent.value = props.item?.content;
+  }
 };
 
 const handleRemoveComment = () => {
@@ -183,6 +194,11 @@ const handleRemoveComment = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {});
+};
+
+const handleSuccessEditComment = (data: string) => {
+  isShowFormComment.value = false;
+  commentContent.value = data;
 };
 </script>
 

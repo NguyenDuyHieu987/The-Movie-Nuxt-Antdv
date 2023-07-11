@@ -54,6 +54,7 @@
       align-items: center;
       position: relative;
       font-size: 1.44vw;
+      user-select: none;
 
       &:hover {
         .view-all {
