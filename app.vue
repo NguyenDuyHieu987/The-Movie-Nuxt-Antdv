@@ -76,12 +76,12 @@ const getData = async () => {
       });
   }
 
-  setTimeout(() => {
-    if (store.$state.loadingHomePage == false) {
-      store.$state.loadingHomePage = true;
-    }
-    loadingHomePage.value = false;
-  }, 2000);
+  // setTimeout(() => {
+  //   if (store.$state.loadingHomePage == false) {
+  //     store.$state.loadingHomePage = true;
+  //   }
+  //   loadingHomePage.value = false;
+  // }, 2000);
 };
 
 onBeforeMount(() => {
