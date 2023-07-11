@@ -2,7 +2,6 @@
 
 .movie-group.vertical {
   .movie-card-item.vertical {
-    display: inline-block;
     width: calc((100% - (7 * var(--card-movie-gap))) / 8);
   }
 }
@@ -10,6 +9,7 @@
 .movie-group.vertical.ranking {
   .movie-card-item.vertical {
     width: calc((100% - (7 * var(--card-movie-gap))) / 7);
+
     .img-box {
       height: 13vw;
     }

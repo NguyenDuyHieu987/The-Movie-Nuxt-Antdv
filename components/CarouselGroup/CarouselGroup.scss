@@ -29,15 +29,15 @@
     // gap: var(--card-movie-gap);
 
     .swiper-slide {
-      &:first-child {
-        padding-left: 0px;
-      }
+      // &:first-child {
+      //   padding-left: 0px;
+      // }
 
-      &:last-child {
-        padding-right: 0px;
-      }
+      // &:last-child {
+      //   padding-right: 0px;
+      // }
 
-      padding: 0px calc(var(--card-movie-gap) / 2);
+      // padding: 0px calc(var(--card-movie-gap) / 2);
     }
 
     .swiper-slide:hover {

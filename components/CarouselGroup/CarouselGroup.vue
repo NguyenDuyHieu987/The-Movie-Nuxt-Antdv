@@ -8,7 +8,7 @@
         SwiperVirtual,
       ]"
       :breakpoints="responsive"
-      :space-between="0"
+      :space-between="7"
       :rewind="true"
       :speed="500"
       effect="creative"
