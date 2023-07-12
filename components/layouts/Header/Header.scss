@@ -201,6 +201,7 @@ header.header-bar {
           display: flex;
           align-items: center;
           height: 100%;
+          line-height: 1.8;
 
           .ant-dropdown-link {
             // display: flex;
@@ -456,6 +457,10 @@ header.header-bar {
   .ant-popover.popover-search {
     display: block;
   }
+}
+
+.ant-dropdown.header {
+  top: calc(var(--header-height) + 4px) !important;
 }
 
 .ant-dropdown.dropdown-notification {

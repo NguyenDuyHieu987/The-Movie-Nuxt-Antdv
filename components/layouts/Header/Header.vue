@@ -142,7 +142,7 @@
             v-once
             :trigger="['click']"
             class="dropdown-notification"
-            overlayClassName="dropdown-notification"
+            overlayClassName="dropdown-notification header"
             placement="bottomLeft"
           >
             <span v-if="isLogin" v-once class="ant-dropdown-link">
@@ -211,7 +211,7 @@
           <a-dropdown
             :trigger="['click']"
             class="dropdown-account"
-            overlayClassName="dropdown-account"
+            overlayClassName="dropdown-account header"
             placement="bottomLeft"
           >
             <span class="ant-dropdown-link">

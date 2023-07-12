@@ -86,6 +86,7 @@
   --max-width-collapsed-sider: 900px;
   // --card-movie-gap: 7px;
   --card-movie-gap: 0.35vw;
+  --line-height-regular: 1.5;
 }
 
 html {
@@ -113,7 +114,7 @@ body {
 body {
   font-size: 1.5rem;
   // line-height: 2.2rem;
-  line-height: 1.5;
+  line-height: var(--line-height-regular);
   // font-size: clamp(1.4rem, 1vw, 10rem);
   font-family: 'Roboto Flex', sans-serif;
   text-rendering: optimizeSpeed;
