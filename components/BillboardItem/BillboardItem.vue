@@ -23,7 +23,13 @@
     <div class="img-wrapper">
       <nuxt-img
         class="ant-image"
-        :src="getImage(item?.backdrop_path, 'backdrop', 'w_1000')"
+        :src="
+          getImage(
+            item?.backdrop_path,
+            'backdrop',
+            'w_' + windowWidth.toString()
+          )
+        "
         loading="lazy"
         alt=""
       />
@@ -190,6 +196,7 @@ const props = defineProps<{
 const store: any = useStore();
 const utils = useUtils();
 const isAddToList = ref<boolean>(false);
+const windowWidth = ref(window.innerWidth);
 
 onBeforeMount(async () => {
   if (store.isLogin) {
