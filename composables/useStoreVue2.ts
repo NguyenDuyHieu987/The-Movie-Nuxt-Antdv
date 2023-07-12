@@ -21,17 +21,17 @@ export default defineStore('store', {
     };
   },
   getters: {
-    isLogin: (state: any) => state.isLogin,
+    isLogin: (state) => state.isLogin,
   },
   actions: {
     setCollapsed() {
-      this.$state.collapsed = !this.$state.collapsed;
+      this.collapsed = !this.collapsed;
     },
     setOpendrawer() {
-      this.$state.openDrawer = !this.$state.openDrawer;
+      this.openDrawer = !this.openDrawer;
     },
     setCloseRequireAuthDialog() {
-      this.$state.openRequireAuthDialog = false;
+      this.openRequireAuthDialog = false;
     },
   },
 });

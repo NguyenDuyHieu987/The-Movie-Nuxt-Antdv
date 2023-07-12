@@ -378,8 +378,6 @@ const breakpoints = useBreakpoints({
 
 const responsive = breakpoints.smallerOrEqual('responsive');
 
-console.log(store.isLogin);
-
 useHead({
   title: 'Theo dõi - Danh sách ' + ' | Phimhay247',
   htmlAttrs: { lang: 'vi' },
