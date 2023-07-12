@@ -1,6 +1,4 @@
 .loading-circle {
-  font-size: 2rem;
-
   @keyframes loading {
     from {
       transform: rotate(0deg);
@@ -12,7 +10,9 @@
 
   svg {
     margin: 0px auto;
-    font-size: inherit;
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   &.loading-page {
@@ -20,10 +20,13 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4.5rem;
 
     svg {
+      font-size: 4.5rem;
+      width: 4.5rem;
+      height: 4.5rem;
       color: var(--loading-app-color);
+      stroke: var(--loading-app-color);
     }
   }
 

@@ -389,6 +389,12 @@
   .ant-collapse-header {
     font-size: 1.5rem;
     color: var(--text-color) !important;
+
+    .anticon {
+      svg {
+        font-size: 1.3rem;
+      }
+    }
   }
 
   .ant-collapse-content {
