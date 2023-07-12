@@ -7,8 +7,37 @@
       size="large"
       @click="emits('onClick')"
     >
-      <Icon v-if="!isOpen" name="ci:chevron-down" />
-      <Icon v-else name="ci:chevron-big-up" />
+      <!-- <Icon v-if="!isOpen" name="ci:chevron-down" />
+      <Icon v-else name="ci:chevron-big-up" /> -->
+
+      <svg
+        v-if="!isOpen"
+        xmlns="http://www.w3.org/2000/svg"
+        width="2rem"
+        height="2rem"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="none"
+          stroke="var(--text-color)"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m19 9l-7 7l-7-7"
+        />
+      </svg>
+
+      <svg
+        v-else
+        xmlns="http://www.w3.org/2000/svg"
+        width="2rem"
+        height="2rem"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M20.485 15.535L12 7.05l-8.485 8.485L4.93 16.95L12 9.878l7.071 7.072l1.414-1.415Z"
+        />
+      </svg>
     </a-button>
 
     <!-- <a-tooltip
