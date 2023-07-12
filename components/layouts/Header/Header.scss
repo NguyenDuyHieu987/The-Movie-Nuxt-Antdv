@@ -44,13 +44,16 @@ header.header-bar {
 
       &.desktop {
         svg {
-          // font-size: 1.3em;
-          font-size: 2.4rem;
+          font-size: 2.2rem;
         }
       }
 
       &.mobile {
         display: none;
+
+        .anticon-menu {
+          font-size: 2.2rem;
+        }
 
         svg.menu {
           font-size: 2.4rem;
@@ -135,6 +138,8 @@ header.header-bar {
         background: none;
 
         .ant-input-search-button {
+          display: flex;
+          align-items: center;
           background: transparent;
           border: 1px solid var(--border-regular-light);
           transition: all 0.25s;
@@ -145,6 +150,8 @@ header.header-bar {
           svg {
             color: var(--text-color);
             font-size: 1.8rem;
+            width: 1.8rem;
+            height: 1.8rem;
           }
 
           &:active {
@@ -160,6 +167,7 @@ header.header-bar {
   .right-header {
     display: flex;
     height: 100%;
+    margin-right: -5px;
 
     .ant-menu.menu-right-header {
       background: transparent;
@@ -282,6 +290,11 @@ header.header-bar {
     padding-left: 20px;
     padding-right: 0px;
 
+    &:has(.menu-btn.desktop) {
+      padding-left: 25px;
+      padding-right: 0px;
+    }
+
     .left-header {
       .menu-btn {
         &.mobile {
@@ -336,6 +349,11 @@ header.header-bar {
     padding-left: 15px;
     padding-right: 0px;
 
+    &:has(.menu-btn.desktop) {
+      padding-left: 15px;
+      padding-right: 0px;
+    }
+
     .left-header {
       gap: 15px;
 
@@ -350,8 +368,6 @@ header.header-bar {
 
     .right-header {
       .ant-menu {
-        margin-right: -5px;
-
         .ant-menu-item {
           // padding: 0px 15px;
         }
@@ -445,6 +461,34 @@ header.header-bar {
               svg {
                 opacity: 0.8;
               }
+            }
+          }
+        }
+      }
+
+      .ant-input-group-addon {
+        background: none;
+
+        .ant-input-search-button {
+          display: flex;
+          align-items: center;
+          background: transparent;
+          border: 1px solid var(--border-regular-light);
+          transition: all 0.25s;
+          border-radius: 0 20px 20px 0;
+          border-left: none;
+          padding: 0px 18px;
+
+          svg {
+            color: var(--text-color);
+            font-size: 1.8rem;
+            width: 1.8rem;
+            height: 1.8rem;
+          }
+
+          &:active {
+            svg {
+              opacity: 0.8;
             }
           }
         }

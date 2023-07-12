@@ -3,15 +3,19 @@
     <div class="left-header">
       <button class="menu-btn mobile" @click="store.setOpendrawer()">
         <!-- v-if="!openDrawer" -->
-        <Icon name="ant-design:menu-outlined" class="menu" />
         <!-- <Icon v-else name="ic:baseline-close" class="close" /> -->
+
+        <!-- <Icon name="ant-design:menu-outlined" class="menu" /> -->
+
+        <MenuOutlined />
       </button>
       <button
         v-if="collapsed == true"
         class="menu-btn desktop"
         @click="store.setCollapsed()"
       >
-        <Icon name="ant-design:menu-outlined" />
+        <!-- <Icon name="ant-design:menu-outlined" /> -->
+        <MenuOutlined />
       </button>
       <div class="logo">
         <NuxtLink :to="{ path: '/' }">
@@ -63,10 +67,23 @@
             placement="bottom"
             popper-class="el-tooltip"
           >
-            <Icon
+            <!-- <Icon
               name="fa6-solid:magnifying-glass"
               class="fa-magnifying-glass"
-            />
+            /> -->
+
+            <svg
+              class="fa-magnifying-glass"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.8rem"
+              height="1.8rem"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="currentColor"
+                d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
+              />
+            </svg>
           </a-tooltip>
         </template>
       </a-input-search>
@@ -81,10 +98,23 @@
       >
         <a-button type="text" shape="circle" class="search-btn-mobile">
           <template #icon>
-            <Icon
+            <!-- <Icon
               name="fa6-solid:magnifying-glass"
               class="fa-magnifying-glass"
-            />
+            /> -->
+
+            <svg
+              class="fa-magnifying-glass"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.8rem"
+              height="1.8rem"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="currentColor"
+                d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
+              />
+            </svg>
           </template>
         </a-button>
 
@@ -120,10 +150,23 @@
               @search="handleSearch"
             >
               <template #enterButton>
-                <Icon
+                <!-- <Icon
                   name="fa6-solid:magnifying-glass"
                   class="fa-magnifying-glass"
-                />
+                /> -->
+
+                <svg
+                  class="fa-magnifying-glass"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.8rem"
+                  height="1.8rem"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
+                  />
+                </svg>
               </template>
             </a-input-search>
           </a-auto-complete>
@@ -269,7 +312,11 @@ import { getImage } from '~/services/image';
 import SearchCard from '@/components/SearchCard/SearchCard.vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
-import { UserOutlined, CaretDownOutlined } from '@ant-design/icons-vue';
+import {
+  UserOutlined,
+  CaretDownOutlined,
+  MenuOutlined,
+} from '@ant-design/icons-vue';
 import { ElMenu, ElMenuItem } from 'element-plus';
 
 const store = useStore();

@@ -88,18 +88,18 @@
     <a-sub-menu key="tv">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-film" /> -->
-        <!-- <svg
+        <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
+          width="1.5rem"
+          height="1.5rem"
           viewBox="0 0 512 512"
         >
           <path
             fill="currentColor"
             d="M0 96c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm48 272v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zM48 240v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zM48 112v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zm-256 32v64c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-64c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-64c0-17.7-14.3-32-32-32H192z"
           />
-        </svg> -->
-        <Icon name="fa6-solid:film" />
+        </svg>
+        <!-- <Icon name="fa6-solid:film" /> -->
       </template>
       <template #title>Phim bộ</template>
 
@@ -157,12 +157,17 @@
     <a-sub-menu key="genre">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-list" /> -->
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 512 512"
+        >
           <path
             d="M80 48h-64C7.156 48 0 55.16 0 64v64c0 8.844 7.156 16 16 16h64C88.84 144 96 136.8 96 128V64C96 55.16 88.84 48 80 48zM80 208h-64C7.156 208 0 215.2 0 224v64c0 8.844 7.156 16 16 16h64C88.84 304 96 296.8 96 288V224C96 215.2 88.84 208 80 208zM80 368h-64C7.156 368 0 375.2 0 384v64c0 8.844 7.156 16 16 16h64C88.84 464 96 456.8 96 448v-64C96 375.2 88.84 368 80 368zM192 128h288c17.67 0 32-14.33 32-31.1S497.7 64 480 64H192C174.3 64 160 78.33 160 95.1S174.3 128 192 128zM480 384H192c-17.67 0-32 14.33-32 32s14.33 32 32 32h288c17.67 0 32-14.33 32-32S497.7 384 480 384zM480 224H192C174.3 224 160 238.3 160 256s14.33 32 32 32h288c17.67 0 32-14.33 32-32S497.7 224 480 224z"
           />
-        </svg> -->
-        <Icon name="fa6-solid:list"></Icon>
+        </svg>
+        <!-- <Icon name="fa6-solid:list"></Icon> -->
       </template>
       <template #title>Thể loại</template>
       <a-menu-item
@@ -199,13 +204,18 @@
     <a-sub-menu key="year">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-calendar-days" /> -->
-        <!-- <i class="fa-sharp fa-light fa-calendar-days"></i> -->
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 448 512"
+        >
           <path
-            d="M384 64h-32V16C352 7.164 344.8 0 336 0S320 7.164 320 16V64H128V16C128 7.164 120.8 0 112 0S96 7.164 96 16V64H64C28.65 64 0 92.65 0 128v320c0 35.35 28.65 64 64 64h320c35.35 0 64-28.65 64-64V128C448 92.65 419.3 64 384 64zM32 224h96v64H32V224zM160 288V224h128v64H160zM288 320v64H160v-64H288zM32 320h96v64H32V320zM64 480c-17.67 0-32-14.33-32-32v-31.1h96V480H64zM160 480v-63.1h128V480H160zM416 448c0 17.67-14.33 32-32 32h-64v-63.1h96V448zM416 384h-96v-64h96V384zM416 288h-96V224h96V288zM416 192H32V128c0-17.67 14.33-32 32-32h320c17.67 0 32 14.33 32 32V192z"
+            fill="currentColor"
+            d="M128 0c17.7 0 32 14.3 32 32v32h128V32c0-17.7 14.3-32 32-32s32 14.3 32 32v32h48c26.5 0 48 21.5 48 48v48H0v-48c0-26.5 21.5-48 48-48h48V32c0-17.7 14.3-32 32-32zM0 192h448v272c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16z"
           />
-        </svg> -->
-        <Icon name="fa6-regular:calendar-days"></Icon>
+        </svg>
+        <!-- <Icon name="fa6-regular:calendar-days" />  -->
       </template>
       <template #title>Năm phát hành</template>
       <a-menu-item
@@ -233,13 +243,17 @@
     <a-sub-menu key="country">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-globe" /> -->
-        <!-- <i class="fa-regular fa-globe"></i> -->
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 512 512"
+        >
           <path
             d="M256 16C123.5 16 16 123.5 16 256s107.5 240 240 240s239.1-107.5 239.1-240S388.5 16 256 16zM422 160H373.3c-6.391-27.41-15.39-52.18-26.48-73.1C378.2 103.8 404.2 129.2 422 160zM336 256c0 16.98-1.295 32.82-3.176 48H179.2C177.3 288.8 176 272.1 176 256s1.295-32.82 3.176-48h153.6C334.7 223.2 336 239 336 256zM256 448c-21.79 0-50.87-36.42-67.28-96h134.6C306.9 411.6 277.8 448 256 448zM188.7 160C205.1 100.4 234.2 64 256 64s50.87 36.42 67.28 96H188.7zM165.2 86.9C154.1 107.8 145.1 132.6 138.7 160H89.98C107.8 129.2 133.8 103.8 165.2 86.9zM70.32 208h60.25C128.9 223.5 128 239.6 128 256S128.9 288.5 130.6 304H70.32C66.34 288.6 64 272.6 64 256S66.34 223.4 70.32 208zM89.98 352H138.7c6.391 27.41 15.39 52.18 26.48 73.1C133.8 408.2 107.8 382.8 89.98 352zM346.8 425.1C357.9 404.2 366.9 379.4 373.3 352h48.74C404.2 382.8 378.2 408.2 346.8 425.1zM441.7 304h-60.25c1.68-15.51 2.57-31.56 2.57-48s-.8907-32.49-2.57-48h60.25C445.7 223.4 448 239.4 448 256S445.7 288.6 441.7 304z"
           />
-        </svg> -->
-        <Icon name="fa6-solid:globe" />
+        </svg>
+        <!-- <Icon name="fa6-solid:globe" /> -->
       </template>
       <template #title>Quốc gia</template>
       <a-menu-item
@@ -263,14 +277,13 @@
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-bookmark" /> -->
         <!-- <span class="material-icons-outlined"> playlist_play </span> -->
-        <!-- <svg
+        <svg
           class="material-icons-outlined playlist"
           xmlns="http://www.w3.org/2000/svg"
           enable-background="new 0 0 24 24"
-          height="24px"
+          height="2.4rem"
+          width="2.4rem"
           viewBox="0 0 24 24"
-          width="24px"
-          fill="#c5c5c5"
         >
           <g><rect fill="none" height="24" width="24" /></g>
           <g>
@@ -281,12 +294,12 @@
               <polygon points="16,13 16,21 22,17" />
             </g>
           </g>
-        </svg> -->
+        </svg>
 
-        <Icon
+        <!-- <Icon
           class="material-icons-outlined playlist"
           name="ic:baseline-playlist-play"
-        />
+        /> -->
       </template>
       <NuxtLink :to="{ path: '/follow' }"> Theo dõi</NuxtLink>
     </a-menu-item>
@@ -294,7 +307,18 @@
     <a-menu-item key="history">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-clock-rotate-left" /> -->
-        <Icon name="fa6-solid:clock-rotate-left" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24h110.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24v104c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"
+          />
+        </svg>
+        <!-- <Icon name="fa6-solid:clock-rotate-left" /> -->
       </template>
       <NuxtLink :to="{ path: '/history' }"> Lịch sử Xem </NuxtLink>
     </a-menu-item>
@@ -302,7 +326,18 @@
     <a-menu-item key="ranking">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-ranking-star" /> -->
-        <Icon name="fa6-solid:ranking-star" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 640 512"
+        >
+          <path
+            fill="currentColor"
+            d="M353.8 54.1L330.2 6.3c-3.9-8.3-16.1-8.6-20.4 0l-23.6 47.8l-52.3 7.5c-9.3 1.4-13.3 12.9-6.4 19.8l38 37l-9 52.1c-1.4 9.3 8.2 16.5 16.8 12.2l46.9-24.8l46.6 24.4c8.6 4.3 18.3-2.9 16.8-12.2l-9-52.1l38-36.6c6.8-6.8 2.9-18.3-6.4-19.8l-52.3-7.5zM256 256c-17.7 0-32 14.3-32 32v192c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H256zM32 320c-17.7 0-32 14.3-32 32v128c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32H32zm416 96v64c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-64c0-17.7-14.3-32-32-32H480c-17.7 0-32 14.3-32 32z"
+          />
+        </svg>
+        <!-- <Icon name="fa6-solid:ranking-star" /> -->
       </template>
       <NuxtLink :to="{ path: '/ranking' }"> Xếp hạng</NuxtLink>
     </a-menu-item>
@@ -310,8 +345,20 @@
     <a-menu-item key="pricing">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-money-check-dollar" /> -->
-        <!-- <i class="fa-regular fa-money-check-dollar-pen"></i> -->
-        <Icon name="material-symbols:price-change-outline"></Icon>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="M2 20V4h20v16H2Zm2-2h16V6H4v12Zm0 0V6v12Zm4-1h2v-1h1q.425 0 .713-.288T12 15v-3q0-.425-.288-.713T11 11H8v-1h4V8h-2V7H8v1H7q-.425 0-.713.288T6 9v3q0 .425.288.713T7 13h3v1H6v2h2v1Zm8-.75l2-2h-4l2 2ZM14 10h4l-2-2l-2 2Z"
+          />
+        </svg>
+
+        <!-- <Icon name="material-symbols:price-change-outline" /> -->
       </template>
       <NuxtLink :to="{ path: '/pricing' }"> Pricing</NuxtLink>
     </a-menu-item>
