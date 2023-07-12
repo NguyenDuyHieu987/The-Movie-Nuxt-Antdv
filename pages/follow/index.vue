@@ -358,7 +358,6 @@ definePageMeta({
 
 const store = useStore();
 const utils = useUtils();
-const states = useStates();
 const { isLogin } = storeToRefs<any>(store);
 const route = useRoute();
 const dataList = ref<any[]>([]);

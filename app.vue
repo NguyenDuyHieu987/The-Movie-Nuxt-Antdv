@@ -49,17 +49,17 @@ const getData = async () => {
       .then((accountResponse: any) => {
         // console.log(accountResponse.data?.result);
         if (accountResponse?.isLogin == true) {
-          store.$state.isLogin = true;
-          store.$state.userAccount = accountResponse?.result;
-          store.$state.role = accountResponse?.result?.role;
+          store.isLogin = true;
+          store.userAccount = accountResponse?.result;
+          store.role = accountResponse?.result?.role;
         } else {
           window.localStorage.removeItem('userAccount');
           window.localStorage.removeItem('userToken');
           window.localStorage.removeItem('remember');
           window.localStorage.removeItem('isLogin');
-          store.$state.userAccount = {};
-          store.$state.role = 'normal';
-          store.$state.isLogin = false;
+          store.userAccount = {};
+          store.role = 'normal';
+          store.isLogin = false;
         }
       })
       .catch((e) => {
@@ -78,7 +78,7 @@ const getData = async () => {
 
   // setTimeout(() => {
   //   if (store.loadingHomePage == false) {
-  //     store.$state.loadingHomePage = true;
+  //     store.loadingHomePage = true;
   //   }
   //   loadingHomePage.value = false;
   // }, 2000);
