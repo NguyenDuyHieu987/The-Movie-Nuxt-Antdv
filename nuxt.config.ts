@@ -280,5 +280,6 @@ export default defineNuxtConfig({
     '/login': { ssr: false, swr: true, prerender: true },
     '/signup': { ssr: false, swr: true, prerender: true },
     '/profile': { ssr: false, swr: true, prerender: true },
+    '/billing': { ssr: false, swr: true, prerender: true },
   },
 });
