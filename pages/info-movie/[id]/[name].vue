@@ -32,11 +32,13 @@
             />
           </div>
           <div class="poster">
-            <nuxt-img
-              class="ant-image"
-              :src="getImage(dataMovie?.poster_path, 'poster')"
-              loading="lazy"
-            />
+            <div class="poster-wrapper">
+              <nuxt-img
+                class="ant-image"
+                :src="getImage(dataMovie?.poster_path, 'poster')"
+                loading="lazy"
+              />
+            </div>
           </div>
 
           <div class="overlay-backdrop">
