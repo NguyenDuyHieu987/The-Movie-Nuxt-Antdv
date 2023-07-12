@@ -21,7 +21,13 @@
             /> -->
             <nuxt-img
               class="ant-image"
-              :src="getImage(dataMovie?.backdrop_path, 'backdrop')"
+              :src="
+                getImage(
+                  dataMovie?.backdrop_path,
+                  'backdrop',
+                  'w_' + windowWidth.toString()
+                )
+              "
               loading="lazy"
             />
           </div>
@@ -35,7 +41,13 @@
 
           <div class="overlay-backdrop">
             <nuxt-img
-              :src="getImage(dataMovie?.backdrop_path, 'backdrop')"
+              :src="
+                getImage(
+                  dataMovie?.backdrop_path,
+                  'backdrop',
+                  'w_' + windowWidth.toString()
+                )
+              "
               loading="lazy"
             />
           </div>
@@ -366,6 +378,7 @@ const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
 const disabledRate = ref<boolean>(false);
+const windowWidth = ref<number>(window.innerWidth);
 
 const internalInstance: any = getCurrentInstance();
 

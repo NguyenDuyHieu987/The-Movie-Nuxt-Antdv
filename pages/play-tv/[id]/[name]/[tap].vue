@@ -45,7 +45,13 @@
           <VideoPlayer
             :dataMovie="dataMovie"
             :videoUrl="'television/' + urlCodeMovie"
-            :backdrop="getImage(dataMovie?.backdrop_path, 'backdrop')"
+            :backdrop="
+              getImage(
+                dataMovie?.backdrop_path,
+                'backdrop',
+                'w_' + windowWidth.toString()
+              )
+            "
             @onPlay="(e) => onPLayVideoPlayer(e)"
             @onTimeUpdate="(e) => onTimeUpdateVideoPlayer(e)"
           />
@@ -308,6 +314,7 @@ const release_date = computed<string>(
   () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
 const disabledRate = ref<boolean>(false);
+const windowWidth = ref<number>(window.innerWidth);
 
 const internalInstance: any = getCurrentInstance();
 

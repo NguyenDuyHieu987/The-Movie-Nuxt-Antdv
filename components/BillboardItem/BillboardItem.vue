@@ -196,7 +196,7 @@ const props = defineProps<{
 const store: any = useStore();
 const utils = useUtils();
 const isAddToList = ref<boolean>(false);
-const windowWidth = ref(window.innerWidth);
+const windowWidth = ref<number>(window.innerWidth);
 
 onBeforeMount(async () => {
   if (store.isLogin) {

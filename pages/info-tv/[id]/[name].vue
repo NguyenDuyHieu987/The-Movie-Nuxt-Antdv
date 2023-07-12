@@ -21,7 +21,13 @@
             /> -->
             <nuxt-img
               class="ant-image"
-              :src="getImage(dataMovie?.backdrop_path, 'backdrop')"
+              :src="
+                getImage(
+                  dataMovie?.backdrop_path,
+                  'backdrop',
+                  'w_' + windowWidth.toString()
+                )
+              "
               loading="lazy"
             />
           </div>
@@ -35,7 +41,13 @@
 
           <div class="overlay-backdrop">
             <nuxt-img
-              :src="getImage(dataMovie?.backdrop_path, 'backdrop')"
+              :src="
+                getImage(
+                  dataMovie?.backdrop_path,
+                  'backdrop',
+                  'w_' + windowWidth.toString()
+                )
+              "
               loading="lazy"
             />
           </div>
@@ -387,6 +399,7 @@ const release_date = computed<string>(
   () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
 const disabledRate = ref<boolean>(false);
+const windowWidth = ref<number>(window.innerWidth);
 
 const internalInstance: any = getCurrentInstance();
 

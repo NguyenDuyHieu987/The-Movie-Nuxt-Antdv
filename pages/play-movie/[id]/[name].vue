@@ -45,7 +45,13 @@
           <VideoPlayer
             :dataMovie="dataMovie"
             videoUrl="feature/Transformer_5.mp4"
-            :backdrop="getImage(dataMovie?.backdrop_path, 'backdrop')"
+            :backdrop="
+              getImage(
+                dataMovie?.backdrop_path,
+                'backdrop',
+                'w_' + windowWidth.toString()
+              )
+            "
             @onPlay="(e) => onPLayVideoPlayer(e)"
             @onTimeUpdate="(e) => onTimeUpdateVideoPlayer(e)"
           />
@@ -281,6 +287,7 @@ const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
 const percentProgressHistory = ref<number>(0);
 const disabledRate = ref<boolean>(false);
+const windowWidth = ref<number>(window.innerWidth);
 
 const internalInstance: any = getCurrentInstance();
 
