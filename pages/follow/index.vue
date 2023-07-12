@@ -379,6 +379,8 @@ const breakpoints = useBreakpoints({
 
 const responsive = breakpoints.smallerOrEqual('responsive');
 
+console.log(store.isLogin);
+
 useHead({
   title: 'Theo dõi - Danh sách ' + ' | Phimhay247',
   htmlAttrs: { lang: 'vi' },
@@ -527,11 +529,11 @@ const getData = async () => {
 };
 
 onBeforeMount(async () => {
-  // if (!store.isLogin) return;
+  if (store.isLogin) {
+    await nextTick();
 
-  await nextTick();
-
-  getData();
+    getData();
+  }
 });
 
 const getDataWhenRemoveList = (data: number) => {

@@ -368,7 +368,7 @@ definePageMeta({
   // middleware: ['require-auth'],
 });
 
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
 const states = useStates();
 const { isLogin } = storeToRefs<any>(store);
@@ -556,11 +556,11 @@ const getData = async () => {
 };
 
 onBeforeMount(async () => {
-  // if (!store.isLogin) return;
+  if (store.isLogin) {
+    await nextTick();
 
-  await nextTick();
-
-  getData();
+    getData();
+  }
 });
 
 const getDataWhenRemoveHistory = (data: number) => {

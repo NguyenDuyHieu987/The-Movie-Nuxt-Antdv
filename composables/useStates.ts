@@ -5,7 +5,7 @@ export const useStates = () => {
 
   return {
     isLogin: useState<boolean>('isLogin', () =>
-      utils.localStorage?.getWithExpiry('userAccount') ? true : false
+      utils.localStorage.getWithExpiry('userAccount') ? true : false
     ).value,
   };
 };
