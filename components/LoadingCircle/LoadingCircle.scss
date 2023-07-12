@@ -26,7 +26,10 @@
       width: 4.5rem;
       height: 4.5rem;
       color: var(--loading-app-color);
-      stroke: var(--loading-app-color);
+
+      path {
+        stroke: var(--loading-app-color);
+      }
     }
   }
 
