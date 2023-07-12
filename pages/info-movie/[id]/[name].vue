@@ -411,7 +411,7 @@ window.scrollTo({
 });
 
 const handelAddToList = () => {
-  if (!store?.isLogin) {
+  if (!store.isLogin) {
     store.openRequireAuthDialog = true;
     return;
   }

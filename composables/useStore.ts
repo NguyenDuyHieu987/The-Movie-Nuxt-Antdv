@@ -39,6 +39,7 @@ export default defineStore('store', () => {
     collapsed,
     openDrawer,
     modalVisible,
+    openRequireAuthDialog,
     isLogin,
     breadCrumbValue,
     role,
