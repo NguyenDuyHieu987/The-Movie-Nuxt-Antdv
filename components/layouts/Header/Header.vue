@@ -29,10 +29,9 @@
 
     <a-auto-complete
       v-model:value="valueInput"
-      class="center-search-header"
+      class="search-header"
       dropdown-class-name="certain-category-search-dropdown"
       :options="dataSearch"
-      style="width: 40%; min-width: 400px; max-width: 500px"
       :open="isOpenAutoComplete"
       @change="handleChangeInput"
       @focus="isOpenAutoComplete = true"
@@ -47,7 +46,7 @@
       </template>
 
       <a-input-search
-        class="center-search-header"
+        class="search-header"
         placeholder="Nhập tên phim để tìm kiếm..."
         size="large"
         allowClear
@@ -74,68 +73,6 @@
     </a-auto-complete>
 
     <div class="right-header">
-      <!-- <ClientOnly>
-        <el-popover
-          trigger="click"
-          placement="bottom"
-          popper-class="popover-search"
-          effect="dark"
-        >
-          <template #reference>
-            <a-button type="text" shape="circle" class="search-btn-mobile">
-              <template #icon>
-                <Icon
-                  name="fa6-solid:magnifying-glass"
-                  class="fa-magnifying-glass"
-                />
-              </template>
-            </a-button>
-          </template>
-
-          <template #title> </template>
-          <template #default>
-            <h3 class="section-title search">
-              <span> Tìm kiếm </span>
-            </h3>
-            <a-auto-complete
-              v-model:value="valueInput"
-              class="search-poppover"
-              dropdown-class-name="certain-category-search-dropdown"
-              :options="dataSearch"
-              style="width: 100%"
-              :open="isOpenAutoComplete"
-              @change="handleChangeInput"
-              @focus="isOpenAutoComplete = true"
-              @blur="isOpenAutoComplete = false"
-            >
-              <template #option="item">
-                <SearchCard
-                  :key="item?.id"
-                  :item="item"
-                  :type="item.media_type"
-                />
-              </template>
-              <a-input-search
-                class="search-poppover"
-                placeholder="Nhập tên phim để tìm kiếm..."
-                size="large"
-                allowClear
-                bordered
-                :loading="loadingSearch"
-                @search="handleSearch"
-              >
-                <template #enterButton>
-                  <Icon
-                    name="fa6-solid:magnifying-glass"
-                    class="fa-magnifying-glass"
-                  />
-                </template>
-              </a-input-search>
-            </a-auto-complete>
-          </template>
-        </el-popover>
-      </ClientOnly> -->
-
       <a-popover
         trigger="click"
         placement="bottom"
@@ -157,7 +94,7 @@
           </h3>
           <a-auto-complete
             v-model:value="valueInput"
-            class="search-poppover"
+            class="search-popover"
             dropdown-class-name="certain-category-search-dropdown"
             :options="dataSearch"
             style="width: 100%"
@@ -174,7 +111,7 @@
               />
             </template>
             <a-input-search
-              class="search-poppover"
+              class="search-popover"
               placeholder="Nhập tên phim để tìm kiếm..."
               size="large"
               allowClear
