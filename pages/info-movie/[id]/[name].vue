@@ -1,6 +1,6 @@
 <template>
   <div class="movie-info">
-    <LoadingCircle v-if="loading" class="loading-page" />
+    <LoadingCircle v-if="true" class="loading-page" />
 
     <div class="info-conainer" v-else>
       <BackPage @onclick="$router.back()">
