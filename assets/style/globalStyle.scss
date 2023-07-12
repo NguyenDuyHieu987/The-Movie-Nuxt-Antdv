@@ -476,16 +476,15 @@ button,
     justify-content: center;
     border-color: transparent;
     height: 100%;
-    // padding: 9px 27px;
-    // font-size: 1.8rem;
-    padding: 0.35vw 1.5vw;
+    // padding: 0.35vw 1.5vw;
+    padding: 9px 25px;
     transition: all 0.15s;
 
     svg {
-      // margin-right: 7px;
-      // font-size: 1.8rem;
-      margin-right: 0.4vw;
-      font-size: 1.1vw;
+      margin-right: 7px;
+      font-size: 1.8rem;
+      // margin-right: 0.4vw;
+      // font-size: 1.1vw;
     }
 
     &:active {

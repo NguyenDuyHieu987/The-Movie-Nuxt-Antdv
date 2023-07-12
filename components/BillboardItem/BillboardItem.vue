@@ -91,8 +91,8 @@
               <svg
                 class="play"
                 xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
+                width="3rem"
+                height="3rem"
                 viewBox="0 0 24 24"
               >
                 <path fill="currentColor" d="M8 5v14l11-7z" />
@@ -121,8 +121,8 @@
               <svg
                 class="info"
                 xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
+                width="1.8rem"
+                height="1.8rem"
                 viewBox="0 0 16 16"
               >
                 <g fill="currentColor">
@@ -148,8 +148,8 @@
               <svg
                 v-if="isAddToList"
                 xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
+                width="1.8rem"
+                height="1.8rem"
                 viewBox="0 0 24 24"
               >
                 <path
@@ -161,8 +161,8 @@
               <svg
                 v-else
                 xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
+                width="1.8rem"
+                height="1.8rem"
                 viewBox="0 0 24 24"
               >
                 <path
