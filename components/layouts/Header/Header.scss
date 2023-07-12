@@ -70,8 +70,11 @@ header.header-bar {
     }
 
     .logo {
+      display: inline-block;
+      line-height: normal;
+
       a {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         gap: 7px;
         font-size: 2.25rem;
@@ -157,13 +160,21 @@ header.header-bar {
   }
 
   .right-header {
+    display: flex;
+    height: 100%;
+
     .ant-menu {
-      height: 100%;
       background: transparent;
 
       .ant-menu-item {
         display: flex;
+        align-items: center;
         user-select: none;
+        cursor: auto;
+
+        &.disabled {
+          display: none;
+        }
 
         &::after {
           display: none;
@@ -190,9 +201,14 @@ header.header-bar {
 
         .ant-menu-title-content {
           display: flex;
+          align-items: center;
+          height: 100%;
 
           .ant-dropdown-link {
-            height: 100%;
+            // display: flex;
+            // align-items: center;
+            // height: 100%;
+            cursor: pointer;
 
             &::before {
               display: none;
@@ -339,10 +355,6 @@ header.header-bar {
 
         .ant-menu-item {
           // padding: 0px 15px;
-
-          &[aria-disabled='true'] {
-            display: none;
-          }
         }
       }
     }
