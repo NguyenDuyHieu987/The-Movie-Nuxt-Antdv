@@ -356,7 +356,7 @@ const handleFacebookLogin = async () => {
 };
 
 onBeforeMount(() => {
-  utils.initFacebookSdk();
+  // utils.initFacebookSdk();
 });
 
 onMounted(() => {

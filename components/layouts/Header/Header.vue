@@ -265,7 +265,7 @@ import SearchCard from '@/components/SearchCard/SearchCard.vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import { UserOutlined, CaretDownOutlined } from '@ant-design/icons-vue';
-import { ElMenu } from 'element-plus';
+import { ElMenu, ElMenuItem } from 'element-plus';
 
 const store = useStore();
 const { openDrawer, collapsed, isLogin, userAccount, role } =
