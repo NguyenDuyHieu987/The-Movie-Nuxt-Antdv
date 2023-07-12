@@ -95,7 +95,6 @@
         placement="bottom"
         overlayClassName="popover-search"
         effect="dark"
-        destroyPopupOnHide
       >
         <a-button type="text" shape="circle" class="search-btn-mobile">
           <template #icon>
