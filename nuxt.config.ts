@@ -126,7 +126,7 @@ export default defineNuxtConfig({
     strict: true,
   },
   css: [
-    'ant-design-vue/dist/antd.min.css',
+    'ant-design-vue/dist/antd.dark.min.css',
     'element-plus/dist/index.css',
     '@/assets/style/globalStyle.scss',
     '@fortawesome/fontawesome-svg-core/styles.css',
