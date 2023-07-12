@@ -246,6 +246,8 @@ export default defineNuxtConfig({
   vite: {
     build: {
       sourcemap: true,
+      minify: 'terser',
+      ssrManifest: true,
     },
     vue: {
       script: {
