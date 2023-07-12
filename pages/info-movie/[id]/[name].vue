@@ -154,6 +154,16 @@
 
                     <!-- <div class="ellipsis">
                       <Icon name="fa6-solid:ellipsis" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1.9rem"
+                        height="1.9rem"
+                        viewBox="0 0 512 512"
+                      >
+                        <circle cx="256" cy="256" r="48" fill="currentColor" />
+                        <circle cx="256" cy="416" r="48" fill="currentColor" />
+                        <circle cx="256" cy="96" r="48" fill="currentColor" />
+                      </svg>
                     </div> -->
                   </div>
                 </div>

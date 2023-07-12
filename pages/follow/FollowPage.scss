@@ -88,6 +88,8 @@
               svg {
                 margin-right: -7px;
                 font-size: 3rem;
+                width: 3rem;
+                height: 3rem;
               }
             }
 
@@ -414,13 +416,14 @@
           transition: all 0.2s;
           opacity: 0;
           color: var(--text-color);
-
           gap: 10px;
           font-size: 1.4rem;
 
           svg {
             margin-right: -7px;
             font-size: 3rem;
+            width: 3rem;
+            height: 3rem;
           }
         }
 
