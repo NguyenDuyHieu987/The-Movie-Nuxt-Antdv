@@ -70,8 +70,16 @@
                     >
                       <a-button shape="circle" size="large" type="text">
                         <template #icon>
-                          <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
-                          <Icon name="ic:play-arrow" />
+                          <!-- <Icon name="ic:play-arrow" /> -->
+
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
                         </template>
                       </a-button>
                     </NuxtLink>
@@ -86,8 +94,16 @@
                     >
                       <a-button shape="circle" size="large" type="text">
                         <template #icon>
-                          <!-- <font-awesome-icon icon="fa-solid fa-play" /> -->
-                          <Icon name="ic:play-arrow" />
+                          <!-- <Icon name="ci:play-arrow" /> -->
+
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
                         </template>
                       </a-button>
                     </NuxtLink>
@@ -111,16 +127,30 @@
                       @click.prevent="handelAddToList"
                     >
                       <template #icon>
-                        <!-- <Icon
-                      v-if="isAddToList"
-                      name="fa6-solid:check"
-                      class="fa6-solid"
-                    />
+                        <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
+                        <Icon v-else name="ic:baseline-plus" /> -->
 
-                    <Icon v-else name="ic:baseline-plus" /> -->
+                        <svg
+                          v-if="isAddToList"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1.8rem"
+                          height="1.8rem"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"
+                          />
+                        </svg>
 
-                        <Icon v-if="isAddToList" name="ic:baseline-check" />
-                        <Icon v-else name="ic:baseline-plus" />
+                        <svg
+                          v-else
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1.8rem"
+                          height="1.8rem"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
+                        </svg>
                       </template>
                     </a-button>
                   </a-tooltip>
@@ -148,7 +178,18 @@
                       >
                         <template #icon>
                           <!-- <Icon name="fa6-solid:share" class="fa6-solid" /> -->
-                          <Icon name="mdi:share" />
+                          <!-- <Icon name="mdi:share" /> -->
+
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1.8rem"
+                            height="1.8rem"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="m21 12l-7-7v4C7 10 4 15 3 20c2.5-3.5 6-5.1 11-5.1V19l7-7Z"
+                            />
+                          </svg>
                         </template>
                       </a-button>
                     </ShareNetwork>
@@ -177,10 +218,23 @@
                       <a-button shape="circle" size="large" type="text">
                         <template #icon>
                           <!-- <InfoOutlined /> -->
-                          <Icon
-                            name="mdi:information-variant"
+
+                          <!-- <Icon
                             class="info-icon"
-                          />
+                            name="mdi:information-variant"
+                          /> -->
+
+                          <svg
+                            class="info-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1.8rem"
+                            height="1.8rem"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M13.5 4A1.5 1.5 0 0 0 12 5.5A1.5 1.5 0 0 0 13.5 7A1.5 1.5 0 0 0 15 5.5A1.5 1.5 0 0 0 13.5 4m-.36 4.77c-1.19.1-4.44 2.69-4.44 2.69c-.2.15-.14.14.02.42c.16.27.14.29.33.16c.2-.13.53-.34 1.08-.68c2.12-1.36.34 1.78-.57 7.07c-.36 2.62 2 1.27 2.61.87c.6-.39 2.21-1.5 2.37-1.61c.22-.15.06-.27-.11-.52c-.12-.17-.24-.05-.24-.05c-.65.43-1.84 1.33-2 .76c-.19-.57 1.03-4.48 1.7-7.17c.11-.64.41-2.04-.75-1.94Z"
+                            />
+                          </svg>
                         </template>
                       </a-button>
                     </NuxtLink>

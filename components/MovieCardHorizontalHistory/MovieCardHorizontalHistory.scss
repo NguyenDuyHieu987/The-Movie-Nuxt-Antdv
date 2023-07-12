@@ -197,8 +197,15 @@
       .material-icons-outlined {
       }
 
-      svg {
-        font-size: 1.76rem;
+      .el-icon {
+        width: auto;
+        height: auto;
+
+        svg {
+          font-size: 1.76rem;
+          height: 1.9rem;
+          width: 1.9rem;
+        }
       }
 
       svg.fa-xmark {
@@ -231,6 +238,8 @@
       &.remove-btn {
         svg {
           font-size: 5rem;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
 

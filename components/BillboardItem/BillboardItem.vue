@@ -86,7 +86,7 @@
         >
           <a-button size="large" type="text" class="play modern">
             <template #icon>
-              <!-- <Icon name="ic:play-arrow" class="play" /> -->
+              <!-- <Icon name="ci:play-arrow" class="play" /> -->
 
               <svg
                 class="play"
