@@ -30,17 +30,24 @@
         }
       }
 
-      .ant-rate-star-zero {
-        svg {
-          color: #fff;
-        }
-      }
+      // .ant-rate-star-zero {
+      //   svg {
+      //     color: #fff;
+      //   }
+      // }
 
-      .ant-rate-star-full,
-      .ant-rate-star-half {
-        height: 2.4rem;
+      .ant-rate-star-full {
         color: #ffea00;
         fill: #ffea00;
+      }
+
+      .ant-rate-star-half {
+        .ant-rate-star-first {
+          svg {
+            color: #ffea00;
+            fill: #ffea00;
+          }
+        }
       }
 
       &.rated {
@@ -53,8 +60,10 @@
 
         .ant-rate-star-half {
           .ant-rate-star-first {
-            color: #00e5a4;
-            fill: #00e5a4;
+            svg {
+              color: #00e5a4;
+              fill: #00e5a4;
+            }
           }
         }
       }
