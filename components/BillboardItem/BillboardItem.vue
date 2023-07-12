@@ -23,7 +23,7 @@
     <div class="img-wrapper">
       <nuxt-img
         class="ant-image"
-        :src="getImage(item?.backdrop_path, 'backdrop')"
+        :src="getImage(item?.backdrop_path, 'backdrop', 'w_1000')"
         loading="lazy"
         alt=""
       />
