@@ -114,6 +114,7 @@
                 placement="bottomRight"
                 overlayClassName="dropdown-item-viewmore"
                 class="dropdown-item-viewmore"
+                destroyPopupOnHide
               >
                 <el-button
                   circle
@@ -254,7 +255,7 @@ import { getBackdrop, getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
 import axios from 'axios';
-import disableScroll from 'disable-scroll';
+// import disableScroll from 'disable-scroll';
 import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
@@ -275,21 +276,19 @@ const percent = ref<number>(0);
 const urlShare = computed<string>((): string => window.location.href);
 
 onMounted(() => {
-  const ant_btn = document.querySelectorAll('.action .viewmore-btn');
-
-  ant_btn?.forEach((btn) => {
-    btn?.addEventListener('click', () => {
-      if (btn?.classList.contains('ant-dropdown-open')) {
-        disableScroll.on();
-      } else {
-        disableScroll.off();
-      }
-    });
-
-    btn?.addEventListener('blur', () => {
-      disableScroll.off();
-    });
-  });
+  // const ant_btn = document.querySelectorAll('.action .viewmore-btn');
+  // ant_btn?.forEach((btn) => {
+  //   btn?.addEventListener('click', () => {
+  //     if (btn?.classList.contains('ant-dropdown-open')) {
+  //       disableScroll.on();
+  //     } else {
+  //       disableScroll.off();
+  //     }
+  //   });
+  //   btn?.addEventListener('blur', () => {
+  //     disableScroll.off();
+  //   });
+  // });
 });
 
 const getData = async () => {

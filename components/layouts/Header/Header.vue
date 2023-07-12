@@ -95,6 +95,7 @@
         placement="bottom"
         overlayClassName="popover-search"
         effect="dark"
+        destroyPopupOnHide
       >
         <a-button type="text" shape="circle" class="search-btn-mobile">
           <template #icon>
@@ -182,13 +183,13 @@
         <a-menu-item key="notification">
           <a-dropdown
             v-if="isLogin"
-            v-once
             :trigger="['click']"
             class="dropdown-notification"
             overlayClassName="dropdown-notification header"
             placement="bottomLeft"
+            destroyPopupOnHide
           >
-            <span v-if="isLogin" v-once class="ant-dropdown-link">
+            <span v-if="isLogin" class="ant-dropdown-link">
               <a-badge :count="3" :overflow-count="9">
                 <!-- <Icon name="fa6-regular:bell" class="fa-bell fa-regular" />
                 <Icon name="fa6-solid:bell" class="fa-bell fa-solid" /> -->
@@ -256,10 +257,10 @@
             class="dropdown-account"
             overlayClassName="dropdown-account header"
             placement="bottomLeft"
+            destroyPopupOnHide
           >
             <span class="ant-dropdown-link">
               <UserOutlined />
-
               <CaretDownOutlined />
             </span>
             <template #overlay>
@@ -268,7 +269,6 @@
                   :class="{ active: isLogin }"
                   key="my-profile"
                   v-if="isLogin"
-                  v-once
                 >
                   <NuxtLink :to="{ path: '/profile' }"
                     ><span>My Profile</span>
@@ -278,22 +278,18 @@
                     }}</span>
                   </NuxtLink>
                 </a-menu-item>
-                <a-menu-item
-                  key="dashboard"
-                  v-if="isLogin && role == 'admin'"
-                  v-once
-                >
+                <a-menu-item key="dashboard" v-if="isLogin && role == 'admin'">
                   <NuxtLink :to="$config.app.adminWebsiteUrl" target="_blank">
                     Bảng điều khiển
                   </NuxtLink>
                 </a-menu-item>
-                <a-menu-item key="pricing" v-if="isLogin" v-once>
+                <a-menu-item key="pricing" v-if="isLogin">
                   <NuxtLink :to="{ path: '/billing' }">Billing</NuxtLink>
                 </a-menu-item>
                 <a-menu-item key="logout">
                   <NuxtLink :to="{ path: '/login' }" @click="handleLogout">
-                    <span v-if="isLogin" v-once> Đăng xuất</span>
-                    <span v-else v-once> Đăng nhập</span>
+                    <span v-if="isLogin"> Đăng xuất</span>
+                    <span v-else> Đăng nhập</span>
                   </NuxtLink>
                 </a-menu-item>
               </a-menu>

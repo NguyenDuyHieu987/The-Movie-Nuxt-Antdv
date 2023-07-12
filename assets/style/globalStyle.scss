@@ -497,6 +497,7 @@ button,
   border: none;
   border-radius: 2px;
   overflow: hidden;
+  user-select: none;
 
   .ant-dropdown-menu.dropdown-viewmore {
     padding: 7px 0px;
@@ -552,6 +553,7 @@ button,
   border-radius: 2px;
   overflow: hidden;
   z-index: 5;
+  user-select: none;
 
   .ant-dropdown-menu {
     .main-action {

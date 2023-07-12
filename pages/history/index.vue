@@ -104,6 +104,7 @@
                     placement="bottomRight"
                     overlayClassName="dropdown-viewmore"
                     class="dropdown-viewmore"
+                    destroyPopupOnHide
                   >
                     <el-button
                       circle
@@ -330,6 +331,7 @@
                     placement="bottomRight"
                     overlayClassName="dropdown-viewmore"
                     class="dropdown-viewmore"
+                    destroyPopupOnHide
                   >
                     <el-button
                       circle
