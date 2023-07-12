@@ -130,7 +130,12 @@
         </template>
       </a-popover>
 
-      <a-menu theme="dark" mode="horizontal" :selectable="false">
+      <a-menu
+        class="menu-right-header"
+        theme="dark"
+        mode="horizontal"
+        :selectable="false"
+      >
         <a-menu-item key="notification">
           <a-dropdown
             v-if="isLogin"
