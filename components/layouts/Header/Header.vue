@@ -131,7 +131,7 @@
       </a-popover>
 
       <a-menu theme="dark" mode="horizontal" :selectable="false">
-        <a-menu-item :class="{ disabled: !isLogin }" key="notification">
+        <a-menu-item key="notification">
           <a-dropdown
             v-if="isLogin"
             v-once
