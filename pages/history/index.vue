@@ -457,6 +457,13 @@
           <h2 class="gradient-title-default underline">
             <span>Lịch sử xem</span>
           </h2>
+          <div class="nav-action">
+            <div class="sort-nav">
+              <div class="nav-item all">Tất cả</div>
+              <div class="nav-item movie">Phim lẻ</div>
+              <div class="nav-item tv">Phim bộ</div>
+            </div>
+          </div>
           <div class="movie-history">
             <MovieCardHorizontalHistory
               v-for="(item, index) in dataHistory"
