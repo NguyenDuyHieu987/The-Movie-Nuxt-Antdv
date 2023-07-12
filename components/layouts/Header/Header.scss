@@ -6,7 +6,6 @@ header.header-bar {
   padding-right: 0px;
   // border-bottom: 0.25px solid var(--border-regular-light);
   height: var(--header-height);
-  line-height: var(--header-height);
   position: fixed;
   left: 0;
   top: 0;
@@ -71,7 +70,6 @@ header.header-bar {
 
     .logo {
       display: inline-block;
-      line-height: normal;
 
       a {
         display: flex;
