@@ -14,13 +14,7 @@
           >
             <nuxt-img
               class="ant-image"
-              :src="
-                getImage(
-                  topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
-                  'backdrop',
-                  'h_300'
-                )
-              "
+              :src="getImage(topicImage, 'backdrop', 'h_300')"
             />
             <div class="play-now">
               <!-- <Icon name="ci:play-arrow" class="play" /> -->
@@ -50,13 +44,7 @@
           >
             <nuxt-img
               class="ant-image"
-              :src="
-                getImage(
-                  topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
-                  'backdrop',
-                  'h_300'
-                )
-              "
+              :src="getImage(topicImage, 'backdrop', 'h_300')"
             />
 
             <div class="play-now">
@@ -77,13 +65,7 @@
           <div v-if="!dataRow?.length" class="img-box">
             <nuxt-img
               class="ant-image"
-              :src="
-                getImage(
-                  topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
-                  'backdrop',
-                  'h_300'
-                )
-              "
+              :src="getImage('topic1.jpg', 'misc', 'h_300')"
             />
           </div>
         </div>

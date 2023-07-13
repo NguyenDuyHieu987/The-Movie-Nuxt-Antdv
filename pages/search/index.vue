@@ -32,7 +32,7 @@
       </div>
 
       <a-result
-        v-if="!searchData?.length && loading"
+        v-show="!searchData?.length && loading"
         status="404"
         title="Opps!"
         :sub-title="`Không có kêt quả nào khớp với từ
