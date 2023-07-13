@@ -109,7 +109,9 @@ export default defineNuxtConfig({
       googleAnalyticsID: process.env.NUXT_GOOGLE_ANALYTICS_ID,
       googleTagManagerID: process.env.NUXT_GOOGLE_TAG_MANAGER_ID,
     },
-    public: {},
+    public: {
+      serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,
+    },
   },
   alias: {
     '@': resolve(__dirname, './'),
