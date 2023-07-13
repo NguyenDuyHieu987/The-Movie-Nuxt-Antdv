@@ -1,6 +1,9 @@
 .ant-layout-sider.sider-rank {
   align-self: flex-start;
-  // top: 65px;
+  position: relative;
+  // top: var(--header-height);
+  // right: 0;
+  z-index: 1;
   background-color: var(--background-content-color);
   padding: 0px 0px;
 
