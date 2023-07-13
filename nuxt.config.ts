@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
+import { isProduction } from 'std-env';
 
 export default defineNuxtConfig({
   app: {
@@ -95,24 +96,17 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    apiGateway: process.env.NUXT_API_GATEWAY || 'https://api.phimhay247.site',
-    serverImageUrl:
-      process.env.NUXT_SERVER_IMAGE_URL || 'https://img.phimhay247.site',
-    serverVideoUrl:
-      process.env.NUXT_SERVER_VIDEO_URL || 'https://media.phimhay247.site',
-    adminWebsiteUrl:
-      process.env.NUXT_ADMIN_WEBSITE_URL || 'https://www.dash.phimhay247.site',
+    apiGateway: process.env.NUXT_API_GATEWAY,
+    serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,
+    serverVideoUrl: process.env.NUXT_SERVER_VIDEO_URL,
+    adminWebsiteUrl: process.env.NUXT_ADMIN_WEBSITE_URL,
     app: {
-      apiGateway: process.env.NUXT_API_GATEWAY || 'https://api.phimhay247.site',
-      serverImageUrl:
-        process.env.NUXT_SERVER_IMAGE_URL ||
-        'https://res.cloudinary.com/dvbhjlrdf/image/upload/v1688106333',
-      serverVideoUrl:
-        process.env.NUXT_SERVER_VIDEO_URL ||
-        'https://res.cloudinary.com/dvbhjlrdf/video/upload/v1688106333',
-      adminWebsiteUrl:
-        process.env.NUXT_ADMIN_WEBSITE_URL ||
-        'https://www.dash.phimhay247.site',
+      production_mode: isProduction,
+      apiGateway: process.env.NUXT_API_GATEWAY,
+      serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,
+      serverVideoUrl: process.env.NUXT_SERVER_VIDEO_URL,
+      adminWebsiteUrl: process.env.NUXT_ADMIN_WEBSITE_URL,
+      googleAnalyticsID: process.env.NUXT_GOOGLE_ANALYTICS_ID,
     },
     public: {},
   },
@@ -142,16 +136,21 @@ export default defineNuxtConfig({
     'nuxt-lazy-load',
     '@nuxtjs/fontaine',
     'nuxt-simple-sitemap',
-    // '@nuxtjs/google-analytics',
+    'nuxt-og-image',
+    'nuxt-seo-experiments',
   ],
   site: {
-    url: 'https://phimhay247.tech/',
+    url: 'https://phimhay247.tech',
+  },
+  ogImage: {
+    runtimeCacheStorage: {
+      driver: 'redis',
+      host: 'redis-11171.c292.ap-southeast-1-1.ec2.cloud.redislabs.com',
+      port: 11171,
+      password: 'iMtb5g4jlRhXANp0oP0LNm5iZeX3QeNT',
+    },
   },
   sitemap: {},
-  // googleAnalytics: {
-  //   id: 'G-4D127ENKGE',
-  //   dev: false,
-  // },
   image: {
     // provider: 'cloudinary',
     provider: 'imagekit',
@@ -159,7 +158,7 @@ export default defineNuxtConfig({
       // baseURL: 'https://ik.imagekit.io/8toa5f2rp/images',
       baseURL: '',
     },
-    domains: ['http://127.0.0.1:5001'],
+    domains: [],
   },
   lazyLoad: {
     // These are the default values
@@ -193,6 +192,7 @@ export default defineNuxtConfig({
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/vuelazyload',
+    '@/plugins/googleAnalytics',
     // '@/plugins/googlelogin',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
