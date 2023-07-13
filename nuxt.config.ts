@@ -196,6 +196,7 @@ export default defineNuxtConfig({
         '/history',
         '/ranking',
         '/billing',
+        '/pricing',
         '/profile',
         '/login',
         '/signup',
@@ -234,6 +235,7 @@ export default defineNuxtConfig({
       '/history',
       '/ranking',
       '/billing',
+      '/pricing',
       '/profile',
       '/login',
       '/signup',
@@ -281,5 +283,6 @@ export default defineNuxtConfig({
     '/signup': { swr: true, prerender: true },
     '/profile': { ssr: false, swr: true, prerender: true },
     '/billing': { ssr: false, swr: true, prerender: true },
+    '/pricing': { swr: true, prerender: true, static: true },
   },
 });
