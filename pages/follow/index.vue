@@ -546,7 +546,7 @@ const breakpoints = useBreakpoints({
   responsive: 1200,
 });
 
-const responsive = breakpoints.isSmallerOrEqual('responsive');
+const responsive = breakpoints.smallerOrEqual('responsive');
 
 const internalInstance: any = getCurrentInstance();
 
@@ -624,14 +624,14 @@ onMounted(() => {
       return;
     }
 
-    if (responsive) {
+    if (!responsive.value) {
       if (window.scrollY >= 60) {
         isStickyNavActiom.value = true;
       } else {
         isStickyNavActiom.value = false;
       }
     } else {
-      if (window.scrollY >= 310) {
+      if (window.scrollY >= 340) {
         isStickyNavActiom.value = true;
       } else {
         isStickyNavActiom.value = false;

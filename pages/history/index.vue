@@ -555,7 +555,7 @@ const breakpoints = useBreakpoints({
   responsive: 1200,
 });
 
-const responsive = breakpoints.isSmallerOrEqual('responsive');
+const responsive = breakpoints.smallerOrEqual('responsive');
 
 useHead({
   title: 'Lịch sử xem ' + ' | Phimhay247',
@@ -646,7 +646,7 @@ onMounted(() => {
       return;
     }
 
-    if (!responsive) {
+    if (!responsive.value) {
       if (window.scrollY >= 60) {
         isStickyNavActiom.value = true;
       } else {

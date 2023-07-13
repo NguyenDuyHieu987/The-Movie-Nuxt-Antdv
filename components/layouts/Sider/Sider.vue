@@ -105,6 +105,7 @@ onMounted(() => {
     '.sider-bar .ant-layout-sider-children'
   );
   const sider_header = document.querySelector('.sider-header') as HTMLElement;
+
   menu!.addEventListener('scroll', (e: any) => {
     if (e.target.scrollTop > 0) {
       // if (store.isLogin) {
