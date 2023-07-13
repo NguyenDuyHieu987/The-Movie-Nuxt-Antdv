@@ -678,7 +678,7 @@ onMounted(() => {
         () => getHistory(activeTab.value, skip.value)
       )
         .then((movieRespone: any) => {
-          if (movieRespone.data.value.data?.result?.length > 0) {
+          if (movieRespone.data.value?.results?.length > 0) {
             setTimeout(() => {
               loadMore.value = false;
               dataHistory.value = dataHistory.value.concat(
@@ -703,8 +703,8 @@ const getData = async () => {
     () => getHistory(activeTab.value, 1)
   )
     .then((movieRespone: any) => {
-      if (movieRespone.data.value?.result?.items?.length > 0) {
-        dataHistory.value = movieRespone.data.value?.result?.items;
+      if (movieRespone.data.value?.results?.length > 0) {
+        dataHistory.value = movieRespone.data.value?.results;
         total.value = movieRespone.data.value?.total;
         topicImage.value = dataHistory.value[0]?.backdrop_path;
         skip.value++;
@@ -783,7 +783,7 @@ const searchWatchList = (e: any) => {
         () => searchHistory(e.target.value, activeTab.value)
       )
         .then((movieRespone: any) => {
-          dataHistory.value = movieRespone.data.value.data?.results;
+          dataHistory.value = movieRespone.data.value?.results;
           setTimeout(() => {
             loadingSearch.value = false;
           }, 500);
@@ -817,9 +817,10 @@ const handleChangeTab = async (value: string) => {
         () => getHistory(activeTab.value, 1)
       )
         .then((movieRespone: any) => {
+          dataHistory.value = movieRespone.data.value?.results;
+
           if (movieRespone.data.value?.results?.length > 0) {
-            dataHistory.value = movieRespone.data.value?.results;
-            total.value = movieRespone.data.value?.total;
+            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
 
@@ -842,9 +843,10 @@ const handleChangeTab = async (value: string) => {
         () => getHistory(activeTab.value, 1)
       )
         .then((movieRespone: any) => {
+          dataHistory.value = movieRespone.data.value?.results;
+
           if (movieRespone.data.value?.results?.length > 0) {
-            dataHistory.value = movieRespone.data.value?.results;
-            total.value = movieRespone.data.value?.total;
+            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
 
@@ -867,9 +869,10 @@ const handleChangeTab = async (value: string) => {
         () => getHistory(activeTab.value, 1)
       )
         .then((movieRespone: any) => {
+          dataHistory.value = movieRespone.data.value?.results;
+
           if (movieRespone.data.value?.results?.length > 0) {
-            dataHistory.value = movieRespone.data.value?.results;
-            total.value = movieRespone.data.value?.total;
+            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
 

@@ -795,9 +795,10 @@ const handleChangeTab = async (value: string) => {
         () => getList(activeTab.value, 1)
       )
         .then((movieRespone: any) => {
+          dataList.value = movieRespone.data.value?.results;
+
           if (movieRespone.data.value?.results?.length > 0) {
-            dataList.value = movieRespone.data.value?.results;
-            total.value = movieRespone.data.value?.total;
+            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
 
@@ -820,9 +821,10 @@ const handleChangeTab = async (value: string) => {
         () => getList(activeTab.value, 1)
       )
         .then((movieRespone: any) => {
+          dataList.value = movieRespone.data.value?.results;
+
           if (movieRespone.data.value?.results?.length > 0) {
-            dataList.value = movieRespone.data.value?.results;
-            total.value = movieRespone.data.value?.total;
+            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
 
@@ -845,9 +847,10 @@ const handleChangeTab = async (value: string) => {
         () => getList(activeTab.value, 1)
       )
         .then((movieRespone: any) => {
+          dataList.value = movieRespone.data.value?.results;
+
           if (movieRespone.data.value?.results?.length > 0) {
-            dataList.value = movieRespone.data.value?.results;
-            total.value = movieRespone.data.value?.total;
+            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
 
