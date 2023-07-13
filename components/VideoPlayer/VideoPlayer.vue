@@ -900,13 +900,13 @@ onMounted(() => {
 
   window.addEventListener('touchend', windowTouchEnd);
 
-  window.onpointermove = (e) => {
+  window.addEventListener('pointermove', (e) => {
     if (videoStates.isScrubbingProgressBar) {
       handleTimeUpdate(e);
     }
-  };
+  });
 
-  window.ontouchmove = (e) => {
+  window.addEventListener('touchmove', (e) => {
     if (videoStates.isScrubbingProgressBar) {
       videoStates.isShowControls = true;
 
@@ -914,9 +914,9 @@ onMounted(() => {
         handleTimeUpdate({ x: touch.pageX });
       });
     }
-  };
+  });
 
-  window.onclick = (e: any) => {
+  window.addEventListener('click', (e: any) => {
     if (settingStates.enable) {
       if (
         !e.target.closest('.video-player .settings') &&
@@ -928,7 +928,7 @@ onMounted(() => {
         onCloseSettings();
       }
     }
-  };
+  });
 });
 
 watch(props, (newVal, oldVal) => {

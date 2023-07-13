@@ -357,11 +357,11 @@ const isTeleport = defineModel<boolean>('isTeleport');
 // });
 
 onMounted(() => {
-  window.onpointermove = (e: any) => {
+  window.addEventListener('pointermove', (e: any) => {
     if (isTeleport.value == true && !e.target.closest('.preview-modal')) {
       isTeleport.value = false;
     }
-  };
+  });
 });
 
 watch(previewModal, () => {

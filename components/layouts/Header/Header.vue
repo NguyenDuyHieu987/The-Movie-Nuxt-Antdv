@@ -332,7 +332,8 @@ onMounted(() => {
   var lastScrollTop = 0;
 
   window.addEventListener('scroll', () => {
-    var st = window.pageYOffset || document.documentElement.scrollTop;
+    var st = window.scrollY || document.documentElement.scrollTop;
+
     if (st > lastScrollTop) {
       // downscroll code
       if (window.scrollY >= 65) {

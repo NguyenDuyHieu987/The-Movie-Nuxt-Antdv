@@ -139,7 +139,7 @@ const isShowEmoji = ref<boolean>(false);
 const commentsList = defineModel<any[]>('commentsList');
 
 onMounted(() => {
-  // window.onclick = (e: any) => {
+  // window.addEventListener('click', (e: any) => {
   //   if (
   //     !e.target.closest('.emoji-picker-' + props.comment?.id) &&
   //     !e.target.closest('.comment-form .actions-container .left .emoticon')
@@ -149,7 +149,7 @@ onMounted(() => {
   //       isShowEmoji.value = false;
   //     }
   //   }
-  // };
+  // });
 });
 
 watch(props, () => {
