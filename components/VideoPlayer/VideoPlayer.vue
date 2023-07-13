@@ -995,7 +995,7 @@ const onLoadedDataVideo = () => {
 const onTimeUpdateVideo = (e: any) => {
   timeUpdate.value = formatDuration(e.target.currentTime);
   const percent = e.target.currentTime / e.target.duration;
-  progressBar.value.style.setProperty('--progress-width', percent);
+  progressBar.value?.style.setProperty('--progress-width', percent);
 
   emits('onTimeUpdate', {
     seconds: video.value?.currentTime,
