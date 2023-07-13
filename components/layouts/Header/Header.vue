@@ -330,7 +330,8 @@ onMounted(() => {
   const header: HTMLElement | null =
     document.querySelector('header.header-bar');
   var lastScrollTop = 0;
-  window.onscroll = () => {
+
+  window.addEventListener('scroll', () => {
     var st = window.pageYOffset || document.documentElement.scrollTop;
     if (st > lastScrollTop) {
       // downscroll code
@@ -348,7 +349,7 @@ onMounted(() => {
       }
     }
     lastScrollTop = st <= 0 ? 0 : st;
-  };
+  });
 });
 
 watchEffect(() => {
