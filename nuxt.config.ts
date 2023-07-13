@@ -139,6 +139,7 @@ export default defineNuxtConfig({
     'nuxt-simple-sitemap',
     'nuxt-og-image',
     'nuxt-seo-experiments',
+    'nuxt-gtag',
   ],
   site: {
     url: 'https://phimhay247.tech',
@@ -152,6 +153,9 @@ export default defineNuxtConfig({
     },
   },
   sitemap: {},
+  gtag: {
+    id: process.env.NUXT_GOOGLE_ANALYTICS_ID,
+  },
   image: {
     // provider: 'cloudinary',
     provider: 'imagekit',

@@ -13,6 +13,7 @@
     "@types/node": "^18",
     "node-sass": "^9.0.0",
     "nuxt": "^3.6.2",
+    "nuxt-gtag": "^0.5.7",
     "nuxt-og-image": "^2.0.9",
     "nuxt-seo-experiments": "^3.0.5",
     "nuxt-simple-sitemap": "^3.0.9",
