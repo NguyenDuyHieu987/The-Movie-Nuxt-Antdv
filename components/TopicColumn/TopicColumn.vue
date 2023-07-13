@@ -77,7 +77,9 @@
         :src="
           getImage(
             topicImage || 'topic1.jpg',
-            topicImage == 'topic1.jpg' ? 'misc' : 'backdrop',
+            topicImage == 'topic1.jpg' || topicImage == undefined
+              ? 'misc'
+              : 'backdrop',
             'h_300'
           )
         "
