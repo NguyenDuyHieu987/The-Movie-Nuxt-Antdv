@@ -882,6 +882,7 @@ video::-webkit-media-controls {
 
       .timeline-indicator {
         margin-top: 2px;
+        font-size: 1.3rem;
       }
     }
 
@@ -981,6 +982,26 @@ video::-webkit-media-controls {
             }
           }
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .video-player {
+    .timeline {
+      .timeline-container {
+        display: none;
+
+        .img-box {
+        }
+      }
+
+      .timeline-indicator {
+        padding: 2px 8px;
+        border-radius: 6px;
+        text-align: center;
+        background-color: #101010;
       }
     }
   }
