@@ -36,14 +36,15 @@
             : dataSeason?.name?.replace('Season', 'Phần')
         }} -->
       </span>
+
       <a-select
-        ref="select"
+        v-show="dataMovie?.seasons && dataMovie?.seasons?.length"
         v-model:value="selectedSeason"
         style="width: 150px"
         @change="handleChangeSeason"
       >
         <a-select-option
-          v-for="(item, index) in dataMovie.seasons"
+          v-for="(item, index) in dataMovie?.seasons"
           :key="item?.id"
           :index="index"
           :value="item?.season_number"
@@ -57,6 +58,7 @@
     </h3>
 
     <div
+      v-show="dataSeason?.episodes && dataSeason?.episodes?.length"
       class="list"
       v-loading="loading"
       element-loading-text="Đang tải tập..."

@@ -4,10 +4,10 @@
       <div class="top">
         <div class="backdrop">
           <NuxtLink
-            v-if="dataRow[0]?.media_type == 'tv' && dataRow[0]?.id"
+            v-if="dataRow[0]?.media_type == 'tv' && dataRow[0]?.movie_id"
             class="img-box"
             :to="{
-              path: `/play-tv/${dataRow[0]?.id}/${dataRow[0]?.name
+              path: `/play-tv/${dataRow[0]?.movie_id}/${dataRow[0]?.name
                 ?.replace(/\s/g, '+')
                 .toLowerCase()}/tap-1`,
             }"
@@ -32,10 +32,12 @@
           </NuxtLink>
 
           <NuxtLink
-            v-else-if="dataRow[0]?.media_type == 'movie' && dataRow[0]?.id"
+            v-else-if="
+              dataRow[0]?.media_type == 'movie' && dataRow[0]?.movie_id
+            "
             class="img-box"
             :to="{
-              path: `/play-movie/${dataRow[0]?.id}/${dataRow[0]?.name
+              path: `/play-movie/${dataRow[0]?.movie_id}/${dataRow[0]?.name
                 ?.replace(/\s/g, '+')
                 .toLowerCase()}`,
             }"
