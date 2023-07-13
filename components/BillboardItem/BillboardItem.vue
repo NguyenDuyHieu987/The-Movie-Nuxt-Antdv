@@ -202,10 +202,10 @@ onBeforeMount(async () => {
   if (store.isLogin) {
     await useAsyncData(
       `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-      () => getItemList(props.item?.id)
+      () => getItemList(props.item?.id, props.item?.media_type)
     )
       .then((movieRespone: any) => {
-        if (movieRespone.data.value.data.success == true) {
+        if (movieRespone.data.value.success == true) {
           isAddToList.value = true;
         }
       })
@@ -222,18 +222,15 @@ const handelAddToList = () => {
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (
-      !utils.handelAddItemToList(
-        props.item?.id,
-        props.item?.media_type == 'movie' ? 'movie' : 'tv'
-      )
-    ) {
+    if (!utils.handelAddItemToList(props.item?.id, props.item?.media_type)) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(props.item?.id)) {
+    if (
+      !utils.handelRemoveItemFromList(props.item?.id, props.item?.media_type)
+    ) {
       isAddToList.value = true;
     }
     return;

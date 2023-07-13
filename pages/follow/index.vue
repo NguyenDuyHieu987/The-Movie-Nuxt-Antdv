@@ -2,7 +2,7 @@
   <div class="follow">
     <div v-show="store.isLogin" class="follow-container">
       <div v-if="loading">
-        <section v-if="responsive" class="topic-follow-row">
+        <section v-show="responsive" class="topic-follow-row">
           <div class="row-container">
             <div class="top">
               <div class="backdrop">
@@ -443,12 +443,24 @@
           </aside>
         </Teleport>
 
-        <section class="follow-main-content padding-content">
-          <h2 class="gradient-title-default underline">
-            <span>Danh sách phát</span>
-          </h2>
+        <section class="follow-main-content" ref="followContent">
+          <div class="padding-content horizontal">
+            <h2 class="gradient-title-default underline">
+              <span>Danh sách phát</span>
+            </h2>
+          </div>
 
-          <div class="movie-follow">
+          <div
+            class="nav-action padding-content horizontal"
+            :style="{
+              '--width': followContent?.offsetWidth + 'px',
+            }"
+            :class="{ sticky: isStickyNavActiom }"
+          >
+            <SortTab @onChangeTab="handleChangeTab" />
+          </div>
+
+          <div class="movie-follow padding-content horizontal">
             <MovieCardHorizontalFollow
               v-for="(item, index) in dataList"
               :index="index"
@@ -497,6 +509,7 @@
 import axios from 'axios';
 import MovieCardHorizontalFollow from '@/components/MovieCardHorizontalFollow/MovieCardHorizontalFollow.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
+import SortTab from '@/components/SortTab/SortTab.vue';
 import { getBackdrop, getImage, getColorImage } from '~/services/image';
 import { getList, searchList } from '~/services/list';
 import disableScroll from 'disable-scroll';
@@ -520,18 +533,22 @@ const valueInput = ref<string>('');
 const debounce = ref<any>();
 const total = ref<number>(0);
 const skip = ref<number>(1);
-const internalInstance: any = getCurrentInstance();
 const loading = ref<boolean>(false);
 const loadingSearch = ref<boolean>(false);
+const isStickyNavActiom = ref<boolean>(false);
 const loadMore = ref<boolean>(false);
 const isScroll = ref<boolean>(false);
 const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
+const followContent = ref();
+const activeTab = ref<string>('all');
 
 const breakpoints = useBreakpoints({
   responsive: 1200,
 });
 
-const responsive = breakpoints.smallerOrEqual('responsive');
+const responsive = breakpoints.isSmallerOrEqual('responsive');
+
+const internalInstance: any = getCurrentInstance();
 
 useHead({
   title: 'Theo dõi - Danh sách ' + ' | Phimhay247',
@@ -607,6 +624,20 @@ onMounted(() => {
       return;
     }
 
+    if (!responsive) {
+      if (window.scrollY >= 60) {
+        isStickyNavActiom.value = true;
+      } else {
+        isStickyNavActiom.value = false;
+      }
+    } else {
+      if (window.scrollY >= 310) {
+        isStickyNavActiom.value = true;
+      } else {
+        isStickyNavActiom.value = false;
+      }
+    }
+
     isScroll.value = true;
     // console.log(window.scrollY + window.innerHeight);
     // console.log(document.documentElement.scrollHeight);
@@ -620,15 +651,16 @@ onMounted(() => {
       dataList.value?.length < total.value
     ) {
       loadMore.value = true;
-      useAsyncData(`list/get/${store.userAccount?.id}/${skip.value}`, () =>
-        getList(skip.value)
+      useAsyncData(
+        `list/get/${store.userAccount?.id}/${activeTab.value}/${skip.value}`,
+        () => getList(activeTab.value, skip.value)
       )
         .then((movieRespone: any) => {
-          if (movieRespone.data.value.data?.result?.length > 0) {
+          if (movieRespone.data.value?.results?.length > 0) {
             setTimeout(() => {
               loadMore.value = false;
               dataList.value = dataList.value.concat(
-                movieRespone.data.value.data?.result
+                movieRespone.data.value?.results
               );
             }, 2000);
             skip.value += 1;
@@ -644,10 +676,13 @@ onMounted(() => {
 const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  await useAsyncData(`list/get/${store.userAccount?.id}/1`, () => getList(1))
+  await useAsyncData(
+    `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
+    () => getList(activeTab.value, 1)
+  )
     .then((movieRespone: any) => {
-      if (movieRespone.data.value?.result?.items?.length > 0) {
-        dataList.value = movieRespone.data.value?.result?.items;
+      if (movieRespone.data.value?.results?.length > 0) {
+        dataList.value = movieRespone.data.value?.results;
         total.value = movieRespone.data.value?.total;
         topicImage.value = dataList.value[0]?.backdrop_path;
         skip.value++;
@@ -691,7 +726,7 @@ onBeforeMount(async () => {
 const getDataWhenRemoveList = (data: number) => {
   // dataList.value = data;
   dataList.value = _.reject(dataList.value, (x) => {
-    return x.id === data;
+    return x.movie_id === data;
   });
   total.value = dataList.value?.length;
 };
@@ -715,21 +750,25 @@ const searchFollow = (e: any) => {
   if (e.target.value.length >= 0) {
     loadingSearch.value = true;
 
+    internalInstance.appContext.config.globalProperties.$Progress.start();
+
     clearTimeout(debounce.value);
+
     debounce.value = setTimeout(() => {
       useAsyncData(
-        `list/search/${store.userAccount?.id}/${e.target.value}`,
-        () => searchList(e.target.value)
+        `list/search/${store.userAccount?.id}/${activeTab.value}/${e.target.value}`,
+        () => searchList(e.target.value, activeTab.value)
       )
         .then((movieRespone: any) => {
-          dataList.value = movieRespone.data.value.data?.results;
-          setTimeout(() => {
-            loadingSearch.value = false;
-          }, 500);
+          dataList.value = movieRespone.data.value?.results;
         })
         .catch((e) => {
           loadingSearch.value = false;
           if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loadingSearch.value = false;
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
         });
     }, 500);
   }
@@ -738,21 +777,93 @@ const searchFollow = (e: any) => {
   // }
 };
 
-const onLoadMore = () => {
-  loadMore.value = true;
-  getList(skip.value)
-    .then((movieRespone) => {
-      if (movieRespone.data?.result?.length > 0) {
-        setTimeout(() => {
-          loadMore.value = false;
-          dataList.value = dataList.value.concat(movieRespone.data?.result);
-        }, 2000);
-        skip.value += 1;
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+const handleChangeTab = async (value: string) => {
+  activeTab.value = value;
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+
+  // window.scrollTo({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: 'instant',
+  // });
+
+  switch (value) {
+    case 'all':
+      await useAsyncData(
+        `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
+        () => getList(activeTab.value, 1)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value?.results?.length > 0) {
+            dataList.value = movieRespone.data.value?.results;
+            total.value = movieRespone.data.value?.total;
+            topicImage.value = dataList.value[0]?.backdrop_path;
+            skip.value = 2;
+
+            setTimeout(() => {
+              const color = dataList.value[0]?.dominant_backdrop_color;
+              setBackgroundColor(color);
+            });
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
+        });
+      break;
+    case 'movie':
+      await useAsyncData(
+        `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
+        () => getList(activeTab.value, 1)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value?.results?.length > 0) {
+            dataList.value = movieRespone.data.value?.results;
+            total.value = movieRespone.data.value?.total;
+            topicImage.value = dataList.value[0]?.backdrop_path;
+            skip.value = 2;
+
+            setTimeout(() => {
+              const color = dataList.value[0]?.dominant_backdrop_color;
+              setBackgroundColor(color);
+            });
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
+        });
+      break;
+    case 'tv':
+      await useAsyncData(
+        `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
+        () => getList(activeTab.value, 1)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value?.results?.length > 0) {
+            dataList.value = movieRespone.data.value?.results;
+            total.value = movieRespone.data.value?.total;
+            topicImage.value = dataList.value[0]?.backdrop_path;
+            skip.value = 2;
+
+            setTimeout(() => {
+              const color = dataList.value[0]?.dominant_backdrop_color;
+              setBackgroundColor(color);
+            });
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
+        });
+      break;
+  }
 };
 </script>
 

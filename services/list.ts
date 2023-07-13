@@ -1,39 +1,43 @@
 import { makeRequest } from './makeRequest';
 
-export function getList(skip: number = 1, limit: number = 20) {
+export function getList(
+  type: string = 'all',
+  skip: number = 1,
+  limit: number = 20
+) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/list/getlist?skip=${skip}&limit=${limit}`, {
+  return makeRequest(`/list/getlist/${type}?skip=${skip}&limit=${limit}`, {
     headers: headers,
   });
 }
 
-export function searchList(query: string) {
+export function searchList(query: string, type: string) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/list/searchlist?query=${query}`, {
+  return makeRequest(`/list/searchlist/${type}?query=${query}`, {
     headers: headers,
   });
 }
 
-export function getItemList(movieId: number | string) {
+export function getItemList(movieId: string, media_type: string) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/list/getitem/${movieId}?api=hieu987`, {
+  return makeRequest(`/list/getitem/${media_type}/${movieId}?api=hieu987`, {
     headers: headers,
   });
 }
 
 export function addItemList(params: any) {
   const bodyFormData = new FormData();
+  bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
-  bodyFormData.append('media_id', params.media_id);
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
@@ -52,7 +56,7 @@ export function removeItemList(params: any) {
 
   const bodyFormData = new FormData();
   bodyFormData.append('media_type', params.media_type);
-  bodyFormData.append('media_id', params.media_id);
+  bodyFormData.append('movie_id', params.movie_id);
 
   return makeRequest(`/list/remove_item`, {
     method: 'DELETE',

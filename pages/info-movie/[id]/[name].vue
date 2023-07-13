@@ -503,7 +503,7 @@ const handelAddToList = () => {
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id, 'movie')) {
       isAddToList.value = true;
     }
     return;

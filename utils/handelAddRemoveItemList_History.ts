@@ -15,8 +15,8 @@ export async function handelAddItemToList(
 ): Promise<boolean> {
   // message.loading({ content: 'Đang thêm' });
   return addItemList({
+    movie_id: movieId,
     media_type: media_type,
-    media_id: movieId,
   })
     .then((response: any) => {
       if (response?.success == true) {
@@ -70,12 +70,14 @@ export async function handelAddItemToList(
 }
 
 export async function handelRemoveItemFromList(
-  movieId: number
+  movieId: number,
+  media_type: string
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa' });
 
   return removeItemList({
-    media_id: movieId,
+    movie_id: movieId,
+    media_type: media_type,
   })
     .then((response: any) => {
       if (response?.success == true) {
@@ -182,12 +184,14 @@ export async function handleRemoveAllitemFromList(): Promise<boolean> {
 }
 
 export async function handleRemoveItemFromHistory(
-  movieId: number
+  movieId: number,
+  media_type: string
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa' });
 
   return removeItemHistory({
-    media_id: movieId,
+    movie_id: movieId,
+    media_type: media_type,
   })
     .then((response: any) => {
       if (response?.success == true) {

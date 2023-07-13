@@ -487,14 +487,19 @@ const handelAddToList = (e: any) => {
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (
-      !utils.handelAddItemToList(dataMovie.value?.id, props.item.media_type)
+      !utils.handelAddItemToList(dataMovie.value?.id, props.item?.media_type)
     ) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
+    if (
+      !utils.handelRemoveItemFromList(
+        dataMovie.value?.id,
+        props.item?.media_type
+      )
+    ) {
       isAddToList.value = true;
     }
     return;

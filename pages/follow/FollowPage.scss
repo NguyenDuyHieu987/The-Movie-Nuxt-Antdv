@@ -1,14 +1,7 @@
 .follow {
-  height: 100%;
-
   .follow-container {
-    .ant-layout {
-      // background-color: var(--background-content-color);
-      background-color: transparent;
-    }
-
     .topic-follow-row {
-      // display: none;
+      display: none;
       position: relative;
       width: 100%;
       flex-grow: 1;
@@ -271,10 +264,31 @@
     }
 
     .follow-main-content {
+      position: relative;
       z-index: 1;
+      padding-top: 20px;
 
       .gradient-title-default {
         margin-top: 0px;
+      }
+
+      .nav-action {
+        width: 100%;
+        // width: var(--width);
+        margin-bottom: 15px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+
+        &.sticky {
+          position: fixed;
+          z-index: 1;
+          top: var(--header-height);
+          background-color: #101010e6;
+          // background-color: red;
+          margin-bottom: 0px;
+          transition: background-color 0.25s;
+          transition-delay: 0.3s;
+        }
       }
 
       .movie-follow {
@@ -346,9 +360,11 @@
 #topic-follow-column-teleport {
   position: relative;
   flex: auto;
+  background-color: var(--background-content-color);
   padding: 15px 0px 0px 15px;
   max-width: 356px;
   // margin-right: 3px;
+  z-index: 1;
 
   .topic-follow-column {
     position: fixed;
@@ -602,7 +618,7 @@
   }
 
   .follow {
-    .follow-container > .ant-layout {
+    .follow-container {
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -624,6 +640,10 @@
     .follow-container {
       .topic-follow-row {
         padding: 15px;
+      }
+
+      .follow-main-content {
+        padding-top: 15px;
       }
     }
   }

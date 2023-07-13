@@ -2,7 +2,7 @@
   <div class="history">
     <div v-show="store.isLogin" class="history-container">
       <div v-if="loading">
-        <section v-if="responsive" class="topic-history-row">
+        <section v-show="responsive" class="topic-history-row">
           <div class="row-container">
             <div class="top">
               <div class="backdrop">
@@ -453,18 +453,24 @@
           </aside>
         </Teleport>
 
-        <section class="history-main-content padding-content">
-          <h2 class="gradient-title-default underline">
-            <span>Lịch sử xem</span>
-          </h2>
-          <div class="nav-action">
-            <div class="sort-nav">
-              <div class="nav-item all">Tất cả</div>
-              <div class="nav-item movie">Phim lẻ</div>
-              <div class="nav-item tv">Phim bộ</div>
-            </div>
+        <section class="history-main-content" ref="historyContent">
+          <div class="padding-content horizontal">
+            <h2 class="gradient-title-default underline">
+              <span>Lịch sử xem</span>
+            </h2>
           </div>
-          <div class="movie-history">
+
+          <div
+            class="nav-action padding-content horizontal"
+            :style="{
+              '--width': historyContent?.offsetWidth + 'px',
+            }"
+            :class="{ sticky: isStickyNavActiom }"
+          >
+            <SortTab @onChangeTab="handleChangeTab" />
+          </div>
+
+          <div class="movie-history padding-content horizontal">
             <MovieCardHorizontalHistory
               v-for="(item, index) in dataHistory"
               :index="index"
@@ -475,7 +481,8 @@
               :getDataWhenRemoveHistory="getDataWhenRemoveHistory"
             />
           </div>
-          <div class="skeleton-loadmore" v-show="loadMore">
+
+          <div class="skeleton-loadmore padding-content" v-show="loadMore">
             <el-skeleton
               :loading="true"
               animated
@@ -510,6 +517,7 @@
 import axios from 'axios';
 import MovieCardHorizontalHistory from '@/components/MovieCardHorizontalHistory/MovieCardHorizontalHistory.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
+import SortTab from '@/components/SortTab/SortTab.vue';
 import { getBackdrop, getImage, getColorImage } from '~/services/image';
 import { getHistory, searchHistory } from '~/services/history';
 import disableScroll from 'disable-scroll';
@@ -536,15 +544,18 @@ const dataHistory = ref<any[]>([]);
 const loading = ref<boolean>(false);
 const isScroll = ref<boolean>(false);
 const loadingSearch = ref<boolean>(false);
+const isStickyNavActiom = ref<boolean>(false);
 const loadMore = ref<boolean>(false);
 const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
 const internalInstance: any = getCurrentInstance();
+const historyContent = ref();
+const activeTab = ref<string>('all');
 
 const breakpoints = useBreakpoints({
   responsive: 1200,
 });
 
-const responsive = breakpoints.smallerOrEqual('responsive');
+const responsive = breakpoints.isSmallerOrEqual('responsive');
 
 useHead({
   title: 'Lịch sử xem ' + ' | Phimhay247',
@@ -635,6 +646,20 @@ onMounted(() => {
       return;
     }
 
+    if (!responsive) {
+      if (window.scrollY >= 60) {
+        isStickyNavActiom.value = true;
+      } else {
+        isStickyNavActiom.value = false;
+      }
+    } else {
+      if (window.scrollY >= 310) {
+        isStickyNavActiom.value = true;
+      } else {
+        isStickyNavActiom.value = false;
+      }
+    }
+
     isScroll.value = true;
     // console.log(window.scrollY + window.innerHeight);
     // console.log(document.documentElement.scrollHeight);
@@ -649,7 +674,7 @@ onMounted(() => {
     ) {
       loadMore.value = true;
       useAsyncData(`history/get/${store.userAccount?.id}/${skip.value}`, () =>
-        getHistory(skip.value)
+        getHistory(activeTab.value, skip.value)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.data?.result?.length > 0) {
@@ -673,7 +698,7 @@ const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(`history/get/${store.userAccount?.id}/1`, () =>
-    getHistory(1)
+    getHistory(activeTab.value, 1)
   )
     .then((movieRespone: any) => {
       if (movieRespone.data.value?.result?.items?.length > 0) {
@@ -721,7 +746,7 @@ onBeforeMount(async () => {
 const getDataWhenRemoveHistory = (data: number) => {
   // dataHistory.value = data;
   dataHistory.value = _.reject(dataHistory.value, (x) => {
-    return x.id === data;
+    return x.movie_id === data;
   });
   total.value = dataHistory.value?.length;
 };
@@ -770,6 +795,17 @@ const searchWatchList = (e: any) => {
   // else if (valueInput.value.length == 0) {
   //   dataHistory.value = [];
   // }
+};
+
+const handleChangeTab = (value: string) => {
+  switch (value) {
+    case 'all':
+      break;
+    case 'movie':
+      break;
+    case 'tv':
+      break;
+  }
 };
 </script>
 

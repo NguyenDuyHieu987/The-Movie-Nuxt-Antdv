@@ -29,10 +29,10 @@
         <NuxtLink
           :to="{
             path: isEpisodes
-              ? `/info-tv/${item?.id}/${item?.name
+              ? `/info-tv/${item?.movie_id}/${item?.name
                   ?.replace(/\s/g, '+')
                   .toLowerCase()}`
-              : `/info-movie/${item?.id}/${item?.name
+              : `/info-movie/${item?.movie_id}/${item?.name
                   ?.replace(/\s/g, '+')
                   .toLowerCase()}`,
           }"
@@ -197,7 +197,7 @@
                         <NuxtLink
                           v-if="isEpisodes && !loading"
                           :to="{
-                            path: `/play-tv/${item?.id}/${item?.name
+                            path: `/play-tv/${item?.movie_id}/${item?.name
                               ?.replace(/\s/g, '+')
                               .toLowerCase()}/tap-1`,
                           }"
@@ -208,7 +208,7 @@
                         <NuxtLink
                           v-else-if="!isEpisodes && !loading"
                           :to="{
-                            path: `/play-movie/${item?.id}/${item?.name
+                            path: `/play-movie/${item?.movie_id}/${item?.name
                               ?.replace(/\s/g, '+')
                               .toLowerCase()}`,
                           }"
@@ -447,8 +447,8 @@ const getData = async () => {
     switch (props?.type || props?.item?.media_type) {
       case 'movie':
         isEpisodes.value = false;
-        await useAsyncData(`movie/short/${props.item?.id}`, () =>
-          getMovieById(props.item?.id)
+        await useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
+          getMovieById(props.item?.movie_id)
         )
           .then((movieResponed: any) => {
             dataMovie.value = movieResponed.data.value;
@@ -463,8 +463,8 @@ const getData = async () => {
       case 'tv':
         isEpisodes.value = true;
 
-        await useAsyncData(`tv/short/${props.item?.id}`, () =>
-          getTvById(props.item?.id)
+        await useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
+          getTvById(props.item?.movie_id)
         )
           .then((tvResponed: any) => {
             dataMovie.value = tvResponed.data.value;
@@ -486,8 +486,8 @@ const getData = async () => {
   }
 
   // await useAsyncData(
-  //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-  //   () => getItemList( props.item?.id)
+  //   `itemlist/${store?.userAccount?.id}/${props.item?.movie_id}`,
+  //   () => getItemList( props.item?.movie_id)
   // )
   //   .then((movieRespone: any) => {
   //     if (movieRespone.data.value.data.success == true) {
@@ -513,7 +513,12 @@ const handelAddToList = () => {
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
+    if (
+      !utils.handelRemoveItemFromList(
+        props.item?.movie_id,
+        props.item?.media_type
+      )
+    ) {
       isAddToList.value = true;
     }
     return;
@@ -521,8 +526,13 @@ const handelAddToList = () => {
 };
 
 const handleRemoveFromHistory = async () => {
-  if (await utils.handleRemoveItemFromHistory(dataMovie.value?.id)) {
-    props.getDataWhenRemoveHistory(props.item?.id);
+  if (
+    await utils.handleRemoveItemFromHistory(
+      props.item?.movie_id,
+      props.item?.media_type
+    )
+  ) {
+    props.getDataWhenRemoveHistory(props.item?.movie_id);
   }
   return;
 };

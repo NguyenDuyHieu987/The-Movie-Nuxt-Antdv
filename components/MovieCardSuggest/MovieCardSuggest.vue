@@ -207,7 +207,7 @@ const getData = async () => {
     } else {
       await useAsyncData(
         `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-        () => getItemList(props.item?.id)
+        () => getItemList(props.item?.id, props.item?.media_type)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.success == true) {
@@ -225,7 +225,7 @@ const getData = async () => {
     } else {
       await useAsyncData(
         `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
-        () => getItemHistory(props.item?.id)
+        () => getItemHistory(props.item?.id, props.item?.media_type)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.success == true) {
@@ -255,7 +255,9 @@ const handelAddToList = (e: any) => {
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(props.item?.id)) {
+    if (
+      !utils.handelRemoveItemFromList(props.item?.id, props.item?.media_type)
+    ) {
       isAddToList.value = true;
     }
     return;

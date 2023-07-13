@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 
-const utils = useUtils();
-
 export default defineStore('store', () => {
+  const utils = useUtils();
+
   const collapsed = ref<boolean>(false);
   const openDrawer = ref<boolean>(false);
   const modalVisible = ref<boolean>(false);

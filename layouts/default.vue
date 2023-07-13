@@ -5,7 +5,7 @@
     <div>
       <Header />
       <div :class="[collapsed ? 'expand' : '', 'body-content']">
-        <div class="body-wrapper">
+        <div class="body-wrapper" id="body-wrapper">
           <Sider />
           <Drawer />
 

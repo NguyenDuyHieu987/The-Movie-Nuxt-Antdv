@@ -506,7 +506,7 @@ const handelAddToList = () => {
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id, 'tv')) {
       isAddToList.value = true;
     }
     return;

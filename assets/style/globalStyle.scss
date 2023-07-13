@@ -121,6 +121,10 @@ body {
   // user-select: none;
   color: var(--text-color);
   background-color: var(--background-content-color);
+
+  &::-webkit-scrollbar {
+    // display: none;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -236,11 +240,19 @@ button,
 
 .padding-content {
   padding: 15px 20px;
+
+  &.horizontal {
+    padding: 0px 20px;
+  }
 }
 
 @media only screen and (max-width: 900px) {
   .padding-content {
     padding: 15px;
+
+    &.horizontal {
+      padding: 0px 15px;
+    }
   }
 }
 

@@ -517,13 +517,13 @@ const handelAddToList = () => {
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (!utils.handelAddItemToList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handelAddItemToList(dataMovie.value?.id, 'tv')) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(dataMovie.value?.id)) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id, 'tv')) {
       isAddToList.value = true;
     }
     return;

@@ -1,0 +1,23 @@
+.sort-tab {
+  display: flex;
+  gap: 5px;
+
+  .tab-item {
+    padding: 7px 20px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.4rem;
+    // background-color: #00000097;
+    border-radius: 15px;
+    transition: all 0.15s;
+
+    &.active {
+      background-color: #23232397;
+      // box-shadow: var(--box-shadow-small);
+    }
+
+    &:active {
+      background-color: #23232397;
+    }
+  }
+}

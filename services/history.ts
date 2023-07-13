@@ -1,13 +1,20 @@
 import { makeRequest } from './makeRequest';
 
-export function getHistory(skip: number = 1, limit: number = 20) {
+export function getHistory(
+  type: string = 'all',
+  skip: number = 1,
+  limit: number = 20
+) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/history/gethistory?skip=${skip}&limit=${limit}`, {
-    headers: headers,
-  });
+  return makeRequest(
+    `/history/gethistory/${type}?skip=${skip}&limit=${limit}`,
+    {
+      headers: headers,
+    }
+  );
 }
 
 export function searchHistory(query: string) {
@@ -20,12 +27,12 @@ export function searchHistory(query: string) {
   });
 }
 
-export function getItemHistory(movieId: number | string) {
+export function getItemHistory(movieId: string, media_type: string) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/history/getitem/${movieId}`, {
+  return makeRequest(`/history/getitem/${media_type}/${movieId}`, {
     headers: headers,
   });
 }
@@ -36,8 +43,8 @@ export function add_update_History(params: any) {
   };
 
   const bodyFormData = new FormData();
+  bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
-  bodyFormData.append('media_id', params.media_id);
   bodyFormData.append('duration', params.duration);
   bodyFormData.append('percent', params.percent.toFixed(3));
   bodyFormData.append('seconds', params.seconds);
@@ -55,8 +62,8 @@ export function removeItemHistory(params: any) {
   };
 
   const bodyFormData = new FormData();
+  bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
-  bodyFormData.append('media_id', params.media_id);
 
   return makeRequest(`/history/remove_item`, {
     method: 'DELETE',
