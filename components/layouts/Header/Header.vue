@@ -196,8 +196,8 @@
                 <svg
                   class="fa-bell fa-regular"
                   xmlns="http://www.w3.org/2000/svg"
-                  width="22"
-                  height="22"
+                  width="2.2rem"
+                  height="2.2rem"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -209,8 +209,8 @@
                 <svg
                   class="fa-bell fa-solid"
                   xmlns="http://www.w3.org/2000/svg"
-                  width="22"
-                  height="22"
+                  width="2.2rem"
+                  height="2.2rem"
                   viewBox="0 0 24 24"
                 >
                   <path
