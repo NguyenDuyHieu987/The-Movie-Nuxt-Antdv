@@ -10,9 +10,11 @@
   },
   "devDependencies": {
     "@nuxtjs/fontaine": "^0.4.0",
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@types/node": "^18",
     "node-sass": "^9.0.0",
     "nuxt": "^3.6.2",
+    "nuxt-simple-sitemap": "^3.0.9",
     "sass-loader": "^13.3.0"
   },
   "dependencies": {

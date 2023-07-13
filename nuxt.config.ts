@@ -141,7 +141,17 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-lazy-load',
     '@nuxtjs/fontaine',
+    'nuxt-simple-sitemap',
+    // '@nuxtjs/google-analytics',
   ],
+  site: {
+    url: 'https://phimhay247.tech/',
+  },
+  sitemap: {},
+  // googleAnalytics: {
+  //   id: 'G-4D127ENKGE',
+  //   dev: false,
+  // },
   image: {
     // provider: 'cloudinary',
     provider: 'imagekit',
