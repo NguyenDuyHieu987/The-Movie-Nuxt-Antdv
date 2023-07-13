@@ -23,7 +23,11 @@ export function makeRequestVideo(url: string, options: any = {}) {
 }
 
 export function getVideo(path: string) {
-  return makeRequestVideo(`/videos/${path}`);
+  const nuxtConfig = useRuntimeConfig();
+  if (nuxtConfig.app.production_mode)
+    return makeRequestVideo(`/videos/${path}`);
+
+  return makeRequestVideo(`/video/${path}`);
 }
 
 export function getVideoFeature(path: string) {
