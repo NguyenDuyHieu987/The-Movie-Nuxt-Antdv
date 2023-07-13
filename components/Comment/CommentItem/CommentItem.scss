@@ -166,6 +166,10 @@
           svg.caret {
             margin-right: 5px;
             font-size: 2.8rem;
+            width: 2.8rem;
+            height: 2.8rem;
+            color: var(--link-text-color);
+            fill: var(--link-text-color);
 
             &.active {
               transform: rotate(180deg);

@@ -624,7 +624,7 @@ onMounted(() => {
       return;
     }
 
-    if (!responsive) {
+    if (responsive) {
       if (window.scrollY >= 60) {
         isStickyNavActiom.value = true;
       } else {

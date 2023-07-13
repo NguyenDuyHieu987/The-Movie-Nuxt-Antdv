@@ -159,11 +159,21 @@
             @click="onClickShowReplies"
           >
             <template #icon>
-              <Icon
+              <!-- <Icon
                 name="ic:baseline-arrow-drop-down"
                 class="caret"
                 :class="{ active: isShowReplies }"
-              />
+              /> -->
+              <svg
+                class="caret"
+                :class="{ active: isShowReplies }"
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.8rem"
+                height="2.8rem"
+                viewBox="0 0 24 24"
+              >
+                <path d="m7 10l5 5l5-5z" />
+              </svg>
             </template>
             {{ numberReplies != 0 && numberReplies + ' Phản hồi' }}
           </a-button>
