@@ -72,13 +72,7 @@
 
         <nuxt-img
           class="overlay-image"
-          :src="
-            getImage(
-              topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
-              'backdrop',
-              'h_300'
-            )
-          "
+          :src="getImage(topicImage || 'topic1.jpg', 'backdrop', 'h_300')"
         />
 
         <div class="info">
