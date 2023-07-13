@@ -9,7 +9,7 @@ export function makeRequestVideo(url: string, options: any = {}) {
       ? nuxtConfig.app.serverVideoUrl
       : 'http://127.0.0.1:5002',
     // withCredentials: true,
-    headers: { Accept: 'video/mp4;charset=UTF-8' },
+    // headers: { Accept: 'video/mp4;charset=UTF-8' },
     responseType: 'blob',
   });
 
