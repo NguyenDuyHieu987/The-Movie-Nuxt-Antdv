@@ -68,7 +68,7 @@ const page = ref<number>(1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
-const searchQuery = computed<string>(() => route.query?.q.replaceAll('+', ' '));
+const searchQuery = computed<string>(() => route.query.q?.replaceAll('+', ' '));
 
 const getData = async () => {
   useHead({
