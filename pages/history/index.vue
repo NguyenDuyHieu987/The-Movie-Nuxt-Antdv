@@ -5,7 +5,7 @@
         <TopicRow
           v-show="responsive"
           v-model:dataRow="dataHistory"
-          title="Phim đã xem"
+          :title="title"
           :total="total"
           :topicImage="topicImage"
           v-model:valueInput="valueInput"
@@ -17,7 +17,7 @@
         <Teleport :disabled="!loading" to="#topic-history-column-teleport">
           <TopicColumn
             v-model:dataColumn="dataHistory"
-            title="Phim đã xem"
+            :title="title"
             :total="total"
             :topicImage="topicImage"
             v-model:valueInput="valueInput"
@@ -124,6 +124,7 @@ const loadMore = ref<boolean>(false);
 const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
 const internalInstance: any = getCurrentInstance();
 const historyContent = ref();
+const title = ref<string>('Phim đã xem');
 const activeTab = ref<string>('all');
 
 const breakpoints = useBreakpoints({
@@ -331,9 +332,9 @@ const handleChangeTab = async (value: string) => {
       )
         .then((movieRespone: any) => {
           dataHistory.value = movieRespone.data.value?.results;
+          total.value = movieRespone.data.value?.total;
 
           if (movieRespone.data.value?.results?.length > 0) {
-            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -352,9 +353,9 @@ const handleChangeTab = async (value: string) => {
       )
         .then((movieRespone: any) => {
           dataHistory.value = movieRespone.data.value?.results;
+          total.value = movieRespone.data.value?.total;
 
           if (movieRespone.data.value?.results?.length > 0) {
-            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -373,9 +374,9 @@ const handleChangeTab = async (value: string) => {
       )
         .then((movieRespone: any) => {
           dataHistory.value = movieRespone.data.value?.results;
+          total.value = movieRespone.data.value?.total;
 
           if (movieRespone.data.value?.results?.length > 0) {
-            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
           }

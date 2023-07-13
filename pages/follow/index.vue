@@ -5,7 +5,7 @@
         <TopicRow
           v-show="responsive"
           v-model:dataRow="dataList"
-          title="Phim đã thêm vào danh sách phát"
+          :title="title"
           :total="total"
           :topicImage="topicImage"
           v-model:valueInput="valueInput"
@@ -17,7 +17,7 @@
         <Teleport to="#topic-follow-column-teleport">
           <TopicColumn
             v-model:dataColumn="dataList"
-            title="Phim đã thêm vào danh sách phát"
+            :title="title"
             :total="total"
             :topicImage="topicImage"
             v-model:valueInput="valueInput"
@@ -125,6 +125,7 @@ const loadMore = ref<boolean>(false);
 const isScroll = ref<boolean>(false);
 const topicImage = ref<string>('/d0YSRmp819pMRnKLfGMgAQchpnR.jpg');
 const followContent = ref();
+const title = ref<string>('Phim đã thêm vào danh sách phát');
 const activeTab = ref<string>('all');
 
 const breakpoints = useBreakpoints({
@@ -334,9 +335,10 @@ const handleChangeTab = async (value: string) => {
       )
         .then((movieRespone: any) => {
           dataList.value = movieRespone.data.value?.results;
+          // title.value = 'Phim đã thêm vào danh sách phát';
+          total.value = movieRespone.data.value?.total;
 
           if (movieRespone.data.value?.results?.length > 0) {
-            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -355,9 +357,10 @@ const handleChangeTab = async (value: string) => {
       )
         .then((movieRespone: any) => {
           dataList.value = movieRespone.data.value?.results;
+          // title.value = 'Phim lẻ';
+          total.value = movieRespone.data.value?.total;
 
           if (movieRespone.data.value?.results?.length > 0) {
-            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -376,9 +379,10 @@ const handleChangeTab = async (value: string) => {
       )
         .then((movieRespone: any) => {
           dataList.value = movieRespone.data.value?.results;
+          // title.value = 'Phim bộ';
+          total.value = movieRespone.data.value?.total;
 
           if (movieRespone.data.value?.results?.length > 0) {
-            // total.value = movieRespone.data.value?.total;
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
           }
