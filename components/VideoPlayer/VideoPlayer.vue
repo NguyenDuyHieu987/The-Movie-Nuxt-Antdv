@@ -855,39 +855,50 @@ onBeforeMount(() => {
   setBlobSrcVideo(props.videoUrl);
 });
 
+onBeforeRouteLeave(() => {
+  video.value.pause();
+
+  window.removeEventListener('pointerup', windowPointerUp);
+  window.removeEventListener('touchend', windowTouchEnd);
+});
+
+const windowPointerUp = () => {
+  videoStates.isScrubbingProgressBar = false;
+
+  if (videoStates.isLoaded) {
+    if (videoStates.isEndedVideo || videoStates.isLoading) {
+      return;
+    }
+
+    if (videoStates.isPlayVideo) {
+      video.value.play();
+    }
+  }
+};
+
+const windowTouchEnd = () => {
+  videoStates.isScrubbingProgressBar = false;
+  videoStates.isShowControls = false;
+  videoStates.isMouseMoveOverlayProgress = false;
+
+  if (videoStates.isLoaded) {
+    if (videoStates.isEndedVideo || videoStates.isLoading) {
+      return;
+    }
+
+    if (videoStates.isPlayVideo) {
+      video.value.play();
+    }
+  }
+};
+
 onMounted(() => {
   video.value.volume = volume.value / 100;
   progressBar.value.style.setProperty('--progress-width', 0);
 
-  window.onpointerup = () => {
-    videoStates.isScrubbingProgressBar = false;
+  window.addEventListener('pointerup', windowPointerUp);
 
-    if (videoStates.isLoaded) {
-      if (videoStates.isEndedVideo || videoStates.isLoading) {
-        return;
-      }
-
-      if (videoStates.isPlayVideo) {
-        video.value.play();
-      }
-    }
-  };
-
-  window.ontouchend = () => {
-    videoStates.isScrubbingProgressBar = false;
-    videoStates.isShowControls = false;
-    videoStates.isMouseMoveOverlayProgress = false;
-
-    if (videoStates.isLoaded) {
-      if (videoStates.isEndedVideo || videoStates.isLoading) {
-        return;
-      }
-
-      if (videoStates.isPlayVideo) {
-        video.value.play();
-      }
-    }
-  };
+  window.addEventListener('touchend', windowTouchEnd);
 
   window.onpointermove = (e) => {
     if (videoStates.isScrubbingProgressBar) {

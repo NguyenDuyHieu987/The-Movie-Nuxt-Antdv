@@ -3,6 +3,7 @@
     <!-- <Icon name="icon-park-outline:loading-four" class="loading-icon" /> -->
 
     <svg
+      class="loading-icon"
       xmlns="http://www.w3.org/2000/svg"
       width="3rem"
       height="3rem"
