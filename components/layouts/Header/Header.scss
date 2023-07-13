@@ -212,13 +212,27 @@ header.header-bar {
           line-height: 1.8;
 
           .ant-dropdown-link {
-            // display: flex;
-            // align-items: center;
+            display: flex;
+            align-items: center;
             // height: 100%;
             cursor: pointer;
 
             &::before {
               display: none;
+            }
+
+            &.dropdown-account {
+              svg {
+                width: 1.5rem;
+                height: 1.5rem;
+
+                &.user-outlined {
+                  width: 1.6rem;
+                  height: 1.6rem;
+
+                  margin-right: 7px;
+                }
+              }
             }
           }
         }
