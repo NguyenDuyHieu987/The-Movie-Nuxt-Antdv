@@ -42,8 +42,9 @@
         v-show="
           videoStates.isLoading &&
           !videoStates.isEndedVideo &&
-          !videoStates.isRewind.enable &&
-          !videoStates.isLoaded
+          !videoStates.isRewind.enable
+          // &&
+          // videoStates.isLoaded
         "
       >
         <!-- <Icon name="line-md:loading-twotone-loop" /> -->
