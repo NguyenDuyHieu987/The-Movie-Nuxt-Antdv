@@ -6,8 +6,8 @@ export function makeRequest(url: string, options: any = {}) {
   // console.log(nuxtConfig);
 
   const api = axios.create({
-    // baseURL: nuxtConfig.app.apiGateway || 'http://127.0.0.1:5000',
-    baseURL: 'http://127.0.0.1:5000',
+    baseURL: nuxtConfig.app.apiGateway || 'http://127.0.0.1:5000',
+    // baseURL: 'http://127.0.0.1:5000',
     // withCredentials: true,
   });
 
