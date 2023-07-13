@@ -31,6 +31,15 @@
         />
       </div>
 
+      <a-result
+        v-if="!searchData?.length && loading"
+        status="404"
+        title="Opps!"
+        :sub-title="`Không có kêt quả nào khớp với từ
+        khóa ${searchQuery}.`"
+      >
+      </a-result>
+
       <!-- <ControlPage
         v-show="searchData?.length"
         :page="page"
@@ -54,30 +63,31 @@ const searchData = ref<any>([]);
 const searchDataMovie = ref<any[]>([]);
 const searchDataTv = ref<any[]>([]);
 const activeTabSearch = ref<string>('all');
+const loading = ref<boolean>(false);
 const page = ref<number>(1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
-const queryParams = computed<string>(() => route.query?.q.replaceAll('+', ' '));
+const searchQuery = computed<string>(() => route.query?.q.replaceAll('+', ' '));
 
 const getData = async () => {
   useHead({
-    title: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
+    title: 'Tìm kiếm: ' + searchQuery.value + ' | Phimhay247',
     htmlAttrs: { lang: 'vi' },
   });
 
   useServerSeoMeta({
-    title: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
+    title: 'Tìm kiếm: ' + searchQuery.value + ' | Phimhay247',
     description: 'Tìm kiếm phim hay vói Phimhay247',
-    ogTitle: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
+    ogTitle: 'Tìm kiếm: ' + searchQuery.value + ' | Phimhay247',
     ogType: 'video.movie',
     // ogUrl: window.location.href,
     ogDescription: 'Tìm kiếm phim hay vói Phimhay247',
     ogLocale: 'vi',
   });
 
-  await useAsyncData(`search/all/${queryParams.value}/${page.value}`, () =>
-    getDaTaSearch(queryParams.value, page.value)
+  await useAsyncData(`search/all/${searchQuery.value}/${page.value}`, () =>
+    getDaTaSearch(searchQuery.value, page.value)
   )
     .then((response) => {
       searchData.value = response.data.value?.results;
@@ -90,6 +100,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
+      loading.value = true;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };
@@ -101,9 +112,12 @@ onBeforeMount(async () => {
   getData();
 });
 
-watch(route, () => {
-  getData();
-});
+watch(
+  () => route.query?.q,
+  () => {
+    getData();
+  }
+);
 
 const handleChangeType = (activeKey: any) => {
   switch (activeKey?.target?.value ? activeKey?.target?.value : activeKey) {
@@ -121,8 +135,8 @@ const handleChangeType = (activeKey: any) => {
 
 const onChangePage = async (pageSelected: number) => {
   page.value = pageSelected;
-  await useAsyncData(`search/all/${queryParams.value}/${pageSelected}`, () =>
-    getDaTaSearch(queryParams.value, pageSelected)
+  await useAsyncData(`search/all/${searchQuery.value}/${pageSelected}`, () =>
+    getDaTaSearch(searchQuery.value, pageSelected)
   )
     .then((response: any) => {
       searchData.value = response.data.value?.results;
