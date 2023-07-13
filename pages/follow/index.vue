@@ -224,7 +224,7 @@
           </div>
         </section>
 
-        <Teleport :disabled="!loading" to="#topic-follow-column-teleport">
+        <Teleport to="#topic-follow-column-teleport">
           <aside class="topic-follow-column">
             <div class="column-container">
               <div class="backdrop">
@@ -780,6 +780,7 @@ const searchFollow = (e: any) => {
 const handleChangeTab = async (value: string) => {
   activeTab.value = value;
   internalInstance.appContext.config.globalProperties.$Progress.start();
+  valueInput.value = '';
 
   // window.scrollTo({
   //   top: 0,

@@ -434,7 +434,7 @@ const updateHistory = () => {
     ) {
       add_update_History({
         media_type: 'tv',
-        media_id: dataMovie.value?.id,
+        movie_id: dataMovie.value?.id,
         duration: duration.value,
         percent: percent.value,
         seconds: seconds.value,

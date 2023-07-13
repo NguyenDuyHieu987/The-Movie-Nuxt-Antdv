@@ -17,12 +17,12 @@ export function getHistory(
   );
 }
 
-export function searchHistory(query: string) {
+export function searchHistory(query: string, type: string = 'all') {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
 
-  return makeRequest(`/history/searchhistory?query=${query}`, {
+  return makeRequest(`/history/searchhistory/${type}?query=${query}`, {
     headers: headers,
   });
 }

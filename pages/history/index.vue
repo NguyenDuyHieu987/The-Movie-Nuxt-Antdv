@@ -673,8 +673,9 @@ onMounted(() => {
       dataHistory.value?.length < total.value
     ) {
       loadMore.value = true;
-      useAsyncData(`history/get/${store.userAccount?.id}/${skip.value}`, () =>
-        getHistory(activeTab.value, skip.value)
+      useAsyncData(
+        `history/get/${store.userAccount?.id}/${activeTab.value}/${skip.value}`,
+        () => getHistory(activeTab.value, skip.value)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.data?.result?.length > 0) {
@@ -697,8 +698,9 @@ onMounted(() => {
 const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  await useAsyncData(`history/get/${store.userAccount?.id}/1`, () =>
-    getHistory(activeTab.value, 1)
+  await useAsyncData(
+    `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
+    () => getHistory(activeTab.value, 1)
   )
     .then((movieRespone: any) => {
       if (movieRespone.data.value?.result?.items?.length > 0) {
@@ -777,8 +779,8 @@ const searchWatchList = (e: any) => {
     clearTimeout(debounce.value);
     debounce.value = setTimeout(() => {
       useAsyncData(
-        `history/search/${store.userAccount?.id}/${e.target.value}`,
-        () => searchHistory(e.target.value)
+        `history/search/${store.userAccount?.id}/${activeTab.value}/${e.target.value}`,
+        () => searchHistory(e.target.value, activeTab.value)
       )
         .then((movieRespone: any) => {
           dataHistory.value = movieRespone.data.value.data?.results;
@@ -797,13 +799,92 @@ const searchWatchList = (e: any) => {
   // }
 };
 
-const handleChangeTab = (value: string) => {
+const handleChangeTab = async (value: string) => {
+  activeTab.value = value;
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+  valueInput.value = '';
+
+  // window.scrollTo({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: 'instant',
+  // });
+
   switch (value) {
     case 'all':
+      await useAsyncData(
+        `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
+        () => getHistory(activeTab.value, 1)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value?.results?.length > 0) {
+            dataHistory.value = movieRespone.data.value?.results;
+            total.value = movieRespone.data.value?.total;
+            topicImage.value = dataHistory.value[0]?.backdrop_path;
+            skip.value = 2;
+
+            setTimeout(() => {
+              const color = dataHistory.value[0]?.dominant_backdrop_color;
+              setBackgroundColor(color);
+            });
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
+        });
       break;
     case 'movie':
+      await useAsyncData(
+        `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
+        () => getHistory(activeTab.value, 1)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value?.results?.length > 0) {
+            dataHistory.value = movieRespone.data.value?.results;
+            total.value = movieRespone.data.value?.total;
+            topicImage.value = dataHistory.value[0]?.backdrop_path;
+            skip.value = 2;
+
+            setTimeout(() => {
+              const color = dataHistory.value[0]?.dominant_backdrop_color;
+              setBackgroundColor(color);
+            });
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
+        });
       break;
     case 'tv':
+      await useAsyncData(
+        `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
+        () => getHistory(activeTab.value, 1)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value?.results?.length > 0) {
+            dataHistory.value = movieRespone.data.value?.results;
+            total.value = movieRespone.data.value?.total;
+            topicImage.value = dataHistory.value[0]?.backdrop_path;
+            skip.value = 2;
+
+            setTimeout(() => {
+              const color = dataHistory.value[0]?.dominant_backdrop_color;
+              setBackgroundColor(color);
+            });
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
+        });
       break;
   }
 };

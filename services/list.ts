@@ -14,7 +14,7 @@ export function getList(
   });
 }
 
-export function searchList(query: string, type: string) {
+export function searchList(query: string, type: string = 'all') {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
