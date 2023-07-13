@@ -6,7 +6,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     if (nuxtConfig.app.production_mode) {
       nuxtApp.vueApp.use(VueGtag, {
         property: {
-          id: nuxtConfig.app.googleTagManagerID,
+          id: nuxtConfig.app.googleAnalyticsID,
         },
       });
     }
