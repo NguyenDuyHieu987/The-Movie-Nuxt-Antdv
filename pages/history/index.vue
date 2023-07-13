@@ -268,6 +268,7 @@ const getDataWhenRemoveHistory = (data: number) => {
     return x.movie_id === data;
   });
   total.value = dataHistory.value?.length;
+  topicImage.value = dataHistory.value[0]?.backdrop_path;
 };
 
 const removeAllHistoryList = () => {

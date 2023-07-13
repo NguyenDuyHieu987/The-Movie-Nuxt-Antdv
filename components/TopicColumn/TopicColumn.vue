@@ -13,7 +13,13 @@
         >
           <nuxt-img
             class="ant-image"
-            :src="getImage(topicImage, 'backdrop', 'h_300')"
+            :src="
+              getImage(
+                topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
+                'backdrop',
+                'h_300'
+              )
+            "
           />
 
           <div class="play-now">
@@ -45,7 +51,13 @@
         >
           <nuxt-img
             class="ant-image"
-            :src="getImage(topicImage, 'backdrop', 'h_300')"
+            :src="
+              getImage(
+                topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
+                'backdrop',
+                'h_300'
+              )
+            "
           />
 
           <div class="play-now">
@@ -67,14 +79,26 @@
         <div v-if="!dataColumn?.length" class="img-box">
           <nuxt-img
             class="ant-image"
-            :src="getImage(topicImage, 'backdrop', 'h_300')"
+            :src="
+              getImage(
+                topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
+                'backdrop',
+                'h_300'
+              )
+            "
           />
         </div>
       </div>
 
       <nuxt-img
         class="overlay-image"
-        :src="getImage(topicImage, 'backdrop', 'h_300')"
+        :src="
+          getImage(
+            topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
+            'backdrop',
+            'h_300'
+          )
+        "
       />
       <div class="info">
         <h2 class="title">
@@ -231,6 +255,8 @@ watch(dataColumn, (newVal, oldVal) => {
   if (newVal?.length > 0) {
     const color = newVal[0]?.dominant_backdrop_color;
     setBackgroundColor(color);
+  } else {
+    setBackgroundColor(['16', '68', '128']);
   }
 });
 
@@ -272,6 +298,8 @@ onMounted(() => {
   if (dataColumn.value?.length > 0) {
     const color = dataColumn.value[0]?.dominant_backdrop_color;
     setBackgroundColor(color);
+  } else {
+    setBackgroundColor(['16', '68', '128']);
   }
 });
 </script>

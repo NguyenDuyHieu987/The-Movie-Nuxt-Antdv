@@ -271,6 +271,7 @@ const getDataWhenRemoveList = (data: number) => {
     return x.movie_id === data;
   });
   total.value = dataList.value?.length;
+  topicImage.value = dataList.value[0]?.backdrop_path;
 };
 
 const removeAllFollowList = () => {

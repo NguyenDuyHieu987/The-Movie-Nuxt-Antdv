@@ -14,7 +14,13 @@
           >
             <nuxt-img
               class="ant-image"
-              :src="getImage(topicImage, 'backdrop', 'h_300')"
+              :src="
+                getImage(
+                  topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
+                  'backdrop',
+                  'h_300'
+                )
+              "
             />
             <div class="play-now">
               <!-- <Icon name="ci:play-arrow" class="play" /> -->
@@ -44,7 +50,13 @@
           >
             <nuxt-img
               class="ant-image"
-              :src="getImage(topicImage, 'backdrop', 'h_300')"
+              :src="
+                getImage(
+                  topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
+                  'backdrop',
+                  'h_300'
+                )
+              "
             />
 
             <div class="play-now">
@@ -65,14 +77,26 @@
           <div v-if="!dataRow?.length" class="img-box">
             <nuxt-img
               class="ant-image"
-              :src="getImage(topicImage, 'backdrop', 'h_300')"
+              :src="
+                getImage(
+                  topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
+                  'backdrop',
+                  'h_300'
+                )
+              "
             />
           </div>
         </div>
 
         <nuxt-img
           class="overlay-image"
-          :src="getImage(topicImage, 'backdrop', 'h_300')"
+          :src="
+            getImage(
+              topicImage || '/d0YSRmp819pMRnKLfGMgAQchpnR.jpg',
+              'backdrop',
+              'h_300'
+            )
+          "
         />
 
         <div class="info">
@@ -236,6 +260,8 @@ watch(dataRow, (newVal, oldVal) => {
   if (newVal?.length > 0) {
     const color = newVal[0]?.dominant_backdrop_color;
     setBackgroundColor(color);
+  } else {
+    setBackgroundColor(['16', '68', '128']);
   }
 });
 
@@ -278,6 +304,8 @@ onMounted(() => {
   if (dataRow.value?.length > 0) {
     const color = dataRow.value[0]?.dominant_backdrop_color;
     setBackgroundColor(color);
+  } else {
+    setBackgroundColor(['16', '68', '128']);
   }
 });
 </script>
