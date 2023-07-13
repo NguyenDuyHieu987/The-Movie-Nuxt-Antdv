@@ -272,7 +272,7 @@ export default defineNuxtConfig({
     '/discover/**': { ssr: false, swr: true, prerender: true, static: true },
     '/follow/**': { swr: true, prerender: true },
     '/history/**': { swr: true, prerender: true },
-    '/ranking/**': { swr: true, prerender: true },
+    '/ranking/**': { swr: true, prerender: true, static: true },
     '/info-movie/**': { ssr: false, swr: true, prerender: true, static: true },
     '/info-tv/**': { ssr: false, swr: true, prerender: true, static: true },
     '/play-movie/**': { ssr: false, swr: true, prerender: true, static: true },
