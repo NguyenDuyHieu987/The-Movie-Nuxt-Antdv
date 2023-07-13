@@ -8,7 +8,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Pricing - Dịch vụ | Phimhay247',
   description: 'Dịch vụ, ưu đãi, đặc quyền, đăng ký gói',
   ogTitle: 'Pricing - Dịch vụ | Phimhay247',

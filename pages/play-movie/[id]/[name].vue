@@ -310,7 +310,7 @@ const getData = async () => {
         htmlAttrs: { lang: 'vi' },
       });
 
-      useSeoMeta({
+      useServerSeoMeta({
         title: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',
         description: dataMovie.value?.overview,
         ogTitle: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',

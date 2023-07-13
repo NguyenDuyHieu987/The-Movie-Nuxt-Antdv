@@ -66,7 +66,7 @@ const getData = async () => {
     htmlAttrs: { lang: 'vi' },
   });
 
-  useSeoMeta({
+  useServerSeoMeta({
     title: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',
     description: 'Tìm kiếm phim hay vói Phimhay247',
     ogTitle: 'Tìm kiếm: ' + queryParams.value + ' | Phimhay247',

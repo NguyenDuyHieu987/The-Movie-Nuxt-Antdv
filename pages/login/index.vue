@@ -165,7 +165,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Đăng nhập | Phimhay247',
   description: 'Xem phim thỏa thích cùng Phimhay247',
   ogTitle: 'Đăng nhập | Phimhay247',

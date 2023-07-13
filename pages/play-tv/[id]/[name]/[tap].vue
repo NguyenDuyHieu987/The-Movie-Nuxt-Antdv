@@ -340,7 +340,7 @@ const getData = async () => {
         htmlAttrs: { lang: 'vi' },
       });
 
-      useSeoMeta({
+      useServerSeoMeta({
         title:
           'Xem phim - Phim bộ - ' +
           dataMovie.value?.name +

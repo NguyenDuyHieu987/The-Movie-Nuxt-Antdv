@@ -417,7 +417,7 @@ const getData = async () => {
         htmlAttrs: { lang: 'vi' },
       });
 
-      useSeoMeta({
+      useServerSeoMeta({
         title: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',
         description: dataMovie.value?.overview,
         ogTitle: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',

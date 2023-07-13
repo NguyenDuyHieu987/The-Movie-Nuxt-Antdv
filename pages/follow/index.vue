@@ -555,7 +555,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Theo dõi - Danh sách ' + ' | Phimhay247',
   description: 'Danh sách theo dõi của bạn',
   ogTitle: 'Theo dõi - Danh sách ' + ' | Phimhay247',

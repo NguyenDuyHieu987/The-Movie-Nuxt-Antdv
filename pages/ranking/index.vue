@@ -48,7 +48,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useSeoMeta({
+useServerSeoMeta({
   title:
     'Bảng xếp hạng - Trending - Top phim ngày, tháng, năm ' + ' | Phimhay247',
 

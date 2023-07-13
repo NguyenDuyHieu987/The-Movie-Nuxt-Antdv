@@ -230,7 +230,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Phimhay247',
   description: 'Xem phim thỏa thích cùng Phimhay247',
   ogTitle: 'Phimhay247',

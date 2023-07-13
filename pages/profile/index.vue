@@ -14,7 +14,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Profile - Hồ sơ | Phimhay247',
   description: 'Hồ sơ, thông tin cá nhân',
   ogTitle: 'Profile - Hồ sơ | Phimhay247',

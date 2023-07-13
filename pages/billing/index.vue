@@ -15,7 +15,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Billing - Hóa đơn - Thanh toán | Phimhay247',
   description: 'Hóa đơn của bạn. Thanh toán gói cước',
   ogTitle: 'Billing - Hóa đơn - Thanh toán | Phimhay247',

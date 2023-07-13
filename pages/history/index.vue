@@ -562,7 +562,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Lịch sử xem ' + ' | Phimhay247',
   description: 'Lịch sử xem dõi của bạn',
   ogTitle: 'Lịch sử xem ' + ' | Phimhay247',

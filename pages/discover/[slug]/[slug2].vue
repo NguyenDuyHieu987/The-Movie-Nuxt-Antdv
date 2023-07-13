@@ -331,7 +331,7 @@ onBeforeMount(() => {
     htmlAttrs: { lang: 'vi' },
   });
 
-  useSeoMeta({
+  useServerSeoMeta({
     title: 'Khám phá - ' + metaHead.value + ' | Phimhay247',
     description: 'Khám phá phim mới cùng Phimhay247',
     ogTitle: 'Khám phá - ' + metaHead.value + ' | Phimhay247',
