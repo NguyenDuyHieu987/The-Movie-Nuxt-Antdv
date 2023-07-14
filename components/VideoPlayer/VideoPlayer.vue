@@ -15,12 +15,13 @@
     </div>
 
     <!-- preload="auto" -->
-    <!-- autoplay
-      muted -->
+
     <video
       id="video-player"
       ref="video"
       :poster="backdrop"
+      autoplay
+      muted
       @loadstart="onLoadStartVideo"
       @loadeddata="onLoadedDataVideo"
       @canplay="onCanPlayVideo"
@@ -818,7 +819,7 @@ const settings = reactive({
     current: '1080p - HD',
   },
 });
-const volume = ref<number>(70);
+const volume = ref<number>(100);
 const timeUpdate = ref<string>('00:00');
 const timelineUpdate = ref<string>('00:00');
 const duration = ref<string>('00:00');
@@ -851,19 +852,19 @@ const setBlobSrcVideo = (value: string) => {
       })
       .finally(() => {
         videoStates.isLoading = false;
-        // video.value.muted = false;
         // video.value.load();
       });
   });
 };
 
 onBeforeMount(async () => {
-  await setBlobSrcVideo(props.videoUrl).then(() => {
-    video.value.volume = volume.value / 100;
-    progressBar.value.style.setProperty('--progress-width', 0);
-    videoStates.isPlayVideo = true;
-    video.value.play();
-  });
+  // await setBlobSrcVideo(props.videoUrl).then(() => {
+  //   // video.value.volume = volume.value / 100;
+  //   // progressBar.value.style.setProperty('--progress-width', 0);
+  //   video.value.muted = false;
+  //   videoStates.isPlayVideo = true;
+  //   video.value.play();
+  // });
 });
 
 onBeforeRouteLeave(() => {
@@ -906,6 +907,8 @@ const windowTouchEnd = () => {
 };
 
 onMounted(() => {
+  video.value.muted = false;
+
   window.addEventListener('pointerup', windowPointerUp);
 
   window.addEventListener('touchend', windowTouchEnd);
@@ -944,8 +947,12 @@ onMounted(() => {
 watch(
   () => props.videoUrl,
   async (newVal, oldVal) => {
+    if (videoStates.isPlayVideo) {
+      video.value.pause();
+      videoStates.isPlayVideo = false;
+    }
     await setBlobSrcVideo(newVal).then(() => {
-      video.value.play();
+      // video.value.play();
       videoStates.isPlayVideo = true;
     });
   }

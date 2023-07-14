@@ -130,7 +130,6 @@ const router = useRouter();
 const dataSeason = ref<any>({});
 const selectedSeason = ref<number>(props?.dataMovie?.number_of_seasons);
 const currentEpisode = ref<number>(
-  // (): number =>
   route.params?.ep?.replace('ep-', '')
     ? +route.params?.ep?.replace('ep-', '')
     : 1
@@ -175,33 +174,11 @@ onBeforeMount(async () => {
     });
 });
 
-const handleChangeSeason = (value: number) => {
+const handleChangeSeason = async (value: number) => {
   selectedSeason.value = value;
-};
 
-const handleChangeEpisode = (value: number) => {
-  // router.replace({
-  //   path: route.path,
-  //   params: {
-  //     ep: 'ep-' + value,
-  //   },
-  // });
-
-  window.history.replaceState(null, '', 'ep-' + value);
-
-  currentEpisode.value = value;
-  emitUrlCode(dataSeason.value);
-
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth',
-  });
-};
-
-watch(selectedSeason, async () => {
   loading.value = true;
-  router.replace({ params: { ep: 'ep-1' } });
+  window.history.replaceState(null, '', 'ep-1');
 
   await useAsyncData(
     `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
@@ -220,12 +197,20 @@ watch(selectedSeason, async () => {
       loading.value = false;
       if (axios.isCancel(e)) return;
     });
-});
+};
 
-watch(route, () => {
-  // currentEpisode.value = +newVal.params?.ep?.replace('ep-', '');
+const handleChangeEpisode = (value: number) => {
+  window.history.replaceState(null, '', 'ep-' + value);
+
+  currentEpisode.value = value;
   emitUrlCode(dataSeason.value);
-});
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+};
 </script>
 
 <style scoped lang="scss" src="./ListEpisodes.scss"></style>
