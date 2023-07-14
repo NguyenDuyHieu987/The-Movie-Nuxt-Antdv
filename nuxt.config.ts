@@ -100,10 +100,10 @@ export default defineNuxtConfig({
       production_mode: isProduction,
       apiGateway: process.env.NUXT_API_GATEWAY,
       serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,
-      serverVideoUrl: process.env.NUXT_SERVER_VIDEO_URL,
-      adminWebsiteUrl: isProduction
-        ? process.env.NUXT_ADMIN_WEBSITE_URL
+      serverVideoUrl: isProduction
+        ? process.env.NUXT_SERVER_VIDEO_URL
         : 'http://127.0.0.1:5002',
+      adminWebsiteUrl: process.env.NUXT_ADMIN_WEBSITE_URL,
       googleAnalyticsID: process.env.NUXT_GOOGLE_ANALYTICS_ID,
       googleTagManagerID: process.env.NUXT_GOOGLE_TAG_MANAGER_ID,
     },
