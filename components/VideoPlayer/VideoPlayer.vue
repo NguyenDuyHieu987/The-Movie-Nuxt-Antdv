@@ -858,7 +858,11 @@ const setBlobSrcVideo = (value: string) => {
 };
 
 const initVideo = async () => {
-  if (props.dataMovie?.media_type == 'movie') {
+  if (
+    props.dataMovie?.media_type == 'movie' &&
+    props.videoUrl &&
+    props.videoUrl?.length > 0
+  ) {
     await setBlobSrcVideo(props.videoUrl).then(() => {
       // video.value.volume = volume.value / 100;
       // progressBar.value.style.setProperty('--progress-width', 0);
@@ -952,14 +956,16 @@ onMounted(() => {
 watch(
   () => props.videoUrl,
   async (newVal, oldVal) => {
-    if (videoStates.isPlayVideo) {
-      video.value.pause();
-      videoStates.isPlayVideo = false;
+    if (newVal && newVal?.length > 0) {
+      if (videoStates.isPlayVideo) {
+        video.value.pause();
+        videoStates.isPlayVideo = false;
+      }
+      await setBlobSrcVideo(newVal).then(() => {
+        // video.value.play();
+        videoStates.isPlayVideo = true;
+      });
     }
-    await setBlobSrcVideo(newVal).then(() => {
-      // video.value.play();
-      videoStates.isPlayVideo = true;
-    });
   }
 );
 
