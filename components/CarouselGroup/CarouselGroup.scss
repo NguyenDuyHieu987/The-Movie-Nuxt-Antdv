@@ -107,11 +107,13 @@
   .swiper-button-prev {
     background-image: linear-gradient(90deg, #101010 0, #10101000 100%);
     left: -5px;
+    user-select: none;
   }
 
   .swiper-button-next {
     background-image: linear-gradient(90deg, #10101000 0, #101010 100%);
     right: -5px;
+    user-select: none;
   }
 
   &:hover {
