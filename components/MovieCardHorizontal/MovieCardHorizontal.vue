@@ -197,7 +197,7 @@ const getData = async () => {
     } else {
       await useAsyncData(
         `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
-        () => getItemHistory(props.item?.id)
+        () => getItemHistory(props.item?.id, props.item?.media_type)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.success == true) {

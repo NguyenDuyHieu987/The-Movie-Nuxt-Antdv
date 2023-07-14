@@ -269,7 +269,7 @@ const onClickPlay = () => {
     path: isEpisodes.value
       ? `/play-tv/${props.item?.id}/${props.item?.name
           ?.replace(/\s/g, '+')
-          .toLowerCase()}/tap-1`
+          .toLowerCase()}/ep-1`
       : `/play-movie/${props.item?.id}/${props.item?.name
           ?.replace(/\s/g, '+')
           .toLowerCase()}`,

@@ -9,7 +9,7 @@
             :to="{
               path: `/play-tv/${dataRow[0]?.movie_id}/${dataRow[0]?.name
                 ?.replace(/\s/g, '+')
-                .toLowerCase()}/tap-1`,
+                .toLowerCase()}/ep-1`,
             }"
           >
             <nuxt-img

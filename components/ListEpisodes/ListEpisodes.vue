@@ -27,7 +27,7 @@
       <span>
         {{ dataMovie?.name }}
         - Tập
-        {{ route.params?.tap?.replace('tap-', '') }}
+        {{ route.params?.ep?.replace('ep-', '') }}
         <!-- |
         {{
           dataSeason?.name?.split(' ')[0] === 'Phần' ||
@@ -92,10 +92,7 @@
               :index="index"
               :key="item.id"
               :class="{ active: currentEpisode == item?.episode_number }"
-              @click="
-                handleChangeEpisode(item?.episode_number);
-                scrollToTop();
-              "
+              @click="handleChangeEpisode(item?.episode_number)"
             >
               <span>
                 {{
@@ -134,8 +131,8 @@ const dataSeason = ref<any>({});
 const selectedSeason = ref<number>(props?.dataMovie?.number_of_seasons);
 const currentEpisode = ref<number>(
   // (): number =>
-  route.params?.tap?.replace('tap-', '')
-    ? +route.params?.tap?.replace('tap-', '')
+  route.params?.ep?.replace('ep-', '')
+    ? +route.params?.ep?.replace('ep-', '')
     : 1
 );
 const loading = ref(false);
@@ -182,7 +179,19 @@ const handleChangeSeason = (value: number) => {
   selectedSeason.value = value;
 };
 
-const scrollToTop = () => {
+const handleChangeEpisode = (value: number) => {
+  // router.replace({
+  //   path: route.path,
+  //   params: {
+  //     ep: 'ep-' + value,
+  //   },
+  // });
+
+  window.history.replaceState(null, '', 'ep-' + value);
+
+  currentEpisode.value = value;
+  emitUrlCode(dataSeason.value);
+
   window.scrollTo({
     top: 0,
     left: 0,
@@ -190,21 +199,9 @@ const scrollToTop = () => {
   });
 };
 
-const handleChangeEpisode = (value: number) => {
-  currentEpisode.value = value;
-  emitUrlCode(dataSeason.value);
-
-  // router.replace({
-  //   path: route.path,
-  //   params: {
-  //     tap: 'tap-' + value,
-  //   },
-  // });
-};
-
 watch(selectedSeason, async () => {
   loading.value = true;
-  router.replace({ params: { tap: 'tap-1' } });
+  router.replace({ params: { ep: 'ep-1' } });
 
   await useAsyncData(
     `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
@@ -226,7 +223,7 @@ watch(selectedSeason, async () => {
 });
 
 watch(route, () => {
-  // currentEpisode.value = +newVal.params?.tap?.replace('tap-', '');
+  // currentEpisode.value = +newVal.params?.ep?.replace('ep-', '');
   emitUrlCode(dataSeason.value);
 });
 </script>

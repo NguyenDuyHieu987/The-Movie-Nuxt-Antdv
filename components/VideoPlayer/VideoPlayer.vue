@@ -851,16 +851,19 @@ const setBlobSrcVideo = (value: string) => {
       })
       .finally(() => {
         videoStates.isLoading = false;
-        // videoStates.isPlayVideo = true;
-        // video.value.play();
         // video.value.muted = false;
-        video.value.load();
+        // video.value.load();
       });
   });
 };
 
 onBeforeMount(async () => {
-  await setBlobSrcVideo(props.videoUrl);
+  await setBlobSrcVideo(props.videoUrl).then(() => {
+    video.value.volume = volume.value / 100;
+    progressBar.value.style.setProperty('--progress-width', 0);
+    videoStates.isPlayVideo = true;
+    video.value.play();
+  });
 });
 
 onBeforeRouteLeave(() => {
@@ -871,15 +874,17 @@ onBeforeRouteLeave(() => {
 });
 
 const windowPointerUp = () => {
+  if (videoStates.isScrubbingProgressBar) {
+    if (videoStates.isPlayVideo) {
+      video.value.play();
+    }
+  }
+
   videoStates.isScrubbingProgressBar = false;
 
   if (videoStates.isLoaded) {
     if (videoStates.isEndedVideo || videoStates.isLoading) {
       return;
-    }
-
-    if (videoStates.isPlayVideo) {
-      video.value.play();
     }
   }
 };
@@ -901,9 +906,6 @@ const windowTouchEnd = () => {
 };
 
 onMounted(() => {
-  video.value.volume = volume.value / 100;
-  progressBar.value.style.setProperty('--progress-width', 0);
-
   window.addEventListener('pointerup', windowPointerUp);
 
   window.addEventListener('touchend', windowTouchEnd);
@@ -943,22 +945,9 @@ watch(
   () => props.videoUrl,
   async (newVal, oldVal) => {
     await setBlobSrcVideo(newVal).then(() => {
-      video.value.currentTime = 0;
-      progressBar.value.style.setProperty('--progress-width', 0);
-      video.value.pause();
-      videoStates.isPlayVideo = false;
+      video.value.play();
+      videoStates.isPlayVideo = true;
     });
-
-    // video.value.play();
-    // if (!videoStates.isPlayVideo) {
-    //   videoStates.isPlayVideo = true;
-    // }
-
-    // if (videoStates.isPlayVideo) {
-    //   video.value.play();
-    // } else {
-    //   video.value.pause();
-    // }
   }
 );
 

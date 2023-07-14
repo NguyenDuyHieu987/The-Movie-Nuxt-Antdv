@@ -64,7 +64,7 @@
                       :to="{
                         path: `/play-tv/${item?.id}/${item?.name
                           ?.replace(/\s/g, '+')
-                          .toLowerCase()}/tap-1`,
+                          .toLowerCase()}/ep-1`,
                       }"
                       class="btn-play-now"
                     >

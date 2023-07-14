@@ -87,7 +87,7 @@
                     .toLowerCase()}`
                 : `/play-tv/${item?.id}/${item?.name
                     ?.replace(/\s/g, '+')
-                    .toLowerCase()}/tap-1`,
+                    .toLowerCase()}/ep-1`,
           }"
         >
           <a-button size="large" type="text" class="play modern">
