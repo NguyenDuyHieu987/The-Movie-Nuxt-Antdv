@@ -102,6 +102,16 @@ header.header-bar {
 
       .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
         background: var(--search-focus-background);
+
+        .ant-input-affix-wrapper {
+          border-color: #fff;
+        }
+
+        .ant-input-group-addon {
+          .ant-input-search-button {
+            border-color: #fff;
+          }
+        }
       }
 
       .ant-input-affix-wrapper {
@@ -142,7 +152,7 @@ header.header-bar {
           align-items: center;
           background: transparent;
           border: 1px solid var(--border-regular-light);
-          transition: all 0.25s;
+          transition: color 0.15s;
           border-radius: 0 20px 20px 0;
           border-left: none;
           padding: 0px 18px;
