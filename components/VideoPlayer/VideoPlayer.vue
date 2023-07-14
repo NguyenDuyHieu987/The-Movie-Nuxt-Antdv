@@ -824,36 +824,43 @@ const timelineUpdate = ref<string>('00:00');
 const duration = ref<string>('00:00');
 const timeOut = ref<any>();
 
-const setBlobSrcVideo = async (value: string) => {
-  videoStates.isLoading = true;
+const setBlobSrcVideo = (value: string) => {
+  return new Promise(async (resolve, reject) => {
+    videoStates.isLoading = true;
 
-  await getVideo(value)
-    .then((response) => {
-      // const metadata = {
-      //   type: data.type || 'video/mp4',
-      // };
+    await getVideo(value)
+      .then((response) => {
+        // const metadata = {
+        //   type: data.type || 'video/mp4',
+        // };
 
-      // const file = new File([data], 'test.mp4', metadata);
+        // const file = new File([data], 'test.mp4', metadata);
 
-      const blobSrc = (window.URL || window.webkitURL).createObjectURL(
-        new Blob([response.data])
-      );
+        const blobSrc = (window.URL || window.webkitURL).createObjectURL(
+          new Blob([response.data])
+        );
 
-      // const blobSrc = URL.createObjectURL(blob);
+        // const blobSrc = URL.createObjectURL(blob);
 
-      video.value.src = blobSrc;
-    })
-    .finally(() => {
-      videoStates.isLoading = false;
-      // videoStates.isPlayVideo = true;
-      // video.value.play();
-      // video.value.muted = false;
-      video.value.load();
-    });
+        video.value.src = blobSrc;
+
+        resolve({ success: true });
+      })
+      .catch((e) => {
+        reject(e);
+      })
+      .finally(() => {
+        videoStates.isLoading = false;
+        // videoStates.isPlayVideo = true;
+        // video.value.play();
+        // video.value.muted = false;
+        video.value.load();
+      });
+  });
 };
 
-onBeforeMount(() => {
-  setBlobSrcVideo(props.videoUrl);
+onBeforeMount(async () => {
+  await setBlobSrcVideo(props.videoUrl);
 });
 
 onBeforeRouteLeave(() => {
@@ -932,23 +939,28 @@ onMounted(() => {
   });
 });
 
-watch(props, (newVal, oldVal) => {
-  setBlobSrcVideo(newVal.videoUrl);
-  video.value.currentTime = 0;
-  progressBar.value.style.setProperty('--progress-width', 0);
-  // video.value.load();
+watch(
+  () => props.videoUrl,
+  async (newVal, oldVal) => {
+    await setBlobSrcVideo(newVal).then(() => {
+      video.value.currentTime = 0;
+      progressBar.value.style.setProperty('--progress-width', 0);
+      video.value.pause();
+      videoStates.isPlayVideo = false;
+    });
 
-  // video.value.play();
-  // if (!videoStates.isPlayVideo) {
-  //   videoStates.isPlayVideo = true;
-  // }
+    // video.value.play();
+    // if (!videoStates.isPlayVideo) {
+    //   videoStates.isPlayVideo = true;
+    // }
 
-  // if (videoStates.isPlayVideo) {
-  //   video.value.play();
-  // } else {
-  //   video.value.pause();
-  // }
-});
+    // if (videoStates.isPlayVideo) {
+    //   video.value.play();
+    // } else {
+    //   video.value.pause();
+    // }
+  }
+);
 
 watch(volume, () => {
   videoStates.isVolumeOff = video.value.volume == 0;
