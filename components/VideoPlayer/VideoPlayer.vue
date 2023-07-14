@@ -868,7 +868,9 @@ const initVideo = async () => {
   }
 };
 
-onBeforeMount(() => {});
+onBeforeMount(() => {
+  initVideo();
+});
 
 onBeforeRouteLeave(() => {
   video.value.pause();
@@ -910,8 +912,6 @@ const windowTouchEnd = () => {
 };
 
 onMounted(() => {
-  initVideo();
-
   video.value.muted = false;
 
   window.addEventListener('pointerup', windowPointerUp);
