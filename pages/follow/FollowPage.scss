@@ -600,7 +600,7 @@
 }
 
 .body-content:has(.follow .follow-container) {
-  main.main-content {
+  .body-wrapper {
     margin-left: 0px;
     margin-right: auto;
     // max-width: 1100px;
