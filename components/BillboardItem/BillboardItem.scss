@@ -427,6 +427,7 @@
 
       .info {
         h1 {
+          margin-top: 0px;
           font-size: 2rem;
         }
 
@@ -437,9 +438,14 @@
             }
 
             .genres {
+              font-size: 1.4rem;
               -webkit-line-clamp: 1;
             }
           }
+        }
+
+        .overview {
+          font-size: 1.4rem;
         }
       }
 
