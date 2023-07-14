@@ -857,15 +857,18 @@ const setBlobSrcVideo = (value: string) => {
   });
 };
 
-onBeforeMount(async () => {
-  // await setBlobSrcVideo(props.videoUrl).then(() => {
-  //   // video.value.volume = volume.value / 100;
-  //   // progressBar.value.style.setProperty('--progress-width', 0);
-  //   video.value.muted = false;
-  //   videoStates.isPlayVideo = true;
-  //   video.value.play();
-  // });
-});
+const initVideo = async () => {
+  if (props.dataMovie?.media_type == 'movie') {
+    await setBlobSrcVideo(props.videoUrl).then(() => {
+      // video.value.volume = volume.value / 100;
+      // progressBar.value.style.setProperty('--progress-width', 0);
+      // video.value.play();
+      videoStates.isPlayVideo = true;
+    });
+  }
+};
+
+onBeforeMount(() => {});
 
 onBeforeRouteLeave(() => {
   video.value.pause();
@@ -907,6 +910,8 @@ const windowTouchEnd = () => {
 };
 
 onMounted(() => {
+  initVideo();
+
   video.value.muted = false;
 
   window.addEventListener('pointerup', windowPointerUp);
