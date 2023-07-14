@@ -96,16 +96,14 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    apiGateway: process.env.NUXT_API_GATEWAY,
-    serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,
-    serverVideoUrl: process.env.NUXT_SERVER_VIDEO_URL,
-    adminWebsiteUrl: process.env.NUXT_ADMIN_WEBSITE_URL,
     app: {
       production_mode: isProduction,
       apiGateway: process.env.NUXT_API_GATEWAY,
       serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,
       serverVideoUrl: process.env.NUXT_SERVER_VIDEO_URL,
-      adminWebsiteUrl: process.env.NUXT_ADMIN_WEBSITE_URL,
+      adminWebsiteUrl: isProduction
+        ? process.env.NUXT_ADMIN_WEBSITE_URL
+        : 'http://127.0.0.1:5002',
       googleAnalyticsID: process.env.NUXT_GOOGLE_ANALYTICS_ID,
       googleTagManagerID: process.env.NUXT_GOOGLE_TAG_MANAGER_ID,
     },
