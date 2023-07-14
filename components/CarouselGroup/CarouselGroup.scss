@@ -151,6 +151,11 @@
       .home-container {
         .home-content {
           .carousel-group {
+            .swiper-button-prev,
+            .swiper-button-next {
+              width: 30px;
+            }
+
             .swiper-button-prev {
               left: calc(-30px);
             }
