@@ -300,6 +300,7 @@ video::-webkit-media-controls {
     .controls-container {
       position: relative;
       z-index: 1;
+      padding-top: 5px;
     }
 
     .overlay-progress {
