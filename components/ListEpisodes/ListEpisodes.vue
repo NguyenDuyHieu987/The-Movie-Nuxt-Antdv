@@ -201,6 +201,8 @@ const handleChangeSeason = async (value: number) => {
 };
 
 const handleChangeEpisode = (value: number) => {
+  if (currentEpisode.value == value) return;
+
   window.history.replaceState(null, '', 'ep-' + value);
 
   currentEpisode.value = value;
