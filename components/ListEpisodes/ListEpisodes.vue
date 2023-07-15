@@ -67,6 +67,7 @@
       <el-skeleton :loading="loading" animated>
         <template #template>
           <el-skeleton-item
+            class="episode-item"
             variant="button"
             v-for="(item, index) in dataSeason?.episodes?.slice(
               0,
