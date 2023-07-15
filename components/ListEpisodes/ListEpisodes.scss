@@ -86,7 +86,12 @@
         }
 
         &.active {
-          background: var(--app-background-color);
+          // background: var(--app-background-color);
+          background-image: linear-gradient(
+            to right,
+            var(--app-background-color7),
+            var(--app-background-color3)
+          );
           // transition: all 0.7s ease;
           // animation: episode-fade-out 2s infinite linear;
 
