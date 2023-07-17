@@ -168,14 +168,12 @@ onMounted(() => {
       return;
     }
 
-    if (!responsive.value) {
-      if (window.scrollY >= 60) {
-        isStickyNavActiom.value = true;
-      } else {
-        isStickyNavActiom.value = false;
-      }
-    } else {
-      if (window.scrollY >= 310) {
+    if (historyContent?.value) {
+      const headerHeight = +getComputedStyle(document.documentElement)
+        .getPropertyValue('--header-height')
+        .replace('px', '');
+
+      if (window.scrollY >= historyContent.value.offsetTop + headerHeight) {
         isStickyNavActiom.value = true;
       } else {
         isStickyNavActiom.value = false;

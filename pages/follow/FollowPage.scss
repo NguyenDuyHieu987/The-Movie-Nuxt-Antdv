@@ -276,18 +276,26 @@
         width: 100%;
         // width: var(--width);
         margin-bottom: 15px;
-        padding-top: 7px;
-        padding-bottom: 7px;
+        height: 49px;
+
+        .sort-tab {
+          width: 100%;
+          padding-top: 7px;
+          padding-bottom: 7px;
+        }
 
         &.sticky {
-          position: fixed;
-          z-index: 1;
-          top: var(--header-height);
-          background-color: #101010e6;
-          // background-color: red;
           margin-bottom: 0px;
-          transition: background-color 0.25s;
-          transition-delay: 0.3s;
+
+          .sort-tab {
+            position: fixed;
+            z-index: 1;
+            top: var(--header-height);
+            background-color: #101010e6;
+            // background-color: red;
+            transition: background-color 0.25s;
+            transition-delay: 0.3s;
+          }
         }
       }
 
