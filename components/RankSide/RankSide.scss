@@ -1,11 +1,16 @@
 .ant-layout-sider.sider-rank {
   align-self: flex-start;
   position: relative;
-  // top: var(--header-height);
-  // right: 0;
   z-index: 1;
   background-color: var(--background-content-color);
   padding: 0px 0px;
+
+  &.fixed {
+    .sider-rank-wrapper {
+      position: fixed;
+      top: var(--header-height);
+    }
+  }
 
   .el-radio-group.rank {
     list-style-type: none;

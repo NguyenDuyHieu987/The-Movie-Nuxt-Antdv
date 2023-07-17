@@ -1,5 +1,5 @@
 <template>
-  <div class="back-page" :class="{ sticky: isSticky }">
+  <div class="back-page" :class="{ fixed: isfixed }" ref="backPage">
     <a-button type="text" @click="emits('onclick')">
       <template #icon>
         <!-- <Icon name="ic:baseline-arrow-back" /> -->
@@ -20,14 +20,15 @@
 <script setup lang="ts">
 const emits = defineEmits<{ onclick: [] }>();
 
-const isSticky = ref<boolean>(false);
+const backPage = ref();
+const isfixed = ref<boolean>(false);
 
 onMounted(() => {
   window.onscroll = () => {
-    if (window.scrollY >= 105) {
-      isSticky.value = true;
+    if (window.scrollY >= backPage.value.offsetTop) {
+      isfixed.value = true;
     } else {
-      isSticky.value = false;
+      isfixed.value = false;
     }
   };
 });

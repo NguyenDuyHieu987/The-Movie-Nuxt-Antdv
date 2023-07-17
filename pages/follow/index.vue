@@ -39,7 +39,7 @@
             :style="{
               '--width': followContent?.offsetWidth + 'px',
             }"
-            :class="{ sticky: isStickyNavActiom }"
+            :class="{ fixed: isFixedNavActiom }"
           >
             <SortTab @onChangeTab="handleChangeTab" />
           </div>
@@ -120,7 +120,7 @@ const total = ref<number>(0);
 const skip = ref<number>(1);
 const loading = ref<boolean>(false);
 const loadingSearch = ref<boolean>(false);
-const isStickyNavActiom = ref<boolean>(false);
+const isFixedNavActiom = ref<boolean>(false);
 const loadMore = ref<boolean>(false);
 const isScroll = ref<boolean>(false);
 const topicImage = ref<string>('topic1.jpg');
@@ -166,20 +166,20 @@ onMounted(() => {
     disableScroll.off();
   });
 
+  const headerHeight = +getComputedStyle(document.documentElement)
+    .getPropertyValue('--header-height')
+    .replace('px', '');
+
   window.addEventListener('scroll', () => {
     if (dataList.value?.length == 0) {
       return;
     }
 
     if (followContent?.value) {
-      const headerHeight = +getComputedStyle(document.documentElement)
-        .getPropertyValue('--header-height')
-        .replace('px', '');
-
       if (window.scrollY >= followContent.value.offsetTop + headerHeight) {
-        isStickyNavActiom.value = true;
+        isFixedNavActiom.value = true;
       } else {
-        isStickyNavActiom.value = false;
+        isFixedNavActiom.value = false;
       }
     }
 

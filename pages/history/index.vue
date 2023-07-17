@@ -39,7 +39,7 @@
             :style="{
               '--width': historyContent?.offsetWidth + 'px',
             }"
-            :class="{ sticky: isStickyNavActiom }"
+            :class="{ fixed: isFixedNavActiom }"
           >
             <SortTab @onChangeTab="handleChangeTab" />
           </div>
@@ -119,7 +119,7 @@ const dataHistory = ref<any[]>([]);
 const loading = ref<boolean>(false);
 const isScroll = ref<boolean>(false);
 const loadingSearch = ref<boolean>(false);
-const isStickyNavActiom = ref<boolean>(false);
+const isFixedNavActiom = ref<boolean>(false);
 const loadMore = ref<boolean>(false);
 const topicImage = ref<string>('topic1.jpg');
 const internalInstance: any = getCurrentInstance();
@@ -163,20 +163,20 @@ onMounted(() => {
     disableScroll.off();
   });
 
+  const headerHeight = +getComputedStyle(document.documentElement)
+    .getPropertyValue('--header-height')
+    .replace('px', '');
+
   window.addEventListener('scroll', () => {
     if (dataHistory.value?.length == 0) {
       return;
     }
 
     if (historyContent?.value) {
-      const headerHeight = +getComputedStyle(document.documentElement)
-        .getPropertyValue('--header-height')
-        .replace('px', '');
-
       if (window.scrollY >= historyContent.value.offsetTop + headerHeight) {
-        isStickyNavActiom.value = true;
+        isFixedNavActiom.value = true;
       } else {
-        isStickyNavActiom.value = false;
+        isFixedNavActiom.value = false;
       }
     }
 

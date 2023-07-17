@@ -1,55 +1,61 @@
 <template>
-  <a-layout-sider :width="450" class="sider-rank">
-    <div class="rank-side-header">
-      <h2 class="gradient-title-default underline">
-        <span> Top xem phim</span>
-      </h2>
-      <ul class="tabs-rank">
-        <li
-          v-for="(item, index) in allTabs"
-          :key="item.key"
-          :index="index"
-          :class="[activeTab == item.key ? 'active' : '', item.key]"
-          @click="handleTabClick(item.key)"
-        >
-          <span> {{ item.tabName }} </span>
-        </li>
-      </ul>
-
-      <!-- <el-radio-group
-            v-model="activeTab"
-            @change="handleTabClick"
-            class="rank"
+  <a-layout-sider
+    :width="450"
+    class="sider-rank"
+    ref="siderRank"
+    :class="{ fixed: isFixedNavActiom }"
+  >
+    <div class="sider-rank-wrapper">
+      <div class="rank-side-header">
+        <h2 class="gradient-title-default underline">
+          <span> Top xem phim</span>
+        </h2>
+        <ul class="tabs-rank">
+          <li
+            v-for="(item, index) in allTabs"
+            :key="item.key"
+            :index="index"
+            :class="[activeTab == item.key ? 'active' : '', item.key]"
+            @click="handleTabClick(item.key)"
           >
-            <el-radio-button size="large" label="day" border
-              >Top ngày</el-radio-button
-            >
-            <el-radio-button size="large" label="week" border
-              >Top tuần</el-radio-button
-            >
-            <el-radio-button size="large" label="month" border
-              >Top tháng</el-radio-button
-            >
-            <el-radio-button size="large" label="all" border
-              >Tất cả</el-radio-button
-            >
-          </el-radio-group> -->
-    </div>
+            <span> {{ item.tabName }} </span>
+          </li>
+        </ul>
 
-    <div
-      class="rank-side-content"
-      v-loading="loading"
-      element-loading-text="Đang tải..."
-      element-loading-background="rgba(0, 0, 0, 0.75)"
-      ref="rankSideContent"
-    >
-      <RankCard
-        v-for="(item, index) in rankData"
-        :index="index"
-        :key="item.id"
-        :item="item"
-        :type="item?.media_type"
-      />
+        <!-- <el-radio-group
+              v-model="activeTab"
+              @change="handleTabClick"
+              class="rank"
+            >
+              <el-radio-button size="large" label="day" border
+                >Top ngày</el-radio-button
+              >
+              <el-radio-button size="large" label="week" border
+                >Top tuần</el-radio-button
+              >
+              <el-radio-button size="large" label="month" border
+                >Top tháng</el-radio-button
+              >
+              <el-radio-button size="large" label="all" border
+                >Tất cả</el-radio-button
+              >
+            </el-radio-group> -->
+      </div>
+      <div
+        class="rank-side-content"
+        v-loading="loading"
+        element-loading-text="Đang tải..."
+        element-loading-background="rgba(0, 0, 0, 0.75)"
+        ref="rankSideContent"
+      >
+        <RankCard
+          v-for="(item, index) in rankData"
+          :index="index"
+          :key="item.id"
+          :item="item"
+          :type="item?.media_type"
+        />
+      </div>
     </div>
   </a-layout-sider>
 </template>
@@ -64,9 +70,10 @@ interface tab {
   tabName: string;
 }
 
+const siderRank = ref();
 const rankSideContent = ref();
 const activeTab = ref<string>('day');
-const loading = ref(false);
+const loading = ref<boolean>(false);
 const rankData = ref<any[]>([]);
 const allTabs = ref<tab[]>([
   {
@@ -86,6 +93,7 @@ const allTabs = ref<tab[]>([
     tabName: 'Tất cả',
   },
 ]);
+const isFixedNavActiom = ref<boolean>(false);
 const internalInstance: any = getCurrentInstance();
 
 const getData = async (activeKey: string) => {
@@ -170,6 +178,19 @@ onBeforeMount(async () => {
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
+});
+
+onMounted(() => {
+  // window.addEventListener('scroll', () => {
+  //   const headerHeight = +getComputedStyle(document.documentElement)
+  //     .getPropertyValue('--header-height')
+  //     .replace('px', '');
+  //   if (headerHeight) {
+  //     isFixedNavActiom.value = true;
+  //   } else {
+  //     isFixedNavActiom.value = false;
+  //   }
+  // });
 });
 
 const handleTabClick = (activeKey: any) => {
