@@ -481,6 +481,7 @@
 
               <svg
                 v-show="!videoStates.isFullScreen"
+                @click="onClickFullScreen"
                 class="fullscreen"
                 xmlns="http://www.w3.org/2000/svg"
                 width="3.3rem"

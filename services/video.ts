@@ -8,7 +8,6 @@ export function makeRequestVideo(url: string, options: any = {}) {
     baseURL: nuxtConfig.app.production_mode
       ? nuxtConfig.app.serverVideoUrl
       : 'http://127.0.0.1:5002',
-    // baseURL: nuxtConfig.app.serverVideoUrl,
     // withCredentials: true,
     headers: { Accept: 'video/mp4;charset=UTF-8' },
     responseType: 'blob',

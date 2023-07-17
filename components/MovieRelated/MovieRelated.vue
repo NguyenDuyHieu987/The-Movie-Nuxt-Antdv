@@ -78,7 +78,7 @@ const getData = async () => {
   //   });
 
   await useAsyncData(`similar/${props?.type}/${props?.movieId}/1`, () =>
-    getSimilar(props?.type, props?.movieId, 1, 10)
+    getSimilar(props?.type, props?.movieId, 1, 12)
   )
     .then((response: any) => {
       dataSimilar.value = response.data.value?.results;
@@ -88,7 +88,7 @@ const getData = async () => {
     });
 
   await useAsyncData(`trending/all/${randomRecommend.value}`, () =>
-    getTrending(randomRecommend.value, 10)
+    getTrending(randomRecommend.value, 12)
   )
     .then((response: any) => {
       dataRecommend.value = response.data.value?.results;

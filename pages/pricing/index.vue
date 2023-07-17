@@ -4,17 +4,17 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Pricing - Dịch vụ | Phimhay247',
+  title: 'Pricing - Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Pricing - Dịch vụ | Phimhay247',
-  description: 'Dịch vụ, ưu đãi, đặc quyền, đăng ký gói',
-  ogTitle: 'Pricing - Dịch vụ | Phimhay247',
+  title: 'Pricing - Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
+  description: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
+  ogTitle: 'Pricing - Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Dịch vụ, ưu đãi, đặc quyền, đăng ký gói',
+  ogDescription: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
   ogLocale: 'vi',
 });
 
