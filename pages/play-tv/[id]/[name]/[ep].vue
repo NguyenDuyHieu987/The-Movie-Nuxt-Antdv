@@ -49,7 +49,7 @@
               getImage(
                 dataMovie?.backdrop_path,
                 'backdrop',
-                'w_' + windowWidth.toString()
+                'w-' + windowWidth.toString()
               )
             "
             @onPlay="(e) => onPLayVideoPlayer(e)"
