@@ -25,7 +25,7 @@
                 getImage(
                   dataMovie?.backdrop_path,
                   'backdrop',
-                  'w_' + windowWidth.toString()
+                  'w-' + windowWidth.toString()
                 )
               "
               loading="lazy"
@@ -35,7 +35,7 @@
             <div class="poster-wrapper">
               <nuxt-img
                 class="ant-image"
-                :src="getImage(dataMovie?.poster_path, 'poster')"
+                :src="getImage(dataMovie?.poster_path, 'poster', 'w-250')"
                 loading="lazy"
               />
             </div>
@@ -47,7 +47,7 @@
                 getImage(
                   dataMovie?.backdrop_path,
                   'backdrop',
-                  'w_' + windowWidth.toString()
+                  'w-' + windowWidth.toString()
                 )
               "
               loading="lazy"

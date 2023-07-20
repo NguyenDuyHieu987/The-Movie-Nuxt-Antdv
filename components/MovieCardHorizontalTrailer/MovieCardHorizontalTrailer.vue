@@ -22,10 +22,9 @@
 
       <template #default>
         <div class="img-box">
-          <!-- v-lazy="getBackdrop, getImage(item?.backdrop_path, ',250')" -->
           <img
             class="ant-image"
-            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h_250')"
+            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
             loading="lazy"
             alt=""
           />

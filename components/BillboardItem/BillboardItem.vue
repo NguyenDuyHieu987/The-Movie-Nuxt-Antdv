@@ -27,7 +27,7 @@
           getImage(
             item?.backdrop_path,
             'backdrop',
-            'w_' + windowWidth.toString()
+            'w-' + windowWidth.toString()
           )
         "
         loading="lazy"

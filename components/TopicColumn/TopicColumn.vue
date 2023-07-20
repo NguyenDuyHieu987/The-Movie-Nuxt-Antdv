@@ -13,7 +13,7 @@
         >
           <nuxt-img
             class="ant-image"
-            :src="getImage(topicImage, 'backdrop', 'h_300')"
+            :src="getImage(topicImage, 'backdrop', 'h-300')"
           />
 
           <div class="play-now">
@@ -45,7 +45,7 @@
         >
           <nuxt-img
             class="ant-image"
-            :src="getImage(topicImage, 'backdrop', 'h_300')"
+            :src="getImage(topicImage, 'backdrop', 'h-300')"
           />
 
           <div class="play-now">
@@ -67,7 +67,7 @@
         <div v-if="!dataColumn?.length" class="img-box">
           <nuxt-img
             class="ant-image"
-            :src="getImage('topic1.jpg', 'misc', 'h_300')"
+            :src="getImage('topic1.jpg', 'misc', 'h-300')"
           />
         </div>
       </div>
@@ -80,7 +80,7 @@
             topicImage == 'topic1.jpg' || topicImage == undefined
               ? 'misc'
               : 'backdrop',
-            'h_300'
+            'h-300'
           )
         "
       />

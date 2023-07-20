@@ -33,10 +33,9 @@
 
           <template #default>
             <div class="backdrop-box">
-              <!-- :src="getBackdrop(item?.backdrop_path, ',250')" -->
               <nuxt-img
                 class="ant-image"
-                :src="getImage(item?.backdrop_path, 'backdrop', 'h_250')"
+                :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
                 loading="lazy"
                 alt=""
               />

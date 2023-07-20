@@ -39,9 +39,8 @@
             /> -->
 
             <div class="ant-image">
-              <!-- v-lazy="getBackdrop(item?.backdrop_path, ',250')" -->
               <img
-                v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h_250')"
+                v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
                 loading="lazy"
               />
             </div>

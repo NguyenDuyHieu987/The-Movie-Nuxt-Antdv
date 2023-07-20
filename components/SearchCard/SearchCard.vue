@@ -27,16 +27,9 @@
 
       <template #default>
         <div class="img-box">
-          <!-- <el-image
-        class="ant-image"
-        :src="getPoster(item?.poster_path)"
-        :preview="false"
-        :lazy="true"
-        loading="lazy"
-      /> -->
           <div class="ant-image">
             <img
-              v-lazy="getImage(item?.poster_path, 'poster', 'w_120')"
+              v-lazy="getImage(item?.poster_path, 'poster', 'w-120')"
               loading="lazy"
             />
           </div>
