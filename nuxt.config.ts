@@ -101,7 +101,8 @@ export default defineNuxtConfig({
       apiGateway: process.env.NUXT_API_GATEWAY,
       serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,
       serverVideoUrl:
-        process.env.NUXT_SERVER_VIDEO_URL || 'https://media.phimhay247.site',
+        process.env.NUXT_SERVER_VIDEO_URL ||
+        'https://res.cloudinary.com/dvbhjlrdf/video/upload/v1688106333',
       adminWebsiteUrl: process.env.NUXT_ADMIN_WEBSITE_URL,
       googleAnalyticsID: process.env.NUXT_GOOGLE_ANALYTICS_ID,
       googleTagManagerID: process.env.NUXT_GOOGLE_TAG_MANAGER_ID,
