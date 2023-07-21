@@ -8,14 +8,16 @@
 
         <section class="movie-group vertical ranking">
           <MovieCardVertical
-            v-for="(item, index) in trendings"
+            v-for="(item, index) in rankings"
             :index="index"
             :key="item.id"
             :item="item"
             :type="item?.media_type"
           />
         </section>
+
         <ControlPage
+          v-show="rankings?.length"
           :page="pageTrending"
           :total="totalPage"
           :pageSize="pageSize"
@@ -36,7 +38,7 @@ import axios from 'axios';
 
 const router = useRouter();
 const route: any = useRoute();
-const trendings = ref<any[]>([]);
+const rankings = ref<any[]>([]);
 const pageTrending = ref<number>(route?.query?.page ? route?.query?.page : 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
@@ -68,7 +70,7 @@ const getData = async () => {
     getTrending(pageTrending.value)
   )
     .then((movieRespone: any) => {
-      trendings.value = movieRespone.data.value?.results;
+      rankings.value = movieRespone.data.value?.results;
       totalPage.value = movieRespone.data.value?.total;
       pageSize.value = movieRespone.data.value?.page_size;
     })
@@ -91,7 +93,7 @@ watch(pageTrending, async () => {
     getTrending(pageTrending.value)
   )
     .then((movieRespone: any) => {
-      trendings.value = movieRespone.data.value?.results;
+      rankings.value = movieRespone.data.value?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
