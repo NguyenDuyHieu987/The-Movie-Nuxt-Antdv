@@ -203,6 +203,7 @@
             font-size: 2.4rem;
             width: 2.4rem;
             height: 2.4rem;
+            fill: var(--text-color);
           }
         }
       }
@@ -230,7 +231,7 @@
 
   &:hover {
     .info {
-      background-color: rgb(30, 30, 30);
+      background-color: #1e1e1e;
     }
   }
 }
