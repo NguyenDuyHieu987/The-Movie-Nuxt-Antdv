@@ -207,6 +207,10 @@ button,
   -ms-user-select: none;
 }
 
+svg {
+  fill: var(--text-color);
+}
+
 .logo {
   display: flex;
 
