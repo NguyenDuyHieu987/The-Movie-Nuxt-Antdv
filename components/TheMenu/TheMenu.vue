@@ -7,7 +7,6 @@
     theme="dark"
     :subMenuCloseDelay="0.1"
     :subMenuOpenDelay="0.1"
-    :forceSubMenuRender="true"
   >
     <a-menu-item key="home">
       <template #icon>
@@ -187,14 +186,13 @@
             {{ item?.name_vietsub }}
           </NuxtLink>
         </a-tooltip>
+
         <NuxtLink
           v-else
           :to="{
             path: `/discover/genre/${item?.short_name}`,
           }"
         >
-          <!-- @click="$store.breadCrumbValue = item?.name_vietsub" -->
-
           {{ item?.name_vietsub }}
         </NuxtLink>
       </a-menu-item>

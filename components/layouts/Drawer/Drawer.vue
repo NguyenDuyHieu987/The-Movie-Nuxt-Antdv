@@ -31,7 +31,7 @@
       </div>
     </template>
 
-    <div class="user-header">
+    <header class="user-header">
       <div class="user-image-container" v-if="!collapsed && isLogin">
         <nuxt-img
           class="avatar"
@@ -47,7 +47,8 @@
       <h4>
         {{ userAccount?.username }}
       </h4>
-    </div>
+    </header>
+
     <TheMenu />
   </a-drawer>
 

@@ -5,7 +5,7 @@
     collapsedWidth="var(--sider-collapsed-width)"
     class="sider-bar"
   >
-    <a-layout-header class="sider-header">
+    <header class="sider-header">
       <div class="user-header">
         <div
           class="user-image-container"
@@ -22,7 +22,7 @@
           />
         </div>
 
-        <div v-show="isLogin">
+        <div v-if="isLogin">
           <h4 v-if="!collapsed">
             {{ userAccount?.username }}
           </h4>
@@ -36,7 +36,7 @@
           </a-tooltip>
         </div>
       </div>
-    </a-layout-header>
+    </header>
 
     <TheMenu />
 

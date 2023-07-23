@@ -49,7 +49,7 @@
       .ant-drawer-body {
         padding: 0px 0px 24px 0px;
 
-        .user-header {
+        header.user-header {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -115,7 +115,7 @@
     line-height: 65px;
     border-bottom: 0.25px solid var(--border-regular);
 
-    .user-header {
+    header.user-header {
       display: flex;
       justify-content: center;
       align-items: center;
