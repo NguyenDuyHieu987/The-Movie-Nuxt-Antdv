@@ -356,11 +356,12 @@ const isTeleport = defineModel<boolean>('isTeleport');
 // });
 
 onMounted(() => {
-  window.addEventListener('pointermove', (e: any) => {
-    if (isTeleport.value == true && !e.target.closest('.preview-modal')) {
-      isTeleport.value = false;
-    }
-  });
+  // window.addEventListener('pointermove', (e: any) => {
+  //   if (document.querySelector('.preview-modal') == null) return;
+  //   if (isTeleport.value == true && !e.target.closest('.preview-modal')) {
+  //     isTeleport.value = false;
+  //   }
+  // });
 });
 
 watch(previewModal, () => {
