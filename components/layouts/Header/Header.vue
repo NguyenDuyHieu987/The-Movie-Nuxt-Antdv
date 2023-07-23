@@ -290,23 +290,28 @@
               <a-menu class="dropdown-account">
                 <a-menu-item
                   v-if="isLogin"
+                  v-once
                   :class="{ active: isLogin }"
                   key="my-profile"
                 >
-                  <NuxtLink :to="{ path: '/profile' }"
-                    ><span>My Profile</span>
+                  <NuxtLink :to="{ path: '/profile' }">
+                    <span>My Profile</span>
                     <br />
-                    <span style="font-size: 1.2rem">{{
-                      userAccount?.email
-                    }}</span>
+                    <span style="font-size: 1.2rem">
+                      {{ userAccount?.email }}
+                    </span>
                   </NuxtLink>
                 </a-menu-item>
-                <a-menu-item v-if="isLogin && role == 'admin'" key="dashboard">
+                <a-menu-item
+                  v-if="isLogin && role == 'admin'"
+                  v-once
+                  key="dashboard"
+                >
                   <NuxtLink :to="$config.app.adminWebsiteUrl" target="_blank">
                     Bảng điều khiển
                   </NuxtLink>
                 </a-menu-item>
-                <a-menu-item v-if="isLogin" key="pricing">
+                <a-menu-item v-if="isLogin" v-once key="pricing">
                   <NuxtLink :to="{ path: '/billing' }">Billing</NuxtLink>
                 </a-menu-item>
                 <a-menu-item key="logout">
