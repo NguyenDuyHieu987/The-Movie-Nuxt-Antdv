@@ -46,7 +46,8 @@
         <!-- v-for="(item, index) in dataSearch"
         :index="index" 
         -->
-        <SearchCard :key="item?.id" :item="item" :type="item.media_type" />
+
+        <!-- <SearchCard :key="item?.id" :item="item" :type="item.media_type" /> -->
       </template>
 
       <a-input-search
@@ -179,7 +180,7 @@
         mode="horizontal"
         :selectable="false"
       >
-        <a-menu-item key="notification">
+        <a-menu-item class="notification" key="notification">
           <a-dropdown
             v-if="isLogin"
             :trigger="['click']"
@@ -330,11 +331,7 @@ import { getImage } from '~/services/image';
 import SearchCard from '@/components/SearchCard/SearchCard.vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
-import {
-  UserOutlined,
-  CaretDownOutlined,
-  MenuOutlined,
-} from '@ant-design/icons-vue';
+import { MenuOutlined } from '@ant-design/icons-vue';
 import { ElMenu, ElMenuItem } from 'element-plus';
 
 const store = useStore();
