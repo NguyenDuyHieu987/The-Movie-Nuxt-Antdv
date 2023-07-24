@@ -277,6 +277,7 @@ const onSubmit = () => {
 };
 
 const handleClickCanel = () => {
+  isShowEmoji.value = false;
   isShowActions.value = false;
   content.value = '';
   emits('onClickCancel');
