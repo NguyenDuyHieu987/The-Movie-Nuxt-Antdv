@@ -209,6 +209,7 @@ button,
 
 svg {
   fill: var(--text-color);
+  user-select: none;
 }
 
 .logo {
