@@ -284,6 +284,7 @@
                 />
               </svg>
             </span>
+
             <template #overlay>
               <a-menu class="dropdown-account">
                 <a-menu-item
@@ -292,7 +293,7 @@
                   :class="{ active: isLogin }"
                   key="my-profile"
                 >
-                  <NuxtLink :to="{ path: '/profile' }">
+                  <NuxtLink to="/profile">
                     <span>My Profile</span>
                     <br />
                     <span style="font-size: 1.2rem">
@@ -310,10 +311,10 @@
                   </NuxtLink>
                 </a-menu-item>
                 <a-menu-item v-if="isLogin" v-once key="pricing">
-                  <NuxtLink :to="{ path: '/billing' }">Billing</NuxtLink>
+                  <NuxtLink to="/billing">Billing</NuxtLink>
                 </a-menu-item>
                 <a-menu-item key="logout">
-                  <NuxtLink :to="{ path: '/login' }" @click="handleLogout">
+                  <NuxtLink to="/login" @click="handleLogout">
                     <span v-if="isLogin"> Đăng xuất</span>
                     <span v-else> Đăng nhập</span>
                   </NuxtLink>

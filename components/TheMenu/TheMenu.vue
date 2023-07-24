@@ -16,7 +16,7 @@
       </template>
 
       <div>
-        <NuxtLink :to="{ path: '/' }">Trang chủ</NuxtLink>
+        <NuxtLink to="/">Trang chủ</NuxtLink>
       </div>
     </a-menu-item>
 
@@ -313,7 +313,7 @@
         /> -->
       </template>
       <div>
-        <NuxtLink :to="{ path: '/follow' }"> Theo dõi</NuxtLink>
+        <NuxtLink to="/follow"> Theo dõi</NuxtLink>
       </div>
     </a-menu-item>
 
@@ -333,7 +333,7 @@
         </svg>
       </template>
       <div>
-        <NuxtLink :to="{ path: '/history' }"> Lịch sử Xem </NuxtLink>
+        <NuxtLink to="/history"> Lịch sử Xem </NuxtLink>
       </div>
     </a-menu-item>
 
@@ -353,7 +353,7 @@
         </svg>
       </template>
       <div>
-        <NuxtLink :to="{ path: '/ranking' }"> Xếp hạng</NuxtLink>
+        <NuxtLink to="/ranking"> Xếp hạng</NuxtLink>
       </div>
     </a-menu-item>
 
@@ -373,7 +373,7 @@
         </svg>
       </template>
       <div>
-        <NuxtLink :to="{ path: '/pricing' }"> Pricing</NuxtLink>
+        <NuxtLink to="/pricing"> Pricing</NuxtLink>
       </div>
     </a-menu-item>
   </a-menu>
