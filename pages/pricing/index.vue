@@ -1,8 +1,14 @@
 <template>
-  <div class="pricing padding-content"><div>This is Pricing page</div></div>
+  <div class="pricing padding-content">
+    <div class="pricing-container">
+      <PlanGrid />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import PlanGrid from '~/components/PlanGrid/PlanGrid.vue';
+
 useHead({
   title: 'Pricing - Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
   htmlAttrs: { lang: 'vi' },

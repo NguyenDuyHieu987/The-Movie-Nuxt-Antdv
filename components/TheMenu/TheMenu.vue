@@ -420,21 +420,21 @@ const getData = async () => {
     await useAsyncData(`country/all`, () => getAllCountry()),
   ])
     .then((response: any) => {
-      genres.value = response[0].data.value?.result;
+      genres.value = response[0].data.value?.results;
 
-      years.value = response[1].data.value?.result.sort((a: year, b: year) => {
+      years.value = response[1].data.value?.results.sort((a: year, b: year) => {
         return +b.name.slice(-4) - +a.name.slice(-4);
       });
 
-      countries.value = response[2].data.value?.result;
+      countries.value = response[2].data.value?.results;
 
-      store.allGenres = response[0].data.value?.result;
-      store.allYears = response[1].data.value?.result.sort(
+      store.allGenres = response[0].data.value?.results;
+      store.allYears = response[1].data.value?.results.sort(
         (a: year, b: year) => {
           return +b.name.slice(-4) - +a.name.slice(-4);
         }
       );
-      store.allCountries = response[2].data.value?.result;
+      store.allCountries = response[2].data.value?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

@@ -29,3 +29,12 @@ export declare interface formFilter {
   country: string;
   pageFilter: number;
 }
+
+export declare interface plan {
+  id: string;
+  name: string;
+  price: number;
+  video_quality: string;
+  resolution: string;
+  support_devices: string;
+}
