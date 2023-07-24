@@ -2,21 +2,17 @@
   <header class="header-bar">
     <div class="left-header">
       <button class="menu-btn mobile" @click="store.setOpendrawer()">
-        <!-- v-if="!openDrawer" -->
-        <!-- <Icon v-else name="ic:baseline-close" class="close" /> -->
-
-        <!-- <Icon name="ant-design:menu-outlined" class="menu" /> -->
-
         <MenuOutlined />
       </button>
-      <button
+
+      <!-- <button
         v-if="collapsed == true"
         class="menu-btn desktop"
         @click="store.setCollapsed()"
       >
-        <!-- <Icon name="ant-design:menu-outlined" /> -->
         <MenuOutlined />
-      </button>
+      </button> -->
+
       <div class="logo">
         <NuxtLink :to="{ path: '/' }">
           <nuxt-img

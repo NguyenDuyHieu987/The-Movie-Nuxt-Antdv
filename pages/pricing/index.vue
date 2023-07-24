@@ -1,5 +1,5 @@
 <template>
-  <div class="pricing padding-content">This is Pricing page</div>
+  <div class="pricing padding-content"><div>This is Pricing page</div></div>
 </template>
 
 <script setup lang="ts">

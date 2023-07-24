@@ -42,6 +42,8 @@
 
 @media only screen and (max-width: 900px) {
   .body-content {
+    --sider-width: 0px;
+    --sider-collapsed-width: 0px;
     margin-left: 0px;
 
     main.main-content {
