@@ -52,20 +52,14 @@
         <Icon v-else name="ic:baseline-keyboard-double-arrow-right" /> -->
 
         <svg
-          v-if="!collapsed"
+          v-if="collapsed"
           xmlns="http://www.w3.org/2000/svg"
           width="2rem"
           height="2rem"
           viewBox="0 0 24 24"
         >
-          <path
-            fill="currentColor"
-            d="M17.59 18L19 16.59L14.42 12L19 7.41L17.59 6l-6 6z"
-          />
-          <path
-            fill="currentColor"
-            d="m11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z"
-          />
+          <path d="M6.41 6L5 7.41L9.58 12L5 16.59L6.41 18l6-6z" />
+          <path d="m13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z" />
         </svg>
 
         <svg
@@ -75,14 +69,8 @@
           height="2rem"
           viewBox="0 0 24 24"
         >
-          <path
-            fill="currentColor"
-            d="M6.41 6L5 7.41L9.58 12L5 16.59L6.41 18l6-6z"
-          />
-          <path
-            fill="currentColor"
-            d="m13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"
-          />
+          <path d="M17.59 18L19 16.59L14.42 12L19 7.41L17.59 6l-6 6z" />
+          <path d="m11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z" />
         </svg>
 
         <span class="title-trigger-collapse">Đóng</span>
