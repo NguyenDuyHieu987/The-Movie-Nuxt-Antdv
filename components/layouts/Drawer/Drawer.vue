@@ -4,6 +4,7 @@
     v-model:visible="openDrawer"
     placement="left"
     :closable="false"
+    width="var(--drawer-width)"
   >
     <template #title>
       <!-- <Icon
