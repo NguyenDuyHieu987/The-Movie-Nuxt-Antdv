@@ -187,7 +187,6 @@
             class="dropdown-notification"
             overlayClassName="dropdown-notification header"
             placement="bottomRight"
-            destroyPopupOnHide
           >
             <span v-if="isLogin" class="ant-dropdown-link">
               <a-badge :count="3" :overflow-count="9">
@@ -257,7 +256,6 @@
             class="dropdown-account"
             overlayClassName="dropdown-account header"
             placement="bottomRight"
-            destroyPopupOnHide
           >
             <span class="ant-dropdown-link">
               <!-- <UserOutlined />
