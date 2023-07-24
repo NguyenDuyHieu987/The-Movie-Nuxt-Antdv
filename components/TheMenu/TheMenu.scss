@@ -46,7 +46,7 @@
     color: var(--text-color-gray1);
     transition: all 0.15s !important;
 
-    & > span > a,
+    & > span > div > a,
     svg {
       font-size: 1.45rem;
       transition: all 0s;
@@ -65,8 +65,7 @@
     &:hover {
       background-color: var(--menu-item-background-color) !important;
 
-      & > span > a,
-      a {
+      & > span > div > a {
         color: #fff;
       }
 
@@ -77,8 +76,7 @@
     }
 
     &.ant-menu-item-selected {
-      & > span > a,
-      a,
+      & > span > div > a,
       svg {
         color: #fff;
       }
