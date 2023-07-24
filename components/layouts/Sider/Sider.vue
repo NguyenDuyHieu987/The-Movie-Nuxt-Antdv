@@ -40,7 +40,7 @@
 
     <TheMenu />
 
-    <a-layout-footer @click="store.setCollapsed()">
+    <footer class="sider-footer" @click="store.setCollapsed()">
       <div :class="['trigger-collapse', { active: collapsed }]">
         <!-- <DoubleLeftOutlined
             style="transition: all 0.3s"
@@ -87,7 +87,7 @@
 
         <span class="title-trigger-collapse">Đóng</span>
       </div>
-    </a-layout-footer>
+    </footer>
   </a-layout-sider>
 </template>
 
