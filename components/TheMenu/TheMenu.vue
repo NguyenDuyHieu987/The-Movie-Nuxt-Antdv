@@ -5,8 +5,8 @@
     mode="inline"
     class="menu-sider-bar"
     theme="dark"
-    :subMenuCloseDelay="0.1"
-    :subMenuOpenDelay="0.1"
+    :subMenuCloseDelay="0.15"
+    :subMenuOpenDelay="0.15"
   >
     <!-- :forceSubMenuRender="true" -->
 
@@ -14,7 +14,9 @@
       <template #icon>
         <HomeOutlined />
       </template>
-      <NuxtLink :to="{ path: '/' }">Trang chủ</NuxtLink>
+      <div>
+        <NuxtLink :to="{ path: '/' }">Trang chủ</NuxtLink>
+      </div>
     </a-menu-item>
 
     <a-sub-menu key="movie">
@@ -32,7 +34,9 @@
           />
         </svg>
       </template>
-      <template #title>Phim lẻ</template>
+      <template #title>
+        <span>Phim lẻ</span>
+      </template>
 
       <a-menu-item key="all">
         <NuxtLink
@@ -100,7 +104,9 @@
           />
         </svg>
       </template>
-      <template #title>Phim bộ</template>
+      <template #title>
+        <span>Phim bộ</span>
+      </template>
 
       <a-menu-item key="all">
         <NuxtLink
@@ -168,7 +174,10 @@
           />
         </svg>
       </template>
-      <template #title>Thể loại</template>
+      <template #title>
+        <span>Thể loại</span>
+      </template>
+
       <a-menu-item
         v-for="(item, index) in genres"
         :index="index"
@@ -214,7 +223,9 @@
           />
         </svg>
       </template>
-      <template #title>Năm phát hành</template>
+      <template #title>
+        <span>Năm phát hành</span>
+      </template>
       <a-menu-item
         v-for="(item, index) in years"
         :index="index"
@@ -252,7 +263,9 @@
           />
         </svg>
       </template>
-      <template #title>Quốc gia</template>
+      <template #title>
+        <span>Quốc gia</span>
+      </template>
       <a-menu-item
         v-for="(item, index) in countries"
         :index="index"
@@ -298,7 +311,9 @@
           name="ic:baseline-playlist-play"
         /> -->
       </template>
-      <NuxtLink :to="{ path: '/follow' }"> Theo dõi</NuxtLink>
+      <div>
+        <NuxtLink :to="{ path: '/follow' }"> Theo dõi</NuxtLink>
+      </div>
     </a-menu-item>
 
     <a-menu-item key="history">
@@ -316,7 +331,9 @@
           />
         </svg>
       </template>
-      <NuxtLink :to="{ path: '/history' }"> Lịch sử Xem </NuxtLink>
+      <div>
+        <NuxtLink :to="{ path: '/history' }"> Lịch sử Xem </NuxtLink>
+      </div>
     </a-menu-item>
 
     <a-menu-item key="ranking">
@@ -334,7 +351,9 @@
           />
         </svg>
       </template>
-      <NuxtLink :to="{ path: '/ranking' }"> Xếp hạng</NuxtLink>
+      <div>
+        <NuxtLink :to="{ path: '/ranking' }"> Xếp hạng</NuxtLink>
+      </div>
     </a-menu-item>
 
     <a-menu-item key="pricing">
@@ -352,7 +371,9 @@
           />
         </svg>
       </template>
-      <NuxtLink :to="{ path: '/pricing' }"> Pricing</NuxtLink>
+      <div>
+        <NuxtLink :to="{ path: '/pricing' }"> Pricing</NuxtLink>
+      </div>
     </a-menu-item>
   </a-menu>
 </template>

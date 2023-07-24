@@ -51,6 +51,9 @@
       font-size: 1.45rem;
       transition: all 0s;
       color: var(--text-color-gray1);
+    }
+
+    svg {
       fill: var(--text-color-gray1);
     }
 
@@ -63,6 +66,10 @@
       background-color: var(--menu-item-background-color) !important;
 
       & > span > a,
+      a {
+        color: #fff;
+      }
+
       svg {
         color: #fff;
         fill: #fff;
@@ -71,8 +78,13 @@
 
     &.ant-menu-item-selected {
       & > span > a,
+      a,
       svg {
         color: #fff;
+      }
+
+      svg {
+        fill: #fff;
       }
     }
   }
