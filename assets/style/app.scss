@@ -13,23 +13,33 @@
   border: 1px solid var(--border-regular);
   background-color: var(--background-content-color1);
   color: var(--text-color);
-  font-size: 2rem;
-  // font-size: 3rem;
   box-shadow: var(--box-shadow-small) !important;
   transition: all 0.15s;
 
   &:active {
     opacity: 0.8;
   }
+
+  svg {
+    font-size: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
   .app-back-top {
-    height: 40px;
-    width: 40px;
+    height: 42px;
+    width: 42px;
     bottom: 30px;
     right: 20px;
     font-size: 1.8rem;
+
+    svg {
+      font-size: 2.3rem;
+      width: 2.3rem;
+      height: 2.3rem;
+    }
   }
 }
 
@@ -37,6 +47,5 @@
   .app-back-top {
     bottom: 20px;
     right: 15px;
-    font-size: 1.6rem;
   }
 }
