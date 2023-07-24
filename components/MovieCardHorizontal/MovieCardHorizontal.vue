@@ -31,7 +31,6 @@
             class="ant-image"
             v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
             loading="lazy"
-            @load="onLoadImg"
             alt=""
           />
 
@@ -246,10 +245,6 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
     // isTeleportPreviewModal.value = false;
     clearInterval(interval.value);
   });
-};
-
-const onLoadImg = (e: any) => {
-  loadingImg.value = true;
 };
 </script>
 <style lang="scss" src="./MovieCardHorizontal.scss"></style>

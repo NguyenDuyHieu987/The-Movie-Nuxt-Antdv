@@ -30,7 +30,6 @@
             v-lazy="getImage(item?.poster_path, 'poster')"
             loading="lazy"
             alt=""
-            @load="onLoadImg"
           />
 
           <div v-show="isInHistory" class="viewed-overlay-bar">
@@ -249,10 +248,6 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
     // isTeleportPreviewModal.value = false;
     clearInterval(interval.value);
   });
-};
-
-const onLoadImg = (e: any) => {
-  loadingImg.value = true;
 };
 </script>
 
