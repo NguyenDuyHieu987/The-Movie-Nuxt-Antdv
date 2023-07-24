@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLogin" class="billing">This is Billing page</div>
+  <div v-if="isLogin" class="billing padding-content">This is Billing page</div>
   <RequireAuth v-else />
 </template>
 
