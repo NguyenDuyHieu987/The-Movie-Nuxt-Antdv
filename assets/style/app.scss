@@ -17,6 +17,7 @@
   border: 1px solid var(--border-regular);
   // border: none;
   transition: all 0.15s;
+  user-select: none;
 
   &:active {
     opacity: 0.8;
