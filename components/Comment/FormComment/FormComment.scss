@@ -136,6 +136,7 @@
 
         svg {
           transition: all 0.15s;
+          user-select: none;
 
           &:active {
             opacity: 0.8;
