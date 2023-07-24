@@ -122,6 +122,7 @@
     background: transparent;
     line-height: inherit;
     height: auto;
+    overflow: hidden;
     transition: all 0s;
   }
 
@@ -195,11 +196,8 @@
 
 @media only screen and (max-width: 900px) {
   .ant-layout-sider.sider-bar {
-    width: 0px !important;
-    min-width: 0px !important;
-    max-width: 0px !important;
-    flex: 0 0 0 !important;
-    overflow: hidden;
+    --sider-width: 0px;
+    // overflow: hidden;
     border: none;
 
     .ant-layout-footer {
