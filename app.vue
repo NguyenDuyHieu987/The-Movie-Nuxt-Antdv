@@ -22,7 +22,16 @@
           :visibilityHeight="600"
           @click="onBackTop"
         >
-          <font-awesome-icon icon="fa-solid fa-chevron-up" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="2.5rem"
+            height="2.5rem"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="m4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8l-8 8z"
+            />
+          </svg>
         </el-backtop>
       </NuxtLayout>
     </div>
