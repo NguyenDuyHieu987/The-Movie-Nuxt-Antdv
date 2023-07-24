@@ -46,13 +46,13 @@
       <footer class="sider-footer">
         <div :class="['trigger-collapse', { active: collapsed }]">
           <!-- <DoubleLeftOutlined
-              style="transition: all 0.3s"
-              v-if="!collapsed"
-            />
-            <DoubleRightOutlined v-else /> -->
+                style="transition: all 0.3s"
+                v-if="!collapsed"
+              />
+              <DoubleRightOutlined v-else /> -->
 
           <!-- <Icon v-if="!collapsed" name="ic:baseline-keyboard-double-arrow-left" />
-          <Icon v-else name="ic:baseline-keyboard-double-arrow-right" /> -->
+            <Icon v-else name="ic:baseline-keyboard-double-arrow-right" /> -->
 
           <svg
             v-if="collapsed"

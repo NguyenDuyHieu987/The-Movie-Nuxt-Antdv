@@ -36,6 +36,10 @@
     // border: none;
   }
 
+  &.ant-layout-sider-has-trigger {
+    padding-bottom: calc(var(--header-height) - 5px);
+  }
+
   &:hover {
     ::-webkit-scrollbar-thumb {
       background-color: #7e7e7e;
@@ -141,6 +145,7 @@
     color: var(--text-color);
     z-index: 2;
     cursor: pointer;
+    user-select: none;
 
     .trigger-collapse {
       white-space: nowrap;

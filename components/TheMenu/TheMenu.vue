@@ -14,6 +14,7 @@
       <template #icon>
         <HomeOutlined />
       </template>
+
       <div>
         <NuxtLink :to="{ path: '/' }">Trang chủ</NuxtLink>
       </div>
