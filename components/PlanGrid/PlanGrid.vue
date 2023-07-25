@@ -159,14 +159,12 @@ onBeforeMount(async () => {
     .then((response: any) => {
       plans.value = response.data.value?.results;
       selected.value = response.data.value?.results.find(
-        (item: plan) => item.name == 'Cao cấp'
+        (item: plan) => item.order == 3
       ).id;
 
       emits(
         'onSelectPlan',
-        response.data.value?.results.find(
-          (item: plan) => item.name == 'Cao cấp'
-        )
+        response.data.value?.results.find((item: plan) => item.order == 3)
       );
     })
     .catch((e) => {
