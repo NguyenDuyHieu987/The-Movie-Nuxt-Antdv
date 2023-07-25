@@ -32,6 +32,7 @@ export declare interface formFilter {
 
 export declare interface plan {
   id: string;
+  order: number;
   name: string;
   price: number;
   video_quality: string;

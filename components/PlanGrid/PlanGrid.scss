@@ -53,7 +53,7 @@
     .plan-table {
       border-collapse: separate;
       border-spacing: 0 10px;
-      min-width: 570px;
+      min-width: 600px;
       flex-shrink: 0;
       overflow-x: scroll;
 
@@ -104,9 +104,8 @@
             content: '';
             position: absolute;
             left: 0;
-            top: 50%;
+            top: 0;
             height: calc(var(--plan-box-selector-size));
-            transform: translateY(-50%);
             width: 100%;
             z-index: -2;
             background-size: cover;
@@ -197,6 +196,7 @@
 @media only screen and (max-width: 700px) {
   .plan-grid {
     --plan-box-selector-size: 130px;
+    gap: 10px;
 
     .plan-sider {
       .plan-box-selector {

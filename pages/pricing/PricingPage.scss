@@ -4,6 +4,20 @@
   font-size: 1.55rem;
 
   .pricing-container {
+    .pricing-header {
+      margin-bottom: 20px;
+
+      ul {
+        padding-left: 16px;
+        list-style-type: square;
+
+        .checkmark-group-row {
+          svg {
+          }
+        }
+      }
+    }
+
     .submit-btn-container {
       max-width: 450px;
       margin: 0px auto;
@@ -25,7 +39,7 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 900px) {
   .pricing {
     font-size: 1.5rem;
   }

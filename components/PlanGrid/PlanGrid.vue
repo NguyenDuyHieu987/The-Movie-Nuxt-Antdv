@@ -178,6 +178,8 @@ onBeforeMount(async () => {
 });
 
 const handleClickPlanOpiton = (plan: plan) => {
+  if (selected.value == plan.id) return;
+
   emits('onSelectPlan', plan);
 
   selected.value = plan.id;

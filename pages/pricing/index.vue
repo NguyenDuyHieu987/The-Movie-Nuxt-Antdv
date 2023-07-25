@@ -1,11 +1,26 @@
 <template>
   <div class="pricing padding-content">
     <div class="pricing-container">
-      <div>
-        <p>Chọn gói dịch vụ phù hợp với bạn</p>
-        <p>Truy cập thêm nhiều chương trình truyền hình và phim.</p>
-        <p>Lựa chọn xem trên nhiều thiết bị hơn.</p>
-        <p>Thay đổi hoặc hủy gói dịch vụ của bạn bất cứ khi nào.</p>
+      <div class="pricing-header">
+        <h2>Chọn gói dịch vụ phù hợp với bạn</h2>
+
+        <ul>
+          <li class="checkmark-group-row">
+            <span>Chọn gói dịch vụ phù hợp với bạn</span>
+          </li>
+
+          <li class="checkmark-group-row">
+            <span>Truy cập thêm nhiều chương trình truyền hình và phim.</span>
+          </li>
+
+          <li class="checkmark-group-row">
+            <span>Lựa chọn xem trên nhiều thiết bị hơn.</span>
+          </li>
+
+          <li class="checkmark-group-row">
+            <span>Thay đổi hoặc hủy gói dịch vụ của bạn bất cứ khi nào.</span>
+          </li>
+        </ul>
       </div>
       <PlanGrid @onSelectPlan="handleOnSelectPlan" />
 
@@ -56,7 +71,7 @@ const onRouteToPaymentPage = () => {
     return;
   }
 
-  navigateTo(`/payment?plan=${selectedPlan.value!.id}`);
+  navigateTo(`/payment?plan-order=${selectedPlan.value!.order}`);
 };
 </script>
 
