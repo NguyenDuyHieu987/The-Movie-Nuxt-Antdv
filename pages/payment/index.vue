@@ -1,5 +1,7 @@
 <template>
-  <div class="payment padding-content">Payment Page</div>
+  <div class="payment padding-content">
+    <div class="payment-container">Payment Page</div>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
