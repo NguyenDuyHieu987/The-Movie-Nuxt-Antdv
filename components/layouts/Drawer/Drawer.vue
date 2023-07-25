@@ -5,6 +5,7 @@
     placement="left"
     :closable="false"
     width="var(--drawer-width)"
+    :autofocus="false"
   >
     <template #title>
       <svg
@@ -109,13 +110,20 @@ import { ElDrawer } from 'element-plus';
 
 const store = useStore();
 const { collapsed, isLogin, openDrawer, userAccount } = storeToRefs<any>(store);
+const router = useRouter();
 
 onMounted(() => {
-  window.onresize = () => {
+  window.addEventListener('resize', () => {
     if (window.innerWidth > 900) {
       store.openDrawer = false;
     }
-  };
+  });
+});
+
+router.beforeResolve(() => {
+  if (store.openDrawer) {
+    store.openDrawer = false;
+  }
 });
 </script>
 
