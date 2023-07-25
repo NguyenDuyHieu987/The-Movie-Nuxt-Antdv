@@ -7,7 +7,7 @@
         :index="index"
         class="plan-box-selector"
         :class="{ selected: item.id == selected }"
-        @click="selected = item.id"
+        @click="handleClickPlanOpiton(item)"
       >
         <span>{{ item.name }}</span>
       </div>
@@ -32,7 +32,7 @@
             :key="index"
             :index="index"
             :class="{ selected: item.id == selected }"
-            @click="selected = item.id"
+            @click="handleClickPlanOpiton(item)"
           >
             <td class="plan-option price">
               {{
@@ -144,6 +144,10 @@ import { getAllPlan } from '~/services/plans';
 import axios from 'axios';
 import type { plan } from '@/types';
 
+const emits = defineEmits<{
+  onSelectPlan: [selected: any];
+}>();
+
 const plans = ref<plan[]>([]);
 const loading = ref<boolean>(false);
 const selected = ref<string>('');
@@ -157,6 +161,13 @@ onBeforeMount(async () => {
       selected.value = response.data.value?.results.find(
         (item: plan) => item.name == 'Cao cấp'
       ).id;
+
+      emits(
+        'onSelectPlan',
+        (selected.value = response.data.value?.results.find(
+          (item: plan) => item.name == 'Cao cấp'
+        ))
+      );
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -165,6 +176,12 @@ onBeforeMount(async () => {
       loading.value = false;
     });
 });
+
+const handleClickPlanOpiton = (plan: plan) => {
+  emits('onSelectPlan', plan);
+
+  selected.value = plan.id;
+};
 </script>
 
 <style scoped lang="scss" src="./PlanGrid.scss"></style>

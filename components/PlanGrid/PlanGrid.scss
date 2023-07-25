@@ -26,11 +26,13 @@
       transition: all 0.15s;
       cursor: default;
       font-weight: 500;
+      z-index: 1;
 
       &.selected {
         background-color: var(--app-background-color);
         opacity: 1;
         transform: translateX(5%);
+        box-shadow: var(--box-shadow-medium1);
 
         &::after {
           content: '';
@@ -38,7 +40,7 @@
           display: block;
           top: 50%;
           transform: translateY(-50%) rotate(-90deg);
-          right: -20px;
+          right: -18px;
           border: 0 solid transparent;
           border-width: 15px 15px 0;
           border-top-color: #3e9cd2;
@@ -56,6 +58,8 @@
       overflow-x: scroll;
 
       .plan-header {
+        box-shadow: var(--box-shadow-small);
+
         &::after {
           content: '';
           display: block;
@@ -78,37 +82,79 @@
           height: var(--plan-box-selector-size);
           transition: transform 0.15s;
 
+          &:nth-child(1) {
+            &::after {
+              background-image: url('https://ik.imagekit.io/8toa5f2rp/images/background/1/Background_1.jpg');
+            }
+          }
+
+          &:nth-child(2) {
+            &::after {
+              background-image: url('https://ik.imagekit.io/8toa5f2rp/images/background/1/Background_2.jpg');
+            }
+          }
+
+          &:nth-child(3) {
+            &::after {
+              background-image: url('https://ik.imagekit.io/8toa5f2rp/images/background/1/Background_3.jpg');
+            }
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            height: calc(var(--plan-box-selector-size));
+            transform: translateY(-50%);
+            width: 100%;
+            z-index: -2;
+            background-size: cover;
+            opacity: 0.2;
+          }
+
+          td {
+            &::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              height: 100%;
+              width: 100%;
+              background-image: linear-gradient(
+                to right,
+                var(--background-content-color),
+                rgba(25, 25, 25)
+              );
+              z-index: -1;
+              transition: all 0.3s;
+            }
+          }
+
           &.selected {
             color: var(--app-background-color);
             transform: translateX(2%);
+            box-shadow: var(--box-shadow-medium1);
 
             @keyframes linear-fade {
               from {
                 opacity: 0;
-                width: 0%;
+                width: 100%;
               }
 
               to {
-                width: 100%;
+                width: 0%;
                 opacity: 1;
               }
             }
 
+            &::after {
+              opacity: 0.5;
+            }
+
             td {
               &::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 100%;
-                background-image: linear-gradient(
-                  to right,
-                  var(--background-content-color),
-                  rgb(25, 25, 25)
-                );
-                animation: linear-fade 0.3s ease;
-                z-index: -1;
+                width: 0%;
               }
             }
           }
@@ -118,15 +164,8 @@
             // border-bottom: 1px solid var(--border-regular-light);
 
             &::after {
-              content: '';
-              position: absolute;
-              left: 0;
-              top: 50%;
-              height: calc(var(--plan-box-selector-size) + 10px);
-              transform: translateY(-50%);
-              width: 100%;
-              border-top: 1px solid #929292;
-              border-bottom: 1px solid #929292;
+              // border-top: 1px solid #929292;
+              // border-bottom: 1px solid #929292;
             }
           }
 
@@ -164,7 +203,7 @@
         &.selected {
           &::after {
             border-width: 10px 10px 0;
-            right: -15px;
+            right: -13px;
           }
         }
       }

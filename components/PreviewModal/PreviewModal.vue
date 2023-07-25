@@ -484,6 +484,7 @@ const handelAddToList = (e: any) => {
     store.openRequireAuthDialog = true;
     return;
   }
+
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (
