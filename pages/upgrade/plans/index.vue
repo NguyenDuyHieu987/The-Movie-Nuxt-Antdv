@@ -1,7 +1,7 @@
 <template>
-  <div class="pricing padding-content">
-    <div class="pricing-container">
-      <div class="pricing-header">
+  <div class="upgrade padding-content">
+    <div class="upgrade-container">
+      <div class="upgrade-header">
         <h2>Chọn gói dịch vụ phù hợp với bạn</h2>
 
         <ul>
@@ -38,14 +38,14 @@ import PlanGrid from '~/components/PlanGrid/PlanGrid.vue';
 import type { plan } from '@/types';
 
 useHead({
-  title: 'Pricing - Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
+  title: 'Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Pricing - Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
+  title: 'Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
   description: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
-  ogTitle: 'Pricing - Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
+  ogTitle: 'Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
@@ -71,8 +71,8 @@ const onRouteToPaymentPage = () => {
     return;
   }
 
-  navigateTo(`/payment?plan-order=${selectedPlan.value!.order}`);
+  navigateTo(`/upgrade/payment?plan-order=${selectedPlan.value!.order}`);
 };
 </script>
 
-<style scoped lang="scss" src="./PricingPage.scss"></style>
+<style scoped lang="scss" src="./UpgradePage.scss"></style>

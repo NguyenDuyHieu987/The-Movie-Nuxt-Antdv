@@ -373,7 +373,7 @@
         </svg>
       </template>
       <div>
-        <NuxtLink to="/pricing"> Pricing</NuxtLink>
+        <NuxtLink to="/upgrade/plans"> Pricing</NuxtLink>
       </div>
     </a-menu-item>
   </a-menu>

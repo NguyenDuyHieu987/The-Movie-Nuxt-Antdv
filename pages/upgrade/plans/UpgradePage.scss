@@ -1,10 +1,10 @@
-.pricing {
+.upgrade {
   max-width: 1010px;
   margin: 0px auto;
   font-size: 1.55rem;
 
-  .pricing-container {
-    .pricing-header {
+  .upgrade-container {
+    .upgrade-header {
       margin-bottom: 20px;
 
       ul {
@@ -41,7 +41,7 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .pricing {
+  .upgrade {
     font-size: 1.5rem;
   }
 }
