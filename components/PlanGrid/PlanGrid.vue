@@ -164,9 +164,9 @@ onBeforeMount(async () => {
 
       emits(
         'onSelectPlan',
-        (selected.value = response.data.value?.results.find(
+        response.data.value?.results.find(
           (item: plan) => item.name == 'Cao cấp'
-        ))
+        )
       );
     })
     .catch((e) => {
