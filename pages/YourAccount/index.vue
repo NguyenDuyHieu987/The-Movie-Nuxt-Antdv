@@ -1,5 +1,5 @@
 <template>
-  <div class="profile padding-content">
+  <div class="your-account padding-content">
     <h2>Username: {{ store.$state.userAccount?.username }}</h2>
     <h3>Email: {{ store.$state.userAccount?.email }}</h3>
     <h3>Fullname: {{ store.$state.userAccount?.full_name }}</h3>
@@ -25,4 +25,4 @@ useServerSeoMeta({
 });
 </script>
 
-<style lang="scss" src="./ProfilePage.scss"></style>
+<style lang="scss" src="./AccountPage.scss"></style>

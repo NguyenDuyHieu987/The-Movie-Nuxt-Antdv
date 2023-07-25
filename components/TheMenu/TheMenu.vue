@@ -357,11 +357,13 @@
       </div>
     </a-menu-item>
 
-    <a-menu-item key="pricing">
+    <div class="separate"></div>
+
+    <a-menu-item class="upgrade-account" key="upgrade">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-money-check-dollar" /> -->
         <!-- <Icon name="material-symbols:price-change-outline" /> -->
-        <svg
+        <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1.5rem"
           height="1.5rem"
@@ -370,16 +372,19 @@
           <path
             d="M2 20V4h20v16H2Zm2-2h16V6H4v12Zm0 0V6v12Zm4-1h2v-1h1q.425 0 .713-.288T12 15v-3q0-.425-.288-.713T11 11H8v-1h4V8h-2V7H8v1H7q-.425 0-.713.288T6 9v3q0 .425.288.713T7 13h3v1H6v2h2v1Zm8-.75l2-2h-4l2 2ZM14 10h4l-2-2l-2 2Z"
           />
-        </svg>
+        </svg> -->
+
+        <nuxt-img :src="getImage('king.png', 'misc', 'h-16')" />
       </template>
       <div>
-        <NuxtLink to="/upgrade/plans"> Pricing</NuxtLink>
+        <NuxtLink to="/upgrade/plans"> Nâng cấp tài khoản</NuxtLink>
       </div>
     </a-menu-item>
   </a-menu>
 </template>
 
 <script setup lang="ts">
+import { getImage } from '~/services/image';
 import axios from 'axios';
 import { HomeOutlined } from '@ant-design/icons-vue';
 import { getAllGenre } from '~/services/genres';

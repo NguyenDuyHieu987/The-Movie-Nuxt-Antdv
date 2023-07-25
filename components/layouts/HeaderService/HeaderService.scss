@@ -1,4 +1,4 @@
-header.header-bar {
+header.header-bar-service {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,10 +11,10 @@ header.header-bar {
   top: 0;
   width: 100%;
   z-index: 100;
-  // background-color: transparent;
-  background: linear-gradient(to bottom, #101010 0, #10101000 100%);
-  transition: background-color 0.25s;
-  transition-delay: 0.3s;
+  // background: linear-gradient(to bottom, #101010 0, #10101000 100%);
+  background: #101010;
+  // transition: background-color 0.25s;
+  // transition-delay: 0.3s;
 
   &:has(.menu-btn.desktop) {
     padding-left: var(--padding-home);
@@ -29,6 +29,7 @@ header.header-bar {
     .menu-btn {
       // padding: 16px 20px;
       // padding-left: var(--padding-home);
+      display: flex;
       height: auto;
       background: transparent;
       border: none;
@@ -36,28 +37,18 @@ header.header-bar {
       color: #fff;
       transition: opacity 0.25s;
 
-      &.desktop {
-        svg {
-          font-size: 2rem;
-        }
+      .anticon-menu {
+        font-size: 2rem;
       }
 
-      &.mobile {
-        display: none;
+      svg.menu {
+        font-size: 2.4rem;
+      }
 
-        .anticon-menu {
-          font-size: 2rem;
-        }
-
-        svg.menu {
-          font-size: 2.4rem;
-        }
-
-        svg.close {
-          margin-left: -2px;
-          margin-right: -2.5px;
-          font-size: 3rem;
-        }
+      svg.close {
+        margin-left: -2px;
+        margin-right: -2.5px;
+        font-size: 3rem;
       }
 
       &:active {
@@ -73,97 +64,6 @@ header.header-bar {
         align-items: center;
         gap: 7px;
         font-size: 2.25rem;
-      }
-    }
-  }
-
-  .ant-select-show-search.search-header {
-    width: 40%;
-    min-width: 400px;
-    max-width: 500px;
-
-    .ant-select-selector {
-      background-color: transparent !important;
-
-      .ant-input-group {
-      }
-
-      .ant-input-wrapper {
-        transition: all 0.15s;
-        border-radius: 20px;
-        background: var(--search-background);
-      }
-
-      .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
-        background: var(--search-focus-background);
-
-        .ant-input-affix-wrapper {
-          border-color: #fff;
-        }
-
-        .ant-input-group-addon {
-          .ant-input-search-button {
-            border-color: #fff;
-          }
-        }
-      }
-
-      .ant-input-affix-wrapper {
-        border: 1px solid var(--border-regular-light);
-        height: 40px;
-        padding-left: 16px;
-        // border-right: none;
-        transition: all 0s;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
-        background: transparent;
-        cursor: auto;
-
-        // &:hover {
-        //   border-color: var(--border-regular-light);
-        // }
-
-        &.ant-input-affix-wrapper-focused {
-          // border-color: #00dac8;
-
-          // &:hover {
-          //   border-color: #00dac8;
-          // }
-        }
-
-        .ant-input {
-          color: var(--text-color);
-          background: transparent;
-          font-size: 1.5rem;
-        }
-      }
-
-      .ant-input-group-addon {
-        background: none;
-
-        .ant-input-search-button {
-          display: flex;
-          align-items: center;
-          background: transparent;
-          border: 1px solid var(--border-regular-light);
-          transition: color 0.15s;
-          border-radius: 0 20px 20px 0;
-          border-left: none;
-          padding: 0px 18px;
-
-          svg {
-            color: var(--text-color);
-            font-size: 1.8rem;
-            width: 1.8rem;
-            height: 1.8rem;
-          }
-
-          &:active {
-            svg {
-              opacity: 0.8;
-            }
-          }
-        }
       }
     }
   }

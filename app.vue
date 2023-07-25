@@ -17,6 +17,8 @@
       <NuxtLayout>
         <NuxtPage />
 
+        <RequireAuthDialog />
+
         <el-backtop
           class="app-back-top"
           :visibilityHeight="600"
@@ -43,6 +45,7 @@ import axios from 'axios';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
 import { getUserToken } from '~/services/authentication';
 import LoadingApp from '@/components/LoadingApp/LoadingApp.vue';
+import RequireAuthDialog from '@/components/RequireAuthDialog/RequireAuthDialog.vue';
 import { ElNotification, ElBacktop } from 'element-plus';
 
 const store = useStore();

@@ -1,33 +1,28 @@
 <template>
-  <div>
-    <RequireAuthDialog />
+  <div :class="[collapsed ? 'expand' : '', 'body-content']">
+    <Header />
 
-    <div>
-      <Header />
-      <div :class="[collapsed ? 'expand' : '', 'body-content']">
-        <div class="body-wrapper" id="body-wrapper">
-          <Sider />
-          <Drawer />
+    <div class="body-wrapper" id="body-wrapper">
+      <Sider />
+      <Drawer />
 
-          <section
-            v-show="isLogin && $route.path == '/follow'"
-            id="topic-follow-column-teleport"
-          ></section>
+      <section
+        v-show="isLogin && $route.path == '/follow'"
+        id="topic-follow-column-teleport"
+      ></section>
 
-          <main class="main-content">
-            <!-- <BreadCrumb /> -->
-            <div class="container">
-              <slot />
-            </div>
-            <Footer />
-          </main>
-
-          <section
-            v-show="isLogin && $route.path == '/history'"
-            id="topic-history-column-teleport"
-          ></section>
+      <main class="main-content">
+        <!-- <BreadCrumb /> -->
+        <div class="container">
+          <slot />
         </div>
-      </div>
+        <Footer />
+      </main>
+
+      <section
+        v-show="isLogin && $route.path == '/history'"
+        id="topic-history-column-teleport"
+      ></section>
     </div>
   </div>
 </template>
@@ -39,7 +34,6 @@ import Sider from '@/components/layouts/Sider/Sider.vue';
 import Footer from '@/components/layouts/Footer/Footer.vue';
 // import BreadCrumb from '@/components/layouts/BreadCrumb/BreadCrumb.vue';
 import { storeToRefs } from 'pinia';
-import RequireAuthDialog from '@/components/RequireAuthDialog/RequireAuthDialog.vue';
 
 const store = useStore();
 const { collapsed, isLogin } = storeToRefs(store);

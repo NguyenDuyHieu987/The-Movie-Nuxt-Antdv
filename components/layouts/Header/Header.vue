@@ -17,7 +17,6 @@
         <NuxtLink :to="{ path: '/' }">
           <nuxt-img
             :src="getImage('logo.png', 'logo')"
-            loading="lazy"
             alt=""
             :height="30"
             :width="30"
@@ -287,16 +286,17 @@
                   v-if="isLogin"
                   v-once
                   :class="{ active: isLogin }"
-                  key="my-profile"
+                  key="your-account"
                 >
-                  <NuxtLink to="/profile">
-                    <span>My Profile</span>
+                  <NuxtLink to="/YourAccount">
+                    <span>Tài khoản</span>
                     <br />
                     <span style="font-size: 1.2rem">
                       {{ userAccount?.email }}
                     </span>
                   </NuxtLink>
                 </a-menu-item>
+
                 <a-menu-item
                   v-if="isLogin && role == 'admin'"
                   v-once
@@ -306,9 +306,7 @@
                     Bảng điều khiển
                   </NuxtLink>
                 </a-menu-item>
-                <a-menu-item v-if="isLogin" v-once key="pricing">
-                  <NuxtLink to="/billing">Billing</NuxtLink>
-                </a-menu-item>
+
                 <a-menu-item key="logout">
                   <NuxtLink to="/login" @click="handleLogout">
                     <span v-if="isLogin"> Đăng xuất</span>

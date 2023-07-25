@@ -15,7 +15,7 @@
       </div>
 
       <section class="payment-methods">
-        <div class="payment-method momo">
+        <div class="payment-method momo" @click="handleClickMoMoPayment">
           <div class="left">
             <nuxt-img
               :src="getImage('momo.jpg', 'payment', 'w-40')"
@@ -64,7 +64,7 @@
               :src="getImage('vnpay.png', 'payment', 'w-40')"
               loading="lazy"
             />
-            <span>Thẻ ATM</span>
+            <span>ATM - Ngân hàng nội địa</span>
           </div>
 
           <div class="right">
@@ -89,6 +89,7 @@
               :src="getImage('visa.png', 'payment', 'w-40')"
               loading="lazy"
             />
+
             <span>Thẻ ghi nợ - Thẻ tín dụng</span>
           </div>
 
@@ -105,15 +106,45 @@
         </div>
       </section>
     </div>
+
     <RequireAuth v-if="!store.isLogin" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { getImage } from '~/services/image';
+import { getAllPlan } from '~/services/plans';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
+import axios from 'axios';
+import type { plan } from '@/types';
+
+definePageMeta({
+  middleware: [
+    (to, from) => {
+      if (!to.query.planorder) return navigateTo('/upgrade/plans');
+
+      getAllPlan()
+        .then((response: any) => {
+          if (
+            !response.results?.some(
+              (item: plan) => item.order == Number(to.query.planorder)
+            )
+          )
+            navigateTo('/upgrade/plans');
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        });
+    },
+  ],
+});
 
 const store = useStore();
+const route = useRoute();
+
+onBeforeMount(() => {});
+
+const handleClickMoMoPayment = () => {};
 </script>
 
-<style scoped lang="scss" src="./PaymentPage.scss"></style>
+<style lang="scss" src="./PaymentPage.scss"></style>

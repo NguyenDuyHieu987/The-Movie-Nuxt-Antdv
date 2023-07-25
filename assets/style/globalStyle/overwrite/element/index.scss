@@ -64,10 +64,6 @@
   font-weight: unset;
 }
 
-.el-overlay:has(.el-drawer) {
-  margin-top: var(--header-height);
-}
-
 .el-popup-parent--hidden {
   width: 100% !important;
   // overflow: visible !important;

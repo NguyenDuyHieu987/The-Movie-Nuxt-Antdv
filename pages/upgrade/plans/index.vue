@@ -37,6 +37,10 @@
 import PlanGrid from '~/components/PlanGrid/PlanGrid.vue';
 import type { plan } from '@/types';
 
+definePageMeta({
+  layout: 'service',
+});
+
 useHead({
   title: 'Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
   htmlAttrs: { lang: 'vi' },
@@ -71,8 +75,8 @@ const onRouteToPaymentPage = () => {
     return;
   }
 
-  navigateTo(`/upgrade/payment?plan-order=${selectedPlan.value!.order}`);
+  navigateTo(`/upgrade/payment?planorder=${selectedPlan.value!.order}`);
 };
 </script>
 
-<style scoped lang="scss" src="./UpgradePage.scss"></style>
+<style lang="scss" src="./UpgradePage.scss"></style>

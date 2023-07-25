@@ -1,8 +1,7 @@
-.body-content {
+.body-content-service {
   display: flex;
   position: relative;
   min-height: calc(100vh - var(--header-height));
-  margin-left: var(--sider-width);
   margin-top: var(--header-height);
   // transition: all 0.2s;
   // overflow: hidden;
@@ -13,10 +12,6 @@
     display: flex;
     max-width: var(--max-width-app);
     margin: 0px auto;
-  }
-
-  &.expand {
-    margin-left: var(--sider-collapsed-width);
   }
 
   main.main-content {
@@ -34,24 +29,6 @@
   }
 }
 
-.body-content:has(.upgrade, .payment) {
-  --sider-width: 0px;
-  --sider-collapsed-width: 0px;
-  margin-left: 0px;
-
-  .ant-layout-sider.sider-bar {
-    border: none;
-  }
-
-  header.header-bar {
-    .left-header {
-      .menu-btn.mobile {
-        display: flex;
-      }
-    }
-  }
-}
-
 @media (prefers-color-scheme: dark) {
   .ant-layout-content.container {
     // background-color: var(--background-content-color);
@@ -59,11 +36,7 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .body-content {
-    --sider-width: 0px;
-    --sider-collapsed-width: 0px;
-    margin-left: 0px;
-
+  .body-content-service {
     main.main-content {
       & + .container {
         // padding: 15px 15px;
