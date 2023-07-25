@@ -1,7 +1,14 @@
 .pricing {
-  max-width: 1000px;
+  max-width: 1010px;
   margin: 0px auto;
+  font-size: 1.55rem;
 
   .pricing-container {
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .pricing {
+    font-size: 1.5rem;
   }
 }

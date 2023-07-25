@@ -1,6 +1,12 @@
 <template>
   <div class="pricing padding-content">
     <div class="pricing-container">
+      <div>
+        <p>Chọn gói dịch vụ phù hợp với bạn</p>
+        <p>Truy cập thêm nhiều chương trình truyền hình và phim.</p>
+        <p>Lựa chọn xem trên nhiều thiết bị hơn.</p>
+        <p>Thay đổi hoặc hủy gói dịch vụ của bạn bất cứ khi nào.</p>
+      </div>
       <PlanGrid />
     </div>
   </div>
