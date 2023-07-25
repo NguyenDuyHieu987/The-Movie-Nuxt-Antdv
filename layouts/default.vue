@@ -39,4 +39,4 @@ const store = useStore();
 const { collapsed, isLogin } = storeToRefs(store);
 </script>
 
-<style lang="scss" scoped src="../assets/style/defaultLayout.scss"></style>
+<style lang="scss" src="../assets/style/defaultLayout.scss"></style>

@@ -38,7 +38,7 @@ import PlanGrid from '~/components/PlanGrid/PlanGrid.vue';
 import type { plan } from '@/types';
 
 definePageMeta({
-  layout: 'service',
+  // layout: 'service',
 });
 
 useHead({

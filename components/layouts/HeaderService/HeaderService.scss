@@ -34,7 +34,7 @@ header.header-bar-service {
       background: transparent;
       border: none;
       cursor: pointer;
-      color: #fff;
+      color: var(--text-color);
       transition: opacity 0.25s;
 
       .anticon-menu {

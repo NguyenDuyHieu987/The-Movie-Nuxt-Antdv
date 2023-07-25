@@ -1,5 +1,5 @@
 <template>
-  <!-- <a-drawer
+  <a-drawer
     class="menu-drawer"
     v-model:visible="openDrawer"
     placement="left"
@@ -45,9 +45,9 @@
     </header>
 
     <TheMenu />
-  </a-drawer> -->
+  </a-drawer>
 
-  <ClientOnly>
+  <!-- <ClientOnly>
     <el-drawer
       class="menu-drawer"
       v-model="openDrawer"
@@ -98,7 +98,7 @@
 
       <TheMenu />
     </el-drawer>
-  </ClientOnly>
+  </ClientOnly> -->
 </template>
 
 <script setup lang="ts">

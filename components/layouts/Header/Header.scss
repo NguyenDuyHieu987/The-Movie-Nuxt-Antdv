@@ -33,7 +33,7 @@ header.header-bar {
       background: transparent;
       border: none;
       cursor: pointer;
-      color: #fff;
+      color: var(--text-color);
       transition: opacity 0.25s;
 
       &.desktop {
