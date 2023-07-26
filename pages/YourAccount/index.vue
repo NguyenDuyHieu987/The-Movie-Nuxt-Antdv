@@ -135,7 +135,8 @@ onBeforeMount(() => {});
 const deleteAccount = () => {
   utils.conrfirmMessageModal({
     title: 'Thông Báo',
-    message: 'Bạn có muốn chắc muốn xóa tài khoản này không?',
+    message: 'Bạn có muốn chắc muốn xóa tài khoản này?',
+    okText: 'Có, Tôi chắc',
     onOk: async function () {
       // if (await ) {
       // }

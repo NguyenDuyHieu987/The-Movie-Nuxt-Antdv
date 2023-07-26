@@ -292,8 +292,8 @@
           class="material-icons-outlined playlist"
           xmlns="http://www.w3.org/2000/svg"
           enable-background="new 0 0 24 24"
-          height="2.4rem"
-          width="2.4rem"
+          height="2.6rem"
+          width="2.6rem"
           viewBox="0 0 24 24"
         >
           <g><rect fill="none" height="24" width="24" /></g>

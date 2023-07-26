@@ -8,6 +8,8 @@ import {
 interface optionsConfirm {
   title: string;
   message: string;
+  okText?: string;
+  cancelText?: string;
   onOk: () => any;
   onCancel: () => any;
 }
@@ -17,14 +19,15 @@ export function conrfirmMessageModal(options: optionsConfirm) {
     title: options.title,
     icon: createVNode(QuestionCircleOutlined),
     content: createVNode('h3', {}, options.message),
-    okText: 'Có',
+    okText: options?.okText || 'Có',
     okButtonProps: {
       type: 'primary',
       danger: true,
     },
     cancelButtonProps: { type: 'default' },
-    cancelText: 'Không',
+    cancelText: options?.cancelText || 'Không',
     centered: true,
+    maskClosable: true,
     onOk() {
       options?.onOk();
     },
