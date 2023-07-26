@@ -12,12 +12,12 @@
     "@nuxtjs/fontaine": "^0.4.0",
     "@types/node": "^18",
     "node-sass": "^9.0.0",
-    "nuxt": "^3.6.2",
+    "nuxt": "^3.6.5",
     "nuxt-gtag": "^0.5.7",
     "nuxt-og-image": "^2.0.9",
     "nuxt-seo-experiments": "^3.0.5",
     "nuxt-simple-sitemap": "^3.0.9",
-    "sass-loader": "^13.3.0"
+    "sass-loader": "^13.3.2"
   },
   "dependencies": {
     "@aacassandra/vue3-progressbar": "^1.0.3",
@@ -42,7 +42,7 @@
     "crypto-js": "^4.1.1",
     "disable-scroll": "^0.6.0",
     "dotenv": "^16.1.3",
-    "element-plus": "^2.3.6",
+    "element-plus": "^2.3.8",
     "lodash": "^4.17.21",
     "material-icons": "^1.13.4",
     "md5": "^2.3.0",
@@ -54,7 +54,7 @@
     "path": "^0.12.7",
     "pbkdf2": "^3.1.2",
     "pinia": "^2.1.4",
-    "sass": "^1.62.1",
+    "sass": "^1.64.1",
     "scroll-bottom": "^0.1.0",
     "vue": "^3.3.4",
     "vue-fontawesome": "^0.0.2",

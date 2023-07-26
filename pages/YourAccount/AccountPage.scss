@@ -5,5 +5,12 @@
 
   .your-account-container {
     padding-top: 20px;
+
+    .your-account-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
   }
 }
