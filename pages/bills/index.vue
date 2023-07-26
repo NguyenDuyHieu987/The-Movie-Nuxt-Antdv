@@ -32,4 +32,4 @@ onBeforeMount(() => {
 });
 </script>
 
-<style scoped lang="scss" src="./BillingPage.scss"></style>
+<style scoped lang="scss" src="./BillsPage.scss"></style>

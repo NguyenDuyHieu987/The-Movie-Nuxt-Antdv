@@ -40,6 +40,7 @@
             </div>
           </div>
         </div>
+
         <div class="account-grid-row">
           <div class="row-label">Thông tin gói dịch vụ</div>
           <div class="row-content">
@@ -54,6 +55,21 @@
                   @click="navigateTo('/upgrade/plans')"
                   >Nâng cấp</a-button
                 >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="account-grid-row">
+          <div class="row-label">Lịch sử giao dịch</div>
+          <div class="row-content">
+            <div class="row-content-item">
+              <div class="left">
+                <span>Miên phí</span>
+              </div>
+
+              <div class="right">
+                <NuxtLink to="/bills"> Xem thêm </NuxtLink>
               </div>
             </div>
           </div>
