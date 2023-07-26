@@ -71,6 +71,7 @@
     &.upgrade-account {
       border-radius: 0px;
       background-color: transparent !important;
+      cursor: default;
 
       .ant-menu-title-content {
         & > div {
@@ -87,6 +88,7 @@
           width: auto;
           border-radius: 2px;
           transition: all 0.15s;
+          cursor: pointer;
 
           a {
             color: var(--text-color) !important;
