@@ -95,6 +95,7 @@
 .el-drawer.menu-drawer {
   width: var(--drawer-width);
   background-color: var(--background-content-color);
+  transition: all 0.15s ease;
 
   .el-drawer__header {
     background-color: transparent;
