@@ -2,6 +2,8 @@
   // margin-top: var(--header-height);
 
   .ant-drawer-content-wrapper {
+    transition: all 0.15s ease;
+
     .ant-drawer-content {
       background-color: var(--background-content-color);
 
