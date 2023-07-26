@@ -27,11 +27,13 @@
           <div class="right">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="3.5rem"
-              height="3.5rem"
+              width="2.4rem"
+              height="2.4rem"
               viewBox="0 0 24 24"
             >
-              <path d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z" />
+              <path
+                d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
+              />
             </svg>
           </div>
         </div>
@@ -49,11 +51,13 @@
           <div class="right">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="3.5rem"
-              height="3.5rem"
+              width="2.4rem"
+              height="2.4rem"
               viewBox="0 0 24 24"
             >
-              <path d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z" />
+              <path
+                d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
+              />
             </svg>
           </div>
         </div>
@@ -70,11 +74,13 @@
           <div class="right">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="3.5rem"
-              height="3.5rem"
+              width="2.4rem"
+              height="2.4rem"
               viewBox="0 0 24 24"
             >
-              <path d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z" />
+              <path
+                d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
+              />
             </svg>
           </div>
         </div>
@@ -96,11 +102,13 @@
           <div class="right">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="3.5rem"
-              height="3.5rem"
+              width="2.4rem"
+              height="2.4rem"
               viewBox="0 0 24 24"
             >
-              <path d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z" />
+              <path
+                d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
+              />
             </svg>
           </div>
         </div>

@@ -48,7 +48,10 @@
                 <span>Miên phí</span>
               </div>
               <div class="right">
-                <a-button class="upgrade-btn click-active" type="text"
+                <a-button
+                  class="upgrade-btn click-active"
+                  type="text"
+                  @click="navigateTo('/upgrade/plans')"
                   >Nâng cấp</a-button
                 >
               </div>
