@@ -209,7 +209,7 @@ button,
 }
 
 svg {
-  fill: var(--text-color);
+  // fill: var(--text-color);
   user-select: none;
 }
 
@@ -455,6 +455,10 @@ svg {
     }
   }
 
+  svg {
+    fill: var(--text-color);
+  }
+
   &.default {
     display: flex;
     align-items: center;
@@ -619,4 +623,9 @@ svg {
       color: var(--text-color);
     }
   }
+}
+
+.change-page {
+  max-width: 700px;
+  margin: 0px auto;
 }

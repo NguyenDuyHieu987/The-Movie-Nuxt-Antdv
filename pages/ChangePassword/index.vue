@@ -1,6 +1,8 @@
 <template>
-  <div v-if="isLogin" class="bills padding-content">This is Bills page</div>
-  <RequireAuth v-else />
+  <div class="change-page password padding-content">
+    <div v-show="isLogin" class="password-container">This is Bills page</div>
+    <RequireAuth v-if="!isLogin" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -32,4 +34,4 @@ onBeforeMount(() => {
 });
 </script>
 
-<style scoped lang="scss" src="./BillsPage.scss"></style>
+<style scoped lang="scss" src="./ChangePasswordPage.scss"></style>

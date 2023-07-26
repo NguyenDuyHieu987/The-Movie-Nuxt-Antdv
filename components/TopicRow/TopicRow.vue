@@ -168,7 +168,7 @@
             type="primary"
             shape="round"
             class="remove-all-btn"
-            @click="removeAll"
+            @click="deleteAll"
           >
             <template #icon>
               <!-- <span class="material-icons-outlined"> delete_sweep </span> -->
@@ -232,7 +232,7 @@ const props = defineProps<{
   // valueInput: string;
   loadingSearch?: boolean;
   searchRow: (e: any) => void;
-  removeAll: () => void;
+  deleteAll: () => void;
 }>();
 
 const store = useStore();

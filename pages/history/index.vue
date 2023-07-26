@@ -11,7 +11,7 @@
           v-model:valueInput="valueInput"
           :loadingSearch="loadingSearch"
           :searchRow="searchHistoryT"
-          :removeAll="removeAllHistoryList"
+          :deleteAll="removeAllHistoryList"
         />
 
         <Teleport :disabled="!loading" to="#topic-history-column-teleport">
@@ -23,7 +23,7 @@
             v-model:valueInput="valueInput"
             :loadingSearch="loadingSearch"
             :searchRow="searchHistoryT"
-            :removeAll="removeAllHistoryList"
+            :deleteAll="removeAllHistoryList"
           />
         </Teleport>
 

@@ -21,6 +21,7 @@
       .ant-rate-star {
         & > div,
         svg {
+          fill: var(--text-color);
           transition: all 0s !important;
         }
 

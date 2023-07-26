@@ -11,7 +11,7 @@
           v-model:valueInput="valueInput"
           :loadingSearch="loadingSearch"
           :searchRow="searchFollow"
-          :removeAll="removeAllFollowList"
+          :deleteAll="removeAllFollowList"
         />
 
         <Teleport to="#topic-follow-column-teleport">
@@ -23,7 +23,7 @@
             v-model:valueInput="valueInput"
             :loadingSearch="loadingSearch"
             :searchRow="searchFollow"
-            :removeAll="removeAllFollowList"
+            :deleteAll="removeAllFollowList"
           />
         </Teleport>
 
