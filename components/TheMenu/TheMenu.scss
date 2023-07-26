@@ -90,6 +90,10 @@
 
           a {
             color: var(--text-color) !important;
+
+            &::before {
+              display: none;
+            }
           }
 
           &:active {

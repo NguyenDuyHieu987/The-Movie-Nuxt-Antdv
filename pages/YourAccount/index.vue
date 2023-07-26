@@ -23,7 +23,7 @@ const store = useStore();
 const { userAccount } = storeToRefs<any>(store);
 
 const joinSince = computed<string>(() =>
-  moment(store.userAccount?.created_at).format('MMMM Do YYYY, h:mm:ss a')
+  moment(store.userAccount?.created_at).format('MMMM Do YYYY, h:mm a')
 );
 
 useHead({
