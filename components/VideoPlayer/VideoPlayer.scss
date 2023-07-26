@@ -46,6 +46,10 @@ video::-webkit-media-controls {
     // background-color: var(--background-content-color);
   }
 
+  svg {
+    fill: var(--text-color);
+  }
+
   .float-center {
     display: block !important;
     position: absolute;
