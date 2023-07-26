@@ -100,7 +100,7 @@
             </div>
             <div class="right">
               <a-button
-                class="add"
+                class="add click-active"
                 shape="circle"
                 size="large"
                 type="text"

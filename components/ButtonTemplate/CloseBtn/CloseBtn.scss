@@ -12,10 +12,6 @@ svg.close {
   border-radius: 50%;
   filter: drop-shadow(2px 2px 2px #000);
 
-  &:active {
-    opacity: 0.8;
-  }
-
   &.transparent {
     background-color: transparent;
   }

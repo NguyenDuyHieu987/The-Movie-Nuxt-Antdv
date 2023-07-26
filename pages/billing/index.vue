@@ -11,17 +11,17 @@ const store: any = useStore();
 const { isLogin } = storeToRefs<any>(store);
 
 useHead({
-  title: 'Billing - Hóa đơn - Thanh toán | Phimhay247',
+  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Billing - Hóa đơn - Thanh toán | Phimhay247',
-  description: 'Hóa đơn của bạn. Thanh toán gói cước',
-  ogTitle: 'Billing - Hóa đơn - Thanh toán | Phimhay247',
+  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
+  description: 'Hóa đơn của bạn. Lịch sử giao dịch',
+  ogTitle: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Hóa đơn của bạn. Thanh toán gói cước',
+  ogDescription: 'Hóa đơn của bạn. Lịch sử giao dịch',
   ogLocale: 'vi',
 });
 

@@ -2,14 +2,60 @@
   <div class="your-account padding-content">
     <div class="your-account-container">
       <div class="your-account-header">
-        <h1>Tài khoản</h1>
+        <h1>Tài khoản của bạn</h1>
         <div class="join-since">
           <span>{{ 'Tham gia từ ' + joinSince }} </span>
         </div>
       </div>
-      <h2>Username: {{ userAccount?.username }}</h2>
-      <h3>Email: {{ userAccount?.email }}</h3>
-      <h3>Fullname: {{ userAccount?.full_name }}</h3>
+      <section class="account-grid">
+        <div class="account-grid-row">
+          <div class="row-label">Thông tin tài khoản</div>
+          <div class="row-content">
+            <div class="row-content-item">
+              <div class="left">
+                <span class="label">Email: </span>
+                <span>{{ userAccount?.email }}</span>
+              </div>
+            </div>
+
+            <div class="row-content-item">
+              <div class="left">
+                <span class="label">Họ và tên: </span>
+                <span> {{ userAccount?.full_name }}</span>
+              </div>
+            </div>
+
+            <div class="row-content-item">
+              <div class="left">
+                <span class="label">Username: </span>
+                <span> {{ userAccount?.username }}</span>
+              </div>
+            </div>
+
+            <div class="row-content-item password">
+              <div class="left">
+                <span class="label">Mật khẩu: </span>
+                <span>**********</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="account-grid-row">
+          <div class="row-label">Thông tin gói dịch vụ</div>
+          <div class="row-content">
+            <div class="row-content-item">
+              <div class="left">
+                <span>Miên phí</span>
+              </div>
+              <div class="right">
+                <a-button class="upgrade-btn click-active" type="text"
+                  >Nâng cấp</a-button
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -23,7 +69,9 @@ const store = useStore();
 const { userAccount } = storeToRefs<any>(store);
 
 const joinSince = computed<string>(() =>
-  moment(store.userAccount?.created_at).format('MMMM Do YYYY, h:mm a')
+  moment(store.userAccount?.created_at)
+    .locale('vi')
+    .format('MMMM Do YYYY, h:mm a')
 );
 
 useHead({
@@ -41,11 +89,7 @@ useServerSeoMeta({
   ogLocale: 'vi',
 });
 
-onBeforeMount(() => {
-  moment.locale('vi');
-
-  console.log(moment.locale());
-});
+onBeforeMount(() => {});
 </script>
 
 <style lang="scss" src="./AccountPage.scss"></style>

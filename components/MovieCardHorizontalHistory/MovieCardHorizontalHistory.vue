@@ -118,11 +118,10 @@
                 :mouseLeaveDelay="0"
               >
                 <el-button
+                  class="remove-btn click-active"
                   circle
-                  shape="circle"
                   size="large"
                   text
-                  class="remove-btn"
                   @click.prevent="handleRemoveFromHistory"
                 >
                   <template #icon>
@@ -151,10 +150,9 @@
                 destroyPopupOnHide
               >
                 <el-button
+                  class="viewmore-btn click-active"
                   circle
-                  shape="circle"
                   size="large"
-                  class="viewmore-btn"
                   text
                 >
                   <template #icon>

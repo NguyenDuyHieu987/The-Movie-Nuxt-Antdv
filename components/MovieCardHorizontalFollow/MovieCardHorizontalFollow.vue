@@ -115,11 +115,10 @@
                 destroyPopupOnHide
               >
                 <el-button
+                  class="viewmore-btn click-active"
                   circle
-                  shape="circle"
                   size="large"
                   text
-                  class="viewmore-btn"
                 >
                   <template #icon>
                     <!-- <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" /> -->

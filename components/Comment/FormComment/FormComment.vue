@@ -92,11 +92,15 @@
             />
           </div>
           <div class="right">
-            <a-button class="cancel" type="text" @click="handleClickCanel">
+            <a-button
+              class="cancel click-active"
+              type="text"
+              @click="handleClickCanel"
+            >
               Hủy
             </a-button>
             <a-button
-              class="comment-btn"
+              class="comment-btn click-active"
               type="text"
               html-type="submit"
               :disabled="disabledButton"

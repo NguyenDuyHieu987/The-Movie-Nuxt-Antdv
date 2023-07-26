@@ -34,7 +34,7 @@
           </div>
 
           <a-button
-            class="reply"
+            class="reply click-active"
             type="text"
             @click="isShowFormComment = !isShowFormComment"
           >

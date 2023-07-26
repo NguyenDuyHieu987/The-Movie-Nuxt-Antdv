@@ -37,7 +37,7 @@
                 </div>
 
                 <a-button
-                  class="reply"
+                  class="reply click-active"
                   type="text"
                   @click="
                     commentAction = 'post';
@@ -154,7 +154,7 @@
         <div class="replies">
           <a-button
             v-show="numberReplies > 0"
-            class="reply"
+            class="reply click-active"
             type="text"
             @click="onClickShowReplies"
           >
@@ -198,7 +198,7 @@
             >
               <a-button
                 v-show="numberReplies > 0"
-                class="reply"
+                class="reply click-active"
                 type="text"
                 @click="onLoadMoreReplies"
               >

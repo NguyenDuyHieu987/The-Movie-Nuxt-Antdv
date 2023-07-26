@@ -2,7 +2,7 @@
   <!-- <Icon name="ic:twotone-close" class="close" :class="class" /> -->
 
   <svg
-    class="close"
+    class="close click-active"
     :class="class"
     xmlns="http://www.w3.org/2000/svg"
     width="32"

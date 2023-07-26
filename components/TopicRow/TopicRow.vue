@@ -107,10 +107,9 @@
               destroyPopupOnHide
             >
               <el-button
+                class="viewmore-btn click-active"
                 circle
-                shape="circle"
                 size="large"
-                class="viewmore-btn"
                 @click.prevent=""
               >
                 <template #icon>

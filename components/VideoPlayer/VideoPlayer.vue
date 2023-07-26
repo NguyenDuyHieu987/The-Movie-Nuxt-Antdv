@@ -113,11 +113,12 @@
         </div>
 
         <div class="notify-footer">
-          <a-button type="text" @click="onClickPlayAgain">
+          <a-button class="click-active" type="text" @click="onClickPlayAgain">
             Xem lại từ đầu
           </a-button>
           <a-button
             v-show="video?.duration - dataMovie?.history_progress?.seconds > 10"
+            class="click-active"
             type="text"
             @click="onClickKeepWatching"
           >

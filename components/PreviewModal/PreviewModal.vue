@@ -67,7 +67,12 @@
                       }"
                       class="btn-play-now"
                     >
-                      <a-button shape="circle" size="large" type="text">
+                      <a-button
+                        class="click-active"
+                        shape="circle"
+                        size="large"
+                        type="text"
+                      >
                         <template #icon>
                           <!-- <Icon name="ic:play-arrow" /> -->
 
@@ -91,7 +96,12 @@
                       }"
                       class="btn-play-now"
                     >
-                      <a-button shape="circle" size="large" type="text">
+                      <a-button
+                        class="click-active"
+                        shape="circle"
+                        size="large"
+                        type="text"
+                      >
                         <template #icon>
                           <!-- <Icon name="ci:play-arrow" /> -->
 
@@ -120,6 +130,7 @@
                     :mouseLeaveDelay="0"
                   >
                     <a-button
+                      class="click-active"
                       shape="circle"
                       size="large"
                       type="text"
@@ -170,6 +181,7 @@
                       style="white-space: nowrap; display: block"
                     >
                       <a-button
+                        class="click-active"
                         shape="circle"
                         size="large"
                         type="text"
@@ -214,7 +226,12 @@
                               .toLowerCase()}`,
                       }"
                     >
-                      <a-button shape="circle" size="large" type="text">
+                      <a-button
+                        class="click-active"
+                        shape="circle"
+                        size="large"
+                        type="text"
+                      >
                         <template #icon>
                           <!-- <InfoOutlined /> -->
 

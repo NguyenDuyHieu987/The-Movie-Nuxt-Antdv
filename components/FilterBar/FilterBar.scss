@@ -36,10 +36,6 @@
       margin-left: 10px;
       width: 109px;
 
-      &:active {
-        opacity: 0.8;
-      }
-
       &.filter-btn {
         background-color: var(--link-text-color);
         border: 1px solid var(--border-dropdown);

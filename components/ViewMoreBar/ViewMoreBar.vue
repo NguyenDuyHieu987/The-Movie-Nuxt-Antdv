@@ -1,7 +1,7 @@
 <template>
   <div class="viewmore-bar" :class="{ open: isOpen }">
     <a-button
-      class="viewmore-btn"
+      class="viewmore-btn click-active"
       type="text"
       shape="circle"
       size="large"

@@ -9,7 +9,7 @@
       <div class="filter-body">
         <div class="list-input-filter">
           <a-button
-            class="filter-btn"
+            class="filter-btn click-active"
             :disabled="disableBtnFilter"
             @click="handleFilterMovie"
           >
@@ -196,7 +196,7 @@
           </a-select>
 
           <a-button
-            class="cancel-filter-btn"
+            class="cancel-filter-btn click-active"
             :disabled="disableBtnFilter"
             danger
             @click="handleCancelFilter"

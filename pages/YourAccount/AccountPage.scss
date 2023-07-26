@@ -9,11 +9,116 @@
     .your-account-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      gap: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border-regular);
+
+      h1 {
+        font-weight: normal;
+        white-space: nowrap;
+        cursor: default;
+      }
 
       .join-since {
+        white-space: nowrap;
+        align-self: flex-end;
         font-size: 1.4rem;
+      }
+    }
+
+    .account-grid {
+      .account-grid-row {
+        display: flex;
+        padding: 0 2px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid var(--border-regular);
+
+        .row-label {
+          width: 255px;
+          font-size: 2rem;
+          color: var(--text-color-gray);
+          cursor: default;
+        }
+
+        .row-content {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex-grow: 1;
+
+          .row-content-item + .row-content-item {
+            margin-top: 7px;
+          }
+
+          .row-content-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &.password {
+              cursor: default;
+              color: var(--text-color-gray);
+            }
+
+            .left {
+              span.label {
+                display: inline-block;
+                width: 85px;
+                color: var(--text-color-gray);
+                cursor: default;
+              }
+            }
+
+            .right {
+              .upgrade-btn {
+                background-image: linear-gradient(
+                  45deg,
+                  var(--app-background-color),
+                  #0988c8,
+                  #04d6f2
+                );
+                box-shadow: 0 2px 3px #000;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .your-account {
+    font-size: 1.5rem;
+
+    .your-account-container {
+      .your-account-header {
+        gap: 15px;
+
+        h1 {
+          font-size: 2.7rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .your-account {
+    .your-account-container {
+      .your-account-header {
+        gap: 10px;
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .join-since {
+          margin-left: auto;
+        }
       }
     }
   }

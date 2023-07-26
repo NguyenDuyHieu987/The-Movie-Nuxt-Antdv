@@ -19,7 +19,7 @@
       :quote="'Xem phim thỏa thích cùng Phimhay247'"
       hashtags="phimhay247.site"
     >
-      <a-button class="modern" type="text" size="large">
+      <a-button class="modern click-active" type="text" size="large">
         <template #icon>
           <!-- <Icon name="ph:share-fat" class="share" /> -->
           <svg

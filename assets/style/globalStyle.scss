@@ -266,6 +266,12 @@ svg {
   }
 }
 
+.click-active {
+  &:active {
+    opacity: 0.8;
+  }
+}
+
 .gradient-title-default {
   margin-top: 25px;
   margin-bottom: 15px;
