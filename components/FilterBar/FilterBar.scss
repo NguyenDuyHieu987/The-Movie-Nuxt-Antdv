@@ -1,6 +1,10 @@
 .filter-bar {
-  .ant-collapse-item-active {
-    box-shadow: var(--box-shadow-medium1);
+  .ant-collapse-item {
+    fill: var(--text-color);
+
+    &.ant-collapse-item-active {
+      box-shadow: var(--box-shadow-medium1);
+    }
   }
 
   .filter-body {

@@ -189,6 +189,10 @@ header.header-bar {
           display: none;
         }
 
+        svg {
+          fill: var(--text-color);
+        }
+
         .ant-badge {
           display: flex;
           align-items: center;
