@@ -294,8 +294,8 @@ export default defineNuxtConfig({
     '/play-tv/**': { ssr: false, swr: true, prerender: true, static: true },
     '/login': { swr: true, prerender: true },
     '/signup': { swr: true, prerender: true },
+    '/upgrade/**': { swr: true, prerender: true, static: true },
     '/youraccount': { ssr: false, swr: true, prerender: true },
     '/billing': { ssr: false, swr: true, prerender: true },
-    '/upgrade/**': { swr: true, prerender: true, static: true },
   },
 });
