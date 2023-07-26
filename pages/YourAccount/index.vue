@@ -29,7 +29,7 @@
                 <span>{{ userAccount?.email }}</span>
               </div>
               <div v-show="userAccount?.auth_type == 'email'" class="right">
-                <NuxtLink class="click-active" to="/ChangeEmail">
+                <NuxtLink class="click-active" to="/YourAccount/ChangeEmail">
                   Thay đổi email
                 </NuxtLink>
               </div>
@@ -41,7 +41,7 @@
                 <span> {{ userAccount?.full_name }}</span>
               </div>
               <div class="right">
-                <NuxtLink class="click-active" to="/ChangeFullname">
+                <NuxtLink class="click-active" to="/YourAccount/ChangeFullname">
                   Đổi tên mới
                 </NuxtLink>
               </div>
@@ -53,7 +53,7 @@
                 <span>**********</span>
               </div>
               <div class="right">
-                <NuxtLink class="click-active" to="/ChangePassword">
+                <NuxtLink class="click-active" to="/YourAccount/ChangePassword">
                   Thay đổi mật khẩu
                 </NuxtLink>
               </div>

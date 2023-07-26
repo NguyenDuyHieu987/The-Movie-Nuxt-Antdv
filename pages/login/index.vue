@@ -152,7 +152,7 @@ import {
 } from '@ant-design/icons-vue';
 import axios from 'axios';
 import { getImage } from '~/services/image';
-import { signIn, loginFacebook, loginGoogle } from '~/services/authentication';
+import { logIn, loginFacebook, loginGoogle } from '~/services/authentication';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';
 
@@ -218,7 +218,7 @@ const disabled = computed<boolean>((): boolean => {
 const handleSubmit = () => {
   loadingLogin.value = true;
 
-  signIn({
+  logIn({
     email: formState.username,
     password: utils.encryptPassword(formState.password),
     // password: md5(formState.password),

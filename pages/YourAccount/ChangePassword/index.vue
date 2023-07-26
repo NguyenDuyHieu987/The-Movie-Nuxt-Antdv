@@ -1,6 +1,14 @@
 <template>
   <div class="change-page password padding-content">
-    <div v-show="isLogin" class="password-container">This is Bills page</div>
+    <div v-show="isLogin" class="password-container">
+      <form class="form-change-password">
+        <h1>Đổi mật khẩu của bạn</h1>
+        <p>
+          Để bảo vệ tài khoản bạn nên đặt một mật khẩu duy nhất dài ít nhất 6 ký
+          tự.
+        </p>
+      </form>
+    </div>
     <RequireAuth v-if="!isLogin" />
   </div>
 </template>

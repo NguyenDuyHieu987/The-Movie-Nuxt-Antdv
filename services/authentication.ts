@@ -6,7 +6,7 @@ export function emailValidation(email: string) {
   );
 }
 
-export function signIn(params: any) {
+export function logIn(params: any) {
   const bodyFormData = new FormData();
   bodyFormData.append('email', params.email);
   bodyFormData.append('password', params.password);
