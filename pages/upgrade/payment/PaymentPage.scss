@@ -1,12 +1,13 @@
 .payment {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0px auto;
+  font-size: 1.55rem;
 
   .payment-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
 
     .payment-header {
       text-align: center;
@@ -74,5 +75,11 @@
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .payment {
+    font-size: 1.5rem;
   }
 }

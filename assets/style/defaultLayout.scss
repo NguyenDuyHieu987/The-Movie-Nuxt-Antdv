@@ -34,7 +34,7 @@
   }
 }
 
-.body-content:has(.upgrade, .payment) {
+.body-content:has(.upgrade, .payment, .your-account) {
   --sider-width: 0px;
   --sider-collapsed-width: 0px;
   margin-left: 0px;

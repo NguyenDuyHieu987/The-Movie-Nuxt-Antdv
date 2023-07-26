@@ -15,7 +15,7 @@
       </div>
 
       <section class="payment-methods">
-        <div class="payment-method momo" @click="handleClickMoMoPayment">
+        <div class="payment-method momo" @click="handleClickMoMoMethod">
           <div class="left">
             <nuxt-img
               :src="getImage('momo.jpg', 'payment', 'w-40')"
@@ -36,7 +36,7 @@
           </div>
         </div>
 
-        <div class="payment-method zalopay">
+        <div class="payment-method zalopay" @click="handleClickZaloPayMethod">
           <div class="left">
             <nuxt-img
               :src="getImage('zalopay.png', 'payment', 'w-40')"
@@ -144,7 +144,33 @@ const route = useRoute();
 
 onBeforeMount(() => {});
 
-const handleClickMoMoPayment = () => {};
+const handleClickMoMoMethod = () => {};
+
+const handleClickZaloPayMethod = () => {
+  // axios
+  //   .post('https://sb-openapi.zalopay.vn/v2/create', {
+  //     amount: 50000,
+  //     app_id: 2554,
+  //     app_time: Date.now(),
+  //     app_trans_id: 230726_07261000392,
+  //     app_user: 'demo',
+  //     bank_code: '',
+  //     description: 'Thanh toán đơn hàng',
+  //     embed_data: { promotioninfo: '', merchantinfo: 'embeddata123' },
+  //     item: [
+  //       {
+  //         itemid: 'knb',
+  //         itemname: 'kim nguyen bao',
+  //         itemprice: 198400,
+  //         itemquantity: 1,
+  //       },
+  //     ],
+  //     key1: 'sdngKKJmqEMzvh5QQcdD2A9XBSKUNaYn',
+  //   })
+  //   .then((response: any) => {
+  //     console.log(response);
+  //   });
+};
 </script>
 
 <style lang="scss" src="./PaymentPage.scss"></style>
