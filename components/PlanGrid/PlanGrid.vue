@@ -8,6 +8,7 @@
         class="plan-box-selector"
         :class="{ selected: item.id == selected }"
         @click="handleClickPlanOpiton(item)"
+        @dblclick="handleDBClickPlanOpiton(item)"
       >
         <span>{{ item.name }}</span>
       </div>
@@ -33,6 +34,7 @@
             :index="index"
             :class="{ selected: item.id == selected }"
             @click="handleClickPlanOpiton(item)"
+            @dblclick="handleDBClickPlanOpiton(item)"
           >
             <td class="plan-option price">
               {{
@@ -148,6 +150,7 @@ const emits = defineEmits<{
   onSelectPlan: [selected: any];
 }>();
 
+const store = useStore();
 const plans = ref<plan[]>([]);
 const loading = ref<boolean>(false);
 const selected = ref<string>('');
@@ -181,6 +184,15 @@ const handleClickPlanOpiton = (plan: plan) => {
   emits('onSelectPlan', plan);
 
   selected.value = plan.id;
+};
+
+const handleDBClickPlanOpiton = (plan: plan) => {
+  if (!store?.isLogin) {
+    store.openRequireAuthDialog = true;
+    return;
+  }
+
+  navigateTo(`/upgrade/payment?planorder=${plan.order}`);
 };
 </script>
 
