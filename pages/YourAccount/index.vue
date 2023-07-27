@@ -11,15 +11,14 @@
         <div class="account-grid-row info-account">
           <div class="row-label">
             <span>Thông tin tài khoản</span>
-            <Teleport to="#danger-zone" :disabled="!responesive">
-              <a-button
-                class="delete-account-btn"
-                type="text"
-                @click="deleteAccount"
-              >
-                Xóa tài khoản
-              </a-button>
-            </Teleport>
+            <!-- <Teleport to="#danger-zone" :disabled="!responesive"> </Teleport> -->
+            <a-button
+              class="delete-account-btn"
+              type="text"
+              @click="deleteAccount"
+            >
+              Xóa tài khoản
+            </a-button>
           </div>
           <div class="row-content">
             <div class="row-content-item">
@@ -103,8 +102,9 @@
         </div>
       </section>
 
-      <div id="danger-zone"></div>
+      <!-- <div id="danger-zone"></div> -->
     </div>
+
     <RequireAuth v-if="!isLogin" />
   </div>
 </template>
@@ -115,6 +115,13 @@ import { storeToRefs } from 'pinia';
 import moment from 'moment';
 import 'moment/locale/vi';
 import { useBreakpoints } from '@vueuse/core';
+
+definePageMeta({
+  pageTransition: {
+    name: 'slide-bottom',
+    mode: 'out-in',
+  },
+});
 
 const store = useStore();
 const utils = useUtils();

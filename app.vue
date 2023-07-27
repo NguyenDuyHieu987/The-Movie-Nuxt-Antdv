@@ -55,6 +55,8 @@ const loadingHomePage = ref<boolean>(true);
 
 const getData = async () => {
   if (utils.localStorage.getWithExpiry('userAccount')?.user_token) {
+    store.isLogin = true;
+
     getUserToken({
       user_token: utils.localStorage.getWithExpiry('userAccount')?.user_token,
     })
@@ -109,4 +111,4 @@ const onBackTop = () => {
 };
 </script>
 
-<style lang="scss" scoped src="./assets/style/app.scss"></style>
+<style lang="scss" src="./assets/style/app.scss"></style>

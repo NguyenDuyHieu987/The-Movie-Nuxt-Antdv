@@ -22,10 +22,16 @@
           </li>
         </ul>
       </div>
+
       <PlanGrid @onSelectPlan="handleOnSelectPlan" />
 
       <div class="submit-btn-container">
-        <a-button @click="onRouteToPaymentPage" type="text" class="submit-btn">
+        <a-button
+          v-show="selectedPlan?.id"
+          @click="onRouteToPaymentPage"
+          type="text"
+          class="submit-btn"
+        >
           Tiếp theo
         </a-button>
       </div>
@@ -39,6 +45,10 @@ import type { plan } from '@/types';
 
 definePageMeta({
   // layout: 'service',
+  pageTransition: {
+    name: 'slide-left',
+    mode: 'out-in',
+  },
 });
 
 useHead({
@@ -75,7 +85,7 @@ const onRouteToPaymentPage = () => {
     return;
   }
 
-  navigateTo(`/upgrade/payment?planorder=${selectedPlan.value!.order}`);
+  navigateTo(`/upgrade/payment?planorder=${selectedPlan.value!?.order || 3}`);
 };
 </script>
 

@@ -57,9 +57,9 @@
 
         <a-form-item>
           <a-button
+            class="submit-form-button click-active"
             type="primary"
             html-type="submit"
-            class="submit-form-button"
             size="large"
             :loading="laoding"
           >
@@ -75,6 +75,13 @@
 <script setup lang="ts">
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
 import { storeToRefs } from 'pinia';
+
+definePageMeta({
+  pageTransition: {
+    name: 'slide-left',
+    mode: 'out-in',
+  },
+});
 
 const store: any = useStore();
 const { isLogin } = storeToRefs<any>(store);

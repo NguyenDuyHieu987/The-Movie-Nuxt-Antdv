@@ -145,6 +145,10 @@ definePageMeta({
         });
     },
   ],
+  pageTransition: {
+    name: 'slide-left',
+    mode: 'out-in',
+  },
 });
 
 const store = useStore();
