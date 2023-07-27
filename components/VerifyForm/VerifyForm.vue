@@ -159,13 +159,16 @@ const formVerify = reactive<any>({
   otp: '',
   otpExpOffset: props.otpExpOffset,
 });
-const loadingVerify = ref<boolean>(false);
 const countdown = ref<string>(props.otpExpOffset + ' s');
 const disabled_countdown = defineModel('disabled_countdown', {
   type: Boolean,
   default: true,
 });
 const loadingResend = defineModel('loadingResend', {
+  type: Boolean,
+  default: false,
+});
+const loadingVerify = defineModel('loadingVerify', {
   type: Boolean,
   default: false,
 });

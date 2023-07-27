@@ -7,6 +7,7 @@
       :otpExpOffset="otpExpOffset"
       v-model:loadingResend="loadingResend"
       v-model:disabled_countdown="disabled_countdown"
+      v-model:loadingVerify="loadingVerify"
       @onVerify="handleVerify"
       @onResend="handleResendVerifyEmail"
     />
@@ -477,6 +478,7 @@ const handleVerify = (formVerify: any) => {
               style: 'color: green',
             }),
         });
+
         navigateTo({ path: '/login' });
         reset();
       } else if (response?.isInvalidOTP == true) {
