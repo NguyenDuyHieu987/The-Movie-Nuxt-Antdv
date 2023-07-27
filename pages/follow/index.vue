@@ -423,7 +423,7 @@ const enter = (el: any, done: () => void) => {
   gsap.to(el, {
     display: 'flex',
     delay: 0.3,
-    duration: 0.3,
+    duration: 0,
     onComplete: done,
   });
 };
@@ -449,8 +449,8 @@ const leave = (el: any, done: () => void) => {
   }
 
   gsap.to(el, {
-    opacity: 0,
     x: '100%',
+    opacity: 0,
     duration: 0.3,
     onComplete: done,
   });
