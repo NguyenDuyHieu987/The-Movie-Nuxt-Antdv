@@ -11,6 +11,7 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 20px;
+
       padding-bottom: 15px;
       border-bottom: 1px solid var(--border-regular);
 
@@ -28,6 +29,22 @@
       }
     }
 
+    .delete-account-btn {
+      margin-top: auto;
+      padding: 5px 25px;
+      height: auto;
+      width: 70%;
+      max-width: 180px;
+      color: var(--btn-danger-color);
+      border: 1px solid var(--btn-danger-color);
+
+      &:hover {
+        color: var(--text-color);
+        background-color: var(--text-danger-color);
+        border: 1px solid var(--btn-danger-color);
+      }
+    }
+
     .account-grid {
       .account-grid-row {
         display: flex;
@@ -38,21 +55,6 @@
           .row-label {
             display: flex;
             flex-direction: column;
-          }
-
-          .delete-account {
-            margin-top: auto;
-            padding: 5px 25px;
-            height: auto;
-            width: 70%;
-            color: var(--btn-danger-color);
-            border: 1px solid var(--btn-danger-color);
-
-            &:hover {
-              color: var(--text-color);
-              background-color: var(--text-danger-color);
-              border: 1px solid var(--btn-danger-color);
-            }
           }
         }
 
@@ -71,7 +73,7 @@
           flex-grow: 1;
 
           .row-content-item + .row-content-item {
-            margin-top: 7px;
+            margin-top: 8px;
           }
 
           .row-content-item {
@@ -149,6 +151,43 @@
   }
 }
 
+@media only screen and (max-width: 650px) {
+  .your-account {
+    .your-account-container {
+      #danger-zone {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .delete-account-btn {
+        margin: 0px auto;
+      }
+
+      .account-grid {
+        .account-grid-row {
+          flex-direction: column;
+
+          &.info-account {
+            .row-label {
+            }
+          }
+
+          .row-label {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
+          }
+
+          .row-content {
+          }
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .your-account {
     .your-account-container {
@@ -167,7 +206,7 @@
       .account-grid {
         .account-grid-row {
           .row-label {
-            width: 190px;
+            // width: 190px;
           }
         }
       }

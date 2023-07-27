@@ -1,6 +1,6 @@
 <template>
   <div class="your-account padding-content">
-    <div class="your-account-container">
+    <div v-show="isLogin" class="your-account-container">
       <div class="your-account-header">
         <h1>Tài khoản của bạn</h1>
         <div class="join-since">
@@ -11,9 +11,15 @@
         <div class="account-grid-row info-account">
           <div class="row-label">
             <span>Thông tin tài khoản</span>
-            <a-button class="delete-account" type="text" @click="deleteAccount">
-              Xóa tài khoản
-            </a-button>
+            <Teleport to="#danger-zone" :disabled="!responesive">
+              <a-button
+                class="delete-account-btn"
+                type="text"
+                @click="deleteAccount"
+              >
+                Xóa tài khoản
+              </a-button>
+            </Teleport>
           </div>
           <div class="row-content">
             <div class="row-content-item">
@@ -96,18 +102,28 @@
           </div>
         </div>
       </section>
+
+      <div id="danger-zone"></div>
     </div>
+    <RequireAuth v-if="!isLogin" />
   </div>
 </template>
 
 <script setup lang="ts">
+import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
 import { storeToRefs } from 'pinia';
 import moment from 'moment';
 import 'moment/locale/vi';
+import { useBreakpoints } from '@vueuse/core';
 
 const store = useStore();
 const utils = useUtils();
-const { userAccount } = storeToRefs<any>(store);
+const { isLogin, userAccount } = storeToRefs<any>(store);
+const breakPoints = useBreakpoints({
+  responesive: 650,
+});
+
+const responesive = breakPoints.smallerOrEqual('responesive');
 
 const joinSince = computed<string>(() =>
   moment(store.userAccount?.created_at)

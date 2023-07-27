@@ -1,9 +1,13 @@
 <template>
   <div class="require-auth">
-    <a-result title="Bạn cần đăng nhập để sử dụng chức năng này" status="403">
+    <a-result
+      class="result-view"
+      title="Bạn cần đăng nhập để sử dụng chức năng này"
+      status="403"
+    >
       <template #extra>
         <NuxtLink to="/login">
-          <a-button size="large" type="text" class="default gradient">
+          <a-button class="default gradient" size="large" type="text">
             Đăng nhập ngay
           </a-button>
         </NuxtLink>
