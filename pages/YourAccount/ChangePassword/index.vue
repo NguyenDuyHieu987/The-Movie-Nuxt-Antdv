@@ -1,72 +1,76 @@
 <template>
   <div class="change-page password padding-content">
     <div v-show="isLogin" class="password-container">
-      <div class="changePass-header">
-        <h1>Đổi mật khẩu của bạn</h1>
-        <p>
-          Để bảo vệ tài khoản bạn nên đặt một mật khẩu duy nhất dài ít nhất 6 ký
-          tự.
-        </p>
-      </div>
-      <a-form
-        :model="formState"
-        :rules="rules"
-        name="change-password-form"
-        class="form-change-password"
-        @finish="handleSubmit"
-        hideRequiredMark
-      >
-        <a-form-item
-          label="Mật khẩu cũ"
-          name="oldPassword"
-          :rules="[
-            {
-              required: true,
-              message: 'Vui lòng nhập mật khẩu!',
-              trigger: ['change', 'blur'],
-            },
-          ]"
-          has-feedback
-        >
-          <a-input-password
-            v-model:value="formState.oldPassword"
-            placeholder="Mật khẩu cũ..."
+      <Transition appear name="slide-left">
+        <div v-show="showAnimation">
+          <div class="changePass-header">
+            <h1>Đổi mật khẩu của bạn</h1>
+            <p>
+              Để bảo vệ tài khoản bạn nên đặt một mật khẩu duy nhất dài ít nhất
+              6 ký tự.
+            </p>
+          </div>
+          <a-form
+            :model="formState"
+            :rules="rules"
+            name="change-password-form"
+            class="form-change-password"
+            @finish="handleSubmit"
+            hideRequiredMark
           >
-          </a-input-password>
-        </a-form-item>
+            <a-form-item
+              label="Mật khẩu cũ"
+              name="oldPassword"
+              :rules="[
+                {
+                  required: true,
+                  message: 'Vui lòng nhập mật khẩu!',
+                  trigger: ['change', 'blur'],
+                },
+              ]"
+              has-feedback
+            >
+              <a-input-password
+                v-model:value="formState.oldPassword"
+                placeholder="Mật khẩu cũ..."
+              >
+              </a-input-password>
+            </a-form-item>
 
-        <a-form-item label="Mật khẩu mới" name="newPassword" has-feedback>
-          <a-input-password
-            v-model:value="formState.newPassword"
-            placeholder="Mật khẩu mới..."
-          >
-          </a-input-password>
-        </a-form-item>
+            <a-form-item label="Mật khẩu mới" name="newPassword" has-feedback>
+              <a-input-password
+                v-model:value="formState.newPassword"
+                placeholder="Mật khẩu mới..."
+              >
+              </a-input-password>
+            </a-form-item>
 
-        <a-form-item
-          label="Xác nhận lại"
-          name="confirmNewPassword"
-          has-feedback
-        >
-          <a-input-password
-            v-model:value="formState.confirmNewPassword"
-            placeholder="Xác nhận lại mật khẩu..."
-          >
-          </a-input-password>
-        </a-form-item>
+            <a-form-item
+              label="Xác nhận lại"
+              name="confirmNewPassword"
+              has-feedback
+            >
+              <a-input-password
+                v-model:value="formState.confirmNewPassword"
+                placeholder="Xác nhận lại mật khẩu..."
+              >
+              </a-input-password>
+            </a-form-item>
 
-        <a-form-item>
-          <a-button
-            class="submit-form-button click-active"
-            type="primary"
-            html-type="submit"
-            size="large"
-            :loading="laoding"
-          >
-            Đổi mật khẩu
-          </a-button>
-        </a-form-item>
-      </a-form>
+            <a-form-item>
+              <a-button
+                class="submit-form-button click-active"
+                type="primary"
+                html-type="submit"
+                size="large"
+                :loading="laoding"
+              >
+                Đổi mật khẩu
+              </a-button>
+            </a-form-item>
+          </a-form>
+        </div>
+      </Transition>
     </div>
     <RequireAuth v-if="!isLogin" />
   </div>
@@ -94,6 +98,7 @@ const formState = reactive<{
   newPassword: '',
   confirmNewPassword: '',
 });
+const showAnimation = ref<boolean>(false);
 
 useHead({
   title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
@@ -114,6 +119,9 @@ const internalInstance: any = getCurrentInstance();
 
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
+  setTimeout(() => {
+    showAnimation.value = true;
+  });
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 });
 

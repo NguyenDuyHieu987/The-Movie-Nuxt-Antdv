@@ -49,7 +49,9 @@
               v-show="showData"
               tag="div"
               class="movie-history padding-content horizontal"
-              :duration="0.2"
+              :duration="0.3"
+              @beforeEnter="beforeEnter"
+              @enter="enter"
               @beforeLeave="beforeLeave"
               @leave="leave"
             >
@@ -336,6 +338,10 @@ const handleChangeTab = async (value: string) => {
 
   showData.value = false;
 
+  setTimeout(() => {
+    showData.value = true;
+  }, 350);
+
   switch (value) {
     case 'all':
       await useAsyncData(
@@ -356,9 +362,6 @@ const handleChangeTab = async (value: string) => {
         })
         .finally(() => {
           internalInstance.appContext.config.globalProperties.$Progress.finish();
-          setTimeout(() => {
-            showData.value = true;
-          }, 300);
         });
       break;
     case 'movie':
@@ -380,9 +383,6 @@ const handleChangeTab = async (value: string) => {
         })
         .finally(() => {
           internalInstance.appContext.config.globalProperties.$Progress.finish();
-          setTimeout(() => {
-            showData.value = true;
-          }, 300);
         });
       break;
     case 'tv':
@@ -404,23 +404,35 @@ const handleChangeTab = async (value: string) => {
         })
         .finally(() => {
           internalInstance.appContext.config.globalProperties.$Progress.finish();
-          setTimeout(() => {
-            showData.value = true;
-          }, 300);
         });
       break;
   }
 };
 
+const beforeEnter = (el: any) => {
+  el.style.display = 'none';
+};
+
+const enter = (el: any, done: () => void) => {
+  gsap.to(el, {
+    display: 'flex',
+    delay: 0.3,
+    duration: 0.3,
+    onComplete: done,
+  });
+};
+
 const beforeLeave = (el: any) => {
+  if (!showData.value) {
+    el.style.display = 'none';
+    return;
+  }
+
   el.style.transform = 'translateX(0)';
   el.style.opacity = '1';
 };
 
 const leave = (el: any, done: () => void) => {
-  // el.style.transform = 'translateY(100%)';
-  // el.style.opacity = '0';
-
   if (!showData.value) {
     gsap.to(el, {
       display: 'none',
@@ -433,7 +445,7 @@ const leave = (el: any, done: () => void) => {
   gsap.to(el, {
     opacity: 0,
     x: '100%',
-    duration: 0.2,
+    duration: 0.3,
     onComplete: done,
   });
 };
