@@ -199,6 +199,10 @@
     }
   }
 
+  &.ant-input-affix-wrapper-disabled {
+    background-color: var(--input-background-color-disabled) !important;
+  }
+
   &:focus,
   &.ant-input-affix-wrapper-focused {
     border-color: var(--input-border-color-focused);

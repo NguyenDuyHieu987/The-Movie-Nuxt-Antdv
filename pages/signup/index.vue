@@ -1,105 +1,19 @@
 <template>
   <div class="signup-container">
-    <Transition name="slide-fade">
-      <div v-if="isSignUp" class="verify-form-container">
-        <a-form
-          :model="formStateVerify"
-          name="verify-form"
-          class="verify-form"
-          @finish="handleVerify"
-          hideRequiredMark
-        >
-          <h1 class="title-verify gradient-title-default">
-            <span> Xác nhận Email</span>
-          </h1>
-          <a-form-item
-            label="Email"
-            name="email"
-            :rules="[
-              {
-                required: true,
-                message:
-                  'Vui lòng nhập đúng định dạng email (vd: ...@gmail.com)!',
-                pattern: new RegExp(
-                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-                ),
-                trigger: ['change', 'blur'],
-              },
-            ]"
-          >
-            <a-input
-              v-model:value="formStateVerify.email"
-              placeholder="Email..."
-              disabled
-            >
-              <template #prefix>
-                <font-awesome-icon icon="fa-solid fa-at" />
-              </template>
-            </a-input>
-          </a-form-item>
+    <VerifyForm
+      :isShowForm="isSignUp"
+      :email="formSignup.email"
+      :jwtVerifyEmail="jwtVerifyEmail"
+      :otpExpOffset="otpExpOffset"
+      v-model:loadingResend="loadingResend"
+      v-model:disabled_countdown="disabled_countdown"
+      @onVerify="handleVerify"
+      @onResend="handleResendVerifyEmail"
+    />
 
-          <a-form-item
-            label="Mã xác nhận:"
-            name="otp"
-            :rules="[
-              {
-                required: true,
-                message: 'Vui lòng nhập mã xác nhận!',
-                trigger: ['change', 'blur'],
-              },
-              {
-                message: 'Mã xác nhận phải có 6 ký tụ!',
-                min: 6,
-                max: 6,
-                trigger: ['change', 'blur'],
-              },
-            ]"
-          >
-            <a-input
-              v-model:value="formStateVerify.otp"
-              ref="otpRef"
-              placeholder="Mã xác nhận..."
-              type="number"
-              allowClear
-            >
-              <template #prefix>
-                <i class="fa-solid fa-key-skeleton"></i>
-              </template>
-            </a-input>
-
-            <a-button
-              type="link"
-              size="large"
-              @click="handleResendVerifyEmail"
-              :disabled="disabled_countdown"
-              :loading="loadingResend"
-              class="count-down-button"
-            >
-              <!-- :class="{ disabled: disabled_countdown }" -->
-
-              <span v-if="!loadingResend"> {{ countdown }}</span>
-            </a-button>
-          </a-form-item>
-
-          <a-form-item>
-            <a-button
-              type="primary"
-              html-type="submit"
-              class="verify-form-button"
-              size="large"
-              :loading="loadingVerify"
-              :disabled="disabledVerifyEmail"
-            >
-              Xác nhận
-            </a-button>
-          </a-form-item>
-        </a-form>
-      </div>
-    </Transition>
-
-    <div v-if="!isSignUp" class="signup-form-container">
+    <div v-show="!isSignUp" class="signup-form-container">
       <a-form
-        :model="formState"
+        :model="formSignup"
         :rules="rules"
         name="signup-form"
         class="signup-form"
@@ -127,7 +41,7 @@
           ]"
         >
           <a-input
-            v-model:value="formState.fullname"
+            v-model:value="formSignup.fullname"
             placeholder="Họ và Tên..."
           >
             <template #prefix>
@@ -153,7 +67,7 @@
           ]"
         >
           <a-input
-            v-model:value="formState.username"
+            v-model:value="formSignup.username"
             ref="usernameRef"
             placeholder="Username..."
           >
@@ -178,9 +92,18 @@
             },
           ]"
         >
-          <a-input v-model:value="formState.email" placeholder="Email...">
+          <a-input v-model:value="formSignup.email" placeholder="Email...">
             <template #prefix>
-              <font-awesome-icon icon="fa-solid fa-at" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.4rem"
+                height="1.4rem"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M256 64C150 64 64 150 64 256s86 192 192 192c17.7 0 32 14.3 32 32s-14.3 32-32 32C114.6 512 0 397.4 0 256S114.6 0 256 0s256 114.6 256 256v32c0 53-43 96-96 96c-29.3 0-55.6-13.2-73.2-33.9c-22.8 21-53.3 33.9-86.8 33.9c-70.7 0-128-57.3-128-128s57.3-128 128-128c27.9 0 53.7 8.9 74.7 24.1c5.7-5 13.1-8.1 21.3-8.1c17.7 0 32 14.3 32 32v112c0 17.7 14.3 32 32 32s32-14.3 32-32v-32c0-106-86-192-192-192zm64 192a64 64 0 1 0-128 0a64 64 0 1 0 128 0z"
+                />
+              </svg>
             </template>
           </a-input>
         </a-form-item>
@@ -203,7 +126,7 @@
           has-feedback
         >
           <a-input-password
-            v-model:value="formState.password"
+            v-model:value="formSignup.password"
             placeholder="Mật khẩu..."
           >
             <template #prefix>
@@ -214,7 +137,7 @@
 
         <a-form-item label="Nhập lại mật khẩu" name="confirmPass" has-feedback>
           <a-input-password
-            v-model:value="formState.confirmPass"
+            v-model:value="formSignup.confirmPass"
             placeholder="Xác nhận mật khẩu..."
           >
             <template #prefix>
@@ -244,6 +167,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import {
   UserOutlined,
@@ -253,6 +177,7 @@ import {
 } from '@ant-design/icons-vue';
 import axios from 'axios';
 import { signUp, verifyEmail } from '~/services/authentication';
+import VerifyForm from '~/components/VerifyForm/VerifyForm.vue';
 import { ElNotification } from 'element-plus';
 
 definePageMeta({
@@ -274,7 +199,7 @@ useServerSeoMeta({
   ogLocale: 'vi',
 });
 
-const formState = reactive<any>({
+const formSignup = reactive<any>({
   id: '',
   fullname: '',
   username: '',
@@ -283,80 +208,25 @@ const formState = reactive<any>({
   email: '',
   avatar: '',
 });
-const formStateVerify = reactive<any>({
-  email: '',
-  otp: '',
-});
 
 const utils = useUtils();
+const router = useRouter();
 const loadingSignUp = ref<boolean>(false);
 const loadingVerify = ref<boolean>(false);
 const isSignUp = ref<boolean>(false);
-const jwtToken_VerifyEmail = ref<string>('');
+const jwtVerifyEmail = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
-const countdown = ref<string>('60 s');
+const otpExpOffset = ref<number>(60);
 
-watch(isSignUp, () => {
-  // alert('g');
-  if (disabled_countdown.value == true) {
-    let a = 60;
-    const interval = setInterval(() => {
-      a -= 1;
-      if (a == 0) {
-        disabled_countdown.value = false;
-        clearInterval(interval);
-        countdown.value = 'Gửi lại';
-      } else if (a >= 0) {
-        countdown.value = 'Còn ' + a.toString() + ' s';
-      }
-    }, 1000);
-  } else {
-    countdown.value = 'Gửi lại';
-  }
-});
-
-watch(disabled_countdown, () => {
-  // alert('g');
-  if (disabled_countdown.value == true) {
-    let a = 60;
-    const interval = setInterval(() => {
-      a -= 1;
-      if (a == 0) {
-        disabled_countdown.value = false;
-        clearInterval(interval);
-        countdown.value = 'Gửi lại';
-      } else if (a >= 0) {
-        countdown.value = 'Còn ' + a.toString() + ' s';
-      }
-    }, 1000);
-  } else {
-    countdown.value = 'Gửi lại';
-  }
-});
-
-onMounted(() => {
-  // if (disabled_countdown.value == true) {
-  //   setInterval(() => {
-  //     if (a.value == 0) {
-  //       disabled_countdown.value = false;
-  //     }
-  //     a.value -= 1;
-  //     countdown.value = a.value.toString() + ' s';
-  //   }, 1000);
-  // } else {
-  //   countdown.value = 'Gửi lại';
-  // }
-});
+onMounted(() => {});
 
 const reset = () => {
-  formState.fullname = '';
-  formState.username = '';
-  formState.password = '';
-  formState.confirmPass = '';
-  formState.email = '';
-  formStateVerify.email = '';
-  formStateVerify.otp = '';
+  formSignup.fullname = '';
+  formSignup.username = '';
+  formSignup.password = '';
+  formSignup.confirmPass = '';
+  formSignup.email = '';
 };
 
 useHead({
@@ -367,23 +237,19 @@ useHead({
 const disabled = computed<boolean>((): boolean => {
   return !(
     (
-      formState.fullname &&
-      formState.username &&
-      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formState.email) &&
-      formState.password &&
-      formState.confirmPass
+      formSignup.fullname &&
+      formSignup.username &&
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formSignup.email) &&
+      formSignup.password &&
+      formSignup.confirmPass
     )
     //  &&
-    // formState.password == formState.confirmPass
+    // formSignup.password == formSignup.confirmPass
   );
 });
 
-const disabledVerifyEmail = computed<boolean>((): boolean => {
-  return !(formStateVerify.email && formStateVerify.otp.length == 6);
-});
-
 const checkConfirmPassword = async (_rule: any, value: string) => {
-  if (value !== formState.password) {
+  if (value !== formSignup.password) {
     return Promise.reject('Mật khẩu nhập lại không khớp!');
   } else {
     return Promise.resolve();
@@ -419,17 +285,17 @@ const rules = {
 
 const handleSignUp = () => {
   loadingSignUp.value = true;
-  formState.id = Date.now();
-  formState.avatar = `${Math.floor(Math.random() * 10) + 1}`;
+  formSignup.id = Date.now();
+  formSignup.avatar = `${Math.floor(Math.random() * 10) + 1}`;
 
   verifyEmail({
-    id: formState.id,
-    username: formState.username,
-    email: formState.email,
-    // password: md5(formState.password),
-    password: utils.encryptPassword(formState.password),
-    full_name: formState.fullname,
-    avatar: formState.avatar,
+    id: formSignup.id,
+    username: formSignup.username,
+    email: formSignup.email,
+    // password: md5(formSignup.password),
+    password: utils.encryptPassword(formSignup.password),
+    full_name: formSignup.fullname,
+    avatar: formSignup.avatar,
   })
     .then((response: any) => {
       // console.log(response);
@@ -447,7 +313,7 @@ const handleSignUp = () => {
       } else if (response?.isVerify === true) {
         ElNotification.success({
           title: 'Thành công!',
-          message: `Mã xác nhận đã được gửi đến đến email: ${formState.email}.`,
+          message: `Mã xác nhận đã được gửi đến đến email: ${formSignup.email}.`,
           showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
@@ -456,11 +322,17 @@ const handleSignUp = () => {
           duration: 7000,
         });
 
-        jwtToken_VerifyEmail.value = response.headers.get('Authorization');
+        jwtVerifyEmail.value = response.headers.get('Authorization');
+        otpExpOffset.value = response.exp_offset;
 
-        isSignUp.value = !isSignUp.value;
-        formStateVerify.email = formState.email;
-      } else if (response.data?.isEmailExist == true) {
+        router.push({
+          query: {
+            token: jwtVerifyEmail.value,
+          },
+        });
+
+        isSignUp.value = true;
+      } else if (response?.isEmailExist == true) {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Email đã được đăng ký.',
@@ -501,14 +373,15 @@ const handleSignUp = () => {
 
 const handleResendVerifyEmail = () => {
   loadingResend.value = true;
+
   verifyEmail({
-    id: formState.id,
-    username: formState.username,
-    email: formState.email,
-    // password: md5(formState.password),
-    password: utils.encryptPassword(formState.password),
-    full_name: formState.fullname,
-    avatar: formState.avatar,
+    id: formSignup.id,
+    username: formSignup.username,
+    email: formSignup.email,
+    // password: md5(formSignup.password),
+    password: utils.encryptPassword(formSignup.password),
+    full_name: formSignup.fullname,
+    avatar: formSignup.avatar,
   })
     .then((response: any) => {
       // console.log(response);
@@ -518,7 +391,7 @@ const handleResendVerifyEmail = () => {
 
         ElNotification.success({
           title: 'Thành công!',
-          message: `Mã xác nhận đã được gửi đến đến email: ${formState.email}.`,
+          message: `Mã xác nhận đã được gửi đến đến email: ${formSignup.email}.`,
           showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
@@ -527,7 +400,14 @@ const handleResendVerifyEmail = () => {
           duration: 7000,
         });
 
-        jwtToken_VerifyEmail.value = response.headers.get('Authorization');
+        jwtVerifyEmail.value = response.headers.get('Authorization');
+        otpExpOffset.value = response.exp_offset;
+
+        router.push({
+          query: {
+            token: jwtVerifyEmail.value,
+          },
+        });
       } else if (response?.isInValidEmail == true) {
         ElNotification.error({
           title: 'Lỗi!',
@@ -577,15 +457,15 @@ const handleResendVerifyEmail = () => {
     });
 };
 
-const handleVerify = () => {
+const handleVerify = (formVerify: any) => {
   loadingVerify.value = true;
 
   signUp({
-    otp: formStateVerify.otp,
-    user_token: jwtToken_VerifyEmail.value,
+    otp: formVerify.otp,
+    user_token: jwtVerifyEmail.value,
   })
     .then((response) => {
-      // console.log(response.data);
+      // console.log(response);
       if (response?.isSignUp === true) {
         ElNotification.success({
           title: 'Thành công!',

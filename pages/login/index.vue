@@ -2,7 +2,7 @@
   <div class="login-container">
     <div class="login-form-container">
       <a-form
-        :model="formState"
+        :model="formLogin"
         name="login-form"
         class="login-form"
         @finish="handleSubmit"
@@ -27,7 +27,7 @@
             },
           ]"
         >
-          <a-input v-model:value="formState.username" placeholder="Email...">
+          <a-input v-model:value="formLogin.username" placeholder="Email...">
             <template #prefix>
               <UserOutlined />
             </template>
@@ -46,7 +46,7 @@
           ]"
         >
           <a-input-password
-            v-model:value="formState.password"
+            v-model:value="formLogin.password"
             placeholder="Mật khẩu..."
           >
             <template #prefix>
@@ -58,7 +58,7 @@
         <a-form-item>
           <a-form-item name="remember" no-style>
             <a-checkbox
-              v-model:checked="formState.remember"
+              v-model:checked="formLogin.remember"
               style="user-select: none"
             >
               Ghi nhớ tôi
@@ -78,9 +78,9 @@
             Đăng nhập
           </a-button>
 
-          <NuxtLink class="play-now" :to="{ path: '/' }"
-            >Xem phim ngay</NuxtLink
-          >
+          <NuxtLink class="play-now" :to="{ path: '/' }">
+            Xem phim ngay
+          </NuxtLink>
         </a-form-item>
 
         <div class="bottom-form">
@@ -96,7 +96,17 @@
             @click="handleFacebookLogin"
           >
             <template #icon>
-              <Icon class="fa-facebook-f" name="fa6-brands:facebook-f" />
+              <svg
+                class="fa-facebook-f"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.6rem"
+                height="1.6rem"
+                viewBox="0 0 320 512"
+              >
+                <path
+                  d="m279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+                />
+              </svg>
             </template>
             <span>Đăng nhập bằng Facebook</span>
           </a-button>
@@ -180,7 +190,7 @@ const utils = useUtils();
 const loadingLogin = ref<boolean>(false);
 const loadingFacebookLogin = ref<boolean>(false);
 const loadingGoogleLogin = ref<boolean>(false);
-const formState = reactive<any>({
+const formLogin = reactive<any>({
   username: '',
   password: '',
   remember: false,
@@ -193,15 +203,15 @@ const urlBack = computed(() =>
 );
 
 const reset = () => {
-  formState.username = '';
-  formState.password = '';
-  formState.remember = false;
+  formLogin.username = '';
+  formLogin.password = '';
+  formLogin.remember = false;
 };
 
 const disabled = computed<boolean>((): boolean => {
   return !(
-    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formState.username) &&
-    formState.password
+    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formLogin.username) &&
+    formLogin.password
   );
 });
 
@@ -209,9 +219,9 @@ const handleSubmit = () => {
   loadingLogin.value = true;
 
   LogIn({
-    email: formState.username,
-    password: utils.encryptPassword(formState.password),
-    // password: md5(formState.password),
+    email: formLogin.username,
+    password: utils.encryptPassword(formLogin.password),
+    // password: md5(formLogin.password),
     // user_token: randomToken(40),
   })
     .then((response: any) => {

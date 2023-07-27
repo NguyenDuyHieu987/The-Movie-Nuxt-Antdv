@@ -110,6 +110,8 @@
         }
 
         .ant-btn {
+          display: flex;
+          align-items: center;
           transition: all 0s;
           background-color: var(--btn-backgroud-color-gray);
           border: 1px solid var(--border-regular);
@@ -133,6 +135,7 @@
           }
 
           .fa-facebook-f {
+            fill: #1890ff;
             color: #1890ff;
           }
         }
