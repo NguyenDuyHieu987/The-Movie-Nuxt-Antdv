@@ -5,9 +5,8 @@
         :model="formState"
         name="login-form"
         class="login-form"
-        @submit="handleSubmit"
-        @finish="onFinish"
-        @finishFailed="onFinishFailed"
+        @finish="handleSubmit"
+        hideRequiredMark
       >
         <h1 class="title-login gradient-title-default">
           <span>Đăng nhập </span>
@@ -30,7 +29,7 @@
         >
           <a-input v-model:value="formState.username" placeholder="Email...">
             <template #prefix>
-              <UserOutlined class="site-form-item-icon" />
+              <UserOutlined />
             </template>
           </a-input>
         </a-form-item>
@@ -51,7 +50,7 @@
             placeholder="Mật khẩu..."
           >
             <template #prefix>
-              <LockOutlined class="site-form-item-icon" />
+              <LockOutlined />
             </template>
           </a-input-password>
         </a-form-item>
@@ -75,7 +74,6 @@
             class="login-form-button"
             size="large"
             :loading="loadingLogin"
-            style="background: transparent"
           >
             Đăng nhập
           </a-button>
@@ -152,7 +150,7 @@ import {
 } from '@ant-design/icons-vue';
 import axios from 'axios';
 import { getImage } from '~/services/image';
-import { logIn, loginFacebook, loginGoogle } from '~/services/authentication';
+import { LogIn, loginFacebook, loginGoogle } from '~/services/authentication';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';
 
@@ -200,14 +198,6 @@ const reset = () => {
   formState.remember = false;
 };
 
-const onFinish = () => {
-  // console.log('Success:', values);
-};
-
-const onFinishFailed = () => {
-  // console.log('Failed:', errorInfo);
-};
-
 const disabled = computed<boolean>((): boolean => {
   return !(
     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formState.username) &&
@@ -218,7 +208,7 @@ const disabled = computed<boolean>((): boolean => {
 const handleSubmit = () => {
   loadingLogin.value = true;
 
-  logIn({
+  LogIn({
     email: formState.username,
     password: utils.encryptPassword(formState.password),
     // password: md5(formState.password),

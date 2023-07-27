@@ -1,27 +1,3 @@
-@media only screen and (max-width: 600px) {
-  .login-form-container {
-    width: 500px !important;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .login-form {
-    padding: 30px 50px !important;
-  }
-  .login-form-container {
-    width: 450px !important;
-  }
-}
-
-@media only screen and (max-width: 460px) {
-  .login-form {
-    padding: 20px 30px !important;
-  }
-  .login-form-container {
-    width: 400px !important;
-  }
-}
-
 .login-container {
   display: flex;
   position: fixed;
@@ -90,48 +66,8 @@
       }
 
       .ant-row.ant-form-item {
-        display: flex;
-        flex-direction: column;
-
-        .ant-form-item-label {
-          text-align: left;
-
-          & > label {
-            color: var(--text-color);
-          }
-        }
-
-        .anticon {
-        }
-
         .ant-checkbox-wrapper {
           color: var(--text-color);
-        }
-
-        .ant-col.ant-form-item-control {
-          flex: 0 1 auto;
-
-          .ant-form-item-control-input {
-            min-height: auto;
-          }
-
-          .ant-input-affix-wrapper {
-            background-color: transparent;
-            padding: 7px 11px;
-
-            input {
-              font-size: 1.5rem;
-            }
-
-            .ant-input-prefix {
-              margin-right: 8px;
-            }
-          }
-
-          input {
-            color: var(--text-color);
-            background-color: transparent;
-          }
         }
       }
 
@@ -298,5 +234,29 @@
         transform: rotate(0deg);
       }
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .login-form-container {
+    width: 500px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .login-form {
+    padding: 30px 50px !important;
+  }
+  .login-form-container {
+    width: 450px !important;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .login-form {
+    padding: 20px 30px !important;
+  }
+  .login-form-container {
+    width: 400px !important;
   }
 }

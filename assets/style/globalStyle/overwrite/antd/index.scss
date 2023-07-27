@@ -405,3 +405,53 @@
     color: var(--text-color) !important;
   }
 }
+
+.ant-form {
+  font-size: inherit;
+
+  .ant-row.ant-form-item {
+    display: flex;
+    flex-direction: column;
+    font-size: inherit;
+
+    .ant-form-item-label {
+      text-align: left;
+
+      & > label {
+        font-size: inherit;
+        color: var(--text-color);
+
+        &::before,
+        &::after {
+          // display: none;
+        }
+      }
+    }
+
+    .ant-col.ant-form-item-control {
+      flex: 0 1 auto;
+
+      .ant-form-item-control-input {
+        min-height: auto;
+      }
+
+      .ant-input-affix-wrapper {
+        background-color: transparent;
+        padding: 7px 11px;
+
+        input {
+          font-size: 1.5rem;
+        }
+
+        .ant-input-prefix {
+          margin-right: 8px;
+        }
+      }
+
+      input {
+        color: var(--text-color);
+        background-color: transparent;
+      }
+    }
+  }
+}

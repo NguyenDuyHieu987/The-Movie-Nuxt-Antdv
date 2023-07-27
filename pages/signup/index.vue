@@ -6,7 +6,8 @@
           :model="formStateVerify"
           name="verify-form"
           class="verify-form"
-          @submit="handleVerify"
+          @finish="handleVerify"
+          hideRequiredMark
         >
           <h1 class="title-verify gradient-title-default">
             <span> Xác nhận Email</span>
@@ -102,9 +103,8 @@
         :rules="rules"
         name="signup-form"
         class="signup-form"
-        @submit="handleSignUp"
-        @finish="onFinish"
-        @finishFailed="onFinishFailed"
+        @finish="handleSignUp"
+        hideRequiredMark
       >
         <h1 class="title-signup gradient-title-default">
           <span> Đăng ký </span>
@@ -131,7 +131,7 @@
             placeholder="Họ và Tên..."
           >
             <template #prefix>
-              <UserOutlined class="site-form-item-icon" />
+              <UserOutlined />
             </template>
           </a-input>
         </a-form-item>
@@ -158,7 +158,7 @@
             placeholder="Username..."
           >
             <template #prefix>
-              <UserOutlined class="site-form-item-icon" />
+              <UserOutlined />
             </template>
           </a-input>
         </a-form-item>
@@ -207,18 +207,18 @@
             placeholder="Mật khẩu..."
           >
             <template #prefix>
-              <LockOutlined class="site-form-item-icon" />
+              <LockOutlined />
             </template>
           </a-input-password>
         </a-form-item>
 
-        <a-form-item label="Nhập lại mật khẩu" name="checkPass" has-feedback>
+        <a-form-item label="Nhập lại mật khẩu" name="confirmPass" has-feedback>
           <a-input-password
-            v-model:value="formState.checkPass"
+            v-model:value="formState.confirmPass"
             placeholder="Xác nhận mật khẩu..."
           >
             <template #prefix>
-              <LockOutlined class="site-form-item-icon" />
+              <LockOutlined />
             </template>
           </a-input-password>
         </a-form-item>
@@ -230,7 +230,6 @@
             html-type="submit"
             class="signup-form-button"
             size="large"
-            style="background: transparent"
             :loading="loadingSignUp"
           >
             Đăng ký
@@ -280,7 +279,7 @@ const formState = reactive<any>({
   fullname: '',
   username: '',
   password: '',
-  checkPass: '',
+  confirmPass: '',
   email: '',
   avatar: '',
 });
@@ -354,7 +353,7 @@ const reset = () => {
   formState.fullname = '';
   formState.username = '';
   formState.password = '';
-  formState.checkPass = '';
+  formState.confirmPass = '';
   formState.email = '';
   formStateVerify.email = '';
   formStateVerify.otp = '';
@@ -365,22 +364,17 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-const onFinish = () => {
-  // console.log('Success:', values);
-};
-
-const onFinishFailed = () => {
-  // console.log('Failed:', errorInfo);
-};
-
 const disabled = computed<boolean>((): boolean => {
   return !(
-    formState.fullname &&
-    formState.username &&
-    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formState.email) &&
-    formState.password &&
-    formState.checkPass &&
-    formState.password == formState.checkPass
+    (
+      formState.fullname &&
+      formState.username &&
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formState.email) &&
+      formState.password &&
+      formState.confirmPass
+    )
+    //  &&
+    // formState.password == formState.confirmPass
   );
 });
 
@@ -390,14 +384,14 @@ const disabledVerifyEmail = computed<boolean>((): boolean => {
 
 const checkConfirmPassword = async (_rule: any, value: string) => {
   if (value !== formState.password) {
-    return Promise.reject('Mật khẩu không khớp!');
+    return Promise.reject('Mật khẩu nhập lại không khớp!');
   } else {
     return Promise.resolve();
   }
 };
 
 const rules = {
-  checkPass: [
+  confirmPass: [
     {
       required: true,
       message: 'Vui lòng nhập lại mật khẩu!',
