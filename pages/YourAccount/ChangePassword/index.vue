@@ -79,7 +79,6 @@ import { storeToRefs } from 'pinia';
 definePageMeta({
   pageTransition: {
     name: 'slide-left',
-    mode: 'out-in',
   },
 });
 

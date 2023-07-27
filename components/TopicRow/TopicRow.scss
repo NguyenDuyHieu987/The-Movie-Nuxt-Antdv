@@ -5,7 +5,6 @@
   flex-grow: 1;
   padding: 20px 20px;
   height: auto;
-  z-index: 1;
   // overflow: hidden;
   // background-image: linear-gradient(
   //   to bottom,
@@ -28,6 +27,7 @@
     rgba(0, 0, 0, 1) 100%
   );
   // background-image: var(--main-color);
+  z-index: 2;
 
   .row-container {
     .top {

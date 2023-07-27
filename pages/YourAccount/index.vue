@@ -119,7 +119,6 @@ import { useBreakpoints } from '@vueuse/core';
 definePageMeta({
   pageTransition: {
     name: 'slide-bottom',
-    mode: 'out-in',
   },
 });
 

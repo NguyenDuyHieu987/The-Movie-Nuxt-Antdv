@@ -5,10 +5,10 @@
         <TopicRow
           v-show="responsive"
           v-model:dataRow="dataHistory"
+          v-model:valueInput="valueInput"
           :title="title"
           :total="total"
           :topicImage="topicImage"
-          v-model:valueInput="valueInput"
           :loadingSearch="loadingSearch"
           :searchRow="searchHistoryT"
           :deleteAll="removeAllHistoryList"
@@ -17,10 +17,10 @@
         <Teleport :disabled="!loading" to="#topic-history-column-teleport">
           <TopicColumn
             v-model:dataColumn="dataHistory"
+            v-model:valueInput="valueInput"
             :title="title"
             :total="total"
             :topicImage="topicImage"
-            v-model:valueInput="valueInput"
             :loadingSearch="loadingSearch"
             :searchRow="searchHistoryT"
             :deleteAll="removeAllHistoryList"
@@ -44,17 +44,26 @@
             <SortTab @onChangeTab="handleChangeTab" />
           </div>
 
-          <div class="movie-history padding-content horizontal">
-            <MovieCardHorizontalHistory
-              v-for="(item, index) in dataHistory"
-              :index="index"
-              :key="item.id"
-              :item="item"
-              :prevItem="dataHistory[index - 1]"
-              :type="item?.media_type"
-              :getDataWhenRemoveHistory="getDataWhenRemoveHistory"
-            />
-          </div>
+          <Transition name="slide-left">
+            <TransitionGroup
+              v-show="showData"
+              tag="div"
+              class="movie-history padding-content horizontal"
+              :duration="0.2"
+              @beforeLeave="beforeLeave"
+              @leave="leave"
+            >
+              <MovieCardHorizontalHistory
+                v-for="(item, index) in dataHistory"
+                :index="index"
+                :key="item.id"
+                :item="item"
+                :prevItem="dataHistory[index - 1]"
+                :type="item?.media_type"
+                :getDataWhenRemoveHistory="getDataWhenRemoveHistory"
+              />
+            </TransitionGroup>
+          </Transition>
 
           <div class="skeleton-loadmore padding-content" v-show="loadMore">
             <el-skeleton
@@ -101,6 +110,7 @@ import _ from 'lodash';
 import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 // import scrollBottom from 'scroll-bottom';
 import { useBreakpoints } from '@vueuse/core';
+import gsap from 'gsap';
 
 definePageMeta({
   // requireAuth: true,
@@ -126,6 +136,7 @@ const internalInstance: any = getCurrentInstance();
 const historyContent = ref();
 const title = ref<string>('Phim đã xem');
 const activeTab = ref<string>('all');
+const showData = ref<boolean>(true);
 
 const breakpoints = useBreakpoints({
   responsive: 1200,
@@ -323,6 +334,8 @@ const handleChangeTab = async (value: string) => {
   //   behavior: 'instant',
   // });
 
+  showData.value = false;
+
   switch (value) {
     case 'all':
       await useAsyncData(
@@ -343,6 +356,9 @@ const handleChangeTab = async (value: string) => {
         })
         .finally(() => {
           internalInstance.appContext.config.globalProperties.$Progress.finish();
+          setTimeout(() => {
+            showData.value = true;
+          }, 300);
         });
       break;
     case 'movie':
@@ -364,6 +380,9 @@ const handleChangeTab = async (value: string) => {
         })
         .finally(() => {
           internalInstance.appContext.config.globalProperties.$Progress.finish();
+          setTimeout(() => {
+            showData.value = true;
+          }, 300);
         });
       break;
     case 'tv':
@@ -385,9 +404,38 @@ const handleChangeTab = async (value: string) => {
         })
         .finally(() => {
           internalInstance.appContext.config.globalProperties.$Progress.finish();
+          setTimeout(() => {
+            showData.value = true;
+          }, 300);
         });
       break;
   }
+};
+
+const beforeLeave = (el: any) => {
+  el.style.transform = 'translateX(0)';
+  el.style.opacity = '1';
+};
+
+const leave = (el: any, done: () => void) => {
+  // el.style.transform = 'translateY(100%)';
+  // el.style.opacity = '0';
+
+  if (!showData.value) {
+    gsap.to(el, {
+      display: 'none',
+      duration: 0,
+      onComplete: done,
+    });
+    return;
+  }
+
+  gsap.to(el, {
+    opacity: 0,
+    x: '100%',
+    duration: 0.2,
+    onComplete: done,
+  });
 };
 </script>
 

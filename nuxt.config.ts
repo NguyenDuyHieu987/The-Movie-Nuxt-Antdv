@@ -94,7 +94,7 @@ export default defineNuxtConfig({
         // },
       ],
     },
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { mode: 'out-in', appear: true },
   },
   runtimeConfig: {
     app: {

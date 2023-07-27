@@ -1,27 +1,29 @@
 <template>
   <div class="upgrade padding-content">
     <div class="upgrade-container">
-      <div class="upgrade-header">
-        <h2>Chọn gói dịch vụ phù hợp với bạn</h2>
+      <Transition appear name="slide-bottom">
+        <div v-show="showAnimation" class="upgrade-header">
+          <h2>Chọn gói dịch vụ phù hợp với bạn</h2>
 
-        <ul>
-          <li class="checkmark-group-row">
-            <span>Chọn gói dịch vụ phù hợp với bạn</span>
-          </li>
+          <ul>
+            <li class="checkmark-group-row">
+              <span>Chọn gói dịch vụ phù hợp với bạn</span>
+            </li>
 
-          <li class="checkmark-group-row">
-            <span>Truy cập thêm nhiều chương trình truyền hình và phim.</span>
-          </li>
+            <li class="checkmark-group-row">
+              <span>Truy cập thêm nhiều chương trình truyền hình và phim.</span>
+            </li>
 
-          <li class="checkmark-group-row">
-            <span>Lựa chọn xem trên nhiều thiết bị hơn.</span>
-          </li>
+            <li class="checkmark-group-row">
+              <span>Lựa chọn xem trên nhiều thiết bị hơn.</span>
+            </li>
 
-          <li class="checkmark-group-row">
-            <span>Thay đổi hoặc hủy gói dịch vụ của bạn bất cứ khi nào.</span>
-          </li>
-        </ul>
-      </div>
+            <li class="checkmark-group-row">
+              <span>Thay đổi hoặc hủy gói dịch vụ của bạn bất cứ khi nào.</span>
+            </li>
+          </ul>
+        </div>
+      </Transition>
 
       <PlanGrid @onSelectPlan="handleOnSelectPlan" />
 
@@ -47,7 +49,6 @@ definePageMeta({
   // layout: 'service',
   pageTransition: {
     name: 'slide-left',
-    mode: 'out-in',
   },
 });
 
@@ -69,10 +70,15 @@ useServerSeoMeta({
 const store = useStore();
 const selectedPlan = ref<plan>();
 const internalInstance: any = getCurrentInstance();
+const showAnimation = ref<boolean>(false);
 
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
   internalInstance.appContext.config.globalProperties.$Progress.finish();
+
+  setTimeout(() => {
+    showAnimation.value = true;
+  });
 });
 
 const handleOnSelectPlan = (plan: plan) => {

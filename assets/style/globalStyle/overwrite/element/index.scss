@@ -105,6 +105,12 @@
   border: none !important;
   box-shadow: var(--box-shadow-medium) !important;
   border-radius: 2px;
+
+  .el-notification__group {
+    .el-notification__content {
+      text-align: left;
+    }
+  }
 }
 
 .el-loading-mask {

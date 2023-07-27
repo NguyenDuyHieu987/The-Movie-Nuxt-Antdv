@@ -56,14 +56,14 @@
 
           <div class="info">
             <h2 class="title">
-              <strong v-if="!isEpisodes">
+              <span v-if="!isEpisodes">
                 {{ item?.name }}
-              </strong>
+              </span>
 
-              <strong v-else>
+              <span v-else>
                 {{ item?.name }}
                 {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
-              </strong>
+              </span>
             </h2>
 
             <!-- <p v-if="isEpisodes" class="duration-episode">

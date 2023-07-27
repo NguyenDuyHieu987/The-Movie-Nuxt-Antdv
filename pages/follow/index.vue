@@ -5,10 +5,10 @@
         <TopicRow
           v-show="responsive"
           v-model:dataRow="dataList"
+          v-model:valueInput="valueInput"
           :title="title"
           :total="total"
           :topicImage="topicImage"
-          v-model:valueInput="valueInput"
           :loadingSearch="loadingSearch"
           :searchRow="searchFollow"
           :deleteAll="removeAllFollowList"
@@ -17,10 +17,10 @@
         <Teleport to="#topic-follow-column-teleport">
           <TopicColumn
             v-model:dataColumn="dataList"
+            v-model:valueInput="valueInput"
             :title="title"
             :total="total"
             :topicImage="topicImage"
-            v-model:valueInput="valueInput"
             :loadingSearch="loadingSearch"
             :searchRow="searchFollow"
             :deleteAll="removeAllFollowList"
@@ -44,16 +44,27 @@
             <SortTab @onChangeTab="handleChangeTab" />
           </div>
 
-          <div class="movie-follow padding-content horizontal">
-            <MovieCardHorizontalFollow
-              v-for="(item, index) in dataList"
-              :index="index"
-              :key="item.id"
-              :item="item"
-              :type="item?.media_type"
-              :getDataWhenRemoveList="getDataWhenRemoveList"
-            />
-          </div>
+          <Transition name="slide-left">
+            <TransitionGroup
+              v-show="showData"
+              tag="div"
+              class="movie-follow padding-content horizontal"
+              :duration="0.2"
+              @beforeEnter="beforeEnter"
+              @enter="enter"
+              @beforeLeave="beforeLeave"
+              @leave="leave"
+            >
+              <MovieCardHorizontalFollow
+                v-for="(item, index) in dataList"
+                :index="index"
+                :key="item.id"
+                :item="item"
+                :type="item?.media_type"
+                :getDataWhenRemoveList="getDataWhenRemoveList"
+              />
+            </TransitionGroup>
+          </Transition>
 
           <div class="skeleton-loadmore" v-show="loadMore">
             <el-skeleton
@@ -103,6 +114,7 @@ import { storeToRefs } from 'pinia';
 import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 // import scrollBottom from 'scroll-bottom';
 import { useBreakpoints } from '@vueuse/core';
+import gsap from 'gsap';
 
 definePageMeta({
   // requireAuth: true,
@@ -127,6 +139,7 @@ const topicImage = ref<string>('topic1.jpg');
 const followContent = ref();
 const title = ref<string>('Phim đã thêm vào danh sách phát');
 const activeTab = ref<string>('all');
+const showData = ref<boolean>(true);
 
 const breakpoints = useBreakpoints({
   responsive: 1200,
@@ -326,6 +339,8 @@ const handleChangeTab = async (value: string) => {
   //   behavior: 'instant',
   // });
 
+  showData.value = false;
+
   switch (value) {
     case 'all':
       await useAsyncData(
@@ -347,6 +362,9 @@ const handleChangeTab = async (value: string) => {
         })
         .finally(() => {
           internalInstance.appContext.config.globalProperties.$Progress.finish();
+          setTimeout(() => {
+            showData.value = true;
+          }, 300);
         });
       break;
     case 'movie':
@@ -369,6 +387,9 @@ const handleChangeTab = async (value: string) => {
         })
         .finally(() => {
           internalInstance.appContext.config.globalProperties.$Progress.finish();
+          setTimeout(() => {
+            showData.value = true;
+          }, 300);
         });
       break;
     case 'tv':
@@ -391,9 +412,47 @@ const handleChangeTab = async (value: string) => {
         })
         .finally(() => {
           internalInstance.appContext.config.globalProperties.$Progress.finish();
+          setTimeout(() => {
+            showData.value = true;
+          }, 300);
         });
       break;
   }
+};
+
+const beforeEnter = (el: any) => {};
+
+const enter = (el: any, done: () => void) => {
+  // gsap.to(el, {
+  //   duration: 0,
+  //   onComplete: done,
+  // });
+};
+
+const beforeLeave = (el: any) => {
+  if (!showData.value) {
+    el.style.display = 'none';
+    return;
+  }
+
+  el.style.transform = 'translateX(0)';
+  el.style.opacity = '1';
+};
+
+const leave = (el: any, done: () => void) => {
+  // el.style.transform = 'translateY(100%)';
+  // el.style.opacity = '0';
+
+  if (!showData.value) {
+    return;
+  }
+
+  gsap.to(el, {
+    opacity: 0,
+    x: '100%',
+    duration: 0.2,
+    onComplete: done,
+  });
 };
 </script>
 
