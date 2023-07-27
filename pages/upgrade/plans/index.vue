@@ -47,9 +47,9 @@ import type { plan } from '@/types';
 
 definePageMeta({
   // layout: 'service',
-  pageTransition: {
-    name: 'slide-left',
-  },
+  // pageTransition: {
+  //   name: 'slide-left',
+  // },
 });
 
 useHead({
