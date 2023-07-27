@@ -1,7 +1,7 @@
 <template>
   <div class="signup-container">
     <VerifyForm
-      :isShowForm="isSignUp"
+      v-model:isShowForm="isSignUp"
       :email="formSignup.email"
       :jwtVerifyEmail="jwtVerifyEmail"
       :otpExpOffset="otpExpOffset"
@@ -148,12 +148,12 @@
 
         <a-form-item>
           <a-button
-            :disabled="disabled"
+            class="signup-form-button"
             type="primary"
             html-type="submit"
-            class="signup-form-button"
             size="large"
             :loading="loadingSignUp"
+            :disabled="disabled"
           >
             Đăng ký
           </a-button>
@@ -211,6 +211,7 @@ const formSignup = reactive<any>({
 
 const utils = useUtils();
 const router = useRouter();
+const route = useRoute();
 const loadingSignUp = ref<boolean>(false);
 const loadingVerify = ref<boolean>(false);
 const isSignUp = ref<boolean>(false);
@@ -283,7 +284,7 @@ const rules = {
 // console.log(encryptedHex);
 // console.log(pbkdf2.pbkdf2Sync('123', 'salt', 1, 256 / 8, 'sha512'));
 
-const handleSignUp = () => {
+const handleSignUp = (e: any) => {
   loadingSignUp.value = true;
   formSignup.id = Date.now();
   formSignup.avatar = `${Math.floor(Math.random() * 10) + 1}`;
@@ -302,7 +303,7 @@ const handleSignUp = () => {
 
       if (response?.isInValidEmail == true) {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Email không tồn tại.',
           showClose: false,
           icon: () =>
@@ -325,16 +326,16 @@ const handleSignUp = () => {
         jwtVerifyEmail.value = response.headers.get('Authorization');
         otpExpOffset.value = response.exp_offset;
 
-        router.push({
-          query: {
-            token: jwtVerifyEmail.value,
-          },
-        });
+        // router.push({
+        //   query: {
+        //     token: jwtVerifyEmail.value,
+        //   },
+        // });
 
         isSignUp.value = true;
       } else if (response?.isEmailExist == true) {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Email đã được đăng ký.',
           showClose: false,
           icon: () =>
@@ -344,7 +345,7 @@ const handleSignUp = () => {
         });
       } else if (response?.isSendEmail == false) {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Gửi email thất bại.',
           showClose: false,
           icon: () =>
@@ -356,7 +357,7 @@ const handleSignUp = () => {
     })
     .catch((e) => {
       ElNotification.error({
-        title: 'Lỗi!',
+        title: 'Thất bại!',
         message: 'Some thing went wrong.',
         showClose: false,
         icon: () =>
@@ -403,14 +404,14 @@ const handleResendVerifyEmail = () => {
         jwtVerifyEmail.value = response.headers.get('Authorization');
         otpExpOffset.value = response.exp_offset;
 
-        router.push({
-          query: {
-            token: jwtVerifyEmail.value,
-          },
-        });
+        // router.push({
+        //   query: {
+        //     token: jwtVerifyEmail.value,
+        //   },
+        // });
       } else if (response?.isInValidEmail == true) {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Email không tồn tại.',
           showClose: false,
           icon: () =>
@@ -420,7 +421,7 @@ const handleResendVerifyEmail = () => {
         });
       } else if (response?.isEmailExist == true) {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Email đã được đăng ký.',
           showClose: false,
           icon: () =>
@@ -430,7 +431,7 @@ const handleResendVerifyEmail = () => {
         });
       } else if (response?.isSendEmail == false) {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Gửi email thất bại.',
           showClose: false,
           icon: () =>
@@ -442,7 +443,7 @@ const handleResendVerifyEmail = () => {
     })
     .catch((e) => {
       ElNotification.error({
-        title: 'Lỗi!',
+        title: 'Thất bại!',
         message: 'Some thing went wrong.',
         showClose: false,
         icon: () =>
@@ -480,7 +481,7 @@ const handleVerify = (formVerify: any) => {
         reset();
       } else if (response?.isInvalidOTP == true) {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Mã xác nhận không đúng.',
           showClose: false,
           icon: () =>
@@ -490,7 +491,7 @@ const handleVerify = (formVerify: any) => {
         });
       } else if (response?.isAccountExist == true) {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Tài khoản đã tồn tại.',
           showClose: false,
           icon: () =>
@@ -500,7 +501,7 @@ const handleVerify = (formVerify: any) => {
         });
       } else if (response?.isOTPExpired == true) {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Mã xác nhận đã hết hạn.',
           showClose: false,
           icon: () =>
@@ -512,7 +513,7 @@ const handleVerify = (formVerify: any) => {
     })
     .catch((e) => {
       ElNotification.error({
-        title: 'Lỗi!',
+        title: 'Thất bại!',
         message: 'Some thing went wrong.',
         showClose: false,
         icon: () =>

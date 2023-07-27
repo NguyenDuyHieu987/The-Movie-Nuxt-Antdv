@@ -50,10 +50,10 @@
         width: 100%;
         background-color: var(--btn-backgroud-color-gray);
         border: 1px solid var(--border-regular);
-      }
 
-      .signup-form-button[disabled] {
-        // color: #707070;
+        &:disabled {
+          // color: #707070;
+        }
       }
 
       .bottom-form {

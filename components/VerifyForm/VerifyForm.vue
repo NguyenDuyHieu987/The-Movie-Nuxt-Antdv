@@ -73,7 +73,29 @@
             allowClear
           >
             <template #prefix>
-              <i class="fa-solid fa-key-skeleton"></i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.6rem"
+                height="1.6rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm7 10c0 4.52-2.98 8.69-7 9.93c-4.02-1.24-7-5.41-7-9.93V6.3l7-3.11l7 3.11V11zm-11.59.59L6 13l4 4l8-8l-1.41-1.42L10 14.17z"
+                />
+              </svg>
+
+              <!-- <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.6rem"
+                height="1.6rem"
+                viewBox="0 0 15 15"
+              >
+                <path
+                  fill="none"
+                  stroke="var(--text-color)"
+                  d="M6 5.5h3m-1.5 0V10m3 0V7.5m0 0v-2h1a1 1 0 1 1 0 2h-1Zm-6-1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 2 0Zm-3-6h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1v-12a1 1 0 0 1 1-1Z"
+                />
+              </svg> -->
             </template>
           </a-input>
 
@@ -93,9 +115,9 @@
 
         <a-form-item>
           <a-button
+            class="verify-form-button click-active"
             type="primary"
             html-type="submit"
-            class="verify-form-button"
             size="large"
             :loading="loadingVerify"
             :disabled="disabledVerifyEmail"
@@ -110,10 +132,6 @@
 
 <script setup lang="ts">
 const props = defineProps({
-  isShowForm: {
-    type: Boolean,
-    default: true,
-  },
   email: {
     type: String,
   },
@@ -131,6 +149,11 @@ const emits = defineEmits<{
   onResend: [];
 }>();
 
+const route = useRoute();
+const isShowForm = defineModel('isShowForm', {
+  type: Boolean,
+  default: true,
+});
 const formVerify = reactive<any>({
   email: props.email,
   otp: '',
@@ -152,26 +175,34 @@ const disabledVerifyEmail = computed<boolean>((): boolean => {
 });
 
 watch(
-  () => props.isShowForm,
+  () => route.query,
   () => {
-    // alert('g');
-    if (disabled_countdown.value == true) {
-      let a = props.otpExpOffset;
-      const interval = setInterval(() => {
-        a -= 1;
-        if (a == 0) {
-          disabled_countdown.value = false;
-          clearInterval(interval);
-          countdown.value = 'Gửi lại';
-        } else if (a >= 0) {
-          countdown.value = 'Còn ' + a.toString() + ' s';
-        }
-      }, 1000);
-    } else {
-      countdown.value = 'Gửi lại';
+    if (route.query?.token) {
+      // isShowForm.value = true;
     }
-  }
+  },
+  { deep: true, immediate: true }
 );
+
+watch(isShowForm, () => {
+  formVerify.email = props.email;
+
+  if (disabled_countdown.value == true) {
+    let a = props.otpExpOffset;
+    const interval = setInterval(() => {
+      a -= 1;
+      if (a == 0) {
+        disabled_countdown.value = false;
+        clearInterval(interval);
+        countdown.value = 'Gửi lại';
+      } else if (a >= 0) {
+        countdown.value = 'Còn ' + a.toString() + ' s';
+      }
+    }, 1000);
+  } else {
+    countdown.value = 'Gửi lại';
+  }
+});
 
 watch(disabled_countdown, () => {
   // alert('g');

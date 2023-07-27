@@ -859,23 +859,30 @@ const setBlobSrcVideo = (value: string) => {
   });
 };
 
-const initVideo = async () => {
-  if (
-    props.dataMovie?.media_type == 'movie' &&
-    props.videoUrl &&
-    props.videoUrl?.length > 0
-  ) {
-    await setBlobSrcVideo(props.videoUrl).then(() => {
-      // video.value.volume = volume.value / 100;
-      // progressBar.value.style.setProperty('--progress-width', 0);
-      // video.value.play();
-      videoStates.isPlayVideo = true;
-    });
+const initVideo = async (newVideoUrl: string) => {
+  if (newVideoUrl && newVideoUrl?.length > 0) {
+    if (props.dataMovie?.media_type == 'movie') {
+      await setBlobSrcVideo(newVideoUrl).then(() => {
+        // video.value.volume = volume.value / 100;
+        // progressBar.value.style.setProperty('--progress-width', 0);
+        // video.value.play();
+        videoStates.isPlayVideo = true;
+      });
+    } else if (props.dataMovie?.media_type == 'tv') {
+      if (videoStates.isPlayVideo) {
+        video.value.pause();
+        videoStates.isPlayVideo = false;
+      }
+      await setBlobSrcVideo(newVideoUrl).then(() => {
+        // video.value.play();
+        videoStates.isPlayVideo = true;
+      });
+    }
   }
 };
 
 onBeforeMount(() => {
-  initVideo();
+  // initVideo();
 });
 
 onBeforeRouteLeave(() => {
@@ -957,18 +964,10 @@ onMounted(() => {
 
 watch(
   () => props.videoUrl,
-  async (newVal, oldVal) => {
-    if (newVal && newVal?.length > 0) {
-      if (videoStates.isPlayVideo) {
-        video.value.pause();
-        videoStates.isPlayVideo = false;
-      }
-      await setBlobSrcVideo(newVal).then(() => {
-        // video.value.play();
-        videoStates.isPlayVideo = true;
-      });
-    }
-  }
+  (newVal, oldVal) => {
+    initVideo(newVal);
+  },
+  { immediate: true }
 );
 
 watch(volume, () => {

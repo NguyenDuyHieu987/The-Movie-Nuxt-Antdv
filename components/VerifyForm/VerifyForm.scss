@@ -68,11 +68,14 @@
       font-size: 1.5rem;
       margin-top: 20px;
       width: 100%;
-    }
 
-    .verify-form-button[disabled] {
-      // color: #707070;
-      background-color: transparent;
+      &:not(:disabled) {
+        background-color: var(--app-background-color);
+      }
+
+      &:disabled {
+        // background-color: transparent;
+      }
     }
   }
 }

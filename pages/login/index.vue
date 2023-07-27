@@ -69,11 +69,11 @@
 
         <a-form-item>
           <a-button
-            :disabled="disabled"
-            html-type="submit"
             class="login-form-button"
+            html-type="submit"
             size="large"
             :loading="loadingLogin"
+            :disabled="disabled"
           >
             Đăng nhập
           </a-button>
@@ -244,7 +244,7 @@ const handleSubmit = () => {
       } else if (response?.isNotExist == true) {
         setTimeout(() => {
           ElNotification.error({
-            title: 'Lỗi!',
+            title: 'Thất bại!',
             message: 'Tài khoản không tồi tại.',
             showClose: false,
             icon: () =>
@@ -256,7 +256,7 @@ const handleSubmit = () => {
       } else if (response?.isWrongPassword == true) {
         setTimeout(() => {
           ElNotification.error({
-            title: 'Lỗi!',
+            title: 'Thất bại!',
             message: 'Sai tài khoản hoặc mật khẩu.',
             showClose: false,
             icon: () =>
@@ -340,7 +340,7 @@ const handleFacebookLogin = async () => {
     })
     .catch((e) => {
       ElNotification.error({
-        title: 'Lỗi!',
+        title: 'Thất bại!',
         message: 'Some thing went wrong.',
         showClose: false,
         icon: () =>
@@ -445,7 +445,7 @@ const handleGooglePopupCallback = (authResponse: any) => {
           navigateTo({ path: urlBack.value });
         } else if (response.isLogin == false) {
           ElNotification.error({
-            title: 'Lỗi!',
+            title: 'Thất bại!',
             message: 'Some thing went wrong.',
             showClose: false,
             icon: () =>
@@ -457,7 +457,7 @@ const handleGooglePopupCallback = (authResponse: any) => {
       })
       .catch((e) => {
         ElNotification.error({
-          title: 'Lỗi!',
+          title: 'Thất bại!',
           message: 'Some thing went wrong.',
           showClose: false,
           icon: () =>
