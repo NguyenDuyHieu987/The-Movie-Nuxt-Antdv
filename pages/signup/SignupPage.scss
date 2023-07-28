@@ -15,11 +15,11 @@
     flex-direction: column;
     border-radius: 5px;
     box-shadow: var(--box-shadow-large);
-    z-index: 11;
-    max-height: 95vh;
     background-color: var(--background-content-color);
-    width: 550px;
     min-height: 750px;
+    max-height: 95vh;
+    width: 550px;
+    z-index: 11;
     overflow: hidden;
 
     &::-webkit-scrollbar-thumb,
@@ -134,43 +134,103 @@
       }
     }
   }
+
+  .verify-email {
+    .verify-form-container {
+      max-height: 95vh;
+      min-height: 400px;
+      width: 550px;
+      background-color: var(--background-content-color);
+      box-shadow: var(--box-shadow-large);
+
+      .back-btn {
+        left: 10px;
+      }
+
+      .verify-form {
+        padding: 30px 70px;
+        padding-top: 50px;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 660px) {
-  .signup-form-container {
-    padding: 30px 40px !important;
+  .signup-container {
+    .signup-form-container {
+      padding: 30px 40px;
+    }
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .signup-form-container {
-    width: 500px !important;
+  .signup-container {
+    .signup-form-container {
+      width: 500px;
+    }
   }
 }
 
 @media only screen and (max-width: 550px) {
-  .signup-form {
-    padding: 30px 30px !important;
-  }
-  .signup-form-container {
-    width: 450px !important;
+  .signup-container {
+    .signup-form-container {
+      width: 450px;
+
+      .signup-form {
+        padding: 30px 30px;
+      }
+    }
+
+    .verify-email .verify-form-container {
+      width: 450px;
+
+      .verify-form {
+        padding: 30px 30px;
+        padding-top: 40px;
+      }
+    }
   }
 }
 
 @media only screen and (max-width: 470px) {
-  .signup-form {
-    padding: 20px 30px !important;
-  }
-  .signup-form-container {
-    width: 400px !important;
+  .signup-container {
+    .signup-form-container {
+      width: 400px;
+
+      .signup-form {
+        padding: 20px 30px;
+      }
+    }
+
+    .verify-email .verify-form-container {
+      width: 400px;
+
+      .verify-form {
+        padding: 20px 30px;
+        padding-top: 40px;
+      }
+    }
   }
 }
 
 @media only screen and (max-width: 430px) {
-  .signup-form {
-    padding: 20px 30px !important;
-  }
-  .signup-form-container {
-    width: 400px !important;
+  .signup-container {
+    .signup-form-container {
+      width: 400px;
+
+      .signup-form {
+        padding: 20px 30px;
+      }
+    }
+
+    .verify-email .verify-form-container {
+      max-width: 400px;
+      width: auto;
+
+      .verify-form {
+        padding: 20px 30px;
+        padding-top: 40px;
+      }
+    }
   }
 }

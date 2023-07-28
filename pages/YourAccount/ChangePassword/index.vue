@@ -239,32 +239,22 @@ const rules = {
 };
 
 const handleSubmit = () => {
-  showAnimation.value = false;
+  loadingChangePassword.value = true;
 
   verifyEmail(
     {
       oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
-      newPassword: utils.encryptPassword(formChangePassword.newPassword),
+      newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),
     },
     'change-password'
   )
     .then((response: any) => {
       // console.log(response);
 
-      if (response?.isInValidEmail == true) {
-        ElNotification.error({
-          title: 'Thất bại!',
-          message: 'Email không tồn tại.',
-          showClose: false,
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-      } else if (response?.isVerify === true) {
+      if (response?.isSended === true) {
         ElNotification.success({
           title: 'Thành công!',
-          message: `Mã xác nhận đã được gửi đến đến email: ${store.userAccount?.email}.`,
+          message: `Mã xác nhận đã được gửi đến đến Email: ${store.userAccount?.email}.`,
           showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
@@ -287,20 +277,20 @@ const handleSubmit = () => {
           showAnimation.value = true;
           isChangePassword.value = true;
         }, 300);
-      } else if (response?.isEmailExist == true) {
+      } else if (response?.isWrongPassword == true) {
         ElNotification.error({
           title: 'Thất bại!',
-          message: 'Email đã được đăng ký.',
+          message: 'Sai mật khẩu.',
           showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
             }),
         });
-      } else if (response?.isSendEmail == false) {
+      } else if (response?.isSended == false) {
         ElNotification.error({
           title: 'Thất bại!',
-          message: 'Gửi email thất bại.',
+          message: 'Gửi Email thất bại.',
           showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
@@ -328,7 +318,79 @@ const handleSubmit = () => {
 
 const handleVerify = () => {};
 
-const handleResendVerifyEmail = () => {};
+const handleResendVerifyEmail = () => {
+  loadingResend.value = true;
+
+  verifyEmail(
+    {
+      oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
+      newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),
+    },
+    'change-password'
+  )
+    .then((response: any) => {
+      // console.log(response);
+
+      if (response?.isSended === true) {
+        ElNotification.success({
+          title: 'Thành công!',
+          message: `Mã xác nhận đã được gửi đến đến Email: ${store.userAccount?.email}.`,
+          showClose: false,
+          icon: () =>
+            h(CheckCircleFilled, {
+              style: 'color: green',
+            }),
+          duration: 7000,
+        });
+
+        disabled_countdown.value = true;
+
+        jwtVerifyEmail.value = response.headers.get('Authorization');
+        otpExpOffset.value = response.exp_offset;
+
+        // router.push({
+        //   query: {
+        //     token: jwtVerifyEmail.value,
+        //   },
+        // });
+      } else if (response?.isWrongPassword == true) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Sai mật khẩu.',
+          showClose: false,
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      } else if (response?.isSended == false) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Gửi Email thất bại.',
+          showClose: false,
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      }
+    })
+    .catch((e) => {
+      ElNotification.error({
+        title: 'Thất bại!',
+        message: 'Some thing went wrong.',
+        showClose: false,
+        icon: () =>
+          h(CloseCircleFilled, {
+            style: 'color: red',
+          }),
+      });
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingResend.value = false;
+    });
+};
 
 const handleClickBack = () => {
   showAnimation.value = false;

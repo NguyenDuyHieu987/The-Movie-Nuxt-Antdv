@@ -58,7 +58,7 @@ export function verifyEmail(params: any, type: string) {
   switch (type) {
     case 'change-password':
       bodyFormData.append('old_password', params.oldPassword);
-      bodyFormData.append('new_password', params.confirmNewPassword);
+      bodyFormData.append('new_password', params.newPassword);
       break;
   }
 

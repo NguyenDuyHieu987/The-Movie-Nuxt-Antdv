@@ -238,7 +238,6 @@ watch(isShowForm, () => {
 });
 
 watch(disabled_countdown, () => {
-  // alert('g');
   if (disabled_countdown.value == true) {
     let a = props.otpExpOffset;
     const interval = setInterval(() => {

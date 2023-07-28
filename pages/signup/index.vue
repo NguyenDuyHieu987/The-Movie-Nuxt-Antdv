@@ -323,10 +323,10 @@ const handleSignUp = (e: any) => {
               style: 'color: red',
             }),
         });
-      } else if (response?.isVerify === true) {
+      } else if (response?.isSended === true) {
         ElNotification.success({
           title: 'Thành công!',
-          message: `Mã xác nhận đã được gửi đến đến email: ${formSignup.email}.`,
+          message: `Mã xác nhận đã được gửi đến đến Email: ${formSignup.email}.`,
           showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
@@ -359,10 +359,10 @@ const handleSignUp = (e: any) => {
               style: 'color: red',
             }),
         });
-      } else if (response?.isSendEmail == false) {
+      } else if (response?.isSended == false) {
         ElNotification.error({
           title: 'Thất bại!',
-          message: 'Gửi email thất bại.',
+          message: 'Gửi Email thất bại.',
           showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
@@ -403,9 +403,7 @@ const handleResendVerifyEmail = () => {
     .then((response: any) => {
       // console.log(response);
 
-      if (response?.isVerify === true) {
-        disabled_countdown.value = true;
-
+      if (response?.isSended === true) {
         ElNotification.success({
           title: 'Thành công!',
           message: `Mã xác nhận đã được gửi đến đến email: ${formSignup.email}.`,
@@ -416,6 +414,8 @@ const handleResendVerifyEmail = () => {
             }),
           duration: 7000,
         });
+
+        disabled_countdown.value = true;
 
         jwtVerifyEmail.value = response.headers.get('Authorization');
         otpExpOffset.value = response.exp_offset;
@@ -445,7 +445,7 @@ const handleResendVerifyEmail = () => {
               style: 'color: red',
             }),
         });
-      } else if (response?.isSendEmail == false) {
+      } else if (response?.isSended == false) {
         ElNotification.error({
           title: 'Thất bại!',
           message: 'Gửi email thất bại.',
