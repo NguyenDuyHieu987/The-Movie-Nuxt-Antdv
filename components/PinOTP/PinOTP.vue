@@ -71,9 +71,12 @@ const pin = defineModel('pin', {
 
 onMounted(() => {
   document.querySelectorAll('input[type="number"]').forEach((input: any) => {
-    input.oninput = () => {
-      if (input.value.length >= input.value.maxlength) {
-        input.value = input.value.slice(0, input.value.maxlength);
+    input.oninput = (e: any) => {
+      if (
+        input.value.length >= +input.getAttribute('maxlength') &&
+        !isNaN(input.value)
+      ) {
+        input.value = input.value.slice(0, +input.getAttribute('maxlength'));
       }
     };
   });
