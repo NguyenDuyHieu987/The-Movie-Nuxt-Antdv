@@ -479,7 +479,7 @@ const handleVerify = (formVerify: any) => {
 
   signUp({
     otp: formVerify.otp,
-    user_token: jwtVerifyEmail.value,
+    jwtVerifyEmail: jwtVerifyEmail.value,
   })
     .then((response) => {
       // console.log(response);

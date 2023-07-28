@@ -61,7 +61,8 @@ const getData = async () => {
       user_token: utils.localStorage.getWithExpiry('userAccount')?.user_token,
     })
       .then((accountResponse: any) => {
-        // console.log(accountResponse.data?.result);
+        // console.log(accountResponse);
+
         if (accountResponse?.isLogin == true) {
           store.isLogin = true;
           store.userAccount = accountResponse?.result;

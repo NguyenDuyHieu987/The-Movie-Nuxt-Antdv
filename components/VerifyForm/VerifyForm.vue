@@ -86,15 +86,18 @@
               message: 'Mã xác nhận phải là 6 số!',
               min: 6,
               max: 6,
+              len: 6,
+              validator: checkPinOTP,
               trigger: ['change', 'blur'],
             },
           ]"
         >
-          <a-input
+          <a-input-number
             v-model:value="formVerify.otp"
-            ref="otpRef"
-            placeholder="Mã xác nhận..."
             type="number"
+            placeholder="Mã xác nhận..."
+            :min="0"
+            :controls="false"
             allowClear
           >
             <template #prefix>
@@ -122,7 +125,7 @@
                   />
                 </svg> -->
             </template>
-          </a-input>
+          </a-input-number>
 
           <a-button
             type="link"
@@ -136,6 +139,66 @@
 
             <span v-if="!loadingResend"> {{ countdown }}</span>
           </a-button>
+        </a-form-item>
+
+        <a-form-item
+          name="pin-otp"
+          class="pin-otp"
+          :rules="[
+            {
+              required: true,
+              message: 'Vui lòng nhập mã xác nhận!',
+              trigger: ['change', 'blur'],
+            },
+            {
+              message: 'Mã xác nhận phải là 6 số!',
+              min: 6,
+              max: 6,
+              trigger: ['change', 'blur'],
+            },
+          ]"
+        >
+          <a-input-number
+            v-model:value="formVerify.pin[0]"
+            type="number"
+            :controls="false"
+            :maxlength="1"
+          />
+
+          <a-input-number
+            v-model:value="formVerify.pin[1]"
+            type="number"
+            :controls="false"
+            :maxlength="1"
+          />
+
+          <a-input-number
+            v-model:value="formVerify.pin[2]"
+            type="number"
+            :controls="false"
+            :maxlength="1"
+          />
+
+          <a-input-number
+            v-model:value="formVerify.pin[3]"
+            type="number"
+            :controls="false"
+            :maxlength="1"
+          />
+
+          <a-input-number
+            v-model:value="formVerify.pin[4]"
+            type="number"
+            :controls="false"
+            :maxlength="1"
+          />
+
+          <a-input-number
+            v-model:value="formVerify.pin[5]"
+            type="number"
+            :controls="false"
+            :maxlength="1"
+          />
         </a-form-item>
 
         <a-form-item>
@@ -184,9 +247,15 @@ const isShowForm = defineModel('isShowForm', {
   type: Boolean,
   default: true,
 });
-const formVerify = reactive<any>({
+const formVerify = reactive<{
+  email: string | undefined;
+  otp: number | null;
+  pin: number[] | null[];
+  otpExpOffset: number;
+}>({
   email: props.email,
-  otp: '',
+  otp: null,
+  pin: [null, null, null, null, null, null],
   otpExpOffset: props.otpExpOffset,
 });
 const countdown = ref<string>(props.otpExpOffset + ' s');
@@ -204,7 +273,7 @@ const loadingVerify = defineModel('loadingVerify', {
 });
 
 const disabledVerifyEmail = computed<boolean>((): boolean => {
-  return !(formVerify.email && formVerify.otp.length == 6);
+  return !(formVerify.email && formVerify.otp?.toString().length == 6);
 });
 
 watch(
@@ -256,6 +325,14 @@ watch(disabled_countdown, () => {
 });
 
 onBeforeMount(() => {});
+
+const checkPinOTP = async (_rule: any, value: number) => {
+  if (value.toString().length != 6) {
+    return Promise.reject('Mã xác nhận phải là 6 số!');
+  } else {
+    return Promise.resolve();
+  }
+};
 
 const handleVerify = () => {
   emits('onVerify', {

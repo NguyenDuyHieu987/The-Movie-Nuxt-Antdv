@@ -1,16 +1,15 @@
 import { makeRequest } from './makeRequest';
 
 export function ChangePassword(params: {
-  oldPassword: string;
-  newPassword: string;
+  otp: string;
+  jwtVerifyEmail: string;
 }) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${params.jwtVerifyEmail}`,
   };
 
   const bodyFormData = new FormData();
-  bodyFormData.append('old_password', params.oldPassword);
-  bodyFormData.append('new_password', params.newPassword);
+  bodyFormData.append('otp', params.otp);
 
   return makeRequest(`/account/change-password`, {
     method: 'POST',
@@ -19,13 +18,13 @@ export function ChangePassword(params: {
   });
 }
 
-export function ChangeEmail(params: { newEmail: string }) {
+export function ChangeEmail(params: { otp: string; jwtVerifyEmail: string }) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${params.jwtVerifyEmail}`,
   };
 
   const bodyFormData = new FormData();
-  bodyFormData.append('new_email', params.newEmail);
+  bodyFormData.append('new_email', params.otp);
 
   return makeRequest(`/account/change-email`, {
     method: 'POST',
@@ -59,6 +58,8 @@ export function verifyEmail(params: any, type: string) {
     case 'change-password':
       bodyFormData.append('old_password', params.oldPassword);
       bodyFormData.append('new_password', params.newPassword);
+      break;
+    case 'change-email':
       break;
   }
 

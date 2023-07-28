@@ -60,7 +60,7 @@
                     <span class="label">Họ và tên: </span>
                     <span> {{ userAccount?.full_name }}</span>
                   </div>
-                  <div class="right">
+                  <div v-show="userAccount?.auth_type == 'email'" class="right">
                     <NuxtLink
                       class="click-active"
                       to="/YourAccount/ChangeFullname"
@@ -75,7 +75,7 @@
                     <span class="label">Mật khẩu: </span>
                     <span>**********</span>
                   </div>
-                  <div class="right">
+                  <div v-show="userAccount?.auth_type == 'email'" class="right">
                     <NuxtLink
                       class="click-active"
                       to="/YourAccount/ChangePassword"

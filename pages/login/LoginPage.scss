@@ -115,6 +115,14 @@
             // border-color: var(--app-background-color);
           }
 
+          &.ant-btn-loading {
+            span {
+              margin-left: 0px;
+              margin-right: auto;
+              width: auto;
+            }
+          }
+
           span {
             margin-left: 0px;
             width: 100%;

@@ -46,14 +46,18 @@
                     message: 'Vui lòng nhập mật khẩu!',
                     trigger: ['change', 'blur'],
                   },
+                  // {
+                  //   message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
+                  //   min: 6,
+                  //   trigger: ['change', 'blur'],
+                  // },
                 ]"
                 has-feedback
               >
                 <a-input-password
                   v-model:value="formChangePassword.oldPassword"
                   placeholder="Mật khẩu cũ..."
-                >
-                </a-input-password>
+                />
               </a-form-item>
 
               <a-form-item label="Mật khẩu mới" name="newPassword" has-feedback>
@@ -72,8 +76,7 @@
                 <a-input-password
                   v-model:value="formChangePassword.confirmNewPassword"
                   placeholder="Xác nhận lại mật khẩu..."
-                >
-                </a-input-password>
+                />
               </a-form-item>
 
               <a-form-item>
@@ -107,7 +110,7 @@
 
               <p>
                 Mã xác nhận sẽ được gửi đến Email:
-                {{ store.userAccount?.email }}
+                <strong> {{ store.userAccount?.email }}</strong>
               </p>
             </template>
           </VerifyForm>
@@ -122,7 +125,7 @@
 import axios from 'axios';
 import VerifyForm from '~/components/VerifyForm/VerifyForm.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
-import { verifyEmail } from '~/services/account';
+import { verifyEmail, ChangePassword } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { ElNotification } from 'element-plus';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
@@ -215,11 +218,11 @@ const rules = {
       message: 'Vui lòng nhập mật khẩu!',
       trigger: ['change', 'blur'],
     },
-    {
-      message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
-      min: 6,
-      trigger: ['change', 'blur'],
-    },
+    // {
+    //   message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
+    //   min: 6,
+    //   trigger: ['change', 'blur'],
+    // },
     {
       validator: checkNewPassword,
       trigger: ['change', 'blur'],
@@ -236,6 +239,12 @@ const rules = {
       trigger: ['change', 'blur'],
     },
   ],
+};
+
+const reset = () => {
+  formChangePassword.oldPassword = '';
+  formChangePassword.newPassword = '';
+  formChangePassword.confirmNewPassword = '';
 };
 
 const handleSubmit = () => {
@@ -316,7 +325,74 @@ const handleSubmit = () => {
     });
 };
 
-const handleVerify = () => {};
+const handleVerify = (formVerify: any) => {
+  ChangePassword({
+    otp: formVerify.otp,
+    jwtVerifyEmail: jwtVerifyEmail.value,
+  })
+    .then((response: any) => {
+      // console.log(response);
+      if (response?.success == true) {
+        ElNotification.success({
+          title: 'Thành công!',
+          message: 'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
+          showClose: false,
+          icon: () =>
+            h(CheckCircleFilled, {
+              style: 'color: green',
+            }),
+        });
+
+        navigateTo({ path: '/YourAccount' });
+        reset();
+      } else if (response?.isInvalidOTP == true) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Mã xác nhận không đúng.',
+          showClose: false,
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      } else if (response?.isOTPExpired == true) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Mã xác nhận đã hết hạn.',
+          showClose: false,
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      } else if (response?.success == false) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Some thing went wrong.',
+          showClose: false,
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      }
+    })
+    .catch((e) => {
+      ElNotification.error({
+        title: 'Thất bại!',
+        message: 'Some thing went wrong.',
+        showClose: false,
+        icon: () =>
+          h(CloseCircleFilled, {
+            style: 'color: red',
+          }),
+      });
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingResend.value = false;
+    });
+};
 
 const handleResendVerifyEmail = () => {
   loadingResend.value = true;

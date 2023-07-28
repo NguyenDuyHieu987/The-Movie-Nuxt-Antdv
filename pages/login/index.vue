@@ -42,6 +42,11 @@
               required: true,
               message: 'Vui lòng nhập mật khẩu!',
               trigger: ['change', 'blur'],
+              // {
+              //   message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
+              //   min: 6,
+              //   trigger: ['change', 'blur'],
+              // },
             },
           ]"
         >
@@ -222,7 +227,6 @@ const handleSubmit = () => {
     email: formLogin.username,
     password: utils.encryptPassword(formLogin.password),
     // password: md5(formLogin.password),
-    // user_token: randomToken(40),
   })
     .then((response: any) => {
       if (response?.isLogin == true) {

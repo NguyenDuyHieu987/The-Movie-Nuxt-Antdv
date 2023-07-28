@@ -433,7 +433,34 @@
     }
 
     .ant-col.ant-form-item-control {
+      font-size: inherit;
       flex: 0 1 auto;
+
+      .ant-form-item-control-input-content {
+        font-size: inherit;
+
+        .ant-input-affix-wrapper {
+          font-size: inherit;
+
+          input {
+            font-size: inherit;
+          }
+        }
+
+        .ant-input-number-affix-wrapper {
+          font-size: inherit;
+          box-shadow: none;
+
+          .ant-input-number {
+            font-size: inherit;
+
+            .ant-input-number-input-wrap,
+            input {
+              height: 100%;
+            }
+          }
+        }
+      }
 
       .ant-form-item-control-input {
         min-height: auto;
@@ -442,9 +469,11 @@
       .ant-input-affix-wrapper {
         background-color: transparent;
         padding: 7px 11px;
+        box-shadow: none;
 
         input {
           font-size: 1.5rem;
+          line-height: var(--line-height-regular);
         }
 
         .ant-input-prefix {

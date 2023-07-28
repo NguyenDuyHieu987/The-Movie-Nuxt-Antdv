@@ -68,6 +68,41 @@
               //   color: #b3b3b3;
               // }
             }
+
+            .ant-input-number-affix-wrapper {
+              width: 100%;
+            }
+          }
+        }
+
+        &.pin-otp {
+          .ant-col.ant-form-item-control {
+            .ant-form-item-control-input-content {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: nowrap;
+              gap: 10px;
+
+              .ant-input-number {
+                border-color: transparent;
+                box-shadow: none;
+                border-radius: 2px;
+                border-bottom-color: #fff;
+                background-color: #202020;
+                font-size: 4rem;
+
+                input {
+                  text-align: center;
+                  height: 50px;
+                }
+
+                &.ant-input-number-focused {
+                  .ant-input-number-input-wrap {
+                    outline: 1px solid var(--app-background-color);
+                  }
+                }
+              }
+            }
           }
         }
       }

@@ -401,10 +401,12 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: auto;
   color: var(--text-color);
   transition: all 0.15s;
   font-size: 1.5rem;
   box-shadow: none;
+  line-height: var(--line-height-regular);
 
   &:hover {
     background-color: var(--btn-backgroud-color-gray-hover);
