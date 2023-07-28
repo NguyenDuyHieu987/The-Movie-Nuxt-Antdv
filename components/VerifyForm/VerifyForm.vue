@@ -1,6 +1,31 @@
 <template>
-  <Transition name="slide-left">
+  <div
+    v-show="showAnimation"
+    class="verify-email"
+    :class="{ active: isShowForm }"
+  >
     <div v-show="isShowForm" class="verify-form-container">
+      <a-button
+        class="back-btn click-active"
+        type="text"
+        @click="handleClickBack"
+      >
+        <template #icon>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="2rem"
+            height="2rem"
+            role="img"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M20 11H7.83l5.59-5.59L12 4l-8 8l8 8l1.41-1.41L7.83 13H20v-2z"
+            />
+          </svg>
+        </template>
+        <span> Quay lại</span>
+      </a-button>
       <a-form
         :model="formVerify"
         name="verify-form"
@@ -8,9 +33,9 @@
         @finish="handleVerify"
         hideRequiredMark
       >
-        <h1 class="title-verify gradient-title-default">
-          <span> Xác nhận Email</span>
-        </h1>
+        <div class="title-verify">
+          <slot name="title" />
+        </div>
 
         <a-form-item
           class="email-form-item"
@@ -85,17 +110,17 @@
               </svg>
 
               <!-- <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1.6rem"
-                height="1.6rem"
-                viewBox="0 0 15 15"
-              >
-                <path
-                  fill="none"
-                  stroke="var(--text-color)"
-                  d="M6 5.5h3m-1.5 0V10m3 0V7.5m0 0v-2h1a1 1 0 1 1 0 2h-1Zm-6-1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 2 0Zm-3-6h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1v-12a1 1 0 0 1 1-1Z"
-                />
-              </svg> -->
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.6rem"
+                  height="1.6rem"
+                  viewBox="0 0 15 15"
+                >
+                  <path
+                    fill="none"
+                    stroke="var(--text-color)"
+                    d="M6 5.5h3m-1.5 0V10m3 0V7.5m0 0v-2h1a1 1 0 1 1 0 2h-1Zm-6-1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 2 0Zm-3-6h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1v-12a1 1 0 0 1 1-1Z"
+                  />
+                </svg> -->
             </template>
           </a-input>
 
@@ -127,7 +152,7 @@
         </a-form-item>
       </a-form>
     </div>
-  </Transition>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -147,9 +172,14 @@ const props = defineProps({
 const emits = defineEmits<{
   onVerify: [form: any];
   onResend: [];
+  onClickBack: [];
 }>();
 
 const route = useRoute();
+const showAnimation = defineModel('showAnimation', {
+  type: Boolean,
+  default: true,
+});
 const isShowForm = defineModel('isShowForm', {
   type: Boolean,
   default: true,
@@ -237,6 +267,10 @@ const handleVerify = () => {
 
 const handleResendVerifyEmail = () => {
   emits('onResend');
+};
+
+const handleClickBack = () => {
+  emits('onClickBack');
 };
 </script>
 

@@ -110,6 +110,7 @@ import { ElDrawer } from 'element-plus';
 
 const store = useStore();
 const { collapsed, isLogin, openDrawer, userAccount } = storeToRefs<any>(store);
+const route = useRoute();
 const router = useRouter();
 
 onMounted(() => {

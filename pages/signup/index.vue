@@ -1,17 +1,5 @@
 <template>
   <div class="signup-container">
-    <VerifyForm
-      v-model:isShowForm="isSignUp"
-      :email="formSignup.email"
-      :jwtVerifyEmail="jwtVerifyEmail"
-      :otpExpOffset="otpExpOffset"
-      v-model:loadingResend="loadingResend"
-      v-model:disabled_countdown="disabled_countdown"
-      v-model:loadingVerify="loadingVerify"
-      @onVerify="handleVerify"
-      @onResend="handleResendVerifyEmail"
-    />
-
     <div v-show="!isSignUp" class="signup-form-container">
       <a-form
         :model="formSignup"
@@ -166,6 +154,28 @@
         </div>
       </a-form>
     </div>
+
+    <Transition appear name="slide-left">
+      <VerifyForm
+        v-model:showAnimation="showAnimation"
+        v-model:isShowForm="isSignUp"
+        :email="formSignup.email"
+        :jwtVerifyEmail="jwtVerifyEmail"
+        :otpExpOffset="otpExpOffset"
+        v-model:loadingResend="loadingResend"
+        v-model:disabled_countdown="disabled_countdown"
+        v-model:loadingVerify="loadingVerify"
+        @onVerify="handleVerify"
+        @onResend="handleResendVerifyEmail"
+        @click="handleClickBack"
+      >
+        <template #title>
+          <h1 class="gradient-title-default">
+            <span> Xác nhận Email</span>
+          </h1>
+        </template>
+      </VerifyForm>
+    </Transition>
   </div>
 </template>
 
@@ -220,6 +230,7 @@ const jwtVerifyEmail = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
 const otpExpOffset = ref<number>(60);
+const showAnimation = ref<boolean>(false);
 
 onMounted(() => {});
 
@@ -332,8 +343,12 @@ const handleSignUp = (e: any) => {
         //     token: jwtVerifyEmail.value,
         //   },
         // });
+        showAnimation.value = false;
 
-        isSignUp.value = true;
+        setTimeout(() => {
+          showAnimation.value = true;
+          isSignUp.value = true;
+        }, 300);
       } else if (response?.isEmailExist == true) {
         ElNotification.error({
           title: 'Thất bại!',
@@ -528,6 +543,15 @@ const handleVerify = (formVerify: any) => {
     .finally(() => {
       loadingVerify.value = false;
     });
+};
+
+const handleClickBack = () => {
+  showAnimation.value = false;
+
+  setTimeout(() => {
+    showAnimation.value = true;
+    isSignUp.value = false;
+  }, 300);
 };
 </script>
 

@@ -1,80 +1,98 @@
-.verify-form-container {
-  position: relative;
-  margin: auto auto;
-  background-color: transparent;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 5px;
-  box-shadow: var(--box-shadow-large);
-  z-index: 11;
-  max-height: 95vh;
-  background-color: var(--background-content-color);
-  width: 550px;
-  min-height: 400px;
-  overflow: hidden;
-  transition: all 0s;
+.verify-email {
+  &.active {
+    margin: auto auto;
+  }
 
-  .verify-form {
-    position: absolute;
-    inset: 3px;
-    z-index: 3;
+  .verify-form-container {
+    position: relative;
+    margin: auto auto;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-large);
+    z-index: 11;
+    max-height: 95vh;
     background-color: var(--background-content-color);
-    padding: 30px 70px;
+    width: 550px;
+    min-height: 400px;
+    overflow: hidden;
+    transition: all 0s;
 
-    .title-verify {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 2.7rem;
-      margin-top: 0px;
+    .back-btn {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top: 6px;
+      left: 10px;
+      padding: 0px;
+
+      svg {
+        margin-right: 2px;
+        width: 2rem;
+        height: 2rem;
+      }
     }
 
-    .ant-input-affix-wrapper {
-      background: transparent;
+    .verify-form {
+      background-color: var(--background-content-color);
+      padding: 30px 70px;
 
-      input,
-      .ant-input-prefix {
-        color: var(--text-color);
+      .title-verify {
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 0px;
+
+        h1 {
+          font-size: 2.7rem;
+        }
       }
 
-      &:hover {
+      .ant-input-affix-wrapper {
+        background: transparent;
+
+        input,
+        .ant-input-prefix {
+          color: var(--text-color);
+        }
+
+        &:hover {
+          background: transparent;
+        }
+      }
+
+      .ant-input-affix-wrapper-focused {
         background: transparent;
       }
-    }
 
-    .ant-input-affix-wrapper-focused {
-      background: transparent;
-    }
+      .ant-row.ant-form-item {
+        .ant-col.ant-form-item-control {
+          .ant-form-item-control-input-content {
+            display: flex;
+            flex-direction: row;
 
-    .ant-row.ant-form-item {
-      .ant-col.ant-form-item-control {
-        .ant-form-item-control-input-content {
-          display: flex;
-          flex-direction: row;
+            .count-down-button {
+              min-width: 100px;
+              background-color: transparent;
 
-          .count-down-button {
-            min-width: 100px;
-            background-color: transparent;
-
-            // &[disabled] {
-            //   color: #b3b3b3;
-            // }
+              // &[disabled] {
+              //   color: #b3b3b3;
+              // }
+            }
           }
         }
       }
-    }
 
-    .verify-form-button {
-      font-size: 1.5rem;
-      margin-top: 20px;
-      width: 100%;
+      .verify-form-button {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        width: 100%;
 
-      &:not(:disabled) {
-        background-color: var(--app-background-color);
-      }
+        &:not(:disabled) {
+          background-color: var(--app-background-color);
+        }
 
-      &:disabled {
-        // background-color: transparent;
+        &:disabled {
+          // background-color: transparent;
+        }
       }
     }
   }

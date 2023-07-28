@@ -4,6 +4,24 @@
       <Transition appear name="slide-left">
         <div v-show="showAnimation">
           <div v-show="!isChangePassword">
+            <a-button class="back-page-btn click-active" type="text">
+              <template #icon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2rem"
+                  height="2rem"
+                  role="img"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M20 11H7.83l5.59-5.59L12 4l-8 8l8 8l1.41-1.41L7.83 13H20v-2z"
+                  />
+                </svg>
+              </template>
+              <NuxtLink to="/YourAccount"> Tài khoản</NuxtLink>
+            </a-button>
+
             <div class="changePass-header">
               <h1>Đổi mật khẩu của bạn</h1>
               <p>
@@ -64,7 +82,7 @@
                   type="primary"
                   html-type="submit"
                   size="large"
-                  :loading="laoding"
+                  :loading="loadingChangePassword"
                 >
                   Đổi mật khẩu
                 </a-button>
@@ -74,7 +92,7 @@
 
           <VerifyForm
             v-model:isShowForm="isChangePassword"
-            :email="formChangePassword.email"
+            :email="store.userAccount?.email"
             :jwtVerifyEmail="jwtVerifyEmail"
             :otpExpOffset="otpExpOffset"
             v-model:loadingResend="loadingResend"
@@ -82,7 +100,17 @@
             v-model:loadingVerify="loadingVerify"
             @onVerify="handleVerify"
             @onResend="handleResendVerifyEmail"
-          />
+            @onClickBack="handleClickBack"
+          >
+            <template #title>
+              <h1>Xác nhận Email</h1>
+
+              <p>
+                Mã xác nhận sẽ được gửi đến Email:
+                {{ store.userAccount?.email }}
+              </p>
+            </template>
+          </VerifyForm>
         </div>
       </Transition>
     </div>
@@ -91,9 +119,13 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
 import VerifyForm from '~/components/VerifyForm/VerifyForm.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
+import { verifyEmail } from '~/services/authentication';
 import { storeToRefs } from 'pinia';
+import { ElNotification } from 'element-plus';
+import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
 definePageMeta({
   pageTransition: {
@@ -102,15 +134,14 @@ definePageMeta({
 });
 
 const store: any = useStore();
+const utils = useUtils();
 const { isLogin } = storeToRefs<any>(store);
-const laoding = ref<boolean>(false);
+const loadingChangePassword = ref<boolean>(false);
 const formChangePassword = reactive<{
-  email: string;
   oldPassword: string;
   newPassword: string;
   confirmNewPassword: string;
 }>({
-  email: store.userAccount?.email,
   oldPassword: '',
   newPassword: '',
   confirmNewPassword: '',
@@ -208,12 +239,102 @@ const rules = {
 };
 
 const handleSubmit = () => {
-  isChangePassword.value = true;
+  showAnimation.value = false;
+
+  verifyEmail({
+    oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
+    newPassword: utils.encryptPassword(formChangePassword.newPassword),
+  })
+    .then((response: any) => {
+      // console.log(response);
+
+      if (response?.isInValidEmail == true) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Email không tồn tại.',
+          showClose: false,
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      } else if (response?.isVerify === true) {
+        ElNotification.success({
+          title: 'Thành công!',
+          message: `Mã xác nhận đã được gửi đến đến email: ${store.userAccount?.email}.`,
+          showClose: false,
+          icon: () =>
+            h(CheckCircleFilled, {
+              style: 'color: green',
+            }),
+          duration: 7000,
+        });
+
+        jwtVerifyEmail.value = response.headers.get('Authorization');
+        otpExpOffset.value = response.exp_offset;
+
+        // router.push({
+        //   query: {
+        //     token: jwtVerifyEmail.value,
+        //   },
+        // });
+        showAnimation.value = false;
+
+        setTimeout(() => {
+          showAnimation.value = true;
+          isChangePassword.value = true;
+        }, 300);
+      } else if (response?.isEmailExist == true) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Email đã được đăng ký.',
+          showClose: false,
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      } else if (response?.isSendEmail == false) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Gửi email thất bại.',
+          showClose: false,
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      }
+    })
+    .catch((e) => {
+      ElNotification.error({
+        title: 'Thất bại!',
+        message: 'Some thing went wrong.',
+        showClose: false,
+        icon: () =>
+          h(CloseCircleFilled, {
+            style: 'color: red',
+          }),
+      });
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingChangePassword.value = false;
+    });
 };
 
 const handleVerify = () => {};
 
 const handleResendVerifyEmail = () => {};
+
+const handleClickBack = () => {
+  showAnimation.value = false;
+
+  setTimeout(() => {
+    showAnimation.value = true;
+    isChangePassword.value = false;
+  }, 300);
+};
 </script>
 
 <style lang="scss" src="./ChangePasswordPage.scss"></style>

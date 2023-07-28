@@ -10,7 +10,6 @@ export function LogIn(params: any) {
   const bodyFormData = new FormData();
   bodyFormData.append('email', params.email);
   bodyFormData.append('password', params.password);
-  // bodyFormData.append('user_token', params.user_token);
 
   return makeRequest(`/auth/login`, {
     method: 'POST',
@@ -37,7 +36,6 @@ export function loginGoogle(params: any) {
 }
 
 export function getUserToken(params: any) {
-  // bodyFormData.append('user_token', params.user_token);
   const headers = { Authorization: `Bearer ${params.user_token}` };
 
   return makeRequest(`/auth/getusertoken`, {
@@ -54,7 +52,6 @@ export function verifyEmail(params: any) {
   bodyFormData.append('password', params.password);
   bodyFormData.append('full_name', params.full_name);
   bodyFormData.append('avatar', params.avatar);
-  // bodyFormData.append('user_token', params.user_token);
 
   return makeRequest(`/auth/verify/email`, {
     method: 'POST',
@@ -70,7 +67,6 @@ export function verifyEmail(params: any) {
 //   bodyFormData.append('password', params.password);
 //   bodyFormData.append('full_name', params.full_name);
 //   bodyFormData.append('avatar', params.avatar);
-//   // bodyFormData.append('user_token', params.user_token);
 
 //   return  axios.post(`/auth/signup`, bodyFormData);
 // };
@@ -79,7 +75,6 @@ export function signUp(params: any) {
   const bodyFormData = new FormData();
   bodyFormData.append('otp', params.otp);
 
-  // bodyFormData.append('user_token', params.user_token);
   const headers = { Authorization: `Bearer ${params.user_token}` };
 
   return makeRequest(`/auth/signup`, {

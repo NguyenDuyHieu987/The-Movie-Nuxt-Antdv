@@ -14,14 +14,23 @@
             <div class="account-grid-row info-account">
               <div class="row-label">
                 <span>Thông tin tài khoản</span>
-                <!-- <Teleport to="#danger-zone" :disabled="!responesive"> </Teleport> -->
-                <a-button
-                  class="delete-account-btn"
-                  type="text"
-                  @click="deleteAccount"
-                >
-                  Xóa tài khoản
-                </a-button>
+                <Teleport to="#bottom-zone" :disabled="!responesive">
+                  <!-- <a-button
+                    class="delete-account-btn"
+                    type="text"
+                    @click="deleteAccount"
+                  >
+                    Xóa tài khoản
+                  </a-button> -->
+
+                  <a-button
+                    class="switch-account-btn click-active"
+                    type="text"
+                    @click="navigateTo('/login')"
+                  >
+                    Chuyển tài khoản
+                  </a-button>
+                </Teleport>
               </div>
               <div class="row-content">
                 <div class="row-content-item">
@@ -113,9 +122,13 @@
               </div>
             </div>
           </section>
-        </div>
 
-        <!-- <div id="danger-zone"></div> -->
+          <div id="bottom-zone" class="bottom-zone">
+            <a-button class="logout-btn click-active" type="text">
+              <NuxtLink to="/login" @click="handleLogout">Đăng xuất</NuxtLink>
+            </a-button>
+          </div>
+        </div>
       </Transition>
     </div>
 
@@ -184,6 +197,19 @@ const deleteAccount = () => {
     },
     onCancel() {},
   });
+};
+
+const handleLogout = () => {
+  if (isLogin) {
+    store.userAccount = {};
+    store.isLogin = false;
+    store.role = 'normal';
+
+    window.localStorage.removeItem('userAccount');
+    window.localStorage.removeItem('userToken');
+    window.localStorage.removeItem('remember');
+    window.localStorage.removeItem('isLogin');
+  }
 };
 </script>
 

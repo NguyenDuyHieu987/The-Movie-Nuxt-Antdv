@@ -398,6 +398,9 @@ svg {
 }
 
 .ant-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text-color);
   transition: all 0.15s;
   font-size: 1.5rem;
@@ -462,6 +465,7 @@ svg {
   &.default {
     display: flex;
     align-items: center;
+    justify-content: center;
     border-color: var(--border-regular);
     font-size: 1.5rem;
     color: var(--text-color);
@@ -500,12 +504,12 @@ svg {
   }
 
   &.modern {
-    color: var(--text-color);
-    background-color: transparent;
     display: flex;
-    font-size: 1.5rem;
     align-items: center;
     justify-content: center;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    background-color: transparent;
     border-color: transparent;
     height: 100%;
     // padding: 0.35vw 1.5vw;
@@ -628,4 +632,23 @@ svg {
 .change-page {
   max-width: 700px;
   margin: 0px auto;
+
+  .back-page-btn {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    margin-bottom: 10px;
+    font-size: inherit;
+
+    svg {
+      margin-right: 3px;
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+
+    a {
+      font-size: 1.8rem;
+      color: var(--text-color);
+    }
+  }
 }
