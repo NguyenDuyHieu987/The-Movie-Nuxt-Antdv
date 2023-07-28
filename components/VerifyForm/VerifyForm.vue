@@ -147,6 +147,10 @@
           <PinOTP v-model:pin="formVerify.pin" />
         </a-form-item>
 
+        <button @click="formVerify.pin = [null, null, null, null, null, null]">
+          Reset
+        </button>
+
         <a-form-item>
           <a-button
             class="verify-form-button click-active"
