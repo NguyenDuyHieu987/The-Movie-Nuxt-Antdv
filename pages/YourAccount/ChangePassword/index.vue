@@ -122,7 +122,7 @@
 import axios from 'axios';
 import VerifyForm from '~/components/VerifyForm/VerifyForm.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
-import { verifyEmail } from '~/services/authentication';
+import { verifyEmail } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { ElNotification } from 'element-plus';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
@@ -241,10 +241,13 @@ const rules = {
 const handleSubmit = () => {
   showAnimation.value = false;
 
-  verifyEmail({
-    oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
-    newPassword: utils.encryptPassword(formChangePassword.newPassword),
-  })
+  verifyEmail(
+    {
+      oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
+      newPassword: utils.encryptPassword(formChangePassword.newPassword),
+    },
+    'change-password'
+  )
     .then((response: any) => {
       // console.log(response);
 

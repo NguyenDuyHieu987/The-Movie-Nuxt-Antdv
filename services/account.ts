@@ -48,3 +48,23 @@ export function ChangeFullname(params: { newFullname: string }) {
     data: bodyFormData,
   });
 }
+
+export function verifyEmail(params: any, type: string) {
+  const headers = {
+    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+  };
+  const bodyFormData = new FormData();
+
+  switch (type) {
+    case 'change-password':
+      bodyFormData.append('old_password', params.oldPassword);
+      bodyFormData.append('new_password', params.confirmNewPassword);
+      break;
+  }
+
+  return makeRequest(`/account/verify/email/${type}`, {
+    method: 'POST',
+    headers: headers,
+    data: bodyFormData,
+  });
+}
