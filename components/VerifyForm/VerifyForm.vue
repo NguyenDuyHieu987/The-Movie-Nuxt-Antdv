@@ -111,19 +111,6 @@
                   d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm7 10c0 4.52-2.98 8.69-7 9.93c-4.02-1.24-7-5.41-7-9.93V6.3l7-3.11l7 3.11V11zm-11.59.59L6 13l4 4l8-8l-1.41-1.42L10 14.17z"
                 />
               </svg>
-
-              <!-- <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1.6rem"
-                  height="1.6rem"
-                  viewBox="0 0 15 15"
-                >
-                  <path
-                    fill="none"
-                    stroke="var(--text-color)"
-                    d="M6 5.5h3m-1.5 0V10m3 0V7.5m0 0v-2h1a1 1 0 1 1 0 2h-1Zm-6-1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 2 0Zm-3-6h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1v-12a1 1 0 0 1 1-1Z"
-                  />
-                </svg> -->
             </template>
           </a-input-number>
 
@@ -135,15 +122,14 @@
             :loading="loadingResend"
             class="count-down-button"
           >
-            <!-- :class="{ disabled: disabled_countdown }" -->
-
             <span v-if="!loadingResend"> {{ countdown }}</span>
           </a-button>
         </a-form-item>
 
         <a-form-item
-          name="pin-otp"
-          class="pin-otp"
+          class="pin"
+          name="pin"
+          label="Mã xác nhận:"
           :rules="[
             {
               required: true,
@@ -158,47 +144,7 @@
             },
           ]"
         >
-          <a-input-number
-            v-model:value="formVerify.pin[0]"
-            type="number"
-            :controls="false"
-            :maxlength="1"
-          />
-
-          <a-input-number
-            v-model:value="formVerify.pin[1]"
-            type="number"
-            :controls="false"
-            :maxlength="1"
-          />
-
-          <a-input-number
-            v-model:value="formVerify.pin[2]"
-            type="number"
-            :controls="false"
-            :maxlength="1"
-          />
-
-          <a-input-number
-            v-model:value="formVerify.pin[3]"
-            type="number"
-            :controls="false"
-            :maxlength="1"
-          />
-
-          <a-input-number
-            v-model:value="formVerify.pin[4]"
-            type="number"
-            :controls="false"
-            :maxlength="1"
-          />
-
-          <a-input-number
-            v-model:value="formVerify.pin[5]"
-            type="number"
-            :controls="false"
-            :maxlength="1"
-          />
+          <PinOTP v-model:pin="formVerify.pin" />
         </a-form-item>
 
         <a-form-item>
@@ -219,6 +165,8 @@
 </template>
 
 <script setup lang="ts">
+import PinOTP from '~/components/PinOTP/PinOTP.vue';
+
 const props = defineProps({
   email: {
     type: String,
