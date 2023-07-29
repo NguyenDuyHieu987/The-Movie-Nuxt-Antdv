@@ -6,7 +6,7 @@
           :model="formLogin"
           name="login-form"
           class="login-form"
-          @finish="handleSubmit"
+          @finish="handleLogin"
           hideRequiredMark
         >
           <h1 class="title-login gradient-title-default">
@@ -99,7 +99,7 @@
               class="facebook-login-btn"
               size="large"
               :loading="loadingFacebookLogin"
-              @click="handleFacebookLogin"
+              @click="handleClickFacebookLogin"
             >
               <template #icon>
                 <svg
@@ -122,7 +122,7 @@
               id="google-login-btn"
               size="large"
               :loading="loadingGoogleLogin"
-              @click="handleGoogleLogin"
+              @click="handleClickGoogleLogin"
             >
               <template #icon>
                 <nuxt-img
@@ -190,6 +190,8 @@ useServerSeoMeta({
   ogLocale: 'vi',
 });
 
+const client = useSupabaseClient();
+const user = useSupabaseUser();
 const store = useStore();
 const router: any = useRouter();
 const route = useRoute();
@@ -222,7 +224,44 @@ const disabled = computed<boolean>((): boolean => {
   );
 });
 
-const handleSubmit = () => {
+onBeforeMount(() => {
+  // utils.initFacebookSdk();
+});
+
+onMounted(() => {
+  window.google.accounts.id.initialize({
+    client_id:
+      '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
+    // ux_mode: 'redirect',
+    callback: handleGooglePopupCallback,
+  });
+
+  // window.google.accounts.id.prompt();
+
+  // window.google.accounts.id.renderButton(
+  //   document.getElementById('google-login-btn') as HTMLElement,
+  //   {
+  //     theme: 'outline',
+  //     size: 'large',
+  //   }
+  // );
+
+  // console.log(route.query.code);
+
+  tokenClient.value = window.google.accounts.oauth2.initTokenClient({
+    client_id:
+      '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
+    scope:
+      'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+    // ux_mode: 'redirect',
+    // select_account: true,
+    // redirect_uri: window.location.origin + '/oauth/google',
+    prompt: 'select_account',
+    callback: handleGooglePopupCallback,
+  });
+});
+
+const handleLogin = () => {
   loadingLogin.value = true;
 
   LogIn({
@@ -290,7 +329,7 @@ const handleSubmit = () => {
     });
 };
 
-const handleFacebookLogin = async () => {
+const handleClickFacebookLogin = async () => {
   const { authResponse }: any = await new Promise(window.FB.login);
 
   if (!authResponse) return;
@@ -361,48 +400,20 @@ const handleFacebookLogin = async () => {
     });
 };
 
-onBeforeMount(() => {
-  // utils.initFacebookSdk();
-});
-
-onMounted(() => {
-  window.google.accounts.id.initialize({
-    client_id:
-      '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
-    // ux_mode: 'redirect',
-    callback: handleGooglePopupCallback,
-  });
-
-  // window.google.accounts.id.prompt();
-
-  // window.google.accounts.id.renderButton(
-  //   document.getElementById('google-login-btn') as HTMLElement,
-  //   {
-  //     theme: 'outline',
-  //     size: 'large',
-  //   }
-  // );
-
-  // console.log(route.query.code);
-
-  tokenClient.value = window.google.accounts.oauth2.initTokenClient({
-    client_id:
-      '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
-    scope:
-      'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-    // ux_mode: 'redirect',
-    // select_account: true,
-    // redirect_uri: window.location.origin + '/oauth/google',
-    prompt: 'select_account',
-    callback: handleGooglePopupCallback,
-  });
-});
-
-const handleGoogleLogin = () => {
+const handleClickGoogleLogin = async () => {
   // tokenClient.value.requestCode();
-  tokenClient.value.requestAccessToken();
+  // tokenClient.value.requestAccessToken();
+
+  const { data, error } = await client.auth.signInWithOAuth({
+    provider: 'google',
+  });
 };
 
+watchEffect(() => {
+  if (user.value) {
+    console.log(user.value);
+  }
+});
 const handleGooglePopupCallback = (authResponse: any) => {
   if (authResponse && authResponse?.access_token) {
     loadingGoogleLogin.value = true;

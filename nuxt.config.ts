@@ -99,17 +99,17 @@ export default defineNuxtConfig({
   runtimeConfig: {
     app: {
       production_mode: isProduction,
-      apiGateway: process.env.NUXT_API_GATEWAY,
-      serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,
-      serverVideoUrl: process.env.NUXT_SERVER_VIDEO_URL,
-      TMDBurl: process.env.NUXT_TMDB_IMAGE_BASE_URL,
-      adminWebsiteUrl: process.env.NUXT_ADMIN_WEBSITE_URL,
-      googleAnalyticsID: process.env.NUXT_GOOGLE_ANALYTICS_ID,
-      googleTagManagerID: process.env.NUXT_GOOGLE_TAG_MANAGER_ID,
-      facebookAppID: process.env.NUXT_FACEBOOK_APP_ID,
+      apiGateway: process.env.API_GATEWAY,
+      serverImageUrl: process.env.SERVER_IMAGE_URL,
+      serverVideoUrl: process.env.SERVER_VIDEO_URL,
+      TMDBurl: process.env.TMDB_IMAGE_BASE_URL,
+      adminWebsiteUrl: process.env.ADMIN_WEBSITE_URL,
+      googleAnalyticsID: process.env.GOOGLE_ANALYTICS_ID,
+      googleTagManagerID: process.env.GOOGLE_TAG_MANAGER_ID,
+      facebookAppID: process.env.FACEBOOK_APP_ID,
     },
     public: {
-      serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,
+      serverImageUrl: process.env.SERVER_IMAGE_URL,
     },
   },
   alias: {
@@ -156,7 +156,7 @@ export default defineNuxtConfig({
   },
   sitemap: {},
   gtag: {
-    id: process.env.NUXT_GOOGLE_ANALYTICS_ID,
+    id: process.env.GOOGLE_ANALYTICS_ID,
   },
   image: {
     // provider: 'cloudinary',
@@ -188,9 +188,14 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  // elementPlus: {
-  //   /** Options */
-  // },
+  supabase: {
+    redirect: {
+      login: isProduction
+        ? 'https://phimhay247.tech/login'
+        : 'http://localhost:3000/login',
+      callback: '',
+    },
+  },
   plugins: [
     '@/plugins/elementPlus',
     '@/plugins/antd',
