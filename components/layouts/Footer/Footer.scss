@@ -50,21 +50,21 @@ footer.footer {
         margin-bottom: 10px;
       }
 
-      a + a {
-        margin-left: 15px;
-      }
+      .support-social {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
 
-      a {
-        color: var(--text-color);
-        transition: all 0.25s;
-      }
+        a {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          color: var(--text-color);
+          transition: all 0.25s;
 
-      .email,
-      .facebook {
-        color: var(--text-color);
-
-        &:active {
-          opacity: 0.8;
+          svg {
+            margin-right: 3px;
+          }
         }
       }
     }

@@ -141,6 +141,7 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     'nuxt-seo-experiments',
     'nuxt-gtag',
+    '@nuxtjs/supabase',
   ],
   site: {
     url: 'https://phimhay247.tech',
