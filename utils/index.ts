@@ -1,6 +1,6 @@
 export const useUtils = () => {
   return {
-    onLogOut,
+    auth: { onLogOut },
     handelAddItemToList,
     viewFormatter,
     encryptPassword,

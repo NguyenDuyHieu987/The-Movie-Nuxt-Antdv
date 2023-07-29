@@ -330,14 +330,12 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { LogOut } from '~/services/authentication';
 import { getDaTaSearch } from '~/services/search';
 import { getImage } from '~/services/image';
 import SearchCard from '@/components/SearchCard/SearchCard.vue';
 import { storeToRefs } from 'pinia';
 import { MenuOutlined } from '@ant-design/icons-vue';
-import { ElMenu, ElMenuItem, ElNotification } from 'element-plus';
-import { CloseCircleFilled } from '@ant-design/icons-vue';
+import { ElMenu, ElMenuItem } from 'element-plus';
 
 const utils = useUtils();
 const store = useStore();
@@ -429,7 +427,7 @@ const handleSearch = (value: string) => {
 };
 
 const handleLogout = () => {
-  utils.onLogOut();
+  utils.auth.onLogOut();
 };
 </script>
 

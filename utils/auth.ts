@@ -14,15 +14,19 @@ export function onLogOut() {
     })
       .then((response: any) => {
         if (response?.isLogout == true) {
-          navigateTo('/login');
-
-          window.localStorage.removeItem('userAccount');
-          window.localStorage.removeItem('userToken');
-          window.localStorage.removeItem('remember');
-          window.localStorage.removeItem('isLogin');
-          store.userAccount = {};
-          store.isLogin = false;
-          store.role = 'normal';
+          new Promise((resolve, reject) => {
+            resolve(navigateTo('/login'));
+          }).then(() => {
+            setTimeout(() => {
+              window.localStorage.removeItem('userAccount');
+              window.localStorage.removeItem('userToken');
+              window.localStorage.removeItem('remember');
+              window.localStorage.removeItem('isLogin');
+              store.userAccount = {};
+              store.isLogin = false;
+              store.role = 'normal';
+            }, 500);
+          });
         } else {
           ElNotification.error({
             title: 'Lỗi!',

@@ -87,7 +87,9 @@ const validateInput = () => {
 };
 
 const handleImputPin = (e: any) => {
-  validateInput();
+  setTimeout(() => {
+    validateInput();
+  }, 1);
 
   e.target.addEventListener('keydown', (e1: any) => {
     setTimeout(() => {

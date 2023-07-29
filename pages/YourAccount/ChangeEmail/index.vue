@@ -245,6 +245,8 @@ const handleSubmit = () => {
 };
 
 const handleVerify = (formVerify: any) => {
+  loadingVerify.value = true;
+
   ChangeEmail({
     otp: formVerify.otp,
     jwtVerifyEmail: jwtVerifyEmail.value,
@@ -308,7 +310,7 @@ const handleVerify = (formVerify: any) => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loadingResend.value = false;
+      loadingVerify.value = false;
     });
 };
 

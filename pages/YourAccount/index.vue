@@ -129,7 +129,6 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
 import { storeToRefs } from 'pinia';
 import moment from 'moment';
@@ -193,7 +192,7 @@ const deleteAccount = () => {
 };
 
 const handleLogout = () => {
-  utils.onLogOut();
+  utils.auth.onLogOut();
 };
 </script>
 
