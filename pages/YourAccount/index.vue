@@ -135,9 +135,6 @@ import { storeToRefs } from 'pinia';
 import moment from 'moment';
 import 'moment/locale/vi';
 import { useBreakpoints } from '@vueuse/core';
-import { LogOut } from '~/services/authentication';
-import { ElNotification } from 'element-plus';
-import { CloseCircleFilled } from '@ant-design/icons-vue';
 
 definePageMeta({
   pageTransition: {
@@ -196,46 +193,7 @@ const deleteAccount = () => {
 };
 
 const handleLogout = () => {
-  if (isLogin) {
-    LogOut({
-      user_token: utils.localStorage.getWithExpiry('userAccount')?.user_token,
-    })
-      .then((response: any) => {
-        if (response?.isLogout == true) {
-          navigateTo('/login');
-
-          window.localStorage.removeItem('userAccount');
-          window.localStorage.removeItem('userToken');
-          window.localStorage.removeItem('remember');
-          window.localStorage.removeItem('isLogin');
-          store.userAccount = {};
-          store.isLogin = false;
-          store.role = 'normal';
-        } else {
-          ElNotification.error({
-            title: 'Lỗi!',
-            message: 'Đăng xuất thất bại.',
-            showClose: false,
-            icon: () =>
-              h(CloseCircleFilled, {
-                style: 'color: red',
-              }),
-          });
-        }
-      })
-      .catch((e) => {
-        ElNotification.error({
-          title: 'Lỗi!',
-          message: 'Đăng xuất thất bại.',
-          showClose: false,
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-        if (axios.isCancel(e)) return;
-      });
-  }
+  utils.onLogOut();
 };
 </script>
 

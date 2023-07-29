@@ -1,19 +1,23 @@
 .verify-signup {
-  position: relative;
-  min-height: 400px;
-  max-height: 95vh;
-  width: 550px;
-  background-color: var(--background-content-color);
-  box-shadow: var(--box-shadow-large);
-  border-radius: 5px;
-  z-index: 11;
-  overflow: hidden;
+  display: flex;
+  max-width: 100%;
 
   &.active {
     margin: auto auto;
   }
 
   .verify-signup-container {
+    position: relative;
+    margin: auto auto;
+    min-height: 400px;
+    max-height: 95vh;
+    width: 550px;
+    border-radius: 5px;
+    z-index: 11;
+    background-color: var(--background-content-color);
+    box-shadow: var(--box-shadow-large);
+    overflow: hidden;
+
     .back-btn {
       position: absolute;
       display: flex;

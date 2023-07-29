@@ -1,226 +1,242 @@
-.signup-container {
-  display: flex;
-  position: fixed;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  padding: 20px 0px;
-  overflow-y: auto;
-  overflow-x: hidden;
+.signup {
+  .signup-container {
+    display: flex;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 20px 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-  .signup-form-container {
-    position: relative;
-    margin: auto auto;
-    border-radius: 5px;
-    box-shadow: var(--box-shadow-large);
-    background-color: var(--background-content-color);
-    min-height: 750px;
-    max-height: 95vh;
-    width: 550px;
-    z-index: 11;
-    overflow: hidden;
-
-    &::-webkit-scrollbar-thumb,
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    .signup-form {
-      position: absolute;
-      inset: 3px;
-      z-index: 3;
+    .signup-form-container {
+      position: relative;
+      margin: auto auto;
+      border-radius: 5px;
+      box-shadow: var(--box-shadow-large);
       background-color: var(--background-content-color);
-      padding: 30px 70px;
+      min-height: 750px;
+      max-height: 95vh;
+      width: 550px;
+      z-index: 11;
+      overflow: hidden;
 
-      .title-signup {
-        text-align: center;
-        margin-bottom: 20px;
-        margin-top: 0px;
-        font-size: 2.7rem;
-      }
-
-      .signup-form-button {
-        font-size: 1.5rem;
-        margin-top: 10px;
-        width: 100%;
-        background-color: var(--btn-backgroud-color-gray);
-        border: 1px solid var(--border-regular);
-
-        &:disabled {
-          // color: #707070;
-        }
-      }
-
-      .bottom-form {
-        text-align: center;
-        color: var(--text-color);
-
-        p {
-          margin-bottom: 10px;
-        }
-      }
-
+      &::-webkit-scrollbar-thumb,
       &::-webkit-scrollbar {
-        display: none !important;
+        display: none;
       }
 
-      &::-webkit-scrollbar-thumb {
-        display: none !important;
+      .signup-form {
+        position: absolute;
+        inset: 3px;
+        z-index: 3;
+        background-color: var(--background-content-color);
+        padding: 30px 70px;
+
+        .title-signup {
+          text-align: center;
+          margin-bottom: 20px;
+          margin-top: 0px;
+          font-size: 2.7rem;
+        }
+
+        .signup-form-button {
+          font-size: 1.5rem;
+          margin-top: 10px;
+          width: 100%;
+          background-color: var(--btn-backgroud-color-gray);
+          border: 1px solid var(--border-regular);
+
+          &:disabled {
+            // color: #707070;
+          }
+        }
+
+        .bottom-form {
+          text-align: center;
+          color: var(--text-color);
+
+          p {
+            margin-bottom: 10px;
+          }
+        }
+
+        &::-webkit-scrollbar {
+          display: none !important;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          display: none !important;
+        }
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 500px;
+        // background-image: linear-gradient(
+        //   45deg,
+        //   var(--app-background-color),
+        //   var(--loading-progress-bar1)
+        // );
+
+        background-image: linear-gradient(
+          45deg,
+          var(--app-background-color),
+          var(--loading-progress-bar2),
+          var(--loading-progress-bar1)
+        );
+        z-index: 1;
+        animation: animate 10s linear infinite;
+        transform-origin: top left;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 500px;
+        background-image: linear-gradient(
+          45deg,
+          var(--app-background-color),
+          var(--loading-progress-bar2),
+          var(--loading-progress-bar1)
+        );
+        z-index: 1;
+        animation: animate 10s linear infinite;
+        transform-origin: top left;
+        animation-delay: -4.9s;
+      }
+
+      @keyframes animate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes animate-reverse {
+        0% {
+          transform: rotate(360deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
       }
     }
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 500px;
-      height: 500px;
-      // background-image: linear-gradient(
-      //   45deg,
-      //   var(--app-background-color),
-      //   var(--loading-progress-bar1)
-      // );
+    .verify-signup {
+      .verify-signup-container {
+        .back-btn {
+        }
 
-      background-image: linear-gradient(
-        45deg,
-        var(--app-background-color),
-        var(--loading-progress-bar2),
-        var(--loading-progress-bar1)
-      );
-      z-index: 1;
-      animation: animate 10s linear infinite;
-      transform-origin: top left;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 500px;
-      height: 500px;
-      background-image: linear-gradient(
-        45deg,
-        var(--app-background-color),
-        var(--loading-progress-bar2),
-        var(--loading-progress-bar1)
-      );
-      z-index: 1;
-      animation: animate 10s linear infinite;
-      transform-origin: top left;
-      animation-delay: -4.9s;
-    }
-
-    @keyframes animate {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes animate-reverse {
-      0% {
-        transform: rotate(360deg);
-      }
-      100% {
-        transform: rotate(0deg);
-      }
-    }
-  }
-
-  .verify-signup {
-    .verify-signup-container {
-      .back-btn {
-      }
-
-      .verify-form {
+        .verify-form {
+        }
       }
     }
   }
 }
 
 @media only screen and (max-width: 660px) {
-  .signup-container {
-    .signup-form-container {
-      padding: 30px 40px;
+  .signup {
+    .signup-container {
+      .signup-form-container {
+        padding: 30px 40px;
+      }
     }
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .signup-container {
-    .signup-form-container {
-      width: 500px;
+  .signup {
+    .signup-container {
+      .signup-form-container {
+        width: 500px;
+      }
     }
   }
 }
 
 @media only screen and (max-width: 550px) {
-  .signup-container {
-    .signup-form-container {
-      width: 450px;
+  .signup {
+    .signup-container {
+      .signup-form-container {
+        width: 450px;
 
-      .signup-form {
-        padding: 30px 30px;
+        .signup-form {
+          padding: 30px 30px;
+        }
       }
-    }
 
-    .verify-signup {
-      width: 450px;
+      .verify-signup {
+        .verify-signup-container {
+          width: 450px;
 
-      .verify-form {
-        padding: 30px 30px;
-        padding-top: 40px;
+          .verify-form {
+            padding: 30px 30px;
+            padding-top: 40px;
+          }
+        }
       }
     }
   }
 }
 
 @media only screen and (max-width: 470px) {
-  .signup-container {
-    .signup-form-container {
-      width: 400px;
+  .signup {
+    .signup-container {
+      .signup-form-container {
+        width: 400px;
 
-      .signup-form {
-        padding: 20px 30px;
+        .signup-form {
+          padding: 20px 30px;
+        }
       }
-    }
 
-    .verify-signup {
-      width: 400px;
+      .verify-signup {
+        .verify-signup-container {
+          width: 400px;
 
-      .verify-form {
-        padding: 20px 30px;
-        padding-top: 40px;
+          .verify-form {
+            padding: 20px 30px;
+            padding-top: 40px;
+          }
+        }
       }
     }
   }
 }
 
 @media only screen and (max-width: 430px) {
-  .signup-container {
-    .signup-form-container {
-      width: 400px;
+  .signup {
+    .signup-container {
+      .signup-form-container {
+        width: 400px;
 
-      .signup-form {
-        padding: 20px 30px;
+        .signup-form {
+          padding: 20px 30px;
+        }
       }
-    }
 
-    .verify-signup {
-      // max-width: 400px;
-      // width: auto;
-      width: 400px;
+      .verify-signup {
+        .verify-signup-container {
+          width: 400px;
 
-      .verify-form {
-        padding: 20px 30px;
-        padding-top: 40px;
+          .verify-form {
+            padding: 20px 30px;
+            padding-top: 40px;
+          }
+        }
       }
     }
   }

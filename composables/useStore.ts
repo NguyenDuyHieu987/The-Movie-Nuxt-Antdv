@@ -13,9 +13,7 @@ export default defineStore('store', () => {
   );
   const breadCrumbValue = ref<string>('');
   const role = ref<string>('normal');
-  const loadingHomePage = ref<boolean>(false);
-  const loadingMisc = ref<boolean>(false);
-  const loadingDashBoard = ref<boolean>(false);
+  const loadingApp = ref<boolean>(false);
   const userAccount = ref<any>(
     utils.localStorage.getWithExpiry('userAccount') || {}
   );
@@ -35,6 +33,17 @@ export default defineStore('store', () => {
     openRequireAuthDialog.value = false;
   };
 
+  const loadingAppInstance = {
+    start: () => {
+      loadingApp.value = true;
+      document.body.classList.toggle('loading-mask');
+    },
+    finish: () => {
+      loadingApp.value = false;
+      document.body.classList.toggle('loading-mask');
+    },
+  };
+
   return {
     collapsed,
     openDrawer,
@@ -43,9 +52,7 @@ export default defineStore('store', () => {
     isLogin,
     breadCrumbValue,
     role,
-    loadingHomePage,
-    loadingMisc,
-    loadingDashBoard,
+    loadingApp,
     userAccount,
     allGenres,
     allCountries,
@@ -53,5 +60,6 @@ export default defineStore('store', () => {
     setCollapsed,
     setOpendrawer,
     setCloseRequireAuthDialog,
+    loadingAppInstance,
   };
 });

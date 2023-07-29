@@ -14,10 +14,11 @@
     </ClientOnly>
 
     <div class="app-wrapper">
+      <LoadingApp />
+      <RequireAuthDialog />
+
       <NuxtLayout>
         <NuxtPage />
-
-        <RequireAuthDialog />
 
         <el-backtop
           class="app-back-top"
@@ -93,10 +94,10 @@ const getData = async () => {
   }
 
   // setTimeout(() => {
-  //   if (store.loadingHomePage == false) {
-  //     store.loadingHomePage = true;
+  //   if (store.loadingApp == false) {
+  //     store.loadingApp = true;
   //   }
-  //   loadingHomePage.value = false;
+  //   loadingApp.value = false;
   // }, 2000);
 };
 

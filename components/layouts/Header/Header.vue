@@ -307,11 +307,17 @@
                   </NuxtLink>
                 </a-menu-item>
 
-                <a-menu-item key="logout">
-                  <NuxtLink to="/login" @click="handleLogout">
-                    <span v-if="isLogin"> Đăng xuất</span>
-                    <span v-else> Đăng nhập</span>
-                  </NuxtLink>
+                <a-menu-item v-if="!isLogin" v-once key="login">
+                  <NuxtLink to="/login"> Đăng nhập</NuxtLink>
+                </a-menu-item>
+
+                <a-menu-item
+                  v-if="isLogin"
+                  v-once
+                  key="logout"
+                  @click="handleLogout"
+                >
+                  <span> Đăng xuất</span>
                 </a-menu-item>
               </a-menu>
             </template>
@@ -324,14 +330,16 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+import { LogOut } from '~/services/authentication';
 import { getDaTaSearch } from '~/services/search';
 import { getImage } from '~/services/image';
 import SearchCard from '@/components/SearchCard/SearchCard.vue';
 import { storeToRefs } from 'pinia';
-import _ from 'lodash';
 import { MenuOutlined } from '@ant-design/icons-vue';
-import { ElMenu, ElMenuItem } from 'element-plus';
+import { ElMenu, ElMenuItem, ElNotification } from 'element-plus';
+import { CloseCircleFilled } from '@ant-design/icons-vue';
 
+const utils = useUtils();
 const store = useStore();
 const { openDrawer, collapsed, isLogin, userAccount, role } =
   storeToRefs<any>(store);
@@ -421,16 +429,7 @@ const handleSearch = (value: string) => {
 };
 
 const handleLogout = () => {
-  if (isLogin) {
-    store.userAccount = {};
-    store.isLogin = false;
-    store.role = 'normal';
-
-    window.localStorage.removeItem('userAccount');
-    window.localStorage.removeItem('userToken');
-    window.localStorage.removeItem('remember');
-    window.localStorage.removeItem('isLogin');
-  }
+  utils.onLogOut();
 };
 </script>
 

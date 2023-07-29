@@ -1,157 +1,159 @@
 <template>
-  <div class="login-container">
-    <div class="login-form-container">
-      <a-form
-        :model="formLogin"
-        name="login-form"
-        class="login-form"
-        @finish="handleSubmit"
-        hideRequiredMark
-      >
-        <h1 class="title-login gradient-title-default">
-          <span>Đăng nhập </span>
-        </h1>
-
-        <a-form-item
-          label="Email"
-          name="username"
-          :rules="[
-            {
-              required: true,
-              message:
-                'Vui lòng nhập đúng định dạng email (vd: ...@gmail.com)!',
-              pattern: new RegExp(
-                /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-              ),
-              trigger: ['change', 'blur'],
-            },
-          ]"
+  <div class="login">
+    <div class="login-container">
+      <div class="login-form-container">
+        <a-form
+          :model="formLogin"
+          name="login-form"
+          class="login-form"
+          @finish="handleSubmit"
+          hideRequiredMark
         >
-          <a-input v-model:value="formLogin.username" placeholder="Email...">
-            <template #prefix>
-              <UserOutlined />
-            </template>
-          </a-input>
-        </a-form-item>
+          <h1 class="title-login gradient-title-default">
+            <span>Đăng nhập </span>
+          </h1>
 
-        <a-form-item
-          label="Mật khẩu"
-          name="password"
-          :rules="[
-            {
-              required: true,
-              message: 'Vui lòng nhập mật khẩu!',
-              trigger: ['change', 'blur'],
-              // {
-              //   message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
-              //   min: 6,
-              //   trigger: ['change', 'blur'],
-              // },
-            },
-          ]"
-        >
-          <a-input-password
-            v-model:value="formLogin.password"
-            placeholder="Mật khẩu..."
+          <a-form-item
+            label="Email"
+            name="username"
+            :rules="[
+              {
+                required: true,
+                message:
+                  'Vui lòng nhập đúng định dạng email (vd: ...@gmail.com)!',
+                pattern: new RegExp(
+                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+                ),
+                trigger: ['change', 'blur'],
+              },
+            ]"
           >
-            <template #prefix>
-              <LockOutlined />
-            </template>
-          </a-input-password>
-        </a-form-item>
-
-        <a-form-item>
-          <a-form-item name="remember" no-style>
-            <a-checkbox
-              v-model:checked="formLogin.remember"
-              style="user-select: none"
-            >
-              Ghi nhớ tôi
-            </a-checkbox>
+            <a-input v-model:value="formLogin.username" placeholder="Email...">
+              <template #prefix>
+                <UserOutlined />
+              </template>
+            </a-input>
           </a-form-item>
-          <a class="login-form-forgot" href="">Quên mật khẩu?</a>
-        </a-form-item>
 
-        <a-form-item>
-          <a-button
-            class="login-form-button"
-            html-type="submit"
-            size="large"
-            :loading="loadingLogin"
-            :disabled="disabled"
+          <a-form-item
+            label="Mật khẩu"
+            name="password"
+            :rules="[
+              {
+                required: true,
+                message: 'Vui lòng nhập mật khẩu!',
+                trigger: ['change', 'blur'],
+                // {
+                //   message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
+                //   min: 6,
+                //   trigger: ['change', 'blur'],
+                // },
+              },
+            ]"
           >
-            Đăng nhập
-          </a-button>
+            <a-input-password
+              v-model:value="formLogin.password"
+              placeholder="Mật khẩu..."
+            >
+              <template #prefix>
+                <LockOutlined />
+              </template>
+            </a-input-password>
+          </a-form-item>
 
-          <NuxtLink class="play-now" :to="{ path: '/' }">
-            Xem phim ngay
-          </NuxtLink>
-        </a-form-item>
-
-        <div class="bottom-form">
-          <p>Hoặc</p>
-          <NuxtLink :to="{ name: 'signup' }">Dăng ký ngay!</NuxtLink>
-        </div>
-
-        <div class="social-login">
-          <a-button
-            class="facebook-login-btn"
-            size="large"
-            :loading="loadingFacebookLogin"
-            @click="handleFacebookLogin"
-          >
-            <template #icon>
-              <svg
-                class="fa-facebook-f"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1.6rem"
-                height="1.6rem"
-                viewBox="0 0 320 512"
+          <a-form-item>
+            <a-form-item name="remember" no-style>
+              <a-checkbox
+                v-model:checked="formLogin.remember"
+                style="user-select: none"
               >
-                <path
-                  d="m279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-                />
-              </svg>
-            </template>
-            <span>Đăng nhập bằng Facebook</span>
-          </a-button>
+                Ghi nhớ tôi
+              </a-checkbox>
+            </a-form-item>
+            <a class="login-form-forgot" href="">Quên mật khẩu?</a>
+          </a-form-item>
 
-          <a-button
-            class="google-login-btn"
-            id="google-login-btn"
-            size="large"
-            :loading="loadingGoogleLogin"
-            @click="handleGoogleLogin"
-          >
-            <template #icon>
-              <nuxt-img
-                :src="getImage('google.png', 'social_media')"
-                alt=""
-                loading="lazy"
-              />
-            </template>
-            <span>Đăng nhập bằng Google</span>
-          </a-button>
+          <a-form-item>
+            <a-button
+              class="login-form-button"
+              html-type="submit"
+              size="large"
+              :loading="loadingLogin"
+              :disabled="disabled"
+            >
+              Đăng nhập
+            </a-button>
 
-          <!-- <el-button
+            <NuxtLink class="play-now" :to="{ path: '/' }">
+              Xem phim ngay
+            </NuxtLink>
+          </a-form-item>
+
+          <div class="bottom-form">
+            <p>Hoặc</p>
+            <NuxtLink :to="{ name: 'signup' }">Dăng ký ngay!</NuxtLink>
+          </div>
+
+          <div class="social-login">
+            <a-button
+              class="facebook-login-btn"
+              size="large"
+              :loading="loadingFacebookLogin"
+              @click="handleFacebookLogin"
+            >
+              <template #icon>
+                <svg
+                  class="fa-facebook-f"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.6rem"
+                  height="1.6rem"
+                  viewBox="0 0 320 512"
+                >
+                  <path
+                    d="m279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+                  />
+                </svg>
+              </template>
+              <span>Đăng nhập bằng Facebook</span>
+            </a-button>
+
+            <a-button
               class="google-login-btn"
-              id="google-login-btn1"
+              id="google-login-btn"
               size="large"
               :loading="loadingGoogleLogin"
+              @click="handleGoogleLogin"
             >
-              <el-icon class="el-icon--right">
-                <img src="/images/socials/icons8-google-48.png" alt="" />
-              </el-icon>
+              <template #icon>
+                <nuxt-img
+                  :src="getImage('google.png', 'social_media')"
+                  alt=""
+                  loading="lazy"
+                />
+              </template>
               <span>Đăng nhập bằng Google</span>
-            </el-button> -->
+            </a-button>
 
-          <!-- <GoogleLogin
-              :callback="handleGoogleLogin"
-              prompt
-              class="google-login-btn"
-            /> -->
-        </div>
-      </a-form>
+            <!-- <el-button
+                  class="google-login-btn"
+                  id="google-login-btn1"
+                  size="large"
+                  :loading="loadingGoogleLogin"
+                >
+                  <el-icon class="el-icon--right">
+                    <img src="/images/socials/icons8-google-48.png" alt="" />
+                  </el-icon>
+                  <span>Đăng nhập bằng Google</span>
+                </el-button> -->
+
+            <!-- <GoogleLogin
+                  :callback="handleGoogleLogin"
+                  prompt
+                  class="google-login-btn"
+                /> -->
+          </div>
+        </a-form>
+      </div>
     </div>
   </div>
 </template>
