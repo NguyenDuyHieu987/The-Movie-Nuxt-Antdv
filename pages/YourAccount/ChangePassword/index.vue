@@ -93,7 +93,7 @@
             </a-form>
           </div>
 
-          <VerifyForm
+          <VerifyPinOTPForm
             v-model:isShowForm="isChangePassword"
             :email="store.userAccount?.email"
             :jwtVerifyEmail="jwtVerifyEmail"
@@ -113,7 +113,7 @@
                 <strong> {{ store.userAccount?.email }}</strong>
               </p>
             </template>
-          </VerifyForm>
+          </VerifyPinOTPForm>
         </div>
       </Transition>
     </div>
@@ -123,7 +123,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import VerifyForm from '~/components/VerifyForm/VerifyForm.vue';
+import VerifyPinOTPForm from '~/components/VerifyPinOTPForm/VerifyPinOTPForm.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
 import { accountVerify, ChangePassword } from '~/services/account';
 import { storeToRefs } from 'pinia';

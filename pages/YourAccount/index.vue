@@ -35,8 +35,15 @@
               <div class="row-content">
                 <div class="row-content-item">
                   <div class="left">
-                    <span class="label">Username: </span>
+                    <span class="label">Tài khoản: </span>
                     <span> {{ userAccount?.username }}</span>
+                  </div>
+                </div>
+
+                <div class="row-content-item">
+                  <div class="left">
+                    <span class="label">Họ và tên: </span>
+                    <span> {{ userAccount?.full_name }}</span>
                   </div>
                 </div>
 
@@ -51,21 +58,6 @@
                       to="/YourAccount/ChangeEmail"
                     >
                       Thay đổi email
-                    </NuxtLink>
-                  </div>
-                </div>
-
-                <div class="row-content-item">
-                  <div class="left">
-                    <span class="label">Họ và tên: </span>
-                    <span> {{ userAccount?.full_name }}</span>
-                  </div>
-                  <div v-show="userAccount?.auth_type == 'email'" class="right">
-                    <NuxtLink
-                      class="click-active"
-                      to="/YourAccount/ChangeFullname"
-                    >
-                      Đổi tên mới
                     </NuxtLink>
                   </div>
                 </div>

@@ -156,7 +156,7 @@
     </div>
 
     <Transition appear name="slide-left">
-      <VerifyForm
+      <VerifyPinOTPForm
         v-model:showAnimation="showAnimation"
         v-model:isShowForm="isSignUp"
         :email="formSignup.email"
@@ -174,7 +174,7 @@
             <span> Xác nhận Email</span>
           </h1>
         </template>
-      </VerifyForm>
+      </VerifyPinOTPForm>
     </Transition>
   </div>
 </template>
@@ -188,7 +188,7 @@ import {
 } from '@ant-design/icons-vue';
 import axios from 'axios';
 import { signUp, verifySignUp } from '~/services/authentication';
-import VerifyForm from '~/components/VerifyForm/VerifyForm.vue';
+import VerifyPinOTPForm from '~/components/VerifyPinOTPForm/VerifyPinOTPForm.vue';
 import { ElNotification } from 'element-plus';
 
 definePageMeta({

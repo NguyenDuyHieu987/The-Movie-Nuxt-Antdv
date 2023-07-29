@@ -126,18 +126,7 @@
           </a-button>
         </a-form-item> -->
 
-        <a-form-item
-          class="pin"
-          name="pin"
-          label="Mã xác nhận:"
-          :rules="[
-            {
-              required: true,
-              message: 'Vui lòng nhập mã xác nhận!',
-              trigger: ['change', 'blur'],
-            },
-          ]"
-        >
+        <a-form-item class="pin" name="pin" label="Mã xác nhận:">
           <PinOTP v-model:pin="formVerify.pin" />
         </a-form-item>
 
@@ -314,4 +303,4 @@ const handleClickBack = () => {
 };
 </script>
 
-<style lang="scss" src="./VerifyForm.scss"></style>
+<style lang="scss" src="./VerifyPinOTPForm.scss"></style>
