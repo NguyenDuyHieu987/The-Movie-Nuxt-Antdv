@@ -307,7 +307,8 @@ export default defineNuxtConfig({
       prerender: true,
       static: true,
     },
-    '/youraccount': { ssr: false, swr: true, prerender: true },
-    '/bills': { ssr: false, swr: true, prerender: true },
+    '/youraccount': { ssr: false, swr: 10, prerender: true },
+    '/youraccount/**': { swr: 10, prerender: true },
+    '/bills': { ssr: false, swr: 10, prerender: true },
   },
 });
