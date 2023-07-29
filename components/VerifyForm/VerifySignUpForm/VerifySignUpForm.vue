@@ -13,8 +13,8 @@
         <template #icon>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="2rem"
-            height="2rem"
+            width="2.5rem"
+            height="2.5rem"
             role="img"
             viewBox="0 0 24 24"
           >
@@ -24,7 +24,7 @@
             />
           </svg>
         </template>
-        <span> Quay lại</span>
+        <!-- <span> Quay lại</span> -->
       </a-button>
       <a-form
         :model="formVerify"

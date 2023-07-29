@@ -330,64 +330,60 @@ const handleLogin = () => {
 };
 
 const handleClickFacebookLogin = async () => {
-  // const { authResponse }: any = await new Promise(window.FB.login);
-  // if (!authResponse) return;
-  // loadingFacebookLogin.value = true;
-  // loginFacebook({
-  //   accessToken: authResponse.accessToken,
-  // })
-  //   .then((response: any) => {
-  //     // console.log(response?.result);
-  //     if (response.isSignUp == true) {
-  //       ElNotification.success({
-  //         title: 'Thành công!',
-  //         message: 'Bạn đã đăng nhập bằng Facebook thành công tại Phimhay247.',
-  //         showClose: false,
-  //         icon: () =>
-  //           h(CheckCircleFilled, {
-  //             style: 'color: green',
-  //           }),
-  //       });
-  //       store.userAccount = response?.result;
-  //       store.isLogin = true;
-  //       utils.localStorage.setWithExpiry(
-  //         'userAccount',
-  //         { user_token: response.headers.get('Authorization') },
-  //         30
-  //       );
-  //       // navigateTo({ path: '/' });
-  //       navigateTo({ path: urlBack.value });
-  //     } else if (response.isLogin == true) {
-  //       store.userAccount = response?.result;
-  //       store.isLogin = true;
-  //       utils.localStorage.setWithExpiry(
-  //         'userAccount',
-  //         { user_token: response.headers.get('Authorization') },
-  //         30
-  //       );
-  //       // navigateTo({ path: '/' });
-  //       navigateTo({ path: urlBack.value });
-  //     }
-  //   })
-  //   .catch((e) => {
-  //     ElNotification.error({
-  //       title: 'Thất bại!',
-  //       message: 'Some thing went wrong.',
-  //       showClose: false,
-  //       icon: () =>
-  //         h(CloseCircleFilled, {
-  //           style: 'color: red',
-  //         }),
-  //     });
-  //     if (axios.isCancel(e)) return;
-  //   })
-  //   .finally(() => {
-  //     loadingFacebookLogin.value = false;
-  //   });
-
-  const { data, error } = await client.auth.signInWithOAuth({
-    provider: 'facebook',
-  });
+  const { authResponse }: any = await new Promise(window.FB.login);
+  if (!authResponse) return;
+  loadingFacebookLogin.value = true;
+  loginFacebook({
+    accessToken: authResponse.accessToken,
+  })
+    .then((response: any) => {
+      // console.log(response?.result);
+      if (response.isSignUp == true) {
+        ElNotification.success({
+          title: 'Thành công!',
+          message: 'Bạn đã đăng nhập bằng Facebook thành công tại Phimhay247.',
+          showClose: false,
+          icon: () =>
+            h(CheckCircleFilled, {
+              style: 'color: green',
+            }),
+        });
+        store.userAccount = response?.result;
+        store.isLogin = true;
+        utils.localStorage.setWithExpiry(
+          'userAccount',
+          { user_token: response.headers.get('Authorization') },
+          30
+        );
+        // navigateTo({ path: '/' });
+        navigateTo({ path: urlBack.value });
+      } else if (response.isLogin == true) {
+        store.userAccount = response?.result;
+        store.isLogin = true;
+        utils.localStorage.setWithExpiry(
+          'userAccount',
+          { user_token: response.headers.get('Authorization') },
+          30
+        );
+        // navigateTo({ path: '/' });
+        navigateTo({ path: urlBack.value });
+      }
+    })
+    .catch((e) => {
+      ElNotification.error({
+        title: 'Thất bại!',
+        message: 'Some thing went wrong.',
+        showClose: false,
+        icon: () =>
+          h(CloseCircleFilled, {
+            style: 'color: red',
+          }),
+      });
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingFacebookLogin.value = false;
+    });
 };
 
 watchEffect(() => {
@@ -400,9 +396,13 @@ const handleClickGoogleLogin = async () => {
   // tokenClient.value.requestCode();
   // tokenClient.value.requestAccessToken();
 
-  const { data, error } = await client.auth.signInWithOAuth({
-    provider: 'google',
-  });
+  await client.auth
+    .signInWithOAuth({
+      provider: 'google',
+    })
+    .then((response: any) => {
+      console.log(response);
+    });
 };
 
 const handleGooglePopupCallback = (authResponse: any) => {
