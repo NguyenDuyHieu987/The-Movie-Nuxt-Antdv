@@ -106,6 +106,7 @@ export default defineNuxtConfig({
       adminWebsiteUrl: process.env.NUXT_ADMIN_WEBSITE_URL,
       googleAnalyticsID: process.env.NUXT_GOOGLE_ANALYTICS_ID,
       googleTagManagerID: process.env.NUXT_GOOGLE_TAG_MANAGER_ID,
+      facebookAppID: process.env.NUXT_FACEBOOK_APP_ID,
     },
     public: {
       serverImageUrl: process.env.NUXT_SERVER_IMAGE_URL,

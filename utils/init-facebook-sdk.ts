@@ -8,13 +8,15 @@ declare global {
 }
 
 export async function initFacebookSdk() {
+  const nuxtConfig = useRuntimeConfig();
+
   return await new Promise((resolve: any) => {
     // if (process.client) {
     // wait for facebook sdk to initialize before starting the vue app
     window.fbAsyncInit = function () {
       const FB = window?.FB;
       FB.init({
-        appId: 820070179113499,
+        appId: nuxtConfig.app.facebookAppID,
         cookie: true,
         xfbml: true,
         autoLogAppEvents: true,

@@ -25,7 +25,7 @@ export function onLogOut() {
               store.userAccount = {};
               store.isLogin = false;
               store.role = 'normal';
-            }, 500);
+            }, 200);
           });
         } else {
           ElNotification.error({
@@ -54,7 +54,7 @@ export function onLogOut() {
       .finally(() => {
         setTimeout(() => {
           store.loadingAppInstance.finish();
-        }, 500);
+        }, 200);
       });
   }
 }
