@@ -192,14 +192,7 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  supabase: {
-    redirect: {
-      login: isProduction
-        ? 'https://phimhay247.tech/login'
-        : 'http://localhost:3000/login',
-      callback: '',
-    },
-  },
+  supabase: {},
   plugins: [
     '@/plugins/elementPlus',
     '@/plugins/antd',
