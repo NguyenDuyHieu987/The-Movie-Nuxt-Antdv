@@ -48,7 +48,7 @@ export function ChangeFullname(params: { newFullname: string }) {
   });
 }
 
-export function verifyEmail(params: any, type: string) {
+export function accountVerify(params: any, type: string) {
   const headers = {
     Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
   };
@@ -63,7 +63,7 @@ export function verifyEmail(params: any, type: string) {
       break;
   }
 
-  return makeRequest(`/account/verify/email/${type}`, {
+  return makeRequest(`/account/${type}`, {
     method: 'POST',
     headers: headers,
     data: bodyFormData,

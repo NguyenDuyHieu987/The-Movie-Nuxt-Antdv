@@ -125,7 +125,7 @@
 import axios from 'axios';
 import VerifyForm from '~/components/VerifyForm/VerifyForm.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
-import { verifyEmail, ChangePassword } from '~/services/account';
+import { accountVerify, ChangePassword } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { ElNotification } from 'element-plus';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
@@ -250,7 +250,7 @@ const reset = () => {
 const handleSubmit = () => {
   loadingChangePassword.value = true;
 
-  verifyEmail(
+  accountVerify(
     {
       oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
       newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),
@@ -397,7 +397,7 @@ const handleVerify = (formVerify: any) => {
 const handleResendVerifyEmail = () => {
   loadingResend.value = true;
 
-  verifyEmail(
+  accountVerify(
     {
       oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
       newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),

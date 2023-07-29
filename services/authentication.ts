@@ -44,7 +44,7 @@ export function getUserToken(params: any) {
   });
 }
 
-export function verifyEmail(params: any) {
+export function verifySignUp(params: any, type: string) {
   const bodyFormData = new FormData();
   bodyFormData.append('id', params.id);
   bodyFormData.append('username', params.username);
@@ -53,7 +53,7 @@ export function verifyEmail(params: any) {
   bodyFormData.append('full_name', params.full_name);
   bodyFormData.append('avatar', params.avatar);
 
-  return makeRequest(`/auth/verify/email`, {
+  return makeRequest(`/auth/verify/${type}`, {
     method: 'POST',
     data: bodyFormData,
   });

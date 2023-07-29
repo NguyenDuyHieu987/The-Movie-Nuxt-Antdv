@@ -187,7 +187,7 @@ import {
   CloseCircleFilled,
 } from '@ant-design/icons-vue';
 import axios from 'axios';
-import { signUp, verifyEmail } from '~/services/authentication';
+import { signUp, verifySignUp } from '~/services/authentication';
 import VerifyForm from '~/components/VerifyForm/VerifyForm.vue';
 import { ElNotification } from 'element-plus';
 
@@ -301,15 +301,18 @@ const handleSignUp = (e: any) => {
   formSignup.id = Date.now();
   formSignup.avatar = `${Math.floor(Math.random() * 10) + 1}`;
 
-  verifyEmail({
-    id: formSignup.id,
-    username: formSignup.username,
-    email: formSignup.email,
-    // password: md5(formSignup.password),
-    password: utils.encryptPassword(formSignup.password),
-    full_name: formSignup.fullname,
-    avatar: formSignup.avatar,
-  })
+  verifySignUp(
+    {
+      id: formSignup.id,
+      username: formSignup.username,
+      email: formSignup.email,
+      // password: md5(formSignup.password),
+      password: utils.encryptPassword(formSignup.password),
+      full_name: formSignup.fullname,
+      avatar: formSignup.avatar,
+    },
+    'email'
+  )
     .then((response: any) => {
       // console.log(response);
 
@@ -391,15 +394,18 @@ const handleSignUp = (e: any) => {
 const handleResendVerifyEmail = () => {
   loadingResend.value = true;
 
-  verifyEmail({
-    id: formSignup.id,
-    username: formSignup.username,
-    email: formSignup.email,
-    // password: md5(formSignup.password),
-    password: utils.encryptPassword(formSignup.password),
-    full_name: formSignup.fullname,
-    avatar: formSignup.avatar,
-  })
+  verifySignUp(
+    {
+      id: formSignup.id,
+      username: formSignup.username,
+      email: formSignup.email,
+      // password: md5(formSignup.password),
+      password: utils.encryptPassword(formSignup.password),
+      full_name: formSignup.fullname,
+      avatar: formSignup.avatar,
+    },
+    'email'
+  )
     .then((response: any) => {
       // console.log(response);
 

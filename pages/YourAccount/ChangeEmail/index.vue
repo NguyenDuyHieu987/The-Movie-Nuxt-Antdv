@@ -117,7 +117,7 @@
 import axios from 'axios';
 import VerifyForm from '~/components/VerifyForm/VerifyForm.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
-import { verifyEmail, ChangeEmail } from '~/services/account';
+import { accountVerify, ChangeEmail } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { ElNotification } from 'element-plus';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
@@ -173,11 +173,11 @@ onBeforeMount(() => {
 const handleSubmit = () => {
   loadingChangeEmail.value = true;
 
-  verifyEmail(
+  accountVerify(
     {
       oldPassword: formChangeEmail.email,
     },
-    'change-email'
+    'email'
   )
     .then((response: any) => {
       // console.log(response);
