@@ -156,7 +156,7 @@
     </div>
 
     <Transition appear name="slide-left">
-      <VerifyPinOTPForm
+      <VerifySignUpForm
         v-model:showAnimation="showAnimation"
         v-model:isShowForm="isSignUp"
         :email="formSignup.email"
@@ -167,14 +167,9 @@
         v-model:loadingVerify="loadingVerify"
         @onVerify="handleVerify"
         @onResend="handleResendVerifyEmail"
-        @click="handleClickBack"
+        @onClickBack="handleClickBack"
       >
-        <template #title>
-          <h1 class="gradient-title-default">
-            <span> Xác nhận Email</span>
-          </h1>
-        </template>
-      </VerifyPinOTPForm>
+      </VerifySignUpForm>
     </Transition>
   </div>
 </template>
@@ -188,7 +183,7 @@ import {
 } from '@ant-design/icons-vue';
 import axios from 'axios';
 import { signUp, verifySignUp } from '~/services/authentication';
-import VerifyPinOTPForm from '~/components/VerifyPinOTPForm/VerifyPinOTPForm.vue';
+import VerifySignUpForm from '~/components/VerifyForm/VerifySignUpForm/VerifySignUpForm.vue';
 import { ElNotification } from 'element-plus';
 
 definePageMeta({
@@ -346,12 +341,9 @@ const handleSignUp = (e: any) => {
         //     token: jwtVerifyEmail.value,
         //   },
         // });
-        showAnimation.value = false;
 
-        setTimeout(() => {
-          showAnimation.value = true;
-          isSignUp.value = true;
-        }, 300);
+        showAnimation.value = true;
+        isSignUp.value = true;
       } else if (response?.isEmailExist == true) {
         ElNotification.error({
           title: 'Thất bại!',

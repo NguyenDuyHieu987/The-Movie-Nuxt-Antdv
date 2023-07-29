@@ -1,10 +1,10 @@
 <template>
   <div
     v-show="showAnimation"
-    class="verify-email"
+    class="verify-signup"
     :class="{ active: isShowForm }"
   >
-    <div v-show="isShowForm" class="verify-form-container">
+    <div v-show="isShowForm" class="verify-signup-container">
       <a-button
         class="back-btn click-active"
         type="text"
@@ -34,7 +34,9 @@
         hideRequiredMark
       >
         <div class="title-verify">
-          <slot name="title" />
+          <h1 class="gradient-title-default">
+            <span> Xác nhận Email</span>
+          </h1>
         </div>
 
         <a-form-item
@@ -126,7 +128,7 @@
           </a-button>
         </a-form-item> -->
 
-        <a-form-item class="pin" name="pin" label="Mã xác nhận:">
+        <a-form-item class="pin" name="pin" label="Mã xác nhận">
           <PinOTP v-model:pin="formVerify.pin" />
         </a-form-item>
 
@@ -303,4 +305,4 @@ const handleClickBack = () => {
 };
 </script>
 
-<style lang="scss" src="./VerifyPinOTPForm.scss"></style>
+<style lang="scss" src="./VerifySignUpForm.scss"></style>

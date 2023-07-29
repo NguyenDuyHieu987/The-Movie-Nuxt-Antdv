@@ -72,6 +72,7 @@ const getData = async () => {
           window.localStorage.removeItem('userToken');
           window.localStorage.removeItem('remember');
           window.localStorage.removeItem('isLogin');
+
           store.userAccount = {};
           store.role = 'normal';
           store.isLogin = false;

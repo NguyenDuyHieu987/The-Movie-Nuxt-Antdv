@@ -1,22 +1,25 @@
-.verify-email {
+.verify-signup {
+  position: relative;
+  min-height: 400px;
+  max-height: 95vh;
+  width: 550px;
+  background-color: var(--background-content-color);
+  box-shadow: var(--box-shadow-large);
+  border-radius: 5px;
+  z-index: 11;
+  overflow: hidden;
+
   &.active {
     margin: auto auto;
   }
 
-  .verify-form-container {
-    position: relative;
-    margin: auto auto;
-    flex-direction: column;
-    border-radius: 5px;
-    z-index: 11;
-    overflow: hidden;
-    transition: all 0s;
-
+  .verify-signup-container {
     .back-btn {
       position: absolute;
       display: flex;
       align-items: center;
       top: 6px;
+      left: 10px;
       padding: 0px;
 
       svg {
@@ -27,6 +30,9 @@
     }
 
     .verify-form {
+      padding: 30px 70px;
+      padding-top: 50px;
+
       .title-verify {
         text-align: center;
         margin-bottom: 20px;

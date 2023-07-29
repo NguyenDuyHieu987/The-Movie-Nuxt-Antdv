@@ -6,7 +6,7 @@
       margin-bottom: 20px;
 
       h1 {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
 
       .note {
@@ -28,6 +28,7 @@
           color: var(--text-color-gray);
           font-weight: 500;
           max-width: 75%;
+          max-width: 500px;
         }
       }
     }
@@ -84,13 +85,7 @@
       }
     }
 
-    .verify-form-container {
-      margin: 0px;
-      min-height: auto;
-      height: auto;
-      width: auto;
-      max-width: 450px;
-
+    .verify-email-container {
       .back-btn {
       }
 
@@ -99,14 +94,11 @@
         padding-top: 50px;
 
         .title-verify {
-          text-align: left;
-
           h1 {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
           }
 
           strong {
-            font-weight: 500;
           }
         }
       }

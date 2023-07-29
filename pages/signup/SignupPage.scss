@@ -12,7 +12,6 @@
   .signup-form-container {
     position: relative;
     margin: auto auto;
-    flex-direction: column;
     border-radius: 5px;
     box-shadow: var(--box-shadow-large);
     background-color: var(--background-content-color);
@@ -135,21 +134,12 @@
     }
   }
 
-  .verify-email {
-    .verify-form-container {
-      max-height: 95vh;
-      min-height: 400px;
-      width: 550px;
-      background-color: var(--background-content-color);
-      box-shadow: var(--box-shadow-large);
-
+  .verify-signup {
+    .verify-signup-container {
       .back-btn {
-        left: 10px;
       }
 
       .verify-form {
-        padding: 30px 70px;
-        padding-top: 50px;
       }
     }
   }
@@ -181,7 +171,7 @@
       }
     }
 
-    .verify-email .verify-form-container {
+    .verify-signup {
       width: 450px;
 
       .verify-form {
@@ -202,7 +192,7 @@
       }
     }
 
-    .verify-email .verify-form-container {
+    .verify-signup {
       width: 400px;
 
       .verify-form {
@@ -223,9 +213,10 @@
       }
     }
 
-    .verify-email .verify-form-container {
-      max-width: 400px;
-      width: auto;
+    .verify-signup {
+      // max-width: 400px;
+      // width: auto;
+      width: 400px;
 
       .verify-form {
         padding: 20px 30px;

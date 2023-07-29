@@ -32,3 +32,10 @@ export function getBackdrop(path: string, size = 'full') {
 export function getColorImage(path: string) {
   return makeRequest(`${URL_API_IMAGE}/imagecolor/backdrop/${path}`);
 }
+
+export function getPosterCast(path: string) {
+  const nuxtConfig = useRuntimeConfig();
+  const TMDB_IMAGE_BASE_URL = nuxtConfig.app.TMDBurl;
+
+  return `${TMDB_IMAGE_BASE_URL}/original${path}`;
+}

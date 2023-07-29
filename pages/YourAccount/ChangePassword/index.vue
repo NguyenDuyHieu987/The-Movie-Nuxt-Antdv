@@ -106,10 +106,10 @@
             @onClickBack="handleClickBack"
           >
             <template #title>
-              <h1>Xác nhận Email</h1>
+              <h1>Xác nhận thay đổi mật khẩu của bạn</h1>
 
               <p>
-                Mã xác nhận sẽ được gửi đến Email:
+                {{ titleVerify }}
                 <strong> {{ store.userAccount?.email }}</strong>
               </p>
             </template>
@@ -123,7 +123,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import VerifyPinOTPForm from '~/components/VerifyPinOTPForm/VerifyPinOTPForm.vue';
+import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm/VerifyPinOTPForm.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
 import { accountVerify, ChangePassword } from '~/services/account';
 import { storeToRefs } from 'pinia';
@@ -156,6 +156,7 @@ const jwtVerifyEmail = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
 const otpExpOffset = ref<number>(60);
+const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Email: ');
 
 useHead({
   title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
@@ -406,6 +407,8 @@ const handleResendVerifyEmail = () => {
   )
     .then((response: any) => {
       // console.log(response);
+
+      titleVerify.value = `Một mã xác nhận khác đã được gửi đến Email: `;
 
       if (response?.isSended === true) {
         ElNotification.success({
