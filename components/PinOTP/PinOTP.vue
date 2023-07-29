@@ -76,7 +76,7 @@ onMounted(() => {
         input.value.length >= +input.getAttribute('maxlength') &&
         !isNaN(input.value)
       ) {
-        input.value = input.value.slice(0, +input.getAttribute('maxlength'));
+        // input.value = input.value.slice(0, +input.getAttribute('maxlength'));
       }
     });
   });

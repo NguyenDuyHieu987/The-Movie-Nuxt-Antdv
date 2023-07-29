@@ -377,7 +377,7 @@ const handleSignUp = (e: any) => {
     .catch((e) => {
       ElNotification.error({
         title: 'Thất bại!',
-        message: 'Some thing went wrong.',
+        message: 'Gửi Email thất bại.',
         showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
@@ -466,7 +466,7 @@ const handleResendVerifyEmail = () => {
     .catch((e) => {
       ElNotification.error({
         title: 'Thất bại!',
-        message: 'Some thing went wrong.',
+        message: 'Gửi Email thất bại.',
         showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
@@ -537,7 +537,7 @@ const handleVerify = (formVerify: any) => {
     .catch((e) => {
       ElNotification.error({
         title: 'Thất bại!',
-        message: 'Some thing went wrong.',
+        message: 'Đăng ký tài khoản thất bại.',
         showClose: false,
         icon: () =>
           h(CloseCircleFilled, {

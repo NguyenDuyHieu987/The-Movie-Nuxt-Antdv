@@ -60,18 +60,21 @@
             display: flex;
             flex-direction: row;
 
-            .count-down-button {
-              min-width: 100px;
-              background-color: transparent;
-
-              // &[disabled] {
-              //   color: #b3b3b3;
-              // }
-            }
-
             .ant-input-number-affix-wrapper {
               width: 100%;
             }
+          }
+        }
+
+        &.resend {
+          .count-down-btn {
+            margin: 0px auto;
+            // min-width: 100px;
+            background-color: transparent;
+
+            // &[disabled] {
+            //   color: #b3b3b3;
+            // }
           }
         }
 
@@ -104,7 +107,7 @@
 
       .verify-form-button {
         font-size: 1.5rem;
-        margin-top: 20px;
+        // margin-top: 20px;
         width: 100%;
 
         &:not(:disabled) {

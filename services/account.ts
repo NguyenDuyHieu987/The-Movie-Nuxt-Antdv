@@ -59,11 +59,11 @@ export function accountVerify(params: any, type: string) {
       bodyFormData.append('old_password', params.oldPassword);
       bodyFormData.append('new_password', params.newPassword);
       break;
-    case 'change-email':
+    case 'email':
       break;
   }
 
-  return makeRequest(`/account/${type}`, {
+  return makeRequest(`/account/verify/${type}`, {
     method: 'POST',
     headers: headers,
     data: bodyFormData,

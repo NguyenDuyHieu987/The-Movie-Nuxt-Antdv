@@ -73,8 +73,8 @@
           </a-input>
         </a-form-item>
 
-        <a-form-item
-          label="Mã xác nhận:"
+        <!-- <a-form-item
+          label="Mã xác nhận"
           name="otp"
           :rules="[
             {
@@ -124,7 +124,7 @@
           >
             <span v-if="!loadingResend"> {{ countdown }}</span>
           </a-button>
-        </a-form-item>
+        </a-form-item> -->
 
         <a-form-item
           class="pin"
@@ -136,18 +136,25 @@
               message: 'Vui lòng nhập mã xác nhận!',
               trigger: ['change', 'blur'],
             },
-            {
-              message: 'Mã xác nhận phải là 6 số!',
-              min: 6,
-              max: 6,
-              trigger: ['change', 'blur'],
-            },
           ]"
         >
           <PinOTP v-model:pin="formVerify.pin" />
         </a-form-item>
 
-        <a-form-item>
+        <a-form-item class="resend" name="resend">
+          <a-button
+            class="count-down-btn"
+            type="text"
+            size="large"
+            @click="handleResendVerifyEmail"
+            :disabled="disabled_countdown"
+            :loading="loadingResend"
+          >
+            <span v-if="!loadingResend"> {{ countdown }}</span>
+          </a-button>
+        </a-form-item>
+
+        <a-form-item name="submit">
           <a-button
             class="verify-form-button click-active"
             type="primary"
@@ -219,9 +226,14 @@ const loadingVerify = defineModel('loadingVerify', {
   type: Boolean,
   default: false,
 });
+const intervalCountdown = ref<any>();
 
 const disabledVerifyEmail = computed<boolean>((): boolean => {
-  return !(formVerify.email && formVerify.otp?.toString().length == 6);
+  return !(
+    formVerify.email &&
+    // formVerify.otp?.toString().length == 6
+    !formVerify.pin.some((number) => number?.toString() == null)
+  );
 });
 
 watch(
@@ -235,15 +247,16 @@ watch(
 );
 
 watch(isShowForm, () => {
-  formVerify.email = props.email;
-
   if (disabled_countdown.value == true) {
+    formVerify.email = props.email;
+    clearInterval(intervalCountdown.value);
+
     let a = props.otpExpOffset;
-    const interval = setInterval(() => {
+    intervalCountdown.value = setInterval(() => {
       a -= 1;
       if (a == 0) {
         disabled_countdown.value = false;
-        clearInterval(interval);
+        clearInterval(intervalCountdown.value);
         countdown.value = 'Gửi lại';
       } else if (a >= 0) {
         countdown.value = 'Còn ' + a.toString() + ' s';
@@ -256,12 +269,14 @@ watch(isShowForm, () => {
 
 watch(disabled_countdown, () => {
   if (disabled_countdown.value == true) {
+    clearInterval(intervalCountdown.value);
+
     let a = props.otpExpOffset;
-    const interval = setInterval(() => {
+    intervalCountdown.value = setInterval(() => {
       a -= 1;
       if (a == 0) {
         disabled_countdown.value = false;
-        clearInterval(interval);
+        clearInterval(intervalCountdown.value);
         countdown.value = 'Gửi lại';
       } else if (a >= 0) {
         countdown.value = 'Còn ' + a.toString() + ' s';
@@ -284,7 +299,8 @@ const checkPinOTP = async (_rule: any, value: number) => {
 
 const handleVerify = () => {
   emits('onVerify', {
-    otp: formVerify.otp,
+    // otp: formVerify.otp,
+    otp: formVerify.pin.join(''),
     user_token: props.jwtVerifyEmail,
   });
 };

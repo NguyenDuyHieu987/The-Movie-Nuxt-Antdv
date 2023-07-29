@@ -173,12 +173,7 @@ onBeforeMount(() => {
 const handleSubmit = () => {
   loadingChangeEmail.value = true;
 
-  accountVerify(
-    {
-      oldPassword: formChangeEmail.email,
-    },
-    'email'
-  )
+  accountVerify({}, 'email')
     .then((response: any) => {
       // console.log(response);
 

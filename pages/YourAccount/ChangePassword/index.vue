@@ -311,7 +311,7 @@ const handleSubmit = () => {
     .catch((e) => {
       ElNotification.error({
         title: 'Thất bại!',
-        message: 'Some thing went wrong.',
+        message: 'Gửi Email thất bại.',
         showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
@@ -335,7 +335,7 @@ const handleVerify = (formVerify: any) => {
       if (response?.success == true) {
         ElNotification.success({
           title: 'Thành công!',
-          message: 'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
+          message: 'Đổi mật khẩu thành công.',
           showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
@@ -368,7 +368,7 @@ const handleVerify = (formVerify: any) => {
       } else if (response?.success == false) {
         ElNotification.error({
           title: 'Thất bại!',
-          message: 'Some thing went wrong.',
+          message: 'Đổi mật khẩu thất bại.',
           showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
@@ -380,7 +380,7 @@ const handleVerify = (formVerify: any) => {
     .catch((e) => {
       ElNotification.error({
         title: 'Thất bại!',
-        message: 'Some thing went wrong.',
+        message: 'Đổi mật khẩu thất bại.',
         showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
@@ -454,7 +454,7 @@ const handleResendVerifyEmail = () => {
     .catch((e) => {
       ElNotification.error({
         title: 'Thất bại!',
-        message: 'Some thing went wrong.',
+        message: 'Gửi Email thất bại.',
         showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
