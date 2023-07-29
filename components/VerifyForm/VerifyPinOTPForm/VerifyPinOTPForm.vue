@@ -181,7 +181,7 @@ const disabledVerifyEmail = computed<boolean>((): boolean => {
   return !(
     formVerify.email &&
     // formVerify.otp?.toString().length == 6
-    !formVerify.pin.some((number) => number?.toString() == null)
+    !formVerify.pin.some((number) => number?.toString().length == 0)
   );
 });
 

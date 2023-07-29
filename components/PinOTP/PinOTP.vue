@@ -69,35 +69,46 @@ const pin = defineModel('pin', {
   default: [null, null, null, null, null, null],
 });
 
-onMounted(() => {
+onMounted(() => {});
+
+const validateInput = () => {
   document.querySelectorAll('input[type="number"]').forEach((input: any) => {
-    input.addEventListener('input', (e: any) => {
-      if (
-        input.value.length >= +input.getAttribute('maxlength') &&
-        !isNaN(input.value)
-      ) {
-        // input.value = input.value.slice(0, +input.getAttribute('maxlength'));
-      }
-    });
+    if (
+      input.value.length > +input.getAttribute('maxlength') &&
+      !isNaN(input.value)
+    ) {
+      // input.value = input.value.slice(0, +input.getAttribute('maxlength'));
+
+      const index = +input.getAttribute('index') - 1;
+
+      pin.value[index] = input.value.slice(0, +input.getAttribute('maxlength'));
+    }
   });
-});
+};
 
 const handleImputPin = (e: any) => {
+  validateInput();
+
   e.target.addEventListener('keydown', (e1: any) => {
-    if (e1.keyCode == 8 && e.target.previousElementSibling) {
-      setTimeout(() => {
+    setTimeout(() => {
+      if (
+        e1.keyCode == 8 &&
+        e.target.value.length == 0 &&
+        e.target.previousElementSibling
+      ) {
         e.target.previousElementSibling.focus();
-      });
-    }
+      }
+    });
   });
 };
 
 const handleKeyDownPin = (e: any) => {
   setTimeout(() => {
     if (e.keyCode != 8) {
-      if (isNaN(e.target.value)) {
-        // e.target.type = 'number';
-      } else if (
+      validateInput();
+
+      if (
+        !isNaN(e.target.value) &&
         e.target.value.length > 0 &&
         e.target.nextElementSibling &&
         e.target.nextElementSibling.value.length == 0
@@ -107,16 +118,16 @@ const handleKeyDownPin = (e: any) => {
         });
       }
     }
-  });
+  }, 10);
 };
 
 const handlePastePin = (e: any) => {
   setTimeout(() => {
-    const index = +e.target.getAttribute('index');
+    const index = +e.target.getAttribute('index') - 1;
 
     let k = 0;
 
-    for (let i = index - 1; i < pin.value.length; i++) {
+    for (let i = index; i < pin.value.length; i++) {
       pin.value[i] = e.target.value[k++];
     }
   });
