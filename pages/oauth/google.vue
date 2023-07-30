@@ -65,6 +65,8 @@ onBeforeMount(() => {
         navigateTo({ path: '/' });
         // navigateTo({ path: urlBack.value });
       } else if (response.isLogin == false) {
+        navigateTo({ path: '/login' });
+
         ElNotification.error({
           title: 'Thất bại!',
           message: 'Some thing went wrong.',
@@ -77,6 +79,8 @@ onBeforeMount(() => {
       }
     })
     .catch((e) => {
+      navigateTo({ path: '/login' });
+
       ElNotification.error({
         title: 'Thất bại!',
         message: 'Some thing went wrong.',
