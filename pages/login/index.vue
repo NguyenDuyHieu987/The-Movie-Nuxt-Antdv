@@ -96,7 +96,7 @@
 
           <div class="social-login">
             <a-button
-              class="facebook-login-btn"
+              class="facebook-login-btn click-active"
               size="large"
               :loading="loadingFacebookLogin"
               @click="handleClickFacebookLogin"
@@ -118,7 +118,7 @@
             </a-button>
 
             <a-button
-              class="google-login-btn"
+              class="google-login-btn click-active"
               id="google-login-btn"
               size="large"
               :loading="loadingGoogleLogin"
