@@ -19,12 +19,17 @@ const router = useRouter();
 const loading = ref<boolean>(false);
 
 onBeforeMount(() => {
-  loading.value = true;
-  store.loadingAppInstance.start();
-
   const url = window.location.href;
 
   const access_token = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)?.at(1);
+
+  if (access_token == null) {
+    navigateTo({ path: '/' });
+    return;
+  }
+
+  loading.value = true;
+  store.loadingAppInstance.start();
 
   loginGoogle({
     accessToken: access_token,
