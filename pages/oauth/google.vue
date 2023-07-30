@@ -97,8 +97,8 @@ onBeforeMount(() => {
     });
 });
 
-watch(route, () => {}, {
-  deep: true,
-  immediate: true,
-});
+// watch(route, () => {}, {
+//   deep: true,
+//   immediate: true,
+// });
 </script>
