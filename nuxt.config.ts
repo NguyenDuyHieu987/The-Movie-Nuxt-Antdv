@@ -80,8 +80,10 @@ export default defineNuxtConfig({
         //   type: 'text/javascript',
         // },
         // {
-        //   src: 'https://apis.google.com/js/platform.js',
+        //   src: 'https://apis.google.com/js/client:platform.js',
         //   type: 'text/javascript',
+        //   async: true,
+        //   defer: true,
         // },
         {
           src: 'https://accounts.google.com/gsi/client',
@@ -111,6 +113,8 @@ export default defineNuxtConfig({
       googleAnalyticsID: process.env.GOOGLE_ANALYTICS_ID,
       googleTagManagerID: process.env.GOOGLE_TAG_MANAGER_ID,
       facebookAppID: process.env.FACEBOOK_APP_ID,
+      googleOauth2ClientID: process.env.GOOGLE_OAUTH2_CLIENT_ID,
+      googleOauth2ClientSecret: process.env.GOOGLE_OAUTH2_CLIENT_SECRET,
     },
     public: {
       serverImageUrl: process.env.SERVER_IMAGE_URL,

@@ -6,6 +6,7 @@ export async function initGoogleSdk() {
       // callback: handleCredentialResponse,
     });
     window.google.accounts.id.prompt();
+
     resolve();
   });
 }

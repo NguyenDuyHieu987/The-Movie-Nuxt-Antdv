@@ -170,6 +170,7 @@ import { getImage } from '~/services/image';
 import { LogIn, loginFacebook, loginGoogle } from '~/services/authentication';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';
+import { google } from 'googleapis';
 
 definePageMeta({
   layout: 'auth',
@@ -190,6 +191,7 @@ useServerSeoMeta({
   ogLocale: 'vi',
 });
 
+const nuxtConfig = useRuntimeConfig();
 const client = useSupabaseClient();
 const user = useSupabaseUser();
 const store = useStore();
@@ -230,8 +232,7 @@ onBeforeMount(() => {
 
 onMounted(() => {
   window.google.accounts.id.initialize({
-    client_id:
-      '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
+    client_id: nuxtConfig.app.googleOauth2ClientID,
     // ux_mode: 'redirect',
     callback: handleGooglePopupCallback,
   });
@@ -246,11 +247,8 @@ onMounted(() => {
   //   }
   // );
 
-  // console.log(route.query.code);
-
   tokenClient.value = window.google.accounts.oauth2.initTokenClient({
-    client_id:
-      '973707203186-4f3sedatri213ib2f5j01ts0qj9c3fk0.apps.googleusercontent.com',
+    client_id: nuxtConfig.app.googleOauth2ClientID,
     scope:
       'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
     // ux_mode: 'redirect',
@@ -332,7 +330,9 @@ const handleLogin = () => {
 const handleClickFacebookLogin = async () => {
   const { authResponse }: any = await new Promise(window.FB.login);
   if (!authResponse) return;
+
   loadingFacebookLogin.value = true;
+
   loginFacebook({
     accessToken: authResponse.accessToken,
   })
@@ -396,88 +396,98 @@ const handleClickGoogleLogin = async () => {
   // tokenClient.value.requestCode();
   // tokenClient.value.requestAccessToken();
 
-  await client.auth
-    .signInWithOAuth({
-      provider: 'google',
-    })
-    .then((response: any) => {
-      console.log(response);
-    });
+  const oauth2Client = new google.auth.OAuth2(
+    nuxtConfig.app.googleOauth2ClientID,
+    nuxtConfig.app.googleOauth2ClientSecret,
+    'http://localhost:3000/login'
+  );
+
+  const scopes = [
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email',
+  ];
+
+  const url = oauth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: scopes,
+  });
+
+  // await client.auth
+  //   .signInWithOAuth({
+  //     provider: 'google',
+  //   })
+  //   .then((response: any) => {
+  //     console.log(response);
+  //   });
 };
 
 const handleGooglePopupCallback = (authResponse: any) => {
   if (authResponse && authResponse?.access_token) {
-    loadingGoogleLogin.value = true;
-
-    loginGoogle({
-      accessToken: authResponse?.access_token,
-    })
-      .then((response: any) => {
-        if (response.isSignUp == true) {
-          ElNotification.success({
-            title: 'Thành công!',
-            message: 'Bạn đã đăng nhập bằng Google thành công tại Phimhay247.',
-            showClose: false,
-            icon: () =>
-              h(CheckCircleFilled, {
-                style: 'color: green',
-              }),
-          });
-
-          store.userAccount = response?.result;
-          store.isLogin = true;
-
-          utils.localStorage.setWithExpiry(
-            'userAccount',
-            {
-              user_token: response.headers.get('Authorization'),
-            },
-            30
-          );
-
-          // navigateTo({ path: '/' });
-          navigateTo({ path: urlBack.value });
-        } else if (response.isLogin == true) {
-          store.userAccount = response?.result;
-          store.isLogin = true;
-
-          utils.localStorage.setWithExpiry(
-            'userAccount',
-            {
-              user_token: response.headers.get('Authorization'),
-            },
-            30
-          );
-
-          // navigateTo({ path: '/' });
-          navigateTo({ path: urlBack.value });
-        } else if (response.isLogin == false) {
-          ElNotification.error({
-            title: 'Thất bại!',
-            message: 'Some thing went wrong.',
-            showClose: false,
-            icon: () =>
-              h(CloseCircleFilled, {
-                style: 'color: red',
-              }),
-          });
-        }
-      })
-      .catch((e) => {
-        ElNotification.error({
-          title: 'Thất bại!',
-          message: 'Some thing went wrong.',
-          showClose: false,
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loadingGoogleLogin.value = false;
-      });
+    // loadingGoogleLogin.value = true;
+    // loginGoogle({
+    //   accessToken: authResponse?.access_token,
+    // })
+    //   .then((response: any) => {
+    //     if (response.isSignUp == true) {
+    //       ElNotification.success({
+    //         title: 'Thành công!',
+    //         message: 'Bạn đã đăng nhập bằng Google thành công tại Phimhay247.',
+    //         showClose: false,
+    //         icon: () =>
+    //           h(CheckCircleFilled, {
+    //             style: 'color: green',
+    //           }),
+    //       });
+    //       store.userAccount = response?.result;
+    //       store.isLogin = true;
+    //       utils.localStorage.setWithExpiry(
+    //         'userAccount',
+    //         {
+    //           user_token: response.headers.get('Authorization'),
+    //         },
+    //         30
+    //       );
+    //       // navigateTo({ path: '/' });
+    //       navigateTo({ path: urlBack.value });
+    //     } else if (response.isLogin == true) {
+    //       store.userAccount = response?.result;
+    //       store.isLogin = true;
+    //       utils.localStorage.setWithExpiry(
+    //         'userAccount',
+    //         {
+    //           user_token: response.headers.get('Authorization'),
+    //         },
+    //         30
+    //       );
+    //       // navigateTo({ path: '/' });
+    //       navigateTo({ path: urlBack.value });
+    //     } else if (response.isLogin == false) {
+    //       ElNotification.error({
+    //         title: 'Thất bại!',
+    //         message: 'Some thing went wrong.',
+    //         showClose: false,
+    //         icon: () =>
+    //           h(CloseCircleFilled, {
+    //             style: 'color: red',
+    //           }),
+    //       });
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     ElNotification.error({
+    //       title: 'Thất bại!',
+    //       message: 'Some thing went wrong.',
+    //       showClose: false,
+    //       icon: () =>
+    //         h(CloseCircleFilled, {
+    //           style: 'color: red',
+    //         }),
+    //     });
+    //     if (axios.isCancel(e)) return;
+    //   })
+    //   .finally(() => {
+    //     loadingGoogleLogin.value = false;
+    //   });
   }
 };
 </script>
