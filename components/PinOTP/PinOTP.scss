@@ -33,6 +33,7 @@
     &:focus {
       border: 1px solid var(--app-background-color);
       transform: translateY(-2px);
+      box-shadow: 0 0 10px var(--app-background-color);
     }
   }
 }
