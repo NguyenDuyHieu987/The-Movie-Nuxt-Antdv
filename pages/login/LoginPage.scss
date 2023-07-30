@@ -62,6 +62,12 @@
         }
 
         .ant-row.ant-form-item {
+          &.remember-me {
+            .ant-checkbox-wrapper {
+              user-select: none;
+            }
+          }
+
           .ant-checkbox-wrapper {
             color: var(--text-color);
           }

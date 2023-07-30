@@ -61,15 +61,10 @@
             </a-input-password>
           </a-form-item>
 
-          <a-form-item>
-            <a-form-item name="remember" no-style>
-              <a-checkbox
-                v-model:checked="formLogin.remember"
-                style="user-select: none"
-              >
-                Ghi nhớ tôi
-              </a-checkbox>
-            </a-form-item>
+          <a-form-item class="remember-me" name="remember-me">
+            <a-checkbox v-model:checked="formLogin.rememberMe">
+              Ghi nhớ tôi
+            </a-checkbox>
             <a class="login-form-forgot" href="">Quên mật khẩu?</a>
           </a-form-item>
 
@@ -219,7 +214,7 @@ const loadingGoogleLogin = ref<boolean>(false);
 const formLogin = reactive<any>({
   username: '',
   password: '',
-  remember: false,
+  rememberMe: true,
 });
 const tokenClient = ref<any>({});
 const urlBack = computed(() =>
@@ -231,7 +226,7 @@ const urlBack = computed(() =>
 const reset = () => {
   formLogin.username = '';
   formLogin.password = '';
-  formLogin.remember = false;
+  formLogin.rememberMe = false;
 };
 
 const disabled = computed<boolean>((): boolean => {
