@@ -153,11 +153,6 @@
                 Đăng ký
               </a-button>
             </a-form-item>
-
-            <div class="bottom-form">
-              <p>Hoặc</p>
-              <NuxtLink :to="{ name: 'login' }">Đăng nhập ngay!</NuxtLink>
-            </div>
           </a-form>
         </div>
 

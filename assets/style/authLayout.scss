@@ -1,13 +1,3 @@
-@media only screen and (max-width: 500px) {
-  .image-auth:not(.image-auth.responsive) {
-    display: none;
-  }
-
-  .image-auth.responsive {
-    display: block !important;
-  }
-}
-
 .auth-container {
   overflow-y: scroll;
   height: 100vh;
@@ -15,23 +5,44 @@
   align-items: center;
   overflow: hidden;
 
-  .image-auth {
-    height: 100vh;
-    width: 100%;
+  .background-auth {
     position: absolute;
-  }
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 
-  .image-auth.responsive {
-    display: none;
-  }
+    .image-auth {
+      height: 100vh;
+      width: 100%;
+    }
 
-  img {
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    opacity: 1;
-    object-fit: cover;
+    .image-auth.responsive {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      opacity: 1;
+      object-fit: cover;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .auth-container {
+    .background-auth {
+      .image-auth.desktop {
+        // display: none;
+      }
+
+      .image-auth.responsive {
+        display: block;
+      }
+    }
   }
 }

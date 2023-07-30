@@ -91,8 +91,9 @@
 
           <div class="bottom-form">
             <p>Hoặc</p>
-            <NuxtLink :to="{ name: 'signup' }">Dăng ký ngay!</NuxtLink>
           </div>
+
+          <!-- <div class="separate"></div> -->
 
           <div class="social-login">
             <a-button

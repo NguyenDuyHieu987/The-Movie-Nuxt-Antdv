@@ -1,0 +1,85 @@
+header.header-bar-auth {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 25px;
+  padding-right: 25px;
+  height: var(--header-height);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: linear-gradient(to bottom, #000 0, #00000000 100%);
+
+  .left-header {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      display: inline-block;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 2.25rem;
+      }
+    }
+  }
+
+  .right-header {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    .signup-note {
+      line-height: 1.8rem;
+      margin-right: 10px;
+    }
+
+    a {
+      font-size: 1.8rem;
+      color: var(--app-background-color) !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  header.header-bar-auth {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .left-header {
+      .logo {
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  header.header-bar-auth {
+    .right-header {
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  header.header-bar-auth {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    .left-header {
+      .menu-btn {
+        &.mobile {
+        }
+      }
+
+      .logo {
+      }
+    }
+
+    .right-header {
+    }
+  }
+}

@@ -208,7 +208,7 @@ header.header-bar-service {
 }
 
 @media only screen and (max-width: 900px) {
-  header.header-bar {
+  header.header-bar-service {
     padding-left: 20px;
     padding-right: 0px;
 
@@ -251,7 +251,7 @@ header.header-bar-service {
 }
 
 @media only screen and (max-width: 750px) {
-  header.header-bar {
+  header.header-bar-service {
     .ant-select-show-search.search-header {
       display: none;
     }
@@ -270,7 +270,7 @@ header.header-bar-service {
 }
 
 @media only screen and (max-width: 650px) {
-  header.header-bar {
+  header.header-bar-service {
     padding-left: 15px;
     padding-right: 0px;
 

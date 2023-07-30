@@ -16,16 +16,17 @@
       border-radius: 5px;
       box-shadow: var(--box-shadow-large);
       z-index: 1;
-      background-color: var(--background-content-color);
+      // background-color: var(--background-content-color);
+      background-color: rgba(0, 0, 0, 0.9);
       width: 550px;
-      min-height: 680px;
+      min-height: 630px;
       overflow: hidden;
 
       .login-form {
-        position: absolute;
-        inset: 3px;
-        z-index: 3;
-        background-color: var(--background-content-color);
+        // position: absolute;
+        // inset: 3px;
+        // z-index: 3;
+        // background-color: var(--background-content-color);
         padding: 30px 70px;
 
         .title-login {
@@ -71,9 +72,9 @@
         }
 
         .login-form-button {
-          font-size: 1.5rem;
           width: 100%;
-          background-color: var(--btn-backgroud-color-gray);
+          font-size: 1.5rem;
+          background-color: var(--background-content-color);
           border: 1px solid var(--border-regular);
 
           &:disabled {
@@ -83,6 +84,12 @@
 
         .bottom-form {
           color: var(--text-color);
+        }
+
+        .separate {
+          margin: 30px auto;
+          border-top: 1px solid #fff;
+          width: 60%;
         }
 
         .social-login {
@@ -107,8 +114,7 @@
           .ant-btn {
             display: flex;
             align-items: center;
-            transition: all 0.15s;
-            background-color: var(--btn-backgroud-color-gray);
+            background-color: var(--background-content-color);
             border: 1px solid var(--border-regular);
 
             &:hover {
@@ -182,50 +188,44 @@
         }
       }
 
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 500px;
-        height: 500px;
-        // background-image: linear-gradient(
-        //   45deg,
-        //   var(--app-background-color),
-        //   var(--loading-progress-bar1)
-        // );
+      // &::before {
+      //   content: '';
+      //   position: absolute;
+      //   top: 50%;
+      //   left: 50%;
+      //   transform: translate(-50%, -50%);
+      //   width: 500px;
+      //   height: 500px;
+      //   background-image: linear-gradient(
+      //     45deg,
+      //     var(--app-background-color),
+      //     var(--loading-progress-bar2),
+      //     var(--loading-progress-bar1)
+      //   );
+      //   z-index: 1;
+      //   animation: animate 10s linear infinite;
+      //   transform-origin: top left;
+      // }
 
-        background-image: linear-gradient(
-          45deg,
-          var(--app-background-color),
-          var(--loading-progress-bar2),
-          var(--loading-progress-bar1)
-        );
-        z-index: 1;
-        animation: animate 10s linear infinite;
-        transform-origin: top left;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 500px;
-        height: 500px;
-        background-image: linear-gradient(
-          45deg,
-          var(--app-background-color),
-          var(--loading-progress-bar2),
-          var(--loading-progress-bar1)
-        );
-        z-index: 1;
-        animation: animate 10s linear infinite;
-        transform-origin: top left;
-        animation-delay: -4.9s;
-      }
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   top: 50%;
+      //   left: 50%;
+      //   transform: translate(-50%, -50%);
+      //   width: 500px;
+      //   height: 500px;
+      //   background-image: linear-gradient(
+      //     45deg,
+      //     var(--app-background-color),
+      //     var(--loading-progress-bar2),
+      //     var(--loading-progress-bar1)
+      //   );
+      //   z-index: 1;
+      //   animation: animate 10s linear infinite;
+      //   transform-origin: top left;
+      //   animation-delay: -4.9s;
+      // }
 
       @keyframes animate {
         0% {

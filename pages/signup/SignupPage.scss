@@ -15,11 +15,12 @@
       margin: auto auto;
       border-radius: 5px;
       box-shadow: var(--box-shadow-large);
-      background-color: var(--background-content-color);
-      min-height: 750px;
+      // background-color: var(--background-content-color);
+      background-color: rgba(0, 0, 0, 0.9);
+      min-height: 670px;
       max-height: 95vh;
       width: 550px;
-      z-index: 11;
+      z-index: 1;
       overflow: hidden;
 
       &::-webkit-scrollbar-thumb,
@@ -28,10 +29,10 @@
       }
 
       .signup-form {
-        position: absolute;
-        inset: 3px;
-        z-index: 3;
-        background-color: var(--background-content-color);
+        // position: absolute;
+        // inset: 3px;
+        // z-index: 3;
+        // background-color: var(--background-content-color);
         padding: 30px 70px;
 
         .title-signup {
@@ -45,8 +46,8 @@
           font-size: 1.5rem;
           margin-top: 10px;
           width: 100%;
-          background-color: var(--btn-backgroud-color-gray);
           border: 1px solid var(--border-regular);
+          background-color: var(--background-content-color);
 
           &:disabled {
             // color: #707070;
@@ -71,50 +72,44 @@
         }
       }
 
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 500px;
-        height: 500px;
-        // background-image: linear-gradient(
-        //   45deg,
-        //   var(--app-background-color),
-        //   var(--loading-progress-bar1)
-        // );
+      // &::before {
+      //   content: '';
+      //   position: absolute;
+      //   top: 50%;
+      //   left: 50%;
+      //   transform: translate(-50%, -50%);
+      //   width: 500px;
+      //   height: 500px;
+      //   background-image: linear-gradient(
+      //     45deg,
+      //     var(--app-background-color),
+      //     var(--loading-progress-bar2),
+      //     var(--loading-progress-bar1)
+      //   );
+      //   z-index: 1;
+      //   animation: animate 10s linear infinite;
+      //   transform-origin: top left;
+      // }
 
-        background-image: linear-gradient(
-          45deg,
-          var(--app-background-color),
-          var(--loading-progress-bar2),
-          var(--loading-progress-bar1)
-        );
-        z-index: 1;
-        animation: animate 10s linear infinite;
-        transform-origin: top left;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 500px;
-        height: 500px;
-        background-image: linear-gradient(
-          45deg,
-          var(--app-background-color),
-          var(--loading-progress-bar2),
-          var(--loading-progress-bar1)
-        );
-        z-index: 1;
-        animation: animate 10s linear infinite;
-        transform-origin: top left;
-        animation-delay: -4.9s;
-      }
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   top: 50%;
+      //   left: 50%;
+      //   transform: translate(-50%, -50%);
+      //   width: 500px;
+      //   height: 500px;
+      //   background-image: linear-gradient(
+      //     45deg,
+      //     var(--app-background-color),
+      //     var(--loading-progress-bar2),
+      //     var(--loading-progress-bar1)
+      //   );
+      //   z-index: 1;
+      //   animation: animate 10s linear infinite;
+      //   transform-origin: top left;
+      //   animation-delay: -4.9s;
+      // }
 
       @keyframes animate {
         0% {
