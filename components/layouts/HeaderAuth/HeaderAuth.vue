@@ -15,9 +15,6 @@
     </div>
 
     <div class="right-header">
-      <span v-if="route.path == '/login'" class="signup-note">
-        Chưa có tài khoản?
-      </span>
       <NuxtLink :to="route.path == '/login' ? '/signup' : '/login'">
         <span v-if="route.path == '/login'"> Đăng ký ngay</span>
         <span v-if="route.path == '/signup'"> Đăng nhập</span>

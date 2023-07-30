@@ -236,11 +236,6 @@ const reset = () => {
   formSignup.email = '';
 };
 
-useHead({
-  title: 'Phimhay247 - Đăng ký',
-  htmlAttrs: { lang: 'vi' },
-});
-
 const disabled = computed<boolean>((): boolean => {
   return !(
     (
