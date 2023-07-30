@@ -66,7 +66,7 @@
                         d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"
                       />
                     </svg>
-                    <span> {{ formChangeEmail?.email }}</span>
+                    <span> {{ store.userAccount?.email }}</span>
                   </div>
 
                   <div class="right">
@@ -90,7 +90,7 @@
             v-model:isShowForm="isChangeEmail"
             :email="store.userAccount?.email"
             :jwtVerifyEmail="jwtVerifyEmail"
-            :otpExpOffset="otpExpOffset"
+            v-model:otpExpOffset="otpExpOffset"
             v-model:loadingResend="loadingResend"
             v-model:disabled_countdown="disabled_countdown"
             v-model:loadingVerify="loadingVerify"
@@ -129,7 +129,7 @@ definePageMeta({
   },
 });
 
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
 const { isLogin } = storeToRefs<any>(store);
 const loadingChangeEmail = ref<boolean>(false);
@@ -144,7 +144,7 @@ const isChangeEmail = ref<boolean>(false);
 const jwtVerifyEmail = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
-const otpExpOffset = ref<number>(60);
+const otpExpOffset = ref<number>(0);
 const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Email: ');
 
 useHead({
@@ -175,6 +175,17 @@ onBeforeMount(() => {
 const handleSubmit = () => {
   if (loadingChangeEmail.value) return;
 
+  if (otpExpOffset.value > 0) {
+    showAnimation.value = false;
+
+    setTimeout(() => {
+      showAnimation.value = true;
+      isChangeEmail.value = true;
+    }, 300);
+
+    return;
+  }
+
   loadingChangeEmail.value = true;
 
   accountVerify({}, 'change-email')
@@ -194,7 +205,8 @@ const handleSubmit = () => {
         });
 
         jwtVerifyEmail.value = response.headers.get('Authorization');
-        otpExpOffset.value = response.exp_offset;
+        // otpExpOffset.value = response.exp_offset;
+        otpExpOffset.value = 10;
 
         // router.push({
         //   query: {

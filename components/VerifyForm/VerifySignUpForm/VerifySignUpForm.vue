@@ -197,14 +197,11 @@ const formVerify = reactive<{
   email: string | undefined;
   otp: number | null;
   pin: number[] | null[];
-  otpExpOffset: number;
 }>({
   email: props.email,
   otp: null,
   pin: [null, null, null, null, null, null],
-  otpExpOffset: props.otpExpOffset,
 });
-const countdown = ref<string>(props.otpExpOffset + ' s');
 const disabled_countdown = defineModel('disabled_countdown', {
   type: Boolean,
   default: true,
@@ -217,13 +214,20 @@ const loadingVerify = defineModel('loadingVerify', {
   type: Boolean,
   default: false,
 });
+const otpExpOffset = defineModel('otpExpOffset', {
+  type: Number,
+  default: 60,
+});
+const countdown = ref<string>(otpExpOffset.value + ' s');
 const intervalCountdown = ref<any>();
 
 const disabledVerifyEmail = computed<boolean>((): boolean => {
   return !(
     formVerify.email &&
     // formVerify.otp?.toString().length == 6
-    !formVerify.pin.some((number) => number?.toString().length == 0)
+    !formVerify.pin.some(
+      (number) => number == null || number?.toString().length == 0
+    )
   );
 });
 
@@ -237,24 +241,17 @@ watch(
   { deep: true, immediate: true }
 );
 
-watch(isShowForm, () => {
-  if (disabled_countdown.value == true) {
-    formVerify.email = props.email;
-    clearInterval(intervalCountdown.value);
+watch(otpExpOffset, () => {
+  if (otpExpOffset.value >= 0 && disabled_countdown.value == true) {
+    countdown.value = 'Còn ' + otpExpOffset.value + ' s';
+  }
+});
 
-    let a = props.otpExpOffset;
-    intervalCountdown.value = setInterval(() => {
-      a -= 1;
-      if (a == 0) {
-        disabled_countdown.value = false;
-        clearInterval(intervalCountdown.value);
-        countdown.value = 'Gửi lại';
-      } else if (a >= 0) {
-        countdown.value = 'Còn ' + a.toString() + ' s';
-      }
-    }, 1000);
-  } else {
-    countdown.value = 'Gửi lại';
+watch(isShowForm, () => {
+  if (otpExpOffset.value > 0) {
+    if (disabled_countdown.value == false) {
+      disabled_countdown.value = true;
+    }
   }
 });
 
@@ -262,15 +259,15 @@ watch(disabled_countdown, () => {
   if (disabled_countdown.value == true) {
     clearInterval(intervalCountdown.value);
 
-    let a = props.otpExpOffset;
+    // let a = otpExpOffset.value;
     intervalCountdown.value = setInterval(() => {
-      a -= 1;
-      if (a == 0) {
-        disabled_countdown.value = false;
+      // a -= 1;
+      otpExpOffset.value -= 1;
+
+      if (otpExpOffset.value == 0) {
         clearInterval(intervalCountdown.value);
+        disabled_countdown.value = false;
         countdown.value = 'Gửi lại';
-      } else if (a >= 0) {
-        countdown.value = 'Còn ' + a.toString() + ' s';
       }
     }, 1000);
   } else {
@@ -302,6 +299,9 @@ const handleResendVerifyEmail = () => {
 
 const handleClickBack = () => {
   emits('onClickBack');
+  setTimeout(() => {
+    formVerify.pin = [null, null, null, null, null, null];
+  }, 310);
 };
 </script>
 

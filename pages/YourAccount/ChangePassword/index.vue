@@ -97,7 +97,7 @@
             v-model:isShowForm="isChangePassword"
             :email="store.userAccount?.email"
             :jwtVerifyEmail="jwtVerifyEmail"
-            :otpExpOffset="otpExpOffset"
+            v-model:otpExpOffset="otpExpOffset"
             v-model:loadingResend="loadingResend"
             v-model:disabled_countdown="disabled_countdown"
             v-model:loadingVerify="loadingVerify"
@@ -155,7 +155,7 @@ const isChangePassword = ref<boolean>(false);
 const jwtVerifyEmail = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
-const otpExpOffset = ref<number>(60);
+const otpExpOffset = ref<number>(0);
 const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Email: ');
 
 useHead({
@@ -249,6 +249,17 @@ const reset = () => {
 };
 
 const handleSubmit = () => {
+  if (otpExpOffset.value > 0) {
+    showAnimation.value = false;
+
+    setTimeout(() => {
+      showAnimation.value = true;
+      isChangePassword.value = true;
+    }, 300);
+
+    return;
+  }
+
   loadingChangePassword.value = true;
 
   accountVerify(

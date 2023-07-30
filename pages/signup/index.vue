@@ -160,7 +160,7 @@
           v-model:isShowForm="isSignUp"
           :email="formSignup.email"
           :jwtVerifyEmail="jwtVerifyEmail"
-          :otpExpOffset="otpExpOffset"
+          v-model:otpExpOffset="otpExpOffset"
           v-model:loadingResend="loadingResend"
           v-model:disabled_countdown="disabled_countdown"
           v-model:loadingVerify="loadingVerify"
@@ -223,7 +223,7 @@ const isSignUp = ref<boolean>(false);
 const jwtVerifyEmail = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
-const otpExpOffset = ref<number>(60);
+const otpExpOffset = ref<number>(0);
 const showAnimation = ref<boolean>(true);
 
 onMounted(() => {});
@@ -286,6 +286,17 @@ const rules = {
 // console.log(pbkdf2.pbkdf2Sync('123', 'salt', 1, 256 / 8, 'sha512'));
 
 const handleSignUp = (e: any) => {
+  if (otpExpOffset.value > 0) {
+    showAnimation.value = false;
+
+    setTimeout(() => {
+      showAnimation.value = true;
+      isSignUp.value = true;
+    }, 300);
+
+    return;
+  }
+
   loadingSignUp.value = true;
   formSignup.id = Date.now();
   formSignup.avatar = `${Math.floor(Math.random() * 10) + 1}`;

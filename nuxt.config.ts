@@ -149,7 +149,7 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     'nuxt-seo-experiments',
     'nuxt-gtag',
-    '@nuxtjs/supabase',
+    // '@nuxtjs/supabase',
   ],
   site: {
     url: 'https://phimhay247.tech',
@@ -196,7 +196,6 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  supabase: {},
   plugins: [
     '@/plugins/elementPlus',
     '@/plugins/antd',
