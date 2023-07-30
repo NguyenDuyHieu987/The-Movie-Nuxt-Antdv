@@ -37,7 +37,8 @@
         font-size: 1.4rem;
         gap: 10px;
 
-        .created-at {
+        .created-at,
+        .updated-text {
           font-size: 1.3rem;
           color: var(--text-color-gray);
         }

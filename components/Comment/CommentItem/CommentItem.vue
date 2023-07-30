@@ -20,9 +20,13 @@
             <div class="main-comment-content">
               <div class="top">
                 <span class="author-username">{{ item?.username }}</span>
-                <span class="created-at">{{
-                  moment(item?.created_at).locale('vi').fromNow()
-                }}</span>
+                <span class="created-at">
+                  {{ moment(item?.created_at).locale('vi').fromNow() }}
+                </span>
+
+                <span v-if="isUpdated" class="updated-text">
+                  (Đã chỉnh sửa)
+                </span>
               </div>
 
               <p class="content">{{ commentContent }}</p>
@@ -261,6 +265,7 @@ const isShowFormComment = ref<boolean>(false);
 const isShowReplies = ref<boolean>(false);
 const listReplies = ref<any[]>([]);
 const loading = ref<boolean>(false);
+const isUpdated = ref<boolean>(props.item?.updated);
 const loadingReplies = ref<boolean>(false);
 const numberReplies = ref<number>(+props.item?.childrens || 0);
 const skip = ref<number>(1);
@@ -332,6 +337,12 @@ const handleEditComment = () => {
   }
 };
 
+const handleSuccessEditComment = (data: string) => {
+  isUpdated.value = true;
+  isShowFormComment.value = false;
+  commentContent.value = data;
+};
+
 const handleRemoveComment = () => {
   DeleteComment({
     id: props.item?.id,
@@ -367,11 +378,6 @@ const handleRemoveComment = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {});
-};
-
-const handleSuccessEditComment = (data: string) => {
-  isShowFormComment.value = false;
-  commentContent.value = data;
 };
 </script>
 

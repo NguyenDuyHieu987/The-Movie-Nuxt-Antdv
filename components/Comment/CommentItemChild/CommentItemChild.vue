@@ -17,9 +17,10 @@
       <div class="right-side">
         <div class="top">
           <span class="author-username">{{ item?.username }}</span>
-          <span class="created-at">{{
-            moment(item?.created_at).locale('vi').fromNow()
-          }}</span>
+          <span class="created-at">
+            {{ moment(item?.created_at).locale('vi').fromNow() }}
+          </span>
+          <span v-if="isUpdated" class="updated-text"> (Đã chỉnh sửa) </span>
         </div>
 
         <p class="content">{{ item?.content }}</p>
@@ -173,6 +174,7 @@ const listReplies = defineModel<any[]>('listReplies');
 const isShowFormComment = ref<boolean>(false);
 const commentAction = ref<string>('post');
 const commentContent = ref<string>(props.item?.content);
+const isUpdated = ref<boolean>(props.item?.isUpdated);
 
 onBeforeMount(() => {});
 
@@ -186,6 +188,12 @@ const handleEditComment = () => {
     commentAction.value = 'edit';
     commentContent.value = props.item?.content;
   }
+};
+
+const handleSuccessEditComment = (data: string) => {
+  isUpdated.value = true;
+  isShowFormComment.value = false;
+  commentContent.value = data;
 };
 
 const handleRemoveComment = () => {
@@ -226,11 +234,6 @@ const handleRemoveComment = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {});
-};
-
-const handleSuccessEditComment = (data: string) => {
-  isShowFormComment.value = false;
-  commentContent.value = data;
 };
 </script>
 
