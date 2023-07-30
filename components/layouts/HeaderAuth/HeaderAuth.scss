@@ -44,10 +44,7 @@ header.header-bar-auth {
         align-self: flex-end;
         white-space: nowrap;
         font-size: 1.3rem;
-      }
-
-      a {
-        margin-left: 5px;
+        margin-right: 5px;
       }
     }
   }
@@ -94,16 +91,29 @@ header.header-bar-auth {
     padding-right: 15px;
 
     .left-header {
-      .menu-btn {
-        &.mobile {
-        }
-      }
-
       .logo {
       }
     }
 
     .right-header {
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  header.header-bar-auth {
+    .left-header {
+      .logo {
+      }
+    }
+
+    .right-header {
+      .signup-suggest {
+        .signup-note {
+          display: block;
+          margin-right: 0px;
+        }
+      }
     }
   }
 }
