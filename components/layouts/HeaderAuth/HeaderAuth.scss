@@ -32,10 +32,23 @@ header.header-bar-auth {
     display: flex;
     align-items: center;
     height: 100%;
+    flex-wrap: wrap;
 
     a {
       font-size: 1.7rem;
       color: var(--app-background-color) !important;
+    }
+
+    .signup-suggest {
+      .signup-note {
+        align-self: flex-end;
+        white-space: nowrap;
+        font-size: 1.3rem;
+      }
+
+      a {
+        margin-left: 5px;
+      }
     }
   }
 }
