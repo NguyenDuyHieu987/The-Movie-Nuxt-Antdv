@@ -133,24 +133,6 @@
               </template>
               <span>Đăng nhập bằng Google</span>
             </a-button>
-
-            <!-- <el-button
-                  class="google-login-btn"
-                  id="google-login-btn1"
-                  size="large"
-                  :loading="loadingGoogleLogin"
-                >
-                  <el-icon class="el-icon--right">
-                    <img src="/images/socials/icons8-google-48.png" alt="" />
-                  </el-icon>
-                  <span>Đăng nhập bằng Google</span>
-                </el-button> -->
-
-            <!-- <GoogleLogin
-                  :callback="handleGoogleLogin"
-                  prompt
-                  class="google-login-btn"
-                /> -->
           </div>
         </a-form>
       </div>
@@ -159,17 +141,17 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
+import { getImage } from '~/services/image';
+import { LogIn, loginFacebook, loginGoogle } from '~/services/authentication';
+// import { googleAuthCodeLogin } from 'vue3-google-login';
+import { ElNotification } from 'element-plus';
 import {
   UserOutlined,
   LockOutlined,
   CheckCircleFilled,
   CloseCircleFilled,
 } from '@ant-design/icons-vue';
-import axios from 'axios';
-import { getImage } from '~/services/image';
-import { LogIn, loginFacebook, loginGoogle } from '~/services/authentication';
-// import { googleAuthCodeLogin } from 'vue3-google-login';
-import { ElNotification } from 'element-plus';
 
 definePageMeta({
   layout: 'auth',
@@ -228,32 +210,23 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-  // window.google.accounts.id.initialize({
+  // tokenClient.value = window.google?.accounts.oauth2.initTokenClient({
   //   client_id: nuxtConfig.app.googleOauth2ClientID,
-  //   // ux_mode: 'redirect',
+  //   scope:
+  //     'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+  //   prompt: 'select_account',
   //   callback: handleGooglePopupCallback,
   // });
-
-  // window.google.accounts.id.prompt();
-
-  // window.google.accounts.id.renderButton(
-  //   document.getElementById('google-login-btn') as HTMLElement,
-  //   {
-  //     theme: 'outline',
-  //     size: 'large',
-  //   }
-  // );
-
-  tokenClient.value = window.google.accounts.oauth2.initTokenClient({
-    client_id: nuxtConfig.app.googleOauth2ClientID,
-    scope:
-      'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-    // ux_mode: 'redirect',
-    // select_account: true,
-    // redirect_uri: window.location.origin + '/oauth/google',
-    prompt: 'select_account',
-    callback: handleGooglePopupCallback,
-  });
+  // tokenClient.value = window.google?.accounts.oauth2.initCodeClient({
+  //   client_id: nuxtConfig.app.googleOauth2ClientID,
+  //   scope:
+  //     'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+  //   ux_mode: 'popup',
+  //   // select_account: true,
+  //   redirect_uri: window.location.origin,
+  //   prompt: 'select_account',
+  //   callback: handleGooglePopupCallback,
+  // });
 });
 
 const handleLogin = () => {
@@ -405,7 +378,6 @@ const handleClickGoogleLogin = () => {
     redirect_uri: 'http://localhost:3000/oauth/google',
     response_type: 'token',
     include_granted_scopes: 'true',
-    state: 'pass-through value',
   };
 
   // Add form parameters as hidden input values.
@@ -422,73 +394,74 @@ const handleClickGoogleLogin = () => {
   form.submit();
 };
 
-const handleGooglePopupCallback = (authResponse: any) => {
-  if (authResponse && authResponse?.access_token) {
-    // loadingGoogleLogin.value = true;
-    // loginGoogle({
-    //   accessToken: authResponse?.access_token,
-    // })
-    //   .then((response: any) => {
-    //     if (response.isSignUp == true) {
-    //       ElNotification.success({
-    //         title: 'Thành công!',
-    //         message: 'Bạn đã đăng nhập bằng Google thành công tại Phimhay247.',
-    //         showClose: false,
-    //         icon: () =>
-    //           h(CheckCircleFilled, {
-    //             style: 'color: green',
-    //           }),
-    //       });
-    //       store.userAccount = response?.result;
-    //       store.isLogin = true;
-    //       utils.localStorage.setWithExpiry(
-    //         'userAccount',
-    //         {
-    //           user_token: response.headers.get('Authorization'),
-    //         },
-    //         30
-    //       );
-    //       // navigateTo({ path: '/' });
-    //       navigateTo({ path: urlBack.value });
-    //     } else if (response.isLogin == true) {
-    //       store.userAccount = response?.result;
-    //       store.isLogin = true;
-    //       utils.localStorage.setWithExpiry(
-    //         'userAccount',
-    //         {
-    //           user_token: response.headers.get('Authorization'),
-    //         },
-    //         30
-    //       );
-    //       // navigateTo({ path: '/' });
-    //       navigateTo({ path: urlBack.value });
-    //     } else if (response.isLogin == false) {
-    //       ElNotification.error({
-    //         title: 'Thất bại!',
-    //         message: 'Some thing went wrong.',
-    //         showClose: false,
-    //         icon: () =>
-    //           h(CloseCircleFilled, {
-    //             style: 'color: red',
-    //           }),
-    //       });
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     ElNotification.error({
-    //       title: 'Thất bại!',
-    //       message: 'Some thing went wrong.',
-    //       showClose: false,
-    //       icon: () =>
-    //         h(CloseCircleFilled, {
-    //           style: 'color: red',
-    //         }),
-    //     });
-    //     if (axios.isCancel(e)) return;
-    //   })
-    //   .finally(() => {
-    //     loadingGoogleLogin.value = false;
-    //   });
+const handleGooglePopupCallback = (googleOauthResponse: any) => {
+  // console.log(googleOauthResponse);
+  if (googleOauthResponse && googleOauthResponse?.access_token) {
+    loadingGoogleLogin.value = true;
+    loginGoogle({
+      accessToken: googleOauthResponse?.access_token,
+    })
+      .then((response: any) => {
+        if (response.isSignUp == true) {
+          ElNotification.success({
+            title: 'Thành công!',
+            message: 'Bạn đã đăng nhập bằng Google thành công tại Phimhay247.',
+            showClose: false,
+            icon: () =>
+              h(CheckCircleFilled, {
+                style: 'color: green',
+              }),
+          });
+          store.userAccount = response?.result;
+          store.isLogin = true;
+          utils.localStorage.setWithExpiry(
+            'userAccount',
+            {
+              user_token: response.headers.get('Authorization'),
+            },
+            30
+          );
+          // navigateTo({ path: '/' });
+          navigateTo({ path: urlBack.value });
+        } else if (response.isLogin == true) {
+          store.userAccount = response?.result;
+          store.isLogin = true;
+          utils.localStorage.setWithExpiry(
+            'userAccount',
+            {
+              user_token: response.headers.get('Authorization'),
+            },
+            30
+          );
+          // navigateTo({ path: '/' });
+          navigateTo({ path: urlBack.value });
+        } else if (response.isLogin == false) {
+          ElNotification.error({
+            title: 'Thất bại!',
+            message: 'Some thing went wrong.',
+            showClose: false,
+            icon: () =>
+              h(CloseCircleFilled, {
+                style: 'color: red',
+              }),
+          });
+        }
+      })
+      .catch((e) => {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Some thing went wrong.',
+          showClose: false,
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {
+        loadingGoogleLogin.value = false;
+      });
   }
 };
 </script>

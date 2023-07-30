@@ -1,5 +1,5 @@
 <template>
-  <div class="oauth-container">
+  <div class="oauth">
     <slot />
   </div>
 </template>
