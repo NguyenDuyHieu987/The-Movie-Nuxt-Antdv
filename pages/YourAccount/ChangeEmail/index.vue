@@ -46,6 +46,7 @@
               :model="formChangeEmail"
               name="change-email-form"
               class="form-change-email"
+              :class="{ disabled: loadingChangeEmail }"
               @finish="handleSubmit"
               hideRequiredMark
             >
@@ -172,6 +173,8 @@ onBeforeMount(() => {
 });
 
 const handleSubmit = () => {
+  if (loadingChangeEmail.value) return;
+
   loadingChangeEmail.value = true;
 
   accountVerify({}, 'change-email')

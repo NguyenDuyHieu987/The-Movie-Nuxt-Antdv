@@ -62,12 +62,15 @@
                   </div>
                 </div>
 
-                <div class="row-content-item password">
+                <div
+                  v-if="userAccount?.auth_type == 'email'"
+                  class="row-content-item password"
+                >
                   <div class="left">
                     <span class="label">Mật khẩu: </span>
                     <span>**********</span>
                   </div>
-                  <div v-if="userAccount?.auth_type == 'email'" class="right">
+                  <div class="right">
                     <NuxtLink
                       class="click-active"
                       to="/YourAccount/ChangePassword"

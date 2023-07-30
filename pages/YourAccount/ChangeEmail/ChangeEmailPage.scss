@@ -37,6 +37,12 @@
       margin: 0px auto;
       max-width: 500px;
 
+      &.disabled {
+        .submit-form-button {
+          cursor: not-allowed;
+        }
+      }
+
       .ant-row.ant-form-item {
         &.email {
           user-select: none;
@@ -47,7 +53,6 @@
       }
 
       .submit-form-button {
-        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -60,6 +65,7 @@
         transition: all 0.15s;
         border-radius: 2px;
         box-shadow: var(--box-shadow-small);
+        cursor: pointer;
 
         .left {
           display: flex;
