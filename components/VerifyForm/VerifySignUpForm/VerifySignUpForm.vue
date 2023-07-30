@@ -4,7 +4,7 @@
     class="verify-signup"
     :class="{ active: isShowForm }"
   >
-    <div v-show="isShowForm" class="verify-signup-container">
+    <div v-if="isShowForm" class="verify-signup-container">
       <a-button
         class="back-btn click-active"
         type="text"

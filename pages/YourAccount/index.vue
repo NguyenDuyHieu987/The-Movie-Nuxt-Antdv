@@ -1,6 +1,6 @@
 <template>
   <div class="your-account padding-content">
-    <div v-show="isLogin" class="your-account-container">
+    <div v-if="isLogin" class="your-account-container">
       <Transition appear name="slide-bottom">
         <div v-show="showAnimation">
           <div class="your-account-header">
@@ -52,7 +52,7 @@
                     <span class="label">Email: </span>
                     <span>{{ userAccount?.email }}</span>
                   </div>
-                  <div v-show="userAccount?.auth_type == 'email'" class="right">
+                  <div v-if="userAccount?.auth_type == 'email'" class="right">
                     <NuxtLink
                       class="click-active"
                       to="/YourAccount/ChangeEmail"
@@ -67,7 +67,7 @@
                     <span class="label">Mật khẩu: </span>
                     <span>**********</span>
                   </div>
-                  <div v-show="userAccount?.auth_type == 'email'" class="right">
+                  <div v-if="userAccount?.auth_type == 'email'" class="right">
                     <NuxtLink
                       class="click-active"
                       to="/YourAccount/ChangePassword"

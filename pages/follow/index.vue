@@ -1,6 +1,6 @@
 <template>
   <div class="follow">
-    <div v-show="store.isLogin" class="follow-container">
+    <div v-if="store.isLogin" class="follow-container">
       <div v-if="loading">
         <TopicRow
           v-show="responsive"

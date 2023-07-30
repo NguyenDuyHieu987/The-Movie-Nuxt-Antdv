@@ -1,6 +1,6 @@
 <template>
   <div class="payment padding-content">
-    <div v-show="store.isLogin" class="payment-container">
+    <div v-if="store.isLogin" class="payment-container">
       <div class="payment-header">
         <h2>Chọn phương thức thanh toán</h2>
         <p>

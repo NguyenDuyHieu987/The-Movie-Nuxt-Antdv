@@ -1,9 +1,9 @@
 <template>
   <div class="change-page email padding-content">
-    <div v-show="isLogin" class="email-container">
+    <div v-if="isLogin" class="email-container">
       <Transition appear name="slide-left">
         <div v-show="showAnimation">
-          <div v-show="!isChangeEmail">
+          <div v-if="!isChangeEmail">
             <a-button class="back-page-btn click-active" type="text">
               <template #icon>
                 <svg

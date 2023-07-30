@@ -1,6 +1,6 @@
 <template>
   <div class="history">
-    <div v-show="store.isLogin" class="history-container">
+    <div v-if="store.isLogin" class="history-container">
       <div v-if="loading">
         <TopicRow
           v-show="responsive"

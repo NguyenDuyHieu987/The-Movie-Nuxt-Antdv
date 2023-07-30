@@ -9,7 +9,11 @@ definePageMeta({
 
 const route = useRoute();
 
-onBeforeMount(() => {
-  // console.log(route.query.code);
-});
+watch(
+  () => route.query,
+  () => {
+    console.log(route);
+  },
+  { deep: true, immediate: true }
+);
 </script>

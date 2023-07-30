@@ -2,7 +2,7 @@
   <div class="signup">
     <Transition appear name="slide-left">
       <div class="signup-container" v-show="showAnimation">
-        <div v-show="!isSignUp" class="signup-form-container">
+        <div v-if="!isSignUp" class="signup-form-container">
           <a-form
             :model="formSignup"
             :rules="rules"

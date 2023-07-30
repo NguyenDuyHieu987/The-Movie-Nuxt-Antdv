@@ -170,7 +170,6 @@ import { getImage } from '~/services/image';
 import { LogIn, loginFacebook, loginGoogle } from '~/services/authentication';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';
-import { google } from 'googleapis';
 
 definePageMeta({
   layout: 'auth',
@@ -192,8 +191,6 @@ useServerSeoMeta({
 });
 
 const nuxtConfig = useRuntimeConfig();
-const client = useSupabaseClient();
-const user = useSupabaseUser();
 const store = useStore();
 const router: any = useRouter();
 const route = useRoute();
@@ -231,11 +228,11 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-  window.google.accounts.id.initialize({
-    client_id: nuxtConfig.app.googleOauth2ClientID,
-    // ux_mode: 'redirect',
-    callback: handleGooglePopupCallback,
-  });
+  // window.google.accounts.id.initialize({
+  //   client_id: nuxtConfig.app.googleOauth2ClientID,
+  //   // ux_mode: 'redirect',
+  //   callback: handleGooglePopupCallback,
+  // });
 
   // window.google.accounts.id.prompt();
 
@@ -386,39 +383,43 @@ const handleClickFacebookLogin = async () => {
     });
 };
 
-watchEffect(() => {
-  if (user.value) {
-    console.log(user.value);
+// const handleClickGoogleLogin = async () => {
+//   // tokenClient.value.requestCode();
+//   tokenClient.value.requestAccessToken();
+// };
+
+const handleClickGoogleLogin = () => {
+  const oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+  // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+  const form = document.createElement('form');
+  form.setAttribute('method', 'GET'); // Send as a GET request.
+  form.setAttribute('action', oauth2Endpoint);
+
+  // Parameters to pass to OAuth 2.0 endpoint.
+  const params: any = {
+    client_id: nuxtConfig.app.googleOauth2ClientID,
+    scope:
+      'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+    prompt: 'select_account',
+    redirect_uri: 'http://localhost:3000/oauth/google',
+    response_type: 'token',
+    include_granted_scopes: 'true',
+    state: 'pass-through value',
+  };
+
+  // Add form parameters as hidden input values.
+  for (var p in params) {
+    var input = document.createElement('input');
+    input.setAttribute('type', 'hidden');
+    input.setAttribute('name', p);
+    input.setAttribute('value', params[p]);
+    form.appendChild(input);
   }
-});
 
-const handleClickGoogleLogin = async () => {
-  // tokenClient.value.requestCode();
-  // tokenClient.value.requestAccessToken();
-
-  const oauth2Client = new google.auth.OAuth2(
-    nuxtConfig.app.googleOauth2ClientID,
-    nuxtConfig.app.googleOauth2ClientSecret,
-    'http://localhost:3000/login'
-  );
-
-  const scopes = [
-    'https://www.googleapis.com/auth/userinfo.profile',
-    'https://www.googleapis.com/auth/userinfo.email',
-  ];
-
-  const url = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: scopes,
-  });
-
-  // await client.auth
-  //   .signInWithOAuth({
-  //     provider: 'google',
-  //   })
-  //   .then((response: any) => {
-  //     console.log(response);
-  //   });
+  // Add form to page and submit it to open the OAuth 2.0 endpoint.
+  document.body.appendChild(form);
+  form.submit();
 };
 
 const handleGooglePopupCallback = (authResponse: any) => {

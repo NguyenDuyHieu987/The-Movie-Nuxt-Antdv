@@ -1,6 +1,6 @@
 <template>
   <div v-show="showAnimation" class="verify-email">
-    <div v-show="isShowForm" class="verify-email-container">
+    <div v-if="isShowForm" class="verify-email-container">
       <a-button
         class="back-btn click-active"
         type="text"

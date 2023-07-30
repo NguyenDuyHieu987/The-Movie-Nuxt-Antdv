@@ -3,7 +3,7 @@
     <div v-show="isLogin" class="password-container">
       <Transition appear name="slide-left">
         <div v-show="showAnimation">
-          <div v-show="!isChangePassword">
+          <div v-if="!isChangePassword">
             <a-button class="back-page-btn click-active" type="text">
               <template #icon>
                 <svg
