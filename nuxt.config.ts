@@ -159,6 +159,7 @@ export default defineNuxtConfig({
     // 'vue-social-sharing/nuxt',
     // '@nuxtjs/supabase',
     'nuxt-delay-hydration',
+    'nuxt-speedkit',
   ],
   site: {
     url: 'https://phimhay247.tech',
@@ -182,7 +183,8 @@ export default defineNuxtConfig({
       // baseURL: 'https://ik.imagekit.io/8toa5f2rp/images',
       baseURL: '',
     },
-    domains: [],
+    domains: ['https://ik.imagekit.io'],
+    alias: {},
   },
   lazyLoad: {
     // These are the default values
