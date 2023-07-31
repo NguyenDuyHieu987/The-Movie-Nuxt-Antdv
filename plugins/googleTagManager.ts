@@ -8,7 +8,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       id: nuxtConfig.app.googleAnalyticsID,
       params: {},
     },
-    appId: '',
     appName: 'Phimhay247',
     isEnabled: nuxtConfig.app.production_mode,
   });
