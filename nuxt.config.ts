@@ -303,9 +303,9 @@ export default defineNuxtConfig({
     '/info-tv/**': { ssr: false, swr: true, prerender: true, static: true },
     '/play-movie/**': { ssr: false, swr: true, prerender: true, static: true },
     '/play-tv/**': { ssr: false, swr: true, prerender: true, static: true },
-    '/oauth': { swr: true, prerender: true, static: true },
-    '/login': { swr: true, prerender: true, static: true },
-    '/signup': { swr: true, prerender: true, static: true },
+    '/oauth': { prerender: true, static: true },
+    '/login': { prerender: true, static: true },
+    '/signup': { prerender: true, static: true },
     '/upgrade/plans': { swr: true, prerender: true, static: true },
     '/upgrade/payment': {
       ssr: false,
