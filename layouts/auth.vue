@@ -1,35 +1,37 @@
 <template>
-  <div class="auth-container">
-    <HeaderAuth />
-    <div class="background-auth">
-      <div class="image-auth desktop">
-        <nuxt-img
-          :src="
-            // getImage(`Background_Auth${image}.jpg`, '/background/auth')
-            getImage(
-              'Background_1.jpg',
-              'background/1',
-              'w-' + windowWidth.toString()
-            )
-          "
-          loading="lazy"
-        />
+  <div class="auth">
+    <div class="auth-container">
+      <HeaderAuth />
+      <div class="background-auth">
+        <div class="image-auth desktop">
+          <nuxt-img
+            :src="
+              // getImage(`Background_Auth${image}.jpg`, '/background/auth')
+              getImage(
+                'Background_1.jpg',
+                'background/1',
+                'w-' + windowWidth.toString()
+              )
+            "
+            loading="lazy"
+          />
+        </div>
+
+        <!-- <div class="image-auth responsive">
+          <nuxt-img
+            :src="
+              getImage(
+                `Background_Auth${image_mobile}.jpg`,
+                '/background/auth_mobile'
+              )
+            "
+            loading="lazy"
+          />
+        </div> -->
       </div>
 
-      <!-- <div class="image-auth responsive">
-        <nuxt-img
-          :src="
-            getImage(
-              `Background_Auth${image_mobile}.jpg`,
-              '/background/auth_mobile'
-            )
-          "
-          loading="lazy"
-        />
-      </div> -->
+      <slot />
     </div>
-
-    <slot />
   </div>
 </template>
 
