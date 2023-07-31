@@ -158,7 +158,7 @@ export default defineNuxtConfig({
     'nuxt-seo-experiments',
     'nuxt-gtag',
     // '@nuxtjs/supabase',
-    'nuxt-delay-hydration',
+    // 'nuxt-delay-hydration',
   ],
   site: {
     url: 'https://phimhay247.tech',
@@ -205,10 +205,10 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  delayHydration: {
-    mode: 'mount',
-    // debug: process.env.NODE_ENV === 'development',
-  },
+  // delayHydration: {
+  //   mode: 'mount',
+  //   // debug: process.env.NODE_ENV === 'development',
+  // },
   plugins: [
     '@/plugins/elementPlus',
     '@/plugins/antd',
