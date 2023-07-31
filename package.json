@@ -53,7 +53,7 @@
     "normalize.css": "^8.0.1",
     "nuxt-icon": "^0.3.3",
     "nuxt-lazy-load": "^3.0.4",
-    "nuxt-swiper": "^1.1.0",
+    "nuxt-swiper": "^1.2.0",
     "path": "^0.12.7",
     "pbkdf2": "^3.1.2",
     "pinia": "^2.1.4",
@@ -64,11 +64,10 @@
     "vue-fontawesome": "^0.0.2",
     "vue-gtag-next": "^1.14.0",
     "vue-lazyload": "^3.0.0",
-    "vue-router": "^4.2.2",
+    "vue-router": "^4.2.4",
     "vue-social-sharing": "^4.0.0-alpha4",
     "vue-virtual-scroll-list": "^2.3.4",
     "vue3-emoji-picker": "^1.1.7",
-    "vuex": "^4.1.0",
     "wrangler": "^3.0.1"
   },
   "engines": {
