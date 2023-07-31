@@ -23,4 +23,4 @@ import Drawer from '@/components/layouts/Drawer/Drawer.vue';
 import Footer from '@/components/layouts/Footer/Footer.vue';
 </script>
 
-<style lang="scss" scoped src="../assets/style/serviceLayout.scss"></style>
+<style lang="scss" src="~/assets/style/serviceLayout.scss"></style>

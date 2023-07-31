@@ -42,4 +42,4 @@ const image_mobile = ref<number>(Math.floor(Math.random() * 3) + 1);
 const windowWidth = ref<number>(window.innerWidth);
 </script>
 
-<style lang="scss" scoped src="../assets/style/authLayout.scss"></style>
+<style lang="scss" scoped src="~/assets/style/authLayout.scss"></style>
