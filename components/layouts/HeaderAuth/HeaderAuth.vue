@@ -34,17 +34,12 @@
 <script setup lang="ts">
 import { getImage } from '~/services/image';
 import { storeToRefs } from 'pinia';
-import _ from 'lodash';
 
 const store = useStore();
 const { isLogin } = storeToRefs<any>(store);
 
 const route = useRoute();
 onMounted(() => {});
-
-watch(route, () => {
-  console.log(route);
-});
 </script>
 
 <style lang="scss" src="./HeaderAuth.scss"></style>
