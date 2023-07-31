@@ -15,6 +15,7 @@
 
     <div class="app-wrapper">
       <LoadingApp />
+
       <RequireAuthDialog />
 
       <NuxtLayout>
