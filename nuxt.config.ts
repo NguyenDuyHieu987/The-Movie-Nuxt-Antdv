@@ -197,6 +197,10 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
+  delayHydration: {
+    mode: 'init',
+    debug: process.env.NODE_ENV === 'development',
+  },
   plugins: [
     '@/plugins/elementPlus',
     '@/plugins/antd',
