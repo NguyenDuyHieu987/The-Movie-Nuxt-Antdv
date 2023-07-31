@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-container">
+  <div class="auth-layout">
     <HeaderAuth />
     <div class="background-auth">
       <div class="image-auth desktop">
@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import HeaderAuth from '~/components/layouts/HeaderAuth/HeaderAuth.vue';
-import { getImage } from '~/services/image';
+// import { getImage } from '~/services/image';
 
 const image = ref<number>(Math.floor(Math.random() * 3) + 1);
 const image_mobile = ref<number>(Math.floor(Math.random() * 3) + 1);

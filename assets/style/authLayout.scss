@@ -1,4 +1,4 @@
-.auth-container {
+.auth-layout {
   overflow: hidden;
 
   .background-auth {
@@ -29,7 +29,7 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .auth-container {
+  .auth-layout {
     .background-auth {
       .image-auth.desktop {
         // display: none;
