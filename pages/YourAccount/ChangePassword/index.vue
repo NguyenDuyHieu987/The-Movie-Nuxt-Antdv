@@ -1,6 +1,6 @@
 <template>
   <div class="change-page password padding-content">
-    <div v-show="isLogin" class="password-container">
+    <div v-if="isLogin" class="password-container">
       <Transition appear name="slide-left">
         <div v-show="showAnimation">
           <div v-if="!isChangePassword">
