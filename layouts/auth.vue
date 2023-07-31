@@ -10,9 +10,10 @@
               getImage(
                 'Background_1.jpg',
                 'background/1',
-                'w-' + windowWidth.toString()
+                'w-' + windowWidth?.toString()
               )
             "
+            alt=""
             loading="lazy"
           />
         </div>
