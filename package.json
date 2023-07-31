@@ -53,7 +53,6 @@
     "normalize.css": "^8.0.1",
     "nuxt-icon": "^0.3.3",
     "nuxt-lazy-load": "^3.0.4",
-    "nuxt-speedkit": "^2.2.3",
     "nuxt-swiper": "^1.1.0",
     "path": "^0.12.7",
     "pbkdf2": "^3.1.2",
