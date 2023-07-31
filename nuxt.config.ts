@@ -206,7 +206,7 @@ export default defineNuxtConfig({
     },
   },
   delayHydration: {
-    mode: 'mount',
+    mode: 'init',
     // debug: process.env.NODE_ENV === 'development',
   },
   plugins: [
