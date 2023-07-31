@@ -37,8 +37,8 @@ import { storeToRefs } from 'pinia';
 
 const store = useStore();
 const { isLogin } = storeToRefs<any>(store);
-
 const route = useRoute();
+
 onMounted(() => {});
 </script>
 
