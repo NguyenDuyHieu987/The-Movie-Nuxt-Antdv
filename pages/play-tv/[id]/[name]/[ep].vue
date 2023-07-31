@@ -329,37 +329,6 @@ const getData = async () => {
     .then((tvResponed: any) => {
       dataMovie.value = tvResponed.data.value;
       disabledRate.value = tvResponed.data.value?.is_rated == true;
-
-      useHead({
-        title:
-          'Xem phim - Phim bộ - ' +
-          dataMovie.value?.name +
-          ' - Phần ' +
-          dataMovie.value?.last_episode_to_air?.season_number +
-          ' | Phimhay247',
-        htmlAttrs: { lang: 'vi' },
-      });
-
-      useServerSeoMeta({
-        title:
-          'Xem phim - Phim bộ - ' +
-          dataMovie.value?.name +
-          ' - Phần ' +
-          dataMovie.value?.last_episode_to_air?.season_number +
-          ' | Phimhay247',
-        description: dataMovie.value?.overview,
-        ogTitle:
-          'Xem phim - Phim bộ - ' +
-          dataMovie.value?.name +
-          ' - Phần ' +
-          dataMovie.value?.last_episode_to_air?.season_number +
-          ' | Phimhay247',
-        ogType: 'video.movie',
-        ogUrl: window.location.href,
-        ogDescription: dataMovie.value?.overview,
-        ogImage: getBackdrop(dataMovie.value?.backdrop_path),
-        ogLocale: 'vi',
-      });
     })
     .catch((e) => {
       navigateTo('/404');
@@ -416,6 +385,37 @@ const getData = async () => {
 
 onBeforeMount(() => {
   getData();
+});
+
+useHead({
+  title:
+    'Xem phim - Phim bộ - ' +
+    dataMovie.value?.name +
+    ' - Phần ' +
+    dataMovie.value?.last_episode_to_air?.season_number +
+    ' | Phimhay247',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title:
+    'Xem phim - Phim bộ - ' +
+    dataMovie.value?.name +
+    ' - Phần ' +
+    dataMovie.value?.last_episode_to_air?.season_number +
+    ' | Phimhay247',
+  description: dataMovie.value?.overview,
+  ogTitle:
+    'Xem phim - Phim bộ - ' +
+    dataMovie.value?.name +
+    ' - Phần ' +
+    dataMovie.value?.last_episode_to_air?.season_number +
+    ' | Phimhay247',
+  ogType: 'video.movie',
+  ogUrl: window.location.href,
+  ogDescription: dataMovie.value?.overview,
+  ogImage: getBackdrop(dataMovie.value?.backdrop_path),
+  ogLocale: 'vi',
 });
 
 window.scrollTo({

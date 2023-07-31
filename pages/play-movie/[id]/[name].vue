@@ -303,23 +303,6 @@ const getData = async () => {
     .then((movieResponed: any) => {
       dataMovie.value = movieResponed.data.value;
       disabledRate.value = movieResponed.data.value?.is_rated == true;
-
-      useHead({
-        title:
-          'Xem phim - Phim lẻ - ' + dataMovie.value?.name + ' | Phimhay247',
-        htmlAttrs: { lang: 'vi' },
-      });
-
-      useServerSeoMeta({
-        title: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',
-        description: dataMovie.value?.overview,
-        ogTitle: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',
-        ogType: 'video.movie',
-        ogUrl: window.location.href,
-        ogDescription: dataMovie.value?.overview,
-        ogImage: getBackdrop(dataMovie.value?.backdrop_path),
-        ogLocale: 'vi',
-      });
     })
     .catch((e) => {
       navigateTo('/404');
@@ -375,6 +358,22 @@ const getData = async () => {
 
 onBeforeMount(() => {
   getData();
+});
+
+useHead({
+  title: 'Xem phim - Phim lẻ - ' + dataMovie.value?.name + ' | Phimhay247',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',
+  description: dataMovie.value?.overview,
+  ogTitle: 'Xem phim - ' + dataMovie.value?.name + ' | Phimhay247',
+  ogType: 'video.movie',
+  ogUrl: window.location.href,
+  ogDescription: dataMovie.value?.overview,
+  ogImage: getBackdrop(dataMovie.value?.backdrop_path),
+  ogLocale: 'vi',
 });
 
 window.scrollTo({

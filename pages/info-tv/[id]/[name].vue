@@ -432,23 +432,6 @@ const getData = async () => {
       // dataCredit.value = tvResponed.data.value?.credits;
       disabledRate.value = tvResponed.data.value?.is_rated == true;
 
-      useHead({
-        title:
-          'Thông tin - Phim bộ - ' + dataMovie.value?.name + ' | Phimhay247',
-        htmlAttrs: { lang: 'vi' },
-      });
-
-      useServerSeoMeta({
-        title: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',
-        description: dataMovie.value?.overview,
-        ogTitle: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',
-        ogType: 'video.movie',
-        ogUrl: window.location.href,
-        ogDescription: dataMovie.value?.overview,
-        ogImage: getBackdrop(dataMovie.value?.backdrop_path),
-        ogLocale: 'vi',
-      });
-
       // movieResponed?.data?.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(
       //     'https://image.tmdb.org/t/p/original' + item?.file_path
@@ -497,12 +480,21 @@ onBeforeMount(() => {
   getData();
 });
 
-// router.beforeEach((to) => {
-//   if (to.params.slug == 'info') {
-//     dataCredit.value = [];
-//     getData();
-//   }
-// });
+useHead({
+  title: 'Thông tin - Phim bộ - ' + dataMovie.value?.name + ' | Phimhay247',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',
+  description: dataMovie.value?.overview,
+  ogTitle: 'Thông tin - ' + dataMovie.value?.name + ' | Phimhay247',
+  ogType: 'video.movie',
+  ogUrl: window.location.href,
+  ogDescription: dataMovie.value?.overview,
+  ogImage: getBackdrop(dataMovie.value?.backdrop_path),
+  ogLocale: 'vi',
+});
 
 window.scrollTo({
   top: 0,
