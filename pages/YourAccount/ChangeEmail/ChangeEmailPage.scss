@@ -40,6 +40,10 @@
       &.disabled {
         .submit-form-button {
           cursor: not-allowed;
+
+          &:active {
+            opacity: 1;
+          }
         }
       }
 
