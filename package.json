@@ -14,6 +14,7 @@
     "@types/node": "^18",
     "node-sass": "^9.0.0",
     "nuxt": "^3.6.5",
+    "nuxt-delay-hydration": "^1.2.1",
     "nuxt-gtag": "^0.5.7",
     "nuxt-og-image": "^2.0.9",
     "nuxt-seo-experiments": "^3.0.5",

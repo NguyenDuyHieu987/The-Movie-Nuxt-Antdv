@@ -1,24 +1,22 @@
 <template>
-  <div class="auth">
-    <div class="auth-container">
-      <HeaderAuth />
-      <div class="background-auth">
-        <div class="image-auth desktop">
-          <nuxt-img
-            :src="
-              // getImage(`Background_Auth${image}.jpg`, '/background/auth')
-              getImage(
-                'Background_1.jpg',
-                'background/1',
-                'w-' + windowWidth?.toString()
-              )
-            "
-            alt=""
-            loading="lazy"
-          />
-        </div>
+  <div class="auth-container">
+    <HeaderAuth />
+    <div class="background-auth">
+      <div class="image-auth desktop">
+        <nuxt-img
+          :src="// getImage(`Background_Auth${image}.jpg`, '/background/auth')
+          // getImage(
+          //   'Background_1.jpg',
+          //   'background/1',
+          //   'w-' + windowWidth?.toString()
+          // )
+          'https://ik.imagekit.io/8toa5f2rp/images/background/1/Background_1.jpg'"
+          alt=""
+          loading="lazy"
+        />
+      </div>
 
-        <!-- <div class="image-auth responsive">
+      <!-- <div class="image-auth responsive">
           <nuxt-img
             :src="
               getImage(
@@ -29,10 +27,8 @@
             loading="lazy"
           />
         </div> -->
-      </div>
-
-      <slot />
     </div>
+    <slot />
   </div>
 </template>
 

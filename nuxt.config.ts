@@ -150,6 +150,7 @@ export default defineNuxtConfig({
     'nuxt-seo-experiments',
     'nuxt-gtag',
     // '@nuxtjs/supabase',
+    'nuxt-delay-hydration',
   ],
   site: {
     url: 'https://phimhay247.tech',
@@ -292,6 +293,7 @@ export default defineNuxtConfig({
     server: true,
     client: true,
   },
+  optimization: {},
   routeRules: {
     '/': { swr: true, prerender: true, static: true },
     '/search/**': { swr: true, prerender: true },
