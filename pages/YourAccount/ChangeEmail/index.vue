@@ -205,8 +205,7 @@ const handleSubmit = () => {
         });
 
         jwtVerifyEmail.value = response.headers.get('Authorization');
-        // otpExpOffset.value = response.exp_offset;
-        otpExpOffset.value = 10;
+        otpExpOffset.value = response.exp_offset;
 
         // router.push({
         //   query: {

@@ -231,16 +231,6 @@ const disabledVerifyEmail = computed<boolean>((): boolean => {
   );
 });
 
-watch(
-  () => route.query,
-  () => {
-    if (route.query?.token) {
-      // isShowForm.value = true;
-    }
-  },
-  { deep: true, immediate: true }
-);
-
 watch(otpExpOffset, () => {
   if (otpExpOffset.value >= 0 && disabled_countdown.value == true) {
     countdown.value = 'Còn ' + otpExpOffset.value + ' s';
@@ -252,6 +242,20 @@ watch(isShowForm, () => {
     if (disabled_countdown.value == false) {
       disabled_countdown.value = true;
     }
+
+    clearInterval(intervalCountdown.value);
+
+    // let a = otpExpOffset.value;
+    intervalCountdown.value = setInterval(() => {
+      // a -= 1;
+      otpExpOffset.value -= 1;
+
+      if (otpExpOffset.value == 0) {
+        clearInterval(intervalCountdown.value);
+        disabled_countdown.value = false;
+        countdown.value = 'Gửi lại';
+      }
+    }, 1000);
   }
 });
 

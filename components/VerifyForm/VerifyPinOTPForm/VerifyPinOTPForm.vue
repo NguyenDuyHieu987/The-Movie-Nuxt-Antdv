@@ -196,6 +196,20 @@ watch(isShowForm, () => {
     if (disabled_countdown.value == false) {
       disabled_countdown.value = true;
     }
+
+    clearInterval(intervalCountdown.value);
+
+    // let a = otpExpOffset.value;
+    intervalCountdown.value = setInterval(() => {
+      // a -= 1;
+      otpExpOffset.value -= 1;
+
+      if (otpExpOffset.value == 0) {
+        clearInterval(intervalCountdown.value);
+        disabled_countdown.value = false;
+        countdown.value = 'Gửi lại';
+      }
+    }, 1000);
   }
 });
 

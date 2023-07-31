@@ -186,9 +186,9 @@ import {
 
 definePageMeta({
   layout: 'auth',
-  pageTransition: {
-    name: 'slide-left',
-  },
+  // pageTransition: {
+  //   name: 'slide-left',
+  // },
 });
 
 useHead({
