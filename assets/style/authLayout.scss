@@ -1,8 +1,4 @@
 .auth-container {
-  overflow-y: scroll;
-  height: 100vh;
-  display: flex;
-  align-items: center;
   overflow: hidden;
 
   .background-auth {
@@ -13,7 +9,7 @@
     bottom: 0;
 
     .image-auth {
-      height: 100vh;
+      height: 100%;
       width: 100%;
     }
 
@@ -26,9 +22,8 @@
       height: 100%;
       background-position: center;
       background-repeat: no-repeat;
-      position: absolute;
-      opacity: 0.75;
       object-fit: cover;
+      opacity: 0.75;
     }
   }
 }
