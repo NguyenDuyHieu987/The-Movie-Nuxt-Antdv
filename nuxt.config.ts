@@ -165,7 +165,7 @@ export default defineNuxtConfig({
   },
   sitemap: {},
   gtag: {
-    id: process.env.GOOGLE_TAG_MANAGER_ID,
+    id: process.env.GOOGLE_ANALYTICS_ID,
   },
   image: {
     // provider: 'cloudinary',
