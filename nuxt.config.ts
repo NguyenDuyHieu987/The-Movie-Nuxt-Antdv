@@ -69,10 +69,10 @@ export default defineNuxtConfig({
         //   rel: 'stylesheet',
         //   href: '/icons/google-material-icons/css/material-icons.min.css',
         // },
-        // {
-        //   rel: 'preload',
-        //   href: 'https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto:wght@100;300;400;500;700&display=swap',
-        // },
+        {
+          rel: 'preload',
+          href: 'https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto:wght@100;300;400;500;700&display=swap',
+        },
       ],
       script: [
         // {
@@ -214,8 +214,6 @@ export default defineNuxtConfig({
     preload: true,
     useStylesheet: true,
     display: 'swap',
-    fontsPath:
-      '~/fonts/Roboto_Flex/roboto-flex-cufonfonts-webfont/RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].woff',
     families: {
       // Roboto: true,
       // 'Josefin+Sans': true,
