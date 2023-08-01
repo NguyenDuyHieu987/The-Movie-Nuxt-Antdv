@@ -238,7 +238,9 @@ watch(otpExpOffset, () => {
 });
 
 watch(isShowForm, () => {
-  formVerify.email = props.email;
+  if (!formVerify?.email) {
+    formVerify.email = props.email;
+  }
 
   if (otpExpOffset.value > 0) {
     if (disabled_countdown.value == false) {
