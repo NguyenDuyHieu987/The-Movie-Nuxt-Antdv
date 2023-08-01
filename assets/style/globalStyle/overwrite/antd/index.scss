@@ -117,6 +117,12 @@
   }
 }
 
+body:has(.ant-dropdown) {
+  position: fixed;
+  overflow-y: scroll;
+  inset: 0;
+}
+
 .ant-select-dropdown {
   padding: 0px;
   border: 0.1px solid var(--border-dropdown);

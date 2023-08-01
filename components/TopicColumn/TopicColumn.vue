@@ -216,7 +216,6 @@
 <script setup lang="ts">
 import { getImage } from '~/services/image';
 import { ElButton } from 'element-plus';
-import disableScroll from 'disable-scroll';
 
 const props = defineProps<{
   // dataColumn: any[];
@@ -263,20 +262,6 @@ const setBackgroundColor = (color: string[]) => {
 };
 
 onMounted(() => {
-  const ant_btn = document.getElementsByClassName('viewmore-btn')[0];
-
-  ant_btn?.addEventListener('click', () => {
-    if (ant_btn?.classList.contains('ant-dropdown-open')) {
-      disableScroll.on();
-    } else {
-      disableScroll.off();
-    }
-  });
-
-  ant_btn?.addEventListener('blur', () => {
-    disableScroll.off();
-  });
-
   if (dataColumn.value?.length > 0) {
     const color = dataColumn.value[0]?.dominant_backdrop_color;
     setBackgroundColor(color);
