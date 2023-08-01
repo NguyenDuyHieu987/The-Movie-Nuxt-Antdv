@@ -208,6 +208,7 @@ export default defineNuxtConfig({
   },
   delayHydration: {
     mode: 'mount',
+    debug: false,
     // debug: process.env.NODE_ENV === 'development',
   },
   plugins: [
@@ -249,7 +250,6 @@ export default defineNuxtConfig({
       cache: {
         driver: 'redis',
         url: 'redis://default:iMtb5g4jlRhXANp0oP0LNm5iZeX3QeNT@redis-11171.c292.ap-southeast-1-1.ec2.cloud.redislabs.com:11171',
-        /* redis connector options */
       },
     },
     // output: {
