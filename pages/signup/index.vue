@@ -187,6 +187,9 @@ import { ElNotification } from 'element-plus';
 
 definePageMeta({
   layout: 'auth',
+  pageTransition: {
+    name: 'slide-left',
+  },
 });
 
 useHead({
@@ -227,7 +230,7 @@ const otpExpOffset = ref<number>(0);
 const showAnimation = ref<boolean>(true);
 const internalInstance: any = getCurrentInstance();
 
-onMounted(() => {});
+onBeforeMount(() => {});
 
 const reset = () => {
   formSignup.fullname = '';

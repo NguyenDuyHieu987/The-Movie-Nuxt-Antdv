@@ -1,18 +1,19 @@
 .signup {
+  display: flex;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding: 20px 0px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
   .signup-container {
-    display: flex;
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    padding: 20px 0px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    margin: auto auto;
 
     .signup-form-container {
       position: relative;
-      margin: auto auto;
       box-shadow: var(--box-shadow-large);
       // background-color: var(--background-content-color);
       background-color: rgba(0, 0, 0, 0.9);
