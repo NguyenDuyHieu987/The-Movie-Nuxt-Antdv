@@ -9,13 +9,13 @@ export default defineStore('store', () => {
   const modalVisible = ref<boolean>(false);
   const openRequireAuthDialog = ref<boolean>(false);
   const isLogin = ref<boolean>(
-    utils.localStorage.getWithExpiry('userAccount') ? true : false
+    utils.localStorage.getWithExpiry('user_account') ? true : false
   );
   const breadCrumbValue = ref<string>('');
   const role = ref<string>('normal');
   const loadingApp = ref<boolean>(false);
   const userAccount = ref<any>(
-    utils.localStorage.getWithExpiry('userAccount') || {}
+    utils.localStorage.getWithExpiry('user_account') || {}
   );
   const allGenres = ref<any[]>([]);
   const allCountries = ref<any[]>([]);

@@ -44,6 +44,16 @@ export function getUserToken(params: any) {
   });
 }
 
+export function forgotPassword(params: any, type: string) {
+  const bodyFormData = new FormData();
+  bodyFormData.append('email', params.email);
+
+  return makeRequest(`auth/forgot-password/${type}`, {
+    method: 'POST',
+    data: bodyFormData,
+  });
+}
+
 export function verifySignUp(params: any, type: string) {
   const bodyFormData = new FormData();
   bodyFormData.append('id', params.id);
@@ -53,7 +63,7 @@ export function verifySignUp(params: any, type: string) {
   bodyFormData.append('full_name', params.full_name);
   bodyFormData.append('avatar', params.avatar);
 
-  return makeRequest(`/auth/verify/${type}`, {
+  return makeRequest(`auth/verify-signup/${type}`, {
     method: 'POST',
     data: bodyFormData,
   });

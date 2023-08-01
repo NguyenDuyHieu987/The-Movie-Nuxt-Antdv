@@ -2,8 +2,8 @@ header.header-bar-auth {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 22px;
+  padding-right: 22px;
   height: var(--header-height);
   position: fixed;
   left: 0;
@@ -22,7 +22,7 @@ header.header-bar-auth {
       a {
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap: 10px;
         font-size: 2.25rem;
       }
     }
@@ -34,9 +34,11 @@ header.header-bar-auth {
     height: 100%;
     flex-wrap: wrap;
 
-    a {
+    .login-btn {
       font-size: 1.7rem;
+      font-weight: 500;
       color: var(--app-background-color) !important;
+      user-select: none;
     }
 
     .signup-suggest {
@@ -45,6 +47,25 @@ header.header-bar-auth {
         white-space: nowrap;
         font-size: 1.3rem;
         margin-right: 5px;
+        cursor: default;
+      }
+
+      .signup-btn {
+        display: inline-flex;
+        align-items: center;
+        background-color: var(--app-background-color);
+        color: var(--text-color) !important;
+        padding: 7.5px 15px;
+        border-radius: 3px;
+        font-size: 1.5rem;
+        transition: all 0.15s;
+        text-align: center;
+        line-height: normal;
+        user-select: none;
+
+        &:hover {
+          background-color: var(--app-background-color7);
+        }
       }
     }
   }
@@ -63,8 +84,14 @@ header.header-bar-auth {
     }
 
     .right-header {
-      a {
+      .login-btn {
         font-size: 1.6rem;
+      }
+
+      .signup-suggest {
+        .signup-btn {
+          font-size: 1.4rem;
+        }
       }
     }
   }

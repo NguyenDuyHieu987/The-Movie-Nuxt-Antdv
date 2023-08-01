@@ -1,6 +1,6 @@
 <template>
   <div class="signup">
-    <Transition appear name="slide-left">
+    <Transition name="slide-left">
       <div class="signup-container" v-show="showAnimation">
         <div v-if="!isSignUp" class="signup-form-container">
           <a-form
@@ -225,6 +225,7 @@ const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
 const otpExpOffset = ref<number>(0);
 const showAnimation = ref<boolean>(true);
+const internalInstance: any = getCurrentInstance();
 
 onMounted(() => {});
 
@@ -300,6 +301,7 @@ const handleSignUp = (e: any) => {
   loadingSignUp.value = true;
   formSignup.id = Date.now();
   formSignup.avatar = `${Math.floor(Math.random() * 10) + 1}`;
+  internalInstance.appContext.config.globalProperties.$Progress.start();
 
   verifySignUp(
     {
@@ -352,6 +354,7 @@ const handleSignUp = (e: any) => {
         setTimeout(() => {
           showAnimation.value = true;
           isSignUp.value = true;
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
         }, 300);
       } else if (response?.isEmailExist == true) {
         ElNotification.error({

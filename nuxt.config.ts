@@ -70,8 +70,18 @@ export default defineNuxtConfig({
         //   href: '/icons/google-material-icons/css/material-icons.min.css',
         // },
         {
-          rel: 'preload',
-          href: 'https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto:wght@100;300;400;500;700&display=swap',
+          rel: 'preconnect',
+          href: `https://fonts.googleapis.com`,
+        },
+        {
+          rel: 'preconnect',
+          href: `https://fonts.gstatic.com`,
+          crossorigin: 'anonymous',
+        },
+        {
+          rel: 'preconnect',
+          href: `https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600&family=Roboto:wght@100;300;400;500;700&display=swap`,
         },
       ],
       script: [
@@ -213,16 +223,16 @@ export default defineNuxtConfig({
     preconnect: true,
     preload: true,
     display: 'swap',
-    //   useStylesheet: true,
-    //   families: {
-    //     // Roboto: true,
-    //     // 'Josefin+Sans': true,
-    //     // Lato: [100, 300],
-    //     // Raleway: {
-    //     //   wght: [100, 400],
-    //     //   ital: [100],
-    //     // },
-    //   },
+    useStylesheet: true,
+    families: {
+      Roboto: true,
+      'Josefin+Sans': true,
+      Lato: [100, 300],
+      Raleway: {
+        wght: [100, 400],
+        ital: [100],
+      },
+    },
   },
   plugins: [
     '@/plugins/elementPlus',

@@ -151,6 +151,7 @@ const breakPoints = useBreakpoints({
   responesive: 650,
 });
 const showAnimation = ref<boolean>(false);
+const internalInstance: any = getCurrentInstance();
 
 const responesive = breakPoints.smallerOrEqual('responesive');
 
@@ -176,8 +177,11 @@ useServerSeoMeta({
 });
 
 onBeforeMount(() => {
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+
   setTimeout(() => {
     showAnimation.value = true;
+    internalInstance.appContext.config.globalProperties.$Progress.finish();
   });
 });
 

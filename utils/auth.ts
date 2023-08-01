@@ -10,7 +10,7 @@ export function onLogOut() {
     store.loadingAppInstance.start();
 
     LogOut({
-      user_token: getWithExpiry('userAccount')?.user_token,
+      user_token: getWithExpiry('user_account')?.user_token,
     })
       .then((response: any) => {
         if (response?.isLogout == true) {
@@ -18,10 +18,9 @@ export function onLogOut() {
             resolve(navigateTo('/login'));
           }).then(() => {
             setTimeout(() => {
-              window.localStorage.removeItem('userAccount');
-              window.localStorage.removeItem('userToken');
+              window.localStorage.removeItem('user_account');
               window.localStorage.removeItem('remember');
-              window.localStorage.removeItem('isLogin');
+              window.localStorage.removeItem('is_login');
               store.userAccount = {};
               store.isLogin = false;
               store.role = 'normal';

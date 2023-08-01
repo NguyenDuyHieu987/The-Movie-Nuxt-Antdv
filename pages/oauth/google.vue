@@ -147,7 +147,7 @@ onBeforeMount(() => {
         store.userAccount = response?.result;
         store.isLogin = true;
         utils.localStorage.setWithExpiry(
-          'userAccount',
+          'user_account',
           {
             user_token: response.headers.get('Authorization'),
           },
@@ -159,7 +159,7 @@ onBeforeMount(() => {
         store.userAccount = response?.result;
         store.isLogin = true;
         utils.localStorage.setWithExpiry(
-          'userAccount',
+          'user_account',
           {
             user_token: response.headers.get('Authorization'),
           },

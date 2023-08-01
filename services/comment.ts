@@ -25,7 +25,7 @@ export function getCommentByMovidId_ParentId(
 
 export function CommentMovie(params: any) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   const bodyFormData = new FormData();
@@ -42,7 +42,7 @@ export function CommentMovie(params: any) {
 
 export function EditComment(params: any) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   const bodyFormData = new FormData();
@@ -59,7 +59,7 @@ export function EditComment(params: any) {
 
 export function DeleteComment(params: any) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   const bodyFormData = new FormData();

@@ -2,7 +2,7 @@ import { makeRequest } from './makeRequest';
 
 export function getRating(moveid: string, type: string) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   return makeRequest(`/rating/get/${type}/${moveid}`, {
@@ -12,7 +12,7 @@ export function getRating(moveid: string, type: string) {
 
 export function rating(moveid: string, type: string, value: number) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   const bodyFormData = new FormData();

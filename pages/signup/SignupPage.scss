@@ -13,7 +13,6 @@
     .signup-form-container {
       position: relative;
       margin: auto auto;
-      border-radius: 5px;
       box-shadow: var(--box-shadow-large);
       // background-color: var(--background-content-color);
       background-color: rgba(0, 0, 0, 0.9);
@@ -22,6 +21,7 @@
       width: 550px;
       z-index: 1;
       overflow: hidden;
+      border-radius: 2px;
 
       &::-webkit-scrollbar-thumb,
       &::-webkit-scrollbar {

@@ -50,6 +50,7 @@
                 // },
               },
             ]"
+            has-feedback
           >
             <a-input-password
               v-model:value="formLogin.password"
@@ -65,10 +66,15 @@
             <a-checkbox v-model:checked="formLogin.rememberMe">
               Ghi nhớ tôi
             </a-checkbox>
-            <a class="login-form-forgot" href="">Quên mật khẩu?</a>
+            <NuxtLink
+              class="login-form-forgot click-active"
+              to="/ForgotPassword"
+            >
+              Quên mật khẩu?
+            </NuxtLink>
           </a-form-item>
 
-          <a-form-item>
+          <a-form-item class="submit" name="submit">
             <a-button
               class="login-form-button"
               html-type="submit"
@@ -121,12 +127,6 @@
               @click="handleClickGoogleLogin"
             >
               <template #icon>
-                <!-- <nuxt-img
-                  :src="getImage('google.png', 'social_media')"
-                  alt=""
-                  loading="lazy"
-                /> -->
-
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:v="https://vecta.io/nano"
@@ -173,7 +173,6 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getImage } from '~/services/image';
 import { LogIn, loginFacebook, loginGoogle } from '~/services/authentication';
 // import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';
@@ -186,9 +185,9 @@ import {
 
 definePageMeta({
   layout: 'auth',
-  // pageTransition: {
-  //   name: 'slide-left',
-  // },
+  pageTransition: {
+    name: 'slide-left',
+  },
 });
 
 useHead({
@@ -278,7 +277,7 @@ const handleLogin = () => {
         store.role = response?.result?.role;
 
         utils.localStorage.setWithExpiry(
-          'userAccount',
+          'user_account',
           { user_token: response.headers.get('Authorization') },
           30
         );
@@ -355,7 +354,7 @@ const handleClickFacebookLogin = async () => {
         store.userAccount = response?.result;
         store.isLogin = true;
         utils.localStorage.setWithExpiry(
-          'userAccount',
+          'user_account',
           { user_token: response.headers.get('Authorization') },
           30
         );
@@ -365,7 +364,7 @@ const handleClickFacebookLogin = async () => {
         store.userAccount = response?.result;
         store.isLogin = true;
         utils.localStorage.setWithExpiry(
-          'userAccount',
+          'user_account',
           { user_token: response.headers.get('Authorization') },
           30
         );
@@ -449,7 +448,7 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           store.userAccount = response?.result;
           store.isLogin = true;
           utils.localStorage.setWithExpiry(
-            'userAccount',
+            'user_account',
             {
               user_token: response.headers.get('Authorization'),
             },
@@ -461,7 +460,7 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           store.userAccount = response?.result;
           store.isLogin = true;
           utils.localStorage.setWithExpiry(
-            'userAccount',
+            'user_account',
             {
               user_token: response.headers.get('Authorization'),
             },

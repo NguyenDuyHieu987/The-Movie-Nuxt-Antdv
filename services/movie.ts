@@ -5,12 +5,12 @@ export function getMovieById(
   append_to_response: string = ''
 ) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   return makeRequest(
     `/movie/detail/${movieId}?append_to_response=${append_to_response}`,
-    getWithExpiry('userAccount')?.user_token && {
+    getWithExpiry('user_account')?.user_token && {
       headers: headers,
     }
   );

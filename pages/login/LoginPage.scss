@@ -1,19 +1,19 @@
 .login {
+  display: flex;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding: 20px 0px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
   .login-container {
-    display: flex;
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    padding: 20px 0px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    margin: auto auto;
 
     .login-form-container {
       position: relative;
-      margin: auto auto;
-      border-radius: 5px;
       box-shadow: var(--box-shadow-large);
       z-index: 1;
       // background-color: var(--background-content-color);
@@ -21,6 +21,7 @@
       width: 550px;
       min-height: 630px;
       overflow: hidden;
+      border-radius: 2px;
 
       .login-form {
         // position: absolute;
@@ -49,7 +50,7 @@
             var(--app-background-color),
             var(--app-background-color2)
           );
-          transition: all 0.4s;
+          transition: background 0.4s;
           background-size: 100% 100%;
           background-position: 100% center;
           border-radius: 2px;
@@ -74,6 +75,7 @@
         }
 
         .login-form-forgot {
+          user-select: none;
           float: right;
         }
 

@@ -35,7 +35,7 @@ export function ChangeEmail(params: { otp: string; jwtVerifyEmail: string }) {
 
 export function ChangeFullname(params: { newFullname: string }) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   const bodyFormData = new FormData();
@@ -50,7 +50,7 @@ export function ChangeFullname(params: { newFullname: string }) {
 
 export function accountVerify(params: any, type: string) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
   const bodyFormData = new FormData();
 

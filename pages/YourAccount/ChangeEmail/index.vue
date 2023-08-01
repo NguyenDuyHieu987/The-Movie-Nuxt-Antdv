@@ -146,6 +146,7 @@ const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
 const otpExpOffset = ref<number>(0);
 const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Email: ');
+const internalInstance: any = getCurrentInstance();
 
 useHead({
   title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
@@ -161,8 +162,6 @@ useServerSeoMeta({
   ogDescription: 'Hóa đơn của bạn. Lịch sử giao dịch',
   ogLocale: 'vi',
 });
-
-const internalInstance: any = getCurrentInstance();
 
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
@@ -187,6 +186,7 @@ const handleSubmit = () => {
   }
 
   loadingChangeEmail.value = true;
+  internalInstance.appContext.config.globalProperties.$Progress.start();
 
   accountVerify({}, 'change-email')
     .then((response: any) => {
@@ -218,6 +218,7 @@ const handleSubmit = () => {
         setTimeout(() => {
           showAnimation.value = true;
           isChangeEmail.value = true;
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
         }, 300);
       } else if (response?.isWrongPassword == true) {
         ElNotification.error({

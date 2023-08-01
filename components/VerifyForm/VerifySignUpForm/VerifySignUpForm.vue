@@ -26,6 +26,7 @@
         </template>
         <!-- <span> Quay lại</span> -->
       </a-button>
+
       <a-form
         :model="formVerify"
         name="verify-form"
@@ -34,9 +35,7 @@
         hideRequiredMark
       >
         <div class="title-verify">
-          <h1 class="gradient-title-default">
-            <span> Xác nhận Email</span>
-          </h1>
+          <h1>Xác nhận Email</h1>
         </div>
 
         <a-form-item

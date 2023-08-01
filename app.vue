@@ -56,11 +56,11 @@ const router = useRouter();
 const loadingHomePage = ref<boolean>(true);
 
 const getData = async () => {
-  if (utils.localStorage.getWithExpiry('userAccount')?.user_token) {
+  if (utils.localStorage.getWithExpiry('user_account')?.user_token) {
     store.isLogin = true;
 
     getUserToken({
-      user_token: utils.localStorage.getWithExpiry('userAccount')?.user_token,
+      user_token: utils.localStorage.getWithExpiry('user_account')?.user_token,
     })
       .then((accountResponse: any) => {
         // console.log(accountResponse);
@@ -70,14 +70,7 @@ const getData = async () => {
           store.userAccount = accountResponse?.result;
           store.role = accountResponse?.result?.role;
         } else {
-          window.localStorage.removeItem('userAccount');
-          window.localStorage.removeItem('userToken');
-          window.localStorage.removeItem('remember');
-          window.localStorage.removeItem('isLogin');
-
-          store.userAccount = {};
-          store.role = 'normal';
-          store.isLogin = false;
+          utils.auth.onLogOut();
         }
       })
       .catch((e) => {

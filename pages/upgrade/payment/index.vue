@@ -152,8 +152,12 @@ definePageMeta({
 
 const store = useStore();
 const route = useRoute();
+const internalInstance: any = getCurrentInstance();
 
-onBeforeMount(() => {});
+onBeforeMount(() => {
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+  internalInstance.appContext.config.globalProperties.$Progress.finish();
+});
 
 const handleClickMoMoMethod = () => {};
 

@@ -16,15 +16,26 @@
 
     <div class="right-header">
       <div class="signup-suggest">
-        <span v-if="route.path == '/login'" class="signup-note">
+        <span v-if="route.path.toLowerCase() == '/login'" class="signup-note">
           Chưa có tài khoản?
         </span>
-        <NuxtLink v-if="route.path == '/login'" to="/signup">
+        <NuxtLink
+          class="signup-btn click-active"
+          v-if="route.path == '/login'"
+          to="/signup"
+        >
           <span> Đăng ký ngay</span>
         </NuxtLink>
       </div>
 
-      <NuxtLink v-if="route.path == '/signup'" to="/login">
+      <NuxtLink
+        class="login-btn"
+        v-if="
+          route.path.toLowerCase() == '/signup' ||
+          route.path.toLowerCase() == '/forgotpassword'
+        "
+        to="/login"
+      >
         Đăng nhập
       </NuxtLink>
     </div>

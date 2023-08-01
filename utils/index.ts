@@ -10,7 +10,7 @@ export const useUtils = () => {
     handleRemoveAllitemFromHistory,
     initFacebookSdk,
     initGoogleSdk,
-    localStorage: { setWithExpiry, getWithExpiry },
+    localStorage: { setWithExpiry, getWithExpiry, getWithExpiry_ExpRemain },
     conrfirmMessageModal,
     removeVietnameseTones,
     textUppercase,

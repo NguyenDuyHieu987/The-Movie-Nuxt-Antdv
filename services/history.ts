@@ -6,7 +6,7 @@ export function getHistory(
   limit: number = 20
 ) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   return makeRequest(
@@ -19,7 +19,7 @@ export function getHistory(
 
 export function searchHistory(query: string, type: string = 'all') {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   return makeRequest(`/history/searchhistory/${type}?query=${query}`, {
@@ -29,7 +29,7 @@ export function searchHistory(query: string, type: string = 'all') {
 
 export function getItemHistory(movieId: string, media_type: string) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   return makeRequest(`/history/getitem/${media_type}/${movieId}`, {
@@ -39,7 +39,7 @@ export function getItemHistory(movieId: string, media_type: string) {
 
 export function add_update_History(params: any) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   const bodyFormData = new FormData();
@@ -58,7 +58,7 @@ export function add_update_History(params: any) {
 
 export function removeItemHistory(params: any) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   const bodyFormData = new FormData();
@@ -74,7 +74,7 @@ export function removeItemHistory(params: any) {
 
 export function removeAllItemHistory() {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('userAccount')?.user_token}`,
+    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
   };
 
   return makeRequest(`/history/removeall_item`, {
