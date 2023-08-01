@@ -208,22 +208,22 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  // googleFonts: {
-  //   prefetch: true,
-  //   preconnect: true,
-  //   preload: true,
-  //   useStylesheet: true,
-  //   display: 'swap',
-  //   families: {
-  //     // Roboto: true,
-  //     // 'Josefin+Sans': true,
-  //     // Lato: [100, 300],
-  //     // Raleway: {
-  //     //   wght: [100, 400],
-  //     //   ital: [100],
-  //     // },
-  //   },
-  // },
+  googleFonts: {
+    prefetch: true,
+    preconnect: true,
+    preload: true,
+    display: 'swap',
+    //   useStylesheet: true,
+    //   families: {
+    //     // Roboto: true,
+    //     // 'Josefin+Sans': true,
+    //     // Lato: [100, 300],
+    //     // Raleway: {
+    //     //   wght: [100, 400],
+    //     //   ital: [100],
+    //     // },
+    //   },
+  },
   plugins: [
     '@/plugins/elementPlus',
     '@/plugins/antd',
