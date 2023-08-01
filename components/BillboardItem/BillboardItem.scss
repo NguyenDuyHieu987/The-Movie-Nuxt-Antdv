@@ -46,11 +46,23 @@
         align-items: center;
         max-width: 50%;
 
-        .pngegg {
+        img.pngegg {
           height: 3.5vw;
         }
 
-        & > div {
+        .pngegg-icon {
+          display: flex;
+          align-items: center;
+          height: 3vw;
+          overflow: hidden;
+
+          svg {
+            width: 4.5vw;
+            // max-width: 7.5rem;
+          }
+        }
+
+        .head-info {
           margin-left: 20px;
           width: 100%;
 
@@ -222,20 +234,32 @@
   .billboard-item {
     .billboard-item-body {
       left: 15px;
+
       .info {
         .head {
-          & > div {
+          .pngegg-icon {
+            height: 4rem;
+
+            svg {
+              width: 7rem;
+            }
+          }
+
+          .head-info {
             .release-date {
               font-size: 1.8rem;
             }
+
             .genres {
               font-size: 1.6rem;
             }
           }
         }
+
         h1 {
           font-size: 3rem;
         }
+
         .overview {
           font-size: 1.6rem;
         }
@@ -372,10 +396,6 @@
       .info {
         .head {
           max-width: 70%;
-
-          span {
-            font-size: 1.8rem;
-          }
         }
 
         h1 {
@@ -395,6 +415,14 @@
   .billboard-item {
     .billboard-item-body {
       .info {
+        .head {
+          .head-info {
+            .genres {
+              -webkit-line-clamp: 1;
+            }
+          }
+        }
+
         .overview {
           -webkit-line-clamp: 2;
         }
@@ -411,6 +439,26 @@
           img.pngegg {
             height: 40px;
           }
+
+          .pngegg-icon {
+            height: 4rem;
+
+            svg {
+              width: 7rem;
+            }
+          }
+
+          .head-info {
+            margin-left: 10px;
+
+            .release-date {
+              font-size: 1.6rem;
+            }
+
+            .genres {
+              font-size: 1.5rem;
+            }
+          }
         }
       }
     }
@@ -423,22 +471,21 @@
       bottom: 25px;
 
       .info {
-        h1 {
-          margin-top: 0px;
-          font-size: 2rem;
-        }
-
         .head {
-          & > div {
+          .head-info {
             .release-date {
               font-size: 1.4rem;
             }
 
             .genres {
               font-size: 1.4rem;
-              -webkit-line-clamp: 1;
             }
           }
+        }
+
+        h1 {
+          margin-top: 0px;
+          font-size: 2rem;
         }
 
         .overview {
