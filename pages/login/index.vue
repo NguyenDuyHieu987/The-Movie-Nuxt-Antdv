@@ -417,7 +417,12 @@ const handleClickGoogleLogin = () => {
     form.appendChild(input);
   }
 
+  // Object.entries(params).forEach(([key, value]) => {
+  //   console.log(key, value);
+  // });
+
   // Add form to page and submit it to open the OAuth 2.0 endpoint.
+
   document.body.appendChild(form);
   form.submit();
 };

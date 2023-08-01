@@ -242,7 +242,6 @@ export default defineNuxtConfig({
     '@/plugins/sharenetwork',
     '@/plugins/vuelazyload',
     '@/plugins/googleTagManager',
-    // '@/plugins/googlelogin',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
