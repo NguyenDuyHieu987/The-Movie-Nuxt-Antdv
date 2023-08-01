@@ -20,6 +20,7 @@
                 : userAccount?.avatar
             "
             loading="lazy"
+            alt=""
           />
         </div>
 

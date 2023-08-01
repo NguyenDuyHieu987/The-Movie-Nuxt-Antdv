@@ -215,7 +215,7 @@ export default defineNuxtConfig({
     prefetch: true,
     preconnect: true,
     preload: true,
-    useStylesheet: true,
+    // useStylesheet: true,
     display: 'swap',
     families: {
       // Roboto: true,
@@ -320,7 +320,7 @@ export default defineNuxtConfig({
   ssr: true,
   sourcemap: {
     server: true,
-    client: true,
+    client: false,
   },
   optimization: {},
   routeRules: {
