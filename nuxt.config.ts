@@ -217,6 +217,8 @@ export default defineNuxtConfig({
     preload: true,
     useStylesheet: true,
     display: 'swap',
+    fontsPath:
+      '~/fonts/Roboto_Flex/roboto-flex-cufonfonts-webfont/RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].woff',
     families: {
       // Roboto: true,
       // 'Josefin+Sans': true,
