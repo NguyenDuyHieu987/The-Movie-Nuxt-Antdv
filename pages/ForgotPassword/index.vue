@@ -158,6 +158,9 @@ const getForgotPasswordLocalStr = async () => {
   if (!isExpireForm) {
     forgotPasswordLocalStr.email = forgot_password.email;
     forgotPasswordLocalStr.exp_after = forgot_password.exp_after;
+  } else {
+    forgotPasswordLocalStr.email = '';
+    forgotPasswordLocalStr.exp_after = 0;
   }
 };
 
