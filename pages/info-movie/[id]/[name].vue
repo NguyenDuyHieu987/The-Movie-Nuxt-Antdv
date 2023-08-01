@@ -65,6 +65,7 @@
                 <div class="action">
                   <div class="left">
                     <NuxtLink
+                      class="action-btn"
                       :to="{
                         path: `/play-movie/${dataMovie?.id}/${dataMovie?.name
                           ?.replace(/\s/g, '+')
@@ -89,7 +90,7 @@
                       </a-button>
                     </NuxtLink>
 
-                    <NuxtLink @click.prevent="handelAddToList">
+                    <div class="action-btn">
                       <a-button size="large" type="text" class="add modern">
                         <template #icon>
                           <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
@@ -119,9 +120,9 @@
                         </template>
                         <span> Danh sách</span>
                       </a-button>
-                    </NuxtLink>
+                    </div>
 
-                    <NuxtLink @click.prevent="scrollToTrailer">
+                    <div class="action-btn" @click="scrollToTrailer">
                       <a-button size="large" type="text" class="trailer modern">
                         <template #icon>
                           <!-- <Icon name="fa6-brands:youtube" class="trailer" /> -->
@@ -140,13 +141,13 @@
                         </template>
                         <span> Trailer</span>
                       </a-button>
-                    </NuxtLink>
+                    </div>
                   </div>
 
                   <div class="right">
                     <Interaction :dataMovie="dataMovie" />
 
-                    <NuxtLink @click.prevent="scrollToComment">
+                    <div class="action-btn" @click="scrollToComment">
                       <a-button size="large" type="text" class="comment modern">
                         <template #icon>
                           <!-- <Icon name="ic:outline-comment" class="comment" /> -->
@@ -164,7 +165,7 @@
                         </template>
                         <span> Bình luận</span>
                       </a-button>
-                    </NuxtLink>
+                    </div>
 
                     <!-- <div class="ellipsis">
                       <Icon name="fa6-solid:ellipsis" />

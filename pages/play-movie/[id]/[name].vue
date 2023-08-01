@@ -87,7 +87,7 @@
 
             <div class="action">
               <div class="left">
-                <NuxtLink @click.prevent="handelAddToList">
+                <div class="action-btn" @click="handelAddToList">
                   <a-button type="text" class="modern add">
                     <template #icon>
                       <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
@@ -117,12 +117,12 @@
                     </template>
                     <span> Danh sách</span>
                   </a-button>
-                </NuxtLink>
+                </div>
               </div>
               <div class="right">
                 <Interaction :dataMovie="dataMovie" />
 
-                <NuxtLink @click.prevent="scrollToComment">
+                <div class="action-btn" @click="scrollToComment">
                   <a-button size="large" type="text" class="comment modern">
                     <template #icon>
                       <!-- <Icon name="ic:outline-comment" class="comment" /> -->
@@ -141,7 +141,7 @@
                     </template>
                     <span> Bình luận</span>
                   </a-button>
-                </NuxtLink>
+                </div>
               </div>
             </div>
           </div>

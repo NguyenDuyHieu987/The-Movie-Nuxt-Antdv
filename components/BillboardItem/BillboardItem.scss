@@ -118,11 +118,11 @@
       // gap: 15px;
       gap: 0.7vw;
 
-      a + a {
+      .action-btn + .action-btn {
         // margin-left: 15px;
       }
 
-      a {
+      .action-btn {
         // height: 45px;
         // height: 2.4vw;
         min-height: 40px;
@@ -332,7 +332,7 @@
   .billboard-item {
     .billboard-item-body {
       .action {
-        a {
+        .action-btn {
           height: 40px;
         }
 
@@ -350,7 +350,7 @@
         .billboard-item {
           .billboard-item-body {
             .action {
-              a {
+              .action-btn {
                 height: 40px;
               }
 
@@ -449,11 +449,12 @@
 
       .action {
         margin-top: 15px;
-        a {
+
+        .action-btn {
           height: 35px;
         }
 
-        a + a {
+        .action-btn + .action-btn {
           // margin-left: 10px;
         }
 

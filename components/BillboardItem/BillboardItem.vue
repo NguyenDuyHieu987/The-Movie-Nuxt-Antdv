@@ -79,6 +79,7 @@
 
       <div class="action">
         <NuxtLink
+          class="action-btn"
           :to="{
             path:
               item?.media_type == 'movie'
@@ -109,6 +110,7 @@
         </NuxtLink>
 
         <NuxtLink
+          class="action-btn"
           :to="{
             path:
               item?.media_type == 'movie'
@@ -145,11 +147,11 @@
           </a-button>
         </NuxtLink>
 
-        <NuxtLink @click.prevent="handelAddToList">
+        <div class="action-btn" @click="handelAddToList">
           <a-button size="large" type="text" class="add modern">
             <template #icon>
               <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
-              <Icon v-else name="ic:baseline-plus" /> -->
+                <Icon v-else name="ic:baseline-plus" /> -->
 
               <svg
                 v-if="isAddToList"
@@ -179,7 +181,7 @@
             </template>
             <span> Danh sách</span>
           </a-button>
-        </NuxtLink>
+        </div>
       </div>
     </div>
   </div>
