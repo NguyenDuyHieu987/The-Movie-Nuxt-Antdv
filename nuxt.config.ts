@@ -318,7 +318,7 @@ export default defineNuxtConfig({
   ssr: true,
   sourcemap: {
     server: true,
-    client: false,
+    client: true,
   },
   optimization: {},
   routeRules: {
