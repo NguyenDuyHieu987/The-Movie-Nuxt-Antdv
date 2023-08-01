@@ -108,7 +108,6 @@ import SortTab from '@/components/SortTab/SortTab.vue';
 import TopicRow from '@/components/TopicRow/TopicRow.vue';
 import TopicColumn from '@/components/TopicColumn/TopicColumn.vue';
 import { getList, searchList } from '~/services/list';
-import disableScroll from 'disable-scroll';
 import _ from 'lodash';
 import { storeToRefs } from 'pinia';
 import { ElSkeleton, ElSkeletonItem } from 'element-plus';
@@ -165,20 +164,6 @@ useServerSeoMeta({
 });
 
 onMounted(() => {
-  const ant_btn = document.getElementsByClassName('viewmore-btn-follow')[0];
-
-  ant_btn?.addEventListener('click', () => {
-    if (ant_btn?.classList.contains('ant-dropdown-open')) {
-      disableScroll.on();
-    } else {
-      disableScroll.off();
-    }
-  });
-
-  ant_btn?.addEventListener('blur', () => {
-    disableScroll.off();
-  });
-
   const headerHeight = +getComputedStyle(document.documentElement)
     .getPropertyValue('--header-height')
     .replace('px', '');
