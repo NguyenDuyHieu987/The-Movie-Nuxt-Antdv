@@ -32,7 +32,6 @@ export async function handelAddItemToList(
           type: 'success',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
 
         return true;
@@ -49,7 +48,6 @@ export async function handelAddItemToList(
           type: 'error',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
         return false;
       }
@@ -62,7 +60,6 @@ export async function handelAddItemToList(
         type: 'error',
         position: 'bottom-right',
         duration: 3000,
-        showClose: false,
       });
       if (axios.isCancel(e)) return false;
       return false;
@@ -93,7 +90,6 @@ export async function handelRemoveItemFromList(
           type: 'success',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
 
         return true;
@@ -110,7 +106,6 @@ export async function handelRemoveItemFromList(
           type: 'error',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
         return false;
       }
@@ -123,7 +118,6 @@ export async function handelRemoveItemFromList(
         type: 'error',
         position: 'bottom-right',
         duration: 3000,
-        showClose: false,
       });
       if (axios.isCancel(e)) return false;
       return false;
@@ -147,7 +141,6 @@ export async function handleRemoveAllitemFromList(): Promise<boolean> {
           type: 'success',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
 
         return response?.results?.length == 0;
@@ -163,7 +156,6 @@ export async function handleRemoveAllitemFromList(): Promise<boolean> {
           type: 'error',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
         return false;
       }
@@ -176,7 +168,6 @@ export async function handleRemoveAllitemFromList(): Promise<boolean> {
         type: 'error',
         position: 'bottom-right',
         duration: 3000,
-        showClose: false,
       });
       if (axios.isCancel(e)) return false;
       return false;
@@ -207,7 +198,6 @@ export async function handleRemoveItemFromHistory(
           type: 'success',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
         return true;
       } else {
@@ -223,7 +213,6 @@ export async function handleRemoveItemFromHistory(
           type: 'error',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
         return false;
       }
@@ -236,7 +225,6 @@ export async function handleRemoveItemFromHistory(
         type: 'error',
         position: 'bottom-right',
         duration: 3000,
-        showClose: false,
       });
       if (axios.isCancel(e)) return false;
       return false;
@@ -256,7 +244,6 @@ export async function handleRemoveAllitemFromHistory(): Promise<boolean> {
           type: 'success',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
         return response?.results?.length == 0;
       } else {
@@ -267,7 +254,6 @@ export async function handleRemoveAllitemFromHistory(): Promise<boolean> {
           type: 'error',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
         return false;
       }
@@ -280,7 +266,6 @@ export async function handleRemoveAllitemFromHistory(): Promise<boolean> {
         type: 'error',
         position: 'bottom-right',
         duration: 3000,
-        showClose: false,
       });
       if (axios.isCancel(e)) return false;
       return false;

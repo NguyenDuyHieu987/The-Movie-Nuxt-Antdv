@@ -30,7 +30,6 @@ export function onLogOut() {
           ElNotification.error({
             title: 'Lỗi!',
             message: 'Đăng xuất thất bại.',
-            showClose: false,
             icon: () =>
               h(CloseCircleFilled, {
                 style: 'color: red',
@@ -42,7 +41,6 @@ export function onLogOut() {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Đăng xuất thất bại.',
-          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',

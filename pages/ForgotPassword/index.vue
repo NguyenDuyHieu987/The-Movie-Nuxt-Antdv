@@ -199,7 +199,6 @@ const handleSubmit = () => {
         ElNotification.success({
           title: 'Thành công!',
           message: `Gửi Email thành công.`,
-          showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -226,7 +225,6 @@ const handleSubmit = () => {
         ElNotification.error({
           title: 'Thất bại!',
           message: 'Email chưa được đăng ký.',
-          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -236,7 +234,6 @@ const handleSubmit = () => {
         ElNotification.error({
           title: 'Thất bại!',
           message: 'Gửi Email thất bại.',
-          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -248,7 +245,6 @@ const handleSubmit = () => {
       ElNotification.error({
         title: 'Thất bại!',
         message: 'Gửi Email thất bại.',
-        showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',

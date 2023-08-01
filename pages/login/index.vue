@@ -292,7 +292,6 @@ const handleLogin = () => {
           ElNotification.error({
             title: 'Thất bại!',
             message: 'Tài khoản không tồi tại.',
-            showClose: false,
             icon: () =>
               h(CloseCircleFilled, {
                 style: 'color: red',
@@ -304,7 +303,6 @@ const handleLogin = () => {
           ElNotification.error({
             title: 'Thất bại!',
             message: 'Sai tài khoản hoặc mật khẩu.',
-            showClose: false,
             icon: () =>
               h(CloseCircleFilled, {
                 style: 'color: red',
@@ -317,7 +315,6 @@ const handleLogin = () => {
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
-        showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',
@@ -345,7 +342,6 @@ const handleClickFacebookLogin = async () => {
         ElNotification.success({
           title: 'Thành công!',
           message: 'Bạn đã đăng nhập bằng Facebook thành công tại Phimhay247.',
-          showClose: false,
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -376,7 +372,6 @@ const handleClickFacebookLogin = async () => {
       ElNotification.error({
         title: 'Thất bại!',
         message: 'Some thing went wrong.',
-        showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',
@@ -439,7 +434,6 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           ElNotification.success({
             title: 'Thành công!',
             message: 'Bạn đã đăng nhập bằng Google thành công tại Phimhay247.',
-            showClose: false,
             icon: () =>
               h(CheckCircleFilled, {
                 style: 'color: green',
@@ -472,7 +466,6 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           ElNotification.error({
             title: 'Thất bại!',
             message: 'Some thing went wrong.',
-            showClose: false,
             icon: () =>
               h(CloseCircleFilled, {
                 style: 'color: red',
@@ -484,7 +477,6 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
         ElNotification.error({
           title: 'Thất bại!',
           message: 'Some thing went wrong.',
-          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
