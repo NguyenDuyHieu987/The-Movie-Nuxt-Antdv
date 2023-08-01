@@ -117,8 +117,13 @@
   }
 }
 
-body:has(.ant-dropdown) {
-  overflow: hidden;
+body:has(.ant-dropdown-open) {
+  // &:scrollable {
+  //   touch-action: none;
+  //   position: fixed;
+  //   overflow-y: scroll;
+  //   width: 100%;
+  // }
 }
 
 .ant-select-dropdown {
