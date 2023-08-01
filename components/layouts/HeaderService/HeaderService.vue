@@ -31,6 +31,7 @@
             class="dropdown-account"
             overlayClassName="dropdown-account header"
             placement="bottomRight"
+            destroyPopupOnHide
           >
             <span class="ant-dropdown-link">
               <!-- <UserOutlined />
