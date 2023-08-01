@@ -163,7 +163,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-lazy-load',
     '@nuxtjs/fontaine',
-    '@nuxtjs/google-fonts',
+    // '@nuxtjs/google-fonts',
     'nuxt-simple-sitemap',
     'nuxt-og-image',
     'nuxt-seo-experiments',
@@ -218,21 +218,30 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  googleFonts: {
-    prefetch: true,
-    preconnect: true,
-    preload: true,
-    display: 'swap',
-    useStylesheet: true,
-    families: {
-      Roboto: true,
-      'Josefin+Sans': true,
-      Lato: [100, 300],
-      Raleway: {
-        wght: [100, 400],
-        ital: [100],
+  // googleFonts: {
+  //   prefetch: true,
+  //   preconnect: true,
+  //   preload: true,
+  //   display: 'swap',
+  //   useStylesheet: true,
+  //   families: {
+  //     Roboto: true,
+  //     'Josefin+Sans': true,
+  //     Lato: [100, 300],
+  //     Raleway: {
+  //       wght: [100, 400],
+  //       ital: [100],
+  //     },
+  //   },
+  // },
+  fontMetrics: {
+    fonts: [
+      'Inter',
+      {
+        family: 'Roboto Flex',
+        src: '~/assets/fonts/Roboto_Flex/RobotoFlex-Regular.woff2',
       },
-    },
+    ],
   },
   plugins: [
     '@/plugins/elementPlus',
