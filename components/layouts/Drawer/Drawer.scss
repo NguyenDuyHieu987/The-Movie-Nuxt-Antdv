@@ -88,8 +88,7 @@
   }
 }
 
-.el-overlay:has(.el-drawer) {
-  // margin-top: var(--header-height);
+body:has(.ant-drawer-open) {
 }
 
 .el-drawer.menu-drawer {

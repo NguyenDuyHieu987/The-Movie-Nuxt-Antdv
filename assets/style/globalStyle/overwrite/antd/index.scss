@@ -118,9 +118,7 @@
 }
 
 body:has(.ant-dropdown) {
-  position: fixed;
-  overflow-y: scroll;
-  inset: 0;
+  overflow: hidden;
 }
 
 .ant-select-dropdown {
