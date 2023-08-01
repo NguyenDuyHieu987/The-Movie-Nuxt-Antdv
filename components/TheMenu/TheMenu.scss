@@ -1,7 +1,7 @@
 .ant-menu.menu-sider-bar {
   // min-height: calc(100% - calc(2 * var(--header-height)));
-  background: transparent;
-  background-color: transparent;
+  background: transparent !important;
+  background-color: transparent !important;
   flex-grow: 1;
   width: 100%;
   // overflow: hidden;
