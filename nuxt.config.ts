@@ -70,7 +70,7 @@ export default defineNuxtConfig({
         //   href: '/icons/google-material-icons/css/material-icons.min.css',
         // },
         {
-          rel: 'preload',
+          rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto:wght@100;300;400;500;700&display=swap',
         },
       ],
@@ -159,6 +159,7 @@ export default defineNuxtConfig({
     // 'vue-social-sharing/nuxt',
     // '@nuxtjs/supabase',
     'nuxt-delay-hydration',
+    '@nuxtjs/google-fonts',
   ],
   site: {
     url: 'https://phimhay247.tech',
@@ -210,6 +211,22 @@ export default defineNuxtConfig({
     mode: 'mount',
     // debug: process.env.NODE_ENV === 'development',
   },
+  googleFonts: {
+    prefetch: true,
+    preconnect: true,
+    preload: true,
+    useStylesheet: true,
+    display: 'swap',
+    families: {
+      // Roboto: true,
+      // 'Josefin+Sans': true,
+      // Lato: [100, 300],
+      // Raleway: {
+      //   wght: [100, 400],
+      //   ital: [100],
+      // },
+    },
+  },
   plugins: [
     '@/plugins/elementPlus',
     '@/plugins/antd',
@@ -223,7 +240,7 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    preset: 'cloudflare-pages-static',
+    // preset: 'static',
     prerender: {
       routes: [
         '/',
