@@ -208,10 +208,6 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  delayHydration: {
-    mode: 'mount',
-    // debug: process.env.NODE_ENV === 'development',
-  },
   googleFonts: {
     prefetch: true,
     preconnect: true,
@@ -243,7 +239,7 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    // preset: 'nitro-prerender',
+    // preset: 'static',
     prerender: {
       routes: [
         '/',
