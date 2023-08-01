@@ -154,7 +154,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-lazy-load',
     '@nuxtjs/fontaine',
-    '@nuxtjs/google-fonts',
+    // '@nuxtjs/google-fonts',
     'nuxt-simple-sitemap',
     'nuxt-og-image',
     'nuxt-seo-experiments',
@@ -209,22 +209,22 @@ export default defineNuxtConfig({
       // See IntersectionObserver documentation
     },
   },
-  googleFonts: {
-    prefetch: true,
-    preconnect: true,
-    preload: true,
-    display: 'swap',
-    //   useStylesheet: true,
-    //   families: {
-    //     // Roboto: true,
-    //     // 'Josefin+Sans': true,
-    //     // Lato: [100, 300],
-    //     // Raleway: {
-    //     //   wght: [100, 400],
-    //     //   ital: [100],
-    //     // },
-    //   },
-  },
+  // googleFonts: {
+  //   prefetch: true,
+  //   preconnect: true,
+  //   preload: true,
+  //   display: 'swap',
+  //   //   useStylesheet: true,
+  //   //   families: {
+  //   //     // Roboto: true,
+  //   //     // 'Josefin+Sans': true,
+  //   //     // Lato: [100, 300],
+  //   //     // Raleway: {
+  //   //     //   wght: [100, 400],
+  //   //     //   ital: [100],
+  //   //     // },
+  //   //   },
+  // },
   plugins: [
     '@/plugins/elementPlus',
     '@/plugins/antd',
@@ -318,7 +318,7 @@ export default defineNuxtConfig({
   ssr: true,
   sourcemap: {
     server: true,
-    client: true,
+    client: false,
   },
   optimization: {},
   routeRules: {
