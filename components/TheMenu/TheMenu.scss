@@ -1,7 +1,9 @@
 .ant-menu.menu-sider-bar {
   // min-height: calc(100% - calc(2 * var(--header-height)));
-  background: transparent !important;
+  background: transparent;
+  background-color: transparent;
   flex-grow: 1;
+  width: 100%;
   // overflow: hidden;
 
   &.ant-menu-inline-collapsed {
