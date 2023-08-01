@@ -160,7 +160,7 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     // 'vue-social-sharing/nuxt',
     // '@nuxtjs/supabase',
-    'nuxt-delay-hydration',
+    // 'nuxt-delay-hydration',
   ],
   site: {
     url: 'https://phimhay247.tech',
