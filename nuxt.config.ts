@@ -305,11 +305,29 @@ export default defineNuxtConfig({
       '/play-tv',
     ],
   },
+  build: {
+    analyze: true,
+  },
+  builder: {},
   vite: {
     build: {
       sourcemap: true,
       minify: 'terser',
       ssrManifest: true,
+      ssr: true,
+    },
+    optimizeDeps: {
+      extensions: [
+        '.mjs',
+        '.js',
+        '.ts',
+        '.jsx',
+        '.tsx',
+        '.json',
+        '.vue',
+        '.css',
+        '.scss',
+      ],
     },
     vue: {
       script: {
