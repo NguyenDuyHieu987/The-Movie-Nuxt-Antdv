@@ -319,15 +319,19 @@ export default defineNuxtConfig({
       cssCodeSplit: true,
       reportCompressedSize: false,
       terserOptions: {
-        ecma: 2016,
-        sourceMap: true,
-        parse: {
-          html5_comments: false,
+        //   ecma: 2016,
+        //   sourceMap: true,
+        //   parse: {
+        //     html5_comments: false,
+        //   },
+        //   compress: {
+        //     drop_console: true,
+        //   },
+        //   mangle: {},
+        format: {
+          ecma: 2016,
+          comments: false,
         },
-        compress: {
-          drop_console: true,
-        },
-        mangle: {},
       },
     },
     optimizeDeps: {
