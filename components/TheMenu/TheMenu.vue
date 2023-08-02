@@ -2,8 +2,8 @@
   <Menu
     v-model:openKeys="state.openKeys"
     v-model:selectedKeys="state.selectedKeys"
-    mode="inline"
     class="menu-sider-bar"
+    mode="inline"
     theme="dark"
     :subMenuCloseDelay="0.15"
     :subMenuOpenDelay="0.15"
