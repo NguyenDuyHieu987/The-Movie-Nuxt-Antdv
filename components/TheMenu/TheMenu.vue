@@ -355,9 +355,9 @@
       <template #icon>
         <!-- <nuxt-img :src="getImage('king.png', 'misc', 'h-16')" alt="" /> -->
         <svg
-          height="512"
           viewBox="0 0 192 192"
-          width="512"
+          height="1.6rem"
+          width="1.6rem"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
         >
