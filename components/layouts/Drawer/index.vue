@@ -1,7 +1,7 @@
 <template>
   <Drawer
     class="menu-drawer"
-    v-model:visible="openDrawer"
+    v-model:open="openDrawer"
     placement="left"
     :closable="false"
     width="var(--drawer-width)"
