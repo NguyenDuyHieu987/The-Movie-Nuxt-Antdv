@@ -221,7 +221,9 @@ const formLogin = reactive<any>({
 });
 const tokenClient = ref<any>({});
 const urlBack = computed(() =>
-  ['/signup', '/oauth'].includes(router.options.history.state.back)
+  ['/signup', '/oauth', '/forgotpassword'].includes(
+    router.options.history.state.back.toLowerCase()
+  )
     ? '/'
     : router.options.history.state.back
 );

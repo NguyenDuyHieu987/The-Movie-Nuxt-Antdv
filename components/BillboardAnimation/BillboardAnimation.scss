@@ -75,10 +75,14 @@
       top: 37%;
 
       .el-carousel__indicator {
-        height: 25px;
+        height: 18px;
         width: 7px;
-        padding: 4px 0px;
+        padding: 0px;
         transition: all 0.5s;
+
+        &:not(:first-child, :last-child) {
+          margin: 8px 0px;
+        }
 
         .el-carousel__button {
           height: 100%;
@@ -88,10 +92,10 @@
         }
 
         &.is-active {
-          height: 40px;
+          height: 30px;
 
           .el-carousel__button {
-            background-color: #fff;
+            background-color: var(--app-background-color);
 
             // background: linear-gradient(
             //   to bottom,

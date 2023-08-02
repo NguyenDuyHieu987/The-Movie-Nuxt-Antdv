@@ -92,6 +92,14 @@
   --line-height-regular: 1.5;
 }
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --border-regular: #a0a0a0;
+    --border-regular-light: #292929;
+    --search-focus-border-color: #5c5c5c;
+  }
+}
+
 html {
   // scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -112,14 +120,6 @@ body {
   height: auto;
   width: auto;
   // color-scheme: dark;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --border-regular: #a0a0a0;
-    --border-regular-light: #292929;
-    --search-focus-border-color: #5c5c5c;
-  }
 }
 
 body {

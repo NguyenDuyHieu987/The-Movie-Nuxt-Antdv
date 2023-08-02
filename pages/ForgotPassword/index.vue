@@ -233,6 +233,15 @@ const handleSubmit = () => {
               style: 'color: red',
             }),
         });
+      } else if (response?.isInValidEmail == true) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Email không tồn tại.',
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
       } else if (response?.isSended == false) {
         ElNotification.error({
           title: 'Thất bại!',
