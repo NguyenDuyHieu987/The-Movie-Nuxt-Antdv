@@ -22,7 +22,7 @@
         <NuxtPage />
 
         <el-backtop
-          class="app-back-top"
+          class="app-back-top click-active"
           :visibilityHeight="600"
           @click="onBackTop"
         >
