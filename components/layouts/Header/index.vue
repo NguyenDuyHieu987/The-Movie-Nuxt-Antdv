@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <a-auto-complete
+    <AutoComplete
       v-model:value="valueInput"
       class="search-header"
       popupClassName="certain-category-search-dropdown"
@@ -45,7 +45,7 @@
         <SearchCard :key="item?.id" :item="item" :type="item.media_type" />
       </template> -->
 
-      <a-input-search
+      <InputSearch
         class="search-header"
         placeholder="Nhập tên phim để tìm kiếm..."
         size="large"
@@ -55,7 +55,7 @@
         @search="handleSearch"
       >
         <template #enterButton>
-          <a-tooltip
+          <Tooltip
             :teleported="false"
             title="Tìm kiếm"
             content="Tìm kiếm"
@@ -80,13 +80,13 @@
                 d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
               />
             </svg>
-          </a-tooltip>
+          </Tooltip>
         </template>
-      </a-input-search>
-    </a-auto-complete>
+      </InputSearch>
+    </AutoComplete>
 
     <div class="right-header">
-      <a-popover
+      <Popover
         trigger="click"
         placement="bottom"
         overlayClassName="popover-search"
@@ -118,7 +118,7 @@
           <h3 class="section-title search">
             <span> Tìm kiếm </span>
           </h3>
-          <a-auto-complete
+          <AutoComplete
             v-model:value="valueInput"
             class="search-popover"
             popupClassName="certain-category-search-dropdown"
@@ -137,7 +137,7 @@
               />
             </template> -->
 
-            <a-input-search
+            <InputSearch
               class="search-popover"
               placeholder="Nhập tên phim để tìm kiếm..."
               size="large"
@@ -165,19 +165,19 @@
                   />
                 </svg>
               </template>
-            </a-input-search>
-          </a-auto-complete>
+            </InputSearch>
+          </AutoComplete>
         </template>
-      </a-popover>
+      </Popover>
 
-      <a-menu
+      <Menu
         class="menu-right-header"
         theme="dark"
         mode="horizontal"
         :selectable="false"
       >
-        <a-menu-item class="notification" key="notification">
-          <a-dropdown
+        <MenuItem class="notification" key="notification">
+          <Dropdown
             v-if="isLogin"
             :trigger="['click']"
             class="dropdown-notification"
@@ -185,7 +185,7 @@
             placement="bottomRight"
           >
             <span v-if="isLogin" class="ant-dropdown-link">
-              <a-badge :count="3" :overflow-count="9">
+              <Badge :count="3" :overflow-count="9">
                 <!-- <Icon name="fa6-regular:bell" class="fa-bell fa-regular" />
                 <Icon name="fa6-solid:bell" class="fa-bell fa-solid" /> -->
 
@@ -214,7 +214,7 @@
                     d="M9.042 19.003h5.916a3 3 0 0 1-5.916 0Zm2.958-17a7.5 7.5 0 0 1 7.5 7.5v4l1.418 3.16A.95.95 0 0 1 20.052 18h-16.1a.95.95 0 0 1-.867-1.338l1.415-3.16V9.49l.005-.25A7.5 7.5 0 0 1 12 2.004Z"
                   />
                 </svg>
-              </a-badge>
+              </Badge>
             </span>
 
             <template #overlay>
@@ -223,31 +223,31 @@
                   <span> Thông báo</span>
                 </div>
 
-                <a-menu-item-group class="public" key="public">
+                <MenuItem-group class="public" key="public">
                   <template #title>
                     <p>Thông báo chung</p>
                     <p class="count-message">1</p>
                   </template>
-                  <a-menu-item>Chào mừng bạn đến với Phimhay247</a-menu-item>
-                </a-menu-item-group>
+                  <MenuItem>Chào mừng bạn đến với Phimhay247</MenuItem>
+                </MenuItem-group>
 
                 <div class="separate" />
 
-                <a-menu-item-group class="private" key="private">
+                <MenuItem-group class="private" key="private">
                   <template #title>
                     <p>Thông báo cá nhân</p>
                     <p class="count-message">1</p>
                   </template>
-                  <a-menu-item>Message 1</a-menu-item>
-                  <a-menu-item>Message 2</a-menu-item>
-                </a-menu-item-group>
+                  <MenuItem>Message 1</MenuItem>
+                  <MenuItem>Message 2</MenuItem>
+                </MenuItem-group>
               </el-menu>
             </template>
-          </a-dropdown>
-        </a-menu-item>
+          </Dropdown>
+        </MenuItem>
 
-        <a-menu-item class="account" key="account">
-          <a-dropdown
+        <MenuItem class="account" key="account">
+          <Dropdown
             :trigger="['click']"
             class="dropdown-account"
             overlayClassName="dropdown-account header"
@@ -282,8 +282,8 @@
             </span>
 
             <template #overlay>
-              <a-menu class="dropdown-account">
-                <a-menu-item
+              <Menu class="dropdown-account">
+                <MenuItem
                   v-if="isLogin"
                   v-once
                   :class="{ active: isLogin }"
@@ -296,9 +296,9 @@
                       {{ userAccount?.email }}
                     </span>
                   </NuxtLink>
-                </a-menu-item>
+                </MenuItem>
 
-                <a-menu-item
+                <MenuItem
                   v-if="isLogin && role == 'admin'"
                   v-once
                   key="dashboard"
@@ -306,25 +306,25 @@
                   <NuxtLink :to="$config.app.adminWebsiteUrl" target="_blank">
                     Bảng điều khiển
                   </NuxtLink>
-                </a-menu-item>
+                </MenuItem>
 
-                <a-menu-item v-if="!isLogin" v-once key="login">
+                <MenuItem v-if="!isLogin" v-once key="login">
                   <NuxtLink to="/login"> Đăng nhập</NuxtLink>
-                </a-menu-item>
+                </MenuItem>
 
-                <a-menu-item
+                <MenuItem
                   v-if="isLogin"
                   v-once
                   key="logout"
                   @click="handleLogout"
                 >
                   <span> Đăng xuất</span>
-                </a-menu-item>
-              </a-menu>
+                </MenuItem>
+              </Menu>
             </template>
-          </a-dropdown>
-        </a-menu-item>
-      </a-menu>
+          </Dropdown>
+        </MenuItem>
+      </Menu>
     </div>
   </header>
 </template>
