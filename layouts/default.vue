@@ -28,11 +28,11 @@
 </template>
 
 <script setup lang="ts">
-import Header from '@/components/layouts/Header';
-import Drawer from '@/components/layouts/Drawer';
-import Sider from '@/components/layouts/Sider';
-import Footer from '@/components/layouts/Footer';
-// import BreadCrumb from '@/components/layouts/BreadCrumb/BreadCrumb.vue';
+import Header from '~/components/layouts/Header';
+import Drawer from '~/components/layouts/Drawer';
+import Sider from '~/components/layouts/Sider';
+import Footer from '~/components/layouts/Footer';
+// import BreadCrumb from '~/components/layouts/BreadCrumb/BreadCrumb.vue';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();

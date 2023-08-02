@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import HeaderService from '@/components/layouts/HeaderService/HeaderService.vue';
-import Drawer from '@/components/layouts/Drawer/Drawer.vue';
-import Footer from 'components/layouts/Footer/index.vue';
+import HeaderService from '~/components/layouts/HeaderService';
+import Drawer from '~/components/layouts/Drawer';
+import Footer from '~/components/layouts/Footer';
 </script>
 
 <style lang="scss" src="~/assets/style/serviceLayout.scss"></style>

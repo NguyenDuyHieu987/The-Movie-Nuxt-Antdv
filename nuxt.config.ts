@@ -150,6 +150,9 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
+  site: {
+    url: 'https://phimhay247.tech',
+  },
   css: [
     // 'ant-design-vue/dist/antd.dark.min.css',
     // 'element-plus/dist/index.css',
@@ -174,9 +177,9 @@ export default defineNuxtConfig({
     // '@nuxtjs/supabase',
     'nuxt-delay-hydration',
   ],
-  site: {
-    url: 'https://phimhay247.tech',
-  },
+  // elementPlus: {
+  //   /** Options */
+  // },
   ogImage: {
     runtimeCacheStorage: {
       driver: 'redis',
@@ -237,7 +240,7 @@ export default defineNuxtConfig({
     ],
   },
   plugins: [
-    '@/plugins/elementPlus',
+    // '@/plugins/elementPlus',
     // '@/plugins/antd',
     '@/plugins/fontawesome',
     '@/plugins/iconify',
@@ -313,13 +316,13 @@ export default defineNuxtConfig({
   components: true,
   vite: {
     plugins: [
-      Components({
-        resolvers: [
-          AntDesignVueResolver({
-            importStyle: false, // css in js
-          }),
-        ],
-      }),
+      // Components({
+      //   resolvers: [
+      //     AntDesignVueResolver({
+      //       importStyle: false, // css in js
+      //     }),
+      //   ],
+      // }),
     ],
     build: {
       sourcemap: 'hidden',
