@@ -311,10 +311,22 @@ export default defineNuxtConfig({
   builder: {},
   vite: {
     build: {
-      sourcemap: true,
+      sourcemap: 'hidden',
       minify: 'terser',
       ssrManifest: true,
       ssr: true,
+      assetsDir: 'home/',
+      cssMinify: true,
+      cssCodeSplit: true,
+      reportCompressedSize: false,
+      terserOptions: {
+        parse: {
+          html5_comments: false,
+        },
+        compress: {
+          drop_console: true,
+        },
+      },
     },
     optimizeDeps: {
       extensions: [
