@@ -34,6 +34,7 @@
             placement="top"
           >
             <a-button
+              class="click-active"
               @click="billboard.prev()"
               size="large"
               type="text"
@@ -63,6 +64,7 @@
             placement="top"
           >
             <a-button
+              class="click-active"
               @click="billboard.next()"
               size="large"
               type="text"

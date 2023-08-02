@@ -18,6 +18,7 @@
 
   --search-background: #0a0a0a41;
   --search-focus-background: #151515;
+  --search-focus-border-color: #fff;
 
   --loading-background: #101010;
 
@@ -46,6 +47,7 @@
   --app-background-color5: #6d026d;
   --app-background-color6: #00dc82;
   --app-background-color7: #004298;
+  --app-background-color8: #0069a5;
 
   --menu-item-background-color: #4d4d4d28;
   --menu-inline-submenu-background-color: #12121265;
@@ -110,6 +112,14 @@ body {
   height: auto;
   width: auto;
   // color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --border-regular: #a0a0a0;
+    --border-regular-light: #292929;
+    --search-focus-border-color: #5c5c5c;
+  }
 }
 
 body {

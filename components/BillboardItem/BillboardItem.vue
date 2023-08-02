@@ -61,7 +61,7 @@
                 y2="256"
               >
                 <stop offset="0" stop-color="#0cafd5" />
-                <stop offset="1" stop-color="#9f185b" />
+                <stop offset="1" stop-color="#6d026d" />
               </linearGradient>
               <g>
                 <path

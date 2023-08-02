@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         {
           charset: 'utf-8',
         },
+        { name: 'color-scheme', content: 'only dark' },
         {
           name: 'title',
           content:

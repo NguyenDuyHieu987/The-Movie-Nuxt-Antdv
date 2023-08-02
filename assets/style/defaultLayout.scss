@@ -44,19 +44,13 @@
   }
 
   header.header-bar {
-    background: #101010 !important;
+    background: var(--background-content-color) !important;
 
     .left-header {
       .menu-btn.mobile {
         display: flex;
       }
     }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .ant-layout-content.container {
-    // background-color: var(--background-content-color);
   }
 }
 
