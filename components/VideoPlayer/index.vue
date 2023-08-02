@@ -382,7 +382,7 @@
                 class="volume-slider"
                 :class="{ muted: videoStates.isVolumeOff }"
                 v-model:value="volume"
-                :tooltipVisible="false"
+                :tooltip="{ open: false }"
                 @change="onChangeVolume(volume)"
               />
             </div>

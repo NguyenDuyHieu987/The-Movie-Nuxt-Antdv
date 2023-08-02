@@ -1,10 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
 import { isProduction } from 'std-env';
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineNuxtConfig({
   app: {
@@ -182,6 +178,9 @@ export default defineNuxtConfig({
   // elementPlus: {
   //   /** Options */
   // },
+  swiper: {
+    modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
+  },
   ogImage: {
     runtimeCacheStorage: {
       driver: 'redis',
@@ -315,7 +314,9 @@ export default defineNuxtConfig({
   build: {
     analyze: true,
   },
-  // components: true,
+  components: {
+    dirs: [],
+  },
   vite: {
     plugins: [],
     build: {
