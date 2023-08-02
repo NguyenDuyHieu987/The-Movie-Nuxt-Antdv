@@ -22,7 +22,9 @@
     "nuxt-seo-experiments": "^3.0.5",
     "nuxt-simple-sitemap": "^3.0.9",
     "sass-loader": "^13.3.2",
-    "terser": "^5.19.2"
+    "terser": "^5.19.2",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.1"
   },
   "dependencies": {
     "@aacassandra/vue3-progressbar": "^1.0.3",
