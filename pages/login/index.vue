@@ -67,7 +67,7 @@
               Ghi nhớ tôi
             </a-checkbox>
             <NuxtLink
-              class="login-form-forgot click-active"
+              class="forgot-password-btn click-active"
               to="/ForgotPassword"
             >
               Quên mật khẩu?

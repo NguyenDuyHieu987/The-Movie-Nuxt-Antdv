@@ -74,9 +74,11 @@
           }
         }
 
-        .login-form-forgot {
+        .forgot-password-btn {
           user-select: none;
           float: right;
+          color: var(--app-background-color) !important;
+          transition: all 0.15s;
         }
 
         .login-form-button {
