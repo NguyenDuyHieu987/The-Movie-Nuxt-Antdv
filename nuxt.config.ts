@@ -154,8 +154,8 @@ export default defineNuxtConfig({
     url: 'https://phimhay247.tech',
   },
   css: [
-    // 'ant-design-vue/dist/antd.dark.min.css',
-    // 'element-plus/dist/index.css',
+    'ant-design-vue/dist/reset.css',
+    'element-plus/dist/index.css',
     '~/assets/style/globalStyle.scss',
     // '@fortawesome/fontawesome-svg-core/styles.css',
     // 'material-icons/iconfont/material-icons.css',
