@@ -1,8 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
 import { isProduction } from 'std-env';
+import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineNuxtConfig({
   app: {
@@ -154,7 +156,7 @@ export default defineNuxtConfig({
     url: 'https://phimhay247.tech',
   },
   css: [
-    'ant-design-vue/dist/antd.dark.min.css',
+    // 'ant-design-vue/dist/antd.dark.min.css',
     'element-plus/dist/index.css',
     '~/assets/style/globalStyle.scss',
     // '@fortawesome/fontawesome-svg-core/styles.css',
@@ -316,8 +318,11 @@ export default defineNuxtConfig({
   // components: true,
   vite: {
     plugins: [
+      AutoImport({
+        resolvers: [AntDesignVueResolver(), ElementPlusResolver()],
+      }),
       Components({
-        resolvers: [AntDesignVueResolver({})],
+        resolvers: [AntDesignVueResolver(), ElementPlusResolver()],
       }),
     ],
     build: {

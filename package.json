@@ -24,6 +24,7 @@
     "sass-loader": "^13.3.2",
     "terser": "^5.19.2",
     "unplugin-auto-import": "^0.16.6",
+    "unplugin-element-plus": "^0.8.0",
     "unplugin-vue-components": "^0.25.1"
   },
   "dependencies": {
@@ -63,7 +64,6 @@
     "sass": "^1.64.1",
     "scroll-bottom": "^0.1.0",
     "std-env": "^3.3.3",
-    "unplugin-element-plus": "^0.8.0",
     "vue": "^3.3.4",
     "vue-fontawesome": "^0.0.2",
     "vue-gtag-next": "^1.14.0",
