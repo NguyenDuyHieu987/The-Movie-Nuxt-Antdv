@@ -201,7 +201,8 @@ h6 {
 
 a {
   color: var(--link-text-color);
-  transition: color 0.2s;
+  text-decoration: none;
+  transition: color 0.15s;
 
   &:hover {
     color: var(--link-text-color-hover);
