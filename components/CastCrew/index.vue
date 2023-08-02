@@ -47,8 +47,8 @@
 
 <script setup lang="ts">
 import { Tabs, TabPane } from 'ant-design-vue';
-import CastCard from '@/components/CastCard/CastCard.vue';
-import SliderGroup from '@/components/SliderGroup/SliderGroup.vue';
+import CastCard from '~/components/CastCard';
+import SliderGroup from '~/components/SliderGroup';
 import { getCredits } from '~/services/credit';
 
 const props = defineProps<{

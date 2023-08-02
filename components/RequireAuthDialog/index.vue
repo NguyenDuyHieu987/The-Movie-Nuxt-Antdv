@@ -82,7 +82,7 @@
 
 <script setup lang="ts">
 import { Modal, Result } from 'ant-design-vue';
-import CloseBtn from '@/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
+import CloseBtn from '~/components/ButtonTemplate/CloseBtn';
 
 const store = useStore();
 </script>

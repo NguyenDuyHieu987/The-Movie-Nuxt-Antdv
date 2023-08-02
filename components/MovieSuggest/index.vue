@@ -44,11 +44,11 @@
 import axios from 'axios';
 import { getSimilar } from '~/services/similar';
 import { getTrending } from '~/services/trending';
-import MovieCardVertical from '../MovieCardVertical/MovieCardVertical.vue';
-import CarouselGroup from '@/components/CarouselGroup/CarouselGroup.vue';
+import MovieCardVertical from '~/components/MovieCardVertical';
+import CarouselGroup from '~/components/CarouselGroup';
 
 const props = defineProps<{
-  movieId: number;
+  movieId: string;
   type: string;
 }>();
 const dataSimilar = ref<any[]>([]);

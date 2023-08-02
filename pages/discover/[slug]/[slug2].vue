@@ -56,9 +56,9 @@ import {
   getTvTopRated,
 } from '~/services/TvSlug';
 import { FilterDataMovie } from '~/services/discover';
-import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import FilterBar from '@/components/FilterBar/FilterBar.vue';
-import ControlPage from '@/components/ControlPage/ControlPage.vue';
+import MovieCardHorizontal from '~/components/MovieCardHorizontal';
+import FilterBar from '~/components/FilterBar';
+import ControlPage from '~/components/ControlPage';
 import type { formFilter } from '@/types';
 
 const route: any = useRoute();

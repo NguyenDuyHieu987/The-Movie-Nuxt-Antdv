@@ -31,9 +31,9 @@
 
 <script setup lang="ts">
 import { getTrending } from '~/services/trending';
-import MovieCardVertical from '@/components/MovieCardVertical/MovieCardVertical.vue';
-import RankSide from '@/components/RankSide/RankSide.vue';
-import ControlPage from '@/components/ControlPage/ControlPage.vue';
+import MovieCardVertical from '~/components/MovieCardVertical/index.vue';
+import RankSide from '~/components/RankSide/index.vue';
+import ControlPage from '~/components/ControlPage/index.vue';
 import axios from 'axios';
 
 const router = useRouter();

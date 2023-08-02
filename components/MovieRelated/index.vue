@@ -48,8 +48,8 @@
 import axios from 'axios';
 import { getSimilar } from '~/services/similar';
 import { getTrending } from '~/services/trending';
-import ViewMoreBar from '~/components/ViewMoreBar/ViewMoreBar.vue';
-import MovieCardSuggest from '../MovieCardSuggest/MovieCardSuggest.vue';
+import ViewMoreBar from '~/components/ViewMoreBar';
+import MovieCardSuggest from '~/components/MovieCardSuggest';
 
 const props = defineProps<{
   movieId: string;

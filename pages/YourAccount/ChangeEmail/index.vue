@@ -118,8 +118,8 @@
 import axios from 'axios';
 import { Form, FormItem } from 'ant-design-vue';
 import { ElNotification } from 'element-plus';
-import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm/VerifyPinOTPForm.vue';
-import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
+import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm';
+import RequireAuth from '~/components/RequireAuth';
 import { accountVerify, ChangeEmail } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';

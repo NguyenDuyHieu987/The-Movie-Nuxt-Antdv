@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
 import { isProduction } from 'std-env';
+import Components from 'unplugin-vue-components/vite';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineNuxtConfig({
   app: {
@@ -149,8 +151,8 @@ export default defineNuxtConfig({
     strict: true,
   },
   css: [
-    'ant-design-vue/dist/antd.dark.min.css',
-    'element-plus/dist/index.css',
+    // 'ant-design-vue/dist/antd.dark.min.css',
+    // 'element-plus/dist/index.css',
     '~/assets/style/globalStyle.scss',
     // '@fortawesome/fontawesome-svg-core/styles.css',
     // 'material-icons/iconfont/material-icons.css',
@@ -308,12 +310,23 @@ export default defineNuxtConfig({
   build: {
     analyze: true,
   },
+  components: true,
   vite: {
+    plugins: [
+      Components({
+        resolvers: [
+          AntDesignVueResolver({
+            importStyle: false, // css in js
+          }),
+        ],
+      }),
+    ],
     build: {
       sourcemap: 'hidden',
       minify: 'terser',
       ssrManifest: true,
-      // assetsDir: 'home/',
+      ssr: true,
+      assetsDir: 'home/',
       cssMinify: true,
       reportCompressedSize: false,
       terserOptions: {

@@ -29,7 +29,7 @@
     <AutoComplete
       v-model:value="valueInput"
       class="search-header"
-      dropdown-class-name="certain-category-search-dropdown"
+      popupClassName="certain-category-search-dropdown"
       :options="dataSearch"
       :open="isOpenAutoComplete"
       @change="handleChangeInput(valueInput)"
@@ -37,7 +37,7 @@
       @blur="isOpenAutoComplete = false"
       :backfill="true"
     >
-      <template #option="item">
+      <template #options="item">
         <!-- v-for="(item, index) in dataSearch"
         :index="index" 
         -->
@@ -121,7 +121,7 @@
           <AutoComplete
             v-model:value="valueInput"
             class="search-popover"
-            dropdown-class-name="certain-category-search-dropdown"
+            popupClassName="certain-category-search-dropdown"
             :options="dataSearch"
             style="width: 100%"
             :open="isOpenAutoComplete"
@@ -129,7 +129,7 @@
             @focus="isOpenAutoComplete = true"
             @blur="isOpenAutoComplete = false"
           >
-            <template #option="item">
+            <template #options="item">
               <SearchCard
                 :key="item?.id"
                 :item="item"
@@ -343,7 +343,7 @@ import {
 } from 'ant-design-vue';
 import { getDaTaSearch } from '~/services/search';
 import { getImage } from '~/services/image';
-import SearchCard from '@/components/SearchCard/SearchCard.vue';
+import SearchCard from '~/components/SearchCard';
 import { storeToRefs } from 'pinia';
 import { MenuOutlined } from '@ant-design/icons-vue';
 import { ElMenu } from 'element-plus';

@@ -132,7 +132,7 @@
 </template>
 
 <script setup lang="ts">
-import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
+import RequireAuth from '~/components/RequireAuth/index.vue';
 import { storeToRefs } from 'pinia';
 import moment from 'moment';
 import 'moment/locale/vi';

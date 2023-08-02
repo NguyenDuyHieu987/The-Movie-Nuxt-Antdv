@@ -1,10 +1,6 @@
 <template>
-  <div
-    v-show="showAnimation"
-    class="verify-signup"
-    :class="{ active: isShowForm }"
-  >
-    <div v-if="isShowForm" class="verify-signup-container">
+  <div v-show="showAnimation" class="verify-email">
+    <div v-if="isShowForm" class="verify-email-container">
       <a-button
         class="back-btn click-active"
         type="text"
@@ -13,8 +9,8 @@
         <template #icon>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="2.5rem"
-            height="2.5rem"
+            width="2rem"
+            height="2rem"
             role="img"
             viewBox="0 0 24 24"
           >
@@ -24,9 +20,8 @@
             />
           </svg>
         </template>
-        <!-- <span> Quay lại</span> -->
+        <span> Quay lại</span>
       </a-button>
-
       <Form
         :model="formVerify"
         name="verify-form"
@@ -35,44 +30,8 @@
         hideRequiredMark
       >
         <div class="title-verify">
-          <h1>Xác nhận Email</h1>
+          <slot name="title" />
         </div>
-
-        <FormItem
-          class="email-form-item"
-          label="Email"
-          name="email"
-          :rules="[
-            {
-              required: true,
-              message:
-                'Vui lòng nhập đúng định dạng email (vd: ...@gmail.com)!',
-              pattern: new RegExp(
-                /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-              ),
-              trigger: ['change', 'blur'],
-            },
-          ]"
-        >
-          <a-input
-            v-model:value="formVerify.email"
-            placeholder="Email..."
-            disabled
-          >
-            <template #prefix>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1.4rem"
-                height="1.4rem"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  d="M256 64C150 64 64 150 64 256s86 192 192 192c17.7 0 32 14.3 32 32s-14.3 32-32 32C114.6 512 0 397.4 0 256S114.6 0 256 0s256 114.6 256 256v32c0 53-43 96-96 96c-29.3 0-55.6-13.2-73.2-33.9c-22.8 21-53.3 33.9-86.8 33.9c-70.7 0-128-57.3-128-128s57.3-128 128-128c27.9 0 53.7 8.9 74.7 24.1c5.7-5 13.1-8.1 21.3-8.1c17.7 0 32 14.3 32 32v112c0 17.7 14.3 32 32 32s32-14.3 32-32v-32c0-106-86-192-192-192zm64 192a64 64 0 1 0-128 0a64 64 0 1 0 128 0z"
-                />
-              </svg>
-            </template>
-          </a-input>
-        </FormItem>
 
         <!-- <FormItem
           label="Mã xác nhận"
@@ -163,7 +122,7 @@
 
 <script setup lang="ts">
 import { Form, FormItem } from 'ant-design-vue';
-import PinOTP from '~/components/PinOTP/PinOTP.vue';
+import PinOTP from '~/components/PinOTP';
 
 const props = defineProps({
   email: {
@@ -171,10 +130,6 @@ const props = defineProps({
   },
   jwtVerifyEmail: {
     type: String,
-  },
-  otpExpOffset: {
-    type: Number,
-    default: 60,
   },
 });
 
@@ -313,4 +268,4 @@ const handleClickBack = () => {
 };
 </script>
 
-<style lang="scss" src="./VerifySignUpForm.scss"></style>
+<style lang="scss" src="./VerifyPinOTPForm.scss"></style>

@@ -245,9 +245,9 @@ import {
   DeleteComment,
 } from '~/services/comment';
 import { getImage } from '~/services/image';
-import FormComment from '@/components/Comment/FormComment/FormComment.vue';
-import CommentItemChild from '@/components/Comment/CommentItemChild/CommentItemChild.vue';
-import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
+import FormComment from '~/components/Comment/FormComment';
+import CommentItemChild from '~/components/Comment/CommentItemChild';
+import LoadingCircle from '~/components/LoadingCircle';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';

@@ -151,7 +151,7 @@ import { Menu, MenuItem, Dropdown } from 'ant-design-vue';
 import { ElNotification } from 'element-plus';
 import { DeleteComment } from '~/services/comment';
 import { getImage } from '~/services/image';
-import FormComment from '@/components/Comment/FormComment/FormComment.vue';
+import FormComment from '~/components/Comment/FormComment';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';

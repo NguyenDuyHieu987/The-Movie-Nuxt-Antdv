@@ -20,7 +20,9 @@
     "nuxt-seo-experiments": "^3.0.5",
     "nuxt-simple-sitemap": "^3.0.9",
     "sass-loader": "^13.3.2",
-    "terser": "^5.19.2"
+    "terser": "^5.19.2",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.1"
   },
   "dependencies": {
     "@aacassandra/vue3-progressbar": "^1.0.3",
@@ -41,7 +43,7 @@
     "@vimeo/player": "^2.20.1",
     "@vueuse/core": "^10.1.2",
     "aesjs": "^1.0.0",
-    "ant-design-vue": "^3.2.20",
+    "ant-design-vue": "^4.0.0",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.1.3",

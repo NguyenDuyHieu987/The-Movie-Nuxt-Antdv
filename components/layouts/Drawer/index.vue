@@ -105,7 +105,7 @@
 <script setup lang="ts">
 import { Drawer } from 'ant-design-vue';
 import { getImage } from '~/services/image';
-import TheMenu from '@/components/TheMenu/TheMenu.vue';
+import TheMenu from '~/components/TheMenu';
 import { storeToRefs } from 'pinia';
 import { ElDrawer } from 'element-plus';
 

@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import HeaderService from '@/components/layouts/HeaderService/HeaderService.vue';
 import Drawer from '@/components/layouts/Drawer/Drawer.vue';
-import Footer from '@/components/layouts/Footer/Footer.vue';
+import Footer from 'components/layouts/Footer/index.vue';
 </script>
 
 <style lang="scss" src="~/assets/style/serviceLayout.scss"></style>

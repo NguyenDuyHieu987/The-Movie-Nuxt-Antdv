@@ -755,7 +755,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { Slider, Switch } from 'ant-design-vue';
-import CloseBtn from '@/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
+import CloseBtn from '~/components/ButtonTemplate/CloseBtn';
 import { getVideo } from '~/services/video';
 
 const props = defineProps<{

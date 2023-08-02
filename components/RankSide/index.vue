@@ -62,7 +62,7 @@
 
 <script setup lang="ts">
 import { LayoutSider } from 'ant-design-vue';
-import RankCard from '@/components/RankCard/RankCard.vue';
+import RankCard from '~/components/RankCard';
 import { getRanking } from '~/services/ranking';
 import axios from 'axios';
 

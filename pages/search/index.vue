@@ -53,8 +53,8 @@
 
 <script setup lang="ts">
 import { Select, SelectOption, Result } from 'ant-design-vue';
-import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-// import ControlPage from '@/components/ControlPage/ControlPage.vue';
+import MovieCardHorizontal from '~/components/MovieCardHorizontal/index.vue';
+// import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import { getDaTaSearch } from '~/services/search';
 import axios from 'axios';
 

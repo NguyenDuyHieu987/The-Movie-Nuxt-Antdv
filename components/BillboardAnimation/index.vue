@@ -91,7 +91,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import BillboardItem from '../BillboardItem/BillboardItem.vue';
+import BillboardItem from '~/components/BillboardItem';
 import { ElCarousel, ElCarouselItem, ElTooltip } from 'element-plus';
 
 const props = defineProps<{ data1: any[] }>();
