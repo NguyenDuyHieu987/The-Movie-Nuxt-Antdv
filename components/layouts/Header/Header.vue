@@ -118,14 +118,14 @@
           <h3 class="section-title search">
             <span> Tìm kiếm </span>
           </h3>
-          <a-auto-complete
+          <AutoComplete
             v-model:value="valueInput"
             class="search-popover"
             dropdown-class-name="certain-category-search-dropdown"
             :options="dataSearch"
             style="width: 100%"
             :open="isOpenAutoComplete"
-            @change="handleChangeInput"
+            @change="handleChangeInput(valueInput)"
             @focus="isOpenAutoComplete = true"
             @blur="isOpenAutoComplete = false"
           >
@@ -165,7 +165,7 @@
                 </svg>
               </template>
             </InputSearch>
-          </a-auto-complete>
+          </AutoComplete>
         </template>
       </Popover>
 

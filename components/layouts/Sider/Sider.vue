@@ -30,11 +30,11 @@
           </h4>
 
           <Tooltip v-else :title="userAccount?.username" placement="rightTop">
-            <a-avatar class="user-name-container">
+            <div class="user-name-container">
               <h4>
                 {{ userAccount?.username?.slice(0, 2).toUpperCase() }}
               </h4>
-            </a-avatar>
+            </div>
           </Tooltip>
         </div>
       </div>
