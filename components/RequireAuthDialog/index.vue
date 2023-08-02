@@ -42,7 +42,7 @@
 
     <Modal
       class="require-auth-dialog"
-      v-model:visible="store.openRequireAuthDialog"
+      v-model:open="store.openRequireAuthDialog"
       width="30%"
       centered
       destroyOnClose

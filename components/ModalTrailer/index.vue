@@ -1,7 +1,7 @@
 <template>
   <Teleport v-if="isOpenModalTrailer" to="body">
     <Modal
-      v-model:visible="isTeleport"
+      v-model:open="isTeleport"
       width="1300px"
       centered
       destroyOnClose
