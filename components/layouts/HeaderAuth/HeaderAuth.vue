@@ -29,7 +29,7 @@
       </div>
 
       <NuxtLink
-        class="login-btn"
+        class="login-btn click-active"
         v-if="
           route.path.toLowerCase() == '/signup' ||
           route.path.toLowerCase() == '/forgotpassword'

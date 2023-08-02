@@ -182,6 +182,7 @@ import {
   CheckCircleFilled,
   CloseCircleFilled,
 } from '@ant-design/icons-vue';
+import { join } from 'path';
 
 definePageMeta({
   layout: 'auth',
@@ -390,7 +391,7 @@ const handleClickFacebookLogin = async () => {
 // };
 
 const handleClickGoogleLogin = () => {
-  const oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+  let oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
 
   // Create <form> element to submit parameters to OAuth 2.0 endpoint.
   const form = document.createElement('form');
@@ -398,7 +399,16 @@ const handleClickGoogleLogin = () => {
   form.setAttribute('action', oauth2Endpoint);
 
   // Parameters to pass to OAuth 2.0 endpoint.
-  const params: any = {
+  const params:
+    | {
+        client_id: number;
+        scope: string;
+        prompt: string;
+        redirect_uri: string;
+        response_type: string;
+        include_granted_scopes: string;
+      }
+    | any = {
     client_id: nuxtConfig.app.googleOauth2ClientID,
     scope:
       'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
@@ -417,9 +427,25 @@ const handleClickGoogleLogin = () => {
     form.appendChild(input);
   }
 
-  // Object.entries(params).forEach(([key, value]) => {
-  //   console.log(key, value);
+  // Object.entries(params).forEach(([key, value], index: number) => {
+  //   if (index == 0) {
+  //     oauth2Endpoint += '?' + key + '=' + value;
+  //   } else {
+  //     oauth2Endpoint +=
+  //       '&' + key + '=' + value.toString().split(' ').join('%20');
+  //   }
   // });
+
+  // const authWindow = window.open(oauth2Endpoint);
+
+  // const authenticationSuccessUrl = authWindow!.location;
+
+  // if (authWindow) {
+  //   authWindow.onclose = () => {
+  //     authWindow.close();
+  //     window.location = authenticationSuccessUrl;
+  //   };
+  // }
 
   // Add form to page and submit it to open the OAuth 2.0 endpoint.
 

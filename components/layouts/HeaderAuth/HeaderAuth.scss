@@ -35,10 +35,11 @@ header.header-bar-auth {
     flex-wrap: wrap;
 
     .login-btn {
-      font-size: 1.7rem;
+      font-size: 1.8rem;
       font-weight: 500;
       color: var(--app-background-color) !important;
       user-select: none;
+      transition: all 0.15s;
     }
 
     .signup-suggest {

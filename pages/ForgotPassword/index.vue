@@ -182,7 +182,7 @@ const handleSubmit = () => {
         formForgotPassword.email
       }. Vui lòng thử lại sau ${Math.round(
         forgotPasswordLocalStr.exp_after
-      )} phút nữa.`;
+      )} giây nữa.`;
     }
     return;
   }
