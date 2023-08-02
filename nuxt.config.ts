@@ -311,9 +311,7 @@ export default defineNuxtConfig({
       '/play-tv',
     ],
   },
-  build: {
-    analyze: true,
-  },
+  build: {},
   components: {
     dirs: [],
   },
