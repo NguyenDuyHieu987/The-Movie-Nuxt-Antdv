@@ -316,7 +316,6 @@ export default defineNuxtConfig({
       ssr: true,
       assetsDir: 'home/',
       cssMinify: true,
-      cssCodeSplit: true,
       reportCompressedSize: false,
       terserOptions: {
         ecma: 2016,
@@ -333,19 +332,6 @@ export default defineNuxtConfig({
           comments: false,
         },
       },
-    },
-    optimizeDeps: {
-      extensions: [
-        '.mjs',
-        '.js',
-        '.ts',
-        '.jsx',
-        '.tsx',
-        '.json',
-        '.vue',
-        '.css',
-        '.scss',
-      ],
     },
     vue: {
       script: {
