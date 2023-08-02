@@ -308,7 +308,6 @@ export default defineNuxtConfig({
   build: {
     analyze: true,
   },
-  builder: {},
   vite: {
     build: {
       sourcemap: 'hidden',
