@@ -16,6 +16,7 @@
       border-bottom: 1px solid var(--border-regular);
 
       h1 {
+        font-size: 3rem;
         font-weight: normal;
         white-space: nowrap;
         cursor: default;
@@ -71,7 +72,7 @@
         }
 
         .row-label {
-          width: 255px;
+          width: 258px;
           flex-shrink: 0;
           font-size: 1.8rem;
           color: var(--text-color-gray);
@@ -176,7 +177,7 @@
       .account-grid {
         .account-grid-row {
           .row-label {
-            width: 220px;
+            width: 228px;
           }
 
           &.info-account {
