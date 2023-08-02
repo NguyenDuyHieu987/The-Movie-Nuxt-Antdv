@@ -3,7 +3,10 @@ import { resolve } from 'path';
 import { isProduction } from 'std-env';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import {
+  ElementPlusResolver,
+  AntDesignVueResolver,
+} from 'unplugin-vue-components/resolvers';
 import ElementPlus from 'unplugin-element-plus/vite';
 
 export default defineNuxtConfig({
@@ -320,11 +323,17 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        // resolvers: [ElementPlusResolver()],
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          // ElementPlusResolver(),
+          AntDesignVueResolver({
+            importStyle: false,
+          }),
+        ],
       }),
+      ElementPlus({}),
     ],
     build: {
       sourcemap: 'hidden',
