@@ -222,24 +222,24 @@
                   <span> Thông báo</span>
                 </div>
 
-                <MenuItem-group class="public" key="public">
+                <MenuItemGroup class="public" key="public">
                   <template #title>
                     <p>Thông báo chung</p>
                     <p class="count-message">1</p>
                   </template>
                   <MenuItem>Chào mừng bạn đến với Phimhay247</MenuItem>
-                </MenuItem-group>
+                </MenuItemGroup>
 
                 <div class="separate" />
 
-                <MenuItem-group class="private" key="private">
+                <MenuItemGroup class="private" key="private">
                   <template #title>
                     <p>Thông báo cá nhân</p>
                     <p class="count-message">1</p>
                   </template>
                   <MenuItem>Message 1</MenuItem>
                   <MenuItem>Message 2</MenuItem>
-                </MenuItem-group>
+                </MenuItemGroup>
               </el-menu>
             </template>
           </Dropdown>
@@ -333,6 +333,7 @@ import axios from 'axios';
 import {
   Menu,
   MenuItem,
+  MenuItemGroup,
   Dropdown,
   Badge,
   Tooltip,

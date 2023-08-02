@@ -62,5 +62,5 @@ library.add(
 );
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.component('font-awesome-icon', FontAwesomeIcon, {});
+  // nuxtApp.vueApp.component('font-awesome-icon', FontAwesomeIcon, {});
 });
