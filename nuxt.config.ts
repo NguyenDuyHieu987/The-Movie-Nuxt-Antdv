@@ -4,6 +4,7 @@ import { isProduction } from 'std-env';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import ElementPlus from 'unplugin-element-plus/vite';
 
 export default defineNuxtConfig({
   app: {
@@ -232,7 +233,7 @@ export default defineNuxtConfig({
     preconnect: true,
     preload: true,
     display: 'swap',
-    useStylesheet: true,
+    // useStylesheet: true,
   },
   fontMetrics: {
     fonts: [

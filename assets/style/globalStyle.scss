@@ -408,7 +408,8 @@ svg {
   }
 }
 
-.ant-btn {
+.ant-btn,
+.ant-btn.ant-btn-lg {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -418,6 +419,7 @@ svg {
   font-size: 1.5rem;
   box-shadow: none;
   line-height: var(--line-height-regular);
+  border-radius: 1px;
 
   &:hover {
     color: var(--text-color);
