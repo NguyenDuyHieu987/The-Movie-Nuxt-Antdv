@@ -37,11 +37,11 @@
       @blur="isOpenAutoComplete = false"
       :backfill="true"
     >
-      <template #options="item">
-        <!-- v-for="(item, index) in dataSearch" :index="index" -->
+      <!-- <template #options="item">
+        v-for="(item, index) in dataSearch" :index="index"
 
-        <!-- <SearchCard :key="item?.id" :item="item" :type="item.media_type" /> -->
-      </template>
+        <SearchCard :key="item?.id" :item="item" :type="item.media_type" />
+      </template> -->
 
       <InputSearch
         class="search-header"
@@ -127,13 +127,13 @@
             @focus="isOpenAutoComplete = true"
             @blur="isOpenAutoComplete = false"
           >
-            <template #options="item">
-              <!-- <SearchCard
+            <!-- <template #options="item">
+              <SearchCard
                 :key="item?.id"
                 :item="item"
                 :type="item.media_type"
-              /> -->
-            </template>
+              />
+            </template> -->
 
             <InputSearch
               class="search-popover"
