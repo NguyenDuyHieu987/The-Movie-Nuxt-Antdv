@@ -1,11 +1,11 @@
 <template>
-  <a-breadcrumb style="">
-    <a-breadcrumb-item>
+  <Breadcrumb style="">
+    <BreadcrumbItem>
       <NuxtLink :to="{ path: '/' }"> Trang chủ </NuxtLink>
-    </a-breadcrumb-item>
-    <a-breadcrumb-item v-if="!path.length">{{ '' }}</a-breadcrumb-item>
+    </BreadcrumbItem>
+    <BreadcrumbItem v-if="!path.length">{{ '' }}</BreadcrumbItem>
 
-    <!-- <a-breadcrumb-item>
+    <!-- <BreadcrumbItem>
       <a :href="this.$route.path"
         >{{ $route.params.name?.replaceAll('+', ' ') }}
       </a>
@@ -13,8 +13,8 @@
       <a :href="this.$route.path" v-else>{{
         this.$route.path.charAt(1).toUpperCase() + this.$route.path.slice(2)
       }}</a>
-    </a-breadcrumb-item> -->
-    <a-breadcrumb-item
+    </BreadcrumbItem> -->
+    <BreadcrumbItem
       v-for="(item, index) in path"
       :index="index"
       :key="index"
@@ -26,12 +26,13 @@
       <span v-else>
         {{ item?.name?.replaceAll('+', ' ') }}
       </span>
-    </a-breadcrumb-item>
-  </a-breadcrumb>
+    </BreadcrumbItem>
+  </Breadcrumb>
 </template>
 
 <script setup lang="ts">
-import { getGenresNameByShortName } from '~/services/appMovieService';
+import { Breadcrumb, BreadcrumbItem } from 'ant-design-vue';
+import { getGenreByShortName } from '~/services/genres';
 import type { country } from '@/types';
 
 const route: any = useRoute();
@@ -91,10 +92,8 @@ const getParamsRoute = () => {
       breadList.push({
         params: 'genre',
         // name: route.params?.slug2
-        name: getGenresNameByShortName(
-          route.params?.slug2,
-          store.state?.allGenres
-        )?.name_vietsub,
+        name: getGenreByShortName(route.params?.slug2, store.state?.allGenres)
+          ?.name_vietsub,
       });
       break;
     case 'year':

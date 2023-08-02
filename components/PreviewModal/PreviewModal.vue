@@ -51,7 +51,7 @@
             <div class="bottom-content">
               <div class="widget">
                 <div class="left">
-                  <a-tooltip
+                  <Tooltip
                     :teleported="false"
                     title="Xem ngay"
                     content="Xem ngay"
@@ -116,9 +116,9 @@
                         </template>
                       </a-button>
                     </NuxtLink>
-                  </a-tooltip>
+                  </Tooltip>
 
-                  <a-tooltip
+                  <Tooltip
                     :teleported="false"
                     :title="
                       !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
@@ -163,9 +163,9 @@
                         </svg>
                       </template>
                     </a-button>
-                  </a-tooltip>
+                  </Tooltip>
 
-                  <a-tooltip
+                  <Tooltip
                     :teleported="false"
                     title="Chia sẻ"
                     content="Chia sẻ"
@@ -204,11 +204,11 @@
                         </template>
                       </a-button>
                     </ShareNetwork>
-                  </a-tooltip>
+                  </Tooltip>
                 </div>
 
                 <div class="right">
-                  <a-tooltip
+                  <Tooltip
                     :teleported="false"
                     title="Chi tiết phim"
                     content="Chi tiết phim"
@@ -254,7 +254,7 @@
                         </template>
                       </a-button>
                     </NuxtLink>
-                  </a-tooltip>
+                  </Tooltip>
                 </div>
               </div>
               <div class="info">
@@ -327,12 +327,12 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { PlusOutlined, InfoOutlined } from '@ant-design/icons-vue';
-import { getBackdrop, getImage } from '~/services/image';
+import { Tooltip } from 'ant-design-vue';
+import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+import { getImage } from '~/services/image';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
-import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
   isTeleportPreviewModal: boolean;

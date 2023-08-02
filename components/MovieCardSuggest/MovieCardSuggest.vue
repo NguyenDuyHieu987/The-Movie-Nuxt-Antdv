@@ -158,7 +158,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop, getImage } from '~/services/image';
+import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import { getItemList } from '~/services/list';
 import ModalTrailer from '@/components/ModalTrailer/ModalTrailer.vue';

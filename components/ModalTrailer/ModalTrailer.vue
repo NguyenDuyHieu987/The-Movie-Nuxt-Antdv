@@ -1,6 +1,6 @@
 <template>
   <Teleport v-if="isOpenModalTrailer" to="body">
-    <a-modal
+    <Modal
       v-model:visible="isTeleport"
       width="1300px"
       centered
@@ -76,11 +76,12 @@
           </div>
         </div>
       </template>
-    </a-modal>
+    </Modal>
   </Teleport>
 </template>
 
 <script setup lang="ts">
+import { Modal } from 'ant-design-vue';
 import axios from 'axios';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';

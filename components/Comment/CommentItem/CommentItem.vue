@@ -73,7 +73,7 @@
           </div>
 
           <div class="more-actions">
-            <a-dropdown
+            <Dropdown
               v-if="userAccount?.id == item?.user_id"
               :trigger="['click']"
               placement="bottomRight"
@@ -98,9 +98,9 @@
               </a-button>
 
               <template #overlay>
-                <a-menu>
+                <Menu>
                   <div class="main-action">
-                    <a-menu-item
+                    <MenuItem
                       key="edit-comment"
                       class="edit-item"
                       @click="handleEditComment"
@@ -121,13 +121,13 @@
                         </svg>
                       </template>
                       <span>Chỉnh sửa</span>
-                    </a-menu-item>
+                    </MenuItem>
                   </div>
 
                   <hr />
 
                   <div class="danger-zone">
-                    <a-menu-item
+                    <MenuItem
                       key="remove-comment"
                       class="remove-item"
                       @click="handleRemoveComment"
@@ -147,11 +147,11 @@
                         </svg>
                       </template>
                       <span>Xóa bình luận</span>
-                    </a-menu-item>
+                    </MenuItem>
                   </div>
-                </a-menu>
+                </Menu>
               </template>
-            </a-dropdown>
+            </Dropdown>
           </div>
         </div>
 
@@ -238,6 +238,8 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+import { Menu, MenuItem, Dropdown } from 'ant-design-vue';
+import { ElNotification } from 'element-plus';
 import {
   getCommentByMovidId_ParentId,
   DeleteComment,
@@ -249,7 +251,6 @@ import LoadingCircle from '@/components/LoadingCircle/LoadingCircle.vue';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
-import { ElNotification } from 'element-plus';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons-vue';
 
 const props = defineProps<{

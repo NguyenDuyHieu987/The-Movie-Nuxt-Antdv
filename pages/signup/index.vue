@@ -3,7 +3,7 @@
     <Transition name="slide-left">
       <div class="signup-container" v-show="showAnimation">
         <div v-if="!isSignUp" class="signup-form-container">
-          <a-form
+          <Form
             :model="formSignup"
             :rules="rules"
             name="signup-form"
@@ -15,7 +15,7 @@
               <span> Đăng ký </span>
             </h1>
 
-            <a-form-item
+            <FormItem
               label="Họ và Tên"
               name="fullname"
               :rules="[
@@ -31,17 +31,17 @@
                 },
               ]"
             >
-              <a-input
+              <Input
                 v-model:value="formSignup.fullname"
                 placeholder="Họ và Tên..."
               >
                 <template #prefix>
                   <UserOutlined />
                 </template>
-              </a-input>
-            </a-form-item>
+              </Input>
+            </FormItem>
 
-            <a-form-item
+            <FormItem
               label="Tài khoản"
               name="username"
               :rules="[
@@ -57,7 +57,7 @@
                 },
               ]"
             >
-              <a-input
+              <Input
                 v-model:value="formSignup.username"
                 ref="usernameRef"
                 placeholder="Username..."
@@ -65,10 +65,10 @@
                 <template #prefix>
                   <UserOutlined />
                 </template>
-              </a-input>
-            </a-form-item>
+              </Input>
+            </FormItem>
 
-            <a-form-item
+            <FormItem
               label="Email"
               name="email"
               :rules="[
@@ -83,7 +83,7 @@
                 },
               ]"
             >
-              <a-input v-model:value="formSignup.email" placeholder="Email...">
+              <Input v-model:value="formSignup.email" placeholder="Email...">
                 <template #prefix>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -96,10 +96,10 @@
                     />
                   </svg>
                 </template>
-              </a-input>
-            </a-form-item>
+              </Input>
+            </FormItem>
 
-            <a-form-item
+            <FormItem
               label="Mật khẩu"
               name="password"
               :rules="[
@@ -116,32 +116,28 @@
               ]"
               has-feedback
             >
-              <a-input-password
+              <InputPassword
                 v-model:value="formSignup.password"
                 placeholder="Mật khẩu..."
               >
                 <template #prefix>
                   <LockOutlined />
                 </template>
-              </a-input-password>
-            </a-form-item>
+              </InputPassword>
+            </FormItem>
 
-            <a-form-item
-              label="Nhập lại mật khẩu"
-              name="confirmPass"
-              has-feedback
-            >
-              <a-input-password
+            <FormItem label="Nhập lại mật khẩu" name="confirmPass" has-feedback>
+              <InputPassword
                 v-model:value="formSignup.confirmPass"
                 placeholder="Xác nhận mật khẩu..."
               >
                 <template #prefix>
                   <LockOutlined />
                 </template>
-              </a-input-password>
-            </a-form-item>
+              </InputPassword>
+            </FormItem>
 
-            <a-form-item>
+            <FormItem>
               <a-button
                 class="signup-form-button"
                 type="primary"
@@ -152,8 +148,8 @@
               >
                 Đăng ký
               </a-button>
-            </a-form-item>
-          </a-form>
+            </FormItem>
+          </Form>
         </div>
 
         <VerifySignUpForm
@@ -174,16 +170,18 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
+import { Form, FormItem, Input, InputPassword } from 'ant-design-vue';
+import type { Rule } from 'ant-design-vue/es/form';
+import { ElNotification } from 'element-plus';
 import {
   UserOutlined,
   LockOutlined,
   CheckCircleFilled,
   CloseCircleFilled,
 } from '@ant-design/icons-vue';
-import axios from 'axios';
 import { signUp, verifySignUp } from '~/services/authentication';
 import VerifySignUpForm from '~/components/VerifyForm/VerifySignUpForm/VerifySignUpForm.vue';
-import { ElNotification } from 'element-plus';
 
 definePageMeta({
   layout: 'auth',
@@ -262,7 +260,7 @@ const checkConfirmPassword = async (_rule: any, value: string) => {
   }
 };
 
-const rules = {
+const rules: Record<string, Rule[]> = {
   confirmPass: [
     {
       required: true,

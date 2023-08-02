@@ -1,6 +1,6 @@
 <template>
   <div class="require-auth">
-    <a-result
+    <Result
       class="result-view"
       title="Bạn cần đăng nhập để sử dụng chức năng này"
       status="403"
@@ -12,10 +12,12 @@
           </a-button>
         </NuxtLink>
       </template>
-    </a-result>
+    </Result>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Result } from 'ant-design-vue';
+</script>
 
 <style scoped lang="scss" src="./RequireAuth.scss"></style>

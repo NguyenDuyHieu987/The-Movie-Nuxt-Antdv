@@ -5,7 +5,7 @@
         >Kết quả tìm kiếm cho: {{ route.query.q?.replaceAll('+', ' ') }}
       </span>
 
-      <a-select
+      <Select
         ref="select"
         v-model:value="activeTabSearch"
         style="width: 170px"
@@ -15,10 +15,10 @@
           searchData?.length || searchDataMovie?.length || searchDataTv?.length
         "
       >
-        <a-select-option value="all" label="Tất cả">Tất cả</a-select-option>
-        <a-select-option value="movie" label="Phim lẻ">Phim lẻ</a-select-option>
-        <a-select-option value="tv" label="Phim bộ">Phim bộ</a-select-option>
-      </a-select>
+        <SelectOption value="all" label="Tất cả">Tất cả</SelectOption>
+        <SelectOption value="movie" label="Phim lẻ">Phim lẻ</SelectOption>
+        <SelectOption value="tv" label="Phim bộ">Phim bộ</SelectOption>
+      </Select>
     </h2>
     <section class="search-section" :class="{ collapsed: store.collapsed }">
       <div class="movie-group horizontal">
@@ -31,14 +31,14 @@
         />
       </div>
 
-      <a-result
+      <Result
         v-show="!searchData?.length && loading"
         status="404"
         title="Opps!"
         :sub-title="`Không có kêt quả nào khớp với từ
         khóa: ${searchQuery}.`"
       >
-      </a-result>
+      </Result>
 
       <!-- <ControlPage
         v-show="searchData?.length"
@@ -52,8 +52,9 @@
 </template>
 
 <script setup lang="ts">
+import { Select, SelectOption, Result } from 'ant-design-vue';
 import MovieCardHorizontal from '@/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import ControlPage from '@/components/ControlPage/ControlPage.vue';
+// import ControlPage from '@/components/ControlPage/ControlPage.vue';
 import { getDaTaSearch } from '~/services/search';
 import axios from 'axios';
 

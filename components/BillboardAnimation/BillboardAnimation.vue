@@ -91,9 +91,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import axios from 'axios';
 import BillboardItem from '../BillboardItem/BillboardItem.vue';
-import { getTrending } from '~/services/trending';
 import { ElCarousel, ElCarouselItem, ElTooltip } from 'element-plus';
 
 const props = defineProps<{ data1: any[] }>();

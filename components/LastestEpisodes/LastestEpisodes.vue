@@ -2,23 +2,6 @@
   <div class="lastest-episodes">
     <label class="label">Tâp mới nhất: </label>
 
-    <!-- <div v-if="loading" class="list-lastest-episodes skeleton">
-      <a-skeleton-button
-        :loading="loading"
-        :active="true"
-        :shape="'default'"
-        v-for="(item, index) in Array.from(
-          { length: dataMovie?.last_episode_to_air?.episode_number },
-          (_, i) => i + 1
-        )
-          .reverse()
-          .slice(0, 7)"
-        :index="index"
-        :key="index"
-      >
-      </a-skeleton-button>
-    </div> -->
-
     <ul class="list-lastest-episodes">
       <li
         v-for="(item, index) in dataSeason?.episodes

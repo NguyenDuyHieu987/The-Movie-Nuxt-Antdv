@@ -42,7 +42,7 @@
               </div>
             </div>
 
-            <a-form
+            <Form
               :model="formChangeEmail"
               name="change-email-form"
               class="form-change-email"
@@ -50,7 +50,7 @@
               @finish="handleSubmit"
               hideRequiredMark
             >
-              <a-form-item class="email" name="email">
+              <FormItem class="email" name="email">
                 <button
                   class="submit-form-button click-active"
                   html-type="submit"
@@ -82,8 +82,8 @@
                     </svg>
                   </div>
                 </button>
-              </a-form-item>
-            </a-form>
+              </FormItem>
+            </Form>
           </div>
 
           <VerifyPinOTPForm
@@ -116,11 +116,12 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+import { Form, FormItem } from 'ant-design-vue';
+import { ElNotification } from 'element-plus';
 import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm/VerifyPinOTPForm.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
 import { accountVerify, ChangeEmail } from '~/services/account';
 import { storeToRefs } from 'pinia';
-import { ElNotification } from 'element-plus';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
 definePageMeta({

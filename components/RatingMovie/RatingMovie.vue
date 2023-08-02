@@ -4,7 +4,7 @@
       <label class="label">
         {{ disabledRate ? 'Đã đánh giá: ' : 'Đánh giá: ' }}
       </label>
-      <a-rate
+      <Rate
         v-model:value="temp"
         :class="{ rated: disabledRate }"
         allow-half
@@ -28,7 +28,7 @@
           <!-- <Icon class="star" name="ant-design:star-filled" /> -->
           <!-- <StarFilled /> -->
         </template>
-      </a-rate>
+      </Rate>
       <span class="ant-rate-text">{{
         tooltipRating[Math.round(vote_Average) - 1]
       }}</span>
@@ -53,11 +53,10 @@
 </template>
 
 <script setup lang="ts">
-import { rating } from '~/services/rating';
-import { notification } from 'ant-design-vue';
-import { ElNotification } from 'element-plus';
-import { CheckCircleFilled, StarFilled } from '@ant-design/icons-vue';
 import axios from 'axios';
+import { Rate } from 'ant-design-vue';
+import { rating } from '~/services/rating';
+import { ElNotification } from 'element-plus';
 
 const props = defineProps<{
   dataMovie: any;

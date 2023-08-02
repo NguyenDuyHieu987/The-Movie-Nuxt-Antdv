@@ -1,5 +1,5 @@
 <template>
-  <a-menu
+  <Menu
     v-model:openKeys="state.openKeys"
     v-model:selectedKeys="state.selectedKeys"
     mode="inline"
@@ -10,7 +10,7 @@
   >
     <!-- :forceSubMenuRender="true" -->
 
-    <a-menu-item key="home">
+    <MenuItem key="home">
       <template #icon>
         <HomeOutlined />
       </template>
@@ -18,9 +18,9 @@
       <div>
         <NuxtLink to="/">Trang chủ</NuxtLink>
       </div>
-    </a-menu-item>
+    </MenuItem>
 
-    <a-sub-menu key="movie">
+    <SubMenu key="movie">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-video-camera" /> -->
         <!-- <Icon name="fa6-solid:video" /> -->
@@ -39,7 +39,7 @@
         <span>Phim lẻ</span>
       </template>
 
-      <a-menu-item key="all">
+      <MenuItem key="all">
         <NuxtLink
           :to="{
             path: `/discover/movie/all`,
@@ -47,9 +47,9 @@
         >
           Tất cả
         </NuxtLink>
-      </a-menu-item>
+      </MenuItem>
 
-      <a-menu-item key="nowplaying">
+      <MenuItem key="nowplaying">
         <NuxtLink
           :to="{
             path: `/discover/movie/nowplaying`,
@@ -57,9 +57,9 @@
         >
           Now playing
         </NuxtLink>
-      </a-menu-item>
+      </MenuItem>
 
-      <a-menu-item key="popular">
+      <MenuItem key="popular">
         <NuxtLink
           :to="{
             path: `/discover/movie/popular`,
@@ -67,9 +67,9 @@
         >
           Phổ biến
         </NuxtLink>
-      </a-menu-item>
+      </MenuItem>
 
-      <a-menu-item key="toprated">
+      <MenuItem key="toprated">
         <NuxtLink
           :to="{
             path: `/discover/movie/toprated`,
@@ -77,9 +77,9 @@
         >
           Top đánh giá
         </NuxtLink>
-      </a-menu-item>
+      </MenuItem>
 
-      <a-menu-item key="upcoming">
+      <MenuItem key="upcoming">
         <NuxtLink
           :to="{
             path: `/discover/movie/upcoming`,
@@ -87,10 +87,10 @@
         >
           Sắp công chiếu
         </NuxtLink>
-      </a-menu-item>
-    </a-sub-menu>
+      </MenuItem>
+    </SubMenu>
 
-    <a-sub-menu key="tv">
+    <SubMenu key="tv">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-film" /> -->
         <!-- <Icon name="fa6-solid:film" /> -->
@@ -109,7 +109,7 @@
         <span>Phim bộ</span>
       </template>
 
-      <a-menu-item key="all">
+      <MenuItem key="all">
         <NuxtLink
           :to="{
             path: `/discover/tv/all`,
@@ -117,9 +117,9 @@
         >
           Tất cả
         </NuxtLink>
-      </a-menu-item>
+      </MenuItem>
 
-      <a-menu-item key="airingtoday">
+      <MenuItem key="airingtoday">
         <NuxtLink
           :to="{
             path: `/discover/tv/airingtoday`,
@@ -127,9 +127,9 @@
         >
           Airing today
         </NuxtLink>
-      </a-menu-item>
+      </MenuItem>
 
-      <a-menu-item key="ontheair">
+      <MenuItem key="ontheair">
         <NuxtLink
           :to="{
             path: `/discover/tv/ontheair`,
@@ -137,9 +137,9 @@
         >
           On the air
         </NuxtLink>
-      </a-menu-item>
+      </MenuItem>
 
-      <a-menu-item key="tvpopular">
+      <MenuItem key="tvpopular">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvpopular`,
@@ -147,9 +147,9 @@
         >
           Phổ biến
         </NuxtLink>
-      </a-menu-item>
+      </MenuItem>
 
-      <a-menu-item key="tvtoprated">
+      <MenuItem key="tvtoprated">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvtoprated`,
@@ -157,10 +157,10 @@
         >
           Top đánh giá
         </NuxtLink>
-      </a-menu-item>
-    </a-sub-menu>
+      </MenuItem>
+    </SubMenu>
 
-    <a-sub-menu key="genre">
+    <SubMenu key="genre">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-list" /> -->
         <!-- <Icon name="fa6-solid:list"></Icon> -->
@@ -179,12 +179,8 @@
         <span>Thể loại</span>
       </template>
 
-      <a-menu-item
-        v-for="(item, index) in genres"
-        :index="index"
-        :key="item?.id"
-      >
-        <a-tooltip
+      <MenuItem v-for="(item, index) in genres" :index="index" :key="item?.id">
+        <Tooltip
           :title="item?.name_vietsub"
           placement="right"
           v-if="item?.name_vietsub?.length > 30"
@@ -196,7 +192,7 @@
           >
             {{ item?.name_vietsub }}
           </NuxtLink>
-        </a-tooltip>
+        </Tooltip>
 
         <NuxtLink
           v-else
@@ -206,10 +202,10 @@
         >
           {{ item?.name_vietsub }}
         </NuxtLink>
-      </a-menu-item>
-    </a-sub-menu>
+      </MenuItem>
+    </SubMenu>
 
-    <a-sub-menu key="year">
+    <SubMenu key="year">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-calendar-days" /> -->
         <!-- <Icon name="fa6-regular:calendar-days" />  -->
@@ -227,11 +223,7 @@
       <template #title>
         <span>Năm phát hành</span>
       </template>
-      <a-menu-item
-        v-for="(item, index) in years"
-        :index="index"
-        :key="item?.name"
-      >
+      <MenuItem v-for="(item, index) in years" :index="index" :key="item?.name">
         <NuxtLink
           :to="{
             path: `/discover/year/${
@@ -246,10 +238,10 @@
         >
           {{ item?.name }}
         </NuxtLink>
-      </a-menu-item>
-    </a-sub-menu>
+      </MenuItem>
+    </SubMenu>
 
-    <a-sub-menu key="country">
+    <SubMenu key="country">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-globe" /> -->
         <!-- <Icon name="fa6-solid:globe" /> -->
@@ -267,7 +259,7 @@
       <template #title>
         <span>Quốc gia</span>
       </template>
-      <a-menu-item
+      <MenuItem
         v-for="(item, index) in countries"
         :index="index"
         :key="item?.short_name"
@@ -281,10 +273,10 @@
 
           {{ item?.name }}
         </NuxtLink>
-      </a-menu-item>
-    </a-sub-menu>
+      </MenuItem>
+    </SubMenu>
 
-    <a-menu-item key="follow">
+    <MenuItem key="follow">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-bookmark" /> -->
         <!-- <span class="material-icons-outlined"> playlist_play </span> -->
@@ -315,9 +307,9 @@
       <div>
         <NuxtLink to="/follow"> Theo dõi</NuxtLink>
       </div>
-    </a-menu-item>
+    </MenuItem>
 
-    <a-menu-item key="history">
+    <MenuItem key="history">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-clock-rotate-left" /> -->
         <!-- <Icon name="fa6-solid:clock-rotate-left" /> -->
@@ -335,9 +327,9 @@
       <div>
         <NuxtLink to="/history"> Lịch sử Xem </NuxtLink>
       </div>
-    </a-menu-item>
+    </MenuItem>
 
-    <a-menu-item key="ranking">
+    <MenuItem key="ranking">
       <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-ranking-star" /> -->
         <!-- <Icon name="fa6-solid:ranking-star" /> -->
@@ -355,11 +347,11 @@
       <div>
         <NuxtLink to="/ranking"> Xếp hạng</NuxtLink>
       </div>
-    </a-menu-item>
+    </MenuItem>
 
     <div class="separate"></div>
 
-    <a-menu-item class="upgrade-account" key="upgrade">
+    <MenuItem class="upgrade-account" key="upgrade">
       <template #icon>
         <!-- <nuxt-img :src="getImage('king.png', 'misc', 'h-16')" alt="" /> -->
         <svg
@@ -402,11 +394,12 @@
       <div>
         <NuxtLink to="/upgrade/plans"> Nâng cấp tài khoản</NuxtLink>
       </div>
-    </a-menu-item>
-  </a-menu>
+    </MenuItem>
+  </Menu>
 </template>
 
 <script setup lang="ts">
+import { Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue';
 import { getImage } from '~/services/image';
 import axios from 'axios';
 import { HomeOutlined } from '@ant-design/icons-vue';

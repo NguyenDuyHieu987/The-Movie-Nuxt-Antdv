@@ -98,14 +98,14 @@
             {{ total }} phim
             <span> Cập nhật hôm nay </span>
           </p>
-          <a-dropdown
+          <Dropdown
             :trigger="['click']"
             placement="bottomRight"
             overlayClassName="dropdown-viewmore"
             class="dropdown-viewmore"
             destroyPopupOnHide
           >
-            <el-button
+            <ElButton
               class="viewmore-btn click-active"
               circle
               size="large"
@@ -125,11 +125,11 @@
                   <circle cx="256" cy="96" r="48" fill="currentColor" />
                 </svg>
               </template>
-            </el-button>
+            </ElButton>
 
             <template #overlay>
-              <a-menu class="dropdown-viewmore">
-                <a-menu-item key="info-list">
+              <Menu class="dropdown-viewmore">
+                <MenuItem key="info-list">
                   <template #icon>
                     <!-- <InfoCircleOutlined /> -->
 
@@ -153,15 +153,15 @@
                     </svg>
                   </template>
                   <span>Thông tin chi tiết</span>
-                </a-menu-item>
-              </a-menu>
+                </MenuItem>
+              </Menu>
             </template>
-          </a-dropdown>
+          </Dropdown>
         </div>
       </div>
 
       <div class="widget">
-        <a-input
+        <Input
           v-model:value="valueSearch"
           class="search-row"
           placeholder="Tìm kiếm trong danh sách..."
@@ -184,9 +184,9 @@
               />
             </svg>
           </template>
-        </a-input>
+        </Input>
 
-        <el-button
+        <ElButton
           round
           type="primary"
           class="remove-all-btn"
@@ -207,15 +207,16 @@
             </svg>
           </template>
           Xóa tất cả Danh sách phát
-        </el-button>
+        </ElButton>
       </div>
     </div>
   </aside>
 </template>
 
 <script setup lang="ts">
-import { getImage } from '~/services/image';
+import { Menu, MenuItem, Dropdown, Input } from 'ant-design-vue';
 import { ElButton } from 'element-plus';
+import { getImage } from '~/services/image';
 
 const props = defineProps<{
   // dataColumn: any[];

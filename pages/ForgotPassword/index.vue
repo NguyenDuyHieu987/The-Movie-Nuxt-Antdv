@@ -20,9 +20,8 @@
             <NuxtLink to="/login"> Đăng nhập</NuxtLink>
           </a-button> -->
 
-        <a-form
+        <Form
           :model="formForgotPassword"
-          :rules="rules"
           name="forgot-password-form"
           class="form-forgot-password"
           @finish="handleSubmit"
@@ -33,7 +32,7 @@
             <p>{{ noteForgotPassword }}</p>
           </div>
 
-          <a-form-item
+          <FormItem
             label="Email"
             name="email"
             :rules="[
@@ -48,7 +47,7 @@
               },
             ]"
           >
-            <a-input
+            <Input
               v-model:value="formForgotPassword.email"
               placeholder="Nhập email của bạn..."
               :disabled="isActionForm"
@@ -66,10 +65,10 @@
                   />
                 </svg>
               </template>
-            </a-input>
-          </a-form-item>
+            </Input>
+          </FormItem>
 
-          <a-form-item class="submit" name="submit">
+          <FormItem class="submit" name="submit">
             <a-button
               class="submit-form-button click-active"
               type="primary"
@@ -80,8 +79,8 @@
             >
               Đặt lại mật khẩu
             </a-button>
-          </a-form-item>
-        </a-form>
+          </FormItem>
+        </Form>
       </div>
     </div>
   </div>
@@ -89,8 +88,8 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+import { Form, FormItem, Input } from 'ant-design-vue';
 import { forgotPassword } from '~/services/authentication';
-import { storeToRefs } from 'pinia';
 import { ElNotification } from 'element-plus';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
@@ -142,8 +141,6 @@ onBeforeMount(() => {
   getForgotPasswordLocalStr();
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 });
-
-const rules = {};
 
 const reset = () => {
   formForgotPassword.email = '';

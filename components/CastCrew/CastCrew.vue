@@ -1,7 +1,7 @@
 <template>
   <div class="cast-crew">
-    <a-tabs v-model:activeKey="activeTabCast">
-      <a-tab-pane key="cast" tab="Diễn viên">
+    <Tabs v-model:activeKey="activeTabCast">
+      <TabPane key="cast" tab="Diễn viên">
         <SliderGroup
           v-show="loading"
           :data="dataCredit?.cast?.slice(0, 20)"
@@ -20,8 +20,8 @@
             </SwiperSlide>
           </template>
         </SliderGroup>
-      </a-tab-pane>
-      <a-tab-pane key="crew" tab="Đội ngũ" force-render>
+      </TabPane>
+      <TabPane key="crew" tab="Đội ngũ" force-render>
         <SliderGroup
           v-show="loading"
           :data="dataCredit?.crew?.slice(0, 20)"
@@ -40,12 +40,13 @@
             </SwiperSlide>
           </template>
         </SliderGroup>
-      </a-tab-pane>
-    </a-tabs>
+      </TabPane>
+    </Tabs>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Tabs, TabPane } from 'ant-design-vue';
 import CastCard from '@/components/CastCard/CastCard.vue';
 import SliderGroup from '@/components/SliderGroup/SliderGroup.vue';
 import { getCredits } from '~/services/credit';

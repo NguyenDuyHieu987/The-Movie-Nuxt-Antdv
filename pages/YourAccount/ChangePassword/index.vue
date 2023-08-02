@@ -29,7 +29,7 @@
                 nhất 6 ký tự.
               </p>
             </div>
-            <a-form
+            <Form
               :model="formChangePassword"
               :rules="rules"
               name="change-password-form"
@@ -37,7 +37,7 @@
               @finish="handleSubmit"
               hideRequiredMark
             >
-              <a-form-item
+              <FormItem
                 label="Mật khẩu cũ"
                 name="oldPassword"
                 :rules="[
@@ -54,32 +54,32 @@
                 ]"
                 has-feedback
               >
-                <a-input-password
+                <InputPassword
                   v-model:value="formChangePassword.oldPassword"
                   placeholder="Mật khẩu cũ..."
                 />
-              </a-form-item>
+              </FormItem>
 
-              <a-form-item label="Mật khẩu mới" name="newPassword" has-feedback>
-                <a-input-password
+              <FormItem label="Mật khẩu mới" name="newPassword" has-feedback>
+                <InputPassword
                   v-model:value="formChangePassword.newPassword"
                   placeholder="Mật khẩu mới..."
                 >
-                </a-input-password>
-              </a-form-item>
+                </InputPassword>
+              </FormItem>
 
-              <a-form-item
+              <FormItem
                 label="Xác nhận lại"
                 name="confirmNewPassword"
                 has-feedback
               >
-                <a-input-password
+                <InputPassword
                   v-model:value="formChangePassword.confirmNewPassword"
                   placeholder="Xác nhận lại mật khẩu..."
                 />
-              </a-form-item>
+              </FormItem>
 
-              <a-form-item>
+              <FormItem>
                 <a-button
                   class="submit-form-button click-active"
                   type="primary"
@@ -89,8 +89,8 @@
                 >
                   Đổi mật khẩu
                 </a-button>
-              </a-form-item>
-            </a-form>
+              </FormItem>
+            </Form>
           </div>
 
           <VerifyPinOTPForm
@@ -123,11 +123,13 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+import { Form, FormItem, InputPassword } from 'ant-design-vue';
+import type { Rule } from 'ant-design-vue/es/form';
+import { ElNotification } from 'element-plus';
 import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm/VerifyPinOTPForm.vue';
 import RequireAuth from '@/components/RequireAuth/RequireAuth.vue';
 import { accountVerify, ChangePassword } from '~/services/account';
 import { storeToRefs } from 'pinia';
-import { ElNotification } from 'element-plus';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
 definePageMeta({
@@ -211,7 +213,7 @@ const checkConfirmNewPassword = async (_rule: any, value: string) => {
   }
 };
 
-const rules = {
+const rules: Record<string, Rule[]> = {
   newPassword: [
     {
       required: true,

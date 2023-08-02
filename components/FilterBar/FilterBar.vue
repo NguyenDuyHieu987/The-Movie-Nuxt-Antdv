@@ -1,11 +1,11 @@
 <template>
-  <a-collapse class="filter-bar" :bordered="false">
+  <Collapse class="filter-bar" :bordered="false">
     <!-- ghost -->
     <template #expandIcon="{ isActive }">
       <CaretRightFilled :rotate="isActive ? 90 : 0" />
     </template>
 
-    <a-collapse-panel key="1" header="Tìm kiếm nâng cao">
+    <CollapsePanel key="1" header="Tìm kiếm nâng cao">
       <div class="filter-body">
         <div class="list-input-filter">
           <a-button
@@ -97,7 +97,7 @@
             </el-select>
           </ClientOnly> -->
 
-          <a-select
+          <Select
             ref="select"
             v-model:value="formSelect.country"
             style="width: 150px"
@@ -105,21 +105,21 @@
             size="large"
             placeholder="Quốc gia"
           >
-            <a-select-option v-if="formSelect.country == ''" value="">
+            <SelectOption v-if="formSelect.country == ''" value="">
               Quốc gia
-            </a-select-option>
+            </SelectOption>
 
-            <a-select-option
+            <SelectOption
               v-for="(item, index) in countries"
               :index="index"
               :key="item?.iso_639_1"
               :value="item?.iso_639_1"
             >
               {{ item?.name }}
-            </a-select-option>
-          </a-select>
+            </SelectOption>
+          </Select>
 
-          <a-select
+          <Select
             ref="select"
             v-model:value="formSelect.year"
             style="width: 170px"
@@ -127,20 +127,20 @@
             size="large"
             placeholder="Năm phát hành"
           >
-            <a-select-option v-if="formSelect.year == ''" value="">
+            <SelectOption v-if="formSelect.year == ''" value="">
               Năm phát hành
-            </a-select-option>
-            <a-select-option
+            </SelectOption>
+            <SelectOption
               v-for="(item, index) in years"
               :index="index"
               :key="item?.name"
               :value="item?.name"
             >
               {{ item?.name }}
-            </a-select-option>
-          </a-select>
+            </SelectOption>
+          </Select>
 
-          <a-select
+          <Select
             ref="select"
             v-model:value="formSelect.genre"
             style="width: 170px"
@@ -148,20 +148,20 @@
             size="large"
             placeholder="Thể loại"
           >
-            <a-select-option v-if="formSelect.genre == ''" value="">
+            <SelectOption v-if="formSelect.genre == ''" value="">
               Thể loại
-            </a-select-option>
-            <a-select-option
+            </SelectOption>
+            <SelectOption
               v-for="(item, index) in genres"
               :index="index"
               :key="item?.id"
               :value="item?.id"
             >
               {{ item?.name_vietsub }}
-            </a-select-option>
-          </a-select>
+            </SelectOption>
+          </Select>
 
-          <a-select
+          <Select
             ref="select"
             v-model:value="formSelect.sortBy"
             style="width: 170px"
@@ -169,20 +169,20 @@
             size="large"
             placeholder="Sắp xếp theo"
           >
-            <a-select-option v-if="formSelect.sortBy == ''" value="">
+            <SelectOption v-if="formSelect.sortBy == ''" value="">
               Sắp xếp theo
-            </a-select-option>
-            <a-select-option
+            </SelectOption>
+            <SelectOption
               v-for="(item, index) in listSortBy"
               :index="index"
               :key="item?.id"
               :value="item?.id"
             >
               {{ item?.name }}
-            </a-select-option>
-          </a-select>
+            </SelectOption>
+          </Select>
 
-          <a-select
+          <Select
             ref="select"
             v-model:value="formSelect.type"
             style="width: 170px"
@@ -190,10 +190,10 @@
             size="large"
             placeholder="Tất cả"
           >
-            <a-select-option value="all"> Tất cả </a-select-option>
-            <a-select-option value="movieall"> Phim lẻ </a-select-option>
-            <a-select-option value="tvall"> Phim bộ </a-select-option>
-          </a-select>
+            <SelectOption value="all"> Tất cả </SelectOption>
+            <SelectOption value="movieall"> Phim lẻ </SelectOption>
+            <SelectOption value="tvall"> Phim bộ </SelectOption>
+          </Select>
 
           <a-button
             class="cancel-filter-btn click-active"
@@ -217,11 +217,12 @@
           <path d="M3 4c2.01 2.59 7 9 7 9v7h4v-7s4.98-6.41 7-9H3z" />
         </svg>
       </template>
-    </a-collapse-panel>
-  </a-collapse>
+    </CollapsePanel>
+  </Collapse>
 </template>
 
 <script setup lang="ts">
+import { Collapse, CollapsePanel, Select, SelectOption } from 'ant-design-vue';
 import { FilterDataMovie } from '~/services/discover';
 import { getAllGenre } from '~/services/genres';
 import { getAllCountry } from '~/services/country';

@@ -241,7 +241,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop, getImage } from '~/services/image';
+import { getImage } from '~/services/image';
 import { getItemList } from '~/services/list';
 
 const props = defineProps<{

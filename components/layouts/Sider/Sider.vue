@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider
+  <LayoutSider
     v-model:collapsed="collapsed"
     width="var(--sider-width)"
     collapsedWidth="var(--sider-collapsed-width)"
@@ -29,13 +29,13 @@
             {{ userAccount?.username }}
           </h4>
 
-          <a-tooltip v-else :title="userAccount?.username" placement="rightTop">
+          <Tooltip v-else :title="userAccount?.username" placement="rightTop">
             <a-avatar class="user-name-container">
               <h4>
                 {{ userAccount?.username?.slice(0, 2).toUpperCase() }}
               </h4>
             </a-avatar>
-          </a-tooltip>
+          </Tooltip>
         </div>
       </div>
     </header>
@@ -81,10 +81,11 @@
         </div>
       </footer>
     </template>
-  </a-layout-sider>
+  </LayoutSider>
 </template>
 
 <script setup lang="ts">
+import { LayoutSider, Tooltip } from 'ant-design-vue';
 // import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
 import { getImage } from '~/services/image';
 import TheMenu from '@/components/TheMenu/TheMenu.vue';

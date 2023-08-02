@@ -1,6 +1,6 @@
 <template>
   <div class="control-page">
-    <a-pagination
+    <Pagination
       class="pagination"
       :current="page"
       :total="total"
@@ -23,21 +23,30 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  page: {
-    type: Number,
-  },
-  total: {
-    type: Number,
-    default: 100,
-  },
-  pageSize: {
-    type: Number,
-  },
-  onChangePage: {
-    type: Function,
-  },
-});
+import { Pagination } from 'ant-design-vue';
+
+defineProps<{
+  page: number;
+  total?: number | 100;
+  pageSize: number;
+  onChangePage?: (page: number) => void;
+}>();
+
+// defineProps({
+//   page: {
+//     type: Number,
+//   },
+//   total: {
+//     type: Number,
+//     default: 100,
+//   },
+//   pageSize: {
+//     type: Number,
+//   },
+//   onChangePage: {
+//     type: Function,
+//   },
+// });
 </script>
 
 <style lang="scss" src="./ControlPage.scss"></style>

@@ -1,5 +1,5 @@
 <template>
-  <a-drawer
+  <Drawer
     class="menu-drawer"
     v-model:visible="openDrawer"
     placement="left"
@@ -46,7 +46,7 @@
     </header>
 
     <TheMenu />
-  </a-drawer>
+  </Drawer>
 
   <!-- <ClientOnly>
     <el-drawer
@@ -103,6 +103,7 @@
 </template>
 
 <script setup lang="ts">
+import { Drawer } from 'ant-design-vue';
 import { getImage } from '~/services/image';
 import TheMenu from '@/components/TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';

@@ -102,9 +102,12 @@
       transform: translate(-50%, -50%);
       transition: all 0.4s;
 
-      .fa-youtube {
-        font-size: 4rem;
+      svg.fa-youtube {
+        font-size: 5rem;
+        width: 5rem;
+        height: 5rem;
         color: red;
+        fill: red;
       }
     }
   }
