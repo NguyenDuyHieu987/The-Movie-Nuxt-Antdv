@@ -754,7 +754,7 @@
 
 <script setup lang="ts">
 // import axios from 'axios';
-import CloseBtn from '~/components/ButtonTemplate/CloseBtn/BillboardItem.vue';
+import CloseBtn from '~/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
 import { getVideo } from '~/services/video';
 
 const props = defineProps<{
