@@ -322,18 +322,18 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [
-      AutoImport({
-        resolvers: [ElementPlusResolver()],
-      }),
-      Components({
-        resolvers: [
-          ElementPlusResolver(),
-          // AntDesignVueResolver({
-          //   // importStyle: false,
-          // }),
-        ],
-      }),
-      ElementPlus({}),
+      // AutoImport({
+      //   resolvers: [ElementPlusResolver()],
+      // }),
+      // Components({
+      //   resolvers: [
+      //     ElementPlusResolver(),
+      //     // AntDesignVueResolver({
+      //     //   // importStyle: false,
+      //     // }),
+      //   ],
+      // }),
+      // ElementPlus({}),
     ],
     build: {
       sourcemap: 'hidden',
