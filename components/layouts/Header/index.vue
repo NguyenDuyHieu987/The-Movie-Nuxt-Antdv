@@ -26,6 +26,8 @@
       </div>
     </div>
 
+    <a-button type="primary">Hiéu</a-button>
+
     <a-auto-complete
       v-model:value="valueInput"
       class="search-header"
