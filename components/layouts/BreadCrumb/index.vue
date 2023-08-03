@@ -1,11 +1,11 @@
 <template>
-  <Breadcrumb style="">
-    <BreadcrumbItem>
+  <a-breadcrumb style="">
+    <a-breadcrumb-item>
       <NuxtLink :to="{ path: '/' }"> Trang chủ </NuxtLink>
-    </BreadcrumbItem>
-    <BreadcrumbItem v-if="!path.length">{{ '' }}</BreadcrumbItem>
+    </a-breadcrumb-item>
+    <a-breadcrumb-item v-if="!path.length">{{ '' }}</a-breadcrumb-item>
 
-    <!-- <BreadcrumbItem>
+    <!-- <a-breadcrumb-item>
       <a :href="this.$route.path"
         >{{ $route.params.name?.replaceAll('+', ' ') }}
       </a>
@@ -13,8 +13,8 @@
       <a :href="this.$route.path" v-else>{{
         this.$route.path.charAt(1).toUpperCase() + this.$route.path.slice(2)
       }}</a>
-    </BreadcrumbItem> -->
-    <BreadcrumbItem
+    </a-breadcrumb-item> -->
+    <a-breadcrumb-item
       v-for="(item, index) in path"
       :index="index"
       :key="index"
@@ -26,12 +26,11 @@
       <span v-else>
         {{ item?.name?.replaceAll('+', ' ') }}
       </span>
-    </BreadcrumbItem>
-  </Breadcrumb>
+    </a-breadcrumb-item>
+  </a-breadcrumb>
 </template>
 
 <script setup lang="ts">
-import { Breadcrumb, BreadcrumbItem } from 'ant-design-vue';
 import { getGenreByShortName } from '~/services/genres';
 import type { country } from '@/types';
 

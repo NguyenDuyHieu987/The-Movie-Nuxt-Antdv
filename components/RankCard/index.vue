@@ -77,8 +77,8 @@
 
 <script setup lang="ts">
 // import axios from 'axios';
-import { getPoster, getImage } from '~/services/image';
-import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+import { getImage } from '~/services/image';
 
 const utils = useUtils();
 const props = defineProps<{

@@ -156,7 +156,7 @@ export default defineNuxtConfig({
     url: 'https://phimhay247.tech',
   },
   css: [
-    'ant-design-vue/dist/antd.dark.min.css',
+    // 'ant-design-vue/dist/antd.dark.min.css',
     // 'element-plus/dist/index.css',
     '~/assets/style/globalStyle.scss',
     // '@fortawesome/fontawesome-svg-core/styles.css',
@@ -323,21 +323,23 @@ export default defineNuxtConfig({
       '/play-tv',
     ],
   },
-  build: {},
+  build: {
+    analyze: true,
+  },
   components: {
     dirs: [],
   },
   vite: {
-    // plugins: [
-    //   Components({
-    //     resolvers: [
-    //       AntDesignVueResolver({
-    //         // importStyle: false,
-    //         resolveIcons: true,
-    //       }),
-    //     ],
-    //   }),
-    // ],
+    plugins: [
+      Components({
+        resolvers: [
+          AntDesignVueResolver({
+            // importStyle: false,
+            // resolveIcons: true,
+          }),
+        ],
+      }),
+    ],
     ssr: {
       noExternal: [
         'moment',

@@ -42,7 +42,7 @@
               </div>
             </div>
 
-            <Form
+            <a-form
               :model="formChangeEmail"
               name="change-email-form"
               class="form-change-email"
@@ -50,7 +50,7 @@
               @finish="handleSubmit"
               hideRequiredMark
             >
-              <FormItem class="email" name="email">
+              <a-form-item class="email" name="email">
                 <button
                   class="submit-form-button click-active"
                   html-type="submit"
@@ -82,8 +82,8 @@
                     </svg>
                   </div>
                 </button>
-              </FormItem>
-            </Form>
+              </a-form-item>
+            </a-form>
           </div>
 
           <VerifyPinOTPForm
@@ -116,7 +116,6 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { Form, FormItem } from 'ant-design-vue';
 import { ElNotification } from 'element-plus';
 import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm';
 import RequireAuth from '~/components/RequireAuth';

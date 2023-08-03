@@ -378,7 +378,7 @@
                   />
                 </svg>
               </div>
-              <Slider
+              <a-slider
                 class="volume-slider"
                 :class="{ muted: videoStates.isVolumeOff }"
                 v-model:value="volume"
@@ -554,7 +554,7 @@
             <span>Nền sáng</span>
           </div>
           <div class="right">
-            <Switch
+            <a-switch
               @click="
                 settingStates.switchBackgroud = !settingStates.switchBackgroud
               "
@@ -753,8 +753,7 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
-import { Slider, Switch } from 'ant-design-vue';
+// import axios from 'axios';
 import CloseBtn from '~/components/ButtonTemplate/CloseBtn';
 import { getVideo } from '~/services/video';
 

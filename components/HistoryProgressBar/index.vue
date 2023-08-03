@@ -1,5 +1,5 @@
 <template>
-  <Progress
+  <a-progress
     class="progress-history"
     :stroke-color="{
       from: '#108ee9',
@@ -21,12 +21,10 @@
         {{ percent + ' %' }}
       </div>
     </template>
-  </Progress>
+  </a-progress>
 </template>
 
 <script setup lang="ts">
-import { Progress } from 'ant-design-vue';
-
 const props = defineProps<{
   historyProgress: number;
 }>();

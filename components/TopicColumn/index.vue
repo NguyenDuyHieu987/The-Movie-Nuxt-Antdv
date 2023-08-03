@@ -98,7 +98,7 @@
             {{ total }} phim
             <span> Cập nhật hôm nay </span>
           </p>
-          <Dropdown
+          <a-dropdown
             :trigger="['click']"
             placement="bottomRight"
             overlayClassName="dropdown-viewmore"
@@ -128,8 +128,8 @@
             </el-button>
 
             <template #overlay>
-              <Menu class="dropdown-viewmore">
-                <MenuItem key="info-list">
+              <a-menu class="dropdown-viewmore">
+                <a-menu-item key="info-list">
                   <template #icon>
                     <!-- <InfoCircleOutlined /> -->
 
@@ -153,15 +153,15 @@
                     </svg>
                   </template>
                   <span>Thông tin chi tiết</span>
-                </MenuItem>
-              </Menu>
+                </a-menu-item>
+              </a-menu>
             </template>
-          </Dropdown>
+          </a-dropdown>
         </div>
       </div>
 
       <div class="widget">
-        <Input
+        <a-input
           v-model:value="valueSearch"
           class="search-row"
           placeholder="Tìm kiếm trong danh sách..."
@@ -184,7 +184,7 @@
               />
             </svg>
           </template>
-        </Input>
+        </a-input>
 
         <el-button
           round
@@ -214,7 +214,6 @@
 </template>
 
 <script setup lang="ts">
-import { Menu, MenuItem, Dropdown, Input } from 'ant-design-vue';
 // import { ElButton } from 'element-plus';
 import { getImage } from '~/services/image';
 

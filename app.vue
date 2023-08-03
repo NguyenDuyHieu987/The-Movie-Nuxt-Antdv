@@ -45,10 +45,10 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
+import { ElNotification } from 'element-plus';
 import { getUserToken } from '~/services/authentication';
 import LoadingApp from '~/components/LoadingApp';
 import RequireAuthDialog from '~/components/RequireAuthDialog';
-import { ElNotification, ElBacktop } from 'element-plus';
 
 const store = useStore();
 const utils = useUtils();

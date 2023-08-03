@@ -1,5 +1,5 @@
 <template>
-  <Drawer
+  <a-drawer
     class="menu-drawer"
     v-model:open="openDrawer"
     placement="left"
@@ -46,7 +46,7 @@
     </header>
 
     <TheMenu />
-  </Drawer>
+  </a-drawer>
 
   <!-- <ClientOnly>
     <el-drawer
@@ -103,11 +103,10 @@
 </template>
 
 <script setup lang="ts">
-import { Drawer } from 'ant-design-vue';
+// import { ElDrawer } from 'element-plus';
 import { getImage } from '~/services/image';
 import TheMenu from '~/components/TheMenu';
 import { storeToRefs } from 'pinia';
-import { ElDrawer } from 'element-plus';
 
 const store = useStore();
 const { collapsed, isLogin, openDrawer, userAccount } = storeToRefs<any>(store);

@@ -30,11 +30,11 @@
 </template>
 
 <script setup lang="ts">
-import { getTrending } from '~/services/trending';
-import MovieCardVertical from '~/components/MovieCardVertical/index.vue';
-import RankSide from '~/components/RankSide/index.vue';
-import ControlPage from '~/components/ControlPage/index.vue';
 import axios from 'axios';
+import { getTrending } from '~/services/trending';
+import MovieCardVertical from '~/components/MovieCardVertical';
+import RankSide from '~/components/RankSide';
+import ControlPage from '~/components/ControlPage';
 
 const router = useRouter();
 const route: any = useRoute();

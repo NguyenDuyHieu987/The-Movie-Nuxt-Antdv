@@ -20,7 +20,7 @@
             <NuxtLink to="/login"> Đăng nhập</NuxtLink>
           </a-button> -->
 
-        <Form
+        <a-form
           :model="formForgotPassword"
           name="forgot-password-form"
           class="form-forgot-password"
@@ -32,7 +32,7 @@
             <p>{{ noteForgotPassword }}</p>
           </div>
 
-          <FormItem
+          <a-form-item
             label="Email"
             name="email"
             :rules="[
@@ -47,7 +47,7 @@
               },
             ]"
           >
-            <Input
+            <a-input
               v-model:value="formForgotPassword.email"
               placeholder="Nhập email của bạn..."
               :disabled="isActionForm"
@@ -65,10 +65,10 @@
                   />
                 </svg>
               </template>
-            </Input>
-          </FormItem>
+            </a-input>
+          </a-form-item>
 
-          <FormItem class="submit" name="submit">
+          <a-form-item class="submit" name="submit">
             <a-button
               class="submit-form-button click-active"
               type="primary"
@@ -79,8 +79,8 @@
             >
               Đặt lại mật khẩu
             </a-button>
-          </FormItem>
-        </Form>
+          </a-form-item>
+        </a-form>
       </div>
     </div>
   </div>
@@ -88,7 +88,6 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { Form, FormItem, Input } from 'ant-design-vue';
 import { forgotPassword } from '~/services/authentication';
 import { ElNotification } from 'element-plus';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';

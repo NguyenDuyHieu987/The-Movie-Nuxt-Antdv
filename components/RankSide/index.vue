@@ -1,5 +1,5 @@
 <template>
-  <LayoutSider
+  <a-layout-sider
     :width="450"
     class="sider-rank"
     ref="siderRank"
@@ -57,14 +57,13 @@
         />
       </div>
     </div>
-  </LayoutSider>
+  </a-layout-sider>
 </template>
 
 <script setup lang="ts">
-import { LayoutSider } from 'ant-design-vue';
+import axios from 'axios';
 import RankCard from '~/components/RankCard';
 import { getRanking } from '~/services/ranking';
-import axios from 'axios';
 
 interface tab {
   key: string;

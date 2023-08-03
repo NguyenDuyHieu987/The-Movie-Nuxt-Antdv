@@ -2,7 +2,7 @@
   <div class="login">
     <div class="login-container">
       <div class="login-form-container">
-        <Form
+        <a-form
           :model="formLogin"
           name="login-form"
           class="login-form"
@@ -13,7 +13,7 @@
             <span>Đăng nhập </span>
           </h1>
 
-          <FormItem
+          <a-form-item
             label="Email"
             name="username"
             :rules="[
@@ -28,14 +28,14 @@
               },
             ]"
           >
-            <Input v-model:value="formLogin.username" placeholder="Email...">
+            <a-input v-model:value="formLogin.username" placeholder="Email...">
               <template #prefix>
                 <UserOutlined />
               </template>
-            </Input>
-          </FormItem>
+            </a-input>
+          </a-form-item>
 
-          <FormItem
+          <a-form-item
             label="Mật khẩu"
             name="password"
             :rules="[
@@ -52,17 +52,17 @@
             ]"
             has-feedback
           >
-            <InputPassword
+            <a-input-password
               v-model:value="formLogin.password"
               placeholder="Mật khẩu..."
             >
               <template #prefix>
                 <LockOutlined />
               </template>
-            </InputPassword>
-          </FormItem>
+            </a-input-password>
+          </a-form-item>
 
-          <FormItem class="remember-me" name="remember-me">
+          <a-form-item class="remember-me" name="remember-me">
             <a-checkbox v-model:checked="formLogin.rememberMe">
               Ghi nhớ tôi
             </a-checkbox>
@@ -72,9 +72,9 @@
             >
               Quên mật khẩu?
             </NuxtLink>
-          </FormItem>
+          </a-form-item>
 
-          <FormItem class="submit" name="submit">
+          <a-form-item class="submit" name="submit">
             <a-button
               class="login-form-button"
               html-type="submit"
@@ -88,7 +88,7 @@
             <NuxtLink class="play-now" :to="{ path: '/' }">
               Xem phim ngay
             </NuxtLink>
-          </FormItem>
+          </a-form-item>
 
           <div class="bottom-form">
             <p>Hoặc</p>
@@ -165,7 +165,7 @@
               <span>Đăng nhập bằng Google</span>
             </a-button>
           </div>
-        </Form>
+        </a-form>
       </div>
     </div>
   </div>
@@ -173,10 +173,8 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { Form, FormItem, Input, InputPassword } from 'ant-design-vue';
-import { LogIn, loginFacebook, loginGoogle } from '~/services/authentication';
-// import { googleAuthCodeLogin } from 'vue3-google-login';
 import { ElNotification } from 'element-plus';
+import { LogIn, loginFacebook, loginGoogle } from '~/services/authentication';
 import {
   UserOutlined,
   LockOutlined,

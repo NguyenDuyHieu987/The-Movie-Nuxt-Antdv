@@ -37,13 +37,13 @@
         }} -->
       </span>
 
-      <Select
+      <a-select
         v-show="dataMovie?.seasons && dataMovie?.seasons?.length"
         v-model:value="selectedSeason"
         style="width: 150px"
         @change="handleChangeSeason(selectedSeason)"
       >
-        <SelectOption
+        <a-select-option
           v-for="(item, index) in dataMovie?.seasons"
           :key="item?.id"
           :index="index"
@@ -53,8 +53,8 @@
               ? item.name
               : item.name.replace('Season', 'Phần')
           }}
-        </SelectOption>
-      </Select>
+        </a-select-option>
+      </a-select>
     </h3>
 
     <div
@@ -115,8 +115,7 @@
 </template>
 
 <script setup lang="ts">
-import { Select, SelectOption } from 'ant-design-vue';
-import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import axios from 'axios';
 import { getSeasonTV } from '~/services/tv';
 

@@ -1,6 +1,6 @@
 <template>
   <div class="control-page">
-    <Pagination
+    <a-pagination
       class="pagination"
       :current="page"
       :total="total"
@@ -23,8 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import { Pagination } from 'ant-design-vue';
-
 defineProps<{
   page: number;
   total?: number | 100;

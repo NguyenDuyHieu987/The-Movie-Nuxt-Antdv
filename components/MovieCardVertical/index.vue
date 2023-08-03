@@ -125,10 +125,10 @@
 </template>
 <script setup lang="ts">
 import axios from 'axios';
-import { getPoster, getImage } from '~/services/image';
+// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import PreviewModal from '~/components/PreviewModal';
-import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
   item: any;

@@ -158,11 +158,11 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import { getItemList } from '~/services/list';
 import ModalTrailer from '~/components/ModalTrailer';
-import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 
 const props = defineProps<{
   item: any;

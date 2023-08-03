@@ -27,7 +27,7 @@
         <!-- <span> Quay lại</span> -->
       </a-button>
 
-      <Form
+      <a-form
         :model="formVerify"
         name="verify-form"
         class="verify-form"
@@ -38,7 +38,7 @@
           <h1>Xác nhận Email</h1>
         </div>
 
-        <FormItem
+        <a-form-item
           class="email-form-item"
           label="Email"
           name="email"
@@ -72,9 +72,9 @@
               </svg>
             </template>
           </a-input>
-        </FormItem>
+        </a-form-item>
 
-        <!-- <FormItem
+        <!-- <a-form-item
           label="Mã xác nhận"
           name="otp"
           :rules="[
@@ -125,13 +125,13 @@
           >
             <span v-if="!loadingResend"> {{ countdown }}</span>
           </a-button>
-        </FormItem> -->
+        </a-form-item> -->
 
-        <FormItem class="pin" name="pin" label="Mã xác nhận">
+        <a-form-item class="pin" name="pin" label="Mã xác nhận">
           <PinOTP v-model:pin="formVerify.pin" />
-        </FormItem>
+        </a-form-item>
 
-        <FormItem class="resend" name="resend">
+        <a-form-item class="resend" name="resend">
           <a-button
             class="count-down-btn"
             type="text"
@@ -142,9 +142,9 @@
           >
             <span v-if="!loadingResend"> {{ countdown }}</span>
           </a-button>
-        </FormItem>
+        </a-form-item>
 
-        <FormItem name="submit">
+        <a-form-item name="submit">
           <a-button
             class="verify-form-button click-active"
             type="primary"
@@ -155,14 +155,13 @@
           >
             Xác nhận
           </a-button>
-        </FormItem>
-      </Form>
+        </a-form-item>
+      </a-form>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Form, FormItem } from 'ant-design-vue';
 import PinOTP from '~/components/PinOTP';
 
 const props = defineProps({

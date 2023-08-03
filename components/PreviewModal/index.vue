@@ -51,7 +51,7 @@
             <div class="bottom-content">
               <div class="widget">
                 <div class="left">
-                  <Tooltip
+                  <a-tooltip
                     :teleported="false"
                     title="Xem ngay"
                     content="Xem ngay"
@@ -116,9 +116,9 @@
                         </template>
                       </a-button>
                     </NuxtLink>
-                  </Tooltip>
+                  </a-tooltip>
 
-                  <Tooltip
+                  <a-tooltip
                     :teleported="false"
                     :title="
                       !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
@@ -163,9 +163,9 @@
                         </svg>
                       </template>
                     </a-button>
-                  </Tooltip>
+                  </a-tooltip>
 
-                  <Tooltip
+                  <a-tooltip
                     :teleported="false"
                     title="Chia sẻ"
                     content="Chia sẻ"
@@ -204,11 +204,11 @@
                         </template>
                       </a-button>
                     </ShareNetwork>
-                  </Tooltip>
+                  </a-tooltip>
                 </div>
 
                 <div class="right">
-                  <Tooltip
+                  <a-tooltip
                     :teleported="false"
                     title="Chi tiết phim"
                     content="Chi tiết phim"
@@ -254,7 +254,7 @@
                         </template>
                       </a-button>
                     </NuxtLink>
-                  </Tooltip>
+                  </a-tooltip>
                 </div>
               </div>
               <div class="info">
@@ -327,8 +327,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { Tooltip } from 'ant-design-vue';
-import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import { getMovieById } from '~/services/movie';

@@ -142,7 +142,7 @@
                 </el-button>
               </a-tooltip>
 
-              <Dropdown
+              <a-dropdown
                 :trigger="['click']"
                 placement="bottomRight"
                 overlayClassName="dropdown-item-viewmore"
@@ -174,9 +174,9 @@
                 </el-button>
 
                 <template #overlay>
-                  <Menu>
+                  <a-menu>
                     <div class="main-action">
-                      <MenuItem key="play">
+                      <a-menu-item key="play">
                         <template #icon>
                           <!-- <Icon class="play" name="ci:play-arrow" /> -->
 
@@ -213,8 +213,8 @@
                         >
                           <span>Đến trang xem phim</span>
                         </NuxtLink>
-                      </MenuItem>
-                      <MenuItem key="add-list" @click="handelAddToList">
+                      </a-menu-item>
+                      <a-menu-item key="add-list" @click="handelAddToList">
                         <template #icon>
                           <!-- <Icon
                             class="icon-material"
@@ -256,9 +256,9 @@
 
                         <span v-if="isAddToList">Xóa khỏi Danh sách phát</span>
                         <span v-else>Thêm vào Danh sách phát</span>
-                      </MenuItem>
+                      </a-menu-item>
 
-                      <MenuItem key="share">
+                      <a-menu-item key="share">
                         <template #icon>
                           <!-- <Icon name="ph:share-fat-bold" class="share" /> -->
                           <svg
@@ -285,13 +285,13 @@
                             Chia sẻ
                           </ShareNetwork>
                         </span>
-                      </MenuItem>
+                      </a-menu-item>
                     </div>
 
                     <hr />
 
                     <div class="danger-zone">
-                      <MenuItem
+                      <a-menu-item
                         key="remove-history"
                         class="remove-item"
                         @click="handleRemoveFromHistory"
@@ -311,11 +311,11 @@
                           </svg>
                         </template>
                         <span>Xóa khỏi Lịch sử xem</span>
-                      </MenuItem>
+                      </a-menu-item>
                     </div>
-                  </Menu>
+                  </a-menu>
                 </template>
-              </Dropdown>
+              </a-dropdown>
             </div>
           </div>
         </NuxtLink>
@@ -326,8 +326,7 @@
 
 <script setup lang="ts">
 // import axios from 'axios';
-import { Menu, MenuItem, Dropdown } from 'ant-design-vue';
-import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
+// import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';

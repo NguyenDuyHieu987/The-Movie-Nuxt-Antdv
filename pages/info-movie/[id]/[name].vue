@@ -351,7 +351,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getItemList } from '~/services/list';
-import { getPoster, getBackdrop, getImage } from '~/services/image';
+import { getBackdrop, getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getGenreById } from '~/services/genres';
 import { getCountryByOriginalLanguage } from '~/services/country';

@@ -74,7 +74,7 @@
 </template>
 <script setup lang="ts">
 // import axios from 'axios';
-import { getPoster, getImage } from '~/services/image';
+import { getImage } from '~/services/image';
 
 const props = defineProps<{
   item: any;

@@ -63,7 +63,7 @@
       </div>
 
       <div class="more-actions">
-        <Dropdown
+        <a-dropdown
           v-if="userAccount?.id == item?.user_id"
           :trigger="['click']"
           placement="bottomRight"
@@ -87,9 +87,9 @@
           </a-button>
 
           <template #overlay>
-            <Menu>
+            <a-menu>
               <div class="main-action">
-                <MenuItem
+                <a-menu-item
                   key="edit-comment"
                   class="remove-item"
                   @click="handleEditComment"
@@ -109,13 +109,13 @@
                     </svg>
                   </template>
                   <span>Chỉnh sửa</span>
-                </MenuItem>
+                </a-menu-item>
               </div>
 
               <hr />
 
               <div class="danger-zone">
-                <MenuItem
+                <a-menu-item
                   key="remove-comment"
                   class="remove-item"
                   @click="handleRemoveComment"
@@ -135,11 +135,11 @@
                     </svg>
                   </template>
                   <span>Xóa bình luận</span>
-                </MenuItem>
+                </a-menu-item>
               </div>
-            </Menu>
+            </a-menu>
           </template>
-        </Dropdown>
+        </a-dropdown>
       </div>
     </div>
   </div>
@@ -147,7 +147,6 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { Menu, MenuItem, Dropdown } from 'ant-design-vue';
 import { ElNotification } from 'element-plus';
 import { DeleteComment } from '~/services/comment';
 import { getImage } from '~/services/image';

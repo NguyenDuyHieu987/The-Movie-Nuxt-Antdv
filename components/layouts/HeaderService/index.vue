@@ -19,14 +19,14 @@
     </div>
 
     <div class="right-header">
-      <Menu
+      <a-menu
         class="menu-right-header"
         theme="dark"
         mode="horizontal"
         :selectable="false"
       >
-        <MenuItem class="account" key="account">
-          <Dropdown
+        <a-menu-item class="account" key="account">
+          <a-dropdown
             :trigger="['click']"
             class="dropdown-account"
             overlayClassName="dropdown-account header"
@@ -61,8 +61,8 @@
             </span>
 
             <template #overlay>
-              <Menu class="dropdown-account">
-                <MenuItem
+              <a-menu class="dropdown-account">
+                <a-menu-item
                   v-if="isLogin"
                   v-once
                   :class="{ active: isLogin }"
@@ -75,9 +75,9 @@
                       {{ userAccount?.email }}
                     </span>
                   </NuxtLink>
-                </MenuItem>
+                </a-menu-item>
 
-                <MenuItem
+                <a-menu-item
                   v-if="isLogin && role == 'admin'"
                   v-once
                   key="dashboard"
@@ -85,25 +85,24 @@
                   <NuxtLink :to="$config.app.adminWebsiteUrl" target="_blank">
                     Bảng điều khiển
                   </NuxtLink>
-                </MenuItem>
+                </a-menu-item>
 
-                <MenuItem key="logout">
+                <a-menu-item key="logout">
                   <NuxtLink to="/login" @click="handleLogout">
                     <span v-if="isLogin"> Đăng xuất</span>
                     <span v-else> Đăng nhập</span>
                   </NuxtLink>
-                </MenuItem>
-              </Menu>
+                </a-menu-item>
+              </a-menu>
             </template>
-          </Dropdown>
-        </MenuItem>
-      </Menu>
+          </a-dropdown>
+        </a-menu-item>
+      </a-menu>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import { Menu, MenuItem, Dropdown } from 'ant-design-vue';
 import { getImage } from '~/services/image';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';

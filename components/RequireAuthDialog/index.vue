@@ -40,7 +40,7 @@
       </template>
     </el-dialog> -->
 
-    <Modal
+    <a-modal
       class="require-auth-dialog"
       v-model:open="store.openRequireAuthDialog"
       width="30%"
@@ -55,8 +55,8 @@
         />
       </template>
 
-      <Result title="Bạn cần đăng nhập để sử dụng chức năng này" status="403">
-      </Result>
+      <a-result title="Bạn cần đăng nhập để sử dụng chức năng này" status="403">
+      </a-result>
 
       <template #footer>
         <NuxtLink
@@ -76,12 +76,11 @@
           </a-button>
         </NuxtLink>
       </template>
-    </Modal>
+    </a-modal>
   </Teleport>
 </template>
 
 <script setup lang="ts">
-import { Modal, Result } from 'ant-design-vue';
 import CloseBtn from '~/components/ButtonTemplate/CloseBtn';
 
 const store = useStore();

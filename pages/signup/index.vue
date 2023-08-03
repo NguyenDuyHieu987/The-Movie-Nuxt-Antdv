@@ -3,7 +3,7 @@
     <Transition name="slide-left">
       <div class="signup-container" v-show="showAnimation">
         <div v-if="!isSignUp" class="signup-form-container">
-          <Form
+          <a-form
             :model="formSignup"
             :rules="rules"
             name="signup-form"
@@ -15,7 +15,7 @@
               <span> Đăng ký </span>
             </h1>
 
-            <FormItem
+            <a-form-item
               label="Họ và Tên"
               name="fullname"
               :rules="[
@@ -31,17 +31,17 @@
                 },
               ]"
             >
-              <Input
+              <a-input
                 v-model:value="formSignup.fullname"
                 placeholder="Họ và Tên..."
               >
                 <template #prefix>
                   <UserOutlined />
                 </template>
-              </Input>
-            </FormItem>
+              </a-input>
+            </a-form-item>
 
-            <FormItem
+            <a-form-item
               label="Tài khoản"
               name="username"
               :rules="[
@@ -57,7 +57,7 @@
                 },
               ]"
             >
-              <Input
+              <a-input
                 v-model:value="formSignup.username"
                 ref="usernameRef"
                 placeholder="Username..."
@@ -65,10 +65,10 @@
                 <template #prefix>
                   <UserOutlined />
                 </template>
-              </Input>
-            </FormItem>
+              </a-input>
+            </a-form-item>
 
-            <FormItem
+            <a-form-item
               label="Email"
               name="email"
               :rules="[
@@ -83,7 +83,7 @@
                 },
               ]"
             >
-              <Input v-model:value="formSignup.email" placeholder="Email...">
+              <a-input v-model:value="formSignup.email" placeholder="Email...">
                 <template #prefix>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -96,10 +96,10 @@
                     />
                   </svg>
                 </template>
-              </Input>
-            </FormItem>
+              </a-input>
+            </a-form-item>
 
-            <FormItem
+            <a-form-item
               label="Mật khẩu"
               name="password"
               :rules="[
@@ -116,28 +116,32 @@
               ]"
               has-feedback
             >
-              <InputPassword
+              <a-input-password
                 v-model:value="formSignup.password"
                 placeholder="Mật khẩu..."
               >
                 <template #prefix>
                   <LockOutlined />
                 </template>
-              </InputPassword>
-            </FormItem>
+              </a-input-password>
+            </a-form-item>
 
-            <FormItem label="Nhập lại mật khẩu" name="confirmPass" has-feedback>
-              <InputPassword
+            <a-form-item
+              label="Nhập lại mật khẩu"
+              name="confirmPass"
+              has-feedback
+            >
+              <a-input-password
                 v-model:value="formSignup.confirmPass"
                 placeholder="Xác nhận mật khẩu..."
               >
                 <template #prefix>
                   <LockOutlined />
                 </template>
-              </InputPassword>
-            </FormItem>
+              </a-input-password>
+            </a-form-item>
 
-            <FormItem>
+            <a-form-item>
               <a-button
                 class="signup-form-button"
                 type="primary"
@@ -148,8 +152,8 @@
               >
                 Đăng ký
               </a-button>
-            </FormItem>
-          </Form>
+            </a-form-item>
+          </a-form>
         </div>
 
         <VerifySignUpForm
@@ -171,7 +175,6 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { Form, FormItem, Input, InputPassword } from 'ant-design-vue';
 import type { Rule } from 'ant-design-vue/es/form';
 import { ElNotification } from 'element-plus';
 import {

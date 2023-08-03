@@ -107,7 +107,7 @@
             </p>
 
             <div class="action">
-              <Dropdown
+              <a-dropdown
                 :trigger="['click']"
                 placement="bottomRight"
                 overlayClassName="dropdown-item-viewmore"
@@ -138,9 +138,9 @@
                 </el-button>
 
                 <template #overlay>
-                  <Menu>
+                  <a-menu>
                     <div class="main-action">
-                      <MenuItem key="play">
+                      <a-menu-item key="play">
                         <template #icon>
                           <!-- <Icon class="play" name="ci:play-arrow" /> -->
 
@@ -177,8 +177,8 @@
                         >
                           <span>Đến trang xem phim</span>
                         </NuxtLink>
-                      </MenuItem>
-                      <MenuItem key="share">
+                      </a-menu-item>
+                      <a-menu-item key="share">
                         <template #icon>
                           <!-- <font-awesome-icon icon="fa-solid fa-share" /> -->
                           <!-- <Icon name="ph:share-fat-bold"  /> -->
@@ -207,13 +207,13 @@
                             Chia sẻ
                           </ShareNetwork>
                         </span>
-                      </MenuItem>
+                      </a-menu-item>
                     </div>
 
                     <hr />
 
                     <div class="danger-zone">
-                      <MenuItem
+                      <a-menu-item
                         key="remove-list"
                         class="remove-item"
                         @click="handleRemoveFromList"
@@ -234,11 +234,11 @@
                           </svg>
                         </template>
                         <span>Xóa khỏi Danh sách phát</span>
-                      </MenuItem>
+                      </a-menu-item>
                     </div>
-                  </Menu>
+                  </a-menu>
                 </template>
-              </Dropdown>
+              </a-dropdown>
             </div>
           </div>
         </NuxtLink>
@@ -249,8 +249,7 @@
 
 <script setup lang="ts">
 // import axios from 'axios';
-import { Menu, MenuItem, Dropdown } from 'ant-design-vue';
-import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
+// import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';

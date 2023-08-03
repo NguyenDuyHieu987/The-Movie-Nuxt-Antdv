@@ -125,7 +125,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import ModalTrailer from '~/components/ModalTrailer';
