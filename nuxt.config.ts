@@ -1,13 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
 import { isProduction } from 'std-env';
-// import AutoImport from 'unplugin-auto-import/vite';
-// import Components from 'unplugin-vue-components/vite';
-// import {
-//   ElementPlusResolver,
-//   AntDesignVueResolver,
-// } from 'unplugin-vue-components/resolvers';
-// import ElementPlus from 'unplugin-element-plus/vite';
+import Components from 'unplugin-vue-components/vite';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import * as AntD from 'ant-design-vue';
 import { addComponent } from '@nuxt/kit';
 
@@ -333,20 +328,24 @@ export default defineNuxtConfig({
     dirs: [],
   },
   vite: {
-    // plugins: [
-    //   AutoImport({
-    //     resolvers: [ElementPlusResolver()],
-    //   }),
-    //   Components({
-    //     resolvers: [
-    //       ElementPlusResolver(),
-    //       // AntDesignVueResolver({
-    //       //   // importStyle: false,
-    //       // }),
-    //     ],
-    //   }),
-    //   ElementPlus({}),
-    // ],
+    plugins: [
+      Components({
+        resolvers: [
+          AntDesignVueResolver({
+            // importStyle: false,
+            resolveIcons: true,
+          }),
+        ],
+      }),
+    ],
+    ssr: {
+      noExternal: [
+        'moment',
+        'compute-scroll-into-view',
+        'ant-design-vue',
+        '@ant-design/icons-vue',
+      ],
+    },
     build: {
       sourcemap: 'hidden',
       minify: 'terser',
