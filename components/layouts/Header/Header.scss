@@ -79,13 +79,15 @@ header.header-bar {
 
   .ant-select-show-search.search-header {
     width: 40%;
-    min-width: 400px;
-    max-width: 500px;
+    min-width: 350px;
+    max-width: 440px;
 
     .ant-select-selector {
       background-color: transparent !important;
 
       .ant-input-group {
+        display: flex;
+        flex-direction: row;
       }
 
       .ant-input-wrapper {
@@ -139,6 +141,9 @@ header.header-bar {
       }
 
       .ant-input-group-addon {
+        display: block;
+        left: 0;
+        width: auto;
         background: none;
 
         .ant-input-search-button {
@@ -151,6 +156,7 @@ header.header-bar {
           border-radius: 0 20px 20px 0;
           border-left: none;
           padding: 0px 18px;
+          margin: 0;
 
           svg {
             color: var(--text-color);
