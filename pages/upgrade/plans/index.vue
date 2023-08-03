@@ -28,12 +28,7 @@
       <PlanGrid @onSelectPlan="handleOnSelectPlan" />
 
       <div class="submit-btn-container">
-        <a-button
-          v-show="selectedPlan?.id"
-          @click="onRouteToPaymentPage"
-          type="text"
-          class="submit-btn"
-        >
+        <a-button @click="onRouteToPaymentPage" type="text" class="submit-btn">
           Tiếp theo
         </a-button>
       </div>

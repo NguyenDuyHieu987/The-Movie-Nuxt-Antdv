@@ -14,6 +14,12 @@
     align-self: flex-end;
     margin-bottom: 10px;
 
+    .el-skeleton.is-animated {
+      .el-skeleton__item {
+        width: 35%;
+      }
+    }
+
     .plan-box-selector {
       position: relative;
       background-color: var(--app-background-color);
@@ -71,6 +77,25 @@
       }
 
       .plan-grid-feature-table-body {
+        .el-skeleton.is-animated {
+          position: relative;
+          display: table-row;
+          vertical-align: inherit;
+          flex-direction: row;
+          height: var(--plan-box-selector-size);
+          transition: transform 0.15s;
+
+          .plan-option {
+            display: table-cell;
+            vertical-align: inherit;
+            text-align: center;
+
+            .el-skeleton__item {
+              width: 45%;
+            }
+          }
+        }
+
         tr {
           position: relative;
           height: var(--plan-box-selector-size);
