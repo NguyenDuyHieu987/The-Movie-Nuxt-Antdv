@@ -157,7 +157,7 @@ export default defineNuxtConfig({
     // 'ant-design-vue/dist/antd.dark.min.css',
     // 'element-plus/dist/index.css',
     'normalize.css/normalize.css',
-    '~/assets/style/fonts/index.css',
+    '~/assets/style/fonts/GoogleFonts.css',
     '~/assets/style/globalStyle.scss',
     '~/assets/style/globalStyle/overwrite/antdv/antdv.scss',
     '~/assets/style/globalStyle/overwrite/element/element.scss',
