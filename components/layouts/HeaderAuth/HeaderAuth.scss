@@ -56,11 +56,11 @@ header.header-bar-auth {
         align-items: center;
         background-color: var(--app-background-color);
         color: var(--text-color) !important;
-        padding: 7px 15px;
+        padding: 5px 15px;
         border-radius: 3px;
         font-size: 1.5rem;
-        transition: all 0.15s;
         text-align: center;
+        transition: all 0.15s;
         user-select: none;
 
         &:hover {

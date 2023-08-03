@@ -20,8 +20,8 @@
           Chưa có tài khoản?
         </span>
         <NuxtLink
-          class="signup-btn click-active"
           v-if="route.path == '/login'"
+          class="signup-btn click-active"
           to="/signup"
         >
           <span> Đăng ký ngay</span>
