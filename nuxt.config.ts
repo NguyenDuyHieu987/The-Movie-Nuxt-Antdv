@@ -328,9 +328,9 @@ export default defineNuxtConfig({
       Components({
         resolvers: [
           ElementPlusResolver(),
-          AntDesignVueResolver({
-            // importStyle: false,
-          }),
+          // AntDesignVueResolver({
+          //   // importStyle: false,
+          // }),
         ],
       }),
       ElementPlus({}),
