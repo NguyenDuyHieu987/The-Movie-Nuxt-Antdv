@@ -5,6 +5,27 @@ import { addComponent } from '@nuxt/kit';
 import * as AntDV from 'ant-design-vue';
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import axios from 'axios';
+const getAllGenres = async () => {
+  const response = await axios.get('https://api.phimhay247.site/genre/all');
+  return response.data?.results.map(
+    (genre: any) => `/discover/genre/${genre?.short_name}`
+  );
+};
+
+const getAllCountries = async () => {
+  const response = await axios.get('https://api.phimhay247.site/country/all');
+  return response.data?.results.map(
+    (country: any) => `/discover/country/${country?.short_name}`
+  );
+};
+
+const getAllYears = async () => {
+  const response = await axios.get('https://api.phimhay247.site/year/all');
+  return response.data?.results.map(
+    (year: any) => `/discover/year/${year?.name}`
+  );
+};
 
 export default defineNuxtConfig({
   app: {
@@ -305,7 +326,14 @@ export default defineNuxtConfig({
       if (nitroConfig.dev) {
         return;
       }
-      // nitroConfig.prerender.routes.push('/custom');
+
+      const genres = await getAllGenres();
+      const countries = await getAllCountries();
+      const years = await getAllYears();
+
+      nitroConfig.prerender?.routes?.push(...genres);
+      nitroConfig.prerender?.routes?.push(...countries);
+      nitroConfig.prerender?.routes?.push(...years);
     },
   },
   generate: {
