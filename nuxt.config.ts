@@ -309,7 +309,7 @@ export default defineNuxtConfig({
       '/follow',
       '/history',
       '/ranking',
-      '/upgrade',
+      '/upgrade/plans',
       '/youraccount',
       '/oauth',
       '/login',
