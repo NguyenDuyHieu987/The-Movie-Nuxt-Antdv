@@ -67,6 +67,7 @@ header.header-bar {
 
     .logo {
       display: inline-block;
+      margin-right: 15px;
 
       a {
         display: flex;
@@ -79,8 +80,8 @@ header.header-bar {
 
   .ant-select-show-search.search-header {
     width: 40%;
-    min-width: 350px;
-    max-width: 440px;
+    min-width: 400px;
+    max-width: 500px;
 
     .ant-select-selector {
       background-color: transparent !important;
