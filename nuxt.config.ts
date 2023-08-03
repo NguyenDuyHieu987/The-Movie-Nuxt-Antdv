@@ -417,8 +417,13 @@ export default defineNuxtConfig({
       prerender: true,
       static: true,
     },
-    '/upgrade/**': { swr: true, prerender: true, static: true },
-
+    '/upgrade/plans': { swr: true, prerender: true, static: true },
+    '/upgrade/payment': {
+      ssr: false,
+      swr: true,
+      prerender: true,
+      static: true,
+    },
     '/youraccount/**': { swr: true, prerender: true },
     '/forgotpassword': { swr: true, prerender: true },
   },
