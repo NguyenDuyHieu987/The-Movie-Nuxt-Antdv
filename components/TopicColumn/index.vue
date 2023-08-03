@@ -105,7 +105,7 @@
             class="dropdown-viewmore"
             destroyPopupOnHide
           >
-            <ElButton
+            <el-button
               class="viewmore-btn click-active"
               circle
               size="large"
@@ -125,7 +125,7 @@
                   <circle cx="256" cy="96" r="48" fill="currentColor" />
                 </svg>
               </template>
-            </ElButton>
+            </el-button>
 
             <template #overlay>
               <Menu class="dropdown-viewmore">
@@ -186,7 +186,7 @@
           </template>
         </Input>
 
-        <ElButton
+        <el-button
           round
           type="primary"
           class="remove-all-btn"
@@ -207,7 +207,7 @@
             </svg>
           </template>
           Xóa tất cả Danh sách phát
-        </ElButton>
+        </el-button>
       </div>
     </div>
   </aside>

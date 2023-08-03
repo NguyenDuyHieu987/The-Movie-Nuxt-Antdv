@@ -159,14 +159,14 @@ export default defineNuxtConfig({
     url: 'https://phimhay247.tech',
   },
   css: [
-    // 'ant-design-vue/dist/antd.dark.min.css',
+    'ant-design-vue/dist/antd.dark.min.css',
     // 'element-plus/dist/index.css',
     '~/assets/style/globalStyle.scss',
     // '@fortawesome/fontawesome-svg-core/styles.css',
     // 'material-icons/iconfont/material-icons.css',
   ],
   modules: [
-    // '@element-plus/nuxt',
+    '@element-plus/nuxt',
     '@pinia/nuxt',
     'nuxt-swiper',
     'nuxt-icon',
@@ -323,14 +323,14 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       AutoImport({
-        // resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()],
       }),
       Components({
         resolvers: [
-          // ElementPlusResolver(),
-          AntDesignVueResolver({
-            importStyle: false,
-          }),
+          ElementPlusResolver(),
+          // AntDesignVueResolver({
+          //   importStyle: false,
+          // }),
         ],
       }),
       ElementPlus({}),
