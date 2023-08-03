@@ -74,5 +74,8 @@
     "vue3-emoji-picker": "^1.1.7",
     "vuex": "^4.1.0",
     "wrangler": "^3.0.1"
+  },
+  "engines": {
+    "node": "^18.0.0"
   }
 }
