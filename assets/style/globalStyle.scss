@@ -1,6 +1,3 @@
-@import 'normalize.css';
-@import './fonts';
-
 :root {
   --background-content-color: #101010;
   --background-content-color1: #181818;
@@ -396,10 +393,6 @@ svg {
     }
   }
 }
-
-@import './globalStyle/overwrite/element';
-
-@import './globalStyle/overwrite/antd';
 
 .owl-carousel {
   .owl-stage-outer {

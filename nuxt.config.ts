@@ -156,7 +156,11 @@ export default defineNuxtConfig({
   css: [
     // 'ant-design-vue/dist/antd.dark.min.css',
     // 'element-plus/dist/index.css',
+    'normalize.css',
+    '~/assets/style/fonts',
     '~/assets/style/globalStyle.scss',
+    '~/assets/style/globalStyle/overwrite/antdv',
+    '~/assets/style/globalStyle/overwrite/element',
     // '@fortawesome/fontawesome-svg-core/styles.css',
     // 'material-icons/iconfont/material-icons.css',
   ],
