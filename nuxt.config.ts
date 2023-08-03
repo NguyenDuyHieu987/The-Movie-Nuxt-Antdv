@@ -281,24 +281,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'static',
     prerender: {
-      routes: [
-        '/',
-        '/search',
-        '/follow',
-        '/history',
-        '/ranking',
-        '/upgrade',
-        '/youraccount',
-        '/oauth',
-        '/login',
-        '/signup',
-        '/forgotpassword',
-        '/discover',
-        '/info-movie',
-        '/info-tv',
-        '/play-movie',
-        '/play-tv',
-      ],
+      routes: ['/*'],
       crawlLinks: true,
     },
     storage: {
@@ -435,6 +418,7 @@ export default defineNuxtConfig({
       static: true,
     },
     '/upgrade/**': { swr: true, prerender: true, static: true },
+
     '/youraccount/**': { swr: true, prerender: true },
     '/forgotpassword': { swr: true, prerender: true },
   },
