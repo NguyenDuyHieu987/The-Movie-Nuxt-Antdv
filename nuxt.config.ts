@@ -250,7 +250,7 @@ export default defineNuxtConfig({
       'Inter',
       {
         family: 'Roboto Flex',
-        src: '~/assets/fonts/roboto-flex-cufonfonts-webfont/RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].woff',
+        src: '~/assets/fonts/Roboto_Flex/RobotoFlex-Regular.woff2',
       },
     ],
   },
