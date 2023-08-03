@@ -69,4 +69,4 @@
 import { getImage } from '~/services/image';
 </script>
 
-<style scoped lang="scss" src="./Footer.scss"></style>
+<style lang="scss" scoped src="./Footer.scss"></style>
