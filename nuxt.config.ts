@@ -138,9 +138,7 @@ export default defineNuxtConfig({
       googleOauth2ClientID: process.env.GOOGLE_OAUTH2_CLIENT_ID,
       googleOauth2ClientSecret: process.env.GOOGLE_OAUTH2_CLIENT_SECRET,
     },
-    public: {
-      serverImageUrl: process.env.SERVER_IMAGE_URL,
-    },
+    public: {},
   },
   alias: {
     '@': resolve(__dirname, './'),
@@ -330,7 +328,7 @@ export default defineNuxtConfig({
     dirs: [
       {
         pathPrefix: false,
-        extensions: ['.vue'],
+        // extensions: ['.vue'],
       },
     ],
   },
