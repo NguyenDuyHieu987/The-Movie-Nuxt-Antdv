@@ -70,7 +70,12 @@ const getData = async () => {
           store.userAccount = accountResponse?.result;
           store.role = accountResponse?.result?.role;
         } else {
-          utils.auth.onLogOut();
+          window.localStorage.removeItem('user_account');
+          window.localStorage.removeItem('remember');
+          window.localStorage.removeItem('is_login');
+          store.userAccount = {};
+          store.isLogin = false;
+          store.role = 'normal';
         }
       })
       .catch((e) => {
