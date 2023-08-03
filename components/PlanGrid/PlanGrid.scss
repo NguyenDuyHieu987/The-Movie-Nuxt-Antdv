@@ -65,6 +65,9 @@
   }
 
   .plan-body {
+    position: relative;
+    z-index: 1;
+
     .plan-table {
       border-collapse: separate;
       border-spacing: 0 10px;
