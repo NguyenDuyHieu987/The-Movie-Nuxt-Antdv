@@ -328,16 +328,16 @@ export default defineNuxtConfig({
     dirs: [],
   },
   vite: {
-    plugins: [
-      Components({
-        resolvers: [
-          AntDesignVueResolver({
-            // importStyle: false,
-            resolveIcons: true,
-          }),
-        ],
-      }),
-    ],
+    // plugins: [
+    //   Components({
+    //     resolvers: [
+    //       AntDesignVueResolver({
+    //         // importStyle: false,
+    //         resolveIcons: true,
+    //       }),
+    //     ],
+    //   }),
+    // ],
     ssr: {
       noExternal: [
         'moment',
