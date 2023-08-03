@@ -169,7 +169,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@element-plus/nuxt',
-    function (options, nuxt) {
+    async function (options, nuxt) {
       for (const key in AntD) {
         if (['version', 'install'].includes(key)) continue;
         await addComponent({
