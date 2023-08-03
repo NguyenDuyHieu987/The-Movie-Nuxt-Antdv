@@ -1,5 +1,5 @@
 <template>
-  <div class="forgot-password">
+  <div class="forgot-password center-page">
     <div class="forgot-password-container">
       <div class="form-forgot-password-container">
         <!-- <a-button class="back-page-btn click-active" type="text">

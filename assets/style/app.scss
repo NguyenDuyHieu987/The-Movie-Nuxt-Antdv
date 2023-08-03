@@ -1,5 +1,6 @@
 .app-wrapper {
   overflow: hidden;
+  background-color: var(--background-content-color);
 
   .app-back-top {
     align-items: center;
@@ -53,6 +54,58 @@
     }
   }
 }
+
+.padding-content {
+  padding: 15px 20px;
+
+  &.horizontal {
+    padding: 0px 20px;
+  }
+}
+
+.center-page {
+  margin: 0px auto;
+}
+
+.change-page {
+  max-width: 700px;
+  margin: 0px auto;
+
+  .back-page-btn {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    margin-bottom: 10px;
+    font-size: inherit;
+
+    svg {
+      margin-right: 3px;
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+
+    a {
+      font-size: 1.8rem;
+      color: var(--text-color);
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .padding-content {
+    padding: 15px;
+
+    &.horizontal {
+      padding: 0px 15px;
+    }
+  }
+
+  .movie-group {
+    --card-movi-gap: 3px;
+  }
+}
+
+// Page transition
 
 ::view-transition-old(root),
 ::view-transition-new(root) {

@@ -2,16 +2,16 @@
   <Transition appear name="slide-left">
     <section class="plan-grid">
       <div class="plan-sider">
-        <el-skeleton
-          v-for="(item, index) in 3"
-          class="plan-box-selector"
-          :key="index"
-          :index="index"
-          :loading="loading"
-          animated
-        >
+        <el-skeleton :loading="loading" animated>
           <template #template>
-            <el-skeleton-item />
+            <div
+              v-for="(a, b) in 3"
+              :key="b"
+              :index="b"
+              class="plan-box-selector"
+            >
+              <el-skeleton-item />
+            </div>
           </template>
 
           <template #default>
@@ -43,15 +43,9 @@
             </tr>
           </thead>
 
-          <tbody class="plan-grid-feature-table-body">
-            <el-skeleton
-              v-for="(item, index) in 3"
-              :key="index"
-              :index="index"
-              :loading="loading"
-              animated
-            >
-              <template #template>
+          <el-skeleton :loading="loading" animated>
+            <template #template>
+              <div v-for="(a, b) in 3" :key="b" :index="b" class="tr-skeleton">
                 <td class="plan-option">
                   <el-skeleton-item />
                 </td>
@@ -64,9 +58,11 @@
                 <td class="plan-option">
                   <el-skeleton-item />
                 </td>
-              </template>
+              </div>
+            </template>
 
-              <template #default>
+            <template #default>
+              <tbody class="plan-grid-feature-table-body">
                 <tr
                   v-for="(item, index) in plans"
                   :key="index"
@@ -177,9 +173,9 @@
               </div> -->
                   </td>
                 </tr>
-              </template>
-            </el-skeleton>
-          </tbody>
+              </tbody>
+            </template>
+          </el-skeleton>
         </table>
       </div>
     </section>
@@ -197,7 +193,7 @@ const emits = defineEmits<{
 
 const store = useStore();
 const plans = ref<plan[]>([]);
-const loading = ref<boolean>(true);
+const loading = ref<boolean>(false);
 const selected = ref<string>('');
 
 onBeforeMount(async () => {
@@ -221,7 +217,9 @@ onBeforeMount(async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = false;
+      setTimeout(() => {
+        loading.value = false;
+      }, 1000);
     });
 });
 

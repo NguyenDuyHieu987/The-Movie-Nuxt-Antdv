@@ -1,8 +1,8 @@
 <template>
-  <div class="upgrade padding-content">
+  <div class="upgrade center-page padding-content">
     <div class="upgrade-container">
       <Transition appear name="slide-bottom">
-        <div v-show="showAnimation" class="upgrade-header">
+        <div class="upgrade-header">
           <h2>Chọn gói dịch vụ phù hợp với bạn</h2>
 
           <ul>

@@ -1,5 +1,5 @@
 <template>
-  <div class="change-page email padding-content">
+  <div class="change-page email center-page padding-content">
     <div v-if="isLogin" class="email-container">
       <Transition appear name="slide-left">
         <div v-show="showAnimation">

@@ -1,5 +1,5 @@
 <template>
-  <div class="your-account padding-content">
+  <div class="your-account center-page padding-content">
     <div v-if="isLogin" class="your-account-container">
       <Transition appear name="slide-bottom">
         <div v-show="showAnimation">
