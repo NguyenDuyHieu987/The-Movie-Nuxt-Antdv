@@ -2,7 +2,8 @@
   <div class="upgrade center-page padding-content">
     <div class="upgrade-container">
       <Transition appear name="slide-bottom">
-        <div v-show="showAnimation" class="upgrade-header">
+        <!-- v-show="showAnimation"  -->
+        <div class="upgrade-header">
           <h2>Chọn gói dịch vụ phù hợp với bạn</h2>
 
           <ul>
@@ -25,7 +26,7 @@
         </div>
       </Transition>
 
-      <PlanGrid v-show="showAnimation" @onSelectPlan="handleOnSelectPlan" />
+      <PlanGrid @onSelectPlan="handleOnSelectPlan" />
 
       <div class="submit-btn-container">
         <a-button @click="onRouteToPaymentPage" type="text" class="submit-btn">
@@ -43,9 +44,9 @@ import gsap from 'gsap';
 
 definePageMeta({
   // layout: 'service',
-  // pageTransition: {
-  //   name: 'slide-left',
-  // },
+  pageTransition: {
+    name: 'slide-left',
+  },
 });
 
 useHead({
