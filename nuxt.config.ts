@@ -1,10 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
 import { isProduction } from 'std-env';
-import Components from 'unplugin-vue-components/vite';
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import * as AntDV from 'ant-design-vue';
 import { addComponent } from '@nuxt/kit';
+// import Components from 'unplugin-vue-components/vite';
+// import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+// import * as AntDV from 'ant-design-vue';
 
 export default defineNuxtConfig({
   app: {
