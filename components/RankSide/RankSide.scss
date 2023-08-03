@@ -4,6 +4,7 @@
   z-index: 1;
   background-color: var(--background-content-color);
   padding: 0px 0px;
+  transition: all 0s;
 
   &.fixed {
     .sider-rank-wrapper {

@@ -154,7 +154,7 @@ export default defineNuxtConfig({
     url: 'https://phimhay247.tech',
   },
   css: [
-    // 'ant-design-vue/dist/antd.dark.min.css',
+    'ant-design-vue/dist/antd.dark.min.css',
     // 'element-plus/dist/index.css',
     'normalize.css/normalize.css',
     '~/assets/style/fonts/GoogleFonts.css',
@@ -338,22 +338,17 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [
-      Components({
-        resolvers: [
-          AntDesignVueResolver({
-            // importStyle: false,
-            // resolveIcons: true,
-          }),
-        ],
-      }),
+      // Components({
+      //   resolvers: [
+      //     AntDesignVueResolver({
+      //       // importStyle: false,
+      //       // resolveIcons: true,
+      //     }),
+      //   ],
+      // }),
     ],
     ssr: {
-      noExternal: [
-        'moment',
-        'compute-scroll-into-view',
-        'ant-design-vue',
-        '@ant-design/icons-vue',
-      ],
+      noExternal: ['moment', 'compute-scroll-into-view', 'ant-design-vue'],
     },
     build: {
       sourcemap: 'hidden',
