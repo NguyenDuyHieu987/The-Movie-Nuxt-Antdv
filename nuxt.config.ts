@@ -326,9 +326,6 @@ export default defineNuxtConfig({
   build: {
     analyze: true,
   },
-  components: {
-    dirs: [],
-  },
   vite: {
     plugins: [
       Components({
