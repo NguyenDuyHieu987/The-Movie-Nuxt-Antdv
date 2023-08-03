@@ -1,13 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path';
 import { isProduction } from 'std-env';
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
-import {
-  ElementPlusResolver,
-  AntDesignVueResolver,
-} from 'unplugin-vue-components/resolvers';
-import ElementPlus from 'unplugin-element-plus/vite';
+// import AutoImport from 'unplugin-auto-import/vite';
+// import Components from 'unplugin-vue-components/vite';
+// import {
+//   ElementPlusResolver,
+//   AntDesignVueResolver,
+// } from 'unplugin-vue-components/resolvers';
+// import ElementPlus from 'unplugin-element-plus/vite';
+import * as AntD from 'ant-design-vue';
+import { addComponent } from '@nuxt/kit';
 
 export default defineNuxtConfig({
   app: {
@@ -167,6 +169,16 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@element-plus/nuxt',
+    function (options, nuxt) {
+      for (const key in AntD) {
+        if (['version', 'install'].includes(key)) continue;
+        await addComponent({
+          filePath: 'ant-design-vue',
+          name: `A${key}`,
+          export: key,
+        });
+      }
+    },
     '@pinia/nuxt',
     'nuxt-swiper',
     'nuxt-icon',
