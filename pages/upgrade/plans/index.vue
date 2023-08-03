@@ -1,7 +1,14 @@
 <template>
   <div class="upgrade center-page padding-content">
     <div class="upgrade-container">
-      <Transition appear name="slide-bottom">
+      <Transition
+        appear
+        name="slide-bottom"
+        @beforeEnter="beforeEnter"
+        @enter="enter"
+        @beforeLeave="beforeLeave"
+        @leave="leave"
+      >
         <div class="upgrade-header">
           <h2>Chọn gói dịch vụ phù hợp với bạn</h2>
 
@@ -39,6 +46,7 @@
 <script setup lang="ts">
 import PlanGrid from '~/components/PlanGrid/PlanGrid.vue';
 import type { plan } from '@/types';
+import gsap from 'gsap';
 
 definePageMeta({
   // layout: 'service',
@@ -86,6 +94,34 @@ const onRouteToPaymentPage = () => {
   }
 
   navigateTo(`/upgrade/payment?planorder=${selectedPlan.value!?.order || 3}`);
+};
+
+const beforeEnter = (el: any) => {
+  el.style.transform = 'translateX(50px)';
+  el.style.opacity = '0';
+};
+
+const enter = (el: any, done: () => void) => {
+  gsap.to(el, {
+    x: 0,
+    opacity: 1,
+    duration: 0.3,
+    onComplete: done,
+  });
+};
+
+const beforeLeave = (el: any) => {
+  el.style.transform = 'translateX(0)';
+  el.style.opacity = '1';
+};
+
+const leave = (el: any, done: () => void) => {
+  gsap.to(el, {
+    x: -50,
+    opacity: 0,
+    duration: 0.3,
+    onComplete: done,
+  });
 };
 </script>
 
