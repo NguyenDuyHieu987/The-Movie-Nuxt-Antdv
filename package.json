@@ -44,7 +44,7 @@
     "@vimeo/player": "^2.20.1",
     "@vueuse/core": "^10.1.2",
     "aesjs": "^1.0.0",
-    "ant-design-vue": "^3.2.20",
+    "ant-design-vue": "^4.0.0",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.1.3",

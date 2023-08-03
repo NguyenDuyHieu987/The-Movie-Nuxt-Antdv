@@ -156,7 +156,7 @@ export default defineNuxtConfig({
     url: 'https://phimhay247.tech',
   },
   css: [
-    'ant-design-vue/dist/antd.dark.min.css',
+    // 'ant-design-vue/dist/antd.dark.min.css',
     // 'element-plus/dist/index.css',
     '~/assets/style/globalStyle.scss',
     // '@fortawesome/fontawesome-svg-core/styles.css',
@@ -250,7 +250,7 @@ export default defineNuxtConfig({
       'Inter',
       {
         family: 'Roboto Flex',
-        src: '~/assets/fonts/Roboto_Flex/RobotoFlex-Regular.woff2',
+        src: '~/assets/fonts/roboto-flex-cufonfonts-webfont/RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].woff',
       },
     ],
   },

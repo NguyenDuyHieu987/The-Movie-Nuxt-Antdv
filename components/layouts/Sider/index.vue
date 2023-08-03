@@ -88,7 +88,7 @@
 import { LayoutSider, Tooltip } from 'ant-design-vue';
 // import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
 import { getImage } from '~/services/image';
-import TheMenu from '~/components/TheMenu';
+import TheMenu from '@/components/TheMenu';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();
