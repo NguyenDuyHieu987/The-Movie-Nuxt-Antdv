@@ -326,7 +326,7 @@ export default defineNuxtConfig({
     ],
   },
   build: {
-    analyze: true,
+    // analyze: true,
   },
   components: {
     dirs: [
