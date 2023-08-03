@@ -27,7 +27,6 @@
     </div>
 
     <a-auto-complete
-      v-show="isShowSearch"
       v-model:value="valueInput"
       class="search-header"
       popupClassName="certain-category-search-dropdown"
