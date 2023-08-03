@@ -359,7 +359,6 @@ export default defineNuxtConfig({
       sourcemap: 'hidden',
       minify: 'terser',
       ssrManifest: true,
-      // ssr: true,
       assetsDir: 'home/',
       cssMinify: true,
       reportCompressedSize: false,

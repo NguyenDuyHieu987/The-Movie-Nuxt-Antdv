@@ -27,6 +27,7 @@
     </div>
 
     <a-auto-complete
+      v-show="isShowSearch"
       v-model:value="valueInput"
       class="search-header"
       popupClassName="certain-category-search-dropdown"
@@ -331,10 +332,13 @@ const dataSearch = ref<any[]>([]);
 const page = ref<number>(1);
 const loadingSearch = ref<boolean>(false);
 const isOpenAutoComplete = ref<boolean>(true);
+const isShowSearch = ref<boolean>(false);
 const debounce = ref<any>();
 const valueInput = ref<string>(route.query.q);
 
 onMounted(() => {
+  isShowSearch.value = true;
+
   const header: HTMLElement | null =
     document.querySelector('header.header-bar');
   var lastScrollTop = 0;
