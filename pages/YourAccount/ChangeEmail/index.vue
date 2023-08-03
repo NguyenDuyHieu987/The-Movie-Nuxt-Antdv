@@ -117,8 +117,8 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { ElNotification } from 'element-plus';
-import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm';
-import RequireAuth from '~/components/RequireAuth';
+import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm/VerifyPinOTPForm.vue';
+import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
 import { accountVerify, ChangeEmail } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';

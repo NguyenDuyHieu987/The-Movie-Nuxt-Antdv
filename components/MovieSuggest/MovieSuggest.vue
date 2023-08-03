@@ -44,8 +44,8 @@
 import axios from 'axios';
 import { getSimilar } from '~/services/similar';
 import { getTrending } from '~/services/trending';
-import MovieCardVertical from '~/components/MovieCardVertical';
-import CarouselGroup from '~/components/CarouselGroup';
+import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
+import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 
 const props = defineProps<{
   movieId: string;

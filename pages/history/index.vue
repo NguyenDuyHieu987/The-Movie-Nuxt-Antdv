@@ -101,11 +101,11 @@
 <script setup lang="ts">
 import axios from 'axios';
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
-import MovieCardHorizontalHistory from '~/components/MovieCardHorizontalHistory';
-import RequireAuth from '~/components/RequireAuth';
-import SortTab from '~/components/SortTab';
-import TopicRow from '~/components/TopicRow';
-import TopicColumn from '~/components/TopicColumn';
+import MovieCardHorizontalHistory from '~/components/MovieCardHorizontalHistory/MovieCardHorizontalHistory.vue';
+import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
+import SortTab from '~/components/SortTab/SortTab.vue';
+import TopicRow from '~/components/TopicRow/TopicRow.vue';
+import TopicColumn from '~/components/TopicColumn/TopicColumn.vue';
 import { getHistory, searchHistory } from '~/services/history';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';

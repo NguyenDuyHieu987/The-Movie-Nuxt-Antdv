@@ -184,7 +184,7 @@ import {
   CloseCircleFilled,
 } from '@ant-design/icons-vue';
 import { signUp, verifySignUp } from '~/services/authentication';
-import VerifySignUpForm from '~/components/VerifyForm/VerifySignUpForm';
+import VerifySignUpForm from '~/components/VerifyForm/VerifySignUpForm/VerifySignUpForm.vue';
 
 definePageMeta({
   layout: 'auth',

@@ -33,9 +33,9 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getCommentByMovidId } from '~/services/comment';
-import FormComment from '~/components/Comment/FormComment';
-import CommentItem from '~/components/Comment/CommentItem';
-import LoadingCircle from '~/components/LoadingCircle';
+import FormComment from '~/components/Comment/FormComment/FormComment.vue';
+import CommentItem from '~/components/Comment/CommentItem/CommentItem.vue';
+import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 
 const props = defineProps<{
   dataMovie: any;

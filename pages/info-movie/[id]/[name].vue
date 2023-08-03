@@ -355,16 +355,16 @@ import { getBackdrop, getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getGenreById } from '~/services/genres';
 import { getCountryByOriginalLanguage } from '~/services/country';
-import BackPage from '~/components/BackPage';
-import Tags from '~/components/Tags';
-import Overview from '~/components/Overview';
-import Interaction from '~/components/Interaction';
-import RatingMovie from '~/components/RatingMovie';
-import CastCrew from '~/components/CastCrew';
-import MovieRelated from '~/components/MovieRelated';
-import HistoryProgressBar from '~/components/HistoryProgressBar';
-import Comment from '~/components/Comment';
-import LoadingCircle from '~/components/LoadingCircle';
+import BackPage from '~/components/BackPage/BackPage.vue';
+import Tags from '~/components/Tags/Tags.vue';
+import Overview from '~/components/Overview/Overview.vue';
+import Interaction from '~/components/Interaction/Interaction.vue';
+import RatingMovie from '~/components/RatingMovie/RatingMovie.vue';
+import CastCrew from '~/components/CastCrew/CastCrew.vue';
+import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
+import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressBar.vue';
+import Comment from '~/components/Comment/Comment.vue';
+import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 
 definePageMeta({
   middleware: (to, from) => {},

@@ -9,8 +9,8 @@
             ?.replace(/\s/g, '+')
             .toLowerCase()}`,
     }"
-    class="movie-card-item horizontal"
     ref="cardItem"
+    class="movie-card-item vertical"
     @pointerenter="onMouseEnter"
   >
     <el-skeleton :loading="loading" animated>
@@ -25,11 +25,9 @@
 
       <template #default>
         <div class="img-box">
-          <!-- v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h_250')" -->
-
           <img
             class="ant-image"
-            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+            v-lazy="getImage(item?.poster_path, 'poster')"
             loading="lazy"
             alt=""
           />
@@ -41,7 +39,7 @@
             ></div>
           </div>
 
-          <!-- <div class="duration-episode-box">
+          <!-- <div v-if="!loading" class="duration-episode-box">
             <p v-if="!isEpisodes" class="duration-episode">
               {{ item?.runtime + ' min' }}
             </p>
@@ -52,7 +50,7 @@
                 //   : ''
                 item?.episode_run_time[0]
                   ? item?.episode_run_time[0] + ' min'
-                  : '? min / Ep'
+                  : '? min'
               }}
             </p>
           </div> -->
@@ -77,24 +75,31 @@
         </div>
 
         <div class="info">
-          <p class="title">
-            {{ item?.name }}
-            <!-- <span v-if="isEpisodes">
-              {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
-            </span> -->
-          </p>
-          <!-- <div class="info-bottom">
-            <div class="genres">
-              <span
-                class="genre-item"
-                v-for="(genre, index) in Array.from(item?.genres, (x: any) => x.name)"
-                :index="index"
-                :key="index"
-              >
-                {{ genre }}
-              </span>
-            </div>
-          </div> -->
+          <a-skeleton
+            :loading="loading"
+            :active="true"
+            :paragraph="{ rows: 2 }"
+            :title="false"
+          >
+            <p class="title">
+              {{ item?.name }}
+              <!-- <span v-if="isEpisodes">
+                {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
+              </span> -->
+            </p>
+            <!-- <div class="info-bottom">
+              <div class="genres">
+                <span
+                  class="genre-item"
+                  v-for="(genre, index) in Array.from(item?.genres, (x: any) => x.name)"
+                  :index="index"
+                  :key="index"
+                >
+                  {{ genre }}
+                </span>
+              </div>
+            </div> -->
+          </a-skeleton>
         </div>
       </template>
     </el-skeleton>
@@ -118,13 +123,12 @@
     />
   </NuxtLink>
 </template>
-
 <script setup lang="ts">
-// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import axios from 'axios';
+// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
-import PreviewModal from '~/components/PreviewModal';
+import PreviewModal from '~/components/PreviewModal/.vue';
 
 const props = defineProps<{
   item: any;
@@ -134,8 +138,8 @@ const props = defineProps<{
 const store = useStore();
 const utils = useUtils();
 const router = useRouter();
-const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
+const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
 const loadingImg = ref<boolean>(false);
 const isAddToList = ref<boolean>(false);
@@ -212,7 +216,6 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {});
 getData();
 
 const onMouseEnter = ({ target }: { target: HTMLElement }) => {
@@ -247,4 +250,5 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   });
 };
 </script>
-<style lang="scss" src="./MovieCardHorizontal.scss"></style>
+
+<style lang="scss" src="./MovieCardVertical.scss"></style>

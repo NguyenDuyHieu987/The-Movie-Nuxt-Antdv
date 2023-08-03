@@ -162,7 +162,7 @@ import axios from 'axios';
 import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import { getItemList } from '~/services/list';
-import ModalTrailer from '~/components/ModalTrailer';
+import ModalTrailer from '~/components/ModalTrailer/ModalTrailer.vue';
 
 const props = defineProps<{
   item: any;

@@ -81,7 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import CloseBtn from '~/components/ButtonTemplate/CloseBtn';
+import CloseBtn from '~/components/ButtonTemplate/CloseBtn/BillboardItem.vue';
 
 const store = useStore();
 </script>

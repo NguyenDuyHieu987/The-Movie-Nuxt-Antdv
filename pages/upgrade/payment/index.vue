@@ -123,7 +123,7 @@
 import axios from 'axios';
 import { getImage } from '~/services/image';
 import { getAllPlan } from '~/services/plans';
-import RequireAuth from '~/components/RequireAuth/index.vue';
+import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
 import type { plan } from '@/types';
 
 definePageMeta({

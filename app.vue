@@ -47,8 +47,8 @@ import axios from 'axios';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
 import { ElNotification } from 'element-plus';
 import { getUserToken } from '~/services/authentication';
-import LoadingApp from '~/components/LoadingApp';
-import RequireAuthDialog from '~/components/RequireAuthDialog';
+import LoadingApp from '~/components/LoadingApp/LoadingApp.vue';
+import RequireAuthDialog from '~/components/RequireAuthDialog/RequireAuthDialog.vue';
 
 const store = useStore();
 const utils = useUtils();

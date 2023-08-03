@@ -150,7 +150,7 @@ import axios from 'axios';
 import { ElNotification } from 'element-plus';
 import { DeleteComment } from '~/services/comment';
 import { getImage } from '~/services/image';
-import FormComment from '~/components/Comment/FormComment';
+import FormComment from '~/components/Comment/FormComment/FormComment.vue';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';

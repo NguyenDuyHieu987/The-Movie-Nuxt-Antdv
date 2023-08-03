@@ -84,7 +84,7 @@
 import axios from 'axios';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
-import CloseBtn from '~/components/ButtonTemplate/CloseBtn';
+import CloseBtn from '~/components/ButtonTemplate/CloseBtn/BillboardItem.vue';
 
 const props = defineProps<{
   isOpenModalTrailer: boolean;

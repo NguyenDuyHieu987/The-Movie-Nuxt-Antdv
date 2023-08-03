@@ -213,12 +213,12 @@
 <script setup lang="ts">
 import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
-import BillboardAnimation from '~/components/BillboardAnimation';
-import MovieCardHorizontal from '~/components/MovieCardHorizontal';
-import MovieCardVertical from '~/components/MovieCardVertical';
-import CarouselGroup from '~/components/CarouselGroup';
-import MovieCardHorizontalTrailer from '~/components/MovieCardHorizontalTrailer';
-import ViewMoreBar from '~/components/ViewMoreBar';
+import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.vue';
+import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
+import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
+import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
+import MovieCardHorizontalTrailer from '~/components/MovieCardHorizontalTrailer/MovieCardHorizontalTrailer.vue';
+import ViewMoreBar from '~/components/ViewMoreBar/ViewMoreBar.vue';
 import { getTrending } from '~/services/trending';
 import { getNowPlaying, getTopRated, getUpComing } from '~/services/movieSlug';
 import { getMoviesByGenres } from '~/services/discover';

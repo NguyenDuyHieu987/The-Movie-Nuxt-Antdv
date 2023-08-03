@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import HeaderAuth from '~/components/layouts/HeaderAuth';
+import HeaderAuth from '~/scomponents/layouts/HeaderAuth/HeaderAuth.vue';
 import { getImage } from '~/services/image';
 
 const image = ref<number>(Math.floor(Math.random() * 3) + 1);

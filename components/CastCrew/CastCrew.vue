@@ -46,8 +46,8 @@
 </template>
 
 <script setup lang="ts">
-import CastCard from '~/components/CastCard';
-import SliderGroup from '~/components/SliderGroup';
+import CastCard from '~/components/CastCard/CastCard.vue';
+import SliderGroup from '~/components/SliderGroup/SliderGroup.vue';
 import { getCredits } from '~/services/credit';
 
 const props = defineProps<{
