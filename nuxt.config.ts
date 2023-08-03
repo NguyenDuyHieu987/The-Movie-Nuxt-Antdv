@@ -330,8 +330,8 @@ export default defineNuxtConfig({
     dirs: [
       {
         pathPrefix: false,
+        extensions: ['.vue'],
       },
-      '',
     ],
   },
   vite: {
