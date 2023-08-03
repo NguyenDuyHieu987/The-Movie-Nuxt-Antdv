@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import { isProduction } from 'std-env';
 import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import * as AntD from 'ant-design-vue';
+import * as AntDV from 'ant-design-vue';
 import { addComponent } from '@nuxt/kit';
 
 export default defineNuxtConfig({
@@ -164,7 +164,6 @@ export default defineNuxtConfig({
     'ant-design-vue/es/layout/style/index.css',
     'ant-design-vue/es/select/style/index.css',
     'ant-design-vue/es/dropdown/style/index.css',
-    'normalize.css/normalize.css',
     '~/assets/style/fonts/GoogleFonts.css',
     '~/assets/style/globalStyle.scss',
     '~/assets/style/globalStyle/overwrite/antdv/antdv.scss',
@@ -175,12 +174,14 @@ export default defineNuxtConfig({
   modules: [
     '@element-plus/nuxt',
     async function (options, nuxt) {
-      for (const key in AntD) {
+      for (const key in AntDV) {
         if (['version', 'install'].includes(key)) continue;
         await addComponent({
           filePath: 'ant-design-vue',
           name: `A${key}`,
           export: key,
+          prefetch: true,
+          preload: true,
         });
       }
     },
