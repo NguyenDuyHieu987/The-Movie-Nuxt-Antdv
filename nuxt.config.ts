@@ -300,6 +300,13 @@ export default defineNuxtConfig({
     // ready: (ctx) => {
     //   console.log('ctx', ctx);
     // },
+
+    async 'nitro:config'(nitroConfig) {
+      if (nitroConfig.dev) {
+        return;
+      }
+      // nitroConfig.prerender.routes.push('/custom');
+    },
   },
   generate: {
     routes: [
@@ -311,7 +318,7 @@ export default defineNuxtConfig({
       '/ranking',
       '/upgrade/plans',
       '/youraccount',
-      '/oauth',
+      '/oauth/google',
       '/login',
       '/signup',
       '/forgotpassword',
@@ -418,7 +425,6 @@ export default defineNuxtConfig({
     '/upgrade/plans': { prerender: true, static: true },
     '/upgrade/payment': {
       ssr: false,
-
       prerender: true,
       static: true,
     },
