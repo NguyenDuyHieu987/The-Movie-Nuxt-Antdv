@@ -159,7 +159,7 @@ export default defineNuxtConfig({
     url: 'https://phimhay247.tech',
   },
   css: [
-    // 'ant-design-vue/dist/antd.dark.min.css',
+    'ant-design-vue/dist/antd.dark.min.css',
     // 'element-plus/dist/index.css',
     '~/assets/style/globalStyle.scss',
     // '@fortawesome/fontawesome-svg-core/styles.css',
@@ -328,9 +328,9 @@ export default defineNuxtConfig({
       Components({
         resolvers: [
           ElementPlusResolver(),
-          AntDesignVueResolver({
-            // importStyle: false,
-          }),
+          // AntDesignVueResolver({
+          //   // importStyle: false,
+          // }),
         ],
       }),
       ElementPlus({}),
