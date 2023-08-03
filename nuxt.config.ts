@@ -248,8 +248,8 @@ export default defineNuxtConfig({
     ],
   },
   plugins: [
-    // '@/plugins/elementPlus',
-    // '@/plugins/antd',
+    '@/plugins/elementPlus',
+    '@/plugins/antd',
     '@/plugins/fontawesome',
     '@/plugins/iconify',
     '@/plugins/vueprogressbar',
@@ -322,18 +322,18 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [
-      // AutoImport({
-      //   resolvers: [ElementPlusResolver()],
-      // }),
-      // Components({
-      //   resolvers: [
-      //     ElementPlusResolver(),
-      //     // AntDesignVueResolver({
-      //     //   // importStyle: false,
-      //     // }),
-      //   ],
-      // }),
-      // ElementPlus({}),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [
+          ElementPlusResolver(),
+          // AntDesignVueResolver({
+          //   // importStyle: false,
+          // }),
+        ],
+      }),
+      ElementPlus({}),
     ],
     build: {
       sourcemap: 'hidden',
