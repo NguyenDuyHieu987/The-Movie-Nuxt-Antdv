@@ -128,7 +128,7 @@ import axios from 'axios';
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
-import PreviewModal from '~/components/PreviewModal/.vue';
+import PreviewModal from '~/components/PreviewModal/PreviewModal.vue';
 
 const props = defineProps<{
   item: any;

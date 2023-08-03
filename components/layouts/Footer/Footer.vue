@@ -68,4 +68,5 @@
 <script setup lang="ts">
 import { getImage } from '~/services/image';
 </script>
+
 <style scoped lang="scss" src="./Footer.scss"></style>
