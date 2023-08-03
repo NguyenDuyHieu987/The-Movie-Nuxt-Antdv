@@ -6,6 +6,7 @@ import * as AntDV from 'ant-design-vue';
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import axios from 'axios';
+
 const getAllGenres = async () => {
   const response = await axios.get('https://api.phimhay247.site/genre/all');
   return response.data?.results.map(
