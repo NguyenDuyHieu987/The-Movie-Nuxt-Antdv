@@ -91,7 +91,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ElCarousel, ElCarouselItem, ElTooltip } from 'element-plus';
+// import { ElCarousel, ElCarouselItem, ElTooltip } from 'element-plus';
 import BillboardItem from '~/components/BillboardItem';
 
 const props = defineProps<{ data1: any[] }>();

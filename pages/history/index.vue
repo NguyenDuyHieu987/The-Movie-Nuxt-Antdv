@@ -100,6 +100,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import MovieCardHorizontalHistory from '~/components/MovieCardHorizontalHistory';
 import RequireAuth from '~/components/RequireAuth';
 import SortTab from '~/components/SortTab';
@@ -108,7 +109,6 @@ import TopicColumn from '~/components/TopicColumn';
 import { getHistory, searchHistory } from '~/services/history';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
-import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 // import scrollBottom from 'scroll-bottom';
 import { useBreakpoints } from '@vueuse/core';
 import gsap from 'gsap';

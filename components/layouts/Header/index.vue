@@ -303,7 +303,7 @@ import {
   AutoComplete,
   InputSearch,
 } from 'ant-design-vue';
-import { ElMenu } from 'element-plus';
+// import { ElMenu } from 'element-plus';
 import { getDaTaSearch } from '~/services/search';
 import { getImage } from '~/services/image';
 // import SearchCard from '~/components/SearchCard';
