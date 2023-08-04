@@ -379,7 +379,8 @@ export default defineNuxtConfig({
       // }),
     ],
     ssr: {
-      noExternal: ['moment', 'compute-scroll-into-view', 'ant-design-vue'],
+      external: ['compute-scroll-into-view', 'ant-design-vue', 'moment'],
+      noExternal: [],
     },
     css: {
       preprocessorOptions: {
