@@ -220,7 +220,7 @@ useSeoMeta({
   description: () => dataMovie.value?.overview,
   ogTitle: () => dataMovie.value?.name,
   ogDescription: () => dataMovie.value?.overview,
-  ogImage: () => getImage(item?.backdrop_path, 'backdrop', 'h-250'),
+  ogImage: () => getImage(dataMovie?.backdrop_path, 'backdrop', 'h-250'),
   ogLocale: 'vi',
 });
 
