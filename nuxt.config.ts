@@ -224,11 +224,13 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     // 'vue-social-sharing/nuxt',
     // '@nuxtjs/supabase',
+    'nuxt-og-image',
     'nuxt-delay-hydration',
   ],
   // elementPlus: {
   //   /** Options */
   // },
+  extends: ['nuxt-seo-kit'],
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
   },
