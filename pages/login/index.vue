@@ -399,6 +399,7 @@ const handleClickGoogleLogin = () => {
   form.setAttribute('action', oauth2Endpoint);
 
   // Parameters to pass to OAuth 2.0 endpoint.
+
   const params:
     | {
         client_id: number;
@@ -413,7 +414,7 @@ const handleClickGoogleLogin = () => {
     scope:
       'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
     prompt: 'select_account',
-    redirect_uri: 'http://localhost:3000/oauth/google',
+    redirect_uri: window.location.origin + '/oauth/google',
     response_type: 'token',
     include_granted_scopes: 'true',
   };
