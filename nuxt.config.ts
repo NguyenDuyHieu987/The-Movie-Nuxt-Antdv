@@ -449,11 +449,14 @@ export default defineNuxtConfig({
     '/login': {
       prerender: true,
       static: true,
+      experimentalNoScripts: true,
     },
     '/signup': {
       prerender: true,
       static: true,
+      experimentalNoScripts: true,
     },
+    '/forgotpassword': { prerender: true, experimentalNoScripts: true },
     '/upgrade/plans': { prerender: true, static: true },
     '/upgrade/payment': {
       ssr: false,
@@ -461,6 +464,5 @@ export default defineNuxtConfig({
       static: true,
     },
     '/youraccount/**': { prerender: true },
-    '/forgotpassword': { prerender: true },
   },
 });
