@@ -5,7 +5,6 @@ export function format(date: string, formats?: string) {
     month: '2-digit',
     day: '2-digit',
   };
-
   const options2: any = {
     year: 'numeric',
     month: 'long',
