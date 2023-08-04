@@ -100,7 +100,7 @@ definePageMeta({
 });
 
 const utils = useUtils();
-const store: any = useStore();
+const store = useStore();
 const loadingForgotPassword = ref<boolean>(false);
 const isActionForm = ref<boolean>(false);
 const formForgotPassword = reactive<{
