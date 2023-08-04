@@ -163,31 +163,32 @@
     .signup-container {
       .signup-form-container {
         width: 500px;
+
         .signup-form {
-          padding: 30px 50px;
+          padding: 30px 60px;
         }
       }
     }
   }
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 500px) {
   .signup {
     .signup-container {
       .signup-form-container {
-        // width: 450px;
+        width: 470px;
 
         .signup-form {
+          padding: 30px 50px;
         }
       }
 
       .verify-signup {
         .verify-signup-container {
-          width: 450px;
+          width: 470px;
 
           .verify-form {
-            padding: 30px 30px;
-            padding-top: 40px;
+            padding: 30px 50px;
           }
         }
       }
@@ -200,39 +201,14 @@
     .signup-container {
       .signup-form-container {
         .signup-form {
-          padding: 30px 30px;
+          padding: 30px 40px;
         }
       }
 
       .verify-signup {
         .verify-signup-container {
-          width: 400px;
-
           .verify-form {
-            padding: 20px 30px;
-            padding-top: 40px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 430px) {
-  .signup {
-    .signup-container {
-      .signup-form-container {
-        .signup-form {
-        }
-      }
-
-      .verify-signup {
-        .verify-signup-container {
-          width: 400px;
-
-          .verify-form {
-            padding: 20px 30px;
-            padding-top: 40px;
+            padding: 30px 40px;
           }
         }
       }
