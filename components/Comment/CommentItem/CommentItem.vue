@@ -21,7 +21,7 @@
               <div class="top">
                 <span class="author-username">{{ item?.username }}</span>
                 <span class="created-at">
-                  {{ moment(item?.created_at).locale('vi').fromNow() }}
+                  {{ utils.dateFormater.fromNow(item?.created_at) }}
                 </span>
 
                 <span v-if="isUpdated" class="updated-text">
@@ -247,7 +247,6 @@ import { getImage } from '~/services/image';
 import FormComment from '~/components/Comment/FormComment/FormComment.vue';
 import CommentItemChild from '~/components/Comment/CommentItemChild/CommentItemChild.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
-import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons-vue';
@@ -258,6 +257,7 @@ const props = defineProps<{
   movieType: string;
 }>();
 
+const utils = useUtils();
 const store = useStore();
 const { userAccount } = storeToRefs<any>(store);
 const commentsList = defineModel<any[]>('commentsList');

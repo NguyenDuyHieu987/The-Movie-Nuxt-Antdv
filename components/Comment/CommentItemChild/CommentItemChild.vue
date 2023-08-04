@@ -18,7 +18,7 @@
         <div class="top">
           <span class="author-username">{{ item?.username }}</span>
           <span class="created-at">
-            {{ moment(item?.created_at).locale('vi').fromNow() }}
+            {{ utils.dateFormater.fromNow(item?.created_at) }}
           </span>
           <span v-if="isUpdated" class="updated-text"> (Đã chỉnh sửa) </span>
         </div>
@@ -151,7 +151,6 @@ import { ElNotification } from 'element-plus';
 import { DeleteComment } from '~/services/comment';
 import { getImage } from '~/services/image';
 import FormComment from '~/components/Comment/FormComment/FormComment.vue';
-import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons-vue';
@@ -168,6 +167,7 @@ const emits = defineEmits<{
   omSuccessRemoveCommentChild: [];
 }>();
 
+const utils = useUtils();
 const store = useStore();
 const { userAccount } = storeToRefs<any>(store);
 const listReplies = defineModel<any[]>('listReplies');
