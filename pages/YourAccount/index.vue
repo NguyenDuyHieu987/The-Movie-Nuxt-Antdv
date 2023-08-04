@@ -153,7 +153,7 @@ const responesive = breakPoints.smallerOrEqual('responesive');
 
 const joinSince = computed<string>(() =>
   moment(store.userAccount?.created_at)
-    .locale('vi')
+    // .locale('vi')
     .format('MMMM Do YYYY, h:mm a')
 );
 
@@ -171,6 +171,8 @@ useServerSeoMeta({
   ogDescription: 'Hồ sơ, thông tin cá nhân',
   ogLocale: 'vi',
 });
+
+console.log(moment.locale('vi'));
 
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();

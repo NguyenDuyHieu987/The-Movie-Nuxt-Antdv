@@ -30,6 +30,8 @@ const getAllYears = async () => {
 
 export default defineNuxtConfig({
   app: {
+    rootId: '__nuxt',
+    buildAssetsDir: 'home/',
     head: {
       title: 'Phimhay247',
       meta: [
@@ -298,6 +300,7 @@ export default defineNuxtConfig({
     '@/plugins/sharenetwork',
     '@/plugins/vuelazyload',
     '@/plugins/googleTagManager',
+    '@/plugins/moment',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
