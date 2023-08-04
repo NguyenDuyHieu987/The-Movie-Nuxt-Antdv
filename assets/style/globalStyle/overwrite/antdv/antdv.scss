@@ -54,6 +54,9 @@
         }
 
         .ant-modal-confirm-btns {
+          display: flex;
+          flex-direction: row;
+
           .ant-btn {
             height: auto;
             min-width: 60px;
