@@ -33,6 +33,14 @@
     }
   }
 
+  &.app-color {
+    svg {
+      path {
+        stroke: var(--loading-app-color);
+      }
+    }
+  }
+
   svg.loading-icon {
     animation: loading-circle 1.2s linear infinite;
   }

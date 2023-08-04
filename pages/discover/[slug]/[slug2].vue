@@ -2,6 +2,7 @@
   <div class="discover padding-content">
     <FilterBar
       @dataFiltered="(data: any[], formSelect: formFilter) => setDataFiltered(data, formSelect)"
+      v-model:loading="loading"
       :cancelFilter="cancelFilter"
     />
 
@@ -11,7 +12,7 @@
       </h2>
     </div>
     <section class="discover-section" :class="{ collapsed: store.collapsed }">
-      <div class="movie-group horizontal">
+      <div v-if="!loading" class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in dataDiscover"
           :index="index"
@@ -20,10 +21,12 @@
           :type="item.media_type"
         />
       </div>
+
+      <LoadingCircle v-else class="loading-page" />
     </section>
 
     <ControlPage
-      v-show="dataDiscover?.length"
+      v-show="!loading"
       :page="page"
       :total="totalPage"
       :pageSize="pageSize"
@@ -59,6 +62,7 @@ import { FilterDataMovie } from '~/services/discover';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '~/components/FilterBar/FilterBar.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
+import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 import type { formFilter } from '@/types';
 
 const route: any = useRoute();
@@ -75,6 +79,8 @@ const metaHead = ref<string>('');
 const internalInstance: any = getCurrentInstance();
 
 const getData = async () => {
+  loading.value = true;
+
   if (isFilter.value) {
     await useAsyncData(`discover/all/${formFilterSelect.value}}`, () =>
       FilterDataMovie(formFilterSelect.value)
@@ -84,6 +90,9 @@ const getData = async () => {
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
+      })
+      .finally(() => {
+        loading.value = false;
       });
   } else {
     switch (route.params?.slug) {
@@ -103,6 +112,9 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
               break;
             case 'nowplaying':
@@ -118,6 +130,9 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
               break;
             case 'popular':
@@ -133,6 +148,9 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
               break;
             case 'toprated':
@@ -148,6 +166,9 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
               break;
             case 'upcoming':
@@ -163,6 +184,9 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
               break;
           }
@@ -184,8 +208,10 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
-
               break;
 
             case 'airingtoday':
@@ -201,6 +227,9 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
               break;
             case 'ontheair':
@@ -216,6 +245,9 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
               break;
             case 'tvpopular':
@@ -231,6 +263,9 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
               break;
             case 'tvtoprated':
@@ -246,6 +281,9 @@ const getData = async () => {
                 })
                 .catch((e) => {
                   if (axios.isCancel(e)) return;
+                })
+                .finally(() => {
+                  loading.value = false;
                 });
               break;
           }
@@ -260,7 +298,11 @@ const getData = async () => {
           })
           .catch((e) => {
             if (axios.isCancel(e)) return;
+          })
+          .finally(() => {
+            loading.value = false;
           });
+
         metaHead.value =
           'Thể loại: ' +
           getGenreByShortName(route.params?.slug2, store?.allGenres)
@@ -276,7 +318,11 @@ const getData = async () => {
           })
           .catch((e) => {
             if (axios.isCancel(e)) return;
+          })
+          .finally(() => {
+            loading.value = false;
           });
+
         metaHead.value = /^\d+$/.test(route.params?.slug2)
           ? 'Năm ' + route.params?.slug2
           : 'Trước năm ' + route.params?.slug2?.slice(-4);
@@ -291,7 +337,11 @@ const getData = async () => {
           })
           .catch((e) => {
             if (axios.isCancel(e)) return;
+          })
+          .finally(() => {
+            loading.value = false;
           });
+
         metaHead.value =
           'Quốc gia: ' + getCountryByShortName(route.params?.slug2)?.name;
 
@@ -323,7 +373,6 @@ onBeforeMount(() => {
 
   getData();
 
-  loading.value = false;
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 
   useHead({
@@ -365,7 +414,6 @@ const setDataFiltered = (data: any[], formSelect: formFilter) => {
   page.value = formSelect.pageFilter;
   metaHead.value = 'Danh sách phim đã lọc';
 
-  loading.value = false;
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 };
 
@@ -375,4 +423,4 @@ const cancelFilter = () => {
 };
 </script>
 
-<style scoped lang="scss" src="../DiscoverMoviePage.scss"></style>
+<style lang="scss" src="../DiscoverMoviePage.scss"></style>

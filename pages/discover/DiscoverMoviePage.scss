@@ -1,7 +1,30 @@
+.discover {
+  .discover-head {
+    .gradient-title-default {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .discover-section {
+    .loading-page {
+      top: 60%;
+
+      svg {
+        font-size: 4rem;
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+  }
+}
+
 @media only screen and (min-width: 2300px) {
   .discover-section.collapsed {
     grid-template-columns: repeat(9, minmax(10%, auto)) !important;
   }
+
   .discover-section {
     grid-template-columns: repeat(8, minmax(10%, auto)) !important;
   }
@@ -88,23 +111,5 @@
     .ant-image {
       height: 110px !important;
     }
-  }
-}
-
-.discover {
-  .discover-head {
-    .gradient-title-default {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
-
-  .discover-section {
-  }
-
-  .ant-radio-group.tabs-search,
-  .el-radio-group.tabs-search {
-    margin-bottom: 5px !important;
   }
 }

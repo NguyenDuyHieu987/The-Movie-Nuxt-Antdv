@@ -26,6 +26,7 @@
     flex-direction: column;
 
     & > .container {
+      position: relative;
       // padding: 15px 20px;
       padding-bottom: 50px;
       flex-grow: 1;

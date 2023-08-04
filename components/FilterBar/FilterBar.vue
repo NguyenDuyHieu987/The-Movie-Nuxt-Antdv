@@ -10,6 +10,7 @@
         <div class="list-input-filter">
           <a-button
             class="filter-btn click-active"
+            type="text"
             :disabled="disableBtnFilter"
             @click="handleFilterMovie"
           >
@@ -244,6 +245,10 @@ const genres = ref<genre[]>([]);
 const years = ref<year[]>([]);
 const countries = ref<country[]>([]);
 const listSortBy = ref<sortby[]>([]);
+const loadingData = defineModel<boolean>('loading', {
+  default: false,
+});
+
 const movieType = computed(() => {
   if (route.params?.slug?.includes('movie')) {
     if (route.params?.slug2?.replace('/', '') == 'all') {
@@ -309,6 +314,7 @@ const disableBtnFilter = computed(
 );
 
 const handleFilterMovie = async () => {
+  loadingData.value = true;
   await useAsyncData(`discover/all/${formSelect}}`, () =>
     FilterDataMovie(formSelect)
   )
@@ -317,6 +323,9 @@ const handleFilterMovie = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingData.value = false;
     });
 };
 
