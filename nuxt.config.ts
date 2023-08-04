@@ -406,9 +406,7 @@ export default defineNuxtConfig({
         parse: {
           html5_comments: false,
         },
-        compress: {
-          drop_console: true,
-        },
+        compress: false,
         mangle: {},
         format: {
           ecma: 2016,
