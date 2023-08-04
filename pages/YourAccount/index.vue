@@ -172,8 +172,6 @@ useServerSeoMeta({
   ogLocale: 'vi',
 });
 
-console.log(moment.locale('vi'));
-
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
