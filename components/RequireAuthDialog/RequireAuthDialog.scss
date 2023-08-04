@@ -95,9 +95,10 @@
       border: none;
 
       .ant-btn {
-        padding: 10px 50px;
+        padding: 11px 50px;
         max-height: 45px;
         border-radius: 3px;
+        transition: all 0.3s;
       }
     }
   }
