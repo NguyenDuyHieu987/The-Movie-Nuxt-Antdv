@@ -215,6 +215,15 @@ const getData = async () => {
 onBeforeMount(() => {});
 getData();
 
+useSeoMeta({
+  title: () => dataMovie.value?.name,
+  description: () => dataMovie.value?.overview,
+  ogTitle: () => dataMovie.value?.name,
+  ogDescription: () => dataMovie.value?.overview,
+  ogImage: () => getImage(item?.backdrop_path, 'backdrop', 'h-250'),
+  ogLocale: 'vi',
+});
+
 const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   if (loading.value) return;
 
