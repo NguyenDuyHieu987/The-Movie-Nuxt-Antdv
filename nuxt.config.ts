@@ -168,7 +168,7 @@ export default defineNuxtConfig({
     '@': resolve(__dirname, './'),
   },
   experimental: {
-    payloadExtraction: true,
+    payloadExtraction: false,
     viewTransition: true,
   },
   typescript: {
