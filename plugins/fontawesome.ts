@@ -35,31 +35,31 @@ config.autoAddCss = false;
 
 // You can add your icons directly in this plugin. See other examples for how you
 // can add other styles or just individual icons.
-library.add(
-  fas,
-  fab,
-  far
-  // faVideoCamera,
-  // faFilm,
-  // faRankingStar,
-  // faGlobe,
-  // faCalendarDays,
-  // faBookmark,
-  // faList,
-  // faChevronLeft,
-  // faChevronRight,
-  // faChevronUp,
-  // faPlay,
-  // faStar,
-  // faAt,
-  // faCheck,
-  // faFilter,
-  // faMagnifyingGlass,
-  // faMoneyCheckDollar,
-  // faYoutube,
-  // faFacebookF,
-  // faEnvelope
-);
+
+library.add();
+// fas,
+// fab,
+// far
+// faVideoCamera,
+// faFilm,
+// faRankingStar,
+// faGlobe,
+// faCalendarDays,
+// faBookmark,
+// faList,
+// faChevronLeft,
+// faChevronRight,
+// faChevronUp,
+// faPlay,
+// faStar,
+// faAt,
+// faCheck,
+// faFilter,
+// faMagnifyingGlass,
+// faMoneyCheckDollar,
+// faYoutube,
+// faFacebookF,
+// faEnvelope
 
 export default defineNuxtPlugin((nuxtApp) => {
   // nuxtApp.vueApp.component('font-awesome-icon', FontAwesomeIcon, {});

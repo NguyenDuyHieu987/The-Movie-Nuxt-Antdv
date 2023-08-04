@@ -69,7 +69,6 @@
     "vue-lazyload": "^3.0.0",
     "vue-router": "^4.2.4",
     "vue-social-sharing": "^4.0.0-alpha4",
-    "vue-virtual-scroll-list": "^2.3.4",
     "vue3-emoji-picker": "^1.1.7",
     "vuex": "^4.1.0",
     "wrangler": "^3.0.1"
