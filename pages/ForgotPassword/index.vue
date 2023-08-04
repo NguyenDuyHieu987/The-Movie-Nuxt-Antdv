@@ -137,6 +137,7 @@ useServerSeoMeta({
 
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
+
   getForgotPasswordLocalStr();
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 });
