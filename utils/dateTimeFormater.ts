@@ -53,7 +53,7 @@ export function fromNow(
 
   let fromNowStr: string = '';
 
-  if (diffDays >= 0 || options?.onlyDay) {
+  if (options?.onlyDay) {
     if (diffDays < 30) {
       if (diffDays < 1) {
         fromNowStr = 'Hôm nay';
@@ -70,21 +70,33 @@ export function fromNow(
       }
     }
   } else {
-    const diffHours = diff / (1000 * 3600);
-
-    if (diffHours > 1) {
-      fromNowStr = Math.round(diffHours) + ' giờ trước';
-    } else {
-      const diffMinutes = Math.round(diff / (1000 * 60));
-
-      if (diffMinutes > 1) {
-        fromNowStr = Math.round(diffMinutes) + ' phút trước';
+    if (diffDays >= 1) {
+      if (diffDays < 30) {
+        fromNowStr = Math.round(diffDays) + ' ngày trước';
       } else {
-        // const diffSeconds = Math.round(diff / 1000);
+        if (diffDays < 365) {
+          fromNowStr = Math.round(diffDays / 30) + ' tháng trước';
+        } else {
+          fromNowStr = Math.round(diffDays / 365) + ' nắm trước';
+        }
+      }
+    } else {
+      const diffHours = diff / (1000 * 3600);
 
-        // fromNowStr = Math.round(diffSeconds) + ' giây trước';
+      if (diffHours > 1) {
+        fromNowStr = Math.round(diffHours) + ' giờ trước';
+      } else {
+        const diffMinutes = Math.round(diff / (1000 * 60));
 
-        fromNowStr = 'Vài giây trước';
+        if (diffMinutes > 1) {
+          fromNowStr = Math.round(diffMinutes) + ' phút trước';
+        } else {
+          // const diffSeconds = Math.round(diff / 1000);
+
+          // fromNowStr = Math.round(diffSeconds) + ' giây trước';
+
+          fromNowStr = 'Vài giây trước';
+        }
       }
     }
   }
