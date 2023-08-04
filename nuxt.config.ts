@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     buildAssetsDir: 'home/',
     head: {
       title: 'Phimhay247',
+      titleTemplate: '%pageTitle %titleSeparator %siteName',
       meta: [
         {
           charset: 'utf-8',
@@ -162,7 +163,12 @@ export default defineNuxtConfig({
       googleOauth2ClientID: process.env.GOOGLE_OAUTH2_CLIENT_ID,
       googleOauth2ClientSecret: process.env.GOOGLE_OAUTH2_CLIENT_SECRET,
     },
-    public: {},
+    public: {
+      siteUrl: 'https://phimhay247.tech',
+      siteName: 'Phimhay247',
+      siteDescription: 'Xem phim thỏa thích cùng PhimHay247',
+      titleSeparator: '|',
+    },
   },
   alias: {
     '@': resolve(__dirname, './'),
