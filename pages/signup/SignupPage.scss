@@ -10,6 +10,8 @@
   overflow-x: hidden;
 
   .signup-container {
+    display: flex;
+    max-width: 100%;
     margin: auto auto;
 
     .signup-form-container {
@@ -176,7 +178,6 @@
         // width: 450px;
 
         .signup-form {
-          // padding: 30px 30px;
         }
       }
 
@@ -198,10 +199,8 @@
   .signup {
     .signup-container {
       .signup-form-container {
-        width: 400px;
-
         .signup-form {
-          padding: 20px 30px;
+          padding: 30px 30px;
         }
       }
 
@@ -223,10 +222,7 @@
   .signup {
     .signup-container {
       .signup-form-container {
-        width: 400px;
-
         .signup-form {
-          padding: 20px 30px;
         }
       }
 
