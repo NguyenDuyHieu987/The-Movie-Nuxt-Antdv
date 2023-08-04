@@ -59,7 +59,7 @@ import {
   getTvTopRated,
 } from '~/services/TvSlug';
 import { FilterDataMovie } from '~/services/discover';
-import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.server.vue';
+import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '~/components/FilterBar/FilterBar.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';

@@ -214,7 +214,7 @@
 import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.vue';
-import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.server.vue';
+import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontalTrailer from '~/components/MovieCardHorizontalTrailer/MovieCardHorizontalTrailer.vue';

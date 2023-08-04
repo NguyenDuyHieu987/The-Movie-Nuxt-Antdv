@@ -53,7 +53,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.server.vue';
+import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 // import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import { getDaTaSearch } from '~/services/search';
 
