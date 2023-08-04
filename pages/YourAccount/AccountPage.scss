@@ -10,7 +10,6 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 20px;
-
       padding-bottom: 15px;
       border-bottom: 1px solid var(--border-regular);
 
@@ -108,6 +107,7 @@
 
             .right {
               .upgrade-btn {
+                padding: 7px 15px;
                 background-image: linear-gradient(
                   45deg,
                   var(--app-background-color),
