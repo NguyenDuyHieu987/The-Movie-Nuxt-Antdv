@@ -149,7 +149,6 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in', appear: true },
   },
   runtimeConfig: {
-    apiGateway: process.env.API_GATEWAY,
     app: {
       production_mode: isProduction,
       apiGateway: process.env.API_GATEWAY,

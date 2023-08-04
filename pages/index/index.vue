@@ -404,14 +404,10 @@ const getData = async () => {
   }
 };
 
-const runtimeConfig = useRuntimeConfig();
-
 onBeforeMount(async () => {
   await nextTick();
 
   getData();
-
-  console.log(runtimeConfig);
 });
 
 const handleLoadMoreRecommend = async () => {
