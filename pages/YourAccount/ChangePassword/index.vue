@@ -138,6 +138,21 @@ definePageMeta({
   },
 });
 
+useHead({
+  title: 'Đỏi mật khẩu',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: 'Đỏi mật khẩu',
+  description: 'Đỏi mật khẩu của bạn',
+  ogTitle: 'Đỏi mật khẩu',
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: 'Đỏi mật khẩu của bạn',
+  ogLocale: 'vi',
+});
+
 const store: any = useStore();
 const utils = useUtils();
 const { isLogin } = storeToRefs<any>(store);

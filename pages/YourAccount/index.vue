@@ -138,6 +138,21 @@ definePageMeta({
   },
 });
 
+useHead({
+  title: 'Tài khoản',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: 'Tài khoản',
+  description: 'Tài khoản của bạn',
+  ogTitle: 'Tài khoản',
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: 'Tài khoản của bạn',
+  ogLocale: 'vi',
+});
+
 const store = useStore();
 const utils = useUtils();
 const { isLogin, userAccount } = storeToRefs<any>(store);

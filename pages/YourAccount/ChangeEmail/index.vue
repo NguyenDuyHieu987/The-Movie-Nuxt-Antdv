@@ -123,6 +123,21 @@ import { accountVerify, ChangeEmail } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
+useHead({
+  title: 'Đỏi Email',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: 'Đỏi Email',
+  description: 'Đỏi Email của bạn',
+  ogTitle: 'Đỏi Email',
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: 'Đỏi Email của bạn',
+  ogLocale: 'vi',
+});
+
 definePageMeta({
   pageTransition: {
     name: 'slide-left',

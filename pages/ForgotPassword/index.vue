@@ -121,17 +121,17 @@ const noteForgotPassword = ref<string>(
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
+  title: 'Quên mật khẩu - Trợ giúp',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
-  description: 'Hóa đơn của bạn. Lịch sử giao dịch',
-  ogTitle: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
+  title: 'Quên mật khẩu - Trợ giúp',
+  description: 'Quên mật khẩu của bạn',
+  ogTitle: 'Quên mật khẩu - Trợ giúp',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Hóa đơn của bạn. Lịch sử giao dịch',
+  ogDescription: 'Quên mật khẩu của bạn',
   ogLocale: 'vi',
 });
 

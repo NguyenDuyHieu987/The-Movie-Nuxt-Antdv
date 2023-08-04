@@ -49,14 +49,14 @@ definePageMeta({
 });
 
 useHead({
-  title: 'Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
+  title: 'Nâng cấp tài khoản',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
+  title: 'Nâng cấp tài khoản',
   description: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
-  ogTitle: 'Nâng cấp tài khoản - Gói & Dịch vụ | Phimhay247',
+  ogTitle: 'Nâng cấp tài khoản',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',

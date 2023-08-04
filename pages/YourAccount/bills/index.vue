@@ -13,14 +13,14 @@ const store: any = useStore();
 const { isLogin } = storeToRefs<any>(store);
 
 useHead({
-  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
+  title: 'Lịch sử giao dịch - Hóa đơn',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
+  title: 'Lịch sử giao dịch - Hóa đơn',
   description: 'Hóa đơn của bạn. Lịch sử giao dịch',
-  ogTitle: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
+  ogTitle: 'Lịch sử giao dịch - Hóa đơn',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Hóa đơn của bạn. Lịch sử giao dịch',

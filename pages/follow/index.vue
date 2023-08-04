@@ -149,14 +149,14 @@ const responsive = breakpoints.smallerOrEqual('responsive');
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: 'Theo dõi - Danh sách ' + ' | Phimhay247',
+  title: 'Theo dõi - Danh sách',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Theo dõi - Danh sách ' + ' | Phimhay247',
+  title: 'Theo dõi - Danh sách',
   description: 'Danh sách theo dõi của bạn',
-  ogTitle: 'Theo dõi - Danh sách ' + ' | Phimhay247',
+  ogTitle: 'Theo dõi - Danh sách',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Danh sách theo dõi của bạn',

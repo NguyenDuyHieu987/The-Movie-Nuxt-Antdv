@@ -168,6 +168,7 @@ export default defineNuxtConfig({
       siteName: 'Phimhay247',
       siteDescription: 'Xem phim thỏa thích cùng PhimHay247',
       titleSeparator: '|',
+      language: 'vi',
     },
   },
   alias: {

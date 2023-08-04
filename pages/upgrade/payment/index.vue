@@ -150,6 +150,21 @@ definePageMeta({
   },
 });
 
+useHead({
+  title: 'Thanh toán - Phương thức thanh toán',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: 'Thanh toán - Phương thức thanh toán',
+  description: 'Thanh toán gói dịch vụ',
+  ogTitle: 'Thanh toán - Phương thức thanh toán',
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: 'Thanh toán gói dịch vụ',
+  ogLocale: 'vi',
+});
+
 const store = useStore();
 const route = useRoute();
 const internalInstance: any = getCurrentInstance();

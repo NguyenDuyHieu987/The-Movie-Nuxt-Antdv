@@ -45,18 +45,15 @@ const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title:
-    'Bảng xếp hạng - Trending - Top phim ngày, tháng, năm ' + ' | Phimhay247',
+  title: 'Bảng xếp hạng - Trending - Top phim ngày, tháng, năm',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title:
-    'Bảng xếp hạng - Trending - Top phim ngày, tháng, năm ' + ' | Phimhay247',
+  title: 'Bảng xếp hạng - Trending - Top phim ngày, tháng, năm',
 
   description: 'Phim hay, Trending, bảng xếp hạng xem phim trên Phimhay247',
-  ogTitle:
-    'Bảng xếp hạng - Trending - Top phim ngày, tháng, năm ' + ' | Phimhay247',
+  ogTitle: 'Bảng xếp hạng - Trending - Top phim ngày, tháng, năm',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Phim hay, Trending, bảng xếp hạng xem phim trên Phimhay247',

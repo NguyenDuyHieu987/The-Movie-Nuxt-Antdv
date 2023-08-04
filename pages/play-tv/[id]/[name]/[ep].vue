@@ -392,8 +392,7 @@ useHead({
     'Xem phim - Phim bộ - ' +
     dataMovie.value?.name +
     ' - Phần ' +
-    dataMovie.value?.last_episode_to_air?.season_number +
-    ' | Phimhay247',
+    dataMovie.value?.last_episode_to_air?.season_number,
   htmlAttrs: { lang: 'vi' },
 });
 
@@ -402,15 +401,13 @@ useServerSeoMeta({
     'Xem phim - Phim bộ - ' +
     dataMovie.value?.name +
     ' - Phần ' +
-    dataMovie.value?.last_episode_to_air?.season_number +
-    ' | Phimhay247',
+    dataMovie.value?.last_episode_to_air?.season_number,
   description: dataMovie.value?.overview,
   ogTitle:
     'Xem phim - Phim bộ - ' +
     dataMovie.value?.name +
     ' - Phần ' +
-    dataMovie.value?.last_episode_to_air?.season_number +
-    ' | Phimhay247',
+    dataMovie.value?.last_episode_to_air?.season_number,
   ogType: 'video.movie',
   ogUrl: window.location.href,
   ogDescription: dataMovie.value?.overview,
