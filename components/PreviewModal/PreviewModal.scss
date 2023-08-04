@@ -9,20 +9,20 @@
 
   .preview-modal {
     display: inline-block;
-    overflow: hidden;
     position: absolute;
-    cursor: pointer;
+    left: var(--left);
+    top: var(--top);
     opacity: 1;
     min-width: 350px;
     width: 17vw;
     height: auto;
+    background-color: var(--preview-modal-background-color);
     border-radius: 5px;
     box-shadow: var(--box-shadow-medium);
-    left: var(--left);
-    top: var(--top);
+    overflow: hidden;
+    cursor: pointer;
     transform: translateX(-50%) translateY(-50%);
     animation: preview-modal-effect 0.4s ease;
-    background-color: var(--preview-modal-background-color);
 
     @keyframes preview-modal-effect {
       // from {
@@ -256,7 +256,7 @@
 
       .info {
         padding: 0px;
-        font-size: 0.8vw;
+        font-size: 0.9vw;
 
         .title {
           color: var(--text-color);

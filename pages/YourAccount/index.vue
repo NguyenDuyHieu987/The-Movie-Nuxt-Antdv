@@ -111,7 +111,9 @@
                   </div>
 
                   <div class="right">
-                    <NuxtLink to="/YourAccount/bills"> Xem thêm </NuxtLink>
+                    <NuxtLink class="click-active" to="/YourAccount/bills">
+                      Xem thêm
+                    </NuxtLink>
                   </div>
                 </div>
               </div>
