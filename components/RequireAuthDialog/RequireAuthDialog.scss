@@ -1,7 +1,7 @@
 .require-auth-dialog {
-  max-width: 600px;
-  min-width: 600px;
-  border-radius: 2px;
+  // max-width: 600px;
+  // min-width: 600px;
+  border-radius: 1px;
   box-shadow: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
     0 9px 28px 8px #00000077;
   background-color: var(--background-content-color1);
@@ -98,6 +98,24 @@
         padding: 10px 50px;
         max-height: 45px;
         border-radius: 3px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .require-auth-dialog {
+    .ant-modal-content {
+      .ant-modal-body {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .ant-result {
+          .ant-result-title {
+            padding: 0px;
+            font-size: 2.5rem;
+          }
+        }
       }
     }
   }

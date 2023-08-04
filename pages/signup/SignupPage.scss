@@ -44,9 +44,10 @@
         }
 
         .signup-form-button {
+          width: 100%;
           font-size: 1.5rem;
           margin-top: 10px;
-          width: 100%;
+          padding: 10px 15px;
           border: 1px solid var(--border-regular);
           background-color: var(--background-content-color);
 

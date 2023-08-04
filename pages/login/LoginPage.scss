@@ -83,6 +83,7 @@
 
         .login-form-button {
           width: 100%;
+          padding: 10px 15px;
           font-size: 1.5rem;
           background-color: var(--background-content-color);
           border: 1px solid var(--border-regular);
@@ -126,6 +127,7 @@
             align-items: center;
             background-color: var(--background-content-color);
             border: 1px solid var(--border-regular);
+            padding: 10px 15px;
 
             &:hover {
               // border-color: var(--app-background-color);
