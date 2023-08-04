@@ -326,14 +326,11 @@
 
 <script setup lang="ts">
 // import axios from 'axios';
-// import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
-// import disableScroll from 'disable-scroll';
 import axios from 'axios';
 import _ from 'lodash';
-import moment from 'moment';
 
 const props = defineProps<{
   item: any;
@@ -375,69 +372,35 @@ const getData = async () => {
 
   const prev_date_old = new Date(props.prevItem?.created_at);
   const date_old = new Date(props.item?.created_at);
-  const date_new = new Date();
-  // console.log(date_old.toISOString().slice(0, 10));
-  // console.log(date_new.toISOString());
-  differenceDate.value = date_new.getTime() - date_old.getTime();
-  const totalDays = Math.round(differenceDate.value / (1000 * 3600 * 24));
-  // console.log(totalDays + ' days to world Cup');
+  const now = new Date();
 
-  // const moment = require('moment');
-  // const date_old1 = moment(date_old).format('DD/MM/YYYY');
-  const date_old_moment_format =
-    _.capitalize(moment(date_old).locale('vi').fromNow()) +
-    ' - ' +
-    moment(date_old).locale('vi').format('LL');
-  // console.log(moment(date_old).locale('vi').format('dddd'));
-  // console.log(moment(date_old).locale('vi').fromNow());
+  // console.log('a: ', now.getTimezoneOffset());
 
+  // console.log(utils.dateFormater.fromNow('2023-08-04T12:33:02.293Z'));
+
+  // Is 2nd onwards
   if (props?.prevItem) {
+    const diff = prev_date_old.getTime() - date_old.getTime();
+    const diffDays = diff / (1000 * 3600 * 24);
+
+    // Is today
     if (
-      prev_date_old.toISOString().slice(0, 9) !=
-      date_old.toISOString().slice(0, 9)
+      // prev_date_old.toISOString().slice(0, 9) !=
+      // date_old.toISOString().slice(0, 9)
+      diffDays > 1
     ) {
-      switch (totalDays) {
-        case 0:
-          timeLine.value = 'Hôm nay';
-          break;
-        case 1:
-          timeLine.value = 'Hôm qua';
-          break;
-        // case 2:
-        //   timeLine.value = '2 Ngày trước';
-        //   break;
-        // case 3:
-        //   timeLine.value = '3 Ngày trước';
-        //   break;
-        // case 4:
-        //   timeLine.value = '4 Ngày trước';
-        //   break;
-        // case 5:
-        //   timeLine.value = '5 Ngày trước';
-        //   break;
-        // case 6:
-        //   timeLine.value = '6 Ngày trước';
-        //   break;
-        // case 7:
-        //   timeLine.value = '1 Tuần trước';
-        //   break;
-        default:
-          timeLine.value = date_old_moment_format;
-          break;
-      }
+      timeLine.value =
+        utils.dateFormater.fromNow(props.item?.created_at, { onlyDay: true }) +
+        ' - ' +
+        utils.dateFormater.format(props.item?.created_at, 'LL');
     }
-  } else {
-    switch (totalDays) {
-      case 0:
-        timeLine.value = 'Hôm nay';
-        break;
-      case 1:
-        timeLine.value = 'Hôm qua';
-        break;
-      default:
-        timeLine.value = date_old_moment_format;
-        break;
-    }
+  }
+  // Is first item
+  else {
+    timeLine.value =
+      utils.dateFormater.fromNow(props.item?.created_at, { onlyDay: true }) +
+      ' - ' +
+      utils.dateFormater.format(props.item?.created_at, 'LL');
   }
 
   if (props?.type || props?.item?.media_type) {

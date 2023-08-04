@@ -130,8 +130,6 @@
 <script setup lang="ts">
 import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
 import { storeToRefs } from 'pinia';
-import moment from 'moment';
-import 'moment/locale/vi';
 import { useBreakpoints } from '@vueuse/core';
 
 definePageMeta({
@@ -152,9 +150,7 @@ const internalInstance: any = getCurrentInstance();
 const responesive = breakPoints.smallerOrEqual('responesive');
 
 const joinSince = computed<string>(() =>
-  moment(store.userAccount?.created_at)
-    // .locale('vi')
-    .format('MMMM Do YYYY, h:mm a')
+  utils.dateFormater.format(store.userAccount?.created_at, 'LLL')
 );
 
 useHead({
