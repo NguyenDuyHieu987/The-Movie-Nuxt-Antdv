@@ -53,7 +53,7 @@ export function fromNow(
 
   let fromNowStr: string = '';
 
-  if (diffDays >= 0 && options?.onlyDay) {
+  if (diffDays >= 0 || options?.onlyDay) {
     if (diffDays < 30) {
       if (diffDays < 1) {
         fromNowStr = 'Hôm nay';
