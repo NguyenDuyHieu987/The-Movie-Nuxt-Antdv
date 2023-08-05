@@ -677,8 +677,10 @@ header.header-bar {
     .el-dropdown-menu__item {
       position: relative;
 
-      &:first-child {
-        border-bottom: 1px solid var(--border-regular);
+      &:has(.your-account) {
+        &:first-child {
+          border-bottom: 1px solid var(--border-regular);
+        }
       }
 
       a {

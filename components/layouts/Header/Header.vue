@@ -321,8 +321,8 @@
 
             <template #dropdown>
               <el-dropdown-menu class="dropdown-account">
-                <el-dropdown-item v-if="isLogin" :class="{ active: isLogin }">
-                  <NuxtLink to="/YourAccount">
+                <el-dropdown-item v-if="isLogin">
+                  <NuxtLink class="your-account" to="/YourAccount">
                     <span>Tài khoản</span>
                     <br />
                     <span style="font-size: 1.2rem">
