@@ -40,6 +40,7 @@
               size="large"
               type="text"
               shape="circle"
+              aria-label="prev billboard"
             >
               <template #icon>
                 <!-- <Icon name="fa6-solid:chevron-left"/> -->
@@ -71,6 +72,7 @@
               size="large"
               type="text"
               shape="circle"
+              aria-label="next billboard"
             >
               <template #icon>
                 <!-- <Icon name="fa6-solid:chevron-right"/> -->
