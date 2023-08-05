@@ -276,7 +276,7 @@ header.header-bar {
         }
 
         .el-popper.el-dropdown__popper.header {
-          top: calc(var(--header-height) / 1.45) !important;
+          top: calc(var(--header-height) / 1.46) !important;
         }
       }
     }
@@ -338,7 +338,7 @@ header.header-bar {
       align-items: center;
 
       ul.menu-header {
-        li {
+        li.menu-item {
           &.search-mobile {
             display: flex;
           }
@@ -372,12 +372,6 @@ header.header-bar {
 
     .right-header {
       margin-right: -5px;
-
-      .ant-menu {
-        .ant-menu-item {
-          // padding: 0px 15px;
-        }
-      }
     }
   }
 }

@@ -104,12 +104,13 @@
 .el-dropdown__popper {
   border-radius: 1px !important;
   transition: height 0s !important;
+  box-shadow: var(--box-shadow-small) !important;
 
   .el-dropdown-menu {
-    background-color: var(--background-content-color);
+    background-color: var(--background-content-color3);
 
     .el-dropdown-menu__item {
-      padding: 13px 20px;
+      padding: 13px 23px;
       color: var(--text-color) !important;
       transition: all 0.1s;
 
@@ -127,7 +128,6 @@
 #el-popper-container-1024 {
   .el-popper {
     border-radius: 1px;
-    background-color: var(--background-content-color);
 
     a {
       color: var(--text-color);
@@ -139,10 +139,10 @@
       transition: height 0s;
 
       .el-dropdown-menu {
-        background-color: var(--background-content-color1);
+        background-color: var(--background-content-color3);
 
         .el-dropdown-menu__item {
-          padding: 13px 20px;
+          padding: 13px 23px;
           color: var(--text-color) !important;
           transition: all 0.1s;
 
