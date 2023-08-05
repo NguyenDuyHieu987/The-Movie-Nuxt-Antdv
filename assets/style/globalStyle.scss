@@ -384,7 +384,7 @@ svg {
 }
 
 .ant-btn,
-.ant-btn.ant-btn-lg {
+.ant-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -394,6 +394,10 @@ svg {
   box-shadow: none;
   // line-height: var(--line-height-regular);
   line-height: normal;
+
+  &.ant-btn-lg {
+    padding: 10px 15px;
+  }
 
   &:not(.ant-btn-circle) {
     height: auto;
