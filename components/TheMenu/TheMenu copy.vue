@@ -1,46 +1,45 @@
 <template>
-  <el-menu
-    :collapse="store.collapsed"
-    :defaultOpeneds="state.openKeys"
-    :defaultActive="state.selectedKeys"
+  <a-menu
+    v-model:openKeys="state.openKeys"
+    v-model:selectedKeys="state.selectedKeys"
     class="menu-sider-bar"
+    mode="inline"
     theme="dark"
-    popperEffect="dark"
-    backgroundColor="transparent"
-    textColor="var(--text-color)"
-    activeTextColor="#fff"
-    :router="true"
+    :subMenuCloseDelay="0.15"
+    :subMenuOpenDelay="0.15"
   >
     <!-- :forceSubMenuRender="true" -->
 
-    <el-menu-item index="home">
-      <el-icon> <HomeOutlined /></el-icon>
-
-      <template #title>
-        <NuxtLink to="/">Trang chủ</NuxtLink>
+    <a-menu-item key="home">
+      <template #icon>
+        <HomeOutlined />
       </template>
-    </el-menu-item>
 
-    <el-sub-menu index="movie">
+      <div>
+        <NuxtLink to="/">Trang chủ</NuxtLink>
+      </div>
+    </a-menu-item>
+
+    <a-sub-menu key="movie">
+      <template #icon>
+        <!-- <font-awesome-icon icon="fa-solid fa-video-camera" /> -->
+        <!-- <Icon name="fa6-solid:video" /> -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 576 512"
+        >
+          <path
+            d="M0 128c0-35.3 28.7-64 64-64h256c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zm559.1-28.2c10.4 5.6 16.9 16.4 16.9 28.2v256c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64l-14.2-9.5V174.9l14.2-9.5l96-64c9.8-6.5 22.4-7.2 32.9-1.6z"
+          />
+        </svg>
+      </template>
       <template #title>
-        <el-icon>
-          <!-- <font-awesome-icon icon="fa-solid fa-video-camera" /> -->
-          <!-- <Icon name="fa6-solid:video" /> -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.5rem"
-            height="1.5rem"
-            viewBox="0 0 576 512"
-          >
-            <path
-              d="M0 128c0-35.3 28.7-64 64-64h256c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zm559.1-28.2c10.4 5.6 16.9 16.4 16.9 28.2v256c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64l-14.2-9.5V174.9l14.2-9.5l96-64c9.8-6.5 22.4-7.2 32.9-1.6z"
-            />
-          </svg>
-        </el-icon>
         <span>Phim lẻ</span>
       </template>
 
-      <el-menu-item index="all">
+      <a-menu-item key="all">
         <NuxtLink
           :to="{
             path: `/discover/movie/all`,
@@ -48,9 +47,9 @@
         >
           Tất cả
         </NuxtLink>
-      </el-menu-item>
+      </a-menu-item>
 
-      <el-menu-item index="nowplaying">
+      <a-menu-item key="nowplaying">
         <NuxtLink
           :to="{
             path: `/discover/movie/nowplaying`,
@@ -58,9 +57,9 @@
         >
           Now playing
         </NuxtLink>
-      </el-menu-item>
+      </a-menu-item>
 
-      <el-menu-item index="popular">
+      <a-menu-item key="popular">
         <NuxtLink
           :to="{
             path: `/discover/movie/popular`,
@@ -68,9 +67,9 @@
         >
           Phổ biến
         </NuxtLink>
-      </el-menu-item>
+      </a-menu-item>
 
-      <el-menu-item index="toprated">
+      <a-menu-item key="toprated">
         <NuxtLink
           :to="{
             path: `/discover/movie/toprated`,
@@ -78,9 +77,9 @@
         >
           Top đánh giá
         </NuxtLink>
-      </el-menu-item>
+      </a-menu-item>
 
-      <el-menu-item index="upcoming">
+      <a-menu-item key="upcoming">
         <NuxtLink
           :to="{
             path: `/discover/movie/upcoming`,
@@ -88,29 +87,29 @@
         >
           Sắp công chiếu
         </NuxtLink>
-      </el-menu-item>
-    </el-sub-menu>
+      </a-menu-item>
+    </a-sub-menu>
 
-    <el-sub-menu index="tv">
+    <a-sub-menu key="tv">
+      <template #icon>
+        <!-- <font-awesome-icon icon="fa-solid fa-film" /> -->
+        <!-- <Icon name="fa6-solid:film" /> -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M0 96c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm48 272v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zM48 240v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zM48 112v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zm-256 32v64c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-64c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-64c0-17.7-14.3-32-32-32H192z"
+          />
+        </svg>
+      </template>
       <template #title>
-        <el-icon>
-          <!-- <font-awesome-icon icon="fa-solid fa-film" /> -->
-          <!-- <Icon name="fa6-solid:film" /> -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.5rem"
-            height="1.5rem"
-            viewBox="0 0 512 512"
-          >
-            <path
-              d="M0 96c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm48 272v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zM48 240v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zM48 112v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zm-256 32v64c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-64c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-64c0-17.7-14.3-32-32-32H192z"
-            />
-          </svg>
-        </el-icon>
         <span>Phim bộ</span>
       </template>
 
-      <el-menu-item index="all">
+      <a-menu-item key="all">
         <NuxtLink
           :to="{
             path: `/discover/tv/all`,
@@ -118,9 +117,9 @@
         >
           Tất cả
         </NuxtLink>
-      </el-menu-item>
+      </a-menu-item>
 
-      <el-menu-item index="airingtoday">
+      <a-menu-item key="airingtoday">
         <NuxtLink
           :to="{
             path: `/discover/tv/airingtoday`,
@@ -128,9 +127,9 @@
         >
           Airing today
         </NuxtLink>
-      </el-menu-item>
+      </a-menu-item>
 
-      <el-menu-item index="ontheair">
+      <a-menu-item key="ontheair">
         <NuxtLink
           :to="{
             path: `/discover/tv/ontheair`,
@@ -138,9 +137,9 @@
         >
           On the air
         </NuxtLink>
-      </el-menu-item>
+      </a-menu-item>
 
-      <el-menu-item index="tvpopular">
+      <a-menu-item key="tvpopular">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvpopular`,
@@ -148,9 +147,9 @@
         >
           Phổ biến
         </NuxtLink>
-      </el-menu-item>
+      </a-menu-item>
 
-      <el-menu-item index="tvtoprated">
+      <a-menu-item key="tvtoprated">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvtoprated`,
@@ -158,31 +157,31 @@
         >
           Top đánh giá
         </NuxtLink>
-      </el-menu-item>
-    </el-sub-menu>
+      </a-menu-item>
+    </a-sub-menu>
 
-    <el-sub-menu index="genre">
+    <a-sub-menu key="genre">
+      <template #icon>
+        <!-- <font-awesome-icon icon="fa-solid fa-list" /> -->
+        <!-- <Icon name="fa6-solid:list"></Icon> -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M80 48h-64C7.156 48 0 55.16 0 64v64c0 8.844 7.156 16 16 16h64C88.84 144 96 136.8 96 128V64C96 55.16 88.84 48 80 48zM80 208h-64C7.156 208 0 215.2 0 224v64c0 8.844 7.156 16 16 16h64C88.84 304 96 296.8 96 288V224C96 215.2 88.84 208 80 208zM80 368h-64C7.156 368 0 375.2 0 384v64c0 8.844 7.156 16 16 16h64C88.84 464 96 456.8 96 448v-64C96 375.2 88.84 368 80 368zM192 128h288c17.67 0 32-14.33 32-31.1S497.7 64 480 64H192C174.3 64 160 78.33 160 95.1S174.3 128 192 128zM480 384H192c-17.67 0-32 14.33-32 32s14.33 32 32 32h288c17.67 0 32-14.33 32-32S497.7 384 480 384zM480 224H192C174.3 224 160 238.3 160 256s14.33 32 32 32h288c17.67 0 32-14.33 32-32S497.7 224 480 224z"
+          />
+        </svg>
+      </template>
       <template #title>
-        <el-icon>
-          <!-- <font-awesome-icon icon="fa-solid fa-list" /> -->
-          <!-- <Icon name="fa6-solid:list"></Icon> -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.5rem"
-            height="1.5rem"
-            viewBox="0 0 512 512"
-          >
-            <path
-              d="M80 48h-64C7.156 48 0 55.16 0 64v64c0 8.844 7.156 16 16 16h64C88.84 144 96 136.8 96 128V64C96 55.16 88.84 48 80 48zM80 208h-64C7.156 208 0 215.2 0 224v64c0 8.844 7.156 16 16 16h64C88.84 304 96 296.8 96 288V224C96 215.2 88.84 208 80 208zM80 368h-64C7.156 368 0 375.2 0 384v64c0 8.844 7.156 16 16 16h64C88.84 464 96 456.8 96 448v-64C96 375.2 88.84 368 80 368zM192 128h288c17.67 0 32-14.33 32-31.1S497.7 64 480 64H192C174.3 64 160 78.33 160 95.1S174.3 128 192 128zM480 384H192c-17.67 0-32 14.33-32 32s14.33 32 32 32h288c17.67 0 32-14.33 32-32S497.7 384 480 384zM480 224H192C174.3 224 160 238.3 160 256s14.33 32 32 32h288c17.67 0 32-14.33 32-32S497.7 224 480 224z"
-            />
-          </svg>
-        </el-icon>
         <span>Thể loại</span>
       </template>
 
-      <el-menu-item
+      <a-menu-item
         v-for="(item, index) in genres"
-        :index="index.toString()"
+        :index="index"
         :key="item?.id"
       >
         <a-tooltip
@@ -207,31 +206,30 @@
         >
           {{ item?.name_vietsub }}
         </NuxtLink>
-      </el-menu-item>
-    </el-sub-menu>
+      </a-menu-item>
+    </a-sub-menu>
 
-    <el-sub-menu index="year">
+    <a-sub-menu key="year">
+      <template #icon>
+        <!-- <font-awesome-icon icon="fa-solid fa-calendar-days" /> -->
+        <!-- <Icon name="fa6-regular:calendar-days" />  -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 448 512"
+        >
+          <path
+            d="M128 0c17.7 0 32 14.3 32 32v32h128V32c0-17.7 14.3-32 32-32s32 14.3 32 32v32h48c26.5 0 48 21.5 48 48v48H0v-48c0-26.5 21.5-48 48-48h48V32c0-17.7 14.3-32 32-32zM0 192h448v272c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16z"
+          />
+        </svg>
+      </template>
       <template #title>
-        <el-icon>
-          <!-- <font-awesome-icon icon="fa-solid fa-calendar-days" /> -->
-          <!-- <Icon name="fa6-regular:calendar-days" />  -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.5rem"
-            height="1.5rem"
-            viewBox="0 0 448 512"
-          >
-            <path
-              d="M128 0c17.7 0 32 14.3 32 32v32h128V32c0-17.7 14.3-32 32-32s32 14.3 32 32v32h48c26.5 0 48 21.5 48 48v48H0v-48c0-26.5 21.5-48 48-48h48V32c0-17.7 14.3-32 32-32zM0 192h448v272c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16z"
-            />
-          </svg>
-        </el-icon>
         <span>Năm phát hành</span>
       </template>
-
-      <el-menu-item
+      <a-menu-item
         v-for="(item, index) in years"
-        :index="index.toString()"
+        :index="index"
         :key="item?.name"
       >
         <NuxtLink
@@ -248,31 +246,30 @@
         >
           {{ item?.name }}
         </NuxtLink>
-      </el-menu-item>
-    </el-sub-menu>
+      </a-menu-item>
+    </a-sub-menu>
 
-    <el-sub-menu index="country">
+    <a-sub-menu key="country">
+      <template #icon>
+        <!-- <font-awesome-icon icon="fa-solid fa-globe" /> -->
+        <!-- <Icon name="fa6-solid:globe" /> -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.5rem"
+          height="1.5rem"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M256 16C123.5 16 16 123.5 16 256s107.5 240 240 240s239.1-107.5 239.1-240S388.5 16 256 16zM422 160H373.3c-6.391-27.41-15.39-52.18-26.48-73.1C378.2 103.8 404.2 129.2 422 160zM336 256c0 16.98-1.295 32.82-3.176 48H179.2C177.3 288.8 176 272.1 176 256s1.295-32.82 3.176-48h153.6C334.7 223.2 336 239 336 256zM256 448c-21.79 0-50.87-36.42-67.28-96h134.6C306.9 411.6 277.8 448 256 448zM188.7 160C205.1 100.4 234.2 64 256 64s50.87 36.42 67.28 96H188.7zM165.2 86.9C154.1 107.8 145.1 132.6 138.7 160H89.98C107.8 129.2 133.8 103.8 165.2 86.9zM70.32 208h60.25C128.9 223.5 128 239.6 128 256S128.9 288.5 130.6 304H70.32C66.34 288.6 64 272.6 64 256S66.34 223.4 70.32 208zM89.98 352H138.7c6.391 27.41 15.39 52.18 26.48 73.1C133.8 408.2 107.8 382.8 89.98 352zM346.8 425.1C357.9 404.2 366.9 379.4 373.3 352h48.74C404.2 382.8 378.2 408.2 346.8 425.1zM441.7 304h-60.25c1.68-15.51 2.57-31.56 2.57-48s-.8907-32.49-2.57-48h60.25C445.7 223.4 448 239.4 448 256S445.7 288.6 441.7 304z"
+          />
+        </svg>
+      </template>
       <template #title>
-        <el-icon>
-          <!-- <font-awesome-icon icon="fa-solid fa-globe" /> -->
-          <!-- <Icon name="fa6-solid:globe" /> -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.5rem"
-            height="1.5rem"
-            viewBox="0 0 512 512"
-          >
-            <path
-              d="M256 16C123.5 16 16 123.5 16 256s107.5 240 240 240s239.1-107.5 239.1-240S388.5 16 256 16zM422 160H373.3c-6.391-27.41-15.39-52.18-26.48-73.1C378.2 103.8 404.2 129.2 422 160zM336 256c0 16.98-1.295 32.82-3.176 48H179.2C177.3 288.8 176 272.1 176 256s1.295-32.82 3.176-48h153.6C334.7 223.2 336 239 336 256zM256 448c-21.79 0-50.87-36.42-67.28-96h134.6C306.9 411.6 277.8 448 256 448zM188.7 160C205.1 100.4 234.2 64 256 64s50.87 36.42 67.28 96H188.7zM165.2 86.9C154.1 107.8 145.1 132.6 138.7 160H89.98C107.8 129.2 133.8 103.8 165.2 86.9zM70.32 208h60.25C128.9 223.5 128 239.6 128 256S128.9 288.5 130.6 304H70.32C66.34 288.6 64 272.6 64 256S66.34 223.4 70.32 208zM89.98 352H138.7c6.391 27.41 15.39 52.18 26.48 73.1C133.8 408.2 107.8 382.8 89.98 352zM346.8 425.1C357.9 404.2 366.9 379.4 373.3 352h48.74C404.2 382.8 378.2 408.2 346.8 425.1zM441.7 304h-60.25c1.68-15.51 2.57-31.56 2.57-48s-.8907-32.49-2.57-48h60.25C445.7 223.4 448 239.4 448 256S445.7 288.6 441.7 304z"
-            />
-          </svg>
-        </el-icon>
         <span>Quốc gia</span>
       </template>
-
-      <el-menu-item
+      <a-menu-item
         v-for="(item, index) in countries"
-        :index="index.toString()"
+        :index="index"
         :key="item?.short_name"
       >
         <NuxtLink
@@ -284,16 +281,13 @@
 
           {{ item?.name }}
         </NuxtLink>
-      </el-menu-item>
-    </el-sub-menu>
+      </a-menu-item>
+    </a-sub-menu>
 
-    <el-menu-item index="follow">
-      <el-icon>
+    <a-menu-item key="follow">
+      <template #icon>
+        <!-- <font-awesome-icon icon="fa-solid fa-bookmark" /> -->
         <!-- <span class="material-icons-outlined"> playlist_play </span> -->
-        <!-- <Icon
-          class="material-icons-outlined playlist"
-          name="ic:baseline-playlist-play"
-        /> -->
         <svg
           class="material-icons-outlined playlist"
           xmlns="http://www.w3.org/2000/svg"
@@ -312,14 +306,19 @@
             </g>
           </g>
         </svg>
-      </el-icon>
-      <template #title>
-        <NuxtLink to="/follow"> Theo dõi</NuxtLink>
-      </template>
-    </el-menu-item>
 
-    <el-menu-item key="history">
-      <el-icon>
+        <!-- <Icon
+          class="material-icons-outlined playlist"
+          name="ic:baseline-playlist-play"
+        /> -->
+      </template>
+      <div>
+        <NuxtLink to="/follow"> Theo dõi</NuxtLink>
+      </div>
+    </a-menu-item>
+
+    <a-menu-item key="history">
+      <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-clock-rotate-left" /> -->
         <!-- <Icon name="fa6-solid:clock-rotate-left" /> -->
         <svg
@@ -332,14 +331,14 @@
             d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24h110.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24v104c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"
           />
         </svg>
-      </el-icon>
-      <template #title>
-        <NuxtLink to="/history"> Lịch sử Xem </NuxtLink>
       </template>
-    </el-menu-item>
+      <div>
+        <NuxtLink to="/history"> Lịch sử Xem </NuxtLink>
+      </div>
+    </a-menu-item>
 
-    <el-menu-item key="ranking">
-      <el-icon>
+    <a-menu-item key="ranking">
+      <template #icon>
         <!-- <font-awesome-icon icon="fa-solid fa-ranking-star" /> -->
         <!-- <Icon name="fa6-solid:ranking-star" /> -->
         <svg
@@ -352,16 +351,16 @@
             d="M353.8 54.1L330.2 6.3c-3.9-8.3-16.1-8.6-20.4 0l-23.6 47.8l-52.3 7.5c-9.3 1.4-13.3 12.9-6.4 19.8l38 37l-9 52.1c-1.4 9.3 8.2 16.5 16.8 12.2l46.9-24.8l46.6 24.4c8.6 4.3 18.3-2.9 16.8-12.2l-9-52.1l38-36.6c6.8-6.8 2.9-18.3-6.4-19.8l-52.3-7.5zM256 256c-17.7 0-32 14.3-32 32v192c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32V288c0-17.7-14.3-32-32-32H256zM32 320c-17.7 0-32 14.3-32 32v128c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32H32zm416 96v64c0 17.7 14.3 32 32 32h128c17.7 0 32-14.3 32-32v-64c0-17.7-14.3-32-32-32H480c-17.7 0-32 14.3-32 32z"
           />
         </svg>
-      </el-icon>
-      <template #title>
-        <NuxtLink to="/ranking"> Xếp hạng</NuxtLink>
       </template>
-    </el-menu-item>
+      <div>
+        <NuxtLink to="/ranking"> Xếp hạng</NuxtLink>
+      </div>
+    </a-menu-item>
 
     <div class="separate"></div>
 
-    <el-menu-item class="upgrade-account" key="upgrade">
-      <el-icon>
+    <a-menu-item class="upgrade-account" key="upgrade">
+      <template #icon>
         <!-- <nuxt-img :src="getImage('king.png', 'misc', 'h-16')" alt="" /> -->
         <svg
           viewBox="0 0 192 192"
@@ -399,12 +398,12 @@
             <circle cx="8" cy="72" r="8" />
           </g>
         </svg>
-      </el-icon>
-      <template #title>
-        <NuxtLink to="/upgrade/plans"> Nâng cấp tài khoản</NuxtLink>
       </template>
-    </el-menu-item>
-  </el-menu>
+      <div>
+        <NuxtLink to="/upgrade/plans"> Nâng cấp tài khoản</NuxtLink>
+      </div>
+    </a-menu-item>
+  </a-menu>
 </template>
 
 <script setup lang="ts">
