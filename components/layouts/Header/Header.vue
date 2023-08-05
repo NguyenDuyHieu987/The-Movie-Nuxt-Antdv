@@ -27,12 +27,14 @@
     </div>
 
     <a-input-search
+      v-model:value="valueInput"
       class="search-header"
       placeholder="Nhập tên phim để tìm kiếm..."
       size="large"
       allowClear
       bordered
       :loading="loadingSearch"
+      @change="handleChangeInput(valueInput)"
       @search="handleSearch"
     >
       <template #enterButton>
@@ -78,73 +80,74 @@
     </a-auto-complete> -->
 
     <div class="right-header">
-      <!-- <a-popover
-        trigger="click"
-        placement="bottom"
-        overlayClassName="popover-search"
-        effect="dark"
-      >
-        <a-button type="text" shape="circle" class="search-btn-mobile">
-          <template #icon>
-            <svg
-              class="fa-magnifying-glass"
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.8rem"
-              height="1.8rem"
-              viewBox="0 0 512 512"
-            >
-              <path
-                fill="currentColor"
-                d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
-              />
-            </svg>
-          </template>
-        </a-button>
-
-        <template #content>
-          <h3 class="section-title search">
-            <span> Tìm kiếm </span>
-          </h3>
-          <a-auto-complete
-            v-model:value="valueInput"
-            class="search-popover"
-            popupClassName="certain-category-search-dropdown"
-            :options="dataSearch"
-            style="width: 100%"
-            :open="isOpenAutoComplete"
-            @change="handleChangeInput(valueInput)"
-            @focus="isOpenAutoComplete = true"
-            @blur="isOpenAutoComplete = false"
-          >
-            <a-input-search
-              class="search-popover"
-              placeholder="Nhập tên phim để tìm kiếm..."
-              size="large"
-              allowClear
-              bordered
-              :loading="loadingSearch"
-              @search="handleSearch"
-            >
-              <template #enterButton>
-                <svg
-                  class="fa-magnifying-glass"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1.8rem"
-                  height="1.8rem"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
-                  />
-                </svg>
-              </template>
-            </a-input-search>
-          </a-auto-complete>
-        </template>
-      </a-popover> -->
-
       <ul class="menu-header">
+        <li class="search-mobile">
+          <a-popover
+            trigger="click"
+            placement="bottom"
+            overlayClassName="popover-search"
+            effect="dark"
+          >
+            <div class="search-btn click-active">
+              <svg
+                class="fa-magnifying-glass"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.8rem"
+                height="1.8rem"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
+                />
+              </svg>
+            </div>
+
+            <template #content>
+              <h3 class="section-title search">
+                <span> Tìm kiếm </span>
+              </h3>
+
+              <a-auto-complete
+                v-model:value="valueInput"
+                class="search-popover"
+                popupClassName="certain-category-search-dropdown"
+                :options="dataSearch"
+                style="width: 100%"
+                :open="isOpenAutoComplete"
+                @change="handleChangeInput(valueInput)"
+                @focus="isOpenAutoComplete = true"
+                @blur="isOpenAutoComplete = false"
+              >
+                <a-input-search
+                  class="search-popover"
+                  placeholder="Nhập tên phim để tìm kiếm..."
+                  size="large"
+                  allowClear
+                  bordered
+                  :loading="loadingSearch"
+                  @search="handleSearch"
+                >
+                  <template #enterButton>
+                    <svg
+                      class="fa-magnifying-glass"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.8rem"
+                      height="1.8rem"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
+                      />
+                    </svg>
+                  </template>
+                </a-input-search>
+              </a-auto-complete>
+            </template>
+          </a-popover>
+        </li>
+
         <li class="notification">
           <a-dropdown
             v-if="isLogin"
@@ -155,36 +158,38 @@
           >
             <span v-if="isLogin" class="ant-dropdown-link">
               <a-badge :count="3" :overflow-count="9">
-                <svg
-                  class="fa-bell fa-regular"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="2.2rem"
-                  height="2.2rem"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M12 1.996a7.49 7.49 0 0 1 7.496 7.25l.004.25v4.097l1.38 3.156a1.249 1.249 0 0 1-1.145 1.75L15 18.502a3 3 0 0 1-5.995.177L9 18.499H4.275a1.251 1.251 0 0 1-1.147-1.747L4.5 13.594V9.496c0-4.155 3.352-7.5 7.5-7.5ZM13.5 18.5l-3 .002a1.5 1.5 0 0 0 2.993.145l.007-.147ZM12 3.496c-3.32 0-6 2.674-6 6v4.41L4.656 17h14.697L18 13.907V9.509l-.003-.225A5.988 5.988 0 0 0 12 3.496Z"
-                  />
-                </svg>
+                <div class="show-notify-btn">
+                  <svg
+                    class="fa-bell fa-regular"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="2.2rem"
+                    height="2.2rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12 1.996a7.49 7.49 0 0 1 7.496 7.25l.004.25v4.097l1.38 3.156a1.249 1.249 0 0 1-1.145 1.75L15 18.502a3 3 0 0 1-5.995.177L9 18.499H4.275a1.251 1.251 0 0 1-1.147-1.747L4.5 13.594V9.496c0-4.155 3.352-7.5 7.5-7.5ZM13.5 18.5l-3 .002a1.5 1.5 0 0 0 2.993.145l.007-.147ZM12 3.496c-3.32 0-6 2.674-6 6v4.41L4.656 17h14.697L18 13.907V9.509l-.003-.225A5.988 5.988 0 0 0 12 3.496Z"
+                    />
+                  </svg>
 
-                <svg
-                  class="fa-bell fa-solid"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="2.2rem"
-                  height="2.2rem"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M9.042 19.003h5.916a3 3 0 0 1-5.916 0Zm2.958-17a7.5 7.5 0 0 1 7.5 7.5v4l1.418 3.16A.95.95 0 0 1 20.052 18h-16.1a.95.95 0 0 1-.867-1.338l1.415-3.16V9.49l.005-.25A7.5 7.5 0 0 1 12 2.004Z"
-                  />
-                </svg>
+                  <svg
+                    class="fa-bell fa-solid"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="2.2rem"
+                    height="2.2rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M9.042 19.003h5.916a3 3 0 0 1-5.916 0Zm2.958-17a7.5 7.5 0 0 1 7.5 7.5v4l1.418 3.16A.95.95 0 0 1 20.052 18h-16.1a.95.95 0 0 1-.867-1.338l1.415-3.16V9.49l.005-.25A7.5 7.5 0 0 1 12 2.004Z"
+                    />
+                  </svg>
+                </div>
               </a-badge>
             </span>
 
             <template #overlay>
-              <el-menu class="dropdown-notification">
+              <a-menu class="dropdown-notification">
                 <div class="notification-header">
                   <span> Thông báo</span>
                 </div>
@@ -207,7 +212,7 @@
                   <a-menu-item>Message 1</a-menu-item>
                   <a-menu-item>Message 2</a-menu-item>
                 </a-menu-item-group>
-              </el-menu>
+              </a-menu>
             </template>
           </a-dropdown>
         </li>
