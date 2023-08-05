@@ -9,7 +9,7 @@
       class="billboard-slide"
       :interval="7000"
       loop
-      direction="horizontal"
+      direction="vertical"
       arrow="always"
       :pause-on-hover="true"
       trigger="click"

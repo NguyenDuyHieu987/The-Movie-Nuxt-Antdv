@@ -9,6 +9,7 @@
     backgroundColor="transparent"
     textColor="var(--menu-text-color)"
     activeTextColor="var(--menu-active-text-color)"
+    :collapseTransition="false"
     :router="true"
   >
     <!-- :forceSubMenuRender="true" -->

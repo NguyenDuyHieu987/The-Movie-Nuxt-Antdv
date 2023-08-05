@@ -10,8 +10,24 @@
   --el-menu-hover-bg-color: var(--menu-item-background-color) !important;
   transition: all 0s;
 
-  &.ant-menu-inline-collapsed {
-    width: 100%;
+  &.el-menu--collapse {
+    // .el-sub-menu {
+    //   .el-sub-menu__title {
+    //     span {
+    //       width: 0px;
+    //       opacity: 0;
+    //       overflow: hidden;
+    //     }
+    //   }
+    // }
+
+    // .el-menu-item {
+    //   a {
+    //     width: 0px;
+    //     opacity: 0;
+    //     overflow: hidden;
+    //   }
+    // }
   }
 
   .el-sub-menu {
@@ -47,17 +63,22 @@
 
     .el-menu.el-menu--inline {
       background-color: #45454550;
-      padding: 3px 0px;
+      padding: 5px 0px;
       padding-left: 15px;
 
       .el-menu-item {
         padding-left: 35px;
+
+        &:first-child,
+        &:last-child {
+          margin: 0px;
+        }
       }
     }
   }
 
   .el-menu-item {
-    margin-top: 4px;
+    margin-top: 3px;
     margin-left: 3px;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
