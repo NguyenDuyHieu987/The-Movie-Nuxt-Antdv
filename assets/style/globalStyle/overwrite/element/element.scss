@@ -69,6 +69,20 @@
   // overflow: visible !important;
 }
 
+.el-menu {
+  .el-menu-item {
+    a {
+      color: var(--menu-text-color);
+    }
+  }
+
+  .el-sub-menu {
+    .el-sub-menu__title {
+      color: var(--menu-text-color);
+    }
+  }
+}
+
 #el-popper-container-1024 {
   .el-popper {
     border-radius: 1px;
@@ -78,12 +92,14 @@
       color: var(--text-color);
     }
 
-    .el-popper__arrow {
-      display: none;
+    &:not(.popper-tooltip) {
+      .el-popper__arrow {
+        display: none;
+      }
     }
   }
 
-  .el-menu--popup-container.sub-menu-popover {
+  .el-menu--popup-container.sub-menu-popper {
     max-height: 100vh;
     overflow-y: auto;
 

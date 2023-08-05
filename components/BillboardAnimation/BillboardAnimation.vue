@@ -30,8 +30,9 @@
             :teleported="false"
             :title="prevItemCarousel"
             :content="prevItemCarousel"
-            popper-class="el-tooltip"
+            popper-class="popper-tooltip"
             placement="top"
+            :hide-after="0"
           >
             <a-button
               class="click-active"
@@ -60,8 +61,9 @@
             :teleported="false"
             :title="nextItemCarousel"
             :content="nextItemCarousel"
-            popper-class="el-tooltip"
+            popper-class="popper-tooltip"
             placement="top"
+            :hide-after="0"
           >
             <a-button
               class="click-active"

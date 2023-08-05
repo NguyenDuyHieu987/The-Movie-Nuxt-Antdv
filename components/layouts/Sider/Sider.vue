@@ -29,13 +29,19 @@
             {{ userAccount?.username }}
           </h4>
 
-          <a-tooltip v-else :title="userAccount?.username" placement="rightTop">
+          <el-tooltip
+            v-else
+            :title="userAccount?.username"
+            :content="userAccount?.username"
+            popper-class="popper-tooltip"
+            placement="right"
+          >
             <div class="user-name-container">
               <h4>
                 {{ userAccount?.username?.slice(0, 2).toUpperCase() }}
               </h4>
             </div>
-          </a-tooltip>
+          </el-tooltip>
         </div>
       </div>
     </header>

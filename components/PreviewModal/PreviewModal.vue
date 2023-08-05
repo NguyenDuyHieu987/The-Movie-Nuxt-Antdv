@@ -51,11 +51,12 @@
             <div class="bottom-content">
               <div class="widget">
                 <div class="left">
-                  <a-tooltip
-                    :teleported="false"
+                  <el-tooltip
                     title="Xem ngay"
                     content="Xem ngay"
                     placement="top"
+                    popper-class="popper-tooltip"
+                    :hide-after="0"
                     :mouseLeaveDelay="0"
                   >
                     <NuxtLink
@@ -116,10 +117,9 @@
                         </template>
                       </a-button>
                     </NuxtLink>
-                  </a-tooltip>
+                  </el-tooltip>
 
-                  <a-tooltip
-                    :teleported="false"
+                  <el-tooltip
                     :title="
                       !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
                     "
@@ -127,6 +127,8 @@
                       !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
                     "
                     placement="top"
+                    popper-class="popper-tooltip"
+                    :hide-after="0"
                     :mouseLeaveDelay="0"
                   >
                     <a-button
@@ -163,13 +165,14 @@
                         </svg>
                       </template>
                     </a-button>
-                  </a-tooltip>
+                  </el-tooltip>
 
-                  <a-tooltip
-                    :teleported="false"
+                  <el-tooltip
                     title="Chia sẻ"
                     content="Chia sẻ"
                     placement="top"
+                    popper-class="popper-tooltip"
+                    :hide-after="0"
                     :mouseLeaveDelay="0"
                     @click.prevent
                   >
@@ -204,15 +207,16 @@
                         </template>
                       </a-button>
                     </ShareNetwork>
-                  </a-tooltip>
+                  </el-tooltip>
                 </div>
 
                 <div class="right">
-                  <a-tooltip
-                    :teleported="false"
+                  <el-tooltip
                     title="Chi tiết phim"
                     content="Chi tiết phim"
                     placement="top"
+                    popper-class="popper-tooltip"
+                    :hide-after="0"
                     :mouseLeaveDelay="0"
                   >
                     <NuxtLink
@@ -254,7 +258,7 @@
                         </template>
                       </a-button>
                     </NuxtLink>
-                  </a-tooltip>
+                  </el-tooltip>
                 </div>
               </div>
               <div class="info">
