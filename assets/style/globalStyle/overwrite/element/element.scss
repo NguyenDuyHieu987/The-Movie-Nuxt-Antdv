@@ -70,6 +70,9 @@
 }
 
 .el-menu {
+  --el-menu-item-height: var(--menu-item-height) !important;
+  --el-menu-sub-item-height: var(--menu-item-height) !important;
+
   .el-menu-item {
     a {
       color: var(--menu-text-color);

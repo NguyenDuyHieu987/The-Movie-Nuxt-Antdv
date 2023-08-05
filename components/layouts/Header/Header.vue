@@ -189,30 +189,30 @@
             </span>
 
             <template #overlay>
-              <a-menu class="dropdown-notification">
+              <el-menu class="dropdown-notification">
                 <div class="notification-header">
                   <span> Thông báo</span>
                 </div>
 
-                <a-menu-item-group class="public" key="public">
+                <el-menu-item-group class="public" key="public">
                   <template #title>
-                    <p>Thông báo chung</p>
-                    <p class="count-message">1</p>
+                    <span>Thông báo chung</span>
+                    <span class="count-message">1</span>
                   </template>
-                  <a-menu-item>Chào mừng bạn đến với Phimhay247</a-menu-item>
-                </a-menu-item-group>
+                  <el-menu-item>Chào mừng bạn đến với Phimhay247</el-menu-item>
+                </el-menu-item-group>
 
                 <div class="separate" />
 
-                <a-menu-item-group class="private" key="private">
+                <el-menu-item-group class="private" key="private">
                   <template #title>
-                    <p>Thông báo cá nhân</p>
-                    <p class="count-message">1</p>
+                    <span>Thông báo cá nhân</span>
+                    <span class="count-message">1</span>
                   </template>
-                  <a-menu-item>Message 1</a-menu-item>
-                  <a-menu-item>Message 2</a-menu-item>
-                </a-menu-item-group>
-              </a-menu>
+                  <el-menu-item>Message 1</el-menu-item>
+                  <el-menu-item>Message 2</el-menu-item>
+                </el-menu-item-group>
+              </el-menu>
             </template>
           </a-dropdown>
         </li>
