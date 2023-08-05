@@ -41,7 +41,7 @@
         <span>Phim lẻ</span>
       </template>
 
-      <el-menu-item index="all">
+      <el-menu-item index="/discover/movie/all">
         <NuxtLink
           :to="{
             path: `/discover/movie/all`,
@@ -51,7 +51,7 @@
         </NuxtLink>
       </el-menu-item>
 
-      <el-menu-item index="nowplaying">
+      <el-menu-item index="/discover/movie/nowplaying">
         <NuxtLink
           :to="{
             path: `/discover/movie/nowplaying`,
@@ -61,7 +61,7 @@
         </NuxtLink>
       </el-menu-item>
 
-      <el-menu-item index="popular">
+      <el-menu-item index="/discover/movie/popular">
         <NuxtLink
           :to="{
             path: `/discover/movie/popular`,
@@ -71,7 +71,7 @@
         </NuxtLink>
       </el-menu-item>
 
-      <el-menu-item index="toprated">
+      <el-menu-item index="/discover/movie/toprated">
         <NuxtLink
           :to="{
             path: `/discover/movie/toprated`,
@@ -81,7 +81,7 @@
         </NuxtLink>
       </el-menu-item>
 
-      <el-menu-item index="upcoming">
+      <el-menu-item index="/discover/movie/upcoming">
         <NuxtLink
           :to="{
             path: `/discover/movie/upcoming`,
@@ -111,7 +111,7 @@
         <span>Phim bộ</span>
       </template>
 
-      <el-menu-item index="all">
+      <el-menu-item index="/discover/tv/all">
         <NuxtLink
           :to="{
             path: `/discover/tv/all`,
@@ -121,7 +121,7 @@
         </NuxtLink>
       </el-menu-item>
 
-      <el-menu-item index="airingtoday">
+      <el-menu-item index="/discover/tv/airingtoday">
         <NuxtLink
           :to="{
             path: `/discover/tv/airingtoday`,
@@ -131,7 +131,7 @@
         </NuxtLink>
       </el-menu-item>
 
-      <el-menu-item index="ontheair">
+      <el-menu-item index="/discover/tv/ontheair">
         <NuxtLink
           :to="{
             path: `/discover/tv/ontheair`,
@@ -141,7 +141,7 @@
         </NuxtLink>
       </el-menu-item>
 
-      <el-menu-item index="tvpopular">
+      <el-menu-item index="/discover/tv/tvpopular">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvpopular`,
@@ -151,7 +151,7 @@
         </NuxtLink>
       </el-menu-item>
 
-      <el-menu-item index="tvtoprated">
+      <el-menu-item index="/discover/tv/tvtoprated">
         <NuxtLink
           :to="{
             path: `/discover/tv/tvtoprated`,
@@ -162,7 +162,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-sub-menu index="genre">
+    <el-sub-menu index="genres">
       <template #title>
         <el-icon>
           <!-- <font-awesome-icon icon="fa-solid fa-list" /> -->
@@ -183,7 +183,7 @@
 
       <el-menu-item
         v-for="(item, index) in genres"
-        :index="index.toString()"
+        :index="`/discover/genre/${item?.short_name}`"
         :key="item?.id"
       >
         <a-tooltip
@@ -211,7 +211,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-sub-menu index="year">
+    <el-sub-menu index="years">
       <template #title>
         <el-icon>
           <!-- <font-awesome-icon icon="fa-solid fa-calendar-days" /> -->
@@ -232,7 +232,14 @@
 
       <el-menu-item
         v-for="(item, index) in years"
-        :index="index.toString()"
+        :index="`/discover/year/${
+          /^\d+$/.test(item?.name)
+            ? item?.name
+            : utils
+                .removeVietnameseTones(item?.name)
+                ?.replaceAll(/\s/g, '-')
+                .toLowerCase()
+        }`"
         :key="item?.name"
       >
         <NuxtLink
@@ -252,7 +259,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-sub-menu index="country">
+    <el-sub-menu index="countries">
       <template #title>
         <el-icon>
           <!-- <font-awesome-icon icon="fa-solid fa-globe" /> -->
@@ -273,7 +280,7 @@
 
       <el-menu-item
         v-for="(item, index) in countries"
-        :index="index.toString()"
+        :index="`/discover/country/${item?.short_name}`"
         :key="item?.short_name"
       >
         <NuxtLink
@@ -288,7 +295,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-menu-item index="follow">
+    <el-menu-item index="/follow">
       <el-icon>
         <!-- <span class="material-icons-outlined"> playlist_play </span> -->
         <!-- <Icon
@@ -319,7 +326,7 @@
       </template>
     </el-menu-item>
 
-    <el-menu-item key="history">
+    <el-menu-item index="/history">
       <el-icon>
         <!-- <font-awesome-icon icon="fa-solid fa-clock-rotate-left" /> -->
         <!-- <Icon name="fa6-solid:clock-rotate-left" /> -->
@@ -339,7 +346,7 @@
       </template>
     </el-menu-item>
 
-    <el-menu-item key="ranking">
+    <el-menu-item index="/ranking">
       <el-icon>
         <!-- <font-awesome-icon icon="fa-solid fa-ranking-star" /> -->
         <!-- <Icon name="fa6-solid:ranking-star" /> -->
@@ -361,7 +368,7 @@
 
     <div class="separate"></div>
 
-    <el-menu-item class="upgrade-account" key="upgrade">
+    <el-menu-item class="upgrade-account" index="/upgrade/plans">
       <el-icon>
         <!-- <nuxt-img :src="getImage('king.png', 'misc', 'h-16')" alt="" /> -->
         <svg
@@ -422,14 +429,12 @@ const route: any = useRoute();
 const utils = useUtils();
 const store = useStore();
 const state = reactive<any>({
-  selectedKeys: [
-    route.path
-      .replaceAll('discover', '')
-      .replaceAll(route.params?.slug ? route.params?.slug : '', '')
-      .replaceAll(route.params?.id ? route.params?.id : '', '')
-      .replaceAll(route.params?.name ? route.params?.name : '', '')
-      .replaceAll('/', ''),
-  ],
+  selectedKeys: route.path
+    .replaceAll('discover', '')
+    .replaceAll(route.params?.slug ? route.params?.slug : '', '')
+    .replaceAll(route.params?.id ? route.params?.id : '', '')
+    .replaceAll(route.params?.name ? route.params?.name : '', '')
+    .replaceAll('/', ''),
   openKeys: [
     route.path
       .replaceAll('discover', '')

@@ -68,6 +68,7 @@
       background-color: #45454550;
       padding: 5px 0px;
       padding-left: 15px;
+      --el-menu-hover-bg-color: #00000029 !important;
 
       .el-menu-item {
         padding-left: 35px;
@@ -75,6 +76,10 @@
         &:first-child,
         &:last-child {
           margin: 0px;
+        }
+
+        &.is-active {
+          background-color: var(--el-menu-hover-bg-color);
         }
       }
     }
@@ -111,6 +116,7 @@
 
     &.is-active {
       color: var(--menu-active-text-color);
+      background-color: var(--el-menu-hover-bg-color);
 
       a {
         color: var(--menu-active-text-color);
