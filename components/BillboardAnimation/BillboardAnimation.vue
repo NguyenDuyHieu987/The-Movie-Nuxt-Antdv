@@ -6,14 +6,14 @@
     <div class="variant-backdrop"></div>
 
     <el-carousel
+      class="billboard-slide"
       :interval="7000"
       loop
-      direction="vertical"
+      direction="horizontal"
       arrow="always"
-      :pause-on-hover="false"
+      :pause-on-hover="true"
       trigger="click"
       ref="billboard"
-      class="billboard-slide"
       @change="handleChangeCarouel"
     >
       <el-carousel-item
