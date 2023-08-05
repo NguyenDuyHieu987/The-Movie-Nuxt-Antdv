@@ -27,6 +27,7 @@ export default defineStore('store', () => {
 
   const setOpendrawer = () => {
     openDrawer.value = !openDrawer.value;
+    collapsed.value = false;
   };
 
   const setCloseRequireAuthDialog = () => {

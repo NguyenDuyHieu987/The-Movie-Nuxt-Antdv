@@ -477,9 +477,7 @@ onBeforeMount(async () => {
 watchEffect(() => {
   if (route.path) {
     state.selectedKeys = route.path;
-
     state.openKeys = [route.path];
-    console.log(route.path);
   }
 });
 </script>
