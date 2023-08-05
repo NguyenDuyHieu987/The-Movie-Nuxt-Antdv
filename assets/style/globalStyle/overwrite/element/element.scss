@@ -163,6 +163,14 @@
       }
     }
 
+    &.popper-tooltip {
+      .el-popper__arrow {
+        &::before {
+          background-color: #242424 !important;
+        }
+      }
+    }
+
     &:not(.popper-tooltip, .el-popover) {
       .el-popper__arrow {
         display: none;
