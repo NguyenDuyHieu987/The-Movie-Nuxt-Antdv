@@ -11,6 +11,7 @@
     activeTextColor="var(--menu-active-text-color)"
     :collapseTransition="false"
     :router="true"
+    :uniqueOpened="true"
   >
     <!-- :forceSubMenuRender="true" -->
 
@@ -22,7 +23,7 @@
       </template>
     </el-menu-item>
 
-    <el-sub-menu index="movie">
+    <el-sub-menu index="/discover/movie">
       <template #title>
         <el-icon>
           <!-- <font-awesome-icon icon="fa-solid fa-video-camera" /> -->
@@ -428,7 +429,10 @@ import { genre, country, year } from '@/types';
 const route: any = useRoute();
 const utils = useUtils();
 const store = useStore();
-const state = reactive<any>({
+const state = reactive<{
+  selectedKeys: string;
+  openKeys: string[];
+}>({
   selectedKeys: route.path,
   openKeys: [route.path],
 });
@@ -470,24 +474,13 @@ onBeforeMount(async () => {
   getData();
 });
 
-watch(route, () => {
-  state.selectedKeys = [
-    route.path
-      .replaceAll('discover', '')
-      .replaceAll(route.params?.slug ? route.params?.slug : '', '')
-      .replaceAll(route.params?.id ? route.params?.id : '', '')
-      .replaceAll(route.params?.name ? route.params?.name : '', '')
-      .replaceAll('/', ''),
-  ];
+watchEffect(() => {
+  if (route.path) {
+    state.selectedKeys = route.path;
 
-  state.openKeys = [
-    route.path
-      .replaceAll('discover', '')
-      .replaceAll(route.params?.slug2 ? route.params?.slug2 : '', '')
-      .replaceAll(route.params?.id ? route.params?.id : '', '')
-      .replaceAll(route.params?.name ? route.params?.name : '', '')
-      .replaceAll('/', ''),
-  ];
+    state.openKeys = [route.path];
+    console.log(route.path);
+  }
 });
 </script>
 
