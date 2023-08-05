@@ -232,7 +232,10 @@
 .ant-tooltip {
   .ant-tooltip-content {
     background-color: var(--tooltip-background-color);
-    box-shadow: var(--box-shadow-small);
+
+    .ant-tooltip-inner {
+      box-shadow: var(--box-shadow-small);
+    }
 
     .ant-tooltip-arrow {
       .ant-tooltip-arrow-content {

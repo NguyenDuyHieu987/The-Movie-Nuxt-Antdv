@@ -69,6 +69,44 @@
   // overflow: visible !important;
 }
 
+#el-popper-container-1024 {
+  .el-popper {
+    border-radius: 1px;
+    background-color: var(--background-content-color);
+
+    a {
+      color: var(--text-color);
+    }
+
+    .el-popper__arrow {
+      display: none;
+    }
+  }
+
+  .el-menu--popup-container {
+    max-height: 100vh;
+    overflow-y: scroll;
+
+    .el-menu.el-menu--popup {
+      --el-menu-hover-bg-color: var(--menu-item-background-color) !important;
+      --el-menu-item-height: var(--menu-item-height) !important;
+      --el-menu-sub-item-height: var(--menu-item-height) !important;
+
+      .el-menu-item {
+        a {
+          color: var(--menu-text-color);
+        }
+
+        &:hover {
+          a {
+            color: var(--menu-active-text-color);
+          }
+        }
+      }
+    }
+  }
+}
+
 .el-popper.el-tooltip {
   background-color: var(--tooltip-background-color) !important;
   border: none !important;

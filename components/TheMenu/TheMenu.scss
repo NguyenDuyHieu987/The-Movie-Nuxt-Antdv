@@ -5,8 +5,8 @@
   width: 100%;
   // overflow: hidden;
   border: none;
-  --el-menu-item-height: 48px !important;
-  --el-menu-sub-item-height: 48px !important;
+  --el-menu-item-height: var(--menu-item-height) !important;
+  --el-menu-sub-item-height: var(--menu-item-height) !important;
   --el-menu-hover-bg-color: var(--menu-item-background-color) !important;
   transition: all 0s;
 

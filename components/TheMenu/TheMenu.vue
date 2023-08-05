@@ -429,21 +429,8 @@ const route: any = useRoute();
 const utils = useUtils();
 const store = useStore();
 const state = reactive<any>({
-  selectedKeys: route.path
-    .replaceAll('discover', '')
-    .replaceAll(route.params?.slug ? route.params?.slug : '', '')
-    .replaceAll(route.params?.id ? route.params?.id : '', '')
-    .replaceAll(route.params?.name ? route.params?.name : '', '')
-    .replaceAll('/', ''),
-  openKeys: [
-    route.path
-      .replaceAll('discover', '')
-      .replaceAll(route.params?.slug2 ? route.params?.slug2 : '', '')
-      .replaceAll(route.params?.id ? route.params?.id : '', '')
-      .replaceAll(route.params?.name ? route.params?.name : '', '')
-      .replaceAll('/', ''),
-  ],
-  // preOpenKeys: ['1'],
+  selectedKeys: route.path,
+  openKeys: [route.path],
 });
 const genres = ref<genre[]>([]);
 const years = ref<year[]>([]);
