@@ -150,6 +150,7 @@
           <el-dropdown
             trigger="click"
             popper-class="header notification"
+            placement="bottom-start"
             :teleported="false"
           >
             <span class="el-dropdown-link notification">
@@ -288,6 +289,7 @@
           <el-dropdown
             trigger="hover"
             popper-class="header account"
+            placement="bottom-end"
             :show-timeout="0"
           >
             <span class="el-dropdown-link account">
