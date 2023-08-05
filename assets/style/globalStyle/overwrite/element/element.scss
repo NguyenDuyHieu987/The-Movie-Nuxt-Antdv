@@ -157,7 +157,13 @@
       }
     }
 
-    &:not(.popper-tooltip) {
+    .el-popper__arrow {
+      &::before {
+        background-color: #191919 !important;
+      }
+    }
+
+    &:not(.popper-tooltip, .el-popover) {
       .el-popper__arrow {
         display: none;
       }
@@ -185,6 +191,11 @@
         }
       }
     }
+  }
+
+  .el-popover.popper-search {
+    border-radius: 1px;
+    background-color: var(--background-dropdown-color);
   }
 }
 
