@@ -141,7 +141,12 @@
           </el-popover>
         </li>
 
-        <li v-if="isLogin" class="menu-item notification" :hide-timeout="250">
+        <li
+          v-if="isLogin"
+          class="menu-item notification"
+          :show-timeout="0"
+          :hide-timeout="0"
+        >
           <el-dropdown
             trigger="click"
             popper-class="header notification"
@@ -280,7 +285,11 @@
         </li> -->
 
         <li class="menu-item account">
-          <el-dropdown trigger="hover" popper-class="header account">
+          <el-dropdown
+            trigger="hover"
+            popper-class="header account"
+            :show-timeout="0"
+          >
             <span class="el-dropdown-link account">
               <el-icon class="el-icon--right">
                 <svg
