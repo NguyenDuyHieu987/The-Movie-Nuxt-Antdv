@@ -107,7 +107,7 @@
   box-shadow: var(--box-shadow-small) !important;
 
   .el-dropdown-menu {
-    background-color: var(--background-content-color3);
+    background-color: var(--background-dropdown-color);
 
     .el-dropdown-menu__item {
       padding: 13px 23px;
@@ -139,7 +139,7 @@
       transition: height 0s;
 
       .el-dropdown-menu {
-        background-color: var(--background-content-color3);
+        background-color: var(--background-dropdown-color);
 
         .el-dropdown-menu__item {
           padding: 13px 23px;
