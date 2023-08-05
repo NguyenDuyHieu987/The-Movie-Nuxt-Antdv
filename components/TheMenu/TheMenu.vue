@@ -23,7 +23,7 @@
       </template>
     </el-menu-item>
 
-    <el-sub-menu index="/discover/movie">
+    <el-sub-menu index="/discover/movie" popperClass="sub-menu-popover">
       <template #title>
         <el-icon>
           <!-- <font-awesome-icon icon="fa-solid fa-video-camera" /> -->
@@ -93,7 +93,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-sub-menu index="tv">
+    <el-sub-menu index="tv" popperClass="sub-menu-popover">
       <template #title>
         <el-icon>
           <!-- <font-awesome-icon icon="fa-solid fa-film" /> -->
@@ -163,7 +163,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-sub-menu index="genres">
+    <el-sub-menu index="genres" popperClass="sub-menu-popover">
       <template #title>
         <el-icon>
           <!-- <font-awesome-icon icon="fa-solid fa-list" /> -->
@@ -212,7 +212,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-sub-menu index="years">
+    <el-sub-menu index="years" popperClass="sub-menu-popover">
       <template #title>
         <el-icon>
           <!-- <font-awesome-icon icon="fa-solid fa-calendar-days" /> -->
@@ -260,7 +260,7 @@
       </el-menu-item>
     </el-sub-menu>
 
-    <el-sub-menu index="countries">
+    <el-sub-menu index="countries" popperClass="sub-menu-popover">
       <template #title>
         <el-icon>
           <!-- <font-awesome-icon icon="fa-solid fa-globe" /> -->

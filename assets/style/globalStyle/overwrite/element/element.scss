@@ -83,9 +83,9 @@
     }
   }
 
-  .el-menu--popup-container {
+  .el-menu--popup-container.sub-menu-popover {
     max-height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     .el-menu.el-menu--popup {
       --el-menu-hover-bg-color: var(--menu-item-background-color) !important;
