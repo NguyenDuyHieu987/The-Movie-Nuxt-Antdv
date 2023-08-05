@@ -371,7 +371,7 @@
 
     <div class="separate"></div>
 
-    <el-menu-item class="upgrade-account" index="/upgrade/plans">
+    <el-menu-item class="upgrade-account">
       <el-icon>
         <!-- <nuxt-img :src="getImage('king.png', 'misc', 'h-16')" alt="" /> -->
         <svg
