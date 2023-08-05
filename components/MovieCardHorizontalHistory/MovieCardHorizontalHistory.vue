@@ -108,13 +108,13 @@
             </p>
 
             <div class="action">
-              <a-tooltip
+              <el-tooltip
                 title="Xóa khỏi Lịch sử xem"
                 content="Xóa khỏi Lịch sử xem"
                 effect="dark"
                 placement="bottom"
-                :teleported="false"
-                popper-class="el-tooltip"
+                popper-class="popper-tooltip"
+                :teleported="true"
                 :mouseLeaveDelay="0"
               >
                 <el-button
@@ -140,7 +140,7 @@
                     </svg>
                   </template>
                 </el-button>
-              </a-tooltip>
+              </el-tooltip>
 
               <a-dropdown
                 :trigger="['click']"
