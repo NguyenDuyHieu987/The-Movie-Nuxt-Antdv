@@ -81,7 +81,7 @@
 
     <div class="right-header">
       <ul class="menu-header">
-        <li class="search-mobile">
+        <li class="menu-item search-mobile">
           <a-popover
             trigger="click"
             placement="bottom"
@@ -148,8 +148,12 @@
           </a-popover>
         </li>
 
-        <li v-if="isLogin" class="notification" :hide-timeout="250">
-          <el-dropdown trigger="click" popper-class="header notification">
+        <li v-if="isLogin" class="menu-item notification" :hide-timeout="250">
+          <el-dropdown
+            trigger="click"
+            popper-class="header notification"
+            :teleported="false"
+          >
             <span class="el-dropdown-link notification">
               <el-icon class="el-icon--right">
                 <a-badge :count="3" :overflow-count="9">
@@ -282,8 +286,8 @@
           </a-dropdown>
         </li> -->
 
-        <li class="account">
-          <el-dropdown trigger="click" popper-class="header account">
+        <li class="menu-item account">
+          <el-dropdown trigger="hover" popper-class="header account">
             <span class="el-dropdown-link account">
               <el-icon class="el-icon--right">
                 <svg
