@@ -45,7 +45,7 @@
       </h4>
     </header>
 
-    <TheMenu />
+    <TheMenu :noCollapse="true" />
   </a-drawer>
 
   <!-- <ClientOnly>

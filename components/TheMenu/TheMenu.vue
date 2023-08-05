@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    :collapse="store.collapsed"
+    :collapse="props.noCollapse ? false : store.collapsed"
     :defaultOpeneds="state.openKeys"
     :defaultActive="state.selectedKeys"
     class="menu-sider-bar"
@@ -425,6 +425,10 @@ import { getAllGenre } from '~/services/genres';
 import { getAllCountry } from '~/services/country';
 import { getAllYear } from '~/services/year';
 import { genre, country, year } from '@/types';
+
+const props = defineProps<{
+  noCollapse?: boolean | false;
+}>();
 
 const route: any = useRoute();
 const utils = useUtils();
