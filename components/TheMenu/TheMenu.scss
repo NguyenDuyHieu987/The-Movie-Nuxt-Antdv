@@ -8,6 +8,7 @@
   --el-menu-item-height: 48px !important;
   --el-menu-sub-item-height: 48px !important;
   --el-menu-hover-bg-color: var(--menu-item-background-color) !important;
+  transition: all 0s;
 
   &.ant-menu-inline-collapsed {
     width: 100%;
@@ -92,6 +93,12 @@
     }
 
     &.upgrade-account {
+      .el-icon {
+        svg {
+          margin-bottom: 4px;
+        }
+      }
+
       a {
         display: inline-block;
         height: auto;
