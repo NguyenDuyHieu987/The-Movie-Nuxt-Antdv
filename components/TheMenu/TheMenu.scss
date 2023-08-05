@@ -8,7 +8,6 @@
   --el-menu-item-height: var(--menu-item-height) !important;
   --el-menu-sub-item-height: var(--menu-item-height) !important;
   --el-menu-hover-bg-color: var(--menu-item-background-color) !important;
-  transition: all 0s;
 
   &.el-menu--collapse {
     // .el-sub-menu {
@@ -73,6 +72,7 @@
       padding: 5px 0px;
       padding-left: 15px;
       --el-menu-hover-bg-color: #00000029 !important;
+      transition: all 0.2s;
 
       .el-menu-item {
         padding-left: 35px;

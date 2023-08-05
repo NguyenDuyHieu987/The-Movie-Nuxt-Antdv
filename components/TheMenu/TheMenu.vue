@@ -12,6 +12,8 @@
     :collapseTransition="false"
     :router="true"
     :uniqueOpened="true"
+    :show-timeout="0"
+    :hide-timeout="0"
   >
     <!-- :forceSubMenuRender="true" -->
 
