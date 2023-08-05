@@ -52,7 +52,7 @@
             >
               <a-form-item class="email" name="email">
                 <button
-                  class="submit-form-button click-active"
+                  class="submit-form-button submit-btn click-active"
                   html-type="submit"
                 >
                   <div class="left">

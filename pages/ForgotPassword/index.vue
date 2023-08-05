@@ -70,7 +70,7 @@
 
           <a-form-item class="submit" name="submit">
             <a-button
-              class="submit-form-button click-active"
+              class="submit-form-button submit-btn click-active"
               type="primary"
               html-type="submit"
               size="large"

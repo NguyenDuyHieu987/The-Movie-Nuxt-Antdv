@@ -81,7 +81,7 @@
 
               <FormItem>
                 <a-button
-                  class="submit-form-button click-active"
+                  class="submit-form-button submit-btn click-active"
                   type="primary"
                   html-type="submit"
                   size="large"

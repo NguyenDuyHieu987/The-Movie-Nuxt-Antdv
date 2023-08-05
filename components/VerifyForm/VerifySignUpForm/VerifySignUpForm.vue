@@ -146,7 +146,7 @@
 
         <a-form-item name="submit">
           <a-button
-            class="verify-form-button click-active"
+            class="verify-form-button submit-btn click-active"
             type="primary"
             html-type="submit"
             size="large"
