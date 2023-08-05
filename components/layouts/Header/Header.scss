@@ -675,8 +675,21 @@ header.header-bar {
     top: calc(var(--header-height) + 4px) !important;
 
     .el-dropdown-menu__item {
+      position: relative;
+
       &:first-child {
         border-bottom: 1px solid var(--border-regular);
+      }
+
+      a {
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+        }
       }
     }
   }
