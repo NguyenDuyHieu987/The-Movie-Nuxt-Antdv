@@ -1,3 +1,13 @@
+.el-icon {
+  width: auto;
+  height: auto;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
 .el-message-box-parent--hidden {
   width: 100% !important;
 }
@@ -86,6 +96,11 @@
   }
 }
 
+.el-dropdown {
+  color: var(--text-color) !important;
+  font-size: inherit !important;
+}
+
 #el-popper-container-1024 {
   .el-popper {
     border-radius: 1px;
@@ -93,6 +108,24 @@
 
     a {
       color: var(--text-color);
+    }
+
+    &.el-dropdown__popper {
+      transition: all 0s;
+      border: none;
+
+      .el-dropdown-menu {
+        background-color: var(--background-content-color1);
+
+        .el-dropdown-menu__item {
+          padding: 13px 20px;
+          color: var(--text-color);
+
+          &:hover {
+            background-color: var(--hover-dropdown-color);
+          }
+        }
+      }
     }
 
     &:not(.popper-tooltip) {
