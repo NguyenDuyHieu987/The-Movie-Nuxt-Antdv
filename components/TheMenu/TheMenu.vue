@@ -7,13 +7,13 @@
     theme="dark"
     popperEffect="dark"
     backgroundColor="transparent"
-    textColor="var(--text-color)"
-    activeTextColor="#fff"
+    textColor="var(--menu-text-color)"
+    activeTextColor="var(--menu-active-text-color)"
     :router="true"
   >
     <!-- :forceSubMenuRender="true" -->
 
-    <el-menu-item index="home">
+    <el-menu-item index="/">
       <el-icon> <HomeOutlined /></el-icon>
 
       <template #title>
@@ -401,7 +401,9 @@
         </svg>
       </el-icon>
       <template #title>
-        <NuxtLink to="/upgrade/plans"> Nâng cấp tài khoản</NuxtLink>
+        <NuxtLink class="click-active" to="/upgrade/plans">
+          Nâng cấp tài khoản
+        </NuxtLink>
       </template>
     </el-menu-item>
   </el-menu>
