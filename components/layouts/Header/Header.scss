@@ -115,18 +115,6 @@ header.header-bar {
         background: transparent;
         cursor: auto;
 
-        // &:hover {
-        //   border-color: var(--border-regular-light);
-        // }
-
-        &.ant-input-affix-wrapper-focused {
-          // border-color: #00dac8;
-
-          // &:hover {
-          //   border-color: #00dac8;
-          // }
-        }
-
         .ant-input {
           color: var(--text-color);
           background: transparent;
@@ -396,23 +384,26 @@ header.header-bar {
       margin-bottom: 15px;
     }
 
-    .ant-select-selector {
-      background-color: transparent !important;
+    .ant-input-search.search-popover {
+      .ant-input-group.ant-input-wrapper {
+        display: flex;
+        flex-direction: row;
+        transition: all 0.15s;
+        border-radius: 20px;
+        background: var(--search-background);
 
-      .search-popover {
-        .ant-input-group {
-          display: flex;
-          flex-direction: row;
-        }
+        &:has(.ant-input-affix-wrapper-focused) {
+          // background: var(--search-focus-background);
 
-        .ant-input-wrapper {
-          transition: all 0.15s;
-          border-radius: 20px;
-          background: var(--search-background);
-        }
+          // .ant-input-affix-wrapper {
+          //   border-color: var(--search-focus-border-color);
+          // }
 
-        .ant-input-wrapper:has(.ant-input-affix-wrapper-focused) {
-          background: var(--search-focus-background);
+          // .ant-input-group-addon {
+          //   .ant-input-search-button {
+          //     border-color: var(--search-focus-border-color);
+          //   }
+          // }
         }
 
         .ant-input-affix-wrapper {
@@ -426,22 +417,10 @@ header.header-bar {
           background: transparent;
           cursor: auto;
 
-          // &:hover {
-          //   border-color: var(--border-regular-light);
-          // }
-
-          &.ant-input-affix-wrapper-focused {
-            // border-color: #00dac8;
-
-            // &:hover {
-            //   border-color: #00dac8;
-            // }
-          }
-
           .ant-input {
             color: var(--text-color);
             background: transparent;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
           }
         }
 
