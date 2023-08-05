@@ -195,6 +195,7 @@ header.header-bar {
           display: flex;
           user-select: none;
           cursor: pointer;
+          outline: none;
 
           &.notification {
             &[aria-expanded='true'] {
@@ -297,7 +298,7 @@ header.header-bar {
     }
   }
 
-  .el-popover {
+  .ant-popover.popover-search {
     left: 50% !important;
     transform: translateX(-50%);
     width: 100% !important;
@@ -672,6 +673,12 @@ header.header-bar {
 
   &.account {
     top: calc(var(--header-height) + 4px) !important;
+
+    .el-dropdown-menu__item {
+      &:first-child {
+        border-bottom: 1px solid var(--border-regular);
+      }
+    }
   }
 }
 

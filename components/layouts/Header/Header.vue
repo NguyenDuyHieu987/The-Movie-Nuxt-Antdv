@@ -321,12 +321,7 @@
 
             <template #dropdown>
               <el-dropdown-menu class="dropdown-account">
-                <el-dropdown-item
-                  v-if="isLogin"
-                  v-once
-                  :class="{ active: isLogin }"
-                  key="your-account"
-                >
+                <el-dropdown-item v-if="isLogin" :class="{ active: isLogin }">
                   <NuxtLink to="/YourAccount">
                     <span>Tài khoản</span>
                     <br />
@@ -336,28 +331,17 @@
                   </NuxtLink>
                 </el-dropdown-item>
 
-                <div class="separate" />
-
-                <el-dropdown-item
-                  v-if="isLogin && role == 'admin'"
-                  v-once
-                  key="dashboard"
-                >
+                <el-dropdown-item v-if="isLogin && role == 'admin'">
                   <NuxtLink :to="$config.app.adminWebsiteUrl" target="_blank">
                     Bảng điều khiển
                   </NuxtLink>
                 </el-dropdown-item>
 
-                <el-dropdown-item v-if="!isLogin" v-once key="login">
+                <el-dropdown-item v-if="!isLogin">
                   <NuxtLink to="/login"> Đăng nhập</NuxtLink>
                 </el-dropdown-item>
 
-                <el-dropdown-item
-                  v-if="isLogin"
-                  v-once
-                  key="logout"
-                  @click="handleLogout"
-                >
+                <el-dropdown-item v-if="isLogin" @click="handleLogout">
                   <span> Đăng xuất</span>
                 </el-dropdown-item>
               </el-dropdown-menu>
