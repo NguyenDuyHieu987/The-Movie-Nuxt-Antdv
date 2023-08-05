@@ -36,6 +36,9 @@
     transition: all 0.15s;
 
     .el-sub-menu__title {
+      margin-bottom: 3px;
+      user-select: none;
+
       &:hover {
         background-color: var(--el-menu-hover-bg-color) !important;
       }
@@ -83,6 +86,7 @@
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     transition: all 0.15s;
+    user-select: none;
 
     .el-icon {
       margin-right: 10px;
