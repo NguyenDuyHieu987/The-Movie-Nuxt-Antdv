@@ -26,7 +26,40 @@
       </div>
     </div>
 
-    <a-auto-complete
+    <a-input-search
+      class="search-header"
+      placeholder="Nhập tên phim để tìm kiếm..."
+      size="large"
+      allowClear
+      bordered
+      :loading="loadingSearch"
+      @search="handleSearch"
+    >
+      <template #enterButton>
+        <el-tooltip
+          content="Tìm kiếm"
+          effect="dark"
+          placement="bottom"
+          popper-class="popper-tooltip"
+          :offset="22"
+        >
+          <svg
+            class="fa-magnifying-glass"
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.8rem"
+            height="1.8rem"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
+            />
+          </svg>
+        </el-tooltip>
+      </template>
+    </a-input-search>
+
+    <!-- <a-auto-complete
       v-model:value="valueInput"
       class="search-header"
       popupClassName="certain-category-search-dropdown"
@@ -37,45 +70,12 @@
       @blur="isOpenAutoComplete = false"
       :backfill="true"
     >
-      <!-- <template #options="item">
+      <template #options="item">
         v-for="(item, index) in dataSearch" :index="index"
 
         <SearchCard :key="item?.id" :item="item" :type="item.media_type" />
-      </template> -->
-
-      <a-input-search
-        class="search-header"
-        placeholder="Nhập tên phim để tìm kiếm..."
-        size="large"
-        allowClear
-        bordered
-        :loading="loadingSearch"
-        @search="handleSearch"
-      >
-        <template #enterButton>
-          <el-tooltip
-            content="Tìm kiếm"
-            effect="dark"
-            placement="bottom"
-            popper-class="popper-tooltip"
-            :offset="22"
-          >
-            <svg
-              class="fa-magnifying-glass"
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.8rem"
-              height="1.8rem"
-              viewBox="0 0 512 512"
-            >
-              <path
-                fill="currentColor"
-                d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
-              />
-            </svg>
-          </el-tooltip>
-        </template>
-      </a-input-search>
-    </a-auto-complete>
+      </template>
+    </a-auto-complete> -->
 
     <div class="right-header">
       <!-- <a-popover
