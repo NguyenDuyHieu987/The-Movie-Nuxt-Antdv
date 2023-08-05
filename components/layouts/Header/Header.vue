@@ -88,6 +88,7 @@
             overlayClassName="header popover-search"
             popper-class="popper-search"
             effect="dark"
+            :hide-after="0"
           >
             <template #reference>
               <div class="search-btn">
