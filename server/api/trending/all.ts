@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const { page } = getQuery(event);
 
   const response: any = await axios.get(
-    `${config.apiGateway}/trending/all?page=${page}`
+    `${config.app.apiGateway}/trending/all?page=${page || 1}`
   );
   return response.data;
 });

@@ -2,7 +2,7 @@
   <div class="home-container">
     <BillboardAnimation :data1="trendings" v-model:data="trendings" />
 
-    <!-- <div>{{ dataTemp }}</div> -->
+    <div>{{ dataTrending?.results }}</div>
 
     <div class="home-content">
       <section class="home-section outstanding">
@@ -242,7 +242,6 @@ import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
 //   ogLocale: 'vi',
 // });
 
-const apiBridge = useApiBridge();
 const store = useStore();
 const trendings = ref<any[]>([]);
 const nowPlayings = ref<any>([]);
@@ -334,11 +333,9 @@ const responsiveVertical = computed<any>((): any => ({
   },
 }));
 
-// const { data: dataTemp } = await useAsyncData(`trending/all/1`, () =>
-//   apiBridge.getTrending(1)
-// );
-
 const getData = async () => {
+  await nextTick();
+
   await useAsyncData(`trending/all/1`, () => getTrending(1))
     .then((response: any) => {
       trendings.value = response.data.value?.results;
@@ -411,9 +408,13 @@ const getData = async () => {
   }
 };
 
-await nextTick();
+// getData();
 
-getData();
+const { data: dataTrending } = await useAsyncData(`trending/all/1`, () =>
+  getTrending(1)
+);
+
+console.log(dataTrending);
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;
