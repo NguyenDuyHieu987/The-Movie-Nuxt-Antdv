@@ -2,8 +2,6 @@
   <div class="home-container">
     <BillboardAnimation :data1="trendings" v-model:data="trendings" />
 
-    <div>{{ dataTrending?.results }}</div>
-
     <div class="home-content">
       <section class="home-section outstanding">
         <h2 class="gradient-title-default">
@@ -408,13 +406,7 @@ const getData = async () => {
   }
 };
 
-// getData();
-
-const { data: dataTrending } = await useAsyncData(`trending/all/1`, () =>
-  getTrending(1)
-);
-
-console.log(dataTrending);
+getData();
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;
