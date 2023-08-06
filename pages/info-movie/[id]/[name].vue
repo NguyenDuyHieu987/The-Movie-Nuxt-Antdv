@@ -466,7 +466,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Thông tin - ' + dataMovie.value?.name,
   description: dataMovie.value?.overview,
   ogTitle: 'Thông tin - ' + dataMovie.value?.name,
