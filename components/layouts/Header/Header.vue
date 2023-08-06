@@ -292,7 +292,10 @@
             placement="bottom-end"
             :show-timeout="0"
           >
-            <span class="el-dropdown-link account">
+            <span
+              class="el-dropdown-link account"
+              aria-label="dropdown-account"
+            >
               <el-icon class="el-icon--right">
                 <svg
                   class="user-outlined"
