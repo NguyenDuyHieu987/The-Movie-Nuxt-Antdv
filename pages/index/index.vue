@@ -404,11 +404,9 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(async () => {
-  await nextTick();
+await nextTick();
 
-  getData();
-});
+getData();
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;
