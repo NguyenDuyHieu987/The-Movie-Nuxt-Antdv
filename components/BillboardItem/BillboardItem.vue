@@ -30,7 +30,7 @@
             'w-' + windowWidth.toString()
           )
         "
-        format="webp"
+        format="avif"
         loading="lazy"
         alt=""
       />
