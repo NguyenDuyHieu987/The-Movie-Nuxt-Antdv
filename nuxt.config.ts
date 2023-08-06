@@ -174,6 +174,9 @@ export default defineNuxtConfig({
   alias: {
     '@': resolve(__dirname, './'),
   },
+  imports: {
+    dirs: ['/services/index.ts'],
+  },
   experimental: {
     payloadExtraction: false,
     viewTransition: true,
@@ -234,7 +237,6 @@ export default defineNuxtConfig({
     // 'vue-social-sharing/nuxt',
     // '@nuxtjs/supabase',
     'nuxt-og-image',
-    '@nuxtjs/eslint-module',
     'nuxt-delay-hydration',
   ],
   // elementPlus: {

@@ -2,6 +2,8 @@
   <div class="home-container">
     <BillboardAnimation :data1="trendings" v-model:data="trendings" />
 
+    <!-- <div>{{ dataTemp }}</div> -->
+
     <div class="home-content">
       <section class="home-section outstanding">
         <h2 class="gradient-title-default">
@@ -240,6 +242,7 @@ import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
 //   ogLocale: 'vi',
 // });
 
+const apiBridge = useApiBridge();
 const store = useStore();
 const trendings = ref<any[]>([]);
 const nowPlayings = ref<any>([]);
@@ -330,6 +333,10 @@ const responsiveVertical = computed<any>((): any => ({
     slidesPerGroup: 9,
   },
 }));
+
+// const { data: dataTemp } = await useAsyncData(`trending/all/1`, () =>
+//   apiBridge.getTrending(1)
+// );
 
 const getData = async () => {
   await useAsyncData(`trending/all/1`, () => getTrending(1))
