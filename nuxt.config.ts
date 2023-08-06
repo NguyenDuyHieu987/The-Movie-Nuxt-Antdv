@@ -178,6 +178,7 @@ export default defineNuxtConfig({
     payloadExtraction: false,
     viewTransition: true,
     componentIslands: true,
+    restoreState: true,
   },
   typescript: {
     strict: true,
@@ -233,6 +234,7 @@ export default defineNuxtConfig({
     // 'vue-social-sharing/nuxt',
     // '@nuxtjs/supabase',
     'nuxt-og-image',
+    '@nuxtjs/eslint-module',
     'nuxt-delay-hydration',
   ],
   // elementPlus: {
