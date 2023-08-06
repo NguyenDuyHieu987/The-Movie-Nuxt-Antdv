@@ -21,15 +21,16 @@
       /> -->
 
     <div class="img-wrapper">
-      <nuxt-img
+      <img
         class="ant-image"
-        :src="
+        v-lazy="
           getImage(
             item?.backdrop_path,
             'backdrop',
             'w-' + windowWidth.toString()
           )
         "
+        v-lazy-load
         loading="lazy"
         alt=""
       />
