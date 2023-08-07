@@ -13,24 +13,35 @@
     ref="cardItem"
     @pointerenter="onMouseEnter"
   >
-    <div class="img-box">
-      <!-- v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h_250')" -->
+    <el-skeleton :loading="loading" animated>
+      <template #template>
+        <el-skeleton-item class="skeleton-img" />
 
-      <img
-        class="ant-image"
-        v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
-        loading="lazy"
-        alt=""
-      />
+        <!-- <div class="content-skeleton">
+          <el-skeleton-item variant="text" />
+          <el-skeleton-item variant="text" style="width: 60%" />
+        </div> -->
+      </template>
 
-      <div v-show="isInHistory" class="viewed-overlay-bar">
-        <div
-          class="percent-viewed"
-          :style="{ width: percent * 100 + '%' }"
-        ></div>
-      </div>
+      <template #default>
+        <div class="img-box">
+          <!-- v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h_250')" -->
 
-      <!-- <div class="duration-episode-box">
+          <img
+            class="ant-image"
+            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+            loading="lazy"
+            alt=""
+          />
+
+          <div v-show="isInHistory" class="viewed-overlay-bar">
+            <div
+              class="percent-viewed"
+              :style="{ width: percent * 100 + '%' }"
+            ></div>
+          </div>
+
+          <!-- <div class="duration-episode-box">
             <p v-if="!isEpisodes" class="duration-episode">
               {{ item?.runtime + ' min' }}
             </p>
@@ -46,31 +57,33 @@
             </p>
           </div> -->
 
-      <div
-        v-if="item?.release_date || item?.last_air_date || item?.first_air_date"
-        class="release-date-box"
-      >
-        <p class="release-date" v-if="!isEpisodes">
-          {{ item?.release_date?.slice(0, 4) }}
-        </p>
-        <p v-else class="release-date">
-          {{
-            item?.last_air_date?.slice(0, 4)
-              ? item?.last_air_date?.slice(0, 4)
-              : item?.first_air_date?.slice(0, 4)
-          }}
-        </p>
-      </div>
-    </div>
+          <div
+            v-if="
+              item?.release_date || item?.last_air_date || item?.first_air_date
+            "
+            class="release-date-box"
+          >
+            <p class="release-date" v-if="!isEpisodes">
+              {{ item?.release_date?.slice(0, 4) }}
+            </p>
+            <p v-else class="release-date">
+              {{
+                item?.last_air_date?.slice(0, 4)
+                  ? item?.last_air_date?.slice(0, 4)
+                  : item?.first_air_date?.slice(0, 4)
+              }}
+            </p>
+          </div>
+        </div>
 
-    <div class="info">
-      <p class="title">
-        {{ item?.name }}
-        <!-- <span v-if="isEpisodes">
+        <div class="info">
+          <p class="title">
+            {{ item?.name }}
+            <!-- <span v-if="isEpisodes">
               {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
             </span> -->
-      </p>
-      <!-- <div class="info-bottom">
+          </p>
+          <!-- <div class="info-bottom">
             <div class="genres">
               <span
                 class="genre-item"
@@ -82,7 +95,9 @@
               </span>
             </div>
           </div> -->
-    </div>
+        </div>
+      </template>
+    </el-skeleton>
 
     <PreviewModal
       :isTeleportPreviewModal="isTeleportPreviewModal"

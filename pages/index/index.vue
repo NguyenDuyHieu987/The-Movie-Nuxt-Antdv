@@ -15,11 +15,7 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup
-          v-if="nowPlayings?.length"
-          :data="nowPlayings"
-          :responsive="responsiveHorizoltal"
-        >
+        <CarouselGroup :data="nowPlayings" :responsive="responsiveHorizoltal">
           <template #content>
             <SwiperSlide v-for="(item, index) in nowPlayings">
               <MovieCardHorizontal
