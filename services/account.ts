@@ -1,4 +1,4 @@
-import { makeRequest } from './makeRequest';
+import { makeRequest, makeRequestWithHeaders } from './makeRequest';
 
 export function ChangePassword(params: {
   otp: string;
@@ -63,7 +63,7 @@ export function accountVerify(params: any, type: string) {
       break;
   }
 
-  return makeRequest(`/account/verify/${type}`, {
+  return makeRequestWithHeaders(`/account/verify/${type}`, {
     method: 'POST',
     headers: headers,
     data: bodyFormData,

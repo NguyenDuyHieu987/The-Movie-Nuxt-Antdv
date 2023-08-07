@@ -1,17 +1,11 @@
-import { makeRequest } from './makeRequest';
-
-export function emailValidation(email: string) {
-  return makeRequest(
-    `https://emailvalidation.abstractapi.com/v1/?api_key=e23c5b9c07dc432796eea058c9d99e82&email=${email}`
-  );
-}
+import { makeRequest, makeRequestWithHeaders } from './makeRequest';
 
 export function LogIn(params: any) {
   const bodyFormData = new FormData();
   bodyFormData.append('email', params.email);
   bodyFormData.append('password', params.password);
 
-  return makeRequest(`/auth/login`, {
+  return makeRequestWithHeaders(`/auth/login`, {
     method: 'POST',
     data: bodyFormData,
   });
@@ -20,7 +14,7 @@ export function LogIn(params: any) {
 export function loginFacebook(params: any) {
   const headers = { Authorization: `Bearer ${params.accessToken}` };
 
-  return makeRequest(`/auth/loginfacebook`, {
+  return makeRequestWithHeaders(`/auth/loginfacebook`, {
     method: 'POST',
     headers: headers,
   });
@@ -29,7 +23,7 @@ export function loginFacebook(params: any) {
 export function loginGoogle(params: any) {
   const headers = { Authorization: `Bearer ${params.accessToken}` };
 
-  return makeRequest(`/auth/logingoogle`, {
+  return makeRequestWithHeaders(`/auth/logingoogle`, {
     method: 'POST',
     headers: headers,
   });
@@ -63,7 +57,7 @@ export function verifySignUp(params: any, type: string) {
   bodyFormData.append('full_name', params.full_name);
   bodyFormData.append('avatar', params.avatar);
 
-  return makeRequest(`auth/verify-signup/${type}`, {
+  return makeRequestWithHeaders(`auth/verify-signup/${type}`, {
     method: 'POST',
     data: bodyFormData,
   });
