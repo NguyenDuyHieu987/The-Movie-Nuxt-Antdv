@@ -244,7 +244,6 @@ export default defineNuxtConfig({
   extends: ['nuxt-seo-kit'],
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
-    styleLang: 'scss',
   },
   ogImage: {
     runtimeCacheStorage: {
