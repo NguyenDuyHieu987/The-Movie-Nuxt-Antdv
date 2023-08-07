@@ -5,10 +5,6 @@ export function makeRequest(url: string, options: any = {}) {
   // console.log(nuxtConfig);
 
   const api = axios.create({
-    headers: {
-      Accept: 'application/json',
-      'User-Agent': 'axios 0.21.1',
-    },
     baseURL: nuxtConfig.app.production_mode
       ? nuxtConfig.app.apiGateway
       : 'http://127.0.0.1:5000',
@@ -32,10 +28,6 @@ export function makeRequestWithHeaders(url: string, options: any = {}) {
   // console.log(nuxtConfig);
 
   const api = axios.create({
-    headers: {
-      Accept: 'application/json',
-      'User-Agent': 'axios 0.21.1',
-    },
     baseURL: nuxtConfig.app.production_mode
       ? nuxtConfig.app.apiGateway
       : 'http://127.0.0.1:5000',
