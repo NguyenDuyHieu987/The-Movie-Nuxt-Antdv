@@ -2,6 +2,7 @@
   <div v-if="isLogin" class="bills center-page padding-content">
     This is Bills page
   </div>
+
   <RequireAuth v-if="!isLogin" />
 </template>
 
@@ -28,6 +29,7 @@ useServerSeoMeta({
 });
 
 const internalInstance: any = getCurrentInstance();
+
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
   internalInstance.appContext.config.globalProperties.$Progress.finish();

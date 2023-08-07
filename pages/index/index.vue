@@ -15,7 +15,11 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="nowPlayings" :responsive="responsiveHorizoltal">
+        <CarouselGroup
+          v-if="nowPlayings?.length"
+          :data="nowPlayings"
+          :responsive="responsiveHorizoltal"
+        >
           <template #content>
             <SwiperSlide v-for="(item, index) in nowPlayings">
               <MovieCardHorizontal
@@ -29,9 +33,9 @@
         </CarouselGroup>
       </section>
 
-      <div
+      <section
         class="home-section recommend"
-        v-show="store?.isLogin && recommends?.length"
+        v-if="store?.isLogin && recommends?.length"
       >
         <h2 class="gradient-title-default">
           <span>Gợi ý cho bạn</span>
@@ -77,7 +81,7 @@
           </template>
           {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
         </a-button>
-      </div>
+      </section>
 
       <section class="home-section cartoon">
         <h2 class="gradient-title-default">
@@ -406,7 +410,83 @@ const getData = async () => {
   }
 };
 
-getData();
+// getData();
+
+// const { results: dataTrending } = await getTrending(1);
+// const { data: trendings } = await useAsyncData(`trending/all/1`, () =>
+//   getTrending(1)
+// );
+
+await useAsyncData(`trending/all/1`, () => getTrending(1))
+  .then((response: any) => {
+    trendings.value = response.data.value?.results;
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
+
+await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
+  .then((response) => {
+    nowPlayings.value = response.data.value?.results.slice(0, 12);
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
+
+await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
+  getMoviesByGenres('hoat-hinh', 'views_desc', 1)
+)
+  .then((response) => {
+    cartoons.value = response.data.value?.results.slice(0, 12);
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
+
+await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
+  .then((response) => {
+    tvAiringTodays.value = response.data.value?.results.slice(0, 12);
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
+
+await useAsyncData('movie/upcoming/1', () => getUpComing(1))
+  .then((response) => {
+    upComings.value = response.data.value?.results.slice(0, 12);
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
+
+await useAsyncData('movie/toprated/1', () => getTopRated(1))
+  .then((response) => {
+    topRateds.value = response.data.value?.results.slice(0, 12);
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
+
+await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
+  .then((response) => {
+    tvOnTheAirs.value = response.data.value?.results.slice(0, 12);
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
+
+if (store.isLogin) {
+  await useAsyncData('recommend/get/1', () =>
+    getMyRecommend(skipRecommend.value)
+  )
+    .then((response) => {
+      recommends.value = response.data.value?.results;
+      skipRecommend.value++;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+}
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;

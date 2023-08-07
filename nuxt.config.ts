@@ -175,7 +175,7 @@ export default defineNuxtConfig({
     '@': resolve(__dirname, './'),
   },
   imports: {
-    dirs: ['/services/index.ts'],
+    // dirs: ['/services'],
   },
   experimental: {
     payloadExtraction: false,

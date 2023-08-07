@@ -4,8 +4,9 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const { page } = getQuery(event);
 
-  const response: any = await axios.get(
+  const response = await axios.get(
     `${config.app.apiGateway}/trending/all?page=${page || 1}`
   );
-  return response.data;
+
+  return { ...response.data };
 });

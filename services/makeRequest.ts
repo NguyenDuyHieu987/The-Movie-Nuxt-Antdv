@@ -15,7 +15,8 @@ export function makeRequest(url: string, options: any = {}) {
     .then((res) => {
       const { headers, data } = res;
 
-      return { headers, ...data };
+      // return { headers, ...data };
+      return { ...data };
     })
     .catch((error) =>
       Promise.reject(error?.response?.data?.message ?? 'Error')
