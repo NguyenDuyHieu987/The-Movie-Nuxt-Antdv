@@ -75,19 +75,13 @@
         </div>
 
         <div class="info">
-          <a-skeleton
-            :loading="loading"
-            :active="true"
-            :paragraph="{ rows: 2 }"
-            :title="false"
-          >
-            <p class="title">
-              {{ item?.name }}
-              <!-- <span v-if="isEpisodes">
+          <p class="title">
+            {{ item?.name }}
+            <!-- <span v-if="isEpisodes">
                 {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
               </span> -->
-            </p>
-            <!-- <div class="info-bottom">
+          </p>
+          <!-- <div class="info-bottom">
               <div class="genres">
                 <span
                   class="genre-item"
@@ -99,7 +93,6 @@
                 </span>
               </div>
             </div> -->
-          </a-skeleton>
         </div>
       </template>
     </el-skeleton>

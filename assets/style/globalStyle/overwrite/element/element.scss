@@ -110,7 +110,8 @@
     background-color: var(--background-dropdown-color);
 
     .el-dropdown-menu__item {
-      padding: 13px 23px;
+      padding: 13px 20px;
+      font-size: 1.5rem;
       color: var(--text-color) !important;
       transition: all 0.1s;
 
@@ -143,7 +144,8 @@
         background-color: var(--background-dropdown-color);
 
         .el-dropdown-menu__item {
-          padding: 13px 23px;
+          padding: 13px 20px;
+          font-size: 1.5rem;
           color: var(--text-color) !important;
           transition: all 0.1s;
 
