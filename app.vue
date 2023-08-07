@@ -104,9 +104,8 @@ const getData = async () => {
   // }, 2000);
 };
 
-onBeforeMount(() => {
-  getData();
-});
+onBeforeMount(() => {});
+getData();
 
 const onBackTop = () => {
   window.scrollTo({

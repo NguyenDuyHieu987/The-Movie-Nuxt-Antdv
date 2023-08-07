@@ -11,22 +11,32 @@
     }"
     class="movie-card-item horizontal trailer"
   >
-    <div class="img-box">
-      <img
-        class="ant-image"
-        v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
-        loading="lazy"
-        alt=""
-      />
+    <el-skeleton :loading="loading" animated>
+      <template #template>
+        <el-skeleton-item class="skeleton-img" />
+        <!-- <div class="content-skeleton">
+          <el-skeleton-item variant="text" />
+          <el-skeleton-item variant="text" style="width: 60%" />
+        </div> -->
+      </template>
 
-      <div v-show="isInHistory" class="viewed-overlay-bar">
-        <div
-          class="percent-viewed"
-          :style="{ width: percent * 100 + '%' }"
-        ></div>
-      </div>
+      <template #default>
+        <div class="img-box">
+          <img
+            class="ant-image"
+            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+            loading="lazy"
+            alt=""
+          />
 
-      <!-- <div v-if="!loading" class="duration-episode-box">
+          <div v-show="isInHistory" class="viewed-overlay-bar">
+            <div
+              class="percent-viewed"
+              :style="{ width: percent * 100 + '%' }"
+            ></div>
+          </div>
+
+          <!-- <div v-if="!loading" class="duration-episode-box">
             <p v-if="!isEpisodes" class="duration-episode">
               {{ item?.runtime + ' min' }}
             </p>
@@ -43,50 +53,52 @@
             </p>
           </div> -->
 
-      <div
-        class="youtub-icon"
-        v-if="!loading"
-        @click.prevent="isOpenModalTrailer = true"
-      >
-        <!-- <font-awesome-icon icon="fa-brands fa-youtube" /> -->
-        <svg
-          class="fa-youtube"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 576 512"
-          width="5rem"
-          height="5rem"
-        >
-          <path
-            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-          />
-        </svg>
-      </div>
+          <div
+            class="youtub-icon"
+            v-if="!loading"
+            @click.prevent="isOpenModalTrailer = true"
+          >
+            <!-- <font-awesome-icon icon="fa-brands fa-youtube" /> -->
+            <svg
+              class="fa-youtube"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 576 512"
+              width="5rem"
+              height="5rem"
+            >
+              <path
+                d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+              />
+            </svg>
+          </div>
 
-      <div
-        v-if="item?.release_date || item?.last_air_date || item?.first_air_date"
-        class="release-date-box"
-      >
-        <p class="release-date" v-if="!isEpisodes">
-          {{ item?.release_date?.slice(0, 4) }}
-        </p>
-        <p v-else class="release-date">
-          {{
-            item?.last_air_date?.slice(0, 4)
-              ? item?.last_air_date?.slice(0, 4)
-              : item?.first_air_date?.slice(0, 4)
-          }}
-        </p>
-      </div>
-    </div>
+          <div
+            v-if="
+              item?.release_date || item?.last_air_date || item?.first_air_date
+            "
+            class="release-date-box"
+          >
+            <p class="release-date" v-if="!isEpisodes">
+              {{ item?.release_date?.slice(0, 4) }}
+            </p>
+            <p v-else class="release-date">
+              {{
+                item?.last_air_date?.slice(0, 4)
+                  ? item?.last_air_date?.slice(0, 4)
+                  : item?.first_air_date?.slice(0, 4)
+              }}
+            </p>
+          </div>
+        </div>
 
-    <div class="info">
-      <p class="title">
-        {{ item?.name }}
-        <!-- <span v-if="isEpisodes">
+        <div class="info">
+          <p class="title">
+            {{ item?.name }}
+            <!-- <span v-if="isEpisodes">
               {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
             </span> -->
-      </p>
-      <!-- <div class="info-bottom">
+          </p>
+          <!-- <div class="info-bottom">
             <div class="genres">
               <span
                 class="genre-item"
@@ -98,7 +110,9 @@
               </span>
             </div>
           </div> -->
-    </div>
+        </div>
+      </template>
+    </el-skeleton>
 
     <ModalTrailer
       :isOpenModalTrailer="isOpenModalTrailer"

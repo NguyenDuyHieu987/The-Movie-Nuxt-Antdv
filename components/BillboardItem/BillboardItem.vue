@@ -244,21 +244,36 @@ const windowWidth = ref<number>(1500);
 onBeforeMount(async () => {
   windowWidth.value = window.innerWidth;
 
-  if (store.isLogin) {
-    await useAsyncData(
-      `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-      () => getItemList(props.item?.id, props.item?.media_type)
-    )
-      .then((movieRespone: any) => {
-        if (movieRespone.data.value.success == true) {
-          isAddToList.value = true;
-        }
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      });
-  }
+  // if (store.isLogin) {
+  //   await useAsyncData(
+  //     `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
+  //     () => getItemList(props.item?.id, props.item?.media_type)
+  //   )
+  //     .then((movieRespone: any) => {
+  //       if (movieRespone.data.value.success == true) {
+  //         isAddToList.value = true;
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       if (axios.isCancel(e)) return;
+  //     });
+  // }
 });
+
+if (store.isLogin) {
+  await useAsyncData(
+    `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
+    () => getItemList(props.item?.id, props.item?.media_type)
+  )
+    .then((movieRespone: any) => {
+      if (movieRespone.data.value.success == true) {
+        isAddToList.value = true;
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+}
 
 const handelAddToList = () => {
   if (!store?.isLogin) {

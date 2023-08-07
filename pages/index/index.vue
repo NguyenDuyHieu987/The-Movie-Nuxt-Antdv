@@ -406,83 +406,12 @@ const getData = async () => {
   }
 };
 
-// getData();
+getData();
 
-// const { results: dataTrending } = await getTrending(1);
-// const { data: trendings } = await useAsyncData(`trending/all/1`, () =>
+// const { results: trendings, pending } = await getTrending(1);
+// const { data: trendings, pending } = await useAsyncData(`trending/all/1`, () =>
 //   getTrending(1)
 // );
-
-await useAsyncData(`trending/all/1`, () => getTrending(1))
-  .then((response: any) => {
-    trendings.value = response.data.value?.results;
-  })
-  .catch((e) => {
-    if (axios.isCancel(e)) return;
-  });
-
-await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
-  .then((response) => {
-    nowPlayings.value = response.data.value?.results.slice(0, 12);
-  })
-  .catch((e) => {
-    if (axios.isCancel(e)) return;
-  });
-
-await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
-  getMoviesByGenres('hoat-hinh', 'views_desc', 1)
-)
-  .then((response) => {
-    cartoons.value = response.data.value?.results.slice(0, 12);
-  })
-  .catch((e) => {
-    if (axios.isCancel(e)) return;
-  });
-
-await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
-  .then((response) => {
-    tvAiringTodays.value = response.data.value?.results.slice(0, 12);
-  })
-  .catch((e) => {
-    if (axios.isCancel(e)) return;
-  });
-
-await useAsyncData('movie/upcoming/1', () => getUpComing(1))
-  .then((response) => {
-    upComings.value = response.data.value?.results.slice(0, 12);
-  })
-  .catch((e) => {
-    if (axios.isCancel(e)) return;
-  });
-
-await useAsyncData('movie/toprated/1', () => getTopRated(1))
-  .then((response) => {
-    topRateds.value = response.data.value?.results.slice(0, 12);
-  })
-  .catch((e) => {
-    if (axios.isCancel(e)) return;
-  });
-
-await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
-  .then((response) => {
-    tvOnTheAirs.value = response.data.value?.results.slice(0, 12);
-  })
-  .catch((e) => {
-    if (axios.isCancel(e)) return;
-  });
-
-if (store.isLogin) {
-  await useAsyncData('recommend/get/1', () =>
-    getMyRecommend(skipRecommend.value)
-  )
-    .then((response) => {
-      recommends.value = response.data.value?.results;
-      skipRecommend.value++;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
-}
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;
