@@ -265,6 +265,7 @@ const handelAddToList = () => {
     store.openRequireAuthDialog = true;
     return;
   }
+
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (!utils.handelAddItemToList(props.item?.id, props.item?.media_type)) {

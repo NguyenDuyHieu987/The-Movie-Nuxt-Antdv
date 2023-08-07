@@ -317,7 +317,7 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    // preset: 'static',
+    preset: 'static',
     prerender: {
       routes: [],
       crawlLinks: true,
@@ -447,7 +447,7 @@ export default defineNuxtConfig({
   },
   optimization: {},
   routeRules: {
-    '/': { prerender: true, swr: 5 },
+    '/': { prerender: true },
     '/search/**': { prerender: true },
     '/discover/**': { ssr: false, prerender: true },
     '/follow/**': { prerender: true },
