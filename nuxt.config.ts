@@ -244,6 +244,7 @@ export default defineNuxtConfig({
   extends: ['nuxt-seo-kit'],
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
+    styleLang: 'scss',
   },
   ogImage: {
     runtimeCacheStorage: {
@@ -317,7 +318,7 @@ export default defineNuxtConfig({
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    preset: 'node-server',
+    // preset: 'static',
     prerender: {
       routes: [],
       crawlLinks: true,

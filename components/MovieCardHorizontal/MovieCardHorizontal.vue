@@ -197,7 +197,6 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {});
 getData();
 
 const onMouseEnter = ({ target }: { target: HTMLElement }) => {
