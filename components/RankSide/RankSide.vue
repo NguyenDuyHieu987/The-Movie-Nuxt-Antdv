@@ -165,21 +165,20 @@ const getData = async (activeKey: string) => {
   }
 };
 
-// onBeforeMount(async () => {
-//   await nextTick();
+onBeforeMount(async () => {
+  await nextTick();
 
-// });
-
-await useAsyncData(`ranking/all/1`, () => getRanking(1))
-  .then((movieRespone: any) => {
-    rankData.value = movieRespone.data.value?.results;
-  })
-  .catch((e) => {
-    if (axios.isCancel(e)) return;
-  })
-  .finally(() => {
-    loading.value = false;
-  });
+  await useAsyncData(`ranking/all/1`, () => getRanking(1))
+    .then((movieRespone: any) => {
+      rankData.value = movieRespone.data.value?.results;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
+});
 
 onMounted(() => {
   // window.addEventListener('scroll', () => {
