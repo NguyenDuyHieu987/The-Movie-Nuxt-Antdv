@@ -4,15 +4,8 @@ export function getTvById(
   movieId: number | string,
   append_to_response: string = ''
 ) {
-  const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
-  };
-
   return makeRequest(
-    `/tv/detail/${movieId}?append_to_response=${append_to_response}`,
-    getWithExpiry('user_account')?.user_token && {
-      headers: headers,
-    }
+    `/tv/detail/${movieId}?append_to_response=${append_to_response}`
   );
 }
 

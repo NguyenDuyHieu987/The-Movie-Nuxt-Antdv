@@ -5,43 +5,18 @@ export function getHistory(
   skip: number = 1,
   limit: number = 20
 ) {
-  const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
-  };
-
-  return makeRequest(
-    `/history/gethistory/${type}?skip=${skip}&limit=${limit}`,
-    {
-      headers: headers,
-    }
-  );
+  return makeRequest(`/history/gethistory/${type}?skip=${skip}&limit=${limit}`);
 }
 
 export function searchHistory(query: string, type: string = 'all') {
-  const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
-  };
-
-  return makeRequest(`/history/searchhistory/${type}?query=${query}`, {
-    headers: headers,
-  });
+  return makeRequest(`/history/searchhistory/${type}?query=${query}`);
 }
 
 export function getItemHistory(movieId: string, media_type: string) {
-  const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
-  };
-
-  return makeRequest(`/history/getitem/${media_type}/${movieId}`, {
-    headers: headers,
-  });
+  return makeRequest(`/history/getitem/${media_type}/${movieId}`);
 }
 
 export function add_update_History(params: any) {
-  const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
-  };
-
   const bodyFormData = new FormData();
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
@@ -51,34 +26,23 @@ export function add_update_History(params: any) {
 
   return makeRequest(`/history/add_item`, {
     method: 'POST',
-    headers: headers,
     data: bodyFormData,
   });
 }
 
 export function removeItemHistory(params: any) {
-  const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
-  };
-
   const bodyFormData = new FormData();
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
 
   return makeRequest(`/history/remove_item`, {
     method: 'DELETE',
-    headers: headers,
     data: bodyFormData,
   });
 }
 
 export function removeAllItemHistory() {
-  const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
-  };
-
   return makeRequest(`/history/removeall_item`, {
     method: 'DELETE',
-    headers: headers,
   });
 }

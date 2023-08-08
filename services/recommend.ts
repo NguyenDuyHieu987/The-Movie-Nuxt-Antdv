@@ -2,11 +2,5 @@ import { makeRequest } from './makeRequest';
 import { getWithExpiry } from '@/utils/customlocalStorage';
 
 export function getMyRecommend(page: number = 1, limit: number = 6) {
-  const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
-  };
-
-  return makeRequest(`/recommend/getrecommend?page=${page}&limit=${limit}`, {
-    headers: headers,
-  });
+  return makeRequest(`/recommend/getrecommend?page=${page}&limit=${limit}`);
 }

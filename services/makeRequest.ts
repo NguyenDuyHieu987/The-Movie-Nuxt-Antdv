@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function makeRequest(url: string, options: any = {}) {
   const nuxtConfig = useRuntimeConfig();
-  // console.log(nuxtConfig);
+  let headers: any = {};
 
   const api = axios.create({
     baseURL: nuxtConfig.app.production_mode
@@ -11,30 +11,13 @@ export function makeRequest(url: string, options: any = {}) {
     // withCredentials: true,
   });
 
-  return api(url, options)
-    .then((res) => {
-      const { headers, data } = res;
+  if (getWithExpiry('user_account')?.user_token && !options?.noAuthHeader) {
+    headers.Authorization = `Bearer ${
+      getWithExpiry('user_account')?.user_token
+    }`;
+  }
 
-      // return { headers, ...data };
-      return { ...data };
-    })
-    .catch((error) =>
-      Promise.reject(error?.response?.data?.message ?? 'Error')
-    );
-}
-
-export function makeRequestWithHeaders(url: string, options: any = {}) {
-  const nuxtConfig = useRuntimeConfig();
-  // console.log(nuxtConfig);
-
-  const api = axios.create({
-    baseURL: nuxtConfig.app.production_mode
-      ? nuxtConfig.app.apiGateway
-      : 'http://127.0.0.1:5000',
-    // withCredentials: true,
-  });
-
-  return api(url, options)
+  return api(url, { headers: { ...headers, ...options?.headers }, ...options })
     .then((res) => {
       const { headers, data } = res;
 
