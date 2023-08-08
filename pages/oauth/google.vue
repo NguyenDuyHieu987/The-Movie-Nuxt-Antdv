@@ -145,7 +145,6 @@ onBeforeMount(() => {
         });
 
         store.userAccount = response?.result;
-        store.isLogin = true;
         utils.localStorage.setWithExpiry(
           'user_account',
           {
@@ -157,7 +156,6 @@ onBeforeMount(() => {
         // navigateTo({ path: urlBack.value });
       } else if (response.isLogin == true) {
         store.userAccount = response?.result;
-        store.isLogin = true;
         utils.localStorage.setWithExpiry(
           'user_account',
           {

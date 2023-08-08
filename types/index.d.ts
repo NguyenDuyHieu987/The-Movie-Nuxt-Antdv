@@ -48,4 +48,5 @@ export declare type user = {
   role: string;
   avatar: string | number;
   auth_type: string;
+  created_at?: string;
 } | null;
