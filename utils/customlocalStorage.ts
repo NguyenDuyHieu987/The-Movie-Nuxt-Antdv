@@ -85,3 +85,26 @@ export function getWithExpiry_ExpRemain(key: any) {
 
   return item.value;
 }
+
+export function useLocalStorage(initialVal: any, key: string) {
+  const val = ref<any>(initialVal);
+  let storageVal = null;
+
+  if (process.client) {
+    storageVal = window.localStorage.getItem(key);
+  }
+
+  if (storageVal) {
+    val.value = JSON.parse(storageVal);
+  }
+
+  watch(
+    () => val,
+    (newVal) => {
+      window.localStorage.setItem(key, JSON.stringify(newVal));
+    },
+    { immediate: true, deep: true }
+  );
+
+  return val;
+}

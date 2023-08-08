@@ -19,11 +19,7 @@ export function onLogOut() {
           }).then(() => {
             setTimeout(() => {
               window.localStorage.removeItem('user_account');
-              window.localStorage.removeItem('remember');
-              window.localStorage.removeItem('is_login');
-              store.userAccount = {};
-              store.isLogin = false;
-              store.role = 'normal';
+              store.userAccount = null;
             }, 200);
           });
         } else {

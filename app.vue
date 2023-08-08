@@ -47,65 +47,8 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
-import { CloseCircleFilled } from '@ant-design/icons-vue';
-import { ElNotification } from 'element-plus';
-import { getUserToken } from '~/services/authentication';
 import LoadingApp from '~/components/LoadingApp/LoadingApp.vue';
 import RequireAuthDialog from '~/components/RequireAuthDialog/RequireAuthDialog.vue';
-
-const store = useStore();
-const utils = useUtils();
-const router = useRouter();
-const loadingHomePage = ref<boolean>(true);
-
-const getData = async () => {
-  if (utils.localStorage.getWithExpiry('user_account')?.user_token) {
-    store.isLogin = true;
-
-    getUserToken({
-      user_token: utils.localStorage.getWithExpiry('user_account')?.user_token,
-    })
-      .then((accountResponse: any) => {
-        // console.log(accountResponse);
-
-        if (accountResponse?.isLogin == true) {
-          store.isLogin = true;
-          store.userAccount = accountResponse?.result;
-          store.role = accountResponse?.result?.role;
-        } else {
-          window.localStorage.removeItem('user_account');
-          window.localStorage.removeItem('remember');
-          window.localStorage.removeItem('is_login');
-          store.userAccount = {};
-          store.isLogin = false;
-          store.role = 'normal';
-        }
-      })
-      .catch((e) => {
-        ElNotification.error({
-          title: 'Lỗi!',
-          message: 'Some thing went wrong.',
-          showClose: false,
-          icon: () =>
-            h(CloseCircleFilled, {
-              style: 'color: red',
-            }),
-        });
-        if (axios.isCancel(e)) return;
-      });
-  }
-
-  // setTimeout(() => {
-  //   if (store.loadingApp == false) {
-  //     store.loadingApp = true;
-  //   }
-  //   loadingApp.value = false;
-  // }, 2000);
-};
-
-onBeforeMount(() => {});
-getData();
 
 const onBackTop = () => {
   window.scrollTo({

@@ -273,9 +273,7 @@ const handleLogin = () => {
   })
     .then((response: any) => {
       if (response?.isLogin == true) {
-        store.isLogin = true;
         store.userAccount = response?.result;
-        store.role = response?.result?.role;
 
         utils.localStorage.setWithExpiry(
           'user_account',
@@ -349,7 +347,6 @@ const handleClickFacebookLogin = async () => {
             }),
         });
         store.userAccount = response?.result;
-        store.isLogin = true;
         utils.localStorage.setWithExpiry(
           'user_account',
           { user_token: response.headers.get('Authorization') },
@@ -359,7 +356,6 @@ const handleClickFacebookLogin = async () => {
         navigateTo({ path: urlBack.value });
       } else if (response.isLogin == true) {
         store.userAccount = response?.result;
-        store.isLogin = true;
         utils.localStorage.setWithExpiry(
           'user_account',
           { user_token: response.headers.get('Authorization') },
@@ -472,7 +468,6 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
               }),
           });
           store.userAccount = response?.result;
-          store.isLogin = true;
           utils.localStorage.setWithExpiry(
             'user_account',
             {
@@ -484,7 +479,6 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           navigateTo({ path: urlBack.value });
         } else if (response.isLogin == true) {
           store.userAccount = response?.result;
-          store.isLogin = true;
           utils.localStorage.setWithExpiry(
             'user_account',
             {

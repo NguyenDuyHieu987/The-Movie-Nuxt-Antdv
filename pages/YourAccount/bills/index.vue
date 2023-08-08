@@ -1,17 +1,24 @@
 <template>
-  <div v-if="isLogin" class="bills center-page padding-content">
+  <div></div>
+  <!-- <div v-if="isLogin" class="bills center-page padding-content">
     This is Bills page
   </div>
 
-  <RequireAuth v-if="!isLogin" />
+  <RequireAuth v-if="!isLogin" /> -->
 </template>
 
 <script setup lang="ts">
 import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
 import { storeToRefs } from 'pinia';
 
-const store: any = useStore();
+const store = useStore();
 const { isLogin } = storeToRefs<any>(store);
+
+// const event = useRequestEvent();
+
+// console.log(event.context?.user);
+
+console.log(store.isLogin);
 
 useHead({
   title: 'Lịch sử giao dịch - Hóa đơn',

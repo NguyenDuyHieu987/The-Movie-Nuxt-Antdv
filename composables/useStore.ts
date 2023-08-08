@@ -1,25 +1,21 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
+import { genre, country, year, user } from '@/types';
 
 export default defineStore('store', () => {
-  const utils = useUtils();
-
+  const userAccount = ref<user>(null);
+  const role = computed<string>(() => userAccount.value!?.role || 'normal');
+  const isLogin = computed<boolean>(() => !!userAccount.value);
   const collapsed = ref<boolean>(false);
+  // const collapsed = useLocalStorage(false, 'isCollapsedSiderbar');
   const openDrawer = ref<boolean>(false);
   const modalVisible = ref<boolean>(false);
   const openRequireAuthDialog = ref<boolean>(false);
-  const isLogin = ref<boolean>(
-    utils.localStorage.getWithExpiry('user_account') ? true : false
-  );
   const breadCrumbValue = ref<string>('');
-  const role = ref<string>('normal');
   const loadingApp = ref<boolean>(false);
-  const userAccount = ref<any>(
-    utils.localStorage.getWithExpiry('user_account') || {}
-  );
-  const allGenres = ref<any[]>([]);
-  const allCountries = ref<any[]>([]);
-  const allYears = ref<any[]>([]);
+  const allGenres = ref<genre[]>([]);
+  const allCountries = ref<country[]>([]);
+  const allYears = ref<year[]>([]);
 
   const setCollapsed = () => {
     collapsed.value = !collapsed.value;
@@ -45,21 +41,21 @@ export default defineStore('store', () => {
   };
 
   return {
+    userAccount,
+    isLogin,
+    role,
+    breadCrumbValue,
     collapsed,
     openDrawer,
     modalVisible,
     openRequireAuthDialog,
-    isLogin,
-    breadCrumbValue,
-    role,
     loadingApp,
-    userAccount,
+    loadingAppInstance,
     allGenres,
     allCountries,
     allYears,
     setCollapsed,
     setOpendrawer,
     setCloseRequireAuthDialog,
-    loadingAppInstance,
   };
 });

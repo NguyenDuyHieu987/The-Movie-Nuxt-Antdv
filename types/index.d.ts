@@ -39,3 +39,13 @@ export declare interface plan {
   resolution: string;
   support_devices: string;
 }
+
+export declare type user = {
+  id: string;
+  username: string;
+  full_name: string;
+  email: string;
+  role: string;
+  avatar: string | number;
+  auth_type: string;
+} | null;

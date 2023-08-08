@@ -236,14 +236,13 @@ import { getItemList } from '~/services/list';
 const props = defineProps<{
   item: any;
 }>();
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
 const isAddToList = ref<boolean>(false);
-const windowWidth = ref<number>(1500);
+// const windowWidth = ref<number>(window.innerWidth);
 
 onBeforeMount(async () => {
-  windowWidth.value = window.innerWidth;
-
+  // windowWidth.value = window.innerWidth;
   // if (store.isLogin) {
   //   await useAsyncData(
   //     `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
@@ -260,20 +259,26 @@ onBeforeMount(async () => {
   // }
 });
 
-if (store.isLogin) {
-  await useAsyncData(
-    `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-    () => getItemList(props.item?.id, props.item?.media_type)
-  )
-    .then((movieRespone: any) => {
-      if (movieRespone.data.value.success == true) {
-        isAddToList.value = true;
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
-}
+watch(
+  () => store.isLogin,
+  async () => {
+    if (store.isLogin) {
+      await useAsyncData(
+        `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
+        () => getItemList(props.item?.id, props.item?.media_type)
+      )
+        .then((movieRespone: any) => {
+          if (movieRespone.data.value.success == true) {
+            isAddToList.value = true;
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        });
+    }
+  },
+  { immediate: true }
+);
 
 const handelAddToList = () => {
   if (!store?.isLogin) {

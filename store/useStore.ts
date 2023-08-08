@@ -1,37 +1,68 @@
 import { defineStore } from 'pinia';
+import { ref, computed } from 'vue';
+import { genre, country, year, user } from '@/types';
 
-const utils = useUtils();
+export default defineStore('store', () => {
+  const utils = useUtils();
 
-export const useStore = defineStore('store', {
-  state() {
-    return {
-      collapsed: false,
-      openDrawer: false,
-      openRequireAuthDialog: false,
-      isLogin: utils.localStorage.getWithExpiry('user_account') ? true : false,
-      breadCrumbValue: '',
-      role: 'normal',
-      loadingHomePage: false,
-      loadingMisc: false,
-      loadingDashBoard: false,
-      userAccount: utils.localStorage.getWithExpiry('user_account') || {},
-      allGenres: [],
-      allCountries: [],
-      allYears: [],
-    };
-  },
-  getters: {
-    doubleCount: (state: any) => state.breadCrumbValue * 2,
-  },
-  actions: {
-    setCollapsed() {
-      this.$state.collapsed = !this.$state.collapsed;
+  const userAccount = ref<user>(
+    utils.localStorage.getWithExpiry('user_account') || null
+  );
+  const role = computed<string>(() => userAccount.value!?.role || 'normal');
+  const isLogin = computed<boolean>(
+    () =>
+      // utils.localStorage.getWithExpiry('user_account') ? true : false
+      !!userAccount.value
+  );
+  const collapsed = ref<boolean>(false);
+  const openDrawer = ref<boolean>(false);
+  const modalVisible = ref<boolean>(false);
+  const openRequireAuthDialog = ref<boolean>(false);
+  const breadCrumbValue = ref<string>('');
+  const loadingApp = ref<boolean>(false);
+  const allGenres = ref<genre[]>([]);
+  const allCountries = ref<country[]>([]);
+  const allYears = ref<year[]>([]);
+
+  const setCollapsed = () => {
+    collapsed.value = !collapsed.value;
+  };
+
+  const setOpendrawer = () => {
+    openDrawer.value = !openDrawer.value;
+  };
+
+  const setCloseRequireAuthDialog = () => {
+    openRequireAuthDialog.value = false;
+  };
+
+  const loadingAppInstance = {
+    start: () => {
+      loadingApp.value = true;
+      document.body.classList.toggle('loading-mask');
     },
-    setOpendrawer() {
-      this.$state.openDrawer = !this.$state.openDrawer;
+    finish: () => {
+      loadingApp.value = false;
+      document.body.classList.toggle('loading-mask');
     },
-    setCloseRequireAuthDialog() {
-      this.$state.openRequireAuthDialog = false;
-    },
-  },
+  };
+
+  return {
+    userAccount,
+    isLogin,
+    role,
+    breadCrumbValue,
+    collapsed,
+    openDrawer,
+    modalVisible,
+    openRequireAuthDialog,
+    loadingApp,
+    loadingAppInstance,
+    allGenres,
+    allCountries,
+    allYears,
+    setCollapsed,
+    setOpendrawer,
+    setCloseRequireAuthDialog,
+  };
 });

@@ -5,6 +5,7 @@
     collapsedWidth="var(--sider-collapsed-width)"
     class="sider-bar"
     collapsible
+    @collapse="handleCollapse"
   >
     <header class="sider-header">
       <div class="user-header">
@@ -115,6 +116,8 @@ onMounted(() => {
     }
   });
 });
+
+const handleCollapse = () => {};
 </script>
 
 <style lang="scss" src="./Sider.scss"></style>
