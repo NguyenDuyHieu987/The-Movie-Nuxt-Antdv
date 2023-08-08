@@ -14,8 +14,8 @@
         :src="
           getImage(
             item?.backdrop_path,
-            'backdrop'
-            // 'w-' +  windowWidth!.toString()
+            'backdrop',
+            'w-' +  windowWidth!.toString()
           )
         "
         format="avif"
@@ -239,10 +239,10 @@ const props = defineProps<{
 const store = useStore();
 const utils = useUtils();
 const isAddToList = ref<boolean>(false);
-// const windowWidth = ref<number>(window.innerWidth);
+const windowWidth = ref<number>(window.innerWidth);
 
 onBeforeMount(async () => {
-  // windowWidth.value = window.innerWidth;
+  windowWidth.value = window.innerWidth;
   // if (store.isLogin) {
   //   await useAsyncData(
   //     `itemlist/${store?.userAccount?.id}/${props.item?.id}`,

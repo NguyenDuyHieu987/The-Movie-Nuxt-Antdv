@@ -1,10 +1,9 @@
 <template>
-  <div></div>
-  <!-- <div v-if="isLogin" class="bills center-page padding-content">
+  <div v-if="isLogin" class="bills center-page padding-content">
     This is Bills page
   </div>
 
-  <RequireAuth v-if="!isLogin" /> -->
+  <RequireAuth v-if="!isLogin" />
 </template>
 
 <script setup lang="ts">
@@ -13,12 +12,6 @@ import { storeToRefs } from 'pinia';
 
 const store = useStore();
 const { isLogin } = storeToRefs<any>(store);
-
-// const event = useRequestEvent();
-
-// console.log(event.context?.user);
-
-console.log(store.isLogin);
 
 useHead({
   title: 'Lịch sử giao dịch - Hóa đơn',
