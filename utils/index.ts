@@ -10,7 +10,12 @@ export const useUtils = () => {
     handleRemoveAllitemFromHistory,
     initFacebookSdk,
     initGoogleSdk,
-    localStorage: { setWithExpiry, getWithExpiry, getWithExpiry_ExpRemain },
+    localStorage: {
+      setWithExpiry,
+      getWithExpiry,
+      getWithExpiry_ExpRemain,
+      useLocalStorage,
+    },
     dateFormater: { format, fromNow },
     conrfirmMessageModal,
     removeVietnameseTones,
