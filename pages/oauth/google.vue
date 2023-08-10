@@ -150,7 +150,7 @@ onBeforeMount(() => {
           {
             user_token: response.headers.get('Authorization'),
           },
-          30
+          response?.exp_token_hours
         );
         navigateTo({ path: '/' });
         // navigateTo({ path: urlBack.value });
@@ -161,7 +161,7 @@ onBeforeMount(() => {
           {
             user_token: response.headers.get('Authorization'),
           },
-          30
+          response?.exp_token_hours
         );
         navigateTo({ path: '/' });
         // navigateTo({ path: urlBack.value });
