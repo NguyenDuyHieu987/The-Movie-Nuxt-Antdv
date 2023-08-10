@@ -33,13 +33,13 @@ export function ChangeEmail(params: { otp: string; jwtVerifyEmail: string }) {
   });
 }
 
-export function ChangeFullname(params: { newFullname: string }) {
+export function ChangeFullname(params: { jwtVerifyFullname: string }) {
   const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
+    Authorization: `Bearer ${params.jwtVerifyFullname}`,
   };
 
   const bodyFormData = new FormData();
-  bodyFormData.append('new_fullname', params.newFullname);
+  bodyFormData.append('new_fullname', params.jwtVerifyFullname);
 
   return makeRequest(`/account/change-fullname`, {
     method: 'POST',
@@ -49,9 +49,6 @@ export function ChangeFullname(params: { newFullname: string }) {
 }
 
 export function accountVerify(params: any, type: string) {
-  const headers = {
-    Authorization: `Bearer ${getWithExpiry('user_account')?.user_token}`,
-  };
   const bodyFormData = new FormData();
 
   switch (type) {
@@ -65,7 +62,6 @@ export function accountVerify(params: any, type: string) {
 
   return makeRequest(`/account/verify/${type}`, {
     method: 'POST',
-    headers: headers,
     data: bodyFormData,
   });
 }

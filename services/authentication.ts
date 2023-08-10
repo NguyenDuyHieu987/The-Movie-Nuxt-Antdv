@@ -85,17 +85,17 @@ export function signUp(params: any) {
   const bodyFormData = new FormData();
   bodyFormData.append('otp', params.otp);
 
+  const headers = { Authorization: `Bearer ${params.user_token}` };
+
   return makeRequest(`/auth/signup`, {
     method: 'POST',
+    headers: headers,
     data: bodyFormData,
   });
 }
 
 export function LogOut(params: any) {
-  const headers = { Authorization: `Bearer ${params.user_token}` };
-
   return makeRequest(`/auth/logout`, {
     method: 'POST',
-    headers: headers,
   });
 }

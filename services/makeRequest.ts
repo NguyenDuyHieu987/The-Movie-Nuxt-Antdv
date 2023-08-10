@@ -12,9 +12,11 @@ export function makeRequest(url: string, options: any = {}) {
   });
 
   if (getWithExpiry('user_account')?.user_token && !options?.noAuthHeader) {
-    headers.Authorization = `Bearer ${
-      getWithExpiry('user_account')?.user_token
-    }`;
+    if (!options?.headers?.hasOwnProperty('Authorization')) {
+      headers.Authorization = `Bearer ${
+        getWithExpiry('user_account')?.user_token
+      }`;
+    }
   }
 
   return api(url, { headers: { ...headers, ...options?.headers }, ...options })
