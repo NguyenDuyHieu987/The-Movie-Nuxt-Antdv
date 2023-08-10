@@ -6,8 +6,8 @@ export function setWithExpiry(key: string, value: any, ttl: number) {
 
   const item = {
     value: value,
-    expiry: now.getTime() + Math.round(ttl * 60 * 60 * 24) * 1000,
-    // expiry: now.getDate() + ttl,
+    // expiry: now.getTime() + Math.round(ttl * 60 * 60 * 24) * 1000,
+    expiry: now.getTime() + ttl,
   };
 
   if (process.client) {
@@ -32,8 +32,6 @@ export function getWithExpiry(key: any) {
   // compare the expiry time of the item with the current time
   if (item?.expiry) {
     if (date.getTime() >= item.expiry) {
-      //   if (date.getDate() > item.expiry) {
-
       // If the item is expired, delete the item from storage
       // else return null
 
