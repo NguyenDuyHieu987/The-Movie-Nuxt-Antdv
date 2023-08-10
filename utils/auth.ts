@@ -9,9 +9,7 @@ export function onLogOut() {
   if (store.isLogin) {
     store.loadingAppInstance.start();
 
-    LogOut({
-      user_token: getWithExpiry('user_account')?.user_token,
-    })
+    LogOut({})
       .then((response: any) => {
         if (response?.isLogout == true) {
           new Promise((resolve, reject) => {

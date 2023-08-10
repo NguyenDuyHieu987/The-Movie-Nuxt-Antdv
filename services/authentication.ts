@@ -1,5 +1,11 @@
 import { makeRequest } from './makeRequest';
 
+export function emailValidation(email: string) {
+  return makeRequest(
+    `https://emailvalidation.abstractapi.com/v1/?api_key=e23c5b9c07dc432796eea058c9d99e82&email=${email}`
+  );
+}
+
 export function LogIn(params: any) {
   const bodyFormData = new FormData();
   bodyFormData.append('email', params.email);
@@ -12,20 +18,29 @@ export function LogIn(params: any) {
 }
 
 export function loginFacebook(params: any) {
+  const headers = { Authorization: `Bearer ${params.accessToken}` };
+
   return makeRequest(`/auth/loginfacebook`, {
     method: 'POST',
+    headers: headers,
   });
 }
 
 export function loginGoogle(params: any) {
+  const headers = { Authorization: `Bearer ${params.accessToken}` };
+
   return makeRequest(`/auth/logingoogle`, {
     method: 'POST',
+    headers: headers,
   });
 }
 
 export function getUserToken(params: any) {
+  const headers = { Authorization: `Bearer ${params.user_token}` };
+
   return makeRequest(`/auth/getusertoken`, {
     // method: 'POST',
+    headers: headers,
   });
 }
 
@@ -77,7 +92,10 @@ export function signUp(params: any) {
 }
 
 export function LogOut(params: any) {
+  const headers = { Authorization: `Bearer ${params.user_token}` };
+
   return makeRequest(`/auth/logout`, {
     method: 'POST',
+    headers: headers,
   });
 }
