@@ -207,7 +207,7 @@
                 <el-menu-item-group class="private" key="private">
                   <template #title>
                     <span>Thông báo cá nhân</span>
-                    <span class="count-message">1</span>
+                    <span class="count-message">2</span>
                   </template>
                   <el-dropdown-item>Message 1</el-dropdown-item>
                   <el-dropdown-item>Message 2</el-dropdown-item>

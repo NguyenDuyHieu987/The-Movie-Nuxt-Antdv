@@ -2,7 +2,7 @@
   <div class="payment padding-content">
     <div v-if="store.isLogin" class="payment-container">
       <div class="payment-header">
-        <h2>Chọn phương thức thanh toán</h2>
+        <h1>Chọn phương thức thanh toán</h1>
         <p>
           Tư cách thành viên trả phí của bạn sẽ bắt đầu ngay khi bạn thiết lập
           thanh toán.
