@@ -22,7 +22,7 @@
         <NuxtLink
           v-if="route.path == '/login'"
           class="signup-btn click-active"
-          to="/signup"
+          :to="{ path: '/signup' }"
         >
           <span> Đăng ký ngay</span>
         </NuxtLink>
@@ -34,7 +34,7 @@
           route.path.toLowerCase() == '/signup' ||
           route.path.toLowerCase() == '/forgotpassword'
         "
-        to="/login"
+        :to="{ path: '/login' }"
       >
         Đăng nhập
       </NuxtLink>
