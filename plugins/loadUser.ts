@@ -24,7 +24,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         ElNotification.error({
           title: 'Lỗi!',
           message: 'Some thing went wrong.',
-          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
