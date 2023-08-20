@@ -21,7 +21,7 @@
 
         <nuxt-img
           v-else
-          :src="getImage(`user2.png`, 'comment_avatar')"
+          :src="getImage(`user.png`, 'comment_avatar')"
           loading="lazy"
         />
       </div>
@@ -200,8 +200,8 @@ const handleChange = (e: any) => {
 };
 
 const handleFocus = () => {
-  if (!store.$state?.isLogin) {
-    store.$state.openRequireAuthDialog = true;
+  if (!store.isLogin) {
+    store.openRequireAuthDialog = true;
     return;
   }
 
