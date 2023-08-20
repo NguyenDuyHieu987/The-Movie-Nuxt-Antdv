@@ -327,58 +327,65 @@ const handleLogin = () => {
 };
 
 const handleClickFacebookLogin = async () => {
-  const { authResponse }: any = await new Promise(window.FB.login);
-  if (!authResponse) return;
+  // const { authResponse }: any =
+  await new Promise(
+    window.FB.login(
+      ({ authResponse }: { authResponse: any; status: string }) => {
+        if (!authResponse) return;
 
-  loadingFacebookLogin.value = true;
+        loadingFacebookLogin.value = true;
 
-  loginFacebook({
-    accessToken: authResponse.accessToken,
-  })
-    .then((response: any) => {
-      // console.log(response?.result);
-      if (response.isSignUp == true) {
-        ElNotification.success({
-          title: 'Thành công!',
-          message: 'Bạn đã đăng nhập bằng Facebook thành công tại Phimhay247.',
-          icon: () =>
-            h(CheckCircleFilled, {
-              style: 'color: green',
-            }),
-        });
-        store.userAccount = response?.result;
-        utils.localStorage.setWithExpiry(
-          'user_account',
-          { user_token: response.headers.get('Authorization') },
-          30
-        );
-        // navigateTo({ path: '/' });
-        navigateTo({ path: urlBack.value });
-      } else if (response.isLogin == true) {
-        store.userAccount = response?.result;
-        utils.localStorage.setWithExpiry(
-          'user_account',
-          { user_token: response.headers.get('Authorization') },
-          30
-        );
-        // navigateTo({ path: '/' });
-        navigateTo({ path: urlBack.value });
+        loginFacebook({
+          accessToken: authResponse.accessToken,
+        })
+          .then((response: any) => {
+            // console.log(response?.result);
+            if (response.isSignUp == true) {
+              ElNotification.success({
+                title: 'Thành công!',
+                message:
+                  'Bạn đã đăng nhập bằng Facebook thành công tại Phimhay247.',
+                icon: () =>
+                  h(CheckCircleFilled, {
+                    style: 'color: green',
+                  }),
+              });
+              store.userAccount = response?.result;
+              utils.localStorage.setWithExpiry(
+                'user_account',
+                { user_token: response.headers.get('Authorization') },
+                30
+              );
+              // navigateTo({ path: '/' });
+              navigateTo({ path: urlBack.value });
+            } else if (response.isLogin == true) {
+              store.userAccount = response?.result;
+              utils.localStorage.setWithExpiry(
+                'user_account',
+                { user_token: response.headers.get('Authorization') },
+                30
+              );
+              // navigateTo({ path: '/' });
+              navigateTo({ path: urlBack.value });
+            }
+          })
+          .catch((e) => {
+            ElNotification.error({
+              title: 'Thất bại!',
+              message: 'Some thing went wrong.',
+              icon: () =>
+                h(CloseCircleFilled, {
+                  style: 'color: red',
+                }),
+            });
+            if (axios.isCancel(e)) return;
+          })
+          .finally(() => {
+            loadingFacebookLogin.value = false;
+          });
       }
-    })
-    .catch((e) => {
-      ElNotification.error({
-        title: 'Thất bại!',
-        message: 'Some thing went wrong.',
-        icon: () =>
-          h(CloseCircleFilled, {
-            style: 'color: red',
-          }),
-      });
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      loadingFacebookLogin.value = false;
-    });
+    )
+  );
 };
 
 // const handleClickGoogleLogin = async () => {
