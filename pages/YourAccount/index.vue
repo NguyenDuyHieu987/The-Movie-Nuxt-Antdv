@@ -165,7 +165,7 @@ const internalInstance: any = getCurrentInstance();
 const responesive = breakPoints.smallerOrEqual('responesive');
 
 const joinSince = computed<string>(() =>
-  utils.dateFormater.format(store.userAccount?.created_at, 'LLL')
+  utils.dateFormater.format(store.userAccount?.created_at!, 'LLL')
 );
 
 useHead({
