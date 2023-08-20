@@ -461,13 +461,11 @@ export default defineNuxtConfig({
     '/oauth/**': { prerender: true },
     '/login': {
       prerender: true,
-      experimentalNoScripts: true,
     },
     '/signup': {
       prerender: true,
-      experimentalNoScripts: true,
     },
-    '/forgotpassword': { prerender: true, experimentalNoScripts: true },
+    '/forgotpassword': { prerender: true },
     '/upgrade/plans': { prerender: true },
     '/upgrade/payment': {
       ssr: false,
