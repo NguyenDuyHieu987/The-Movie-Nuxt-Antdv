@@ -24,7 +24,7 @@ export function add_update_History(params: any) {
   bodyFormData.append('percent', params.percent.toFixed(3));
   bodyFormData.append('seconds', params.seconds);
 
-  return makeRequest(`/history/add_item`, {
+  return makeRequest(`/history/additem`, {
     method: 'POST',
     data: bodyFormData,
   });
