@@ -1,4 +1,3 @@
-import { useStore } from '@/store/useStore';
 import {
   addItemList,
   removeItemList,
@@ -10,7 +9,7 @@ import { message } from 'ant-design-vue';
 import { ElNotification, ElMessage } from 'element-plus';
 
 export async function handelAddItemToList(
-  movieId: number,
+  movieId: string,
   media_type: string
 ): Promise<boolean> {
   // message.loading({ content: 'Đang thêm' });
@@ -67,7 +66,7 @@ export async function handelAddItemToList(
 }
 
 export async function handelRemoveItemFromList(
-  movieId: number,
+  movieId: string,
   media_type: string
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa' });
@@ -175,7 +174,7 @@ export async function handleRemoveAllitemFromList(): Promise<boolean> {
 }
 
 export async function handleRemoveItemFromHistory(
-  movieId: number,
+  movieId: string,
   media_type: string
 ): Promise<boolean> {
   // message.loading({ content: 'Đang xóa' });

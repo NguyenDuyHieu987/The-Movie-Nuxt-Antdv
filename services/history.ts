@@ -5,11 +5,11 @@ export function getHistory(
   skip: number = 1,
   limit: number = 20
 ) {
-  return makeRequest(`/history/gethistory/${type}?skip=${skip}&limit=${limit}`);
+  return makeRequest(`/history/get/${type}?skip=${skip}&limit=${limit}`);
 }
 
 export function searchHistory(query: string, type: string = 'all') {
-  return makeRequest(`/history/searchhistory/${type}?query=${query}`);
+  return makeRequest(`/history/search/${type}?query=${query}`);
 }
 
 export function getItemHistory(movieId: string, media_type: string) {
@@ -32,17 +32,18 @@ export function add_update_History(params: any) {
 
 export function removeItemHistory(params: any) {
   const bodyFormData = new FormData();
+  bodyFormData.append('id', params?.id || null);
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
 
-  return makeRequest(`/history/remove_item`, {
+  return makeRequest(`/history/removeitem`, {
     method: 'DELETE',
     data: bodyFormData,
   });
 }
 
 export function removeAllItemHistory() {
-  return makeRequest(`/history/removeall_item`, {
+  return makeRequest(`/history/removeallitem`, {
     method: 'DELETE',
   });
 }
