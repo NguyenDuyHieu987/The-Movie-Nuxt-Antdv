@@ -23,13 +23,13 @@ export function makeRequestVideo(url: string, options: any = {}) {
 }
 
 export function getVideo(path: string) {
-  return makeRequestVideo(`/videos/${path}`);
+  return makeRequestVideo(`/video/${path}`);
 }
 
 export function getVideoFeature(path: string) {
-  return makeRequestVideo(`/videos/feature/${path}`);
+  return makeRequestVideo(`/video/feature/${path}`);
 }
 
 export function getVideoTelevisons(path: string) {
-  return makeRequestVideo(`/videos/televisons/${path}`);
+  return makeRequestVideo(`/video/televisons/${path}`);
 }
