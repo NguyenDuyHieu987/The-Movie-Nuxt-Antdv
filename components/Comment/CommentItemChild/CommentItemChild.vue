@@ -23,7 +23,7 @@
           <span v-if="isUpdated" class="updated-text"> (Đã chỉnh sửa) </span>
         </div>
 
-        <p class="content">{{ item?.content }}</p>
+        <p class="content">{{ commentContent }}</p>
 
         <div class="actions">
           <div class="like-dislike">
