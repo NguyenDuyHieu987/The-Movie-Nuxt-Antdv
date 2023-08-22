@@ -1,6 +1,9 @@
 <template>
   <div class="comment" id="comment">
-    <h2 class="gradient-title-default">Bình luận</h2>
+    <h2 class="comment-title">
+      Bình luận
+      <span class="total-comments">{{ `(${total})` }}</span>
+    </h2>
     <div class="comment-body">
       <FormComment
         v-model:commentsList="commentsList"
@@ -44,6 +47,7 @@ const props = defineProps<{
 const commentsList = ref<any[]>([]);
 const loading = ref<boolean>(false);
 const skip = ref<number>(1);
+const total = ref<number>(0);
 const loadMore = ref<boolean>(false);
 const disabledLoadMore = ref<boolean>(false);
 
@@ -57,6 +61,7 @@ onBeforeMount(() => {
   )
     .then((response) => {
       commentsList.value = response?.results;
+      total.value = response?.total;
       skip.value++;
     })
     .catch((e) => {
