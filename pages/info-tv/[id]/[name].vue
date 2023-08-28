@@ -328,7 +328,7 @@
           </div>
 
           <Tags
-            v-show="dataMovie?.in_history"
+            v-show="dataMovie?.history_progress"
             tagsLabel="Đã xem:"
             class="progress-history-tags"
           >
@@ -388,6 +388,7 @@ import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressB
 import Comment from '~/components/Comment/Comment.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 
+const nuxtApp = useNuxtApp();
 const store = useStore();
 const utils = useUtils();
 const route: any = useRoute();
@@ -428,19 +429,19 @@ const getData = async () => {
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
     getTvById(route.params?.id, 'videos')
   )
-    .then((tvResponed: any) => {
-      dataMovie.value = tvResponed.data.value;
-      // dataCredit.value = tvResponed.data.value?.credits;
-      disabledRate.value = tvResponed.data.value?.is_rated == true;
+    .then((movieRespone) => {
+      dataMovie.value = movieRespone.data.value;
+      // dataCredit.value = movieRespone.data.value?.credits;
+      disabledRate.value = !!movieRespone.data.value?.rated_value;
 
-      // movieResponed?.data?.images?.backdrops?.forEach((item) => {
+      // movieRespone?.data?.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(
       //     'https://image.tmdb.org/t/p/original' + item?.file_path
       //   );
       // });
 
       // srcBackdropList.value = Array.from(
-      //   movieResponed.data.value.images?.backdrops,
+      //   movieRespone.data.value.images?.backdrops,
       //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       // );
 
@@ -458,9 +459,7 @@ const getData = async () => {
     });
 
   if (store.isLogin) {
-    if (dataMovie.value?.in_list) {
-      isAddToList.value = true;
-    }
+    isAddToList.value = dataMovie.value?.in_list == true;
 
     // await useAsyncData(
     //   `itemlist/${store?.userAccount?.id}/${route.params?.id}`,
@@ -477,9 +476,36 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
-  getData();
-});
+getData();
+
+// nuxtApp.hook('page:start', () => {
+//   isAddToList.value = false;
+//   isEpisodes.value = false;
+//   loading.value = true;
+//   internalInstance.appContext.config.globalProperties.$Progress.start();
+//   srcBackdropList.value = [];
+// });
+
+// const { data: dataMovie, pending } = await useAsyncData(
+//   `tv/detail/${route.params?.id}`,
+//   () => getTvById(route.params?.id, 'videos'),
+//   {
+//     // lazy: true,
+//     // immediate: false,
+//     // server: false,
+//   }
+// );
+
+// if (store.isLogin) {
+//   isAddToList.value = dataMovie.value?.in_list == true;
+//   disabledRate.value = dataMovie.value?.is_rated == true;
+// }
+
+// nuxtApp.hook('page:finish', () => {
+//   setBackgroundColor(dataMovie.value.dominant_backdrop_color);
+//   loading.value = false;
+//   internalInstance.appContext.config.globalProperties.$Progress.finish();
+// });
 
 useHead({
   title: 'Thông tin - Phim bộ - ' + dataMovie.value?.name,

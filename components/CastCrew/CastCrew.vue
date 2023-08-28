@@ -3,7 +3,7 @@
     <a-tabs v-model:activeKey="activeTabCast">
       <a-tab-pane key="cast" tab="Diễn viên">
         <SliderGroup
-          v-show="loading"
+          v-show="dataCredit?.cast"
           :data="dataCredit?.cast?.slice(0, 20)"
           :responsive="responsiveCarousel"
         >
@@ -23,7 +23,7 @@
       </a-tab-pane>
       <a-tab-pane key="crew" tab="Đội ngũ" force-render>
         <SliderGroup
-          v-show="loading"
+          v-show="dataCredit?.crew"
           :data="dataCredit?.crew?.slice(0, 20)"
           :responsive="responsiveCarousel"
         >
@@ -57,7 +57,6 @@ const props = defineProps<{
 const dataCredit = ref<any>();
 const loading = ref<boolean>(false);
 const activeTabCast = ref<string>('cast');
-
 const responsiveCarousel = ref<any>({
   0: {
     slidesPerView: 2,
@@ -107,17 +106,30 @@ const responsiveCarousel = ref<any>({
   },
 });
 
-onBeforeMount(() => {
-  useAsyncData(`credits/${props.dataMovie?.id}`, () =>
-    getCredits(props.dataMovie?.id)
-  )
-    .then((response) => {
-      dataCredit.value = response.data.value?.items;
-    })
-    .finally(() => {
-      loading.value = true;
-    });
-});
+loading.value = true;
+
+await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
+  getCredits(props.dataMovie?.id)
+)
+  .then((response) => {
+    dataCredit.value = response.data.value?.items;
+  })
+  .finally(() => {
+    loading.value = false;
+  });
+
+// const { data: dataCredit, pending } = await useAsyncData(
+//   `credits/${props.dataMovie?.id}`,
+//   () => getCredits(props.dataMovie?.id),
+//   {
+//     // lazy: true,
+//     // immediate: false,
+//     // server: false,
+//     transform: (data: any) => {
+//       return data.items;
+//     },
+//   }
+// );
 </script>
 
 <style lang="scss" src="./CastCrew.scss"></style>

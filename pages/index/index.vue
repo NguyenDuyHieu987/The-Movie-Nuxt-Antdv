@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <BillboardAnimation :data1="trendings" v-model:data="trendings" />
+    <BillboardAnimation v-model:data="trendings" />
 
     <div class="home-content">
       <section class="home-section outstanding">
@@ -64,8 +64,6 @@
           @click="handleLoadMoreRecommend"
         >
           <template #icon>
-            <!-- <Icon name="ic:baseline-add" /> -->
-
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="2rem"
@@ -224,6 +222,7 @@ import { getNowPlaying, getTopRated, getUpComing } from '~/services/movieSlug';
 import { getMoviesByGenres } from '~/services/discover';
 import { getMyRecommend } from '~/services/recommend';
 import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
+import { join } from 'path';
 
 // useHead({
 //   title: 'Phimhay247',
@@ -241,7 +240,7 @@ import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
 // });
 
 const store = useStore();
-const trendings = ref<any[]>([]);
+// const trendings = ref<any[]>([]);
 const nowPlayings = ref<any>([]);
 const upComings = ref<any>([]);
 const tvAiringTodays = ref<any>([]);
@@ -334,13 +333,19 @@ const responsiveVertical = computed<any>((): any => ({
 const getData = async () => {
   await nextTick();
 
-  await useAsyncData(`trending/all/1`, () => getTrending(1))
-    .then((response: any) => {
-      trendings.value = response.data.value?.results;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  // await useAsyncData(`trending/all/1`, () => getTrending(1), {
+  //   lazy: true,
+  //   immediate: false,
+  //   default: () => {
+  //     return trendingsCache.value;
+  //   },
+  // })
+  //   .then((response: any) => {
+  //     trendings.value = response.data.value?.results;
+  //   })
+  //   .catch((e) => {
+  //     if (axios.isCancel(e)) return;
+  //   });
 
   await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
     .then((response) => {
@@ -406,12 +411,24 @@ const getData = async () => {
   }
 };
 
-getData();
-
 // const { results: trendings, pending } = await getTrending(1);
-// const { data: trendings, pending } = await useAsyncData(`trending/all/1`, () =>
-//   getTrending(1)
-// );
+
+// const { data: trendingsCache } = useNuxtData('trending/all/1');
+
+const { data: trendings, pending } = await useAsyncData(
+  'trending/all/1',
+  () => getTrending(1),
+  {
+    // default: () => {
+    //   return { results: trendingsCache.value || [] };
+    // },
+    transform: (data: any) => {
+      return data.results;
+    },
+  }
+);
+
+onBeforeMount(getData);
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;

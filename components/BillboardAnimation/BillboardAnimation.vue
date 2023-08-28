@@ -98,13 +98,10 @@
 // import { ElCarousel, ElCarouselItem, ElTooltip } from 'element-plus';
 import BillboardItem from '~/components/BillboardItem/BillboardItem.vue';
 
-const props = defineProps<{ data1: any[] }>();
-
 const billboard = ref();
 // const data = ref<any[]>([]);
 const prevItemCarousel = ref<string>('');
 const nextItemCarousel = ref<string>('');
-const dataCompute = computed<any[]>(() => props.data1);
 const dataModel = defineModel<any[]>('data');
 
 onBeforeMount(() => {});

@@ -183,6 +183,8 @@ export default defineNuxtConfig({
     viewTransition: true,
     componentIslands: true,
     restoreState: true,
+    headNext: true,
+    asyncContext: true,
   },
   typescript: {
     strict: true,
@@ -236,7 +238,6 @@ export default defineNuxtConfig({
     'nuxt-seo-experiments',
     'nuxt-gtag',
     // 'vue-social-sharing/nuxt',
-    'nuxt-og-image',
     'nuxt-delay-hydration',
   ],
   // elementPlus: {
@@ -308,8 +309,8 @@ export default defineNuxtConfig({
   },
   plugins: [
     // '@/plugins/elementPlus',
-    '@/plugins/antd',
-    '@/plugins/fontawesome',
+    // '@/plugins/antd',
+    // '@/plugins/fontawesome',
     '@/plugins/iconify',
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
@@ -454,10 +455,10 @@ export default defineNuxtConfig({
     '/follow/**': { prerender: true },
     '/history/**': { prerender: true },
     '/ranking/**': { prerender: true },
-    '/info-movie/**': { ssr: false, prerender: true },
-    '/info-tv/**': { ssr: false, prerender: true },
-    '/play-movie/**': { ssr: false, prerender: true },
-    '/play-tv/**': { ssr: false, prerender: true },
+    '/info-movie/**': { ssr: false },
+    '/info-tv/**': { ssr: false },
+    '/play-movie/**': { ssr: false },
+    '/play-tv/**': { ssr: false },
     '/oauth/**': { prerender: true },
     '/login': {
       prerender: true,

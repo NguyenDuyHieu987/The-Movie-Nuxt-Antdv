@@ -61,22 +61,6 @@ const randomRecommend = ref<number>(Math.floor(Math.random() * 50) + 1);
 const viewMore = ref<boolean>(false);
 
 const getData = async () => {
-  // Promise.all([
-  // await  useAsyncData(`similar/${props?.type}/${props?.movieId}`, () =>
-  //     getSimilar(props?.type, props?.movieId)
-  //   ),
-  // await  useAsyncData(`trending/all/${randomRecommend.value}`, () =>
-  //     getTrending(randomRecommend.value, 10)
-  //   ),
-  // ])
-  //   .then((response: any) => {
-  //     dataSimilar.value = response[0].data.value?.results;
-  //     dataRecommend.value = response[1].data.value?.results;
-  //   })
-  //   .catch((e) => {
-  //     if (axios.isCancel(e)) return;
-  //   });
-
   await useAsyncData(`similar/${props?.type}/${props?.movieId}/1`, () =>
     getSimilar(props?.type, props?.movieId, 1, 12)
   )
@@ -98,9 +82,33 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {
-  getData();
-});
+getData();
+
+// const { data: dataSimilar } = await useAsyncData(
+//   `similar/${props?.type}/${props?.movieId}/1`,
+//   () => getSimilar(props?.type, props?.movieId, 1, 12),
+//   {
+//     // lazy: true,
+//     // immediate: false,
+//     // server: false,
+//     transform: (data: any) => {
+//       return data.results;
+//     },
+//   }
+// );
+
+// const { data: dataRecommend } = await useAsyncData(
+//   `trending/all/${randomRecommend.value}`,
+//   () => getTrending(randomRecommend.value, 12),
+//   {
+//     // lazy: true,
+//     // immediate: false,
+//     // server: false,
+//     transform: (data: any) => {
+//       return data.results;
+//     },
+//   }
+// );
 </script>
 
 <style lang="scss" src="./MovieRelated.scss"></style>

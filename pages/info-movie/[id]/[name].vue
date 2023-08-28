@@ -90,7 +90,7 @@
                       </a-button>
                     </NuxtLink>
 
-                    <div class="action-btn">
+                    <div class="action-btn" @click="handelAddToList">
                       <a-button size="large" type="text" class="add modern">
                         <template #icon>
                           <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
@@ -307,7 +307,7 @@
           </div>
 
           <Tags
-            v-show="dataMovie?.in_history"
+            v-show="dataMovie?.history_progress"
             tagsLabel="Đã xem:"
             class="progress-history-tags"
           >
@@ -370,6 +370,7 @@ definePageMeta({
   middleware: (to, from) => {},
 });
 
+const nuxtApp = useNuxtApp();
 const store = useStore();
 const utils = useUtils();
 const route: any = useRoute();
@@ -407,19 +408,21 @@ const getData = async () => {
   await useAsyncData(`movie/detail/${route.params?.id}`, () =>
     getMovieById(route.params?.id, 'videos')
   )
-    .then((movieResponed: any) => {
-      dataMovie.value = movieResponed.data.value;
-      // dataCredit.value = movieResponed.data.value?.credits;
-      disabledRate.value = movieResponed.data.value?.is_rated == true;
+    .then((movieRespone) => {
+      dataMovie.value = movieRespone.data.value;
+      // dataCredit.value = movieRespone.data.value?.credits;
+      disabledRate.value = !!movieRespone.data.value?.rated_value;
 
-      // movieResponed?.data?.images?.backdrops?.forEach((item) => {
+      console.log(movieRespone.data.value?.rated_value);
+
+      // movieRespone?.data?.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(
       //     'https://image.tmdb.org/t/p/original' + item?.file_path
       //   );
       // });
 
       // srcBackdropList.value = Array.from(
-      //   movieResponed.data.value.images?.backdrops,
+      //   movieRespone.data.value.images?.backdrops,
       //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       // );
 
@@ -437,9 +440,7 @@ const getData = async () => {
     });
 
   if (store.isLogin) {
-    if (dataMovie.value?.in_list) {
-      isAddToList.value = true;
-    }
+    isAddToList.value = dataMovie.value?.in_list == true;
 
     // await useAsyncData(
     //   `itemlist/${store?.userAccount?.id}/${route.params?.id}`,
@@ -456,10 +457,42 @@ const getData = async () => {
   }
 };
 
-onBeforeMount(() => {
-  // console.log(router.options.history.state);
-  getData();
-});
+// onBeforeMount(() => {
+// console.log(router.options.history.state);
+// });
+
+getData();
+
+// onBeforeUnmount(() => {
+//   isAddToList.value = false;
+//   isEpisodes.value = false;
+//   loading.value = true;
+//   internalInstance.appContext.config.globalProperties.$Progress.start();
+//   srcBackdropList.value = [];
+// });
+
+// const { data: dataMovie, pending } = await useAsyncData(
+//   `movie/detail/${route.params?.id}`,
+//   () => getMovieById(route.params?.id, 'videos')
+//   // {
+//   //   // lazy: true,
+//   //   // immediate: false,
+//   //   // server: false,
+//   // }
+// );
+
+// if (store.isLogin) {
+//   isAddToList.value = dataMovie.value?.in_list == true;
+//   disabledRate.value = dataMovie.value?.is_rated == true;
+// }
+
+// onMounted(() => {
+//   if (dataMovie.value?.id) {
+//     setBackgroundColor(dataMovie.value.dominant_backdrop_color);
+//     loading.value = false;
+//     internalInstance.appContext.config.globalProperties.$Progress.finish();
+//   }
+// });
 
 useHead({
   title: 'Thông tin - Phim lẻ - ' + dataMovie.value?.name,

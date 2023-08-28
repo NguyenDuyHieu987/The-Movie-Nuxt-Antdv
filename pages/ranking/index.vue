@@ -38,7 +38,7 @@ import ControlPage from '~/components/ControlPage/ControlPage.vue';
 
 const router = useRouter();
 const route: any = useRoute();
-const rankings = ref<any[]>([]);
+// const rankings = ref<any[]>([]);
 const pageTrending = ref<number>(route?.query?.page ? route?.query?.page : 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
@@ -61,10 +61,24 @@ useServerSeoMeta({
 });
 
 const getData = async () => {
+  await nextTick();
+
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  await useAsyncData(`trending/all/${pageTrending.value}`, () =>
-    getTrending(pageTrending.value)
+  // const { data: trendingsCache } = useNuxtData(
+  //   `trending/all/${pageTrending.value}`
+  // );
+
+  await useAsyncData(
+    `trending/all/${pageTrending.value}`,
+    () => getTrending(pageTrending.value),
+    {
+      // lazy: true,
+      // immediate: false,
+      // default: () => {
+      //   return trendingsCache.value;
+      // },
+    }
   )
     .then((movieRespone: any) => {
       rankings.value = movieRespone.data.value?.results;
@@ -79,10 +93,28 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(async () => {
-  await nextTick();
+onBeforeMount(() => {
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+});
 
-  getData();
+// getData();
+
+const { data: rankings } = await useAsyncData(
+  `trending/all/${pageTrending.value}`,
+  () => getTrending(pageTrending.value),
+  {
+    transform: (data: any) => {
+      totalPage.value = data?.total;
+      pageSize.value = data?.page_size;
+      return data.results;
+    },
+  }
+);
+
+watch(rankings, () => {
+  if (rankings.value?.length > 0) {
+    internalInstance.appContext.config.globalProperties.$Progress.finish();
+  }
 });
 
 watch(pageTrending, async () => {

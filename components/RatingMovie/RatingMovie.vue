@@ -29,9 +29,9 @@
           <!-- <StarFilled /> -->
         </template>
       </a-rate>
-      <span class="ant-rate-text">{{
-        tooltipRating[Math.round(vote_Average) - 1]
-      }}</span>
+      <span class="ant-rate-text"
+        >{{ tooltipRating[Math.round(vote_Average) - 1] }}
+      </span>
     </div>
     <span class="rate-info">
       <span>(</span>

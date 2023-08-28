@@ -51,26 +51,28 @@ const total = ref<number>(0);
 const loadMore = ref<boolean>(false);
 const disabledLoadMore = ref<boolean>(false);
 
-onBeforeMount(() => {
-  loading.value = true;
+loading.value = true;
 
-  getCommentByMovidId(
-    props.dataMovie?.id,
-    props.dataMovie?.media_type,
-    skip.value
-  )
-    .then((response) => {
-      commentsList.value = response?.results;
-      total.value = response?.total;
-      skip.value++;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      loading.value = false;
-    });
-});
+await useAsyncData(
+  `${props.dataMovie?.media_type}/${props.dataMovie?.id}`,
+  () =>
+    getCommentByMovidId(
+      props.dataMovie?.id,
+      props.dataMovie?.media_type,
+      skip.value
+    )
+)
+  .then((response) => {
+    commentsList.value = response.data.value?.results;
+    total.value = response.data.value?.total;
+    skip.value++;
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  })
+  .finally(() => {
+    loading.value = false;
+  });
 
 onMounted(() => {
   window.onscroll = () => {

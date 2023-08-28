@@ -239,10 +239,11 @@ const props = defineProps<{
 const store = useStore();
 const utils = useUtils();
 const isAddToList = ref<boolean>(false);
-const windowWidth = ref<number>(window.innerWidth);
+const windowWidth = ref<number>(1200);
 
 onBeforeMount(async () => {
   windowWidth.value = window.innerWidth;
+
   // if (store.isLogin) {
   //   await useAsyncData(
   //     `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
