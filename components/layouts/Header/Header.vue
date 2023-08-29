@@ -24,6 +24,21 @@
           <span> PhimHay247 </span>
         </NuxtLink>
       </div>
+
+      <ul class="menu-header">
+        <li
+          class="menu-header-item"
+          :class="{ active: $route.path == '/feature' }"
+        >
+          <NuxtLink to="/feature">Phim lẻ</NuxtLink>
+        </li>
+        <li
+          class="menu-header-item"
+          :class="{ active: $route.path == '/television' }"
+        >
+          <NuxtLink to="/television">Phim bộ</NuxtLink>
+        </li>
+      </ul>
     </div>
 
     <a-input-search

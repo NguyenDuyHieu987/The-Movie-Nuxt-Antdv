@@ -25,11 +25,9 @@
       </template>
     </el-menu-item>
 
-    <el-sub-menu index="/discover/movie" popperClass="sub-menu-popper">
+    <!-- <el-sub-menu index="/discover/movie" popperClass="sub-menu-popper">
       <template #title>
         <el-icon>
-          <!-- <font-awesome-icon icon="fa-solid fa-video-camera" /> -->
-          <!-- <Icon name="fa6-solid:video" /> -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.5rem"
@@ -93,13 +91,11 @@
           Sắp công chiếu
         </NuxtLink>
       </el-menu-item>
-    </el-sub-menu>
+    </el-sub-menu> -->
 
-    <el-sub-menu index="tv" popperClass="sub-menu-popper">
+    <!-- <el-sub-menu index="tv" popperClass="sub-menu-popper">
       <template #title>
         <el-icon>
-          <!-- <font-awesome-icon icon="fa-solid fa-film" /> -->
-          <!-- <Icon name="fa6-solid:film" /> -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.5rem"
@@ -163,7 +159,7 @@
           Top đánh giá
         </NuxtLink>
       </el-menu-item>
-    </el-sub-menu>
+    </el-sub-menu> -->
 
     <el-sub-menu index="genres" popperClass="sub-menu-popper">
       <template #title>

@@ -235,7 +235,7 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
 
   interval.value = setTimeout(() => {
     isTeleportPreviewModal.value = true;
-  }, 2000);
+  }, 1000);
 
   target.addEventListener('pointerleave', () => {
     // isTeleportPreviewModal.value = false;
