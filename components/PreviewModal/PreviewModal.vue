@@ -423,10 +423,10 @@ watch(previewModal, () => {
       );
       previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
     } else {
-      const rectRight = window.innerWidth - props.style.rectBound.right;
+      const minRectRight = window.innerWidth - props.style.rectBound.right;
 
-      if (rectRight <= 100) {
-        previewModal.value.style.right = rectRight - 15 + 'px';
+      if (minRectRight <= 30) {
+        previewModal.value.style.right = minRectRight - 15 + 'px';
         previewModal.value.style.setProperty('--left', 'auto');
         previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
       } else {
