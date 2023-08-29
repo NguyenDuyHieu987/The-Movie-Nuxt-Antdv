@@ -4,6 +4,7 @@
       <div
         ref="previewModal"
         class="preview-modal"
+        :class="{ disappear: isDisappear }"
         @mouseover="onClickPreviewModal"
       >
         <el-skeleton :loading="loading" animated>
@@ -366,6 +367,7 @@ const percent = ref<number>(0);
 const previewModal = ref<any>(null);
 const urlShare = computed<string>((): string => window.location.href);
 const isTeleport = defineModel<boolean>('isTeleport');
+const isDisappear = ref<boolean>(false);
 // const isTeleport = computed<boolean>({
 //   get() {
 //     return props.isTeleportPreviewModal;
@@ -423,7 +425,12 @@ watch(previewModal, () => {
       isTeleport.value = true;
 
       previewModal.value.addEventListener('mouseleave', () => {
-        isTeleport.value = false;
+        isDisappear.value = true;
+
+        setTimeout(() => {
+          isDisappear.value = false;
+          isTeleport.value = false;
+        }, 245);
       });
     });
   }

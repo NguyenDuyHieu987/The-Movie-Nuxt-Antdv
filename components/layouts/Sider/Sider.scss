@@ -154,14 +154,13 @@
 
     .trigger-collapse {
       white-space: nowrap;
-      padding-left: 27px;
+      padding-left: 24px;
       display: flex;
       align-items: center;
       transition: all 0.15s;
 
       .title-trigger-collapse {
-        // margin-left: 13px;
-        margin-left: 6px;
+        margin-left: 13px;
         font-size: 1.45rem;
         user-select: none;
         opacity: 1;

@@ -15,36 +15,26 @@
     opacity: 1;
     min-width: 350px;
     width: 17vw;
-    height: auto;
+    // height: auto;
+    height: 55vh;
     background-color: var(--preview-modal-background-color);
     border-radius: 5px;
     box-shadow: var(--box-shadow-medium);
     overflow: hidden;
     cursor: pointer;
     transform: translateX(-50%) translateY(-50%);
-    animation: preview-modal-effect 0.4s ease;
+    animation: preview-modal-appear 0.25s ease;
 
-    @keyframes preview-modal-effect {
-      // from {
-      //   opacity: 1;
-      //   // width: 15vw;
-      //   // width: calc((100% - (5 * var(--card-movie-gap))) / 6);
-      //   // min-width: 15vw;
-      //   width: var(--width);
-      //   min-width: var(--width);
-      //   // height: 15vw;
-      //   // min-height: 300px;
-      //   height: var(--height);
-      //   min-height: var(--height);
-      // }
+    &.disappear {
+      animation: preview-modal-disappear 0.25s ease;
 
-      // to {
-      //   opacity: 1;
-      //   min-width: 350px;
-      //   width: 17vw;
-      //   height: 350px;
-      // }
+      .bottom-content {
+        transition: all 0.25s ease;
+        opacity: 0;
+      }
+    }
 
+    @keyframes preview-modal-appear {
       from {
         width: var(--width);
         min-width: var(--width);
@@ -54,7 +44,22 @@
       to {
         min-width: 350px;
         width: 17vw;
-        height: auto;
+        // height: auto;
+        height: 55vh;
+      }
+    }
+
+    @keyframes preview-modal-disappear {
+      from {
+        min-width: 350px;
+        width: 17vw;
+        // height: auto;
+      }
+
+      to {
+        height: var(--height);
+        width: var(--width);
+        min-width: var(--width);
       }
     }
 
@@ -93,20 +98,6 @@
             border-radius: 50%;
           }
         }
-
-        // .widget {
-        //   display: flex;
-        //   justify-content: space-between;
-
-        //   .left {
-        //     display: flex;
-        //     gap: 10px;
-        //   }
-        // }
-
-        // .info {
-        //   margin-top: 5px;
-        // }
       }
     }
 
@@ -116,9 +107,9 @@
       // height: 240px;
       height: 0px;
       // aspect-ratio: 16/9;
+      padding-bottom: 56.25%;
       overflow: hidden;
       // animation: img-preview-modal 0.4s ease;
-      padding-bottom: 56.25%;
 
       .ant-image {
         position: absolute;
