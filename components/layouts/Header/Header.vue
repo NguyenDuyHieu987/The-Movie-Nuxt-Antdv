@@ -437,7 +437,7 @@ const handleChangeInput = (query: string) => {
         `/search?q=${query?.replaceAll(' ', '+').toLowerCase()}`
         // query: { q: query?.replaceAll(' ', '+').toLowerCase() },
       );
-    }, 500);
+    }, 700);
   } else if (query.length == 0) {
     navigateTo({ path: '/' });
     dataSearch.value = [];

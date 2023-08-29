@@ -447,6 +447,11 @@ export default defineNuxtConfig({
     server: true,
     client: false,
   },
+  router: {
+    options: {
+      // strict: true,
+    },
+  },
   optimization: {},
   routeRules: {
     '/': { prerender: true },

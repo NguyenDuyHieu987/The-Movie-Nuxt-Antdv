@@ -442,9 +442,9 @@ const state = reactive<{
   selectedKeys: route.path,
   openKeys: [route.path],
 });
-const genres = ref<genre[]>([]);
-const years = ref<year[]>([]);
-const countries = ref<country[]>([]);
+// const genres = ref<genre[]>([]);
+// const years = ref<year[]>([]);
+// const countries = ref<country[]>([]);
 
 const getData = async () => {
   Promise.all([
@@ -474,11 +474,52 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(async () => {
-  await nextTick();
+// onBeforeMount(async () => {
+//   await nextTick();
 
-  getData();
+//   getData();
+// });
+
+const { data: genres } = await useAsyncData('genre/all', () => getAllGenre(), {
+  // default: () => {
+  //   return { results: trendingsCache.value || [] };
+  // },
+  transform: (data: any) => {
+    store.allGenres = data.results;
+
+    return data.results;
+  },
 });
+
+const { data: years } = await useAsyncData('year/all', () => getAllYear(), {
+  // default: () => {
+  //   return { results: trendingsCache.value || [] };
+  // },
+  transform: (data: any) => {
+    const dataResponse = data.results.sort((a: year, b: year) => {
+      return +b.name.slice(-4) - +a.name.slice(-4);
+    });
+
+    store.allYears = dataResponse;
+
+    return dataResponse;
+  },
+});
+
+const { data: countries } = await useAsyncData(
+  'country/all',
+  () => getAllCountry(),
+  {
+    // default: () => {
+    //   return { results: trendingsCache.value || [] };
+    // },
+    transform: (data: any) => {
+      store.allCountries = data.results;
+
+      return data.results;
+    },
+  }
+);
 
 watchEffect(() => {
   if (route.path) {
