@@ -92,6 +92,10 @@ header.header-bar {
           color: #d9d9d9 !important;
         }
 
+        & + .menu-header-item {
+          margin-left: 20px;
+        }
+
         &.active {
           a {
             color: #fff !important;
@@ -102,10 +106,6 @@ header.header-bar {
           a {
             color: var(--text-color-gray) !important;
           }
-        }
-
-        & + .menu-header-item {
-          margin-left: 20px;
         }
       }
     }
