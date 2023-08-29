@@ -356,7 +356,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{ setIsTeleportModal: [data: boolean] }>();
 
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
 const dataMovie = ref<any>({});
 // const isEpisodes = ref<boolean>(false);
@@ -401,7 +401,22 @@ watch(previewModal, () => {
       props.style.imgHeight + 'px'
     );
 
-    if (props.style.rectBound.left <= 300) {
+    let minRecLeft =
+      +getComputedStyle(document.documentElement)
+        .getPropertyValue('--sider-width')
+        .replace('px', '') + 15;
+
+    if (window.innerWidth < 900) {
+      minRecLeft = 15;
+    }
+
+    if (store.collapsed && window.innerWidth >= 900) {
+      +getComputedStyle(document.documentElement)
+        .getPropertyValue('--sider-width')
+        .replace('px', '') + 30;
+    }
+
+    if (props.style.rectBound.left <= minRecLeft) {
       previewModal.value.style.setProperty(
         '--left',
         props.style.rectBound.left + 'px'
