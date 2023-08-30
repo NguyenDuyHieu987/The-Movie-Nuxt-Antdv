@@ -126,6 +126,7 @@ import {
   getTopRated,
 } from '~/services/movieSlug';
 
+const route = useRoute();
 const nowPlayings = ref<any>([]);
 const populars = ref<any>([]);
 const upComings = ref<any>([]);
@@ -214,6 +215,14 @@ const { data: dataBilboard, pending } = await useAsyncData(
 );
 
 onBeforeMount(getData);
+
+watch(
+  () => route.query,
+  () => {
+    console.log(route.query.genre);
+  },
+  { deep: true }
+);
 </script>
 
 <style src="./FeaturePage.scss" lang="scss"></style>

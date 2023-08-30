@@ -7,6 +7,7 @@ export default defineStore('store', () => {
   const role = computed<string>(() => userAccount.value!?.role || 'normal');
   const isLogin = computed<boolean>(() => !!userAccount.value);
   const collapsed = ref<boolean>(false);
+  const headerScrolled = ref<boolean>(false);
   // const collapsed = useLocalStorage(false, 'isCollapsedSiderbar');
   const openDrawer = ref<boolean>(false);
   const modalVisible = ref<boolean>(false);
@@ -46,6 +47,7 @@ export default defineStore('store', () => {
     role,
     breadCrumbValue,
     collapsed,
+    headerScrolled,
     openDrawer,
     modalVisible,
     openRequireAuthDialog,
