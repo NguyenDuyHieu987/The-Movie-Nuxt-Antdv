@@ -77,38 +77,39 @@ header.header-bar {
       }
     }
 
-    .menu-header {
-      display: flex;
-      flex-direction: row;
-      list-style-type: none;
-      margin-left: 25px;
+    // .menu-header {
+    //   display: flex;
+    //   flex-direction: row;
+    //   list-style-type: none;
+    //   margin-left: 25px;
 
-      .menu-header-item {
-        cursor: pointer;
-        user-select: none;
-        transition: all 0.3s;
+    //   .menu-header-item {
+    //     cursor: pointer;
+    //     user-select: none;
+    //     white-space: nowrap;
+    //     transition: all 0.3s;
 
-        a {
-          color: #d9d9d9 !important;
-        }
+    //     a {
+    //       color: #d9d9d9 !important;
+    //     }
 
-        & + .menu-header-item {
-          margin-left: 20px;
-        }
+    //     & + .menu-header-item {
+    //       margin-left: 20px;
+    //     }
 
-        &.active {
-          a {
-            color: #fff !important;
-          }
-        }
+    //     &.active {
+    //       a {
+    //         color: #fff !important;
+    //       }
+    //     }
 
-        &:hover {
-          a {
-            color: var(--text-color-gray) !important;
-          }
-        }
-      }
-    }
+    //     &:hover {
+    //       a {
+    //         color: var(--text-color-gray) !important;
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   .ant-input-search.search-header {
@@ -583,6 +584,12 @@ header.header-bar {
 
   &.account {
     top: calc(var(--header-height) + 4px) !important;
+
+    .el-dropdown-menu {
+      &:only-child {
+        padding: 0px;
+      }
+    }
 
     .el-dropdown-menu__item {
       position: relative;

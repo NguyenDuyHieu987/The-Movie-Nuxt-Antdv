@@ -1,5 +1,7 @@
 <template>
   <div class="home-container feature">
+    <HeaderHome title="Phim lẻ" />
+
     <BillboardAnimation v-model:data="dataBilboard" />
 
     <div class="home-content">
@@ -115,6 +117,7 @@ import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.vue';
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
+import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.vue';
 import {
   getMovies,
   getNowPlaying,
@@ -172,7 +175,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData(`movie/popular/1`, () => getPopular(1))
+  await useAsyncData(`movie/popular/1`, () => getPopular(2))
     .then((response) => {
       populars.value = response.data.value?.results.slice(0, 12);
     })
@@ -180,7 +183,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData('movie/upcoming/1', () => getUpComing(1))
+  await useAsyncData('movie/upcoming/1', () => getUpComing(3))
     .then((response) => {
       upComings.value = response.data.value?.results.slice(0, 12);
     })
@@ -188,7 +191,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData('movie/toprated/1', () => getTopRated(1))
+  await useAsyncData('movie/toprated/1', () => getTopRated(4))
     .then((response) => {
       topRateds.value = response.data.value?.results.slice(0, 12);
     })

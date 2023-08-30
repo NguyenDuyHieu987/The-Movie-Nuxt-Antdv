@@ -240,11 +240,12 @@ const props = defineProps<{
   cancelFilter: () => void;
 }>();
 
+const store = useStore();
 const route: any = useRoute();
-const genres = ref<genre[]>([]);
-const years = ref<year[]>([]);
-const countries = ref<country[]>([]);
-const listSortBy = ref<sortby[]>([]);
+const genres = ref<genre[]>(store.allGenres);
+const years = ref<year[]>(store.allYears);
+const countries = ref<country[]>(store.allCountries);
+// const listSortBy = ref<sortby[]>([]);
 const loadingData = defineModel<boolean>('loading', {
   default: false,
 });
@@ -282,7 +283,7 @@ watch(route, () => {
   resetFilter();
 });
 
-onBeforeMount(async () => {
+const getData = async () => {
   Promise.all([
     await useAsyncData(`genre/all`, () => getAllGenre()),
     await useAsyncData(`year/all`, () => getAllYear()),
@@ -302,7 +303,22 @@ onBeforeMount(async () => {
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
-});
+};
+
+// getData();
+
+const { data: listSortBy } = await useAsyncData(
+  'sortby/all',
+  () => getAllSortBy(),
+  {
+    // default: () => {
+    //   return { results: trendingsCache.value || [] };
+    // },
+    transform: (data: any) => {
+      return data.results;
+    },
+  }
+);
 
 const disableBtnFilter = computed(
   () =>

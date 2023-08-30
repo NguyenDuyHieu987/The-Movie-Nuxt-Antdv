@@ -25,7 +25,7 @@
         </NuxtLink>
       </div>
 
-      <ul class="menu-header">
+      <!-- <ul class="menu-header">
         <li
           class="menu-header-item"
           :class="{ active: $route.path == '/feature' }"
@@ -38,7 +38,7 @@
         >
           <NuxtLink to="/television">Phim bộ</NuxtLink>
         </li>
-      </ul>
+      </ul> -->
     </div>
 
     <a-input-search

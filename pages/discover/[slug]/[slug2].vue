@@ -250,7 +250,7 @@ const getData = async () => {
                   loading.value = false;
                 });
               break;
-            case 'tvpopular':
+            case 'popular':
               metaHead.value = 'Phim bộ: Phổ biến';
 
               await useAsyncData(`tv/popular/${page.value}`, () =>
@@ -268,7 +268,7 @@ const getData = async () => {
                   loading.value = false;
                 });
               break;
-            case 'tvtoprated':
+            case 'toprated':
               metaHead.value = 'Phim bộ: Top đánh giá';
 
               await useAsyncData(`tv/toprated/${page.value}`, () =>
