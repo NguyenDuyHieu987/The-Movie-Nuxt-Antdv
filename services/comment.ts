@@ -61,3 +61,15 @@ export function DeleteComment(params: any) {
     data: bodyFormData,
   });
 }
+
+export function LikeComment(params: { id: string }) {
+  return makeRequest(`/comment/like/${params.id}`, {
+    method: 'POST',
+  });
+}
+
+export function DisLikeComment(params: { id: string }) {
+  return makeRequest(`/comment/dislike/${params.id}`, {
+    method: 'POST',
+  });
+}

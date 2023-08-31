@@ -78,14 +78,32 @@
               margin-top: 7px;
 
               .like-dislike {
-                svg + svg {
-                  margin-left: 13px;
+                display: flex;
+                flex-direction: row;
+                gap: 13px;
+
+                .like,
+                .dislike {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+
+                  .total {
+                    line-height: normal;
+                    color: var(--text-color-gray1);
+                    margin-left: 5px;
+                    font-size: 1.4rem;
+                  }
+                }
+
+                &.active {
                 }
 
                 svg {
                   cursor: pointer;
                   font-size: 2rem;
                   transition: all 0.15s;
+                  color: var(--text-color-gray1);
 
                   &:active {
                     opacity: 0.8;

@@ -7,6 +7,7 @@
 .header-home {
   position: fixed;
   width: 100%;
+  height: var(--header-home-height);
   padding: 4px 20px;
   padding-top: 8px;
   z-index: 2;
@@ -40,13 +41,14 @@
       align-items: center;
       background-color: var(--background-content-color);
       padding: 6px 12px;
+      line-height: normal;
       margin-left: 30px;
       font-size: 1.4rem;
       border-radius: 2px;
       cursor: pointer;
 
       svg {
-        margin-left: 15px;
+        margin-left: 20px;
       }
 
       &[aria-expanded='true'] {
@@ -58,6 +60,8 @@
 }
 
 .el-popper.el-dropdown__popper.header-home-genre {
+  position: fixed !important;
+  top: calc(var(--header-home-height) + var(--header-height)) !important;
   box-shadow: none !important;
   background-color: transparent !important;
 

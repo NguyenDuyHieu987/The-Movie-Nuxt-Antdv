@@ -530,6 +530,9 @@ header.header-bar {
 }
 
 .el-popper.el-dropdown__popper.header {
+  position: fixed !important;
+  top: calc(var(--header-height) + 4px) !important;
+
   .separate {
     border-top: 1px solid var(--border-regular-light);
   }
@@ -591,8 +594,6 @@ header.header-bar {
   }
 
   &.account {
-    top: calc(var(--header-height) + 4px) !important;
-
     .el-dropdown-menu {
       &:only-child {
         padding: 0px;

@@ -36,8 +36,26 @@
                   <!-- <Icon name="ph:thumbs-up" />
                   <Icon name="ph:thumbs-down" /> -->
 
-                  <LikeOutlined />
-                  <DislikeOutlined />
+                  <div
+                    class="like"
+                    :class="{
+                      active: true,
+                    }"
+                  >
+                    <LikeFilled v-if="isLike" @click="handleLikeComment" />
+                    <LikeOutlined v-else @click="handleLikeComment" />
+
+                    <span v-if="like > 0" class="total">{{ like }}</span>
+                  </div>
+
+                  <div class="dislike">
+                    <DislikeFilled
+                      v-if="isDisLike"
+                      @click="handleDisLikeComment"
+                    />
+                    <DislikeOutlined v-else @click="handleDisLikeComment" />
+                    <span v-if="dislike > 0" class="total">{{ dislike }}</span>
+                  </div>
                 </div>
 
                 <a-button
@@ -242,6 +260,8 @@ import { ElNotification } from 'element-plus';
 import {
   getCommentByMovidId_ParentId,
   DeleteComment,
+  LikeComment,
+  DisLikeComment,
 } from '~/services/comment';
 import { getImage } from '~/services/image';
 import FormComment from '~/components/Comment/FormComment/FormComment.vue';
@@ -249,7 +269,12 @@ import CommentItemChild from '~/components/Comment/CommentItemChild/CommentItemC
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
-import { LikeOutlined, DislikeOutlined } from '@ant-design/icons-vue';
+import {
+  LikeOutlined,
+  LikeFilled,
+  DislikeOutlined,
+  DislikeFilled,
+} from '@ant-design/icons-vue';
 
 const props = defineProps<{
   item: any;
@@ -272,6 +297,10 @@ const skip = ref<number>(1);
 const isLoadmoreReplies = ref<boolean>(false);
 const commentAction = ref<string>('post');
 const commentContent = ref<string>(props.item?.content);
+const like = ref<number>(props.item?.like || 0);
+const dislike = ref<number>(props.item?.dislike || 0);
+const isLike = ref<boolean>(false);
+const isDisLike = ref<boolean>(false);
 
 onBeforeMount(() => {});
 
@@ -378,6 +407,98 @@ const handleRemoveComment = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {});
+};
+
+const handleLikeComment = () => {
+  const tempDisLide = isDisLike.value;
+
+  if (tempDisLide) {
+    isDisLike.value = false;
+    dislike.value--;
+  }
+
+  if (isLike.value == false) {
+    isLike.value = true;
+    like.value++;
+  } else {
+    isLike.value = false;
+    like.value--;
+  }
+
+  LikeComment({ id: props.item.id })
+    .then((response) => {
+      if (response?.success) {
+      }
+    })
+    .catch((e) => {
+      if (tempDisLide) {
+        isDisLike.value = true;
+        dislike.value++;
+      }
+
+      if (isLike.value == true) {
+        isLike.value = false;
+        like.value--;
+      } else {
+        isLike.value = true;
+        like.value++;
+      }
+      ElNotification({
+        title: 'Thất bại!',
+        message: 'Thích bình luận thất bại',
+        type: 'error',
+        position: 'bottom-right',
+        duration: 3000,
+        showClose: false,
+      });
+      if (axios.isCancel(e)) return;
+    });
+};
+
+const handleDisLikeComment = () => {
+  const tempLide = isLike.value;
+
+  if (tempLide) {
+    isLike.value = false;
+    like.value--;
+  }
+
+  if (isDisLike.value == false) {
+    isDisLike.value = true;
+    dislike.value++;
+  } else {
+    isDisLike.value = false;
+    dislike.value--;
+  }
+
+  DisLikeComment({ id: props.item.id })
+    .then((response) => {
+      if (response?.success) {
+      }
+    })
+    .catch((e) => {
+      if (tempLide) {
+        isLike.value = true;
+        like.value++;
+      }
+
+      if (isDisLike.value == true) {
+        isDisLike.value = false;
+        dislike.value--;
+      } else {
+        isDisLike.value = true;
+        dislike.value++;
+      }
+      ElNotification({
+        title: 'Thất bại!',
+        message: 'Thích bình luận thất bại',
+        type: 'error',
+        position: 'bottom-right',
+        duration: 3000,
+        showClose: false,
+      });
+      if (axios.isCancel(e)) return;
+    });
 };
 </script>
 
