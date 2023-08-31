@@ -1,8 +1,7 @@
 <template>
   <div class="like-dislike-comment">
     <!-- <Icon name="ph:thumbs-up" />
-                  <Icon name="ph:thumbs-down" /> -->
-
+         <Icon name="ph:thumbs-down" /> -->
     <div
       class="like"
       :class="{
@@ -47,19 +46,21 @@ const dislike = ref<number>(props.comment?.dislike || 0);
 const isLike = ref<boolean>(false);
 const isDisLike = ref<boolean>(false);
 
-await useAsyncData(`check-like-dislike/${props.comment?.id}`, () =>
-  CheckLikeDislike(props.comment?.id)
-).then((response) => {
-  if (response.data.value?.success) {
-    switch (response.data.value?.type) {
-      case 'like':
-        isLike.value = true;
-        break;
-      case 'dislike':
-        isDisLike.value = true;
-        break;
+onBeforeMount(async () => {
+  await useAsyncData(`check-like-dislike/${props.comment?.id}`, () =>
+    CheckLikeDislike(props.comment?.id)
+  ).then((response) => {
+    if (response.data.value?.success) {
+      switch (response.data.value?.type) {
+        case 'like':
+          isLike.value = true;
+          break;
+        case 'dislike':
+          isDisLike.value = true;
+          break;
+      }
     }
-  }
+  });
 });
 
 const handleLikeComment = () => {

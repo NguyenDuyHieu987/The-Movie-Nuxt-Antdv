@@ -131,7 +131,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 7px 0px;
+        padding: 10px 0px;
         width: 100%;
 
         svg {
@@ -165,9 +165,20 @@
             transition: all 0.15s;
             border: none;
             background-color: transparent;
+            font-size: 1.4rem;
 
             &.comment-btn {
               // color: var(--app-background-color);
+
+              &:not(:disabled) {
+                background-color: var(--app-background-color);
+                padding: 6.5px 15px;
+                border-radius: 20px;
+
+                &:hover {
+                  background-color: var(--app-background-color3);
+                }
+              }
             }
           }
         }
