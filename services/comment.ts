@@ -73,3 +73,7 @@ export function DisLikeComment(params: { id: string }) {
     method: 'POST',
   });
 }
+
+export function CheckLikeDislike(id: string) {
+  return makeRequest(`/comment/check-like-dislike/${id}`);
+}

@@ -26,13 +26,7 @@
         <p class="content">{{ commentContent }}</p>
 
         <div class="actions">
-          <div class="like-dislike">
-            <!-- <Icon name="ph:thumbs-up" />
-            <Icon name="ph:thumbs-down" /> -->
-
-            <LikeOutlined />
-            <DislikeOutlined />
-          </div>
+          <LikeDislike :comment="item" />
 
           <a-button
             class="reply click-active"
@@ -151,6 +145,7 @@ import { ElNotification } from 'element-plus';
 import { DeleteComment } from '~/services/comment';
 import { getImage } from '~/services/image';
 import FormComment from '~/components/Comment/FormComment/FormComment.vue';
+import LikeDislike from '~/components/Comment/LikeDislike/LikeDislike.vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons-vue';
