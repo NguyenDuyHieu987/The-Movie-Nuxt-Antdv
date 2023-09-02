@@ -39,15 +39,15 @@
 
       <a-select
         v-show="dataMovie?.seasons && dataMovie?.seasons?.length"
-        v-model:value="selectedSeason"
+        v-model:value="selectedSeasonId"
         style="width: 150px"
-        @change="handleChangeSeason(selectedSeason)"
+        @change="handleChangeSeason(selectedSeasonId)"
       >
         <a-select-option
           v-for="(item, index) in dataMovie?.seasons"
           :key="item?.id"
           :index="index"
-          :value="item?.season_number"
+          :value="item?.season_id"
           >{{
             item.name?.split(' ')[0] === 'Phần' || item.name === 'Specials'
               ? item.name
@@ -58,7 +58,7 @@
     </h3>
 
     <div
-      v-show="dataSeason?.episodes && dataSeason?.episodes?.length"
+      v-show="dataSeason?.episodes?.length"
       class="list"
       v-loading="loading"
       element-loading-text="Đang tải tập..."
@@ -71,25 +71,17 @@
             variant="button"
             v-for="(item, index) in dataSeason?.episodes?.slice(
               0,
-              dataMovie?.last_episode_to_air?.season_number == selectedSeason
-                ? dataMovie?.last_episode_to_air?.episode_number
-                : dataSeason?.episodes.length
+              dataSeason?.episodes.length
             )"
             :index="index"
             :key="index"
-          >
-          </el-skeleton-item>
+          />
         </template>
 
         <template #default>
           <ul class="list-container">
             <li
-              v-for="(item, index) in dataSeason?.episodes?.slice(
-                0,
-                dataMovie?.last_episode_to_air?.season_number == selectedSeason
-                  ? dataMovie?.last_episode_to_air?.episode_number
-                  : dataSeason?.episodes.length
-              )"
+              v-for="(item, index) in dataSeason?.episodes"
               :index="index"
               :key="item.id"
               :class="{ active: currentEpisode == item?.episode_number }"
@@ -117,7 +109,7 @@
 <script setup lang="ts">
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import axios from 'axios';
-import { getSeasonTV } from '~/services/tv';
+import { getSeason } from '~/services/season';
 
 const props = defineProps<{
   dataMovie: any;
@@ -129,7 +121,7 @@ const emit = defineEmits<{ setUrlCodeMovie: [url: string] }>();
 const route: any = useRoute();
 const router = useRouter();
 const dataSeason = ref<any>({});
-const selectedSeason = ref<number>(props?.dataMovie?.number_of_seasons);
+const selectedSeasonId = ref<string>(props?.dataMovie?.season_id);
 const currentEpisode = ref<number>(
   route.params?.ep?.replace('ep-', '')
     ? +route.params?.ep?.replace('ep-', '')
@@ -157,8 +149,8 @@ onBeforeMount(async () => {
   loading.value = true;
 
   await useAsyncData(
-    `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
-    () => getSeasonTV(route.params?.id, selectedSeason.value)
+    `season/${route.params?.id}/${selectedSeasonId.value}`,
+    () => getSeason(route.params?.id, selectedSeasonId.value)
   )
     .then((episodesRespones: any) => {
       dataSeason.value = episodesRespones.data.value;
@@ -175,15 +167,15 @@ onBeforeMount(async () => {
     });
 });
 
-const handleChangeSeason = async (value: number) => {
-  selectedSeason.value = value;
+const handleChangeSeason = async (value: string) => {
+  selectedSeasonId.value = value;
 
   loading.value = true;
   window.history.replaceState(null, '', 'ep-1');
 
   await useAsyncData(
-    `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
-    () => getSeasonTV(route.params?.id, selectedSeason.value)
+    `season/${route.params?.id}/${selectedSeasonId.value}`,
+    () => getSeason(route.params?.id, selectedSeasonId.value)
   )
     .then((episodesRespones: any) => {
       dataSeason.value = episodesRespones.data.value;

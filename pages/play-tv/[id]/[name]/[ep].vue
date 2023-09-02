@@ -222,13 +222,7 @@
               <Tags tagsLabel="Số tập:">
                 <template #tagsInfo>
                   <span class="tags-item">
-                    {{
-                      dataMovie?.seasons?.find(
-                        (item: any) =>
-                          item?.season_number ===
-                          dataMovie?.last_episode_to_air?.season_number
-                      ).episode_count + ' tập'
-                    }}
+                    {{ dataMovie?.number_of_episodes + ' tập' }}
                   </span>
                 </template>
               </Tags>
@@ -324,7 +318,7 @@ const getData = async () => {
   loading.value = true;
 
   await useAsyncData(`tv/short/${route.params?.id}`, () =>
-    getTvById(route.params?.id)
+    getTvById(route.params?.id, 'seasons')
   )
     .then((tvResponed: any) => {
       dataMovie.value = tvResponed.data.value;

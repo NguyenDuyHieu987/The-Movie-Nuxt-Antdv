@@ -41,26 +41,29 @@ const props = defineProps<{
   comment: any;
 }>();
 
+const store = useStore();
 const like = ref<number>(props.comment?.like || 0);
 const dislike = ref<number>(props.comment?.dislike || 0);
 const isLike = ref<boolean>(false);
 const isDisLike = ref<boolean>(false);
 
 onBeforeMount(async () => {
-  await useAsyncData(`check-like-dislike/${props.comment?.id}`, () =>
-    CheckLikeDislike(props.comment?.id)
-  ).then((response) => {
-    if (response.data.value?.success) {
-      switch (response.data.value?.type) {
-        case 'like':
-          isLike.value = true;
-          break;
-        case 'dislike':
-          isDisLike.value = true;
-          break;
+  if (store.isLogin) {
+    await useAsyncData(`check-like-dislike/${props.comment?.id}`, () =>
+      CheckLikeDislike(props.comment?.id)
+    ).then((response) => {
+      if (response.data.value?.success) {
+        switch (response.data.value?.type) {
+          case 'like':
+            isLike.value = true;
+            break;
+          case 'dislike':
+            isDisLike.value = true;
+            break;
+        }
       }
-    }
-  });
+    });
+  }
 });
 
 const handleLikeComment = () => {
@@ -103,7 +106,6 @@ const handleLikeComment = () => {
         type: 'error',
         position: 'bottom-right',
         duration: 3000,
-        showClose: false,
       });
       if (axios.isCancel(e)) return;
     });
@@ -145,11 +147,10 @@ const handleDisLikeComment = () => {
       }
       ElNotification({
         title: 'Thất bại!',
-        message: 'Thích bình luận thất bại',
+        message: 'Dislike bình luận thất bại',
         type: 'error',
         position: 'bottom-right',
         duration: 3000,
-        showClose: false,
       });
       if (axios.isCancel(e)) return;
     });

@@ -356,7 +356,6 @@ const handleRemoveComment = () => {
           type: 'success',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
       }
     })
@@ -367,7 +366,6 @@ const handleRemoveComment = () => {
         type: 'error',
         position: 'bottom-right',
         duration: 3000,
-        showClose: false,
       });
       if (axios.isCancel(e)) return;
     })

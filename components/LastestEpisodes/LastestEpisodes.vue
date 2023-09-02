@@ -2,12 +2,9 @@
   <div class="lastest-episodes">
     <label class="label">Tâp mới nhất: </label>
 
-    <ul class="list-lastest-episodes">
+    <ul v-show="dataSeason?.episodes?.length" class="list-lastest-episodes">
       <li
-        v-for="(item, index) in dataSeason?.episodes
-          ?.slice(0, dataMovie?.last_episode_to_air?.episode_number)
-          ?.slice(-7)
-          .reverse()"
+        v-for="(item, index) in dataSeason?.episodes?.slice(-7).reverse()"
         :index="index"
         :key="index"
       >
@@ -37,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { getSeasonTV } from '~/services/tv';
+import { getSeason } from '~/services/season';
 import axios from 'axios';
 
 const props = defineProps({
@@ -60,12 +57,8 @@ onBeforeMount(() => {
   loading.value = true;
 
   useAsyncData(
-    `season/${route.params?.id}/${props.dataMovie?.last_episode_to_air?.season_number}`,
-    () =>
-      getSeasonTV(
-        route.params?.id,
-        props.dataMovie?.last_episode_to_air?.season_number
-      )
+    `season/${route.params?.id}/${props?.dataMovie?.season_id}`,
+    () => getSeason(route.params?.id, props?.dataMovie?.season_id)
   )
     .then((episodesRespones: any) => {
       dataSeason.value = episodesRespones.data.value;

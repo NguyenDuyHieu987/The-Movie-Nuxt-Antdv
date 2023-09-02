@@ -14,7 +14,3 @@ export function UpdateViewTv(movieId: number | string) {
     method: 'POST',
   });
 }
-
-export function getSeasonTV(movieid: number | string, season: number | string) {
-  return makeRequest(`/tv/${movieid}/season/${season}`);
-}

@@ -260,7 +260,6 @@ const onSubmit = () => {
               type: 'success',
               position: 'bottom-right',
               duration: 3000,
-              showClose: false,
             });
 
             content.value = '';
@@ -277,7 +276,6 @@ const onSubmit = () => {
             type: 'error',
             position: 'bottom-right',
             duration: 3000,
-            showClose: false,
           });
           if (axios.isCancel(e)) return;
         })

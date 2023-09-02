@@ -212,13 +212,7 @@
 
               <LastestEpisodes
                 :dataMovie="dataMovie"
-                :numberOfEpisodes="
-                  dataMovie?.seasons?.find(
-                    (item:any) =>
-                      item.season_number ===
-                      dataMovie?.last_episode_to_air?.season_number
-                  )?.episode_count
-                "
+                :numberOfEpisodes="dataMovie?.number_of_episodes"
                 :loading="loading"
               />
             </div>
@@ -300,13 +294,7 @@
               <Tags tagsLabel="Số tập:">
                 <template #tagsInfo>
                   <span class="tags-item">
-                    {{
-                      dataMovie?.seasons?.find(
-                        (item: any) =>
-                          item?.season_number ===
-                          dataMovie?.last_episode_to_air?.season_number
-                      ).episode_count + ' tập'
-                    }}
+                    {{ dataMovie?.number_of_episodes + ' tập' }}
                   </span>
                 </template>
               </Tags>
@@ -427,7 +415,7 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
-    getTvById(route.params?.id, 'videos')
+    getTvById(route.params?.id, 'videos,seasons')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;

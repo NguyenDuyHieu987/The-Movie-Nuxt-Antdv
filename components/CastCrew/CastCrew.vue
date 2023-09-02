@@ -112,7 +112,7 @@ await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
   getCredits(props.dataMovie?.id)
 )
   .then((response) => {
-    dataCredit.value = response.data.value?.items;
+    dataCredit.value = response.data.value;
   })
   .finally(() => {
     loading.value = false;
