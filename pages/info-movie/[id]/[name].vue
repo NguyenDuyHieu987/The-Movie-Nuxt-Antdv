@@ -413,8 +413,6 @@ const getData = async () => {
       // dataCredit.value = movieRespone.data.value?.credits;
       disabledRate.value = !!movieRespone.data.value?.rated_value;
 
-      console.log(movieRespone.data.value?.rated_value);
-
       // movieRespone?.data?.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(
       //     'https://image.tmdb.org/t/p/original' + item?.file_path
@@ -426,7 +424,7 @@ const getData = async () => {
       //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       // );
 
-      setBackgroundColor(dataMovie.value.dominant_backdrop_color);
+      // setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })
     .catch((e) => {
       navigateTo('/404');

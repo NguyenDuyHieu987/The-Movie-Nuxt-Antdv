@@ -433,7 +433,7 @@ const getData = async () => {
       //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       // );
 
-      setBackgroundColor(dataMovie.value.dominant_backdrop_color);
+      // setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })
     .catch((e) => {
       navigateTo('/404');
