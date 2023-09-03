@@ -377,7 +377,6 @@ const route: any = useRoute();
 const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
-const dataCredit = ref<any>({});
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
@@ -406,11 +405,10 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`movie/detail/${route.params?.id}`, () =>
-    getMovieById(route.params?.id, 'videos')
+    getMovieById(route.params?.id, 'videos,credits')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
-      // dataCredit.value = movieRespone.data.value?.credits;
       disabledRate.value = !!movieRespone.data.value?.rated_value;
 
       // movieRespone?.data?.images?.backdrops?.forEach((item) => {
