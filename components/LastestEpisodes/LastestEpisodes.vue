@@ -50,25 +50,24 @@ const props = defineProps({
 });
 
 const route: any = useRoute();
-const dataSeason = ref<any>({});
+const dataSeason = ref<any>(props.dataMovie);
 const loading = ref<boolean>(false);
 
 onBeforeMount(() => {
-  loading.value = true;
-
-  useAsyncData(
-    `season/${route.params?.id}/${props?.dataMovie?.season_id}`,
-    () => getSeason(route.params?.id, props?.dataMovie?.season_id)
-  )
-    .then((episodesRespones: any) => {
-      dataSeason.value = episodesRespones.data.value;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      loading.value = false;
-    });
+  // loading.value = true;
+  // useAsyncData(
+  //   `season/${route.params?.id}/${props?.dataMovie?.season_id}`,
+  //   () => getSeason(route.params?.id, props?.dataMovie?.season_id)
+  // )
+  //   .then((episodesRespones: any) => {
+  //     dataSeason.value = episodesRespones.data.value;
+  //   })
+  //   .catch((e) => {
+  //     if (axios.isCancel(e)) return;
+  //   })
+  //   .finally(() => {
+  //     loading.value = false;
+  //   });
 });
 </script>
 

@@ -318,7 +318,7 @@ const getData = async () => {
   loading.value = true;
 
   await useAsyncData(`tv/short/${route.params?.id}`, () =>
-    getTvById(route.params?.id, 'seasons')
+    getTvById(route.params?.id, 'seasons,episodes')
   )
     .then((tvResponed: any) => {
       dataMovie.value = tvResponed.data.value;

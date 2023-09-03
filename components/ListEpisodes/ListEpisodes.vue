@@ -120,7 +120,7 @@ const emit = defineEmits<{ setUrlCodeMovie: [url: string] }>();
 
 const route: any = useRoute();
 const router = useRouter();
-const dataSeason = ref<any>({});
+const dataSeason = ref<any>(props?.dataMovie);
 const selectedSeasonId = ref<string>(props?.dataMovie?.season_id);
 const currentEpisode = ref<number>(
   route.params?.ep?.replace('ep-', '')
@@ -146,25 +146,27 @@ const emitUrlCode = (dataSeason: any) => {
 };
 
 onBeforeMount(async () => {
-  loading.value = true;
+  emitUrlCode(dataSeason.value);
 
-  await useAsyncData(
-    `season/${route.params?.id}/${selectedSeasonId.value}`,
-    () => getSeason(route.params?.id, selectedSeasonId.value)
-  )
-    .then((episodesRespones: any) => {
-      dataSeason.value = episodesRespones.data.value;
+  // loading.value = true;
 
-      emitUrlCode(dataSeason.value);
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      setTimeout(() => {
-        loading.value = false;
-      }, 500);
-    });
+  // await useAsyncData(
+  //   `season/${route.params?.id}/${selectedSeasonId.value}`,
+  //   () => getSeason(route.params?.id, selectedSeasonId.value)
+  // )
+  //   .then((episodesRespones: any) => {
+  //     dataSeason.value = episodesRespones.data.value;
+
+  //     emitUrlCode(dataSeason.value);
+  //   })
+  //   .catch((e) => {
+  //     if (axios.isCancel(e)) return;
+  //   })
+  //   .finally(() => {
+  //     setTimeout(() => {
+  //       loading.value = false;
+  //     }, 500);
+  //   });
 });
 
 const handleChangeSeason = async (value: string) => {

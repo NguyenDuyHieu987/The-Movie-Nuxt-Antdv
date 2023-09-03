@@ -415,7 +415,7 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
-    getTvById(route.params?.id, 'videos,seasons')
+    getTvById(route.params?.id, 'videos,seasons,episodes')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
