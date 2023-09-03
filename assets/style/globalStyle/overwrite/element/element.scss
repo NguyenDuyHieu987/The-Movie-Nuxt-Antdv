@@ -123,6 +123,10 @@
         background-color: var(--hover-dropdown-color);
       }
     }
+
+    .el-dropdown-menu__item:not(.is-disabled):focus {
+      background-color: var(--hover-dropdown-color);
+    }
   }
 }
 

@@ -581,49 +581,92 @@ svg {
   }
 }
 
-.ant-dropdown.dropdown-item-viewmore {
-  display: inline-flex;
-  position: relative !important;
-  border: none;
-  border-radius: 2px;
-  overflow: hidden;
-  z-index: 5;
-  user-select: none;
+.dropdown-item-viewmore {
+  &.el-dropdown__popper {
+    .el-dropdown-menu {
+      padding: 0px;
 
-  .ant-dropdown-menu {
-    .main-action {
-      padding: 7px 0px;
-    }
+      .el-dropdown-menu__item {
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.45rem;
+        max-height: 42px;
 
-    hr {
-      border-top: 1px solid #7e7e7e00;
-    }
+        span,
+        a {
+          color: var(--text-color);
+        }
+      }
 
-    .danger-zone {
-      padding: 7px 0px;
+      .main-action {
+        padding: 7px 0px;
+      }
 
-      .ant-dropdown-menu-item {
-        &.remove-item {
-          color: var(--text-danger-color);
+      hr {
+        border-top: 1px solid #7e7e7e00;
+      }
 
-          span,
-          a {
+      .danger-zone {
+        padding: 7px 0px;
+
+        .el-dropdown-menu__item {
+          &.remove-item {
             color: var(--text-danger-color);
+
+            span,
+            svg {
+              color: var(--text-danger-color);
+            }
           }
         }
       }
     }
   }
 
-  .ant-dropdown-menu-item {
+  &.ant-dropdown {
+    display: inline-flex;
+    position: relative !important;
     border: none;
-    padding: 10px 20px;
-    font-size: 1.45rem;
-    max-height: 42px;
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: 5;
+    user-select: none;
 
-    span,
-    a {
-      color: var(--text-color);
+    .ant-dropdown-menu {
+      .ant-dropdown-menu-item {
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.45rem;
+        max-height: 42px;
+
+        span,
+        a {
+          color: var(--text-color);
+        }
+      }
+
+      .main-action {
+        padding: 7px 0px;
+      }
+
+      hr {
+        border-top: 1px solid #7e7e7e00;
+      }
+
+      .danger-zone {
+        padding: 7px 0px;
+
+        .ant-dropdown-menu-item {
+          &.remove-item {
+            color: var(--text-danger-color);
+
+            span,
+            a {
+              color: var(--text-danger-color);
+            }
+          }
+        }
+      }
     }
   }
 }
