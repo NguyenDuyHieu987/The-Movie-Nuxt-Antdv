@@ -6,66 +6,19 @@
     0 9px 28px 8px #00000077;
   background-color: var(--background-content-color1);
 
-  .el-dialog__header {
-    position: relative;
-  }
+  &.el-dialog {
+    .el-dialog__header {
+      position: relative;
+      margin: 0px;
 
-  .ant-modal-close {
-    svg {
-      top: 3px;
-      right: 5px;
-    }
-  }
-
-  .el-dialog__body {
-    padding-bottom: 10px;
-
-    .ant-result {
-      padding: 0px 20px;
-
-      .ant-result-title {
-        padding: 0px 20px;
-        line-height: inherit;
-      }
-
-      .ant-result-image {
-        height: 235px;
-
-        svg {
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-  }
-
-  .el-dialog__footer {
-    display: flex;
-    padding-bottom: 40px;
-    gap: 15px;
-    justify-content: center;
-
-    .ant-btn {
-      padding: 10px 50px;
-      border-radius: 3px;
-      transition: all 0.3s;
-    }
-  }
-
-  .ant-modal-content {
-    .ant-modal-close {
-      .ant-modal-close-x {
-        height: auto;
-        width: auto;
-
-        .icon.close {
-          top: 7px;
-        }
+      svg {
+        top: 3px;
+        right: 5px;
       }
     }
 
-    .ant-modal-body {
-      padding-top: 50px;
+    .el-dialog__body {
+      padding-bottom: 10px;
 
       .ant-result {
         padding: 0px 20px;
@@ -73,7 +26,6 @@
         .ant-result-title {
           padding: 0px 20px;
           line-height: inherit;
-          color: #fff;
         }
 
         .ant-result-image {
@@ -87,17 +39,75 @@
       }
     }
 
-    .ant-modal-footer {
+    .el-dialog__footer {
       display: flex;
       padding-bottom: 40px;
       gap: 15px;
       justify-content: center;
-      border: none;
 
       .ant-btn {
-        padding: 11px 50px;
-        max-height: 45px;
+        padding: 10px 50px;
         border-radius: 3px;
+        transition: all 0.3s;
+      }
+    }
+  }
+
+  &.ant-modal {
+    .ant-modal-close {
+      svg {
+        top: 3px;
+        right: 5px;
+      }
+    }
+
+    .ant-modal-content {
+      .ant-modal-close {
+        .ant-modal-close-x {
+          height: auto;
+          width: auto;
+
+          .icon.close {
+            top: 7px;
+          }
+        }
+      }
+
+      .ant-modal-body {
+        padding-top: 50px;
+
+        .ant-result {
+          padding: 0px 20px;
+
+          .ant-result-title {
+            padding: 0px 20px;
+            line-height: inherit;
+            color: #fff;
+          }
+
+          .ant-result-image {
+            height: 235px;
+
+            svg {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+
+      .ant-modal-footer {
+        display: flex;
+        padding-bottom: 40px;
+        gap: 15px;
+        justify-content: center;
+        border: none;
+
+        .ant-btn {
+          padding: 11px 50px;
+          max-height: 45px;
+          border-radius: 3px;
+        }
       }
     }
   }
@@ -105,15 +115,17 @@
 
 @media only screen and (max-width: 600px) {
   .require-auth-dialog {
-    .ant-modal-content {
-      .ant-modal-body {
-        padding-left: 15px;
-        padding-right: 15px;
+    &.ant-modal {
+      .ant-modal-content {
+        .ant-modal-body {
+          padding-left: 15px;
+          padding-right: 15px;
 
-        .ant-result {
-          .ant-result-title {
-            padding: 0px;
-            font-size: 2.5rem;
+          .ant-result {
+            .ant-result-title {
+              padding: 0px;
+              font-size: 2.5rem;
+            }
           }
         }
       }

@@ -5,7 +5,11 @@
         <span>Phim tương tự</span>
       </h2>
 
-      <div class="movie-group suggest" :class="{ expand: viewMore }">
+      <div
+        class="movie-group suggest"
+        v-show="dataRecommend?.length"
+        :class="{ expand: viewMore }"
+      >
         <MovieCardSuggest
           v-for="(item, index) in dataSimilar"
           :index="index"
@@ -26,7 +30,11 @@
         <span>Có thể bạn quan tâm</span>
       </h2>
 
-      <div class="movie-group suggest" :class="{ expand: viewMore }">
+      <div
+        class="movie-group suggest"
+        v-show="dataRecommend?.length"
+        :class="{ expand: viewMore }"
+      >
         <MovieCardSuggest
           v-for="(item, index) in dataRecommend"
           :index="index"

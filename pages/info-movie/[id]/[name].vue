@@ -329,11 +329,11 @@
           <iframe
             height="100%"
             width="100%"
-            :src="// dataMovie?.videos?.length != 0
-            //   ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.length)
-            //   :
-
-            'https://www.youtube.com/embed/itnqEauWQZM'"
+            :src="
+              dataMovie?.videos?.length > 0
+                ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.length)
+                : 'https://www.youtube.com/embed/itnqEauWQZM'
+            "
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media;
           gyroscope; picture-in-picture"
@@ -405,7 +405,7 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`movie/detail/${route.params?.id}`, () =>
-    getMovieById(route.params?.id, 'videos,credits')
+    getMovieById(route.params?.id, 'videos')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
@@ -422,16 +422,14 @@ const getData = async () => {
       //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       // );
 
-      // setBackgroundColor(dataMovie.value.dominant_backdrop_color);
+      setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })
     .catch((e) => {
       navigateTo('/404');
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      setTimeout(() => {
-        loading.value = false;
-      }, 500);
+      loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 

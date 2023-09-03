@@ -54,7 +54,7 @@ const props = defineProps<{
   dataMovie: any;
 }>();
 
-const dataCredit = ref<any>(props.dataMovie?.credits);
+const dataCredit = ref<any>({});
 const loading = ref<boolean>(false);
 const activeTabCast = ref<string>('cast');
 const responsiveCarousel = ref<any>({
@@ -106,17 +106,17 @@ const responsiveCarousel = ref<any>({
   },
 });
 
-// loading.value = true;
+loading.value = true;
 
-// await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
-//   getCredits(props.dataMovie?.id)
-// )
-//   .then((response) => {
-//     dataCredit.value = response.data.value;
-//   })
-//   .finally(() => {
-//     loading.value = false;
-//   });
+await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
+  getCredits(props.dataMovie?.id)
+)
+  .then((response) => {
+    dataCredit.value = response.data.value;
+  })
+  .finally(() => {
+    loading.value = false;
+  });
 
 // const { data: dataCredit, pending } = await useAsyncData(
 //   `credits/${props.dataMovie?.id}`,

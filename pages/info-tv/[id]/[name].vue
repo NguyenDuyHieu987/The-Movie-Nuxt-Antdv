@@ -64,9 +64,7 @@
                 <h1 class="movie-title">
                   {{ dataMovie?.name }}
                   <span>
-                    {{
-                      ' - Phần ' + dataMovie?.last_episode_to_air?.season_number
-                    }}
+                    {{ ' - Phần ' + dataMovie?.season?.season_number }}
                   </span>
                 </h1>
                 <div class="action">
@@ -338,11 +336,11 @@
           <iframe
             height="100%"
             width="100%"
-            :src="// dataMovie?.videos?.length != 0
-            //   ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.length)
-            //   :
-
-            'https://www.youtube.com/embed/ndl1W4ltcmg'"
+            :src="
+              dataMovie?.videos?.length > 0
+                ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.length)
+                : 'https://www.youtube.com/embed/ndl1W4ltcmg'
+            "
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media;
           gyroscope; picture-in-picture"
@@ -414,7 +412,7 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
-    getTvById(route.params?.id, 'videos,credits,seasons,episodes')
+    getTvById(route.params?.id, 'videos,seasons,episodes')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
@@ -431,16 +429,14 @@ const getData = async () => {
       //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       // );
 
-      // setBackgroundColor(dataMovie.value.dominant_backdrop_color);
+      setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })
     .catch((e) => {
       navigateTo('/404');
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      setTimeout(() => {
-        loading.value = false;
-      }, 500);
+      loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 
