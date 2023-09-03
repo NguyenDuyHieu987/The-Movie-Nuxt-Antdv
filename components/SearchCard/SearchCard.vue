@@ -3,10 +3,12 @@
     :to="{
       path:
         item?.type || item?.media_type == 'tv'
-          ? `/info-tv/${item?.id}/${item?.name
+          ? `/info-tv/${item?.id}/${utils
+              .removeVietnameseTones(item?.name)
               ?.replace(/\s/g, '+')
               .toLowerCase()}`
-          : `/info-movie/${item?.id}/${item?.name
+          : `/info-movie/${item?.id}/${utils
+              .removeVietnameseTones(item?.name)
               ?.replace(/\s/g, '+')
               .toLowerCase()}`,
     }"

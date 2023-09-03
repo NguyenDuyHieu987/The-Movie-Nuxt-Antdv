@@ -63,7 +63,8 @@
                     <NuxtLink
                       v-if="isEpisodes"
                       :to="{
-                        path: `/play-tv/${item?.id}/${item?.name
+                        path: `/play-tv/${item?.id}/${utils
+                          .removeVietnameseTones(item?.name)
                           ?.replace(/\s/g, '+')
                           .toLowerCase()}/ep-1`,
                       }"
@@ -92,7 +93,8 @@
                     <NuxtLink
                       v-else
                       :to="{
-                        path: `/play-movie/${item?.id}/${item?.name
+                        path: `/play-movie/${item?.id}/${utils
+                          .removeVietnameseTones(item?.name)
                           ?.replace(/\s/g, '+')
                           .toLowerCase()}`,
                       }"
@@ -223,10 +225,12 @@
                     <NuxtLink
                       :to="{
                         path: isEpisodes
-                          ? `/info-tv/${item?.id}/${item?.name
+                          ? `/info-tv/${item?.id}/${utils
+                              .removeVietnameseTones(item?.name)
                               ?.replace(/\s/g, '+')
                               .toLowerCase()}`
-                          : `/info-movie/${item?.id}/${item?.name
+                          : `/info-movie/${item?.id}/${utils
+                              .removeVietnameseTones(item?.name)
                               ?.replace(/\s/g, '+')
                               .toLowerCase()}`,
                       }"
@@ -510,10 +514,12 @@ const onClickPreviewModal = (e: any) => {
     if (!actionBtn.value) {
       navigateTo({
         path: props.isEpisodes
-          ? `/info-tv/${props.item?.id}/${props.item?.name
+          ? `/info-tv/${props.item?.id}/${utils
+              .removeVietnameseTones(props.item?.name)
               ?.replace(/\s/g, '+')
               .toLowerCase()}`
-          : `/info-movie/${props.item?.id}/${props.item?.name
+          : `/info-movie/${props.item?.id}/${utils
+              .removeVietnameseTones(props.item?.name)
               ?.replace(/\s/g, '+')
               .toLowerCase()}`,
       });

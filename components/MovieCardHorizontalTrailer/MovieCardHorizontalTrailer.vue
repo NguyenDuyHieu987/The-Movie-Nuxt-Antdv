@@ -2,10 +2,12 @@
   <NuxtLink
     :to="{
       path: isEpisodes
-        ? `/info-tv/${item?.id}/${item?.name
+        ? `/info-tv/${item?.id}/${utils
+            .removeVietnameseTones(item?.name)
             ?.replace(/\s/g, '+')
             .toLowerCase()}`
-        : `/info-movie/${item?.id}/${item?.name
+        : `/info-movie/${item?.id}/${utils
+            .removeVietnameseTones(item?.name)
             ?.replace(/\s/g, '+')
             .toLowerCase()}`,
     }"
@@ -136,6 +138,7 @@ const props = defineProps<{
 }>();
 
 const store = useStore();
+const utils = useUtils();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);

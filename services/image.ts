@@ -16,9 +16,9 @@ export function getImage(path: string, type: string, crop: string = '') {
   const URL_API_IMAGE1 = nuxtConfig.app.serverImageUrl;
 
   if (crop?.length == 0)
-    return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
+    return path ? `${URL_API_IMAGE1}/images1/${type}/${path}` : ' ';
 
-  return path ? `${URL_API_IMAGE1}/images/${type}/${path}/tr:${crop}` : ' ';
+  return path ? `${URL_API_IMAGE1}/images1/${type}/${path}/tr:${crop}` : ' ';
 }
 
 export function getPoster(path: string, size = 'full') {

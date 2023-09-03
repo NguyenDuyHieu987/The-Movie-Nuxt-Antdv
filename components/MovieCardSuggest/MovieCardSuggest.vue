@@ -59,10 +59,12 @@
           class="info"
           :to="{
             path: isEpisodes
-              ? `/info-tv/${item?.id}/${item?.name
+              ? `/info-tv/${item?.id}/${utils
+                  .removeVietnameseTones(item?.name)
                   ?.replace(/\s/g, '+')
                   .toLowerCase()}`
-              : `/info-movie/${item?.id}/${item?.name
+              : `/info-movie/${item?.id}/${utils
+                  .removeVietnameseTones(item?.name)
                   ?.replace(/\s/g, '+')
                   .toLowerCase()}`,
           }"
@@ -267,10 +269,12 @@ const handelAddToList = (e: any) => {
 const onClickPlay = () => {
   navigateTo({
     path: isEpisodes.value
-      ? `/play-tv/${props.item?.id}/${props.item?.name
+      ? `/play-tv/${props.item?.id}/${utils
+          .removeVietnameseTones(props.item?.name)
           ?.replace(/\s/g, '+')
           .toLowerCase()}/ep-1`
-      : `/play-movie/${props.item?.id}/${props.item?.name
+      : `/play-movie/${props.item?.id}/${utils
+          .removeVietnameseTones(props.item?.name)
           ?.replace(/\s/g, '+')
           .toLowerCase()}`,
   });

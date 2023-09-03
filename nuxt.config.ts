@@ -169,7 +169,7 @@ export default defineNuxtConfig({
       siteDescription: 'Xem phim thỏa thích cùng PhimHay247',
       titleSeparator: '|',
       language: 'vi',
-      trailingSlash: false,
+      trailingSlash: true,
     },
   },
   alias: {

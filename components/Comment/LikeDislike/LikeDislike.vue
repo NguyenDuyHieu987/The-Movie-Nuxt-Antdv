@@ -67,6 +67,11 @@ onBeforeMount(async () => {
 });
 
 const handleLikeComment = () => {
+  if (!store.isLogin) {
+    store.openRequireAuthDialog = true;
+    return;
+  }
+
   const tempDisLide = isDisLike.value;
 
   if (tempDisLide) {
@@ -112,6 +117,11 @@ const handleLikeComment = () => {
 };
 
 const handleDisLikeComment = () => {
+  if (!store.isLogin) {
+    store.openRequireAuthDialog = true;
+    return;
+  }
+
   const tempLide = isLike.value;
 
   if (tempLide) {

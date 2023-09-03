@@ -155,10 +155,12 @@
           :to="{
             path:
               item?.media_type == 'movie'
-                ? `/info-movie/${item?.id}/${item?.name
+                ? `/info-movie/${item?.id}/${utils
+                    .removeVietnameseTones(item?.name)
                     ?.replace(/\s/g, '+')
                     .toLowerCase()}`
-                : `/info-tv/${item?.id}/${item?.name
+                : `/info-tv/${item?.id}/${utils
+                    .removeVietnameseTones(item?.name)
                     ?.replace(/\s/g, '+')
                     .toLowerCase()}`,
           }"
