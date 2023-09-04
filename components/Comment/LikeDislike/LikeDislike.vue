@@ -49,20 +49,30 @@ const isDisLike = ref<boolean>(false);
 
 onBeforeMount(async () => {
   if (store.isLogin) {
-    await useAsyncData(`check-like-dislike/${props.comment?.id}`, () =>
-      CheckLikeDislike(props.comment?.id)
-    ).then((response) => {
-      if (response.data.value?.success) {
-        switch (response.data.value?.type) {
-          case 'like':
-            isLike.value = true;
-            break;
-          case 'dislike':
-            isDisLike.value = true;
-            break;
-        }
-      }
-    });
+    if (props.comment.is_like) {
+      isLike.value = true;
+      return;
+    }
+
+    if (props.comment.is_dislike) {
+      isDisLike.value = true;
+      return;
+    }
+
+    // await useAsyncData(`check-like-dislike/${props.comment?.id}`, () =>
+    //   CheckLikeDislike(props.comment?.id)
+    // ).then((response) => {
+    //   if (response.data.value?.success) {
+    //     switch (response.data.value?.type) {
+    //       case 'like':
+    //         isLike.value = true;
+    //         break;
+    //       case 'dislike':
+    //         isDisLike.value = true;
+    //         break;
+    //     }
+    //   }
+    // });
   }
 });
 

@@ -280,9 +280,7 @@ const onSubmit = () => {
           if (axios.isCancel(e)) return;
         })
         .finally(() => {
-          setTimeout(() => {
-            loading.value = false;
-          }, 500);
+          loading.value = false;
         });
       break;
   }

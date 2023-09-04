@@ -118,6 +118,7 @@ import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimati
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.vue';
+import { getGenreByShortName } from '~/services/genres';
 import {
   getMovies,
   getNowPlaying,
@@ -125,7 +126,9 @@ import {
   getPopular,
   getTopRated,
 } from '~/services/movieSlug';
+import { genre } from '~/types';
 
+const store = useStore();
 const route = useRoute();
 const nowPlayings = ref<any>([]);
 const populars = ref<any>([]);
@@ -219,7 +222,14 @@ onBeforeMount(getData);
 watch(
   () => route.query,
   () => {
-    console.log(route.query.genre);
+    if (route.query?.genre) {
+      const genreId: number = getGenreByShortName(
+        route.query.genre,
+        store.allGenres
+      )!.id;
+
+      console.log(genreId);
+    }
   },
   { deep: true }
 );

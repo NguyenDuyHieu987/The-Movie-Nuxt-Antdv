@@ -75,6 +75,18 @@
 
     .el-dropdown-menu__item {
       padding: 9px 15px !important;
+      position: relative;
+
+      a {
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
 
       span {
         font-size: 1.4rem;
@@ -82,7 +94,7 @@
 
       &:hover {
         text-decoration: underline;
-        background-color: #2f2f2f64 !important;
+        background-color: #06060641 !important;
       }
     }
   }
