@@ -1,9 +1,9 @@
 <template>
   <div class="cast-crew">
-    <a-tabs v-model:activeKey="activeTabCast">
+    <!-- <a-tabs class="cast-crew-tabs" v-model:activeKey="activeTabCast">
       <a-tab-pane key="cast" tab="Diễn viên">
         <SliderGroup
-          v-show="dataCredit?.cast"
+          v-if="dataCredit?.cast"
           :data="dataCredit?.cast?.slice(0, 20)"
           :responsive="responsiveCarousel"
         >
@@ -23,7 +23,7 @@
       </a-tab-pane>
       <a-tab-pane key="crew" tab="Đội ngũ" force-render>
         <SliderGroup
-          v-show="dataCredit?.crew"
+          v-if="dataCredit?.crew"
           :data="dataCredit?.crew?.slice(0, 20)"
           :responsive="responsiveCarousel"
         >
@@ -41,7 +41,44 @@
           </template>
         </SliderGroup>
       </a-tab-pane>
-    </a-tabs>
+    </a-tabs> -->
+
+    <el-tabs v-model="activeTabCast" class="cast-crew-tabs">
+      <el-tab-pane name="cast" label="Diễn viên">
+        <SliderGroup
+          v-if="dataCredit?.cast"
+          :data="dataCredit?.cast?.slice(0, 20)"
+          :responsive="responsiveCarousel"
+        >
+          <template #content>
+            <SwiperSlide
+              v-for="(item, index) in dataCredit?.cast?.slice(0, 20)"
+              :index="index"
+              :key="item.id"
+            >
+              <CastCard :item="item" type="cast" />
+            </SwiperSlide>
+          </template>
+        </SliderGroup>
+      </el-tab-pane>
+      <el-tab-pane name="crew" label="Đội ngũ" force-render>
+        <SliderGroup
+          v-if="dataCredit?.crew"
+          :data="dataCredit?.crew?.slice(0, 20)"
+          :responsive="responsiveCarousel"
+        >
+          <template #content>
+            <SwiperSlide
+              v-for="(item, index) in dataCredit?.crew?.slice(0, 20)"
+              :index="index"
+              :key="item.id"
+            >
+              <CastCard :item="item" type="crew" />
+            </SwiperSlide>
+          </template>
+        </SliderGroup>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -54,7 +91,7 @@ const props = defineProps<{
   dataMovie: any;
 }>();
 
-const dataCredit = ref<any>({});
+const dataCredit = ref<any>(props.dataMovie?.credits);
 const loading = ref<boolean>(false);
 const activeTabCast = ref<string>('cast');
 const responsiveCarousel = ref<any>({
@@ -106,17 +143,21 @@ const responsiveCarousel = ref<any>({
   },
 });
 
-loading.value = true;
+// loading.value = true;
 
-await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
-  getCredits(props.dataMovie?.id)
-)
-  .then((response) => {
-    dataCredit.value = response.data.value;
-  })
-  .finally(() => {
-    loading.value = false;
-  });
+// await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
+//   getCredits(props.dataMovie?.id)
+// )
+//   .then((response) => {
+//     dataCredit.value = response.data.value;
+//     dataCredit.value = {
+//       cast: [],
+//       crew: [],
+//     };
+//   })
+//   .finally(() => {
+//     loading.value = false;
+//   });
 
 // const { data: dataCredit, pending } = await useAsyncData(
 //   `credits/${props.dataMovie?.id}`,

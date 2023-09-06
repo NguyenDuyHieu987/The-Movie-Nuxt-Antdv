@@ -319,6 +319,7 @@
           </Tags>
         </div>
       </div>
+
       <div class="related-content padding-content">
         <MovieRelated :movieId="dataMovie?.id" type="movie" />
 
@@ -366,16 +367,11 @@ import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressB
 import Comment from '~/components/Comment/Comment.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 
-definePageMeta({
-  middleware: (to, from) => {},
-});
-
 const nuxtApp = useNuxtApp();
 const store = useStore();
 const utils = useUtils();
 const route: any = useRoute();
 const router = useRouter();
-const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
@@ -397,7 +393,6 @@ const setBackgroundColor = (color: string[]) => {
 
 const getData = async () => {
   isAddToList.value = false;
-  isEpisodes.value = false;
   loading.value = true;
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
@@ -405,7 +400,7 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`movie/detail/${route.params?.id}`, () =>
-    getMovieById(route.params?.id, 'videos')
+    getMovieById(route.params?.id, 'videos,credits')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
@@ -422,14 +417,16 @@ const getData = async () => {
       //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       // );
 
-      setBackgroundColor(dataMovie.value.dominant_backdrop_color);
+      // setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })
     .catch((e) => {
       navigateTo('/404');
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = false;
+      setTimeout(() => {
+        loading.value = false;
+      }, 100);
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 
@@ -459,7 +456,6 @@ getData();
 
 // onBeforeUnmount(() => {
 //   isAddToList.value = false;
-//   isEpisodes.value = false;
 //   loading.value = true;
 //   internalInstance.appContext.config.globalProperties.$Progress.start();
 //   srcBackdropList.value = [];
@@ -493,7 +489,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Thông tin - ' + dataMovie.value?.name,
   description: dataMovie.value?.overview,
   ogTitle: 'Thông tin - ' + dataMovie.value?.name,

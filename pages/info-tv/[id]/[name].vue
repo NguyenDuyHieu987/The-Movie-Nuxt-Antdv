@@ -326,12 +326,13 @@
           </Tags>
         </div>
       </div>
+
       <div class="related-content padding-content">
         <MovieRelated :movieId="dataMovie?.id" type="tv" />
 
         <CastCrew :dataMovie="dataMovie" />
 
-        <div class="trailer">
+        <div class="trailer" id="trailer">
           <h2 class="gradient-title-default">Trailer</h2>
           <iframe
             height="100%"
@@ -379,7 +380,6 @@ const store = useStore();
 const utils = useUtils();
 const route: any = useRoute();
 const router = useRouter();
-const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
@@ -404,7 +404,6 @@ const setBackgroundColor = (color: string[]) => {
 
 const getData = async () => {
   isAddToList.value = false;
-  isEpisodes.value = true;
   loading.value = true;
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
@@ -412,7 +411,7 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
-    getTvById(route.params?.id, 'videos,seasons,episodes')
+    getTvById(route.params?.id, 'videos,credits,seasons,episodes')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
@@ -429,14 +428,16 @@ const getData = async () => {
       //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       // );
 
-      setBackgroundColor(dataMovie.value.dominant_backdrop_color);
+      // setBackgroundColor(dataMovie.value.dominant_backdrop_color);
     })
     .catch((e) => {
       navigateTo('/404');
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = false;
+      setTimeout(() => {
+        loading.value = false;
+      }, 100);
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 
@@ -462,7 +463,6 @@ getData();
 
 // nuxtApp.hook('page:start', () => {
 //   isAddToList.value = false;
-//   isEpisodes.value = false;
 //   loading.value = true;
 //   internalInstance.appContext.config.globalProperties.$Progress.start();
 //   srcBackdropList.value = [];
