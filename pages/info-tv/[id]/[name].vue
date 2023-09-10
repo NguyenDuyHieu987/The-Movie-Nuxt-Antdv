@@ -486,18 +486,18 @@ getData();
 // });
 
 useHead({
-  title: 'Thông tin - Phim bộ - ' + dataMovie.value?.name,
+  title: () => 'Thông tin - Phim bộ - ' + dataMovie.value?.name,
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Thông tin - ' + dataMovie.value?.name,
-  description: dataMovie.value?.overview,
-  ogTitle: 'Thông tin - ' + dataMovie.value?.name,
+  title: () => 'Thông tin - ' + dataMovie.value?.name,
+  description: () => dataMovie.value?.overview,
+  ogTitle: () => 'Thông tin - ' + dataMovie.value?.name,
   ogType: 'video.movie',
-  ogUrl: window.location.href,
-  ogDescription: dataMovie.value?.overview,
-  ogImage: getBackdrop(dataMovie.value?.backdrop_path),
+  ogUrl: () => window.location.href,
+  ogDescription: () => dataMovie.value?.overview,
+  ogImage: () => getBackdrop(dataMovie.value?.backdrop_path),
   ogLocale: 'vi',
 });
 
