@@ -125,8 +125,9 @@ import {
   getUpComing,
   getPopular,
   getTopRated,
+  FilterMovieSlug,
 } from '~/services/movieSlug';
-import { genre } from '~/types';
+import { genre, formfilter } from '~/types';
 
 const store = useStore();
 const route = useRoute();
@@ -134,6 +135,15 @@ const nowPlayings = ref<any>([]);
 const populars = ref<any>([]);
 const upComings = ref<any>([]);
 const topRateds = ref<any>([]);
+const loading = ref<boolean>(false);
+const formFilter = ref<formfilter>({
+  type: 'all',
+  genre: '',
+  year: '',
+  country: '',
+  page: 1,
+  limit: 20,
+});
 
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
@@ -205,7 +215,7 @@ const getData = async () => {
 };
 
 const { data: dataBilboard, pending } = await useAsyncData(
-  'trending/all/1',
+  'movie/all/1',
   () => getMovies(1),
   {
     // default: () => {
@@ -221,14 +231,104 @@ onBeforeMount(getData);
 
 watch(
   () => route.query,
-  () => {
+  async () => {
     if (route.query?.genre) {
+      loading.value = true;
       const genreId: number = getGenreByShortName(
         route.query.genre,
         store.allGenres
       )!.id;
 
-      console.log(genreId);
+      formFilter.value.genre = genreId.toString();
+
+      await useAsyncData(`discover/movie/all/${formFilter.value}`, () =>
+        FilterMovieSlug(formFilter.value)
+      )
+        .then((response) => {
+          dataBilboard.value = response.data.value?.results;
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+
+      await useAsyncData(
+        `discover/movie/nowplaying/${{
+          ...formFilter.value,
+          type: 'nowplaying',
+        }}`,
+        () =>
+          FilterMovieSlug({
+            ...formFilter.value,
+            type: 'nowplaying',
+          })
+      )
+        .then((response) => {
+          nowPlayings.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+
+      await useAsyncData(
+        `discover/movie/popular/${{
+          ...formFilter.value,
+          type: 'popular',
+        }}`,
+        () =>
+          FilterMovieSlug({
+            ...formFilter.value,
+            type: 'popular',
+          })
+      )
+        .then((response) => {
+          populars.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+
+      await useAsyncData(
+        `discover/movie/upcoming/${{
+          ...formFilter.value,
+          type: 'upcoming',
+        }}`,
+        () =>
+          FilterMovieSlug({
+            ...formFilter.value,
+            type: 'upcoming',
+          })
+      )
+        .then((response) => {
+          upComings.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+
+      await useAsyncData(
+        `discover/movie/toprated/${{
+          ...formFilter.value,
+          type: 'toprated',
+        }}`,
+        () =>
+          FilterMovieSlug({
+            ...formFilter.value,
+            type: 'toprated',
+          })
+      )
+        .then((response) => {
+          topRateds.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
     }
   },
   { deep: true }

@@ -79,11 +79,7 @@
               </template>
             </Tags>
 
-            <RatingMovie
-              :dataMovie="dataMovie"
-              type="tv"
-              :disabled="disabledRate"
-            />
+            <RatingMovie :dataMovie="dataMovie" :disabled="disabledRate" />
 
             <div class="action">
               <div class="left">

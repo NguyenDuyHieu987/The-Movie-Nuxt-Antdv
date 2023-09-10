@@ -383,9 +383,13 @@ const isDisappear = ref<boolean>(false);
 
 onMounted(() => {
   // window.addEventListener('pointermove', (e: any) => {
-  //   if (document.querySelector('.preview-modal') == null) return;
+  //   // if (document.querySelector('.preview-modal') == null) return;
   //   if (isTeleport.value == true && !e.target.closest('.preview-modal')) {
-  //     isTeleport.value = false;
+  //     isDisappear.value = true;
+  //     setTimeout(() => {
+  //       isDisappear.value = false;
+  //       isTeleport.value = false;
+  //     }, 245);
   //   }
   // });
 });
@@ -408,7 +412,7 @@ watch(previewModal, () => {
     let minRecLeft =
       +getComputedStyle(document.documentElement)
         .getPropertyValue('--sider-width')
-        .replace('px', '') + 15;
+        .replace('px', '') + 45;
 
     if (window.innerWidth < 900) {
       minRecLeft = 15;
@@ -429,7 +433,7 @@ watch(previewModal, () => {
     } else {
       const minRectRight = window.innerWidth - props.style.rectBound.right;
 
-      if (minRectRight <= 30) {
+      if (minRectRight <= 45) {
         previewModal.value.style.right = minRectRight - 15 + 'px';
         previewModal.value.style.setProperty('--left', 'auto');
         previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
@@ -445,7 +449,6 @@ watch(previewModal, () => {
 
       previewModal.value.addEventListener('mouseleave', () => {
         isDisappear.value = true;
-
         setTimeout(() => {
           isDisappear.value = false;
           isTeleport.value = false;
@@ -496,7 +499,7 @@ watch(isTeleport, async () => {
           isAddToList.value = true;
         }
 
-        if (dataMovie.value?.in_history) {
+        if (dataMovie.value?.history_progress) {
           isInHistory.value = true;
           percent.value = dataMovie.value?.history_progress?.percent;
         }

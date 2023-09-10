@@ -42,7 +42,7 @@
         placeholder="Viết bình luận..."
         @change="handleChange"
         @focus="handleFocus"
-        @blur="isFocus = false"
+        @blur="handleBlur"
       />
 
       <!-- <el-input
@@ -199,7 +199,7 @@ const handleChange = (e: any) => {
   }
 };
 
-const handleFocus = () => {
+const handleFocus = (e: any) => {
   if (!store.isLogin) {
     store.openRequireAuthDialog = true;
     return;
@@ -207,6 +207,10 @@ const handleFocus = () => {
 
   isFocus.value = true;
   isShowActions.value = true;
+};
+
+const handleBlur = (e: any) => {
+  isFocus.value = false;
 };
 
 const onSubmit = () => {

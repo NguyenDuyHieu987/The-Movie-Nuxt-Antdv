@@ -21,13 +21,14 @@ export declare interface sortby {
   name: string;
 }
 
-export declare interface formFilter {
+export declare interface formfilter {
   type: string;
-  sortBy: string;
-  genre: string;
+  sortBy?: string;
+  genre: string | string;
   year: string;
   country: string;
-  pageFilter: number;
+  page?: number;
+  limit?: number;
 }
 
 export declare interface plan {

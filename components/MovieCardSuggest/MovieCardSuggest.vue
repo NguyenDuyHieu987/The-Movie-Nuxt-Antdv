@@ -221,7 +221,7 @@ const getData = async () => {
         });
     }
 
-    if (dataMovie.value?.in_history) {
+    if (dataMovie.value?.history_progress) {
       isInHistory.value = true;
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {

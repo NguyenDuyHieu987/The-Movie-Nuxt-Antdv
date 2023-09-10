@@ -192,8 +192,8 @@
             placeholder="Tất cả"
           >
             <a-select-option value="all"> Tất cả </a-select-option>
-            <a-select-option value="movieall"> Phim lẻ </a-select-option>
-            <a-select-option value="tvall"> Phim bộ </a-select-option>
+            <a-select-option value="movie"> Phim lẻ </a-select-option>
+            <a-select-option value="tv"> Phim bộ </a-select-option>
           </a-select>
 
           <a-button
@@ -223,14 +223,14 @@
 </template>
 
 <script setup lang="ts">
-import { FilterDataMovie } from '~/services/discover';
+import { FilterMovie } from '~/services/discover';
 import { getAllGenre } from '~/services/genres';
 import { getAllCountry } from '~/services/country';
 import { getAllYear } from '~/services/year';
 import { getAllSortBy } from '~/services/sortby';
 import axios from 'axios';
 import { CaretRightFilled } from '@ant-design/icons-vue';
-import type { genre, country, year, sortby } from '@/types';
+import type { genre, country, year, sortby, formfilter } from '@/types';
 
 const emits = defineEmits<{
   dataFiltered: [data: any[], formSelect: any];
@@ -253,15 +253,15 @@ const loadingData = defineModel<boolean>('loading', {
 const movieType = computed(() => {
   if (route.params?.slug?.includes('movie')) {
     if (route.params?.slug2?.replace('/', '') == 'all') {
-      return 'movieall';
+      return 'movie';
     } else {
-      return 'movieall';
+      return 'movie';
     }
   } else if (route.params?.slug?.includes('tv')) {
     if (route.params?.slug2?.replace('/', '') == 'all') {
-      return 'tvall';
+      return 'tv';
     } else {
-      return 'tvall';
+      return 'tv';
     }
   } else if (route.params?.slug == 'search') {
     return 'all';
@@ -270,13 +270,13 @@ const movieType = computed(() => {
   }
 });
 
-const formSelect = reactive({
+const formSelect = reactive<formfilter>({
   type: movieType.value,
   sortBy: '',
   genre: '',
   year: '',
   country: '',
-  pageFilter: 1,
+  page: 1,
 });
 
 watch(route, () => {
@@ -331,9 +331,7 @@ const disableBtnFilter = computed(
 
 const handleFilterMovie = async () => {
   loadingData.value = true;
-  await useAsyncData(`discover/all/${formSelect}}`, () =>
-    FilterDataMovie(formSelect)
-  )
+  await useAsyncData(`discover/${formSelect}`, () => FilterMovie(formSelect))
     .then((movieResponse) => {
       emits('dataFiltered', movieResponse?.data.value.results, formSelect);
     })

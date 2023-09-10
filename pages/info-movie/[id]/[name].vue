@@ -196,11 +196,7 @@
                 </template>
               </Tags>
 
-              <RatingMovie
-                :dataMovie="dataMovie"
-                type="movie"
-                :disabled="disabledRate"
-              />
+              <RatingMovie :dataMovie="dataMovie" :disabled="disabledRate" />
 
               <Tags tagsLabel="Lượt xem:">
                 <template #tagsInfo>
@@ -404,6 +400,7 @@ const getData = async () => {
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
+      console.log(dataMovie.value);
       disabledRate.value = !!movieRespone.data.value?.rated_value;
 
       // movieRespone?.data?.images?.backdrops?.forEach((item) => {

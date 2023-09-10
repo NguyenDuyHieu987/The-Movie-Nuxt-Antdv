@@ -124,12 +124,26 @@ import {
   getTvOntheAir,
   getTvPopular,
   getTvTopRated,
+  FilterTvSlug,
 } from '~/services/TvSlug';
+import { getGenreByShortName } from '~/services/genres';
+import type { formfilter } from '~/types';
 
+const store = useStore();
+const route = useRoute();
 const airingTodays = ref<any>([]);
 const onTheAirs = ref<any>([]);
 const populars = ref<any>([]);
 const topRateds = ref<any>([]);
+const loading = ref<boolean>(false);
+const formFilter = ref<formfilter>({
+  type: 'all',
+  genre: '',
+  year: '',
+  country: '',
+  page: 1,
+  limit: 20,
+});
 
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
@@ -214,6 +228,95 @@ const { data: dataBilboard, pending } = await useAsyncData(
 );
 
 onBeforeMount(getData);
+
+watch(
+  () => route.query,
+  async () => {
+    if (route.query?.genre) {
+      loading.value = true;
+      const genreId: number = getGenreByShortName(
+        route.query.genre,
+        store.allGenres
+      )!.id;
+
+      formFilter.value.genre = genreId.toString();
+
+      await useAsyncData(`discover/tv/all/${formFilter.value}`, () =>
+        FilterTvSlug(formFilter.value)
+      )
+        .then((response) => {
+          dataBilboard.value = response.data.value?.results;
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+
+      await useAsyncData(
+        `discover/tv/airingtoday/${{
+          ...formFilter.value,
+          type: 'airingtoday',
+        }}`,
+        () => FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
+      )
+        .then((response) => {
+          airingTodays.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+
+      await useAsyncData(
+        `discover/tv/ontheair/${{
+          ...formFilter.value,
+          type: 'ontheair',
+        }}`,
+        () => FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
+      )
+        .then((response) => {
+          onTheAirs.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+
+      await useAsyncData(
+        `discover/tv/popular/${{
+          ...formFilter.value,
+          type: 'popular',
+        }}`,
+        () => FilterTvSlug({ ...formFilter.value, type: 'popular' })
+      )
+        .then((response) => {
+          populars.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+
+      await useAsyncData(
+        `discover/tv/toprated/${{
+          ...formFilter.value,
+          type: 'toprated',
+        }}`,
+        () => FilterTvSlug({ ...formFilter.value, type: 'toprated' })
+      )
+        .then((response) => {
+          topRateds.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+    }
+  },
+  { deep: true }
+);
 </script>
 
 <style src="./television.scss" lang="scss"></style>

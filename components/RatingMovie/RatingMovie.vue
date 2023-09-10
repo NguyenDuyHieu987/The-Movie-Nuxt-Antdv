@@ -59,7 +59,6 @@ import { rating } from '~/services/rating';
 
 const props = defineProps<{
   dataMovie: any;
-  type: string;
   disabled?: boolean;
 }>();
 
@@ -90,28 +89,17 @@ const handleRating = (value: number) => {
     return;
   }
 
-  rating(props.dataMovie?.id, props.type, value)
+  rating(props.dataMovie?.id, props.dataMovie?.media_type, value)
     .then((response) => {
       if (response?.success == true) {
         ElNotification({
           title: 'Thành công!',
-          message: `Đánh giá thành công ${value} điểm.`,
+          message: `Đánh giá ${props.dataMovie.name} thành công: ${value} điểm.`,
           type: 'success',
           position: 'bottom-right',
           duration: 3000,
           showClose: false,
         });
-
-        // notification.open({
-        //   message: 'Cảm ơn bạn đã đánh giá!',
-        //   description: `Đánh giá thành công ${value} điểm.`,
-        //   placement: 'bottomRight',
-        //   closeIcon: '',
-        //   icon: () =>
-        //     h(CheckCircleFilled, {
-        //       style: 'color: green',
-        //     }),
-        // });
 
         vote_Average.value = response?.vote_average;
         vote_Count.value = response?.vote_count;

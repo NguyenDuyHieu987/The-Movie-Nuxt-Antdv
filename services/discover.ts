@@ -3,29 +3,30 @@ import ALLGENRES from '../constants/Genres';
 import { getGenreByShortName, getGenreByName } from './genres';
 import type { country, genre } from '@/types';
 import { getCountryByShortName } from './country';
+import type { formfilter } from '@/types';
 
-export function FilterDataMovie(formSelect: any) {
-  const yearLte = formSelect.year + '-12-30';
+export function FilterMovie(formFilter: formfilter) {
+  const yearLte = formFilter.year != '' ? formFilter.year + '-12-30' : '';
   const yearGte =
-    formSelect.year != ''
-      ? /^\d+$/.test(formSelect.year)
-        ? formSelect.year + '-01-01'
-        : formSelect.year.slice(-4) + '-01-01'
+    formFilter.year != ''
+      ? /^\d+$/.test(formFilter.year)
+        ? formFilter.year + '-01-01'
+        : formFilter.year.slice(-4) + '-01-01'
       : '';
 
   // const genreStr =
-  //   formSelect.genre !== ''
-  //     ? /^\d+$/.test(formSelect.genre)
-  //       ? formSelect.genre
-  //       : getGenreByName(formSelect.genre)?.id
+  //   formFilter.genre !== ''
+  //     ? /^\d+$/.test(formFilter.genre)
+  //       ? formFilter.genre
+  //       : getGenreByName(formFilter.genre)?.id
   //     : '';
 
-  return /^\d+$/.test(formSelect.year)
+  return /^\d+$/.test(formFilter.year) || formFilter.year == ''
     ? makeRequest(
-        `/discover/${formSelect.type}?sort_by=${formSelect.sortBy}&primary_release_date_gte=${yearGte}&primary_release_date_lte=${yearLte}&with_genres=${formSelect.genre}&with_original_language=${formSelect.country}&page=${formSelect.pageFilter}`
+        `/discover/${formFilter.type}?sort_by=${formFilter.sortBy}&primary_release_date_gte=${yearGte}&primary_release_date_lte=${yearLte}&with_genres=${formFilter.genre}&with_original_language=${formFilter.country}&page=${formFilter.page}`
       )
     : makeRequest(
-        `/discover/${formSelect.type}?sort_by=${formSelect.sortBy}&primary_release_date_lte=${yearGte}&with_genres=${formSelect.genre}&with_original_language=${formSelect.country}&page=${formSelect.pageFilter}`
+        `/discover/${formFilter.type}?sort_by=${formFilter.sortBy}&primary_release_date_lte=${yearGte}&with_genres=${formFilter.genre}&with_original_language=${formFilter.country}&page=${formFilter.page}`
       );
 }
 

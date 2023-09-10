@@ -1,7 +1,7 @@
 <template>
   <div class="discover padding-content">
     <FilterBar
-      @dataFiltered="(data: any[], formSelect: formFilter) => setDataFiltered(data, formSelect)"
+      @dataFiltered="(data: any[], formSelect: formfilter) => setDataFiltered(data, formSelect)"
       v-model:loading="loading"
       :cancelFilter="cancelFilter"
     />
@@ -58,12 +58,12 @@ import {
   getTvPopular,
   getTvTopRated,
 } from '~/services/TvSlug';
-import { FilterDataMovie } from '~/services/discover';
+import { FilterMovie } from '~/services/discover';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '~/components/FilterBar/FilterBar.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
-import type { formFilter } from '@/types';
+import type { formfilter } from '@/types';
 
 const route: any = useRoute();
 const router = useRouter();
@@ -74,7 +74,14 @@ const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const isFilter = ref<boolean>(false);
 const loading = ref<boolean>(false);
-const formFilterSelect = ref<formFilter | any>({});
+const formFilter = ref<formfilter>({
+  type: 'all',
+  sortBy: '',
+  genre: '',
+  year: '',
+  country: '',
+  page: 1,
+});
 const metaHead = ref<string>('');
 const internalInstance: any = getCurrentInstance();
 
@@ -82,8 +89,8 @@ const getData = async () => {
   loading.value = true;
 
   if (isFilter.value) {
-    await useAsyncData(`discover/all/${formFilterSelect.value}}`, () =>
-      FilterDataMovie(formFilterSelect.value)
+    await useAsyncData(`discover/${formFilter.value}}`, () =>
+      FilterMovie(formFilter.value)
     )
       .then((movieResponse: any) => {
         dataDiscover.value = movieResponse.data.value?.results;
@@ -396,7 +403,7 @@ const onChangePage = (
   // pageSize
 ) => {
   if (isFilter.value) {
-    formFilterSelect.value['pageFilter'] = pageSelected;
+    formFilter.value['page'] = pageSelected;
     getData();
   } else {
     page.value = pageSelected;
@@ -405,13 +412,13 @@ const onChangePage = (
   }
 };
 
-const setDataFiltered = (data: any[], formSelect: formFilter) => {
+const setDataFiltered = (data: any[], formSelect: formfilter) => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   dataDiscover.value = data;
-  formFilterSelect.value = formSelect;
+  formFilter.value = formSelect;
   isFilter.value = true;
-  page.value = formSelect.pageFilter;
+  page.value = formSelect.page!;
   metaHead.value = 'Danh sách phim đã lọc';
 
   internalInstance.appContext.config.globalProperties.$Progress.finish();

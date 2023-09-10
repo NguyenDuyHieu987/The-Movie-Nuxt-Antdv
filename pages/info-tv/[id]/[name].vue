@@ -192,11 +192,7 @@
                 </template>
               </Tags>
 
-              <RatingMovie
-                :dataMovie="dataMovie"
-                type="tv"
-                :disabled="disabledRate"
-              />
+              <RatingMovie :dataMovie="dataMovie" :disabled="disabledRate" />
 
               <Tags tagsLabel="Lượt xem:">
                 <template #tagsInfo>
