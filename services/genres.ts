@@ -11,24 +11,24 @@ export function getGenreByShortName(
   allGenres?: genre[]
 ) {
   if (allGenres?.length != 0) {
-    return allGenres!.find((gen) => gen.short_name === genre_short_name);
+    return allGenres!.find((gen) => gen.short_name == genre_short_name);
   } else {
-    return ALLGENRES.find((gen) => gen.short_name === genre_short_name);
+    return ALLGENRES.find((gen) => gen.short_name == genre_short_name);
   }
 }
 
 export function getGenreById(genre_id: number, allGenres?: genre[]) {
   if (allGenres?.length != 0) {
-    return allGenres!.find((gen) => gen.id === genre_id);
+    return allGenres!.find((gen) => gen.id == genre_id);
   } else {
-    return ALLGENRES.find((gen) => gen.id === genre_id);
+    return ALLGENRES.find((gen) => gen.id == genre_id);
   }
 }
 
 export function getGenreByName(genre_name: string, allGenres?: genre[]) {
   if (allGenres?.length != 0) {
-    return allGenres!.find((gen) => gen.name === genre_name);
+    return allGenres!.find((gen) => gen.name == genre_name);
   } else {
-    return ALLGENRES.find((gen) => gen.name === genre_name);
+    return ALLGENRES.find((gen) => gen.name == genre_name);
   }
 }

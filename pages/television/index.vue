@@ -129,6 +129,21 @@ import {
 import { getGenreByShortName } from '~/services/genres';
 import type { formfilter } from '~/types';
 
+useHead({
+  title: 'Phim bộ',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: 'Phim bộ',
+  description: 'Phim bộ, Phim dài tập',
+  ogTitle: 'Phim bộ',
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: 'Phim bộ, Phim dài tập',
+  ogLocale: 'vi',
+});
+
 const store = useStore();
 const route = useRoute();
 const airingTodays = ref<any>([]);
@@ -234,12 +249,14 @@ watch(
   async () => {
     if (route.query?.genre) {
       loading.value = true;
-      const genreId: number = getGenreByShortName(
-        route.query.genre,
-        store.allGenres
-      )!.id;
+      // const genreId: number = getGenreByShortName(
+      //   route.query.genre,
+      //   store.allGenres
+      // )!.id;
 
-      formFilter.value.genre = genreId.toString();
+      // formFilter.value.genre = genreId.toString();
+
+      formFilter.value.genre = route.query.genre;
 
       await useAsyncData(`discover/tv/all/${formFilter.value}`, () =>
         FilterTvSlug(formFilter.value)
@@ -315,7 +332,7 @@ watch(
         .finally(() => {});
     }
   },
-  { deep: true }
+  { deep: true, immediate: true }
 );
 </script>
 

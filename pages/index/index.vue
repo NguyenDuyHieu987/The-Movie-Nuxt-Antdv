@@ -223,20 +223,20 @@ import { getMoviesByGenres } from '~/services/discover';
 import { getMyRecommend } from '~/services/recommend';
 import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
 
-// useHead({
-//   title: 'Phimhay247',
-//   htmlAttrs: { lang: 'vi' },
-// });
+useHead({
+  title: 'Xem phim Online 24/7',
+  htmlAttrs: { lang: 'vi' },
+});
 
-// useServerSeoMeta({
-//   title: 'Phimhay247',
-//   description: 'Xem phim thỏa thích cùng Phimhay247',
-//   ogTitle: 'Phimhay247',
-//   ogType: 'video.movie',
-//   // ogUrl: window.location.href,
-//   ogDescription: 'Xem phim thỏa thích cùng Phimhay247',
-//   ogLocale: 'vi',
-// });
+useServerSeoMeta({
+  title: 'Xem phim Online 24/7',
+  description: 'Xem phim thỏa thích cùng Phimhay247',
+  ogTitle: 'Xem phim Online 24/7',
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: 'Xem phim thỏa thích cùng Phimhay247',
+  ogLocale: 'vi',
+});
 
 const store = useStore();
 // const trendings = ref<any[]>([]);

@@ -129,6 +129,21 @@ import {
 } from '~/services/movieSlug';
 import { genre, formfilter } from '~/types';
 
+useHead({
+  title: 'Phim lẻ',
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: 'Phim lẻ',
+  description: 'Phim lẻ, Phim chiếu rạp',
+  ogTitle: 'Phim lẻ',
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: 'Phim lẻ, Phim chiếu rạp',
+  ogLocale: 'vi',
+});
+
 const store = useStore();
 const route = useRoute();
 const nowPlayings = ref<any>([]);
@@ -234,12 +249,14 @@ watch(
   async () => {
     if (route.query?.genre) {
       loading.value = true;
-      const genreId: number = getGenreByShortName(
-        route.query.genre,
-        store.allGenres
-      )!.id;
+      // const genreId: number = getGenreByShortName(
+      //   route.query.genre,
+      //   store.allGenres
+      // )!.id;
 
-      formFilter.value.genre = genreId.toString();
+      // formFilter.value.genre = genreId.toString();
+
+      formFilter.value.genre = route.query.genre;
 
       await useAsyncData(`discover/movie/all/${formFilter.value}`, () =>
         FilterMovieSlug(formFilter.value)
@@ -331,7 +348,7 @@ watch(
         .finally(() => {});
     }
   },
-  { deep: true }
+  { deep: true, immediate: true }
 );
 </script>
 

@@ -13,8 +13,8 @@
       />
     </ClientOnly>
 
-    <OgImageStatic />
     <SeoKit />
+    <OgImageStatic />
 
     <div class="app-wrapper">
       <LoadingApp />
