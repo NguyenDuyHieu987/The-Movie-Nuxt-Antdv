@@ -292,7 +292,7 @@
                   <NuxtLink to="/login"> Đăng nhập</NuxtLink>
                 </el-dropdown-item>
 
-                <el-dropdown-item v-if="isLogin" @click="handleLogout">
+                <el-dropdown-item v-else @click="handleLogout">
                   <span> Đăng xuất</span>
                 </el-dropdown-item>
               </el-dropdown-menu>

@@ -381,17 +381,17 @@ onBeforeMount(() => {
   getData();
 
   useHead({
-    title: 'Khám phá - ' + metaHead.value,
+    title: () => 'Khám phá - ' + metaHead.value,
     htmlAttrs: { lang: 'vi' },
   });
 
   useServerSeoMeta({
-    title: 'Khám phá - ' + metaHead.value,
-    description: 'Khám phá phim mới cùng Phimhay247',
-    ogTitle: 'Khám phá - ' + metaHead.value,
+    title: () => 'Khám phá - ' + metaHead.value,
+    description: () => 'Khám phá phim mới cùng Phimhay247',
+    ogTitle: () => 'Khám phá - ' + metaHead.value,
     ogType: 'video.movie',
-    ogUrl: window.location.href,
-    ogDescription: 'Khám phá phim mới cùng Phimhay247',
+    ogUrl: () => window.location.href,
+    ogDescription: () => 'Khám phá phim mới cùng Phimhay247',
     ogLocale: 'vi',
   });
 

@@ -267,14 +267,26 @@
                 </div>
               </div>
               <div class="info">
-                <h3 class="title">
+                <!-- <h3 class="title">
                   {{ item?.name }}
                   <span v-if="isEpisodes">
                     {{
                       ' - Phần ' + dataMovie?.last_episode_to_air?.season_number
                     }}
                   </span>
-                </h3>
+                </h3> -->
+
+                <div class="genres">
+                  <span
+                    class="genre-item"
+                    v-for="(genre, index) in Array.from(item?.genres, (x: any) => x.name)"
+                    :index="index"
+                    :key="index"
+                  >
+                    {{ genre }}
+                  </span>
+                </div>
+
                 <div class="evidence-tags">
                   <span class="evidence-item country">
                     {{
@@ -284,14 +296,14 @@
                       )?.name || ''
                     }}
                   </span>
-                  <span v-if="isEpisodes" class="evidence-item lastest-episode">
+                  <!-- <span v-if="isEpisodes" class="evidence-item lastest-episode">
                     {{
                       dataMovie?.last_episode_to_air?.episode_number
                         ? 'Tập ' +
                           dataMovie?.last_episode_to_air?.episode_number
                         : ''
                     }}
-                  </span>
+                  </span> -->
                 </div>
 
                 <div class="views-imdb">
@@ -389,7 +401,7 @@ onMounted(() => {
   //     setTimeout(() => {
   //       isDisappear.value = false;
   //       isTeleport.value = false;
-  //     }, 245);
+  //     }, 250);
   //   }
   // });
 });
@@ -452,7 +464,7 @@ watch(previewModal, () => {
         setTimeout(() => {
           isDisappear.value = false;
           isTeleport.value = false;
-        }, 245);
+        }, 250);
       });
     });
   }

@@ -3,7 +3,7 @@
     <BillboardAnimation v-model:data="trendings" />
 
     <div class="home-content">
-      <section class="home-section outstanding">
+      <section class="home-section outstanding" v-if="nowPlayings?.length">
         <h2 class="gradient-title-default">
           <span>Phim nổi bật</span>
           <NuxtLink

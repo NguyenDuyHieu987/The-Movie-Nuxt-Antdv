@@ -111,11 +111,7 @@ const { data: rankings } = await useAsyncData(
   }
 );
 
-watch(rankings, () => {
-  if (rankings.value?.length > 0) {
-    internalInstance.appContext.config.globalProperties.$Progress.finish();
-  }
-});
+internalInstance.appContext.config.globalProperties.$Progress.finish();
 
 watch(pageTrending, async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>

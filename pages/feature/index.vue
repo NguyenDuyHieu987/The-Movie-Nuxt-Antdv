@@ -5,7 +5,7 @@
     <BillboardAnimation v-model:data="dataBilboard" />
 
     <div class="home-content">
-      <section class="home-section outstanding">
+      <section class="home-section outstanding" v-if="nowPlayings?.length">
         <h2 class="gradient-title-default">
           <span>Now Playing</span>
           <NuxtLink
