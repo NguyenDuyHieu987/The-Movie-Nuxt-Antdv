@@ -119,4 +119,10 @@ export default [
     name: 'Thổ Nhĩ Kỳ',
     short_name: 'tho-nhi-ky',
   },
+  {
+    iso_639_1: 'it',
+    english_name: 'Italia',
+    name: 'Italia',
+    short_name: 'italia',
+  },
 ];

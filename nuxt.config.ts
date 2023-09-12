@@ -5,42 +5,37 @@ import { addComponent } from '@nuxt/kit';
 import * as AntDV from 'ant-design-vue';
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import axios from 'axios';
+// import axios from 'axios';
 import { genre, country, year } from './types';
+import GENRES from './constants/Genres';
+import COUNTRIES from './constants/Country';
+import YEARS from './constants/Years';
 
 const featureGenres = async () => {
-  const response = await axios.get('http://localhost:5000/genre/all');
-  return response.data?.results.map(
-    (genre: genre) => `/feature?genre=${genre?.id}`
-  );
+  // const response = await axios.get('http://localhost:5000/genre/all');
+  return GENRES.map((genre: genre) => `/feature?genre=${genre?.id}`);
 };
 
 const televisonGenres = async () => {
-  const response = await axios.get('http://localhost:5000/genre/all');
-  return response.data?.results.map(
-    (genre: genre) => `/television?genre=${genre?.id}`
-  );
+  // const response = await axios.get('http://localhost:5000/genre/all');
+  return GENRES.map((genre: genre) => `/television?genre=${genre?.id}`);
 };
 
 const discoverGenres = async () => {
-  const response = await axios.get('http://localhost:5000/genre/all');
-  return response.data?.results.map(
-    (genre: genre) => `/discover/genre/${genre?.short_name}`
-  );
+  // const response = await axios.get('http://localhost:5000/genre/all');
+  return GENRES.map((genre: genre) => `/discover/genre/${genre?.short_name}`);
 };
 
 const discoverCountries = async () => {
-  const response = await axios.get('http://localhost:5000/country/all');
-  return response.data?.results.map(
+  // const response = await axios.get('http://localhost:5000/country/all');
+  return COUNTRIES.map(
     (country: country) => `/discover/country/${country?.short_name}`
   );
 };
 
 const discoverYears = async () => {
-  const response = await axios.get('http://localhost:5000/year/all');
-  return response.data?.results.map(
-    (year: year) => `/discover/year/${year?.name}`
-  );
+  // const response = await axios.get('http://localhost:5000/year/all');
+  return YEARS.map((year: year) => `/discover/year/${year?.name}`);
 };
 
 export default defineNuxtConfig({
