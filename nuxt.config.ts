@@ -6,25 +6,40 @@ import * as AntDV from 'ant-design-vue';
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import axios from 'axios';
+import { genre, country, year } from './types';
 
-const getAllGenres = async () => {
-  const response = await axios.get('https://api.phimhay247.site/genre/all');
+const featureGenres = async () => {
+  const response = await axios.get('http://localhost:5000/genre/all');
   return response.data?.results.map(
-    (genre: any) => `/discover/genre/${genre?.short_name}`
+    (genre: genre) => `/feature?genre=${genre?.id}`
   );
 };
 
-const getAllCountries = async () => {
-  const response = await axios.get('https://api.phimhay247.site/country/all');
+const televisonGenres = async () => {
+  const response = await axios.get('http://localhost:5000/genre/all');
   return response.data?.results.map(
-    (country: any) => `/discover/country/${country?.short_name}`
+    (genre: genre) => `/television?genre=${genre?.id}`
   );
 };
 
-const getAllYears = async () => {
-  const response = await axios.get('https://api.phimhay247.site/year/all');
+const discoverGenres = async () => {
+  const response = await axios.get('http://localhost:5000/genre/all');
   return response.data?.results.map(
-    (year: any) => `/discover/year/${year?.name}`
+    (genre: genre) => `/discover/genre/${genre?.short_name}`
+  );
+};
+
+const discoverCountries = async () => {
+  const response = await axios.get('http://localhost:5000/country/all');
+  return response.data?.results.map(
+    (country: country) => `/discover/country/${country?.short_name}`
+  );
+};
+
+const discoverYears = async () => {
+  const response = await axios.get('http://localhost:5000/year/all');
+  return response.data?.results.map(
+    (year: year) => `/discover/year/${year?.name}`
   );
 };
 
@@ -164,7 +179,7 @@ export default defineNuxtConfig({
       googleOauth2ClientSecret: process.env.GOOGLE_OAUTH2_CLIENT_SECRET,
     },
     public: {
-      siteUrl: 'https://phimhay247.tech',
+      siteUrl: 'https://phimhay247z.org',
       siteName: 'Phimhay247',
       siteDescription: 'Xem phim thỏa thích cùng PhimHay247',
       titleSeparator: '|',
@@ -346,13 +361,17 @@ export default defineNuxtConfig({
         return;
       }
 
-      const genres = await getAllGenres();
-      const countries = await getAllCountries();
-      const years = await getAllYears();
+      const disGenres = await discoverGenres();
+      const discountries = await discoverCountries();
+      const disyears = await discoverYears();
+      const feaGenres = await featureGenres();
+      const teleGenres = await televisonGenres();
 
-      nitroConfig.prerender?.routes?.push(...genres);
-      nitroConfig.prerender?.routes?.push(...countries);
-      nitroConfig.prerender?.routes?.push(...years);
+      nitroConfig.prerender?.routes?.push(...disGenres);
+      nitroConfig.prerender?.routes?.push(...discountries);
+      nitroConfig.prerender?.routes?.push(...disyears);
+      nitroConfig.prerender?.routes?.push(...feaGenres);
+      nitroConfig.prerender?.routes?.push(...teleGenres);
     },
   },
   generate: {
