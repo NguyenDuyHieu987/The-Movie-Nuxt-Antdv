@@ -7,9 +7,9 @@ import * as AntDV from 'ant-design-vue';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 // import axios from 'axios';
 import { genre, country, year } from './types';
-import GENRES from './constants/Genres';
-import COUNTRIES from './constants/Country';
-import YEARS from './constants/Years';
+import GENRES from './constants/data/Genres';
+import COUNTRIES from './constants/data/Country';
+import YEARS from './constants/data/Years';
 
 const featureGenres = async () => {
   // const response = await axios.get('http://localhost:5000/genre/all');

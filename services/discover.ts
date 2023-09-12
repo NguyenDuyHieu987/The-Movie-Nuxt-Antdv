@@ -1,5 +1,5 @@
 import { makeRequest } from './makeRequest';
-import ALLGENRES from '../constants/Genres';
+import ALLGENRES from '../constants/data/Genres';
 import { getGenreByShortName, getGenreByName } from './genres';
 import type { country, genre } from '@/types';
 import { getCountryByShortName } from './country';

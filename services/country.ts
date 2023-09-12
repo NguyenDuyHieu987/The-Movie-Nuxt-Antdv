@@ -1,6 +1,6 @@
 import { makeRequest } from './makeRequest';
 import type { country } from '~/types';
-import COUNTRIES from '../constants/Country';
+import COUNTRIES from '../constants/data/Country';
 
 export function getAllCountry() {
   return makeRequest(`/country/all`);

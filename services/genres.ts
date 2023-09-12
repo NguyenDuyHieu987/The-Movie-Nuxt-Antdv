@@ -1,6 +1,6 @@
 import { makeRequest } from './makeRequest';
 import type { genre } from '@/types';
-import ALLGENRES from '../constants/Genres';
+import ALLGENRES from '../constants/data/Genres';
 
 export function getAllGenre() {
   return makeRequest(`/genre/all`);
