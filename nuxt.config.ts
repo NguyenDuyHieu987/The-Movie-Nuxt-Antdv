@@ -353,8 +353,6 @@ export default defineNuxtConfig({
       nitroConfig.prerender?.routes?.push(...disGenres);
       nitroConfig.prerender?.routes?.push(...discountries);
       nitroConfig.prerender?.routes?.push(...disyears);
-      nitroConfig.prerender?.routes?.push(...feaGenres);
-      nitroConfig.prerender?.routes?.push(...teleGenres);
     },
   },
   generate: {
