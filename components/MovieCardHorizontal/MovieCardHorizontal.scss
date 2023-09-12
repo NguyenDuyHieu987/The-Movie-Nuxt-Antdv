@@ -136,7 +136,7 @@
 
   .movie-group.horizontal {
     .movie-card-item.horizontal {
-      width: calc((100% - (3 * var(--card-movie-gap))) / 4);
+      width: calc((100% - (3.01 * var(--card-movie-gap))) / 4);
     }
   }
 
