@@ -20,7 +20,7 @@
       id="video-player"
       ref="video"
       :poster="backdrop"
-      :src="'http://localhost:5002/videos/' + videoUrl"
+      :src="videoUrl"
       autoplay
       muted
       @loadstart="onLoadStartVideo"
@@ -39,6 +39,37 @@
     </video>
 
     <div class="float-center">
+      <div
+        class="loading-video"
+        v-show="
+          videoStates.isLoading &&
+          !videoStates.isEndedVideo &&
+          !videoStates.isRewind.enable
+          // &&
+          // videoStates.isLoaded
+        "
+      >
+        <!-- <Icon name="line-md:loading-twotone-loop" /> -->
+        <!-- <Icon name="line-md:loading-loop" /> -->
+        <!-- <Icon name="icon-park-outline:loading-four" /> -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="5rem"
+          height="5rem"
+          viewBox="0 0 48 48"
+        >
+          <path
+            fill="none"
+            stroke="var(--text-color)"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="4"
+            d="M4 24c0 11.046 8.954 20 20 20s20-8.954 20-20S35.046 4 24 4"
+          />
+        </svg>
+      </div>
+
       <div class="replay" v-show="videoStates.isEndedVideo">
         <!-- <Icon
           name="ic:baseline-replay"
@@ -853,7 +884,6 @@ const initVideo = async (newVideoUrl: string) => {
 
 onBeforeMount(() => {
   // initVideo();
-  videoStates.isLoading = true;
 });
 
 onBeforeRouteLeave(() => {
@@ -936,7 +966,7 @@ onMounted(() => {
 watch(
   () => props.videoUrl,
   (newVal, oldVal) => {
-    // initVideo(newVal);
+    initVideo(newVal);
   },
   { immediate: true }
 );
