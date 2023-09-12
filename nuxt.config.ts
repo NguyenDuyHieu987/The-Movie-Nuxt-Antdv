@@ -11,16 +11,6 @@ import GENRES from './constants/data/Genres';
 import COUNTRIES from './constants/data/Country';
 import YEARS from './constants/data/Years';
 
-const featureGenres = async () => {
-  // const response = await axios.get('http://localhost:5000/genre/all');
-  return GENRES.map((genre: genre) => `/feature?genre=${genre?.id}`);
-};
-
-const televisonGenres = async () => {
-  // const response = await axios.get('http://localhost:5000/genre/all');
-  return GENRES.map((genre: genre) => `/television?genre=${genre?.id}`);
-};
-
 const discoverGenres = async () => {
   // const response = await axios.get('http://localhost:5000/genre/all');
   return GENRES.map((genre: genre) => `/discover/genre/${genre?.short_name}`);
@@ -359,8 +349,6 @@ export default defineNuxtConfig({
       const disGenres = await discoverGenres();
       const discountries = await discoverCountries();
       const disyears = await discoverYears();
-      const feaGenres = await featureGenres();
-      const teleGenres = await televisonGenres();
 
       nitroConfig.prerender?.routes?.push(...disGenres);
       nitroConfig.prerender?.routes?.push(...discountries);
@@ -471,8 +459,8 @@ export default defineNuxtConfig({
   optimization: {},
   routeRules: {
     '/': { prerender: true },
-    '/feature': { prerender: true },
-    '/television': { prerender: true },
+    '/feature/**': { prerender: true },
+    '/television/**': { prerender: true },
     '/search/**': { prerender: true },
     '/discover/**': { ssr: false, prerender: true },
     '/follow/**': { prerender: true },
