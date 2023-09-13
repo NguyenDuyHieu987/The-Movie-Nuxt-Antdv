@@ -356,7 +356,7 @@ onBeforeMount(() => {
 });
 
 useHead({
-  title: () => 'Xem phim - Phim lẻ - ' + dataMovie.value?.name,
+  title: () => 'Xem phim - ' + dataMovie.value?.name,
   htmlAttrs: { lang: 'vi' },
 });
 

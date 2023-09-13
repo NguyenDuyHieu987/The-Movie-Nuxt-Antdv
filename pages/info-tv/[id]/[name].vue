@@ -485,7 +485,7 @@ getData();
 // });
 
 useHead({
-  title: () => 'Thông tin - Phim bộ - ' + dataMovie.value?.name,
+  title: () => 'Thông tin - ' + dataMovie.value?.name,
   htmlAttrs: { lang: 'vi' },
 });
 

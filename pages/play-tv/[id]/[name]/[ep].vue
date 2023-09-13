@@ -382,14 +382,14 @@ onBeforeMount(() => {
 });
 
 useHead({
-  title: () => 'Xem phim - Phim bộ - ' + dataMovie.value?.name,
+  title: () => 'Xem phim - ' + dataMovie.value?.name,
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Xem phim - Phim bộ - ' + dataMovie.value?.name,
+  title: () => 'Xem phim - ' + dataMovie.value?.name,
   description: () => dataMovie.value?.overview,
-  ogTitle: () => 'Xem phim - Phim bộ - ' + dataMovie.value?.name,
+  ogTitle: () => 'Xem phim - ' + dataMovie.value?.name,
   ogType: 'video.movie',
   ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,

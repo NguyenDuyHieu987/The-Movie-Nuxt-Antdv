@@ -342,6 +342,14 @@ video::-webkit-media-controls {
         }
       }
 
+      &::after {
+        content: '';
+        position: absolute;
+        height: 16px;
+        bottom: 0;
+        width: 100%;
+      }
+
       .overlay-progress-padding {
         position: absolute;
         height: 16px;

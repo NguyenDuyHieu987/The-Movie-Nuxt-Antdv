@@ -202,7 +202,7 @@
           @pointerleave="videoStates.isMouseMoveOverlayProgress = false"
           ref="overlayProgress"
         >
-          <div class="overlay-progress-padding"></div>
+          <!-- <div class="overlay-progress-padding"></div> -->
 
           <div class="progress-bar" ref="progressBar"></div>
         </div>
