@@ -382,30 +382,18 @@ onBeforeMount(() => {
 });
 
 useHead({
-  title:
-    'Xem phim - Phim bộ - ' +
-    dataMovie.value?.name +
-    ' - Phần ' +
-    dataMovie.value?.last_episode_to_air?.season_number,
+  title: () => 'Xem phim - Phim bộ - ' + dataMovie.value?.name,
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title:
-    'Xem phim - Phim bộ - ' +
-    dataMovie.value?.name +
-    ' - Phần ' +
-    dataMovie.value?.last_episode_to_air?.season_number,
-  description: dataMovie.value?.overview,
-  ogTitle:
-    'Xem phim - Phim bộ - ' +
-    dataMovie.value?.name +
-    ' - Phần ' +
-    dataMovie.value?.last_episode_to_air?.season_number,
+  title: () => 'Xem phim - Phim bộ - ' + dataMovie.value?.name,
+  description: () => dataMovie.value?.overview,
+  ogTitle: () => 'Xem phim - Phim bộ - ' + dataMovie.value?.name,
   ogType: 'video.movie',
-  ogUrl: window.location.href,
-  ogDescription: dataMovie.value?.overview,
-  ogImage: getBackdrop(dataMovie.value?.backdrop_path),
+  ogUrl: () => window.location.href,
+  ogDescription: () => dataMovie.value?.overview,
+  ogImage: () => getBackdrop(dataMovie.value?.backdrop_path),
   ogLocale: 'vi',
 });
 

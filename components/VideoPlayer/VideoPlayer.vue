@@ -324,6 +324,7 @@
                 :debounce="0"
                 v-model="volume"
                 @input="onChangeVolume(volume)"
+                @change="onChangeVolume(volume)"
               />
             </div>
 
@@ -805,10 +806,6 @@ watch(
   { immediate: true }
 );
 
-watch(volume, () => {
-  videoStates.isVolumeOff = video.value.volume == 0;
-});
-
 onBeforeRouteLeave(() => {
   video.value.pause();
 
@@ -1257,7 +1254,15 @@ const onClickVolumeOff = () => {
 const onChangeVolume = (value: number) => {
   volume.value = value;
   video.value.volume = value / 100;
+
+  if (volume.value > 0 && video.value.muted) {
+    video.value.muted = false;
+  }
 };
+
+watch(volume, (newVal, oldVal) => {
+  videoStates.isVolumeOff = video.value.volume == 0;
+});
 
 const onClickPictureInPicture = () => {
   video.value.requestPictureInPicture();
