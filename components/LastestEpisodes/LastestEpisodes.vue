@@ -9,24 +9,22 @@
         :key="index"
       >
         <NuxtLink
-          v-if="item?.episode_number === numberOfEpisodes"
           :to="{
             path: `/play-tv/${dataMovie?.id}/${dataMovie?.name
               ?.replace(/\s/g, '+')
               .toLowerCase()}/tap-${item?.episode_number}`,
           }"
         >
-          {{ 'Tập ' + item?.episode_number + '-End' }}
-        </NuxtLink>
-        <NuxtLink
-          v-else-if="item?.episode_number !== numberOfEpisodes"
-          :to="{
-            path: `/play-tv/${dataMovie?.id}/${dataMovie?.name
-              ?.replace(/\s/g, '+')
-              .toLowerCase()}/tap-${item?.episode_number}`,
-          }"
-        >
-          {{ 'Tập ' + item?.episode_number }}
+          {{ 'Tập ' }}
+          {{
+            item?.episode_number == numberOfEpisodes
+              ? item?.episode_number < 10
+                ? '0' + item?.episode_number + ' - End'
+                : item?.episode_number + ' - End'
+              : +item?.episode_number < 10
+              ? '0' + item?.episode_number
+              : item?.episode_number
+          }}
         </NuxtLink>
       </li>
     </ul>

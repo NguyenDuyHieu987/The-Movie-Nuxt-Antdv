@@ -334,7 +334,9 @@
       z-index: 1;
 
       .trailer {
-        margin-top: 25px;
+        .title-default {
+          margin: 20px 0px;
+        }
 
         iframe {
           height: 47vw;

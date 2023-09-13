@@ -264,6 +264,25 @@ svg {
   }
 }
 
+.title-default {
+  position: relative;
+  padding-left: 0.65em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    border-radius: 2px;
+    background: linear-gradient(
+      to bottom,
+      var(--app-background-color7),
+      var(--app-background-color3)
+    );
+  }
+}
+
 .gradient-title-default {
   margin-top: 25px;
   margin-bottom: 15px;

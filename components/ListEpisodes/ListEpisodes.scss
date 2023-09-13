@@ -1,13 +1,6 @@
 .list-episodes {
   position: relative;
 
-  .movie-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 10px;
-  }
-
   .control-episodes {
     margin-bottom: 20px;
     display: flex;
@@ -32,6 +25,13 @@
     }
   }
 
+  .movie-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
   .list {
     .el-skeleton.is-animated {
       padding-top: 7px;
@@ -53,61 +53,54 @@
 
       li {
         display: inline-block;
-        min-width: 70px;
-        // max-width: 75px;
         margin-top: 7px;
         margin-right: 7px;
-        text-align: center;
-        padding: 8px 23px;
-        color: var(--text-color);
-        border-radius: 3px;
-        user-select: none;
-        cursor: pointer;
-        transition: all 0.3s;
 
-        background: linear-gradient(to right, #2f2f2f, #101010);
-        // background-size: 200% 100%;
+        a {
+          display: block;
+          text-align: center;
+          min-width: 70px;
+          padding: 8px 23px;
+          border-radius: 3px;
+          color: var(--text-color);
+          user-select: none;
+          cursor: pointer;
+          transition: all 0.15s;
+          background: linear-gradient(45deg, #101010, #2f2f2f);
 
-        // background-image: linear-gradient(
-        //   to right,
-        //   #006a88,
-        //   var(--app-background-color2),
-        //   var(--app-background-color1)
-        // );
-        // background-size: 200% 100%;
-
-        // &:hover {
-        //   background-size: 200% 100%;
-        //   // background-position: -65px center;
-        //   background-position: 100% center;
-        // }
-
-        span {
+          &:visited {
+            color: #00e5a4;
+          }
         }
 
         &.active {
-          // background: var(--app-background-color);
-          background-image: linear-gradient(
-            to right,
-            var(--app-background-color7),
-            var(--app-background-color3)
-          );
-          // transition: all 0.7s ease;
-          // animation: episode-fade-out 2s infinite linear;
+          a {
+            background: linear-gradient(
+              45deg,
+              var(--app-background-color7),
+              var(--app-background-color3)
+            );
 
-          @keyframes episode-fade-out {
-            0% {
-              box-shadow: 0 0 0 0 #006a88;
+            @keyframes episode-fade-out {
+              0% {
+                box-shadow: 0 0 0 0 #006a88;
+              }
+              40% {
+                box-shadow: 0 0 0 5px #004b5f;
+              }
+              80% {
+                box-shadow: 0 0 0 5px #003746;
+              }
+              100% {
+                box-shadow: 0 0 0 5px #001d25;
+              }
             }
-            40% {
-              box-shadow: 0 0 0 5px #004b5f;
-            }
-            80% {
-              box-shadow: 0 0 0 5px #003746;
-            }
-            100% {
-              box-shadow: 0 0 0 5px #001d25;
-            }
+          }
+        }
+
+        &:active {
+          a {
+            opacity: 0.8;
           }
         }
       }

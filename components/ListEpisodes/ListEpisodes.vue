@@ -23,21 +23,15 @@
       </a-button>
     </div> -->
 
-    <h3 class="movie-title">
-      <span>
+    <h2 class="movie-title title-default">
+      Danh sách tập
+      <!-- <span>
         {{ dataMovie?.name }}
         - Tập
         {{ currentEpisode }}
-        <!-- |
-        {{
-          dataSeason?.name?.split(' ')[0] === 'Phần' ||
-          dataSeason?.name === 'Specials'
-            ? dataSeason?.name
-            : dataSeason?.name?.replace('Season', 'Phần')
-        }} -->
-      </span>
+      </span> -->
 
-      <a-select
+      <!-- <a-select
         v-show="dataSeason && dataSeason?.length"
         v-model:value="selectedSeasonId"
         style="width: 150px"
@@ -54,8 +48,8 @@
               : item.name.replace('Season', 'Phần')
           }}
         </a-select-option>
-      </a-select>
-    </h3>
+      </a-select> -->
+    </h2>
 
     <div
       v-show="dataEpisode?.length"
@@ -82,19 +76,25 @@
               :index="index"
               :key="item.id"
               :class="{ active: currentEpisode == item?.episode_number }"
-              @click="handleChangeEpisode(item?.episode_number)"
+              @click.prevent="handleChangeEpisode(item?.episode_number)"
             >
-              <span>
+              <NuxtLink
+                :to="{
+                  path: `/play-tv/${dataMovie?.id}/${dataMovie?.name
+                    ?.replace(/\s/g, '+')
+                    .toLowerCase()}/tap-${item?.episode_number}`,
+                }"
+              >
                 {{
-                  item?.episode_number === dataEpisode.length
+                  item?.episode_number == dataSeason.value?.episodes
                     ? item?.episode_number < 10
-                      ? '0' + item?.episode_number + '-End'
-                      : item?.episode_number + '-End'
+                      ? '0' + item?.episode_number + ' - End'
+                      : item?.episode_number + ' - End'
                     : +item?.episode_number < 10
                     ? '0' + item?.episode_number
                     : item?.episode_number
                 }}
-              </span>
+              </NuxtLink>
             </li>
           </ul>
         </template>

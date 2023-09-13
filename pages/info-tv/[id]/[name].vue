@@ -330,7 +330,7 @@
         <CastCrew :dataMovie="dataMovie" />
 
         <div class="trailer" id="trailer">
-          <h2 class="gradient-title-default">Trailer</h2>
+          <h2 class="title-default">Trailer</h2>
           <iframe
             height="100%"
             width="100%"

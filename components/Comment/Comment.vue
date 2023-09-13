@@ -1,6 +1,6 @@
 <template>
   <div class="comment" id="comment">
-    <h2 class="comment-title">
+    <h2 class="comment-title title-default">
       Bình luận
       <span class="total-comments">{{ `(${total})` }}</span>
     </h2>

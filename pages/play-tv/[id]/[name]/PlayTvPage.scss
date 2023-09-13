@@ -82,7 +82,7 @@
 
             a {
               min-height: 40px;
-              height: 40px;
+              height: 42px;
             }
 
             .left {
@@ -166,11 +166,11 @@
 
           .detail-content-left {
             .action {
-              a {
-                height: 40px;
-              }
-
               .left {
+                .action-btn {
+                  height: 40px;
+                }
+
                 .ant-btn {
                   font-size: 1.5rem;
 
