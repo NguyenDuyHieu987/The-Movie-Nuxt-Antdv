@@ -2,9 +2,9 @@
   <div class="lastest-episodes">
     <label class="label">Tâp mới nhất: </label>
 
-    <ul v-show="dataSeason?.episodes?.length" class="list-lastest-episodes">
+    <ul v-show="dataEpisode?.length" class="list-lastest-episodes">
       <li
-        v-for="(item, index) in dataSeason?.episodes?.slice(-7).reverse()"
+        v-for="(item, index) in dataEpisode?.slice(-7).reverse()"
         :index="index"
         :key="index"
       >
@@ -13,7 +13,7 @@
           :to="{
             path: `/play-tv/${dataMovie?.id}/${dataMovie?.name
               ?.replace(/\s/g, '+')
-              .toLowerCase()}/ep-${item?.episode_number}`,
+              .toLowerCase()}/tap-${item?.episode_number}`,
           }"
         >
           {{ 'Tập ' + item?.episode_number + '-End' }}
@@ -23,7 +23,7 @@
           :to="{
             path: `/play-tv/${dataMovie?.id}/${dataMovie?.name
               ?.replace(/\s/g, '+')
-              .toLowerCase()}/ep-${item?.episode_number}`,
+              .toLowerCase()}/tap-${item?.episode_number}`,
           }"
         >
           {{ 'Tập ' + item?.episode_number }}
@@ -51,23 +51,29 @@ const props = defineProps({
 
 const route: any = useRoute();
 const dataSeason = ref<any>(props.dataMovie);
+const dataEpisode = ref<any[]>([]);
 const loading = ref<boolean>(false);
 
-onBeforeMount(() => {
-  // loading.value = true;
-  // useAsyncData(
-  //   `season/${route.params?.id}/${props?.dataMovie?.season_id}`,
-  //   () => getSeason(route.params?.id, props?.dataMovie?.season_id)
-  // )
-  //   .then((episodesRespones: any) => {
-  //     dataSeason.value = episodesRespones.data.value;
-  //   })
-  //   .catch((e) => {
-  //     if (axios.isCancel(e)) return;
-  //   })
-  //   .finally(() => {
-  //     loading.value = false;
-  //   });
+onBeforeMount(async () => {
+  loading.value = true;
+
+  await useAsyncData(
+    `season/${route.params?.id}/${props?.dataMovie?.season_id}`,
+    () => getSeason(route.params?.id, props?.dataMovie?.season_id)
+  )
+    .then((episodesRespones) => {
+      dataSeason.value = episodesRespones.data.value;
+
+      dataEpisode.value = dataSeason.value?.episodes.filter(
+        (item: any) => item.air_date != null
+      );
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
 });
 </script>
 

@@ -61,7 +61,12 @@
       <div class="movie-content">
         <div class="main-content">
           <div class="detail-content-left">
-            <h2 class="movie-title">{{ dataMovie?.name }}</h2>
+            <h2 class="movie-title">
+              {{ dataMovie?.name }}
+              <!-- <span>
+                    {{ ' - Phần ' + dataMovie?.season?.season_number }}
+                  </span> -->
+            </h2>
 
             <Tags tagsLabel="Lượt xem:">
               <template #tagsInfo>
@@ -325,9 +330,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      setTimeout(() => {
-        loading.value = false;
-      }, 500);
+      loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 

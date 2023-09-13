@@ -15,7 +15,7 @@
         :disabled="
           dataMovie?.last_episode_to_air?.season_number == selectedSeason
             ? currentEpisode == dataMovie?.last_episode_to_air?.episode_number
-            : currentEpisode == dataSeason?.episodes?.length
+            : currentEpisode == dataEpisode?.length
         "
         @click="handleChangeEpisode(++currentEpisode)"
       >
@@ -27,7 +27,7 @@
       <span>
         {{ dataMovie?.name }}
         - Tập
-        {{ route.params?.ep?.replace('ep-', '') }}
+        {{ currentEpisode }}
         <!-- |
         {{
           dataSeason?.name?.split(' ')[0] === 'Phần' ||
@@ -38,13 +38,13 @@
       </span>
 
       <a-select
-        v-show="dataMovie?.seasons && dataMovie?.seasons?.length"
+        v-show="dataSeason && dataSeason?.length"
         v-model:value="selectedSeasonId"
         style="width: 150px"
         @change="handleChangeSeason(selectedSeasonId)"
       >
         <a-select-option
-          v-for="(item, index) in dataMovie?.seasons"
+          v-for="(item, index) in dataSeason"
           :key="item?.id"
           :index="index"
           :value="item?.season_id"
@@ -58,7 +58,7 @@
     </h3>
 
     <div
-      v-show="dataSeason?.episodes?.length"
+      v-show="dataEpisode?.length"
       class="list"
       v-loading="loading"
       element-loading-text="Đang tải tập..."
@@ -69,10 +69,7 @@
           <el-skeleton-item
             class="episode-item"
             variant="button"
-            v-for="(item, index) in dataSeason?.episodes?.slice(
-              0,
-              dataSeason?.episodes.length
-            )"
+            v-for="(item, index) in dataEpisode?.slice(0, dataEpisode.length)"
             :index="index"
             :key="index"
           />
@@ -81,7 +78,7 @@
         <template #default>
           <ul class="list-container">
             <li
-              v-for="(item, index) in dataSeason?.episodes"
+              v-for="(item, index) in dataEpisode"
               :index="index"
               :key="item.id"
               :class="{ active: currentEpisode == item?.episode_number }"
@@ -89,7 +86,7 @@
             >
               <span>
                 {{
-                  item?.episode_number === dataSeason?.episodes.length
+                  item?.episode_number === dataEpisode.length
                     ? item?.episode_number < 10
                       ? '0' + item?.episode_number + '-End'
                       : item?.episode_number + '-End'
@@ -120,11 +117,14 @@ const emit = defineEmits<{ setUrlCodeMovie: [url: string] }>();
 
 const route: any = useRoute();
 const router = useRouter();
-const dataSeason = ref<any>(props?.dataMovie);
-const selectedSeasonId = ref<string>(props?.dataMovie?.season_id);
+const dataSeason = ref<any>(props.dataMovie?.seasons);
+const dataEpisode = ref<any[]>(
+  props.dataMovie?.episodes.filter((item: any) => item.air_date != null)
+);
+const selectedSeasonId = ref<string>(props.dataMovie?.season_id);
 const currentEpisode = ref<number>(
-  route.params?.ep?.replace('ep-', '')
-    ? +route.params?.ep?.replace('ep-', '')
+  route.params?.ep?.replace('tap-', '')
+    ? +route.params?.ep?.replace('tap-', '')
     : 1
 );
 const loading = ref(false);
@@ -154,7 +154,7 @@ onBeforeMount(async () => {
   //   `season/${route.params?.id}/${selectedSeasonId.value}`,
   //   () => getSeason(route.params?.id, selectedSeasonId.value)
   // )
-  //   .then((episodesRespones: any) => {
+  //   .then((episodesRespones) => {
   //     dataSeason.value = episodesRespones.data.value;
 
   //     emitUrlCode(dataSeason.value);
@@ -173,7 +173,7 @@ const handleChangeSeason = async (value: string) => {
   selectedSeasonId.value = value;
 
   loading.value = true;
-  window.history.replaceState(null, '', 'ep-1');
+  window.history.replaceState(null, '', 'tap-1');
 
   await useAsyncData(
     `season/${route.params?.id}/${selectedSeasonId.value}`,
@@ -181,6 +181,10 @@ const handleChangeSeason = async (value: string) => {
   )
     .then((episodesRespones: any) => {
       dataSeason.value = episodesRespones.data.value;
+
+      dataEpisode.value = dataSeason.value?.episodes.filter(
+        (item: any) => item.air_date != null
+      );
 
       emitUrlCode(dataSeason.value);
 
@@ -197,7 +201,7 @@ const handleChangeSeason = async (value: string) => {
 const handleChangeEpisode = (value: number) => {
   if (currentEpisode.value == value) return;
 
-  window.history.replaceState(null, '', 'ep-' + value);
+  window.history.replaceState(null, '', 'tap-' + value);
 
   currentEpisode.value = value;
   emitUrlCode(dataSeason.value);

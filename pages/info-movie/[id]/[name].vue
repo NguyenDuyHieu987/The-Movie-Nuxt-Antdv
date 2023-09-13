@@ -396,11 +396,10 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`movie/detail/${route.params?.id}`, () =>
-    getMovieById(route.params?.id, 'videos,credits')
+    getMovieById(route.params?.id, 'videos')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
-      console.log(dataMovie.value);
       disabledRate.value = !!movieRespone.data.value?.rated_value;
 
       // movieRespone?.data?.images?.backdrops?.forEach((item) => {
@@ -421,9 +420,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      setTimeout(() => {
-        loading.value = false;
-      }, 100);
+      loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 

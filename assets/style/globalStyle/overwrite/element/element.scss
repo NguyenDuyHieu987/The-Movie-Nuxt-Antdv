@@ -280,3 +280,32 @@
     }
   }
 }
+
+.el-tabs {
+  .el-tabs__header {
+    .el-tabs__nav-wrap {
+      &::after {
+        height: 1.5px;
+        background-color: var(--border-regular);
+      }
+    }
+
+    .el-tabs__nav {
+      .el-tabs__item {
+        color: var(--text-color);
+        font-weight: 600;
+        transition-duration: 0.15s;
+
+        &.is-active {
+          color: var(--app-background-color);
+        }
+      }
+
+      .el-tabs__active-bar {
+        height: 1.5px;
+        transition: all 0.15s;
+        background-color: var(--app-background-color);
+      }
+    }
+  }
+}

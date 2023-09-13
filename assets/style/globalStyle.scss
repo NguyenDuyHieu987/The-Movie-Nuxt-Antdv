@@ -18,7 +18,7 @@
 
   --search-background: #0a0a0a41;
   --search-focus-background: #121212;
-  --search-focus-border-color: #e8e8e8;
+  --search-focus-border-color: #5c5c5c;
 
   --loading-background: #101010;
 
@@ -97,11 +97,9 @@
   --line-height-regular: 1.5;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --border-regular: #a0a0a0;
-    --border-regular-light: #292929;
-    --search-focus-border-color: #5c5c5c;
+    --border-regular-light: #383838;
   }
 }
 

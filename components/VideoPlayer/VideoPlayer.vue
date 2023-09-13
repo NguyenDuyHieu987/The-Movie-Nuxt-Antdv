@@ -854,6 +854,7 @@ const initVideo = async (newVideoUrl: string) => {
 onBeforeMount(() => {
   // initVideo();
   videoStates.isLoading = true;
+  videoStates.isPlayVideo = true;
 });
 
 onBeforeRouteLeave(() => {

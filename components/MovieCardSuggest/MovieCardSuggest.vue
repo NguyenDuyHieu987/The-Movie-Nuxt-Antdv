@@ -272,7 +272,7 @@ const onClickPlay = () => {
       ? `/play-tv/${props.item?.id}/${utils
           .removeVietnameseTones(props.item?.name)
           ?.replace(/\s/g, '+')
-          .toLowerCase()}/ep-1`
+          .toLowerCase()}/tap-1`
       : `/play-movie/${props.item?.id}/${utils
           .removeVietnameseTones(props.item?.name)
           ?.replace(/\s/g, '+')

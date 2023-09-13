@@ -143,21 +143,17 @@ const responsiveCarousel = ref<any>({
   },
 });
 
-// loading.value = true;
+loading.value = true;
 
-// await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
-//   getCredits(props.dataMovie?.id)
-// )
-//   .then((response) => {
-//     dataCredit.value = response.data.value;
-//     dataCredit.value = {
-//       cast: [],
-//       crew: [],
-//     };
-//   })
-//   .finally(() => {
-//     loading.value = false;
-//   });
+await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
+  getCredits(props.dataMovie?.id)
+)
+  .then((response) => {
+    dataCredit.value = response.data.value;
+  })
+  .finally(() => {
+    loading.value = false;
+  });
 
 // const { data: dataCredit, pending } = await useAsyncData(
 //   `credits/${props.dataMovie?.id}`,

@@ -63,19 +63,7 @@
     &.el-tabs {
       .el-tabs__nav {
         .el-tabs__item {
-          color: var(--text-color);
-          font-weight: 600;
           font-size: 1.7rem;
-          transition-duration: 0.15s;
-
-          &.is-active {
-            color: var(--app-background-color);
-          }
-        }
-
-        .el-tabs__active-bar {
-          transition: all 0.15s;
-          background-color: var(--app-background-color);
         }
       }
     }

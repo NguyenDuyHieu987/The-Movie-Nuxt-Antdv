@@ -63,9 +63,9 @@
               <div class="head-content">
                 <h1 class="movie-title">
                   {{ dataMovie?.name }}
-                  <span>
+                  <!-- <span>
                     {{ ' - Phần ' + dataMovie?.season?.season_number }}
-                  </span>
+                  </span> -->
                 </h1>
                 <div class="action">
                   <div class="left">
@@ -296,7 +296,7 @@
               <Tags tagsLabel="Thời lượng trêm tập:">
                 <template #tagsInfo>
                   <span class="tags-item">
-                    {{ dataMovie?.episode_run_time[0] + ' phút' }}
+                    {{ dataMovie?.episode_run_time[0] || 0 + ' phút' }}
                   </span>
                 </template>
               </Tags>
@@ -407,7 +407,7 @@ const getData = async () => {
   srcBackdropList.value = [];
 
   await useAsyncData(`tv/detail/${route.params?.id}`, () =>
-    getTvById(route.params?.id, 'videos,credits,seasons,episodes')
+    getTvById(route.params?.id, 'videos')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
@@ -431,9 +431,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      setTimeout(() => {
-        loading.value = false;
-      }, 100);
+      loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 

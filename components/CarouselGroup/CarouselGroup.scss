@@ -63,6 +63,7 @@
     bottom: 0;
     z-index: 2;
     cursor: pointer;
+    color: var(--text-color);
     height: 100%;
     display: flex;
     align-items: center;
@@ -79,7 +80,6 @@
       height: 3.5rem;
       transition: 0.2s all;
       color: #d3d3d3;
-      height: 100%;
     }
 
     &:hover {

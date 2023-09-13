@@ -305,9 +305,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      setTimeout(() => {
-        loading.value = false;
-      }, 500);
+      loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 

@@ -66,7 +66,7 @@
                         path: `/play-tv/${item?.id}/${utils
                           .removeVietnameseTones(item?.name)
                           ?.replace(/\s/g, '+')
-                          .toLowerCase()}/ep-1`,
+                          .toLowerCase()}/tap-1`,
                       }"
                       class="btn-play-now"
                     >

@@ -85,6 +85,10 @@
       height: 100%;
     }
 
+    &::after {
+      content: '';
+    }
+
     &:hover {
       i,
       svg {
