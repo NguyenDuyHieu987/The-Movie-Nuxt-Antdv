@@ -5,11 +5,11 @@
         item?.type || item?.media_type == 'tv'
           ? `/info-tv/${item?.id}/${utils
               .removeVietnameseTones(item?.name)
-              ?.replace(/\s/g, '+')
+              ?.replaceAll(/\s/g, '+')
               .toLowerCase()}`
           : `/info-movie/${item?.id}/${utils
               .removeVietnameseTones(item?.name)
-              ?.replace(/\s/g, '+')
+              ?.replaceAll(/\s/g, '+')
               .toLowerCase()}`,
     }"
     class="movie-search-item"

@@ -314,3 +314,28 @@
     }
   }
 }
+
+.el-slider {
+  --el-slider-main-bg-color: var(--app-background-color) !important;
+
+  .el-slider__runway {
+    .el-slider__button-wrapper {
+      cursor: pointer;
+
+      &:hover,
+      &.hover {
+      }
+
+      .el-slider__button {
+        // border: none;
+        cursor: pointer;
+
+        &:hover,
+        &.hover,
+        &.dragging {
+          transform: none;
+        }
+      }
+    }
+  }
+}

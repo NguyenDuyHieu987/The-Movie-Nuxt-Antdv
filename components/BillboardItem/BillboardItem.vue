@@ -124,11 +124,13 @@
           :to="{
             path:
               item?.media_type == 'movie'
-                ? `/play-movie/${item?.id}/${item?.name
-                    ?.replace(/\s/g, '+')
+                ? `/play-movie/${item?.id}/${utils
+                    .removeVietnameseTones(item?.name)
+                    ?.replaceAll(/\s/g, '+')
                     .toLowerCase()}`
-                : `/play-tv/${item?.id}/${item?.name
-                    ?.replace(/\s/g, '+')
+                : `/play-tv/${item?.id}/${utils
+                    .removeVietnameseTones(item?.name)
+                    ?.replaceAll(/\s/g, '+')
                     .toLowerCase()}/tap-1`,
           }"
         >

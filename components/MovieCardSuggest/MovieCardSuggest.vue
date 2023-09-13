@@ -61,11 +61,11 @@
             path: isEpisodes
               ? `/info-tv/${item?.id}/${utils
                   .removeVietnameseTones(item?.name)
-                  ?.replace(/\s/g, '+')
+                  ?.replaceAll(/\s/g, '+')
                   .toLowerCase()}`
               : `/info-movie/${item?.id}/${utils
                   .removeVietnameseTones(item?.name)
-                  ?.replace(/\s/g, '+')
+                  ?.replaceAll(/\s/g, '+')
                   .toLowerCase()}`,
           }"
         >
@@ -271,11 +271,11 @@ const onClickPlay = () => {
     path: isEpisodes.value
       ? `/play-tv/${props.item?.id}/${utils
           .removeVietnameseTones(props.item?.name)
-          ?.replace(/\s/g, '+')
+          ?.replaceAll(/\s/g, '+')
           .toLowerCase()}/tap-1`
       : `/play-movie/${props.item?.id}/${utils
           .removeVietnameseTones(props.item?.name)
-          ?.replace(/\s/g, '+')
+          ?.replaceAll(/\s/g, '+')
           .toLowerCase()}`,
   });
 };

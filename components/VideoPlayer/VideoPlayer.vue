@@ -39,6 +39,33 @@
     </video>
 
     <div class="float-center">
+      <div
+        class="loading-video"
+        v-show="
+          videoStates.isLoading &&
+          !videoStates.isEndedVideo &&
+          !videoStates.isRewind.enable
+          // &&
+          // videoStates.isLoaded
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="5rem"
+          height="5rem"
+          viewBox="0 0 48 48"
+        >
+          <path
+            fill="none"
+            stroke="var(--text-color)"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="4"
+            d="M4 24c0 11.046 8.954 20 20 20s20-8.954 20-20S35.046 4 24 4"
+          />
+        </svg>
+      </div>
+
       <div class="replay" v-show="videoStates.isEndedVideo">
         <!-- <Icon
           name="ic:baseline-replay"
@@ -107,20 +134,6 @@
     >
       <div class="box-icon">
         <div v-show="!videoStates.isRewind.enable" class="play-pause">
-          <!-- <Icon
-            v-show="!videoStates.isPlayVideo && !videoStates.isEndedVideo"
-            name="ic:play-arrow"
-            class="play"
-            @click="onClickVideo"
-          /> -->
-
-          <!-- <Icon
-            v-show="videoStates.isPlayVideo && !videoStates.isEndedVideo"
-            name="ic:baseline-pause"
-            class="play"
-            @click="onClickVideo"
-          /> -->
-
           <svg
             v-show="!videoStates.isPlayVideo && !videoStates.isEndedVideo"
             class="play"
@@ -197,27 +210,6 @@
         <div class="main-controls">
           <div class="left">
             <div class="play-pause">
-              <!-- <Icon
-                v-show="videoStates.isEndedVideo"
-                name="ic:baseline-replay"
-                class="replay"
-                @click="onClickReplayVideo"
-              />
-
-              <Icon
-                v-show="!videoStates.isPlayVideo && !videoStates.isEndedVideo"
-                name="ic:play-arrow"
-                class="play"
-                @click="onClickPlay"
-              />
-
-              <Icon
-                v-show="videoStates.isPlayVideo && !videoStates.isEndedVideo"
-                name="ic:baseline-pause"
-                class="play"
-                @click="onClickPause"
-              /> -->
-
               <svg
                 v-show="videoStates.isEndedVideo"
                 xmlns="http://www.w3.org/2000/svg"
@@ -257,12 +249,6 @@
             </div>
 
             <div class="replay-forward">
-              <!-- <Icon
-                name="ic:baseline-replay-10"
-                class="replay"
-                @click="onClickRewind"
-              /> -->
-
               <svg
                 class="replay"
                 xmlns="http://www.w3.org/2000/svg"
@@ -278,35 +264,10 @@
                   d="M10.89 16h-.85v-3.26l-1.01.31v-.69l1.77-.63h.09V16zm4.28-1.76c0 .32-.03.6-.1.82s-.17.42-.29.57s-.28.26-.45.33s-.37.1-.59.1s-.41-.03-.59-.1s-.33-.18-.46-.33s-.23-.34-.3-.57s-.11-.5-.11-.82v-.74c0-.32.03-.6.1-.82s.17-.42.29-.57s.28-.26.45-.33s.37-.1.59-.1s.41.03.59.1s.33.18.46.33s.23.34.3.57s.11.5.11.82v.74zm-.85-.86c0-.19-.01-.35-.04-.48s-.07-.23-.12-.31s-.11-.14-.19-.17s-.16-.05-.25-.05s-.18.02-.25.05s-.14.09-.19.17s-.09.18-.12.31s-.04.29-.04.48v.97c0 .19.01.35.04.48s.07.24.12.32s.11.14.19.17s.16.05.25.05s.18-.02.25-.05s.14-.09.19-.17s.09-.19.11-.32s.04-.29.04-.48v-.97z"
                 />
               </svg>
-
-              <!-- <Icon
-                name="ic:baseline-forward-10"
-                class="forward"
-                @click="onClickForward"
-              /> -->
             </div>
 
             <div class="volume">
               <div>
-                <!-- <Icon
-                  v-show="!videoStates.isVolumeOff && volume <= 30"
-                  name="ic:baseline-volume-down"
-                  class="fullscreen"
-                  @click="onClickVolumeUp"
-                /> -->
-
-                <!-- <Icon
-                  v-show="!videoStates.isVolumeOff && volume > 30"
-                  name="ic:baseline-volume-up"
-                  @click="onClickVolumeUp"
-                /> -->
-
-                <!-- <Icon
-                  v-show="videoStates.isVolumeOff"
-                  name="ic:baseline-volume-off"
-                  @click="onClickVolumeOff"
-                /> -->
-
                 <svg
                   v-show="!videoStates.isVolumeOff && volume <= 30"
                   class="fullscreen"
@@ -314,6 +275,7 @@
                   width="2.7rem"
                   height="2.7rem"
                   viewBox="0 0 24 24"
+                  @click="onClickVolumeUp"
                 >
                   <path
                     d="M18.5 12A4.5 4.5 0 0 0 16 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"
@@ -323,11 +285,11 @@
                 <svg
                   v-show="!videoStates.isVolumeOff && volume > 30"
                   name="ic:baseline-volume-up"
-                  @click="onClickVolumeUp"
                   xmlns="http://www.w3.org/2000/svg"
                   width="2.7rem"
                   height="2.7rem"
                   viewBox="0 0 24 24"
+                  @click="onClickVolumeUp"
                 >
                   <path
                     d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
@@ -337,23 +299,31 @@
                 <svg
                   v-show="videoStates.isVolumeOff"
                   name="ic:baseline-volume-off"
-                  @click="onClickVolumeOff"
                   xmlns="http://www.w3.org/2000/svg"
                   width="2.7rem"
                   height="2.7rem"
                   viewBox="0 0 24 24"
+                  @click="onClickVolumeOff"
                 >
                   <path
                     d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27L7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21L21 19.73l-9-9L4.27 3zM12 4L9.91 6.09L12 8.18V4z"
                   />
                 </svg>
               </div>
-              <a-slider
+              <!-- <a-slider
                 class="volume-slider"
                 :class="{ muted: videoStates.isVolumeOff }"
                 v-model:value="volume"
                 :tooltip="{ open: false }"
                 @change="onChangeVolume(volume)"
+              /> -->
+
+              <el-slider
+                class="volume-slider"
+                :class="{ muted: videoStates.isVolumeOff }"
+                :debounce="0"
+                v-model="volume"
+                @input="onChangeVolume(volume)"
               />
             </div>
 
@@ -366,9 +336,6 @@
 
           <div class="right">
             <div class="rewind-forward">
-              <!-- <Icon name="ic:baseline-fast-rewind" @click="onClickRewind" />
-              <Icon name="ic:baseline-fast-forward" @click="onClickForward" /> -->
-
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="2.7rem"
@@ -391,15 +358,6 @@
             </div>
 
             <div class="setting" :class="{ active: settingStates.enable }">
-              <!-- <Icon
-                name="ic:baseline-settings"
-                class="setting"
-                @click="
-                  settingStates.enable = !settingStates.enable;
-                  onCloseSettings();
-                "
-              /> -->
-
               <svg
                 class="setting"
                 @click="
@@ -418,11 +376,6 @@
             </div>
 
             <div class="picture-in-picture">
-              <!-- <Icon
-                name="ic:baseline-picture-in-picture-alt"
-                @click="onClickPictureInPicture"
-              /> -->
-
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="2.7rem"
@@ -437,19 +390,6 @@
             </div>
 
             <div class="fullscreen-exit">
-              <!-- <Icon
-                v-show="!videoStates.isFullScreen"
-                name="ic:baseline-fullscreen"
-                class="fullscreen"
-                @click="onClickFullScreen"
-              /> -->
-
-              <!-- <Icon
-                v-show="videoStates.isFullScreen"
-                name="ic:baseline-fullscreen-exit"
-                @click="onClickFullScreenExit"
-              /> -->
-
               <svg
                 v-show="!videoStates.isFullScreen"
                 @click="onClickFullScreen"
@@ -852,9 +792,21 @@ const initVideo = async (newVideoUrl: string) => {
 };
 
 onBeforeMount(() => {
-  // initVideo();
-  videoStates.isLoading = true;
-  videoStates.isPlayVideo = true;
+  // initVideo(props.videoUrl);
+  // videoStates.isLoading = false;
+  // videoStates.isPlayVideo = true;
+});
+
+watch(
+  () => props.videoUrl,
+  (newVal, oldVal) => {
+    // initVideo(newVal);
+  },
+  { immediate: true }
+);
+
+watch(volume, () => {
+  videoStates.isVolumeOff = video.value.volume == 0;
 });
 
 onBeforeRouteLeave(() => {
@@ -932,18 +884,6 @@ onMounted(() => {
       }
     }
   });
-});
-
-watch(
-  () => props.videoUrl,
-  (newVal, oldVal) => {
-    // initVideo(newVal);
-  },
-  { immediate: true }
-);
-
-watch(volume, () => {
-  videoStates.isVolumeOff = video.value.volume == 0;
 });
 
 const handleTimeUpdate = (e: any) => {
@@ -1036,12 +976,13 @@ const onWaitingVideo = (e: any) => {
   videoStates.isLoading = true;
 };
 
-const onPLayingVideo = () => {
+const onPLayingVideo = (e: any) => {
   videoStates.isLoading = false;
 };
 
 const onPlayVideo = (e: any) => {
-  // videoStates.isPlayVideo = true;
+  videoStates.isPlayVideo = true;
+
   emits('onPlay', {
     seconds: e!.target!.currentTime,
     percent: e!.target!.currentTime / e!.target!.duration,

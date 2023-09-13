@@ -4,11 +4,11 @@
       path: isEpisodes
         ? `/info-tv/${item?.id}/${utils
             .removeVietnameseTones(item?.name)
-            ?.replace(/\s/g, '+')
+            ?.replaceAll(/\s/g, '+')
             .toLowerCase()}`
         : `/info-movie/${item?.id}/${utils
             .removeVietnameseTones(item?.name)
-            ?.replace(/\s/g, '+')
+            ?.replaceAll(/\s/g, '+')
             .toLowerCase()}`,
     }"
     class="movie-card-item horizontal"

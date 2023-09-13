@@ -65,7 +65,7 @@
                       :to="{
                         path: `/play-tv/${item?.id}/${utils
                           .removeVietnameseTones(item?.name)
-                          ?.replace(/\s/g, '+')
+                          ?.replaceAll(/\s/g, '+')
                           .toLowerCase()}/tap-1`,
                       }"
                       class="btn-play-now"
@@ -95,7 +95,7 @@
                       :to="{
                         path: `/play-movie/${item?.id}/${utils
                           .removeVietnameseTones(item?.name)
-                          ?.replace(/\s/g, '+')
+                          ?.replaceAll(/\s/g, '+')
                           .toLowerCase()}`,
                       }"
                       class="btn-play-now"
@@ -227,11 +227,11 @@
                         path: isEpisodes
                           ? `/info-tv/${item?.id}/${utils
                               .removeVietnameseTones(item?.name)
-                              ?.replace(/\s/g, '+')
+                              ?.replaceAll(/\s/g, '+')
                               .toLowerCase()}`
                           : `/info-movie/${item?.id}/${utils
                               .removeVietnameseTones(item?.name)
-                              ?.replace(/\s/g, '+')
+                              ?.replaceAll(/\s/g, '+')
                               .toLowerCase()}`,
                       }"
                     >
@@ -531,11 +531,11 @@ const onClickPreviewModal = (e: any) => {
         path: props.isEpisodes
           ? `/info-tv/${props.item?.id}/${utils
               .removeVietnameseTones(props.item?.name)
-              ?.replace(/\s/g, '+')
+              ?.replaceAll(/\s/g, '+')
               .toLowerCase()}`
           : `/info-movie/${props.item?.id}/${utils
               .removeVietnameseTones(props.item?.name)
-              ?.replace(/\s/g, '+')
+              ?.replaceAll(/\s/g, '+')
               .toLowerCase()}`,
       });
     }

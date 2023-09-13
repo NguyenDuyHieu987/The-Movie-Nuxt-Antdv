@@ -22,11 +22,11 @@
             path: isEpisodes
               ? `/info-tv/${item?.movie_id}/${utils
                   .removeVietnameseTones(item?.name)
-                  ?.replace(/\s/g, '+')
+                  ?.replaceAll(/\s/g, '+')
                   .toLowerCase()}`
               : `/info-movie/${item?.movie_id}/${utils
                   .removeVietnameseTones(item?.name)
-                  ?.replace(/\s/g, '+')
+                  ?.replaceAll(/\s/g, '+')
                   .toLowerCase()}`,
           }"
           class="movie-follow-item"
@@ -162,7 +162,7 @@
                           :to="{
                             path: `/play-tv/${item?.movie_id}/${utils
                               .removeVietnameseTones(item?.name)
-                              ?.replace(/\s/g, '+')
+                              ?.replaceAll(/\s/g, '+')
                               .toLowerCase()}/tap-1`,
                           }"
                           class="btn-play-now"
@@ -174,7 +174,7 @@
                           :to="{
                             path: `/play-movie/${item?.movie_id}/${utils
                               .removeVietnameseTones(item?.name)
-                              ?.replace(/\s/g, '+')
+                              ?.replaceAll(/\s/g, '+')
                               .toLowerCase()}`,
                           }"
                           class="btn-play-now"
