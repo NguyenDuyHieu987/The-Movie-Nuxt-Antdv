@@ -7,7 +7,7 @@
 
       <div
         class="movie-group suggest"
-        v-show="dataRecommend?.length"
+        v-show="dataSimilar?.length"
         :class="{ expand: viewMore }"
       >
         <MovieCardSuggest

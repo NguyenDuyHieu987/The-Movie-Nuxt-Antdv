@@ -67,8 +67,9 @@
                     <NuxtLink
                       class="action-btn"
                       :to="{
-                        path: `/play-movie/${dataMovie?.id}/${dataMovie?.name
-                          ?.replace(/\s/g, '+')
+                        path: `/play-movie/${dataMovie?.id}/${utils
+                          .removeVietnameseTones(dataMovie?.name)
+                          ?.replaceAll(/\s/g, '+')
                           .toLowerCase()}`,
                       }"
                     >

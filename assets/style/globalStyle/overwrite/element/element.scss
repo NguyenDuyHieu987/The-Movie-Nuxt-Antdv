@@ -252,8 +252,13 @@
   border-radius: 2px;
 
   .el-notification__group {
+    .el-notification__title {
+      color: var(--text-color);
+    }
+
     .el-notification__content {
       text-align: left;
+      color: var(--text-color-gray);
     }
   }
 }

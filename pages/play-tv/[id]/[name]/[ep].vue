@@ -7,7 +7,8 @@
         <BackPage
           @onclick="
             navigateTo({
-              path: `/info-tv/${dataMovie?.id}/${dataMovie?.name
+              path: `/info-tv/${dataMovie?.id}/${utils
+                .removeVietnameseTones(dataMovie?.name)
                 .replaceAll(' ', '+')
                 .toLowerCase()}
             `,
