@@ -76,14 +76,12 @@
               :index="index"
               :key="item.id"
               :class="{ active: currentEpisode == item?.episode_number }"
-              @click.prevent="handleChangeEpisode(item?.episode_number)"
             >
-              <NuxtLink
-                :to="{
-                  path: `/play-tv/${dataMovie?.id}/${dataMovie?.name
-                    ?.replace(/\s/g, '+')
-                    .toLowerCase()}/tap-${item?.episode_number}`,
-                }"
+              <a
+                :href="`/play-tv/${dataMovie?.id}/${dataMovie?.name
+                  ?.replace(/\s/g, '+')
+                  .toLowerCase()}/tap-${item?.episode_number}`"
+                @click.prevent="handleChangeEpisode(item?.episode_number)"
               >
                 {{
                   item?.episode_number == dataSeason.value?.episodes
@@ -94,7 +92,7 @@
                     ? '0' + item?.episode_number
                     : item?.episode_number
                 }}
-              </NuxtLink>
+              </a>
             </li>
           </ul>
         </template>
