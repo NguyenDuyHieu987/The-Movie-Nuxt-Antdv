@@ -818,12 +818,15 @@ video::-webkit-media-controls {
       opacity: 1;
 
       // .overlay-progress {
-      //   height: 6px;
+      //   .overlay-progress {
+      //     transform: scaleY(1.4);
 
-      //   .progress-bar {
-      //     &::after {
-      //       height: 12px;
-      //       width: 12px;
+      //     .progress-bar {
+      //       &::after,
+      //       .scrubber-point {
+      //         height: 10px;
+      //         width: 10px;
+      //       }
       //     }
       //   }
       // }
