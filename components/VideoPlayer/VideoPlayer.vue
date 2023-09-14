@@ -187,6 +187,9 @@
     <div
       v-show="videoStates.isLoaded"
       class="controls"
+      :class="{
+        scrubbing: videoStates.isScrubbingProgressBar,
+      }"
       tabindex="-1"
       @keydown="onKeyDownVideo"
     >
@@ -202,9 +205,11 @@
           @pointerleave="onMouseLeaveProgressBar"
           ref="overlayProgress"
         >
-          <!-- <div class="overlay-progress-padding"></div> -->
+          <div class="overlay-progress-padding"></div>
 
-          <div class="progress-bar" ref="progressBar"></div>
+          <div class="progress-bar" ref="progressBar">
+            <div class="scrubber-point"></div>
+          </div>
         </div>
 
         <div class="main-controls">
