@@ -26,9 +26,9 @@
 
       <template #default>
         <div class="img-box" @click="onClickPlay">
-          <img
+          <nuxt-img
             class="ant-image"
-            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+            :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
             loading="lazy"
             alt=""
           />
@@ -148,13 +148,6 @@
         </NuxtLink>
       </template>
     </el-skeleton>
-
-    <ModalTrailer
-      :isOpenModalTrailer="isOpenModalTrailer"
-      :item="item"
-      :isEpisodes="isEpisodes"
-      @setIsTeleportModal="(data: boolean)=>isOpenModalTrailer = data"
-    />
   </div>
 </template>
 
@@ -164,7 +157,6 @@ import axios from 'axios';
 import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import { getItemList } from '~/services/list';
-import ModalTrailer from '~/components/ModalTrailer/ModalTrailer.vue';
 
 const props = defineProps<{
   item: any;

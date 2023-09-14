@@ -107,18 +107,21 @@ const getData = async (activeKey: string) => {
 
   switch (activeKey) {
     case 'day':
-      await useAsyncData(`ranking/all/1`, () => getRanking(1, 10))
-        .then((movieRespone: any) => {
-          rankData.value = movieRespone.data.value?.results;
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        })
-        .finally(() => {
-          loading.value = false;
-          internalInstance.appContext.config.globalProperties.$Progress.finish();
-        });
+      // await useAsyncData(`ranking/all/1`, () => getRanking(1, 10))
+      //   .then((movieRespone: any) => {
+      //     rankData.value = movieRespone.data.value?.results;
+      //   })
+      //   .catch((e) => {
+      //     if (axios.isCancel(e)) return;
+      //   })
+      //   .finally(() => {
+      //     loading.value = false;
+      //     internalInstance.appContext.config.globalProperties.$Progress.finish();
+      //   });
 
+      refreshNuxtData('ranking/all/1');
+      loading.value = false;
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
       break;
     case 'week':
       await useAsyncData(`ranking/all/2`, () => getRanking(2, 10))
