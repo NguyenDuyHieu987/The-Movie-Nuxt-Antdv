@@ -207,6 +207,8 @@
         >
           <div class="overlay-progress-padding"></div>
 
+          <div class="preview-progress"></div>
+
           <div class="progress-bar" ref="progressBar">
             <div class="scrubber-point"></div>
           </div>
