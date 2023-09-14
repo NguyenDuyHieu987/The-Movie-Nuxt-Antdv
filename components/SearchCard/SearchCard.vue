@@ -87,8 +87,12 @@ const props = defineProps<{
 const utils = useUtils();
 const loading = ref<boolean>(false);
 
-onBeforeMount(() => {
-  loading.value = true;
-});
+onBeforeMount(() => {});
+
+loading.value = true;
+
+setTimeout(() => {
+  loading.value = false;
+}, 500);
 </script>
 <style lang="scss" src="./SearchCard.scss"></style>

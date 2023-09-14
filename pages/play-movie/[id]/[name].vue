@@ -45,7 +45,7 @@
 
           <VideoPlayer
             :dataMovie="dataMovie"
-            videoUrl="feature/Transformer_5.mp4"
+            videoUrl="/feature/Transformer_5.mp4"
             :backdrop="
               getImage(
                 dataMovie?.backdrop_path,

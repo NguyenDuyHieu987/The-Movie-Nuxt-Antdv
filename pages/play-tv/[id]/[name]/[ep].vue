@@ -45,7 +45,7 @@
 
           <VideoPlayer
             :dataMovie="dataMovie"
-            :videoUrl="'television/' + urlCodeMovie"
+            :videoUrl="'/television/' + urlCodeMovie"
             :backdrop="
               getImage(
                 dataMovie?.backdrop_path,

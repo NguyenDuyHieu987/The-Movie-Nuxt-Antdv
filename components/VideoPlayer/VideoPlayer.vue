@@ -20,7 +20,7 @@
       id="video-player"
       ref="video"
       :poster="backdrop"
-      :src="'http://localhost:5002/videos/' + videoUrl"
+      :src="videoSrc"
       autoplay
       muted
       @loadstart="onLoadStartVideo"
@@ -680,6 +680,12 @@ const emits = defineEmits<{
   onTimeUpdate: [e: any];
 }>();
 
+const nuxtConfig = useRuntimeConfig();
+const videoSrc = ref<string>(
+  nuxtConfig.app.production_mode
+    ? nuxtConfig.app.serverVideoUrl + props.videoUrl
+    : 'http://localhost:5002/videos/' + props.videoUrl
+);
 const blobVideoSrc = ref<string>('');
 const videoPlayer = ref();
 const video = ref();

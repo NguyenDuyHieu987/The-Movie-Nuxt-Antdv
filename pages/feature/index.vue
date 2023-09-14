@@ -159,6 +159,7 @@ const formFilter = ref<formfilter>({
   page: 1,
   limit: 20,
 });
+const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
@@ -194,9 +195,11 @@ const responsiveHorizoltal = computed<any>((): any => ({
 }));
 
 const getData = async () => {
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+
   await nextTick();
 
-  await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
+  useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
     .then((response) => {
       nowPlayings.value = response.data.value?.results.slice(0, 12);
     })
@@ -204,7 +207,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData(`movie/popular/1`, () => getPopular(2))
+  useAsyncData(`movie/popular/1`, () => getPopular(2))
     .then((response) => {
       populars.value = response.data.value?.results.slice(0, 12);
     })
@@ -212,7 +215,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData('movie/upcoming/1', () => getUpComing(3))
+  useAsyncData('movie/upcoming/1', () => getUpComing(3))
     .then((response) => {
       upComings.value = response.data.value?.results.slice(0, 12);
     })
@@ -220,16 +223,18 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData('movie/toprated/1', () => getTopRated(4))
+  useAsyncData('movie/toprated/1', () => getTopRated(4))
     .then((response) => {
       topRateds.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
+
+  internalInstance.appContext.config.globalProperties.$Progress.finish();
 };
 
-const { data: dataBilboard, pending } = await useAsyncData(
+const { data: dataBilboard, pending } = useAsyncData(
   'movie/all/1',
   () => getMovies(1),
   {
@@ -258,7 +263,7 @@ watch(
 
       formFilter.value.genre = route.query.genre;
 
-      await useAsyncData(`discover/movie/all/${formFilter.value}`, () =>
+      useAsyncData(`discover/movie/all/${formFilter.value}`, () =>
         FilterMovieSlug(formFilter.value)
       )
         .then((response) => {
@@ -271,7 +276,7 @@ watch(
           loading.value = false;
         });
 
-      await useAsyncData(
+      useAsyncData(
         `discover/movie/nowplaying/${{
           ...formFilter.value,
           type: 'nowplaying',
@@ -290,7 +295,7 @@ watch(
         })
         .finally(() => {});
 
-      await useAsyncData(
+      useAsyncData(
         `discover/movie/popular/${{
           ...formFilter.value,
           type: 'popular',
@@ -309,7 +314,7 @@ watch(
         })
         .finally(() => {});
 
-      await useAsyncData(
+      useAsyncData(
         `discover/movie/upcoming/${{
           ...formFilter.value,
           type: 'upcoming',
@@ -328,7 +333,7 @@ watch(
         })
         .finally(() => {});
 
-      await useAsyncData(
+      useAsyncData(
         `discover/movie/toprated/${{
           ...formFilter.value,
           type: 'toprated',

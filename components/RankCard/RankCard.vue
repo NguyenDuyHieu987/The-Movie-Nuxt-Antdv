@@ -91,12 +91,10 @@ const props = defineProps<{
 
 const loading = ref<boolean>(false);
 
-onBeforeMount(() => {
-  loading.value = true;
+loading.value = true;
 
-  setTimeout(() => {
-    loading.value = false;
-  }, 500);
-});
+setTimeout(() => {
+  loading.value = false;
+}, 500);
 </script>
 <style lang="scss" src="./RankCard.scss"></style>

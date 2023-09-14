@@ -151,6 +151,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     app: {
+      // node_env: process.env.NODE_ENV,
+      // production_mode: process.env.NODE_ENV == 'production',
       production_mode: isProduction,
       apiGateway: process.env.API_GATEWAY,
       serverImageUrl: process.env.SERVER_IMAGE_URL,

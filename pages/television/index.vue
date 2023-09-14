@@ -159,6 +159,7 @@ const formFilter = ref<formfilter>({
   page: 1,
   limit: 20,
 });
+const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
@@ -194,9 +195,11 @@ const responsiveHorizoltal = computed<any>((): any => ({
 }));
 
 const getData = async () => {
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+
   await nextTick();
 
-  await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
+  useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
     .then((response) => {
       airingTodays.value = response.data.value?.results.slice(0, 12);
     })
@@ -204,7 +207,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData(`tv/ontheair/1`, () => getTvOntheAir(2))
+  useAsyncData(`tv/ontheair/1`, () => getTvOntheAir(2))
     .then((response) => {
       onTheAirs.value = response.data.value?.results.slice(0, 12);
     })
@@ -212,7 +215,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData('tv/popular/1', () => getTvPopular(3))
+  useAsyncData('tv/popular/1', () => getTvPopular(3))
     .then((response) => {
       populars.value = response.data.value?.results.slice(0, 12);
     })
@@ -220,16 +223,18 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData('tv/toprated/1', () => getTvTopRated(4))
+  useAsyncData('tv/toprated/1', () => getTvTopRated(4))
     .then((response) => {
       topRateds.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
+
+  internalInstance.appContext.config.globalProperties.$Progress.finish();
 };
 
-const { data: dataBilboard, pending } = await useAsyncData(
+const { data: dataBilboard, pending } = useAsyncData(
   'tv/all/1',
   () => getTvs(1),
   {
@@ -258,7 +263,7 @@ watch(
 
       formFilter.value.genre = route.query.genre;
 
-      await useAsyncData(`discover/tv/all/${formFilter.value}`, () =>
+      useAsyncData(`discover/tv/all/${formFilter.value}`, () =>
         FilterTvSlug(formFilter.value)
       )
         .then((response) => {
@@ -271,7 +276,7 @@ watch(
           loading.value = false;
         });
 
-      await useAsyncData(
+      useAsyncData(
         `discover/tv/airingtoday/${{
           ...formFilter.value,
           type: 'airingtoday',
@@ -286,7 +291,7 @@ watch(
         })
         .finally(() => {});
 
-      await useAsyncData(
+      useAsyncData(
         `discover/tv/ontheair/${{
           ...formFilter.value,
           type: 'ontheair',
@@ -301,7 +306,7 @@ watch(
         })
         .finally(() => {});
 
-      await useAsyncData(
+      useAsyncData(
         `discover/tv/popular/${{
           ...formFilter.value,
           type: 'popular',
@@ -316,7 +321,7 @@ watch(
         })
         .finally(() => {});
 
-      await useAsyncData(
+      useAsyncData(
         `discover/tv/toprated/${{
           ...formFilter.value,
           type: 'toprated',

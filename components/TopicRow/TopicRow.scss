@@ -215,6 +215,10 @@
 
           .ant-input-prefix {
             color: var(--text-color);
+
+            svg {
+              fill: var(--text-color);
+            }
           }
 
           .ant-input {

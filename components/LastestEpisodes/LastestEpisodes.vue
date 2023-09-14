@@ -1,6 +1,6 @@
 <template>
   <div class="lastest-episodes">
-    <label class="label">Tâp mới nhất: </label>
+    <label class="label">Tập mới nhất: </label>
 
     <ul v-show="dataEpisode?.length" class="list-lastest-episodes">
       <li

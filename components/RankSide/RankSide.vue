@@ -124,7 +124,7 @@ const getData = async (activeKey: string) => {
       internalInstance.appContext.config.globalProperties.$Progress.finish();
       break;
     case 'week':
-      await useAsyncData(`ranking/all/2`, () => getRanking(2, 10))
+      useAsyncData(`ranking/all/2`, () => getRanking(2, 10))
         .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value?.results;
         })
@@ -138,7 +138,7 @@ const getData = async (activeKey: string) => {
 
       break;
     case 'month':
-      await useAsyncData(`ranking/all/3`, () => getRanking(3, 10))
+      useAsyncData(`ranking/all/3`, () => getRanking(3, 10))
         .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value?.results;
         })
@@ -152,7 +152,7 @@ const getData = async (activeKey: string) => {
 
       break;
     case 'all':
-      await useAsyncData(`ranking/all/4`, () => getRanking(4, 10))
+      useAsyncData(`ranking/all/4`, () => getRanking(4, 10))
         .then((movieRespone: any) => {
           rankData.value = movieRespone.data.value?.results;
         })
@@ -170,7 +170,7 @@ const getData = async (activeKey: string) => {
 
 // onBeforeMount(async () => {
 //   await nextTick();
-//   await useAsyncData(`ranking/all/1`, () => getRanking(1))
+//   useAsyncData(`ranking/all/1`, () => getRanking(1))
 //     .then((movieRespone: any) => {
 //       rankData.value = movieRespone.data.value?.results;
 //     })
@@ -182,7 +182,7 @@ const getData = async (activeKey: string) => {
 //     });
 // });
 
-const { data: rankData, pending } = await useAsyncData(
+const { data: rankData, pending } = useAsyncData(
   'ranking/all/1',
   () => getRanking(1, 10),
   {

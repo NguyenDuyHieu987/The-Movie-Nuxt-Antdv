@@ -61,15 +61,15 @@ useServerSeoMeta({
 });
 
 const getData = async () => {
-  await nextTick();
-
   internalInstance.appContext.config.globalProperties.$Progress.start();
+
+  await nextTick();
 
   // const { data: trendingsCache } = useNuxtData(
   //   `trending/all/${pageTrending.value}`
   // );
 
-  await useAsyncData(
+  useAsyncData(
     `trending/all/${pageTrending.value}`,
     () => getTrending(pageTrending.value),
     {
@@ -93,13 +93,9 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-});
-
 // getData();
 
-const { data: rankings } = await useAsyncData(
+const { data: rankings } = useAsyncData(
   `trending/all/${pageTrending.value}`,
   () => getTrending(pageTrending.value),
   {
@@ -110,8 +106,6 @@ const { data: rankings } = await useAsyncData(
     },
   }
 );
-
-internalInstance.appContext.config.globalProperties.$Progress.finish();
 
 watch(pageTrending, async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
