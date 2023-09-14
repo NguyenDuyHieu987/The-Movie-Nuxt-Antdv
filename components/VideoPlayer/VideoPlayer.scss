@@ -227,7 +227,7 @@ video::-webkit-media-controls {
       }
     }
 
-    .replay-forward {
+    .rewind-forward {
       span {
         font-size: 1.8rem;
       }
@@ -326,11 +326,11 @@ video::-webkit-media-controls {
         height: 100%;
         width: 0%;
         // background-color: rgba(0, 0, 0, 0.4);
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.4);
       }
 
       &:hover {
-        height: 6px;
+        height: 5.5px;
 
         &::before {
           width: calc(var(--preview-width) * 100%);
@@ -338,8 +338,8 @@ video::-webkit-media-controls {
 
         .progress-bar {
           &::after {
-            height: 14px;
-            width: 14px;
+            height: 12px;
+            width: 12px;
           }
         }
       }
@@ -425,7 +425,7 @@ video::-webkit-media-controls {
           }
         }
 
-        .replay-forward {
+        .rewind-forward {
           display: flex;
           gap: 13px;
 
@@ -435,7 +435,7 @@ video::-webkit-media-controls {
             height: 2.6rem;
 
             &:active {
-              &.replay {
+              &.rewind {
                 transform: rotate(-25deg);
               }
 
@@ -849,7 +849,7 @@ video::-webkit-media-controls {
         height: 2.5rem;
       }
 
-      .replay-forward {
+      .rewind-forward {
         span {
           font-size: 1.6rem;
         }
@@ -882,7 +882,7 @@ video::-webkit-media-controls {
         height: 2.5rem;
       }
 
-      .replay-forward {
+      .rewind-forward {
         span {
           font-size: 1.6rem;
         }
@@ -940,7 +940,7 @@ video::-webkit-media-controls {
         }
       }
 
-      .replay-forward {
+      .rewind-forward {
         span {
           font-size: 1.2rem;
         }
@@ -969,7 +969,7 @@ video::-webkit-media-controls {
             }
           }
 
-          .replay-forward {
+          .rewind-forward {
             svg {
               font-size: 2.4rem;
               width: 2.4rem;

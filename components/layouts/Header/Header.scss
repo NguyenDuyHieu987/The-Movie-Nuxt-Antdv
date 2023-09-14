@@ -273,15 +273,11 @@ header.header-bar {
                   height: 2.2rem;
                   color: var(--text-color);
                 }
+              }
 
-                .ant-badge-count {
-                  // min-width: 15px;
-                  // height: 15px;
-                  // line-height: 15px;
-                  // border-radius: 7.5px;
-                  // top: calc(50% - 7px);
-                  background-color: #c50000;
-                }
+              .ant-badge-count {
+                font-style: normal;
+                background-color: #c50000;
               }
             }
           }

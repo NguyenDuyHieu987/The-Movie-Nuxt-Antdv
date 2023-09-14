@@ -159,7 +159,7 @@
           </svg>
         </div>
 
-        <div v-show="videoStates.isRewind.enable" class="replay-forward">
+        <div v-show="videoStates.isRewind.enable" class="rewind-forward">
           <span v-show="videoStates.isRewind.replay">-10</span>
           <span v-show="videoStates.isRewind.forward">+10</span>
         </div>
@@ -212,6 +212,7 @@
             <div class="play-pause">
               <svg
                 v-show="videoStates.isEndedVideo"
+                class="replay"
                 xmlns="http://www.w3.org/2000/svg"
                 width="2.6rem"
                 height="2.6rem"
@@ -248,9 +249,9 @@
               </svg>
             </div>
 
-            <div class="replay-forward">
+            <div class="rewind-forward">
               <svg
-                class="replay"
+                class="rewind"
                 xmlns="http://www.w3.org/2000/svg"
                 width="2.6rem"
                 height="2.6rem"

@@ -1,8 +1,8 @@
 .rating-movie {
-  white-space: nowrap;
+  // white-space: nowrap;
 
   .rate-bar {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     margin-bottom: 5px;
     margin-top: 11px;
@@ -80,6 +80,8 @@
   }
 
   .rate-info {
+    white-space: nowrap;
+
     .rate-score {
       &.low {
         color: #d00000;
