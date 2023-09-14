@@ -145,18 +145,18 @@ const emitUrlCode = (dataSeason: any) => {
   emit('setUrlCodeMovie', url_code_movie);
 };
 
-onBeforeMount(async () => {
+onMounted(() => {
   emitUrlCode(dataSeason.value);
+});
 
+onBeforeMount(async () => {
   // loading.value = true;
-
   // await useAsyncData(
   //   `season/${route.params?.id}/${selectedSeasonId.value}`,
   //   () => getSeason(route.params?.id, selectedSeasonId.value)
   // )
   //   .then((episodesRespones) => {
   //     dataSeason.value = episodesRespones.data.value;
-
   //     emitUrlCode(dataSeason.value);
   //   })
   //   .catch((e) => {

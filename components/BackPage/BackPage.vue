@@ -30,13 +30,13 @@ const backPage = ref();
 const isfixed = ref<boolean>(false);
 
 onMounted(() => {
-  window.onscroll = () => {
-    if (window.scrollY >= backPage.value.offsetTop) {
-      isfixed.value = true;
-    } else {
-      isfixed.value = false;
-    }
-  };
+  // window.onscroll = () => {
+  //   if (window.scrollY >= backPage.value.offsetTop) {
+  //     isfixed.value = true;
+  //   } else {
+  //     isfixed.value = false;
+  //   }
+  // };
 });
 </script>
 

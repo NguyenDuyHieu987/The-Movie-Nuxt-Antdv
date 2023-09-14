@@ -56,7 +56,8 @@
         margin-top: 7px;
         margin-right: 7px;
 
-        a {
+        a,
+        span {
           display: block;
           text-align: center;
           min-width: 70px;
@@ -74,7 +75,8 @@
         }
 
         &.active {
-          a {
+          a,
+          span {
             background: linear-gradient(
               45deg,
               var(--app-background-color7),
@@ -99,7 +101,8 @@
         }
 
         &:active {
-          a {
+          a,
+          span {
             opacity: 0.8;
           }
         }

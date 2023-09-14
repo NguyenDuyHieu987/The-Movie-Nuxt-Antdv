@@ -199,7 +199,7 @@
           @touchstart="onTouchStartProgressBar"
           @pointerup="onMouseUpProgressBar"
           @touchend="onTouchEndProgressBar"
-          @pointerleave="videoStates.isMouseMoveOverlayProgress = false"
+          @pointerleave="onMouseLeaveProgressBar"
           ref="overlayProgress"
         >
           <!-- <div class="overlay-progress-padding"></div> -->
@@ -681,9 +681,9 @@ const emits = defineEmits<{
 }>();
 
 const nuxtConfig = useRuntimeConfig();
-const videoSrc = ref<string>(
+const videoSrc = computed<string>(() =>
   nuxtConfig.app.production_mode
-    ? nuxtConfig.app.serverVideoUrl + props.videoUrl
+    ? nuxtConfig.app.serverVideoUrl + '/videos/' + props.videoUrl
     : 'http://localhost:5002/videos/' + props.videoUrl
 );
 const blobVideoSrc = ref<string>('');
@@ -809,8 +809,10 @@ watch(
   () => props.videoUrl,
   (newVal, oldVal) => {
     // initVideo(newVal);
-  },
-  { immediate: true }
+    video.value.src = videoSrc.value;
+    video.value.load();
+  }
+  // { immediate: true }
 );
 
 onBeforeRouteLeave(() => {
@@ -931,6 +933,8 @@ const onLoadStartVideo = () => {
 };
 
 const onCanPlayVideo = () => {
+  videoStates.isPlayVideo = true;
+
   // console.log('can play video');
 };
 
@@ -957,14 +961,6 @@ const onProgressVideo = (e: any) => {
   // videoStates.isLoading = true;
 };
 
-const onMouseLeaveVideo = () => {
-  if (videoStates.isLoaded) {
-    clearTimeout(timeOut.value);
-    videoStates.isHideControls = false;
-    videoStates.isShowControls = false;
-  }
-};
-
 const onMouseMoveVideo = () => {
   if (videoStates.isPlayVideo && !videoStates.isEndedVideo) {
     videoStates.isHideControls = false;
@@ -973,6 +969,14 @@ const onMouseMoveVideo = () => {
     timeOut.value = setTimeout(() => {
       videoStates.isHideControls = true;
     }, 5000);
+  }
+};
+
+const onMouseLeaveVideo = () => {
+  if (videoStates.isLoaded) {
+    clearTimeout(timeOut.value);
+    videoStates.isHideControls = false;
+    videoStates.isShowControls = false;
   }
 };
 
@@ -985,8 +989,6 @@ const onPLayingVideo = (e: any) => {
 };
 
 const onPlayVideo = (e: any) => {
-  videoStates.isPlayVideo = true;
-
   emits('onPlay', {
     seconds: e!.target!.currentTime,
     percent: e!.target!.currentTime / e!.target!.duration,
@@ -1194,6 +1196,10 @@ const onMouseMoveProgressBar = (e: any) => {
   } else {
     drawTimeLine(e);
   }
+};
+
+const onMouseLeaveProgressBar = (e: any) => {
+  videoStates.isMouseMoveOverlayProgress = false;
 };
 
 const drawTimeLine = (e: any) => {
