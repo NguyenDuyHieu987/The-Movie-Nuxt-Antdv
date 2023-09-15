@@ -25,7 +25,7 @@
 
 .el-image__wrapper,
 .el-image__error {
-  color: var(--text-color);
+  color: inherit;
   background-color: #3a3a3a !important;
 
   .el-image__placeholder {
@@ -61,7 +61,7 @@
 
   .el-input__wrapper {
     box-shadow: none;
-    color: var(--text-color);
+    color: inherit;
   }
 }
 
@@ -97,7 +97,7 @@
 }
 
 .el-dropdown {
-  color: var(--text-color) !important;
+  color: inherit !important;
   font-size: inherit !important;
 }
 
@@ -112,11 +112,11 @@
     .el-dropdown-menu__item {
       padding: 13px 20px;
       font-size: 1.5rem;
-      color: var(--text-color) !important;
+      color: inherit !important;
       transition: all 0.1s;
 
       a {
-        color: var(--text-color) !important;
+        color: inherit !important;
       }
 
       &:hover {
@@ -136,7 +136,7 @@
     background-color: var(--background-dropdown-color);
 
     a {
-      color: var(--text-color);
+      color: inherit;
     }
 
     &.el-dropdown__popper {
@@ -150,11 +150,11 @@
         .el-dropdown-menu__item {
           padding: 13px 20px;
           font-size: 1.5rem;
-          color: var(--text-color) !important;
+          color: inherit !important;
           transition: all 0.1s;
 
           a {
-            color: var(--text-color) !important;
+            color: inherit !important;
           }
 
           &:hover {
@@ -253,12 +253,12 @@
 
   .el-notification__group {
     .el-notification__title {
-      color: var(--text-color);
+      color: inherit;
     }
 
     .el-notification__content {
       text-align: left;
-      color: var(--text-color-gray);
+      color: #adadad;
     }
   }
 }
@@ -297,7 +297,7 @@
 
     .el-tabs__nav {
       .el-tabs__item {
-        color: var(--text-color);
+        color: inherit;
         font-weight: 600;
         transition-duration: 0.15s;
 

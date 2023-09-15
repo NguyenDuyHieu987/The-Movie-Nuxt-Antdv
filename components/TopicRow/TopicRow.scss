@@ -71,7 +71,7 @@
           justify-content: center;
           transition: all 0.2s;
           opacity: 0;
-          color: var(--text-color);
+          color: inherit;
 
           gap: 10px;
           font-size: 1.4rem;
@@ -106,12 +106,12 @@
         gap: 13px;
         position: relative;
         width: 100%;
-        color: var(--text-color);
+        color: inherit;
 
         .title {
           margin-bottom: 12px;
           max-width: 90%;
-          color: var(--text-color);
+          color: inherit;
         }
 
         .user-info {
@@ -138,7 +138,7 @@
             right: -10px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-color);
+            color: inherit;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -190,7 +190,7 @@
           padding: 6px 30px;
           background-color: #000000;
           transition: all 0.15s;
-          color: var(--text-color);
+          color: inherit;
 
           &:hover {
             color: var(--text-danger-color);
@@ -214,10 +214,10 @@
           padding-left: 2px;
 
           .ant-input-prefix {
-            color: var(--text-color);
+            color: inherit;
 
             svg {
-              fill: var(--text-color);
+              fill: inherit;
             }
           }
 

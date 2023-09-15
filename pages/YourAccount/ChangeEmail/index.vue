@@ -1,5 +1,5 @@
 <template>
-  <div class="change-page email center-page padding-content">
+  <div class="service-page change-page email center-page padding-content">
     <div v-if="isLogin" class="email-container">
       <Transition appear name="slide-left">
         <div v-show="showAnimation">
@@ -26,8 +26,8 @@
               <div class="note">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="5rem"
-                  height="5rem"
+                  width="8rem"
+                  height="8rem"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -63,6 +63,7 @@
                       viewBox="0 0 24 24"
                     >
                       <path
+                        fill="currentColor"
                         d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"
                       />
                     </svg>
@@ -77,6 +78,7 @@
                       viewBox="0 0 24 24"
                     >
                       <path
+                        fill="currentColor"
                         d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
                       />
                     </svg>
@@ -139,6 +141,7 @@ useServerSeoMeta({
 });
 
 definePageMeta({
+  // layout: 'service',
   pageTransition: {
     name: 'slide-left',
   },
@@ -149,7 +152,7 @@ const utils = useUtils();
 const { isLogin } = storeToRefs<any>(store);
 const loadingChangeEmail = ref<boolean>(false);
 const formChangeEmail = reactive<{
-  email: string;
+  email: string | undefined;
 }>({
   email: store.userAccount?.email,
 });
@@ -232,7 +235,6 @@ const handleSubmit = () => {
         setTimeout(() => {
           showAnimation.value = true;
           isChangeEmail.value = true;
-          internalInstance.appContext.config.globalProperties.$Progress.finish();
         }, 300);
       } else if (response?.isWrongPassword == true) {
         ElNotification.error({
@@ -266,6 +268,7 @@ const handleSubmit = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
       loadingChangeEmail.value = false;
     });
 };

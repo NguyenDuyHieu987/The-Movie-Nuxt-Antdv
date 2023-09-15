@@ -12,7 +12,7 @@ header.header-bar-service {
   width: 100%;
   z-index: 100;
   // background: linear-gradient(to bottom, #101010 0, #10101000 100%);
-  background: #101010;
+  background: var(--background-content-color);
   // transition: background-color 0.25s;
   // transition-delay: 0.3s;
 
@@ -34,7 +34,7 @@ header.header-bar-service {
       background: transparent;
       border: none;
       cursor: pointer;
-      color: var(--text-color);
+      color: inherit;
       transition: opacity 0.25s;
 
       .anticon-menu {
@@ -100,7 +100,7 @@ header.header-bar-service {
 
           .fa-bell {
             font-size: 1.6rem;
-            color: var(--text-color);
+            color: inherit;
           }
 
           .ant-badge-count {
@@ -167,10 +167,10 @@ header.header-bar-service {
         .antitcon,
         .ant-menu-item-icon,
         .ant-menu-title-content {
-          color: var(--text-color);
+          color: inherit;
 
           svg {
-            color: var(--text-color);
+            color: inherit;
             transition: all 0.2s;
           }
         }
@@ -185,7 +185,7 @@ header.header-bar-service {
           .antitcon,
           .ant-menu-item-icon,
           .ant-menu-title-content {
-            color: var(--text-color);
+            color: inherit;
 
             svg {
               color: #fff;
@@ -364,7 +364,7 @@ header.header-bar-service {
           }
 
           .ant-input {
-            color: var(--text-color);
+            color: inherit;
             background: transparent;
             font-size: 1.4rem;
           }
@@ -407,7 +407,7 @@ header.header-bar-service {
           padding: 0px 18px;
 
           svg {
-            color: var(--text-color);
+            color: inherit;
             font-size: 1.8rem;
             width: 1.8rem;
             height: 1.8rem;
@@ -455,7 +455,7 @@ header.header-bar-service {
       background: transparent;
       border-bottom: 1px solid var(--border-regular-light);
       font-size: 1.6rem;
-      color: var(--text-color);
+      color: inherit;
     }
 
     .ant-dropdown-menu-item-group {

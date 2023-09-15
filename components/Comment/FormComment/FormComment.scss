@@ -68,12 +68,12 @@
       .ant-input-affix-wrapper {
         width: 100%;
         background-color: transparent;
-        color: var(--text-color);
+        color: inherit;
 
         textarea {
           position: relative;
           background-color: transparent;
-          color: var(--text-color);
+          color: inherit;
           // height: 25px !important;
           // min-height: 25px !important;
           // max-height: 25px !important;
@@ -111,7 +111,7 @@
 
     .el-textarea {
       textarea {
-        color: var(--text-color);
+        color: inherit;
         border-radius: 2px;
       }
     }

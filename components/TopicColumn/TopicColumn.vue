@@ -26,7 +26,7 @@
               height="3rem"
               viewBox="0 0 24 24"
             >
-              <path d="M8 5v14l11-7z" />
+              <path fill="currentColor" d="M8 5v14l11-7z" />
             </svg>
             <span> PHÁT NGAY </span>
           </div>
@@ -58,7 +58,7 @@
               height="3rem"
               viewBox="0 0 24 24"
             >
-              <path d="M8 5v14l11-7z" />
+              <path fill="currentColor" d="M8 5v14l11-7z" />
             </svg>
             <span>PHÁT NGAY</span>
           </div>
@@ -142,7 +142,7 @@
                       height="1.5rem"
                       viewBox="0 0 16 16"
                     >
-                      <g>
+                      <g fill="currentColor">
                         <path
                           d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
                         />
@@ -180,6 +180,7 @@
               viewBox="0 0 512 512"
             >
               <path
+                fill="currentColor"
                 d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
               />
             </svg>
@@ -202,6 +203,7 @@
               viewBox="0 0 24 24"
             >
               <path
+                fill="currentColor"
                 d="M15 16h4v2h-4v-2zm0-8h7v2h-7V8zm0 4h6v2h-6v-2zM3 20h10V8H3v12zM14 5h-3l-1-1H6L5 5H2v2h12V5z"
               />
             </svg>

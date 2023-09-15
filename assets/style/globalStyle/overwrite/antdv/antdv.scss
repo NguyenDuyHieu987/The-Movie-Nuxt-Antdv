@@ -1,3 +1,15 @@
+.anticon {
+  svg {
+    fill: inherit;
+  }
+
+  &.anticon-loading {
+    svg {
+      fill: inherit;
+    }
+  }
+}
+
 .ant-skeleton-element .ant-skeleton-image {
   width: 100%;
   height: 100%;
@@ -39,7 +51,7 @@
     p,
     span,
     h3 {
-      color: var(--text-color);
+      color: inherit;
     }
   }
 
@@ -86,7 +98,7 @@
 
       .ant-select-selection-placeholder,
       .ant-select-selection-item {
-        color: var(--text-color) !important;
+        color: inherit !important;
       }
     }
   }
@@ -116,7 +128,7 @@
   }
 
   .ant-select-arrow {
-    color: var(--text-color);
+    color: inherit;
   }
 }
 
@@ -138,7 +150,7 @@
   .rc-virtual-list-holder-inner {
     .ant-select-item {
       padding: 10px 15px;
-      color: var(--text-color);
+      color: inherit;
 
       &:hover {
         background-color: var(--hover-dropdown-color);
@@ -176,7 +188,7 @@
       .ant-dropdown-menu-item {
         padding: 10px 20px;
         font-size: 1.5rem;
-        color: var(--text-color);
+        color: inherit;
       }
 
       .ant-dropdown-menu-item-active {
@@ -203,7 +215,7 @@
   border: 1px solid var(--input-border-color);
   box-shadow: none !important;
   transition: all 0s;
-  color: var(--text-color);
+  color: inherit;
 
   &:not(.ant-input-affix-wrapper-disabled) {
     &:hover {
@@ -312,7 +324,7 @@
       .ant-tabs-tab {
         &:hover {
           .ant-tabs-tab-btn {
-            color: var(--text-color);
+            color: inherit;
             // color: transparent;
             // display: inline;
             // -webkit-text-fill-color: transparent;
@@ -326,7 +338,7 @@
         }
 
         .ant-tabs-tab-btn {
-          color: var(--text-color);
+          color: inherit;
           font-weight: 600;
           font-size: 1.7rem;
           transition: all 0.1s;
@@ -407,7 +419,7 @@
 
 .ant-result {
   .ant-result-title {
-    color: var(--text-color);
+    color: inherit;
   }
 }
 
@@ -421,7 +433,7 @@
 
   .ant-collapse-header {
     font-size: 1.5rem;
-    color: var(--text-color) !important;
+    color: inherit !important;
 
     .anticon {
       svg {
@@ -431,7 +443,7 @@
   }
 
   .ant-collapse-content {
-    color: var(--text-color) !important;
+    color: inherit !important;
   }
 }
 
@@ -449,7 +461,7 @@
 
       & > label {
         font-size: inherit;
-        color: var(--text-color);
+        color: inherit;
 
         &::before,
         &::after {
@@ -473,7 +485,7 @@
 
           .ant-input-prefix {
             svg {
-              fill: var(--text-color);
+              // fill: inherit;
             }
           }
 
@@ -517,7 +529,6 @@
       }
 
       input {
-        color: var(--text-color);
         background-color: transparent;
       }
     }

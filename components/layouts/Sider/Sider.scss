@@ -147,7 +147,7 @@
     background-color: var(--background-content-color);
     border-top: 1px solid var(--border-regular-light);
     border-right: 1px solid var(--border-regular-light);
-    color: var(--text-color);
+    color: inherit;
     z-index: 2;
     cursor: pointer;
     user-select: none;

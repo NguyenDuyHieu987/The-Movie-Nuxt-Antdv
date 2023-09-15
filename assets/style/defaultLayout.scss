@@ -35,7 +35,24 @@
   }
 }
 
-.body-content:has(.upgrade, .payment, .your-account, .bills, .change-page) {
+.body-content:has(.service-page) {
+  background-color: #fff;
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    color: var(--text-color-invert);
+  }
+
+  .body-wrapper {
+    color: var(--text-color-invert);
+  }
+}
+
+// .upgrade, .payment, .your-account, .bills
+.body-content:has(.service-page, .change-page) {
   --sider-width: 0px;
   --sider-collapsed-width: 0px;
   margin-left: 0px;
@@ -45,7 +62,7 @@
   }
 
   header.header-bar {
-    background: var(--background-content-color) !important;
+    background: var(--background-content-color);
 
     .left-header {
       .menu-btn.mobile {

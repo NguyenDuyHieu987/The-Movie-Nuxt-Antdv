@@ -12,7 +12,7 @@
         height: var(--header-height);
         justify-content: start;
         border: none;
-        color: var(--text-color);
+        color: inherit;
         padding-left: 21px;
 
         .ant-drawer-header-title {
@@ -51,7 +51,7 @@
           height: var(--header-height);
           gap: 10px;
           border-bottom: 1px solid var(--border-regular-light);
-          color: var(--text-color);
+          color: inherit;
           font-size: 1.5rem;
 
           .user-image-container {
@@ -101,7 +101,7 @@ body:has(.ant-drawer-open) {
     height: var(--header-height);
     justify-content: start;
     border: none;
-    color: var(--text-color);
+    color: inherit;
     padding: 0px;
     padding-left: 21px;
     margin-bottom: 0px;

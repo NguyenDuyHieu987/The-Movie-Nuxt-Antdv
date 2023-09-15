@@ -11,7 +11,7 @@
     >
       <path
         fill="none"
-        stroke="var(--text-color)"
+        stroke="currentColor"
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="4"

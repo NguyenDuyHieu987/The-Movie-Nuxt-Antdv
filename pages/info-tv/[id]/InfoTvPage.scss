@@ -179,6 +179,10 @@
             margin-top: 15px;
             margin-bottom: 20px;
 
+            a {
+              color: inherit;
+            }
+
             .left {
               display: flex;
               flex-direction: row;

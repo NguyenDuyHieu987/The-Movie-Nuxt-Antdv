@@ -1,5 +1,5 @@
 <template>
-  <div class="payment padding-content">
+  <div class="service-page payment padding-content">
     <div v-if="store.isLogin" class="payment-container">
       <div class="payment-header">
         <h1>Chọn phương thức thanh toán</h1>
@@ -127,6 +127,7 @@ import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
 import type { plan } from '@/types';
 
 definePageMeta({
+  // layout: 'service',
   middleware: [
     (to, from) => {
       if (!to.query.planorder) return navigateTo('/upgrade/plans');

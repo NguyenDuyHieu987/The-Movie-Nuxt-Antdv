@@ -156,11 +156,12 @@
               right: 0;
               height: 100%;
               width: 100%;
-              background-image: linear-gradient(
-                to right,
-                var(--background-content-color),
-                rgba(25, 25, 25)
-              );
+              // background-image: linear-gradient(
+              //   to right,
+              //   var(--background-content-color),
+              //   rgba(25, 25, 25)
+              // );
+              background-color: #f3f3f3;
               z-index: -1;
               transition: all 0.3s;
             }

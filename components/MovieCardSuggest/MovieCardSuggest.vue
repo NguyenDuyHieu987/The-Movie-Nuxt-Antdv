@@ -120,6 +120,7 @@
                     viewBox="0 0 24 24"
                   >
                     <path
+                      fill="currentColor"
                       d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"
                     />
                   </svg>
@@ -131,7 +132,10 @@
                     height="2.4rem"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
+                    <path
+                      fill="currentColor"
+                      d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"
+                    />
                   </svg>
                 </template>
               </a-button>

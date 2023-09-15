@@ -1,5 +1,5 @@
 <template>
-  <div class="your-account center-page padding-content">
+  <div class="service-page your-account center-page padding-content">
     <div v-if="isLogin" class="your-account-container">
       <!-- <Transition appear name="slide-bottom">
         <div v-show="showAnimation"> -->
@@ -133,6 +133,7 @@ import { storeToRefs } from 'pinia';
 import { useBreakpoints } from '@vueuse/core';
 
 definePageMeta({
+  // layout: 'service',
   pageTransition: {
     name: 'slide-bottom',
   },

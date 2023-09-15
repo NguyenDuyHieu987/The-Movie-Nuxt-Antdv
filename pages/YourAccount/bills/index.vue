@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLogin" class="bills center-page padding-content">
+  <div v-if="isLogin" class="service-page bills center-page padding-content">
     This is Bills page
   </div>
 
@@ -9,6 +9,10 @@
 <script setup lang="ts">
 import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
 import { storeToRefs } from 'pinia';
+
+definePageMeta({
+  // layout: 'service',
+});
 
 const store = useStore();
 const { isLogin } = storeToRefs<any>(store);

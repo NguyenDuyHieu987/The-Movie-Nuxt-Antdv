@@ -1,5 +1,5 @@
 <template>
-  <div class="change-page password center-page padding-content">
+  <div class="service-page change-page password center-page padding-content">
     <div v-if="isLogin" class="password-container">
       <Transition appear name="slide-left">
         <div v-show="showAnimation">
@@ -57,6 +57,7 @@
                 <InputPassword
                   v-model:value="formChangePassword.oldPassword"
                   placeholder="Mật khẩu cũ..."
+                  allow-clear
                 />
               </FormItem>
 
@@ -64,6 +65,7 @@
                 <InputPassword
                   v-model:value="formChangePassword.newPassword"
                   placeholder="Mật khẩu mới..."
+                  allow-clear
                 >
                 </InputPassword>
               </FormItem>
@@ -76,6 +78,7 @@
                 <InputPassword
                   v-model:value="formChangePassword.confirmNewPassword"
                   placeholder="Xác nhận lại mật khẩu..."
+                  allow-clear
                 />
               </FormItem>
 
@@ -189,6 +192,10 @@ useServerSeoMeta({
   // ogUrl: window.location.href,
   ogDescription: 'Hóa đơn của bạn. Lịch sử giao dịch',
   ogLocale: 'vi',
+});
+
+definePageMeta({
+  // layout: 'service',
 });
 
 onBeforeMount(() => {
@@ -313,7 +320,6 @@ const handleSubmit = () => {
         setTimeout(() => {
           showAnimation.value = true;
           isChangePassword.value = true;
-          internalInstance.appContext.config.globalProperties.$Progress.finish();
         }, 300);
       } else if (response?.isWrongPassword == true) {
         ElNotification.error({
@@ -347,6 +353,7 @@ const handleSubmit = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
       loadingChangePassword.value = false;
     });
 };

@@ -2,7 +2,7 @@
   display: block;
   position: relative;
   cursor: pointer;
-  color: var(--text-color);
+  color: inherit;
   overflow: hidden;
 
   .el-skeleton__item .el-skeleton__text {
@@ -53,7 +53,7 @@
   }
 
   .duration-episode-box {
-    color: var(--text-color);
+    color: inherit;
     background-image: linear-gradient(
       to right,
       var(--app-background-color1),
@@ -81,7 +81,7 @@
   }
 
   .release-date-box {
-    color: var(--text-color);
+    color: inherit;
     background-image: linear-gradient(
       to right,
       var(--app-background-color3),
@@ -112,7 +112,7 @@
     display: flex;
     padding: 3px 5px;
     padding-top: 15px;
-    color: var(--text-color);
+    color: inherit;
     font-size: 0.9vw;
     position: absolute;
     left: 0;
@@ -157,7 +157,7 @@
           &::before {
             content: '\2022';
             // color: #d0d0d0;
-            color: var(--text-color);
+            color: inherit;
             display: inline-block;
             padding-right: 0.4vw;
           }

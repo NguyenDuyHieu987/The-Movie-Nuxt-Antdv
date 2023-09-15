@@ -213,7 +213,7 @@
         }
 
         .ant-btn {
-          color: var(--text-color);
+          color: inherit;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -258,7 +258,7 @@
         line-height: 1.7;
 
         .title {
-          color: var(--text-color);
+          color: inherit;
         }
 
         .title,
@@ -285,7 +285,7 @@
               &::before {
                 content: '\2022';
                 // color: #d0d0d0;
-                color: var(--text-color);
+                color: inherit;
                 display: inline-block;
                 padding-right: 0.4vw;
                 font-size: 1.5rem;

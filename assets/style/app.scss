@@ -1,6 +1,5 @@
 .app-wrapper {
   overflow: hidden;
-  background-color: var(--background-content-color);
 
   .app-back-top {
     align-items: center;
@@ -12,7 +11,7 @@
     border-radius: 50%;
     background-color: #101010da !important;
     // background-color: var(--background-content-color);
-    color: var(--text-color);
+    color: inherit;
     box-shadow: var(--box-shadow-small) !important;
     border: 1px solid var(--border-regular);
     // border: none;
@@ -23,7 +22,6 @@
       font-size: 2.5rem;
       width: 2.5rem;
       height: 2.5rem;
-      fill: var(--text-color);
     }
   }
 }
@@ -86,7 +84,7 @@
 
     a {
       font-size: 1.8rem;
-      color: var(--text-color);
+      color: inherit;
     }
   }
 }

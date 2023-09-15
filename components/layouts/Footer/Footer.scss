@@ -12,12 +12,12 @@ footer.footer {
   text-align: center;
   flex-direction: column;
   // background-color: transparent;
-  background-color: var(--background-content-color);
+  // background-color: var(--background-content-color);
+  color: inherit;
   border-top: 1px solid var(--border-regular-light);
   margin-top: auto;
   font-size: 1.45rem;
   padding: 24px 50px;
-  color: var(--text-color);
 
   .footer-container {
     display: flex;
@@ -59,7 +59,7 @@ footer.footer {
           display: flex;
           flex-direction: row;
           align-items: center;
-          color: var(--text-color);
+          color: inherit;
           transition: all 0.25s;
 
           svg {

@@ -60,8 +60,8 @@
           viewBox="0 0 48 48"
         >
           <path
-            fill="none"
-            stroke="var(--text-color)"
+            fill="currentColor"
+            stroke="inherit"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="4"

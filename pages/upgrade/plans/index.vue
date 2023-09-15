@@ -1,5 +1,5 @@
 <template>
-  <div class="upgrade center-page padding-content">
+  <div class="service-page upgrade center-page padding-content">
     <div class="upgrade-container">
       <Transition appear name="slide-bottom">
         <div v-show="showAnimation" class="upgrade-header">

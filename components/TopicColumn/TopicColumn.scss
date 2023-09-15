@@ -64,7 +64,7 @@
         justify-content: center;
         transition: all 0.2s;
         opacity: 0;
-        color: var(--text-color);
+        color: inherit;
         gap: 10px;
         font-size: 1.4rem;
 
@@ -102,11 +102,11 @@
     .info {
       margin-top: 17px;
       gap: 13px;
-      color: var(--text-color);
+      color: inherit;
 
       .title {
         margin-bottom: 12px;
-        color: var(--text-color);
+        color: inherit;
       }
 
       .user-info {
@@ -122,7 +122,7 @@
           right: -10px;
           top: 50%;
           transform: translateY(-50%);
-          color: var(--text-color);
+          color: inherit;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -163,10 +163,10 @@
         padding-left: 2px;
 
         .ant-input-prefix {
-          color: var(--text-color);
+          color: inherit;
 
           svg {
-            fill: var(--text-color);
+            fill: inherit;
           }
         }
 

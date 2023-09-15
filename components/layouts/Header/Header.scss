@@ -41,7 +41,7 @@ header.header-bar {
       background: transparent;
       border: none;
       cursor: pointer;
-      color: var(--text-color);
+      color: inherit;
       transition: opacity 0.25s;
 
       &.desktop {
@@ -158,7 +158,7 @@ header.header-bar {
         cursor: auto;
 
         .ant-input {
-          color: var(--text-color);
+          color: inherit;
           background: transparent;
           font-size: 1.5rem;
         }
@@ -184,7 +184,7 @@ header.header-bar {
           line-height: 0;
 
           svg {
-            color: var(--text-color);
+            color: inherit;
             font-size: 1.8rem;
             width: 1.8rem;
             height: 1.8rem;
@@ -271,7 +271,7 @@ header.header-bar {
                   font-size: 2.2rem;
                   width: 2.2rem;
                   height: 2.2rem;
-                  color: var(--text-color);
+                  color: inherit;
                 }
               }
 
@@ -448,7 +448,7 @@ header.header-bar {
         cursor: auto;
 
         .ant-input {
-          color: var(--text-color);
+          color: inherit;
           background: transparent;
           font-size: 1.5rem;
         }
@@ -474,7 +474,7 @@ header.header-bar {
           line-height: 0;
 
           svg {
-            color: var(--text-color);
+            color: inherit;
             font-size: 1.8rem;
             width: 1.8rem;
             height: 1.8rem;
@@ -503,7 +503,7 @@ header.header-bar {
         padding: 0px 18px;
 
         svg {
-          color: var(--text-color);
+          color: inherit;
           font-size: 1.8rem;
           width: 1.8rem;
           height: 1.8rem;
@@ -550,7 +550,7 @@ header.header-bar {
         background: transparent;
         border-bottom: 1px solid var(--border-regular-light);
         font-size: 1.6rem;
-        color: var(--text-color);
+        color: inherit;
       }
 
       .separate {

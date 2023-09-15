@@ -5,13 +5,16 @@
   --background-content-opacity: #111111e3;
 
   --text-color: #f4f4f4;
-  --text-color-gray: #a4a4a4;
-  --text-color-gray1: #d3d3d3;
+  --text-color-invert: #0f0f0f;
+  --text-color-gray: #737373;
+  // --text-color-gray1: #d3d3d3;
+  --text-color-gray1: #4d4d4d;
   --text-label-color: #777;
   --text-button-disabled-color: #979797;
   --link-text-color: #007db6;
   --link-text-color-hover: #009ac5;
   --text-danger-color: #b90016;
+  --text-placeholder-color: #858585;
 
   --header-background: linear-gradient(to bottom, #101010 0, #10101000 100%);
   --header-background-scrolled: #101010e6;
@@ -65,6 +68,7 @@
   --input-border-color-hover: #0080ca;
 
   --border-regular: #727272;
+  --border-regular-invert: #535353;
   --border-regular-btn: #5a5a5a;
   --border-regular-light: #ffffff4d;
   --border-dropdown: #787878;
@@ -132,9 +136,9 @@ body {
   // font-size: clamp(1.4rem, 1vw, 10rem);
   font-family: 'Roboto Flex', sans-serif;
   text-rendering: optimizeSpeed;
-  // user-select: none;
-  color: var(--text-color);
   background-color: var(--background-content-color);
+  color: var(--text-color);
+  font-variant: normal;
 
   &::-webkit-scrollbar {
     // display: none;
@@ -174,6 +178,17 @@ body {
   background-color: #0085ad;
 }
 
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--text-placeholder-color) !important;
+  opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--text-placeholder-color) !important;
+}
+
 div,
 h1,
 h2,
@@ -199,7 +214,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--text-color);
+  color: inherit;
 }
 
 a {
@@ -223,7 +238,7 @@ button,
 }
 
 svg {
-  // fill: var(--text-color);
+  // fill: inherit;
   user-select: none;
 }
 
@@ -409,7 +424,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-color);
+  color: inherit;
   transition: all 0.15s;
   font-size: 1.5rem;
   box-shadow: none;
@@ -426,15 +441,15 @@ svg {
   }
 
   &:hover {
-    color: var(--text-color);
+    color: inherit;
   }
 
   &:focus {
-    color: var(--text-color);
+    color: inherit;
   }
 
   &:active {
-    color: var(--text-color);
+    color: inherit;
   }
 
   &.ant-btn-primary:not([disabled]) {
@@ -474,7 +489,7 @@ svg {
   }
 
   svg {
-    fill: var(--text-color);
+    fill: inherit;
   }
 
   &.default {
@@ -483,7 +498,7 @@ svg {
     justify-content: center;
     border-color: var(--border-regular);
     font-size: 1.5rem;
-    color: var(--text-color);
+    color: inherit;
     transition: all 0.15s;
     height: auto;
     background-color: transparent;
@@ -523,7 +538,7 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-color);
+    color: inherit;
     font-size: 1.5rem;
     background-color: transparent;
     border-color: transparent;
@@ -562,7 +577,7 @@ svg {
 
     span,
     a {
-      color: var(--text-color);
+      color: inherit;
     }
 
     svg,
@@ -611,7 +626,7 @@ svg {
 
         span,
         a {
-          color: var(--text-color);
+          color: inherit;
         }
       }
 
@@ -658,7 +673,7 @@ svg {
 
         span,
         a {
-          color: var(--text-color);
+          color: inherit;
         }
       }
 

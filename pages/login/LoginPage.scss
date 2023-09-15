@@ -42,7 +42,7 @@
         .play-now {
           margin-top: 15px;
           display: block;
-          color: var(--text-color);
+          color: inherit;
           text-align: center;
           padding: 7px 15px;
           flex-grow: 1;
@@ -72,7 +72,7 @@
           }
 
           .ant-checkbox-wrapper {
-            color: var(--text-color);
+            color: inherit;
           }
         }
 
@@ -96,7 +96,7 @@
         }
 
         .bottom-form {
-          color: var(--text-color);
+          color: inherit;
         }
 
         .separate {
@@ -114,7 +114,7 @@
           .el-button {
             padding: 13px 17px;
             background-color: var(--btn-backgroud-color-gray);
-            color: var(--text-color);
+            color: inherit;
 
             span {
               width: 100%;
