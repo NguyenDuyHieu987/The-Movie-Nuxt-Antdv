@@ -81,7 +81,7 @@
                 :href="`/play-tv/${dataMovie?.id}/${dataMovie?.name
                   ?.replace(/\s/g, '+')
                   .toLowerCase()}/tap-${item?.episode_number}`"
-                @click.prevent="handleChangeEpisode(item?.episode_number)"
+                @click.prevent="handleChangeEpisode(item)"
               >
                 {{
                   item?.episode_number == dataSeason.value?.episodes
@@ -111,7 +111,10 @@ const props = defineProps<{
   numberOfEpisodes: number;
 }>();
 
-const emit = defineEmits<{ setUrlCodeMovie: [url: string] }>();
+const emit = defineEmits<{
+  changeUrlCode: [url: string];
+  changeEpisode: [episode: any];
+}>();
 
 const route: any = useRoute();
 const router = useRouter();
@@ -132,19 +135,25 @@ const emitUrlCode = (dataSeason: any) => {
   //   (item: any) => item.episode_number == currentEpisode.value
   // )?.url_code;
 
-  let url_code_movie = `The_Witcher_S1_Ep1.mp4`;
+  let urlCode = `The_Witcher_S1_Ep1.mp4`;
 
   if (currentEpisode.value > 1 && currentEpisode.value <= 8) {
-    url_code_movie = `The_Witcher_S1_Ep${currentEpisode.value}.mp4`;
+    urlCode = `The_Witcher_S1_Ep${currentEpisode.value}.mp4`;
   } else if (currentEpisode.value > 8) {
-    url_code_movie = `The_Witcher_S1_Ep8.mp4`;
+    urlCode = `The_Witcher_S1_Ep8.mp4`;
   }
 
-  emit('setUrlCodeMovie', url_code_movie);
+  emit('changeUrlCode', urlCode);
 };
 
 onMounted(() => {
   emitUrlCode(dataSeason.value);
+  emit(
+    'changeEpisode',
+    dataEpisode.value.find(
+      (item) => item?.episode_number == currentEpisode.value
+    )
+  );
 });
 
 onBeforeMount(async () => {
@@ -196,13 +205,14 @@ const handleChangeSeason = async (value: string) => {
     });
 };
 
-const handleChangeEpisode = (value: number) => {
-  if (currentEpisode.value == value) return;
+const handleChangeEpisode = (item: any) => {
+  if (currentEpisode.value == item?.episode_number) return;
 
-  window.history.replaceState(null, '', 'tap-' + value);
+  window.history.replaceState(null, '', 'tap-' + item?.episode_number);
 
-  currentEpisode.value = value;
+  currentEpisode.value = item?.episode_number;
   emitUrlCode(dataSeason.value);
+  emit('changeEpisode', item);
 
   window.scrollTo({
     top: 0,

@@ -14,13 +14,12 @@
       <nuxt-img :src="backdrop" loading="lazy" alt="" />
     </div>
 
-    <!-- preload="auto" -->
-
     <video
       id="video-player"
       ref="video"
       :poster="backdrop"
       :src="videoSrc"
+      preload="metadata"
       autoplay
       muted
       @loadstart="onLoadStartVideo"
@@ -208,6 +207,8 @@
           <div class="overlay-progress-padding"></div>
 
           <div class="preview-progress"></div>
+
+          <div class="seekable-progress"></div>
 
           <div class="progress-bar" ref="progressBar">
             <div class="scrubber-point"></div>
@@ -808,8 +809,6 @@ const initVideo = async (newVideoUrl: string) => {
 
 onBeforeMount(() => {
   // initVideo(props.videoUrl);
-  // videoStates.isLoading = false;
-  // videoStates.isPlayVideo = true;
 });
 
 watch(
@@ -935,13 +934,16 @@ const formatDuration = (time: number) => {
 
 const onLoadStartVideo = () => {
   // console.log('load start video');
+  videoStates.isLoading = true;
+  videoStates.isPlayVideo = false;
   video.value.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
+  overlayProgress.value.style.setProperty('--seekable-width', 0);
 };
 
 const onCanPlayVideo = () => {
-  videoStates.isPlayVideo = true;
   // console.log('can play video');
+  videoStates.isPlayVideo = true;
 };
 
 const onLoadedDataVideo = () => {
@@ -963,8 +965,14 @@ const onTimeUpdateVideo = (e: any) => {
 };
 
 const onProgressVideo = (e: any) => {
-  // console.log(e);
-  // videoStates.isLoading = true;
+  console.log('buffered:', video.value.buffered.end(0));
+  console.log('seekable:', video.value.seekable.end(0));
+
+  // const seekableDuration = video.value.seekable.end(0);
+  const seekableDuration = video.value.buffered.end(0);
+  const percent = seekableDuration / e.target.duration;
+  // console.log(seekableDuration);
+  overlayProgress.value.style.setProperty('--seekable-width', percent);
 };
 
 const onMouseMoveVideo = () => {

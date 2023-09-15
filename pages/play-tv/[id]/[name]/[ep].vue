@@ -249,13 +249,15 @@
         <ListEpisodes
           :dataMovie="dataMovie"
           :numberOfEpisodes="
-        dataMovie?.seasons?.find((item: any) =>
-          item.season_number === dataMovie?.last_episode_to_air?.season_number
-            ? item
-            : null
-        )?.episode_count
-      "
-          @setUrlCodeMovie="(data: string) => getUrlCodeMovie(data)"
+            dataMovie?.number_of_episodes
+            // dataMovie?.seasons?.find((item: any) =>
+            //   item.season_number === dataMovie?.last_episode_to_air?.season_number
+            //     ? item
+            //     : null
+            // )?.episode_count
+          "
+          @changeUrlCode="(data: string) => getUrlCode(data)"
+          @changeEpisode="(data: any) =>getCurrentEpisode(data)"
         />
 
         <div class="related-content">
@@ -310,6 +312,7 @@ const release_date = computed<string>(
   () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
 const disabledRate = ref<boolean>(false);
+const currentEpisode = ref<any>({});
 const windowWidth = ref<number>(window.innerWidth);
 
 const internalInstance: any = getCurrentInstance();
@@ -414,6 +417,7 @@ const updateHistory = () => {
       add_update_History({
         media_type: 'tv',
         movie_id: dataMovie.value?.id,
+        episode: currentEpisode.value,
         duration: duration.value,
         percent: percent.value,
         seconds: seconds.value,
@@ -434,8 +438,12 @@ onBeforeRouteLeave(() => {
   updateHistory();
 });
 
-const getUrlCodeMovie = (data: string) => {
-  urlCodeMovie.value = data;
+const getUrlCode = (urlCode: string) => {
+  urlCodeMovie.value = urlCode;
+};
+
+const getCurrentEpisode = (episode: any) => {
+  currentEpisode.value = episode;
 };
 
 const onPLayVideoPlayer = (e: any) => {

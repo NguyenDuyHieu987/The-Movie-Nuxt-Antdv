@@ -343,22 +343,14 @@ video::-webkit-media-controls {
       //   background-color: rgba(255, 255, 255, 0.4);
       // }
 
-      .preview-progress {
-        position: absolute;
-        left: 0;
-        height: 100%;
-        width: 0%;
-        // background-color: rgba(0, 0, 0, 0.4);
-        background-color: rgba(255, 255, 255, 0.4);
-      }
-
       &:hover {
         // height: 5.5px;
         transform: scaleY(1.4);
 
         &::before,
         .preview-progress {
-          width: calc(var(--preview-width) * 100%);
+          // width: calc(var(--preview-width) * 100%);
+          opacity: 1;
         }
 
         .progress-bar {
@@ -368,6 +360,31 @@ video::-webkit-media-controls {
             width: 10px;
           }
         }
+      }
+
+      .preview-progress {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        // width: 0%;
+        width: calc(var(--preview-width) * 100%);
+        opacity: 0;
+        // background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(255, 255, 255, 0.3);
+        z-index: 1;
+        transition: opacity 0.15s;
+      }
+
+      .seekable-progress {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: calc(var(--seekable-width, 0) * 100%);
+        min-width: 0%;
+        max-width: 100%;
+        // background-color: rgba(255, 255, 255, 0.4);
+        background-color: var(--app-background-color);
+        opacity: 0.4;
       }
 
       .overlay-progress-padding {
@@ -393,7 +410,7 @@ video::-webkit-media-controls {
         min-width: 0%;
         max-width: 100%;
         background-color: var(--app-background-color);
-        z-index: 1;
+        z-index: 2;
 
         // &::after {
         //   content: '';
@@ -717,6 +734,9 @@ video::-webkit-media-controls {
             flex-direction: row;
             align-items: center;
             gap: 5px;
+
+            .ant-switch {
+            }
 
             span {
               font-size: 1.2rem;
