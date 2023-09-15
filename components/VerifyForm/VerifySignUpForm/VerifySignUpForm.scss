@@ -48,28 +48,32 @@
         }
       }
 
-      .ant-input-affix-wrapper {
-        background: transparent;
-
-        input,
-        .ant-input-prefix {
-          color: var(--text-color);
-        }
-
-        &:hover {
-          background: transparent;
-        }
-      }
-
-      .ant-input-affix-wrapper-focused {
-        background: transparent;
-      }
-
       .ant-row.ant-form-item {
         .ant-col.ant-form-item-control {
           .ant-form-item-control-input-content {
             display: flex;
             flex-direction: row;
+
+            .ant-input {
+              height: 40px;
+            }
+
+            .ant-input-affix-wrapper {
+              background: transparent;
+
+              input,
+              .ant-input-prefix {
+                color: var(--text-color);
+              }
+
+              &:hover {
+                background: transparent;
+              }
+            }
+
+            .ant-input-affix-wrapper-focused {
+              background: transparent;
+            }
 
             .ant-input-number-affix-wrapper {
               width: 100%;

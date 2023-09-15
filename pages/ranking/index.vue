@@ -69,7 +69,7 @@ const getData = async () => {
   //   `trending/all/${pageTrending.value}`
   // );
 
-  useAsyncData(
+  await useAsyncData(
     `trending/all/${pageTrending.value}`,
     () => getTrending(pageTrending.value),
     {
@@ -95,7 +95,7 @@ const getData = async () => {
 
 // getData();
 
-const { data: rankings } = useAsyncData(
+const { data: rankings } = await useAsyncData(
   `trending/all/${pageTrending.value}`,
   () => getTrending(pageTrending.value),
   {
@@ -108,7 +108,7 @@ const { data: rankings } = useAsyncData(
 );
 
 watch(pageTrending, async () => {
-  await useAsyncData(`trending/all/${pageTrending.value}`, () =>
+  await await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )
     .then((movieRespone: any) => {

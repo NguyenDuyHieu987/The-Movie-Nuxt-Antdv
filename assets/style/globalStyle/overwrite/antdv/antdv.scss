@@ -465,8 +465,17 @@
       .ant-form-item-control-input-content {
         font-size: inherit;
 
+        .ant-input {
+        }
+
         .ant-input-affix-wrapper {
           font-size: inherit;
+
+          .ant-input-prefix {
+            svg {
+              fill: var(--text-color);
+            }
+          }
 
           input {
             font-size: inherit;

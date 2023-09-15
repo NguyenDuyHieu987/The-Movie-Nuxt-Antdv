@@ -121,14 +121,14 @@ const noteForgotPassword = ref<string>(
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: 'Quên mật khẩu - Trợ giúp',
+  title: 'Trợ giúp - Quên mật khẩu',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Quên mật khẩu - Trợ giúp',
+  title: 'Trợ giúp - Quên mật khẩu',
   description: 'Quên mật khẩu của bạn',
-  ogTitle: 'Quên mật khẩu - Trợ giúp',
+  ogTitle: 'Trợ giúp - Quên mật khẩu',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Quên mật khẩu của bạn',

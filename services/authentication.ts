@@ -85,7 +85,7 @@ export function signUp(params: any) {
   const bodyFormData = new FormData();
   bodyFormData.append('otp', params.otp);
 
-  const headers = { Authorization: `Bearer ${params.user_token}` };
+  const headers = { Authorization: `Bearer ${params.jwtVerifyEmail}` };
 
   return makeRequest(`/auth/signup`, {
     method: 'POST',
