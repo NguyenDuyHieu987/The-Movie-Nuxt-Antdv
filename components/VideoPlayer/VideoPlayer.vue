@@ -279,7 +279,7 @@
               <div>
                 <svg
                   v-show="!videoStates.isVolumeOff && volume <= 30"
-                  class="fullscreen"
+                  class="volume-down"
                   xmlns="http://www.w3.org/2000/svg"
                   width="2.7rem"
                   height="2.7rem"
@@ -965,13 +965,12 @@ const onTimeUpdateVideo = (e: any) => {
 };
 
 const onProgressVideo = (e: any) => {
-  console.log('buffered:', video.value.buffered.end(0));
-  console.log('seekable:', video.value.seekable.end(0));
+  // console.log('buffered:', video.value.buffered.end(0));
+  // console.log('seekable:', video.value.seekable.end(0));
 
   // const seekableDuration = video.value.seekable.end(0);
   const seekableDuration = video.value.buffered.end(0);
   const percent = seekableDuration / e.target.duration;
-  // console.log(seekableDuration);
   overlayProgress.value.style.setProperty('--seekable-width', percent);
 };
 

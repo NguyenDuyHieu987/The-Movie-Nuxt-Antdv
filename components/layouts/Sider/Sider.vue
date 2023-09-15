@@ -22,6 +22,7 @@
             "
             loading="lazy"
             alt=""
+            preload
           />
         </div>
 

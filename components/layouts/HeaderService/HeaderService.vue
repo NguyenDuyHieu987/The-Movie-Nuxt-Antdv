@@ -12,6 +12,7 @@
             alt=""
             :height="30"
             :width="30"
+            preload
           />
           <span> PhimHay247 </span>
         </NuxtLink>
@@ -109,20 +110,14 @@ import _ from 'lodash';
 import { MenuOutlined } from '@ant-design/icons-vue';
 
 const store = useStore();
+const utils = useUtils();
 const { isLogin, userAccount, role } = storeToRefs<any>(store);
 
 onMounted(() => {});
 
 const handleLogout = () => {
   if (isLogin) {
-    store.userAccount = {};
-    store.isLogin = false;
-    store.role = 'normal';
-
-    window.localStorage.removeItem('userAccount');
-    window.localStorage.removeItem('userToken');
-    window.localStorage.removeItem('remember');
-    window.localStorage.removeItem('isLogin');
+    utils.auth.onLogOut();
   }
 };
 </script>

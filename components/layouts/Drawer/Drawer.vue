@@ -37,6 +37,7 @@
               : userAccount?.avatar
           "
           alt=""
+          preload
         />
       </div>
 
