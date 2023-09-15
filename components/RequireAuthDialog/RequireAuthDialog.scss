@@ -45,6 +45,10 @@
       gap: 15px;
       justify-content: center;
 
+      a {
+        color: var(--text-color);
+      }
+
       .ant-btn {
         padding: 10px 50px;
         border-radius: 3px;

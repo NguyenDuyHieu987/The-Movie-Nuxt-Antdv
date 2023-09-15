@@ -11,7 +11,7 @@ import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
 import { storeToRefs } from 'pinia';
 
 definePageMeta({
-  // layout: 'service',
+  layout: 'service',
 });
 
 const store = useStore();

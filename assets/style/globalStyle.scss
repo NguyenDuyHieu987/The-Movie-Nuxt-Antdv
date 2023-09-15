@@ -6,7 +6,7 @@
 
   --text-color: #f4f4f4;
   --text-color-invert: #0f0f0f;
-  --text-color-gray: #737373;
+  --text-color-gray: #7f7f7f;
   // --text-color-gray1: #d3d3d3;
   --text-color-gray1: #4d4d4d;
   --text-label-color: #777;
@@ -432,7 +432,8 @@ svg {
   line-height: normal;
 
   &.submit-btn {
-    padding: 9px 15px;
+    color: var(--text-color);
+    padding: 10.5px 15px;
   }
 
   &:not(.ant-btn-circle) {

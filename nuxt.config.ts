@@ -208,9 +208,9 @@ export default defineNuxtConfig({
     // 'ant-design-vue/es/dropdown/style/index.css',
 
     '~/assets/style/fonts/GoogleFonts.css',
-    '~/assets/style/globalStyle.scss',
     '~/assets/style/globalStyle/overwrite/antdv/antdv.scss',
     '~/assets/style/globalStyle/overwrite/element/element.scss',
+    '~/assets/style/globalStyle.scss',
     // '@fortawesome/fontawesome-svg-core/styles.css',
     // 'material-icons/iconfont/material-icons.css',
   ],

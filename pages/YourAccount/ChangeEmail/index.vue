@@ -141,7 +141,7 @@ useServerSeoMeta({
 });
 
 definePageMeta({
-  // layout: 'service',
+  layout: 'service',
   pageTransition: {
     name: 'slide-left',
   },

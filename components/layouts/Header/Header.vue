@@ -98,63 +98,7 @@
     <div class="right-header">
       <ul class="menu-header">
         <li class="menu-item search-mobile">
-          <el-popover
-            trigger="click"
-            placement="bottom"
-            overlayClassName="header popover-search"
-            popper-class="popper-search"
-            effect="dark"
-            :hide-after="0"
-          >
-            <template #reference>
-              <div class="search-btn">
-                <svg
-                  class="fa-magnifying-glass"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1.8rem"
-                  height="1.8rem"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
-                  />
-                </svg>
-              </div>
-            </template>
-
-            <template #default>
-              <h3 class="section-title search">
-                <span> Tìm kiếm </span>
-              </h3>
-
-              <a-input-search
-                class="search-popover"
-                placeholder="Nhập tên phim để tìm kiếm..."
-                size="large"
-                allowClear
-                bordered
-                :loading="loadingSearch"
-                @search="handleSearch"
-                @change="handleChangeInput(valueInput)"
-              >
-                <template #enterButton>
-                  <svg
-                    class="fa-magnifying-glass"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1.8rem"
-                    height="1.8rem"
-                    viewBox="0 0 512 512"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
-                    />
-                  </svg>
-                </template>
-              </a-input-search>
-            </template>
-          </el-popover>
+          <SearchMobile />
         </li>
 
         <li
@@ -163,142 +107,11 @@
           :show-timeout="0"
           :hide-timeout="0"
         >
-          <el-dropdown
-            trigger="click"
-            popper-class="header notification"
-            placement="bottom-start"
-            :show-timeout="0"
-          >
-            <span class="el-dropdown-link notification">
-              <el-icon class="el-icon--right">
-                <a-badge :count="3" :overflow-count="9">
-                  <div class="show-notify-btn">
-                    <svg
-                      class="fa-bell fa-regular"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="2.2rem"
-                      height="2.2rem"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M12 1.996a7.49 7.49 0 0 1 7.496 7.25l.004.25v4.097l1.38 3.156a1.249 1.249 0 0 1-1.145 1.75L15 18.502a3 3 0 0 1-5.995.177L9 18.499H4.275a1.251 1.251 0 0 1-1.147-1.747L4.5 13.594V9.496c0-4.155 3.352-7.5 7.5-7.5ZM13.5 18.5l-3 .002a1.5 1.5 0 0 0 2.993.145l.007-.147ZM12 3.496c-3.32 0-6 2.674-6 6v4.41L4.656 17h14.697L18 13.907V9.509l-.003-.225A5.988 5.988 0 0 0 12 3.496Z"
-                      />
-                    </svg>
-
-                    <svg
-                      class="fa-bell fa-solid"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="2.2rem"
-                      height="2.2rem"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M9.042 19.003h5.916a3 3 0 0 1-5.916 0Zm2.958-17a7.5 7.5 0 0 1 7.5 7.5v4l1.418 3.16A.95.95 0 0 1 20.052 18h-16.1a.95.95 0 0 1-.867-1.338l1.415-3.16V9.49l.005-.25A7.5 7.5 0 0 1 12 2.004Z"
-                      />
-                    </svg>
-                  </div>
-                </a-badge>
-              </el-icon>
-            </span>
-
-            <template #dropdown>
-              <el-dropdown-menu class="dropdown-notification">
-                <div class="notification-header">
-                  <span> Thông báo</span>
-                </div>
-
-                <el-menu-item-group class="public" key="public">
-                  <template #title>
-                    <span>Thông báo chung</span>
-                    <span class="count-message">1</span>
-                  </template>
-                  <el-dropdown-item
-                    >Chào mừng bạn đến với Phimhay247
-                  </el-dropdown-item>
-                </el-menu-item-group>
-
-                <div class="separate" />
-
-                <el-menu-item-group class="private" key="private">
-                  <template #title>
-                    <span>Thông báo cá nhân</span>
-                    <span class="count-message">2</span>
-                  </template>
-                  <el-dropdown-item>Message 1</el-dropdown-item>
-                  <el-dropdown-item>Message 2</el-dropdown-item>
-                </el-menu-item-group>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+          <Notification />
         </li>
 
         <li class="menu-item account">
-          <el-dropdown
-            trigger="hover"
-            popper-class="header account"
-            placement="bottom-end"
-            :show-timeout="0"
-          >
-            <span
-              class="el-dropdown-link account"
-              aria-label="dropdown-account"
-            >
-              <el-icon class="el-icon--right">
-                <svg
-                  class="user-outlined"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1.5rem"
-                  height="1.5rem"
-                  viewBox="0 0 1024 1024"
-                >
-                  <path
-                    d="M858.5 763.6a374 374 0 0 0-80.6-119.5a375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1c-.4.2-.8.3-1.2.5c-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8c2-77.2 33-149.5 87.8-204.3c56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"
-                  />
-                </svg>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1.5rem"
-                  height="1.5rem"
-                  viewBox="0 0 1024 1024"
-                >
-                  <path
-                    d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-                  />
-                </svg>
-              </el-icon>
-            </span>
-
-            <template #dropdown>
-              <el-dropdown-menu class="dropdown-account">
-                <el-dropdown-item v-if="isLogin">
-                  <NuxtLink class="your-account" to="/YourAccount">
-                    <span>Tài khoản</span>
-                    <br />
-                    <span style="font-size: 1.2rem">
-                      {{ userAccount?.email }}
-                    </span>
-                  </NuxtLink>
-                </el-dropdown-item>
-
-                <el-dropdown-item v-if="isLogin && role == 'admin'">
-                  <NuxtLink :to="$config.app.adminWebsiteUrl" target="_blank">
-                    Bảng điều khiển
-                  </NuxtLink>
-                </el-dropdown-item>
-
-                <el-dropdown-item v-if="!isLogin">
-                  <NuxtLink to="/login"> Đăng nhập</NuxtLink>
-                </el-dropdown-item>
-
-                <el-dropdown-item v-else @click="handleLogout">
-                  <span> Đăng xuất</span>
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+          <DropdownAccount />
         </li>
       </ul>
     </div>
@@ -309,14 +122,15 @@
 import axios from 'axios';
 import { getDaTaSearch } from '~/services/search';
 import { getImage } from '~/services/image';
-// import SearchCard from '~/components/SearchCard';
+import DropdownAccount from './DropdownAcount/DropdownAcount.vue';
+import Notification from './Notification/Notification.vue';
+import SearchMobile from './SearchMobile/SearchMobile.vue';
+// import SearchCard from '~/components/SearchCard/SearchCard.vue';
 import { storeToRefs } from 'pinia';
 import { MenuOutlined } from '@ant-design/icons-vue';
 
-const utils = useUtils();
 const store = useStore();
-const { openDrawer, collapsed, isLogin, userAccount, role } =
-  storeToRefs<any>(store);
+const { isLogin } = storeToRefs<any>(store);
 const router = useRouter();
 const route: any = useRoute();
 const dataSearch = ref<any[]>([]);
@@ -406,10 +220,6 @@ const handleSearch = (value: string) => {
     // valueInput.value = '';
     isOpenAutoComplete.value = false;
   }
-};
-
-const handleLogout = () => {
-  utils.auth.onLogOut();
 };
 </script>
 

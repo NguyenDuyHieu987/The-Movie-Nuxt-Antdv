@@ -133,7 +133,7 @@ import { storeToRefs } from 'pinia';
 import { useBreakpoints } from '@vueuse/core';
 
 definePageMeta({
-  // layout: 'service',
+  layout: 'service',
   pageTransition: {
     name: 'slide-bottom',
   },

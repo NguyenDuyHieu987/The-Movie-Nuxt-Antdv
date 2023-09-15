@@ -195,7 +195,7 @@ useServerSeoMeta({
 });
 
 definePageMeta({
-  // layout: 'service',
+  layout: 'service',
 });
 
 onBeforeMount(() => {

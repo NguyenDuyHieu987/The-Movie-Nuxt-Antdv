@@ -1,6 +1,6 @@
 .anticon {
   svg {
-    fill: inherit;
+    fill: var(--text-color);
   }
 
   &.anticon-loading {

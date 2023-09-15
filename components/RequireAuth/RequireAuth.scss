@@ -6,6 +6,10 @@
 
   .ant-result.result-view {
     .ant-result-extra {
+      a {
+        color: var(--text-color);
+      }
+
       .ant-btn.default.gradient {
         padding: 12px 35px;
         border-radius: 3px;

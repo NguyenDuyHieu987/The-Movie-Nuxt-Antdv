@@ -22,6 +22,12 @@
     max-width: var(--max-width-app);
     color: var(--text-color-invert);
     margin: 0px auto;
+
+    .anticon {
+      svg {
+        fill: var(--text-color-invert);
+      }
+    }
   }
 
   main.main-content {

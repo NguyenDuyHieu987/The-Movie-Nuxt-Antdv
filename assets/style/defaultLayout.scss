@@ -35,8 +35,22 @@
   }
 }
 
-.body-content:has(.service-page) {
+// .upgrade, .payment, .your-account, .bills
+.body-content:has(.service-page, .change-page) {
+  --sider-width: 0px;
+  --sider-collapsed-width: 0px;
+  margin-left: 0px;
   background-color: #fff;
+
+  .body-wrapper {
+    color: var(--text-color-invert);
+
+    .anticon {
+      svg {
+        fill: var(--text-color-invert);
+      }
+    }
+  }
 
   button,
   input,
@@ -46,23 +60,18 @@
     color: var(--text-color-invert);
   }
 
-  .body-wrapper {
-    color: var(--text-color-invert);
-  }
-}
-
-// .upgrade, .payment, .your-account, .bills
-.body-content:has(.service-page, .change-page) {
-  --sider-width: 0px;
-  --sider-collapsed-width: 0px;
-  margin-left: 0px;
-
   .ant-layout-sider.sider-bar {
     border: none;
   }
 
   header.header-bar {
     background: var(--background-content-color);
+
+    .anticon {
+      svg {
+        fill: var(--text-color);
+      }
+    }
 
     .left-header {
       .menu-btn.mobile {
