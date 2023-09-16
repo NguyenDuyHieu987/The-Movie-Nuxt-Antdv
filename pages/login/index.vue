@@ -276,8 +276,8 @@ const handleLogin = () => {
         store.userAccount = response?.result;
 
         utils.localStorage.setWithExpiry(
-          'user_account',
-          { user_token: response.headers.get('Authorization') },
+          'user_token',
+          response.headers.get('Authorization'),
           30
         );
 
@@ -311,6 +311,7 @@ const handleLogin = () => {
       }
     })
     .catch((e) => {
+      console.log(e);
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
@@ -355,8 +356,8 @@ const handleClickFacebookLogin = async () => {
         });
         store.userAccount = response?.result;
         utils.localStorage.setWithExpiry(
-          'user_account',
-          { user_token: response.headers.get('Authorization') },
+          'user_token',
+          response.headers.get('Authorization'),
           30
         );
         // navigateTo({ path: '/' });
@@ -364,8 +365,8 @@ const handleClickFacebookLogin = async () => {
       } else if (response.isLogin == true) {
         store.userAccount = response?.result;
         utils.localStorage.setWithExpiry(
-          'user_account',
-          { user_token: response.headers.get('Authorization') },
+          'user_token',
+          response.headers.get('Authorization'),
           30
         );
         // navigateTo({ path: '/' });
@@ -476,10 +477,8 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           });
           store.userAccount = response?.result;
           utils.localStorage.setWithExpiry(
-            'user_account',
-            {
-              user_token: response.headers.get('Authorization'),
-            },
+            'user_token',
+            response.headers.get('Authorization'),
             30
           );
           // navigateTo({ path: '/' });
@@ -487,10 +486,8 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
         } else if (response.isLogin == true) {
           store.userAccount = response?.result;
           utils.localStorage.setWithExpiry(
-            'user_account',
-            {
-              user_token: response.headers.get('Authorization'),
-            },
+            'user_token',
+            response.headers.get('Authorization'),
             30
           );
           // navigateTo({ path: '/' });

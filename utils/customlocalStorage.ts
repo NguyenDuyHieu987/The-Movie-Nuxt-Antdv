@@ -15,7 +15,7 @@ export function setWithExpiry(key: string, value: any, ttl: number) {
   }
 }
 
-export function getWithExpiry(key: any) {
+export function getWithExpiry(key: string) {
   let itemJson = null;
   if (process.client) {
     itemJson = window.localStorage.getItem(key);

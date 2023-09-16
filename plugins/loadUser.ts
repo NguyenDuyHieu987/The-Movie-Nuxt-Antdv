@@ -8,10 +8,9 @@ export default defineNuxtPlugin((nuxtApp) => {
   const utils = useUtils();
 
   nuxtApp.hook('app:created', () => {
-    if (utils.localStorage.getWithExpiry('user_account')?.user_token) {
+    if (utils.localStorage.getWithExpiry('user_token') != null) {
       getUserToken({
-        user_token:
-          utils.localStorage.getWithExpiry('user_account')?.user_token,
+        user_token: utils.localStorage.getWithExpiry('user_token'),
       })
         .then((accountResponse: any) => {
           // console.log(accountResponse);
@@ -19,7 +18,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           if (accountResponse?.isLogin == true) {
             store.userAccount = accountResponse?.result;
           } else {
-            window.localStorage.removeItem('user_account');
+            window.localStorage.removeItem('user_token');
           }
         })
         .catch((e) => {

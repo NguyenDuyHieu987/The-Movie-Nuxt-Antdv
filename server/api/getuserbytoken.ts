@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   // made up for this example. You can fetch
   // data from wherever you want here
   const { result: user } = await getUserToken({
-    user_token: utils.localStorage.getWithExpiry('user_account')?.user_token,
+    user_token: utils.localStorage.getWithExpiry('user_token'),
   });
 
   if (user) {

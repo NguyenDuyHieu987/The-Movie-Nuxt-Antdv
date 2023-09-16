@@ -10,6 +10,7 @@ export const useUtils = () => {
     handleRemoveAllitemFromHistory,
     initFacebookSdk,
     initGoogleSdk,
+    cookie: { getCookie, setCookie },
     localStorage: {
       setWithExpiry,
       getWithExpiry,

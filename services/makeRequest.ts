@@ -11,11 +11,9 @@ export function makeRequest(url: string, options: any = {}) {
     withCredentials: true,
   });
 
-  if (getWithExpiry('user_account')?.user_token && !options?.noAuthHeader) {
+  if (getWithExpiry('user_token') && !options?.noAuthHeader) {
     if (!options?.headers?.hasOwnProperty('Authorization')) {
-      headers.Authorization = `Bearer ${
-        getWithExpiry('user_account')?.user_token
-      }`;
+      headers.Authorization = `Bearer ${getWithExpiry('user_token')}`;
     }
   }
 

@@ -16,7 +16,7 @@ export function onLogOut() {
             resolve(navigateTo('/login'));
           }).then(() => {
             setTimeout(() => {
-              window.localStorage.removeItem('user_account');
+              window.localStorage.removeItem('user_token');
               store.userAccount = null;
             }, 200);
           });
