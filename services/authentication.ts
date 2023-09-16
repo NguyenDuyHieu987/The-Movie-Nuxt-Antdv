@@ -20,7 +20,7 @@ export function LogIn(params: any) {
 export function loginFacebook(params: any) {
   const headers = { Authorization: `Bearer ${params.accessToken}` };
 
-  return makeRequest(`/auth/loginfacebook`, {
+  return makeRequest(`/auth/login-facebook`, {
     method: 'POST',
     headers: headers,
   });
@@ -29,7 +29,7 @@ export function loginFacebook(params: any) {
 export function loginGoogle(params: any) {
   const headers = { Authorization: `Bearer ${params.accessToken}` };
 
-  return makeRequest(`/auth/logingoogle`, {
+  return makeRequest(`/auth/login-google`, {
     method: 'POST',
     headers: headers,
   });
@@ -38,7 +38,7 @@ export function loginGoogle(params: any) {
 export function getUserToken(params: any) {
   const headers = { Authorization: `Bearer ${params.user_token}` };
 
-  return makeRequest(`/auth/getusertoken`, {
+  return makeRequest(`/auth/getuser`, {
     // method: 'POST',
     headers: headers,
   });
