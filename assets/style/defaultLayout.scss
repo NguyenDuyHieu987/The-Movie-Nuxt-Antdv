@@ -50,14 +50,18 @@
         fill: var(--text-color-invert);
       }
     }
-  }
 
-  button,
-  input,
-  optgroup,
-  select,
-  textarea {
-    color: var(--text-color-invert);
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      color: var(--text-color-invert);
+
+      &.submit-btn {
+        color: var(--text-color);
+      }
+    }
   }
 
   .ant-layout-sider.sider-bar {

@@ -7,14 +7,6 @@
   // transition: all 0.2s;
   // overflow: hidden;
 
-  button,
-  input,
-  optgroup,
-  select,
-  textarea {
-    color: var(--text-color-invert);
-  }
-
   .body-wrapper {
     flex: auto;
     position: relative;
@@ -26,6 +18,18 @@
     .anticon {
       svg {
         fill: var(--text-color-invert);
+      }
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      color: var(--text-color-invert);
+
+      &.submit-btn {
+        color: var(--text-color);
       }
     }
   }

@@ -479,7 +479,7 @@ export default defineNuxtConfig({
     },
     '/forgotpassword': { prerender: true },
     '/upgrade/plans': { prerender: true },
-    '/upgrade/payment': {
+    '/upgrade/paymentpicker': {
       ssr: false,
       prerender: true,
     },

@@ -34,6 +34,7 @@
               <a-input
                 v-model:value="formSignup.fullname"
                 placeholder="Họ và Tên..."
+                allow-clear
               >
                 <template #prefix>
                   <UserOutlined />
@@ -61,6 +62,7 @@
                 v-model:value="formSignup.username"
                 ref="usernameRef"
                 placeholder="Username..."
+                allow-clear
               >
                 <template #prefix>
                   <UserOutlined />
@@ -83,7 +85,11 @@
                 },
               ]"
             >
-              <a-input v-model:value="formSignup.email" placeholder="Email...">
+              <a-input
+                v-model:value="formSignup.email"
+                placeholder="Email..."
+                allow-clear
+              >
                 <template #prefix>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

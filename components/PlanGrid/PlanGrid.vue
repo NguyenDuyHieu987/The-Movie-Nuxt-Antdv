@@ -237,7 +237,7 @@ const handleDBClickPlanOpiton = (plan: plan) => {
     return;
   }
 
-  navigateTo(`/upgrade/payment?planorder=${plan.order}`);
+  navigateTo(`/upgrade/paymentpicker?planorder=${plan.order}`);
 };
 </script>
 

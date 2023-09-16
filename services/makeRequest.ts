@@ -8,7 +8,7 @@ export function makeRequest(url: string, options: any = {}) {
     baseURL: nuxtConfig.app.production_mode
       ? nuxtConfig.app.apiGateway
       : 'http://127.0.0.1:5000',
-    // withCredentials: true,
+    withCredentials: true,
   });
 
   if (getWithExpiry('user_account')?.user_token && !options?.noAuthHeader) {

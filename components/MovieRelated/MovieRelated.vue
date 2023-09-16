@@ -32,7 +32,7 @@
 
       <div
         class="movie-group suggest"
-        v-if="dataRecommend?.length"
+        v-show="dataRecommend?.length"
         :class="{ expand: viewMore }"
       >
         <MovieCardSuggest

@@ -8,7 +8,7 @@
           thanh toán.
         </p>
 
-        <div>
+        <div class="encouragement">
           <p>An toàn để an tâm.</p>
           <p>Hủy trực tuyến dễ dàng.</p>
         </div>
@@ -127,7 +127,7 @@ import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
 import type { plan } from '@/types';
 
 definePageMeta({
-  // layout: 'service',
+  layout: 'service',
   middleware: [
     (to, from) => {
       if (!to.query.planorder) return navigateTo('/upgrade/plans');
