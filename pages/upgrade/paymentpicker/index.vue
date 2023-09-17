@@ -151,6 +151,10 @@ definePageMeta({
   },
 });
 
+const store = useStore();
+const route = useRoute();
+const internalInstance: any = getCurrentInstance();
+
 useHead({
   title: 'Thanh toán - Phương thức thanh toán',
   htmlAttrs: { lang: 'vi' },
@@ -165,10 +169,6 @@ useServerSeoMeta({
   ogDescription: 'Thanh toán gói dịch vụ',
   ogLocale: 'vi',
 });
-
-const store = useStore();
-const route = useRoute();
-const internalInstance: any = getCurrentInstance();
 
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();

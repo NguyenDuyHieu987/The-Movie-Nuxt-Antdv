@@ -29,7 +29,7 @@
                 nhất 6 ký tự.
               </p>
             </div>
-            <Form
+            <a-form
               :model="formChangePassword"
               :rules="rules"
               name="change-password-form"
@@ -37,7 +37,7 @@
               @finish="handleSubmit"
               hideRequiredMark
             >
-              <FormItem
+              <a-form-item
                 label="Mật khẩu cũ"
                 name="oldPassword"
                 :rules="[
@@ -54,35 +54,43 @@
                 ]"
                 has-feedback
               >
-                <InputPassword
+                <a-input-password
                   v-model:value="formChangePassword.oldPassword"
                   placeholder="Mật khẩu cũ..."
                   allow-clear
                 />
-              </FormItem>
+              </a-form-item>
 
-              <FormItem label="Mật khẩu mới" name="newPassword" has-feedback>
-                <InputPassword
+              <a-form-item label="Mật khẩu mới" name="newPassword" has-feedback>
+                <a-input-password
                   v-model:value="formChangePassword.newPassword"
                   placeholder="Mật khẩu mới..."
                   allow-clear
                 >
-                </InputPassword>
-              </FormItem>
+                </a-input-password>
+              </a-form-item>
 
-              <FormItem
+              <a-form-item
                 label="Xác nhận lại"
                 name="confirmNewPassword"
                 has-feedback
               >
-                <InputPassword
+                <a-input-password
                   v-model:value="formChangePassword.confirmNewPassword"
                   placeholder="Xác nhận lại mật khẩu..."
                   allow-clear
                 />
-              </FormItem>
+              </a-form-item>
 
-              <FormItem>
+              <a-form-item class="logout-all-device">
+                <a-checkbox
+                  v-model:checked="formChangePassword.logOutAllDevice"
+                >
+                  Đăng xuất khỏi tất cả các thiết bị
+                </a-checkbox>
+              </a-form-item>
+
+              <a-form-item>
                 <a-button
                   class="submit-form-button submit-btn click-active"
                   type="primary"
@@ -92,8 +100,8 @@
                 >
                   Đổi mật khẩu
                 </a-button>
-              </FormItem>
-            </Form>
+              </a-form-item>
+            </a-form>
           </div>
 
           <VerifyPinOTPForm
@@ -126,20 +134,46 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { Form, FormItem, InputPassword } from 'ant-design-vue';
+// import { Form, FormItem, InputPassword } from 'ant-design-vue';
 import type { Rule } from 'ant-design-vue/es/form';
 import { ElNotification } from 'element-plus';
 import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm/VerifyPinOTPForm.vue';
 import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
-import { accountVerify, ChangePassword } from '~/services/account';
+import { AccountConfirm, ChangePassword } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
 definePageMeta({
+  layout: 'service',
   pageTransition: {
     name: 'slide-left',
   },
 });
+
+const store: any = useStore();
+const utils = useUtils();
+const { isLogin } = storeToRefs<any>(store);
+const loadingChangePassword = ref<boolean>(false);
+const formChangePassword = reactive<{
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+  logOutAllDevice: boolean;
+}>({
+  oldPassword: '',
+  newPassword: '',
+  confirmNewPassword: '',
+  logOutAllDevice: false,
+});
+const showAnimation = ref<boolean>(false);
+const loadingVerify = ref<boolean>(false);
+const isChangePassword = ref<boolean>(false);
+const jwtVerifyEmail = ref<string>('');
+const disabled_countdown = ref<boolean>(true);
+const loadingResend = ref<boolean>(false);
+const otpExpOffset = ref<number>(0);
+const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Email: ');
+const internalInstance: any = getCurrentInstance();
 
 useHead({
   title: 'Đỏi mật khẩu',
@@ -154,48 +188,6 @@ useServerSeoMeta({
   // ogUrl: window.location.href,
   ogDescription: 'Đỏi mật khẩu của bạn',
   ogLocale: 'vi',
-});
-
-const store: any = useStore();
-const utils = useUtils();
-const { isLogin } = storeToRefs<any>(store);
-const loadingChangePassword = ref<boolean>(false);
-const formChangePassword = reactive<{
-  oldPassword: string;
-  newPassword: string;
-  confirmNewPassword: string;
-}>({
-  oldPassword: '',
-  newPassword: '',
-  confirmNewPassword: '',
-});
-const showAnimation = ref<boolean>(false);
-const loadingVerify = ref<boolean>(false);
-const isChangePassword = ref<boolean>(false);
-const jwtVerifyEmail = ref<string>('');
-const disabled_countdown = ref<boolean>(true);
-const loadingResend = ref<boolean>(false);
-const otpExpOffset = ref<number>(0);
-const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Email: ');
-const internalInstance: any = getCurrentInstance();
-
-useHead({
-  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
-  htmlAttrs: { lang: 'vi' },
-});
-
-useServerSeoMeta({
-  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
-  description: 'Hóa đơn của bạn. Lịch sử giao dịch',
-  ogTitle: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
-  ogType: 'video.movie',
-  // ogUrl: window.location.href,
-  ogDescription: 'Hóa đơn của bạn. Lịch sử giao dịch',
-  ogLocale: 'vi',
-});
-
-definePageMeta({
-  layout: 'service',
 });
 
 onBeforeMount(() => {
@@ -286,10 +278,11 @@ const handleSubmit = () => {
   loadingChangePassword.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  accountVerify(
+  AccountConfirm(
     {
       oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
       newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),
+      logOutAllDevice: formChangePassword.logOutAllDevice,
     },
     'change-password'
   )
@@ -377,6 +370,16 @@ const handleVerify = (formVerify: any) => {
             }),
         });
 
+        if (response?.logout_all_device) {
+          console.log(response.headers.get('Authorization'));
+
+          utils.localStorage.setWithExpiry(
+            'user_token',
+            response.headers.get('Authorization'),
+            30
+          );
+        }
+
         navigateTo({ path: '/YourAccount' });
         reset();
       } else if (response?.isInvalidOTP == true) {
@@ -427,10 +430,11 @@ const handleVerify = (formVerify: any) => {
 const handleResendVerifyEmail = () => {
   loadingResend.value = true;
 
-  accountVerify(
+  AccountConfirm(
     {
       oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
       newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),
+      logOutAllDevice: formChangePassword.logOutAllDevice,
     },
     'change-password'
   )

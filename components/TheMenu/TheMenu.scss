@@ -77,9 +77,12 @@
       .el-menu-item {
         padding-left: 35px;
 
-        &:first-child,
+        &:first-child {
+          margin-top: 0px;
+        }
+
         &:last-child {
-          margin: 0px;
+          margin-bottom: 0px;
         }
 
         &.is-active {

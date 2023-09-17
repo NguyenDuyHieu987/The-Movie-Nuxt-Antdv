@@ -10,15 +10,17 @@
     display: flex;
     text-align: center;
     min-width: 0;
-    height: 50px;
+    height: 60px;
     padding: 35px 0px;
     font-size: 4.5rem;
     outline: none;
-    background-color: #202020 !important;
+    background-color: #575757 !important;
     border: 1px solid transparent;
     border-bottom-color: #fff;
+    color: var(--text-color) !important;
     transition: all 0.15s;
     font-weight: 500;
+    box-shadow: var(--box-shadow-small1);
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -33,7 +35,7 @@
     &:focus {
       border: 1px solid var(--app-background-color);
       transform: translateY(-2px);
-      box-shadow: 0 0 10px var(--app-background-color);
+      box-shadow: 0 1px 10px var(--app-background-color);
     }
   }
 }

@@ -101,7 +101,7 @@
             @onClickBack="handleClickBack"
           >
             <template #title>
-              <h1>Xác nhận thay đổi Email của bạn</h1>
+              <h1>Xác nhận Email của bạn</h1>
 
               <p>
                 {{ titleVerify }}
@@ -121,24 +121,9 @@ import axios from 'axios';
 import { ElNotification } from 'element-plus';
 import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm/VerifyPinOTPForm.vue';
 import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
-import { accountVerify, ChangeEmail } from '~/services/account';
+import { AccountConfirm, VerifyEmail } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
-
-useHead({
-  title: 'Đỏi Email',
-  htmlAttrs: { lang: 'vi' },
-});
-
-useServerSeoMeta({
-  title: 'Đỏi Email',
-  description: 'Đỏi Email của bạn',
-  ogTitle: 'Đỏi Email',
-  ogType: 'video.movie',
-  // ogUrl: window.location.href,
-  ogDescription: 'Đỏi Email của bạn',
-  ogLocale: 'vi',
-});
 
 definePageMeta({
   layout: 'service',
@@ -167,17 +152,17 @@ const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Emai
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
+  title: 'Đỏi Email',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
-  description: 'Hóa đơn của bạn. Lịch sử giao dịch',
-  ogTitle: 'Lịch sử giao dịch - Hóa đơn - Thanh toán | Phimhay247',
+  title: 'Đỏi Email',
+  description: 'Đỏi Email của bạn',
+  ogTitle: 'Đỏi Email',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Hóa đơn của bạn. Lịch sử giao dịch',
+  ogDescription: 'Đỏi Email của bạn',
   ogLocale: 'vi',
 });
 
@@ -206,7 +191,7 @@ const handleSubmit = () => {
   loadingChangeEmail.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  accountVerify({}, 'change-email')
+  AccountConfirm({ email: store.userAccount?.email }, 'email')
     .then((response: any) => {
       // console.log(response);
 
@@ -276,7 +261,7 @@ const handleSubmit = () => {
 const handleVerify = (formVerify: any) => {
   loadingVerify.value = true;
 
-  ChangeEmail({
+  VerifyEmail({
     otp: formVerify.otp,
     jwtVerifyEmail: jwtVerifyEmail.value,
   })
@@ -285,7 +270,7 @@ const handleVerify = (formVerify: any) => {
       if (response?.success == true) {
         ElNotification.success({
           title: 'Thành công!',
-          message: 'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
+          message: 'Thay đổi email thành công.',
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -341,7 +326,7 @@ const handleVerify = (formVerify: any) => {
 const handleResendVerifyEmail = () => {
   loadingResend.value = true;
 
-  accountVerify({}, 'change-email')
+  AccountConfirm({ email: store.userAccount?.email }, 'email')
     .then((response: any) => {
       // console.log(response);
 

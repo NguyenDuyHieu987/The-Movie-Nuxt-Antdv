@@ -7,7 +7,7 @@ export function makeRequestVideo(url: string, options: any = {}) {
   const api = axios.create({
     baseURL: nuxtConfig.app.production_mode
       ? nuxtConfig.app.serverVideoUrl
-      : 'http://127.0.0.1:5002',
+      : 'http://localhost:5002',
     // withCredentials: true,
     headers: { Accept: 'video/mp4;charset=UTF-8' },
     responseType: 'blob',

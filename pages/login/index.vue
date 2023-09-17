@@ -219,11 +219,13 @@ const formLogin = reactive<any>({
 });
 const tokenClient = ref<any>({});
 const urlBack = computed(() =>
-  ['/signup', '/oauth', '/forgotpassword'].includes(
-    router.options.history.state.back.toLowerCase()
-  )
-    ? '/'
-    : router.options.history.state.back
+  router.options.history.state?.back
+    ? ['/signup', '/oauth', '/forgotpassword'].includes(
+        router.options.history.state?.back.toLowerCase()
+      )
+      ? '/'
+      : router.options.history.state.back
+    : '/'
 );
 
 const reset = () => {
@@ -311,7 +313,6 @@ const handleLogin = () => {
       }
     })
     .catch((e) => {
-      console.log(e);
       ElNotification.error({
         title: 'Failed!',
         message: 'Some thing went wrong.',
@@ -374,6 +375,7 @@ const handleClickFacebookLogin = async () => {
       }
     })
     .catch((e) => {
+      console.log(e);
       ElNotification.error({
         title: 'Thất bại!',
         message: 'Some thing went wrong.',

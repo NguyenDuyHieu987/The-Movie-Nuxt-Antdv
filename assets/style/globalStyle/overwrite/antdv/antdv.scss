@@ -449,11 +449,18 @@
 
 .ant-form {
   font-size: inherit;
+  color: inherit;
+
+  label {
+    font-size: inherit;
+    color: inherit;
+  }
 
   .ant-row.ant-form-item {
     display: flex;
     flex-direction: column;
     font-size: inherit;
+    color: inherit;
 
     .ant-form-item-label {
       text-align: left;
@@ -532,5 +539,13 @@
         background-color: transparent;
       }
     }
+  }
+}
+
+.ant-checkbox-wrapper {
+  color: inherit;
+
+  span {
+    user-select: none;
   }
 }

@@ -69,6 +69,7 @@
         color: inherit;
         font-style: oblique;
         transition: all 0.3s;
+        color: var(--text-color);
 
         &:active {
           opacity: 0.8;

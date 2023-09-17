@@ -48,6 +48,11 @@ definePageMeta({
   // },
 });
 
+const store = useStore();
+const selectedPlan = ref<plan>();
+const internalInstance: any = getCurrentInstance();
+const showAnimation = ref<boolean>(false);
+
 useHead({
   title: 'Nâng cấp tài khoản',
   htmlAttrs: { lang: 'vi' },
@@ -62,11 +67,6 @@ useServerSeoMeta({
   ogDescription: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
   ogLocale: 'vi',
 });
-
-const store = useStore();
-const selectedPlan = ref<plan>();
-const internalInstance: any = getCurrentInstance();
-const showAnimation = ref<boolean>(false);
 
 onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();

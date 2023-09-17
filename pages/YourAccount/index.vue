@@ -115,8 +115,12 @@
       </section>
 
       <div id="bottom-zone" class="bottom-zone">
-        <a-button class="logout-btn click-active" type="text">
-          <span @click="handleLogout">Đăng xuất</span>
+        <a-button
+          class="logout-btn click-active"
+          type="text"
+          @click="handleLogout"
+        >
+          <span>Đăng xuất</span>
         </a-button>
       </div>
       <!-- </div>
@@ -139,21 +143,6 @@ definePageMeta({
   },
 });
 
-useHead({
-  title: 'Tài khoản',
-  htmlAttrs: { lang: 'vi' },
-});
-
-useServerSeoMeta({
-  title: 'Tài khoản',
-  description: 'Tài khoản của bạn',
-  ogTitle: 'Tài khoản',
-  ogType: 'video.movie',
-  // ogUrl: window.location.href,
-  ogDescription: 'Tài khoản của bạn',
-  ogLocale: 'vi',
-});
-
 const store = useStore();
 const utils = useUtils();
 const { isLogin, userAccount } = storeToRefs<any>(store);
@@ -170,17 +159,17 @@ const joinSince = computed<string>(() =>
 );
 
 useHead({
-  title: 'Profile - Hồ sơ | Phimhay247',
+  title: 'Tài khoản',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Profile - Hồ sơ | Phimhay247',
-  description: 'Hồ sơ, thông tin cá nhân',
-  ogTitle: 'Profile - Hồ sơ | Phimhay247',
+  title: 'Tài khoản',
+  description: 'Tài khoản của bạn',
+  ogTitle: 'Tài khoản',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Hồ sơ, thông tin cá nhân',
+  ogDescription: 'Tài khoản của bạn',
   ogLocale: 'vi',
 });
 

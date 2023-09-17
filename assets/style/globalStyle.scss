@@ -420,7 +420,6 @@ svg {
   }
 }
 
-.ant-btn,
 .ant-btn {
   display: flex;
   align-items: center;
@@ -431,6 +430,10 @@ svg {
   box-shadow: none;
   // line-height: var(--line-height-regular);
   line-height: normal;
+
+  &::before {
+    background: transparent;
+  }
 
   &.submit-btn {
     color: var(--text-color);
@@ -475,7 +478,7 @@ svg {
   }
 
   &[disabled] {
-    color: var(--text-button-disabled-color);
+    color: var(--text-button-disabled-color) !important;
 
     &:hover {
       color: var(--text-button-disabled-color);
