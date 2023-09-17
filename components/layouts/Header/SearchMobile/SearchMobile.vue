@@ -30,6 +30,7 @@
       </h3>
 
       <a-input-search
+        v-model:value="valueInput"
         class="search-popover"
         placeholder="Nhập tên phim để tìm kiếm..."
         size="large"
@@ -37,7 +38,7 @@
         bordered
         :loading="loadingSearch"
         @search="handleSearch"
-        @change="handleChangeInput(valueInput)"
+        @change="handleChangeInput(valueInput!)"
       >
         <template #enterButton>
           <svg
@@ -58,6 +59,22 @@
   </el-popover>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const emits = defineEmits<{
+  change: [value: string];
+  search: [value: string];
+}>();
+
+const valueInput = defineModel<string>('valueInput');
+const loadingSearch = defineModel<boolean>('loadingSearch');
+
+const handleChangeInput = (value: string) => {
+  emits('change', value);
+};
+
+const handleSearch = (value: string) => {
+  emits('search', value);
+};
+</script>
 
 <style lang="scss" src="./SearchMobile.scss"></style>

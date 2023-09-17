@@ -6,7 +6,7 @@ export function setWithExpiry(key: string, value: any, ttl: number) {
 
   const item = {
     value: value,
-    expiry: now.getTime() + Math.round(ttl * 60 * 60 * 24) * 1000,
+    expiry: now.getTime() + Math.round(ttl * 3600) * 1000,
     // expiry: now.getDate() + ttl,
   };
 

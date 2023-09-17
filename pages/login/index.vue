@@ -280,7 +280,7 @@ const handleLogin = () => {
         utils.localStorage.setWithExpiry(
           'user_token',
           response.headers.get('Authorization'),
-          30
+          24
         );
 
         // navigateTo({ path: '/' });
@@ -359,7 +359,7 @@ const handleClickFacebookLogin = async () => {
         utils.localStorage.setWithExpiry(
           'user_token',
           response.headers.get('Authorization'),
-          30
+          24
         );
         // navigateTo({ path: '/' });
         navigateTo({ path: urlBack.value });
@@ -368,7 +368,7 @@ const handleClickFacebookLogin = async () => {
         utils.localStorage.setWithExpiry(
           'user_token',
           response.headers.get('Authorization'),
-          30
+          24
         );
         // navigateTo({ path: '/' });
         navigateTo({ path: urlBack.value });
@@ -481,7 +481,7 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           utils.localStorage.setWithExpiry(
             'user_token',
             response.headers.get('Authorization'),
-            30
+            24
           );
           // navigateTo({ path: '/' });
           navigateTo({ path: urlBack.value });
@@ -490,7 +490,7 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           utils.localStorage.setWithExpiry(
             'user_token',
             response.headers.get('Authorization'),
-            30
+            24
           );
           // navigateTo({ path: '/' });
           navigateTo({ path: urlBack.value });

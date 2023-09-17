@@ -69,7 +69,7 @@ const randomRecommend = ref<number>(Math.floor(Math.random() * 50) + 1);
 const viewMore = ref<boolean>(false);
 
 const getData = async () => {
-  useAsyncData(`similar/${props?.type}/${props?.movieId}/1`, () =>
+  await useAsyncData(`similar/${props?.type}/${props?.movieId}/1`, () =>
     getSimilar(props?.type, props?.movieId, 1, 12)
   )
     .then((response: any) => {
@@ -79,7 +79,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  useAsyncData(`trending/all/${randomRecommend.value}`, () =>
+  await useAsyncData(`trending/all/${randomRecommend.value}`, () =>
     getTrending(randomRecommend.value, 12)
   )
     .then((response: any) => {

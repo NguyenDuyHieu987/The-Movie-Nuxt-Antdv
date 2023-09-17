@@ -177,7 +177,10 @@ onBeforeMount(() => {
 const handleSubmit = () => {
   if (loadingChangeEmail.value) return;
 
-  if (otpExpOffset.value > 0) {
+  if (
+    otpExpOffset.value > 0 ||
+    utils.cookie.getCookie('verify_your_email') != null
+  ) {
     showAnimation.value = false;
 
     setTimeout(() => {

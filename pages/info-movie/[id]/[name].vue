@@ -449,10 +449,7 @@ const getData = async () => {
   }
 };
 
-// onBeforeMount(() => {
-// console.log(router.options.history.state);
-// });
-
+// onBeforeMount();
 getData();
 
 // onBeforeUnmount(() => {

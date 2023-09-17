@@ -108,7 +108,7 @@ const { data: rankings } = await useAsyncData(
 );
 
 watch(pageTrending, async () => {
-  await await useAsyncData(`trending/all/${pageTrending.value}`, () =>
+  await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )
     .then((movieRespone: any) => {

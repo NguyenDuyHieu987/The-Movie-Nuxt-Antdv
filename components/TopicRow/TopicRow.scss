@@ -71,8 +71,7 @@
           justify-content: center;
           transition: all 0.2s;
           opacity: 0;
-          color: inherit;
-
+          color: var(--text-color);
           gap: 10px;
           font-size: 1.4rem;
 
@@ -222,37 +221,10 @@
           }
 
           .ant-input {
-            font-size: 1.5rem;
             background: transparent;
             padding-left: 7px;
-          }
-        }
-
-        .ant-input-group-wrapper.search-row {
-          .ant-input-affix-wrapper {
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid #104480;
-            padding-left: 27px;
-
-            .ant-input {
-              font-size: 1.5rem;
-              background: transparent;
-              padding-left: 7px;
-            }
-          }
-
-          .ant-input-group-addon {
-            background: transparent;
-            position: absolute;
-            left: 2px;
-            top: 0;
-
-            .ant-input-search-button {
-              padding: 0px;
-              background: transparent;
-              border: none;
-            }
+            font-size: 1.5rem;
+            color: inherit;
           }
         }
       }

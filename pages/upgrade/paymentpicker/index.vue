@@ -62,7 +62,7 @@
           </div>
         </div>
 
-        <div class="payment-method atm">
+        <div class="payment-method atm" @click="handleClickVNPayMethod">
           <div class="left">
             <nuxt-img
               :src="getImage('vnpay.png', 'payment', 'w-40')"
@@ -122,7 +122,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getImage } from '~/services/image';
-import { getAllPlan } from '~/services/plans';
+import { getAllPlan, registerPlan } from '~/services/plans';
 import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
 import type { plan } from '@/types';
 
@@ -142,6 +142,7 @@ definePageMeta({
             navigateTo('/upgrade/plans');
         })
         .catch((e) => {
+          navigateTo('/upgrade/plans');
           if (axios.isCancel(e)) return;
         });
     },
@@ -154,6 +155,33 @@ definePageMeta({
 const store = useStore();
 const route = useRoute();
 const internalInstance: any = getCurrentInstance();
+const planSelected = ref<plan>();
+
+watch(
+  route.query,
+  () => {
+    if (!route.query.planorder) return navigateTo('/upgrade/plans');
+
+    getAllPlan()
+      .then((response: any) => {
+        if (
+          !response.results?.some(
+            (item: plan) => item.order == Number(route.query.planorder)
+          )
+        )
+          navigateTo('/upgrade/plans');
+
+        planSelected.value = response.results?.find(
+          (item: plan) => item.order == Number(route.query.planorder)
+        );
+      })
+      .catch((e) => {
+        navigateTo('/upgrade/plans');
+        if (axios.isCancel(e)) return;
+      });
+  },
+  { immediate: true, deep: true }
+);
 
 useHead({
   title: 'Thanh toán - Phương thức thanh toán',
@@ -177,30 +205,10 @@ onBeforeMount(() => {
 
 const handleClickMoMoMethod = () => {};
 
-const handleClickZaloPayMethod = () => {
-  // axios
-  //   .post('https://sb-openapi.zalopay.vn/v2/create', {
-  //     amount: 50000,
-  //     app_id: 2554,
-  //     app_time: Date.now(),
-  //     app_trans_id: 230726_07261000392,
-  //     app_user: 'demo',
-  //     bank_code: '',
-  //     description: 'Thanh toán đơn hàng',
-  //     embed_data: { promotioninfo: '', merchantinfo: 'embeddata123' },
-  //     item: [
-  //       {
-  //         itemid: 'knb',
-  //         itemname: 'kim nguyen bao',
-  //         itemprice: 198400,
-  //         itemquantity: 1,
-  //       },
-  //     ],
-  //     key1: 'sdngKKJmqEMzvh5QQcdD2A9XBSKUNaYn',
-  //   })
-  //   .then((response: any) => {
-  //     console.log(response);
-  //   });
+const handleClickZaloPayMethod = () => {};
+
+const handleClickVNPayMethod = () => {
+  registerPlan(planSelected.value!.id);
 };
 </script>
 

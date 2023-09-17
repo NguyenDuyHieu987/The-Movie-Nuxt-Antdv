@@ -98,7 +98,12 @@
     <div class="right-header">
       <ul class="menu-header">
         <li class="menu-item search-mobile">
-          <SearchMobile />
+          <SearchMobile
+            v-model:valueInput="valueInput"
+            v-model:loading="loadingSearch"
+            @change="handleChangeInput(valueInput)"
+            @search="handleSearch"
+          />
         </li>
 
         <li

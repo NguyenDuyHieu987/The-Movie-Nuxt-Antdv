@@ -74,7 +74,7 @@ const siderRank = ref();
 const rankSideContent = ref();
 const activeTab = ref<string>('day');
 const loading = ref<boolean>(false);
-// const rankData = ref<any[]>([]);
+const rankData = ref<any[]>([]);
 const allTabs = ref<tab[]>([
   {
     key: 'day',
@@ -107,19 +107,19 @@ const getData = async (activeKey: string) => {
 
   switch (activeKey) {
     case 'day':
-      // await useAsyncData(`ranking/all/1`, () => getRanking(1, 10))
-      //   .then((movieRespone: any) => {
-      //     rankData.value = movieRespone.data.value?.results;
-      //   })
-      //   .catch((e) => {
-      //     if (axios.isCancel(e)) return;
-      //   })
-      //   .finally(() => {
-      //     loading.value = false;
-      //     internalInstance.appContext.config.globalProperties.$Progress.finish();
-      //   });
+      await useAsyncData(`ranking/all/1`, () => getRanking(1, 10))
+        .then((movieRespone: any) => {
+          rankData.value = movieRespone.data.value?.results;
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
+          internalInstance.appContext.config.globalProperties.$Progress.finish();
+        });
 
-      refreshNuxtData('ranking/all/1');
+      // refreshNuxtData('ranking/all/1');
       loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
       break;
@@ -168,29 +168,31 @@ const getData = async (activeKey: string) => {
   }
 };
 
-// onBeforeMount(async () => {
-//   await nextTick();
-//   useAsyncData(`ranking/all/1`, () => getRanking(1))
-//     .then((movieRespone: any) => {
-//       rankData.value = movieRespone.data.value?.results;
-//     })
-//     .catch((e) => {
-//       if (axios.isCancel(e)) return;
-//     })
-//     .finally(() => {
-//       loading.value = false;
-//     });
-// });
+onBeforeMount(async () => {
+  await nextTick();
+  // loading.value = true;
 
-const { data: rankData, pending } = useAsyncData(
-  'ranking/all/1',
-  () => getRanking(1, 10),
-  {
-    transform: (data: any) => {
-      return data.results;
-    },
-  }
-);
+  useAsyncData(`ranking/all/1`, () => getRanking(1))
+    .then((movieRespone: any) => {
+      rankData.value = movieRespone.data.value?.results;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
+});
+
+// const { data: rankData, pending } = useAsyncData(
+//   'ranking/all/1',
+//   () => getRanking(1, 10),
+//   {
+//     transform: (data: any) => {
+//       return data.results;
+//     },
+//   }
+// );
 
 onMounted(() => {
   // window.addEventListener('scroll', () => {

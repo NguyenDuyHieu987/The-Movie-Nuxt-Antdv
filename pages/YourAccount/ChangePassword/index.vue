@@ -1,9 +1,9 @@
 <template>
   <div class="service-page change-page password center-page padding-content">
-    <div v-if="isLogin" class="password-container">
+    <div v-if="isLogin" class="changePass-container">
       <Transition appear name="slide-left">
         <div v-show="showAnimation">
-          <div v-if="!isChangePassword">
+          <div v-if="!isChangePassword" class="changePass-wrapper">
             <a-button class="back-page-btn click-active" type="text">
               <template #icon>
                 <svg
@@ -264,7 +264,10 @@ const reset = () => {
 };
 
 const handleSubmit = () => {
-  if (otpExpOffset.value > 0) {
+  if (
+    otpExpOffset.value > 0 ||
+    utils.cookie.getCookie('verify_change_password_token') != null
+  ) {
     showAnimation.value = false;
 
     setTimeout(() => {

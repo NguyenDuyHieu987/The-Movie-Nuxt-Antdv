@@ -312,16 +312,16 @@ export default defineNuxtConfig({
   plugins: [
     // '@/plugins/elementPlus',
     // '@/plugins/antd',
-    // '@/plugins/fontawesome',
     '@/plugins/iconify',
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/vuelazyload',
     '@/plugins/googleTagManager',
+    '@/plugins/loadUser',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
-    preset: 'static',
+    // preset: 'static',
     prerender: {
       routes: [],
       crawlLinks: true,

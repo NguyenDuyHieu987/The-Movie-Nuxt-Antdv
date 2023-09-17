@@ -20,6 +20,14 @@ export default defineNuxtPlugin((nuxtApp) => {
 
           if (accountResponse?.isLogin == true) {
             store.userAccount = accountResponse?.result;
+
+            if (utils.localStorage.getWithExpiry('user_token') == null) {
+              utils.localStorage.setWithExpiry(
+                'user_token',
+                utils.cookie.getCookie('user_token'),
+                24
+              );
+            }
           } else {
             window.localStorage.removeItem('user_token');
           }

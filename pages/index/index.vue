@@ -335,13 +335,7 @@ const responsiveVertical = computed<any>((): any => ({
 const getData = async () => {
   await nextTick();
 
-  // await useAsyncData(`trending/all/1`, () => getTrending(1), {
-  //   lazy: true,
-  //   immediate: false,
-  //   default: () => {
-  //     return trendingsCache.value;
-  //   },
-  // })
+  // await useAsyncData(`trending/all/1`, () => getTrending(1))
   //   .then((response: any) => {
   //     trendings.value = response.data.value?.results;
   //   })
