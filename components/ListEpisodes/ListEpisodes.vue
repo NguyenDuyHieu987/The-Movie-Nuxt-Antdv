@@ -63,7 +63,7 @@
           <el-skeleton-item
             class="episode-item"
             variant="button"
-            v-for="(item, index) in dataEpisode?.slice(0, dataEpisode.length)"
+            v-for="(item, index) in dataEpisode"
             :index="index"
             :key="index"
           />
@@ -72,10 +72,11 @@
         <template #default>
           <ul class="list-container">
             <li
-              v-for="(item, index) in dataEpisode"
+              v-for="(item, index) in dataEpisode.reverse()"
               :index="index"
               :key="item.id"
               :class="{ active: currentEpisode == item?.episode_number }"
+              :id="`episode-${item?.episode_number}`"
             >
               <a
                 :href="`/play-tv/${dataMovie?.id}/${dataMovie?.name
@@ -174,6 +175,13 @@ onBeforeMount(async () => {
   //       loading.value = false;
   //     }, 500);
   //   });
+});
+
+onMounted(() => {
+  const episode = document.getElementById(
+    `episode-${currentEpisode.value}`
+  ) as HTMLElement;
+  episode.scrollIntoView();
 });
 
 const handleChangeSeason = async (value: string) => {

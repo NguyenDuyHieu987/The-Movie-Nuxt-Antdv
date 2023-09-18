@@ -46,6 +46,9 @@
     }
 
     ul.list-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 7px;
       width: 100%;
       list-style-type: none;
       max-height: 275px;
@@ -53,21 +56,22 @@
 
       li {
         display: inline-block;
-        margin-top: 7px;
-        margin-right: 7px;
+        // margin-top: 7px;
+        // margin-right: 7px;
 
         a,
         span {
-          display: block;
+          display: inline-block;
           text-align: center;
           min-width: 70px;
           padding: 8px 23px;
+          background: linear-gradient(45deg, #101010, #2f2f2f);
           border-radius: 3px;
           color: inherit;
           user-select: none;
+          white-space: nowrap;
           cursor: pointer;
           transition: all 0.15s;
-          background: linear-gradient(45deg, #101010, #2f2f2f);
 
           &:visited {
             color: #00e5a4;
