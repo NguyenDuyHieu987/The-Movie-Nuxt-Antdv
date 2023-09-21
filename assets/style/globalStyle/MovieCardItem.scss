@@ -2,7 +2,7 @@
   display: block;
   position: relative;
   cursor: pointer;
-  color: inherit;
+  color: inherit !important;
   overflow: hidden;
 
   .el-skeleton__item .el-skeleton__text {

@@ -58,7 +58,7 @@
               />
             </svg>
 
-            Email: vaicut6941@gmail.com
+            Email: duyhieu631015@gmail.com
           </NuxtLink>
         </div>
       </div>
