@@ -1,0 +1,15 @@
+.home-container {
+  // min-height: calc(100vh - var(--header-height));
+  .gradient-title-default {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .view-all {
+    transition: all 0.25s;
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}

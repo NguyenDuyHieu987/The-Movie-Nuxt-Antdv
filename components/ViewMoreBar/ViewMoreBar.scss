@@ -1,0 +1,44 @@
+.viewmore-bar {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  height: 5em;
+  border-bottom: 1px solid var(--border-regular);
+  background-image: linear-gradient(
+    0deg,
+    var(--background-content-color) 0%,
+    rgba(10, 10, 10, 0) 100%
+  );
+  z-index: 2;
+
+  &.open {
+    background: none;
+  }
+
+  .viewmore-btn {
+    position: absolute;
+    top: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0px auto;
+    padding: 10px;
+    font-size: 1.7rem;
+    background-color: var(--background-content-color1);
+    border: 1px solid var(--border-regular-btn);
+    z-index: 1;
+    transition: all 0.15s;
+
+    i,
+    svg {
+      color: inherit;
+      font-size: 2rem;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

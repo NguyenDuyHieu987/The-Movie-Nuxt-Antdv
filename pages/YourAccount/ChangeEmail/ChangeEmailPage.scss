@@ -1,0 +1,134 @@
+.change-page.email {
+  .email-container {
+    padding-top: 20px;
+
+    .changeEmail-header {
+      margin-bottom: 20px;
+
+      h1 {
+        margin-bottom: 5px;
+      }
+
+      .note {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+
+        svg {
+          width: 8rem;
+          height: 8rem;
+          margin-top: 10px;
+          margin-bottom: 20px;
+          fill: #00a040;
+        }
+
+        p {
+          font-size: 1.8rem;
+          color: var(--text-color-gray1);
+          font-weight: 500;
+          max-width: 75%;
+          max-width: 500px;
+        }
+      }
+    }
+
+    .form-change-email {
+      max-width: 500px;
+      margin: 0px auto;
+
+      &.disabled {
+        .submit-form-button {
+          cursor: not-allowed;
+
+          &:active {
+            opacity: 1;
+          }
+        }
+      }
+
+      .ant-row.ant-form-item {
+        &.email {
+          user-select: none;
+
+          .ant-form-item-control-input-content {
+          }
+        }
+      }
+
+      .submit-form-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 18px;
+        padding-right: 10px;
+        font-size: 1.8rem;
+        border: 1px solid var(--border-regular);
+        width: 100%;
+        // background-color: #2e2e2e;
+        background-color: #e1e1e1;
+        color: var(--text-color-invert);
+        transition: all 0.15s;
+        border-radius: 2px;
+        box-shadow: var(--box-shadow-small1);
+        cursor: pointer;
+
+        .left {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          gap: 15px;
+
+          svg {
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+
+        .right {
+          display: flex;
+          align-items: center;
+
+          svg {
+            width: 2.4rem;
+            height: 2.4rem;
+          }
+        }
+      }
+    }
+
+    .verify-email-container {
+      .back-btn {
+      }
+
+      .verify-form {
+        padding: 0px;
+        padding-top: 50px;
+
+        .title-verify {
+          h1 {
+            margin-bottom: 5px;
+          }
+
+          strong {
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .change-page.email {
+    font-size: 1.5rem;
+
+    .email-container {
+      .changePass-header {
+        h1 {
+          font-size: 2.7rem;
+        }
+      }
+    }
+  }
+}

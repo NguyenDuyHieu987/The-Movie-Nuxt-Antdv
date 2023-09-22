@@ -1,0 +1,232 @@
+.body-content:has(.home-container) {
+  .body-wrapper {
+    max-width: 100%;
+  }
+
+  .main.main-content {
+    & > .container {
+      padding: 0px;
+    }
+  }
+
+  .carousel-group {
+    overflow: visible;
+  }
+
+  &.expand {
+    // margin-top: 0px;
+
+    .home-container {
+      .home-content {
+        // margin-top: -12%;
+        padding: 0px var(--padding-home-expand);
+      }
+    }
+  }
+}
+
+.home-container {
+  .home-content {
+    position: relative;
+    z-index: 1;
+    // margin-top: -12%;
+    clip-path: inset(-100vh 0 -100vh 0);
+    // background-color: var(--background-content-color);
+    padding: 0px var(--padding-home);
+    // padding-bottom: 70px;
+  }
+
+  .home-section {
+    position: relative;
+
+    &:hover {
+      .gradient-title-default {
+        .view-all {
+          transition: all 0.5s;
+          right: 0;
+        }
+      }
+    }
+
+    .gradient-title-default {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      font-size: 1.44vw;
+
+      &:hover {
+        .view-all {
+          transition: all 0.4s;
+          right: 0;
+        }
+      }
+
+      .view-all {
+        position: absolute;
+        right: -100%;
+        font-size: 0.6em;
+        color: inherit;
+        font-style: oblique;
+        transition: all 0.3s;
+        color: var(--text-color);
+
+        &:active {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    &.recommend {
+      .movie-group.vertical {
+        // clip-path: inset(-100vh 0 -100vh 0);
+        position: relative;
+        // max-height: 40em;
+        max-height: 330px;
+        overflow: hidden;
+        // transition: all 0.5s;
+
+        &.expand {
+          padding-bottom: 30px;
+          max-height: 100%;
+          overflow: visible;
+        }
+      }
+
+      .loadmore-btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        top: 100%;
+        transform: translateY(-50%);
+        background-color: var(--background-content-color);
+        box-shadow: 12px 0 15px -4px var(--background-content-color),
+          -12px 0 8px -4px var(--background-content-color);
+        display: flex;
+        align-items: center;
+        margin: 0px auto;
+        // margin-top: 25px;
+        border: none;
+        z-index: 2;
+        transition: all 0.15s;
+
+        &:active {
+          opacity: 0.8;
+        }
+
+        svg {
+          margin-right: 3px;
+          font-size: 2rem;
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
+
+  .owl-carousel {
+    .owl-stage-outer {
+      overflow: visible;
+      clip-path: none;
+    }
+  }
+
+  .carousel-group {
+    .owl-prev,
+    .swiper-button-prev {
+      left: calc(0px - var(--padding-home));
+    }
+
+    .owl-next,
+    .swiper-button-next {
+      right: calc(0px - var(--padding-home));
+    }
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .body-content:has(.home-container) {
+    .home-container {
+      .home-content {
+        padding: 0px 15px;
+        padding-bottom: 30px;
+
+        .home-section {
+          .gradient-title-default {
+            font-size: 2.5rem;
+          }
+        }
+
+        .carousel-group {
+          .owl-prev,
+          .owl-next,
+          .swiper-button-prev,
+          .swiper-button-next {
+            width: 30px;
+          }
+
+          .owl-prev,
+          .swiper-button-prev {
+            left: calc(-15px);
+          }
+
+          .owl-next,
+          .swiper-button-next {
+            right: calc(-15px);
+          }
+        }
+      }
+    }
+
+    &.expand {
+      .home-container {
+        .home-content {
+          padding: 0px 30px;
+          padding-bottom: 50px;
+
+          .carousel-group {
+            .owl-prev,
+            .swiper-button-prev {
+              left: calc(-30px);
+            }
+
+            .owl-next,
+            .swiper-button-next {
+              right: calc(-30px);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .body-content:has(.home-container),
+  .body-content.expand:has(.home-container) {
+    .home-container {
+      .home-content {
+        padding: 0px 15px;
+        padding-bottom: 30px;
+
+        .home-section {
+          .gradient-title-default {
+            font-size: 2.2rem;
+          }
+        }
+      }
+
+      .carousel-group {
+        .owl-prev,
+        .swiper-button-prev {
+          left: -15px;
+        }
+
+        .owl-next,
+        .swiper-button-next {
+          right: -15px;
+        }
+      }
+    }
+  }
+}

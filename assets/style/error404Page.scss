@@ -1,0 +1,17 @@
+.ant-result {
+  .ant-result-title {
+    color: var(--text-color);
+  }
+
+  .ant-result-subtitle {
+    font-size: 1.8rem;
+  }
+
+  .ant-result-extra {
+    .ant-btn {
+      margin: 0px auto;
+      border-radius: 3px;
+      color: var(--text-color);
+    }
+  }
+}

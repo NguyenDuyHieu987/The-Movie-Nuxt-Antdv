@@ -1,0 +1,103 @@
+.body-content.expand {
+  .header-home {
+    // top: var(--header-height);
+  }
+}
+
+.header-home {
+  position: fixed;
+  width: 100%;
+  height: var(--header-home-height);
+  padding: 4px 20px;
+  padding-top: 8px;
+  z-index: 2;
+  transition: background-color 0.2s ease;
+  transition-delay: 0.2s;
+
+  &.scrolled {
+    background: var(--header-background-scrolled);
+
+    .header-home-wrapper {
+      .el-dropdown-link.genre {
+        background-color: transparent;
+        transition: background-color 0.2s ease;
+        transition-delay: 0.2s;
+        border: 1px solid var(--border-regular);
+      }
+    }
+  }
+
+  .header-home-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .header-home-title {
+      user-select: none;
+    }
+
+    .el-dropdown-link.genre {
+      display: flex;
+      align-items: center;
+      background-color: var(--background-content-color);
+      padding: 6px 12px;
+      line-height: normal;
+      margin-left: 30px;
+      font-size: 1.4rem;
+      border-radius: 2px;
+      cursor: pointer;
+
+      svg {
+        margin-left: 20px;
+        color: inherit;
+        fill: var(--text-color);
+      }
+
+      &[aria-expanded='true'] {
+        background-color: transparent;
+        border: 1px solid var(--border-regular);
+      }
+    }
+  }
+}
+
+.el-popper.el-dropdown__popper.header-home-genre {
+  position: fixed !important;
+  top: calc(var(--header-home-height) + var(--header-height)) !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+
+  .el-dropdown-menu.dropdown-genre {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    // background-color: #131313b8 !important;
+    background-color: var(--header-background-scrolled) !important;
+    // padding: 0px;
+    border-radius: 0px;
+
+    .el-dropdown-menu__item {
+      padding: 9px 15px !important;
+      position: relative;
+
+      a {
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      span {
+        font-size: 1.4rem;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        background-color: #06060641 !important;
+      }
+    }
+  }
+}

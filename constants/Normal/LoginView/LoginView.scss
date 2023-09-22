@@ -1,0 +1,218 @@
+@media only screen and (max-width: 600px) {
+  .login-form-container {
+    width: 500px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .login-form {
+    padding: 30px 50px !important;
+  }
+  .login-form-container {
+    width: 450px !important;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .login-form {
+    padding: 20px 30px !important;
+  }
+  .login-form-container {
+    width: 400px !important;
+  }
+}
+
+.login-form-container {
+  position: relative;
+  margin: auto auto;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // padding: 40px 70px;
+  border-radius: 5px;
+  // box-shadow: 0 3px 6px -4px #00000077, 0 6px 16px 0 #00000054,
+  //   0 9px 28px 8px #0000002d;
+  box-shadow: 0 3px 6px -4px #000000ba, 0 6px 16px 0 #00000098,
+    0 9px 28px 8px #00000077;
+  // border: 0.5px solid #919191;
+  z-index: 1;
+  background-color: #0000002d;
+  overflow: hidden;
+  width: 550px;
+  min-height: 700px;
+
+  .login-form {
+    position: absolute;
+    inset: 3px;
+    // width: 420px;
+    z-index: 3;
+    display: block;
+    background-color: #000000;
+    padding: 40px 70px;
+    border-radius: 5px;
+    overflow-y: scroll;
+
+    .title-login {
+      text-align: center;
+      margin-bottom: 20px;
+
+      strong {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(
+          to right,
+          var(--sider-header-background-color6),
+          var(--sider-header-background-color1),
+          var(--sider-header-background-color3)
+        );
+      }
+    }
+
+    .play-now {
+      margin-top: 15px;
+      display: block;
+      color: #fff;
+      text-align: center;
+      padding: 8px 0px;
+      flex-grow: 1;
+      background-image: linear-gradient(
+        to right,
+        var(--sider-header-background-color6),
+        var(--sider-header-background-color1),
+        var(--sider-header-background-color3)
+      );
+      transition: all 0.5s;
+      background-size: 200% 100%;
+      border-radius: 3px;
+      font-size: 1.5rem;
+
+      &:hover {
+        background-size: 200% 100%;
+        background-position: 100% center;
+      }
+    }
+
+    .ant-row.ant-form-item {
+      display: flex;
+      flex-direction: column;
+
+      .ant-form-item-label {
+        text-align: left;
+
+        & > label {
+          color: #fff;
+        }
+      }
+
+      .anticon {
+      }
+
+      .ant-checkbox-wrapper {
+        color: #fff;
+      }
+
+      .ant-col.ant-form-item-control {
+        flex: 0 1 auto;
+
+        .ant-input-affix-wrapper {
+          background-color: transparent;
+          padding: 7px 11px;
+        }
+
+        input {
+          color: #fff;
+          background-color: transparent;
+        }
+      }
+    }
+
+    .login-form-forgot {
+      float: right;
+    }
+
+    .login-form-button {
+      width: 100%;
+      // color: #fff;
+    }
+
+    .social-login {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .facebook-login {
+        flex-grow: 1;
+
+        .fa-facebook-f {
+          color: #1890ff;
+        }
+
+        span {
+          width: 100%;
+        }
+      }
+
+      .google-login span {
+        font-size: 1.6rem;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      display: none !important;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 600px;
+    height: 600px;
+    background-image: linear-gradient(
+      to right,
+      var(--sider-header-background-color6),
+      var(--sider-header-background-color1),
+      var(--sider-header-background-color3)
+    );
+    z-index: 2;
+    animation: animate 6s linear infinite;
+    transform-origin: bottom right;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 600px;
+    height: 600px;
+    background-image: linear-gradient(
+      to right,
+      var(--sider-header-background-color6),
+      var(--sider-header-background-color1),
+      var(--sider-header-background-color3)
+    );
+    z-index: 1;
+    animation: animate 6s linear infinite;
+    transform-origin: bottom right;
+    animation-delay: -3s;
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,53 @@
+.follow {
+  .follow-container {
+    background-color: #000;
+
+    .gradient-title-default {
+      strong {
+        cursor: pointer;
+        background-color: red !important;
+      }
+
+      strong + strong {
+        margin-left: 20px;
+      }
+    }
+
+    .movie-group {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(180px, auto));
+      margin-top: 10px;
+      gap: 10px;
+    }
+
+    .ant-tabs-nav-list {
+      .ant-tabs-tab {
+        .ant-tabs-tab-btn {
+          font-weight: bold;
+          font-size: 20px;
+          color: #ffffffd9;
+
+          &:hover {
+            color: #409eff;
+          }
+        }
+      }
+
+      .ant-tabs-tab-active {
+        .ant-tabs-tab-btn {
+          color: transparent;
+          display: inline;
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+
+          background-image: linear-gradient(
+            to right,
+            var(--sider-header-background-color5),
+            var(--sider-header-background-color1),
+            var(--sider-header-background-color3)
+          );
+        }
+      }
+    }
+  }
+}

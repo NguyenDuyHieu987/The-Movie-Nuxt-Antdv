@@ -1,0 +1,259 @@
+.your-account {
+  max-width: 1024px;
+  font-size: 1.6rem;
+
+  .your-account-container {
+    padding-top: 20px;
+
+    .your-account-header {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border-regular);
+
+      h1 {
+        font-size: 3rem;
+        font-weight: normal;
+        white-space: nowrap;
+        cursor: default;
+      }
+
+      .join-since {
+        white-space: nowrap;
+        align-self: flex-end;
+        font-size: 1.4rem;
+        color: var(--text-color-gray1);
+      }
+    }
+
+    .delete-account-btn {
+      margin-top: auto;
+      padding: 5px 25px;
+      width: 70%;
+      max-width: 180px;
+      color: var(--btn-danger-color);
+      border: 1px solid var(--btn-danger-color);
+
+      &:hover {
+        color: var(--text-color);
+        background-color: var(--text-danger-color);
+      }
+    }
+
+    .switch-account-btn {
+      margin-top: auto;
+      padding: 8px 25px;
+      width: 70%;
+      font-size: 1.4rem;
+      max-width: 180px;
+      color: var(--link-text-color);
+      border: 1px solid var(--app-background-color);
+      border-radius: 20px;
+
+      &:hover {
+        color: var(--text-color);
+        background-color: var(--app-background-color);
+      }
+    }
+
+    .account-grid {
+      .account-grid-row {
+        display: flex;
+        padding: 15px 2px 15px 2px;
+        border-bottom: 1px solid var(--border-regular);
+
+        &.info-account {
+          .row-label {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+
+        .row-label {
+          width: 258px;
+          flex-shrink: 0;
+          font-size: 1.8rem;
+          color: var(--text-color-gray);
+          cursor: default;
+        }
+
+        .row-content {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex-grow: 1;
+
+          .row-content-item + .row-content-item {
+            margin-top: 8px;
+          }
+
+          .row-content-item {
+            display: flex;
+            justify-content: space-between;
+
+            &.password {
+              cursor: default;
+              color: var(--text-color-gray);
+            }
+
+            .left {
+              span.label {
+                display: inline-block;
+                width: 85px;
+                color: var(--text-color-gray);
+                cursor: default;
+              }
+            }
+
+            .right {
+              .upgrade-btn {
+                padding: 8px 15px;
+                background-image: linear-gradient(
+                  45deg,
+                  var(--app-background-color),
+                  #0988c8,
+                  #04d6f2
+                );
+                box-shadow: 0 1px 3px #000;
+                font-size: 1.4rem;
+                color: var(--text-color);
+              }
+
+              a {
+                color: var(--app-background-color);
+                transition: all 0.15s;
+
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .bottom-zone {
+      margin-top: 20px;
+
+      .ant-btn + .ant-btn {
+        margin-top: 10px;
+      }
+
+      .ant-btn {
+        display: block;
+        margin: 0px auto;
+
+        &.logout-btn {
+          padding: 8.5px 90px;
+          border-radius: 30px;
+          background-color: #d2d2d2;
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+
+          &:hover {
+            background-color: #e6e6e6;
+          }
+
+          &:active {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .your-account {
+    font-size: 1.5rem;
+
+    .your-account-container {
+      .your-account-header {
+        gap: 15px;
+
+        h1 {
+          font-size: 2.7rem;
+        }
+      }
+
+      .account-grid {
+        .account-grid-row {
+          .row-label {
+            width: 228px;
+          }
+
+          &.info-account {
+            .delete-account {
+              padding: 4px 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .your-account {
+    .your-account-container {
+      #danger-zone {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .delete-account-btn {
+        margin: 0px auto;
+      }
+
+      .account-grid {
+        .account-grid-row {
+          flex-direction: column;
+
+          &.info-account {
+            .row-label {
+            }
+          }
+
+          .row-label {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
+          }
+
+          .row-content {
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .your-account {
+    .your-account-container {
+      .your-account-header {
+        gap: 10px;
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .join-since {
+          margin-left: auto;
+        }
+      }
+
+      .account-grid {
+        .account-grid-row {
+          .row-label {
+            // width: 190px;
+          }
+        }
+      }
+    }
+  }
+}
