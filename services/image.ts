@@ -13,12 +13,14 @@ const URL_API_IMAGE = 'https://img.phimhay247.site';
 export function getImage(path: string, type: string, crop: string = '') {
   const nuxtConfig = useRuntimeConfig();
 
-  const URL_API_IMAGE1 = nuxtConfig.app.serverImageUrl;
+  const URL_API_IMAGE1 = nuxtConfig.app.production_mode
+    ? nuxtConfig.app.serverImageUrl
+    : 'http://localhost:5002/static/';
 
-  if (crop?.length == 0)
-    return path ? `${URL_API_IMAGE1}/images1/${type}/${path}` : ' ';
+  if (crop?.length == 0 || !nuxtConfig.app.production_mode)
+    return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
 
-  return path ? `${URL_API_IMAGE1}/images1/${type}/${path}/tr:${crop}` : ' ';
+  return path ? `${URL_API_IMAGE1}/images/${type}/${path}/tr:${crop}` : ' ';
 }
 
 export function getPoster(path: string, size = 'full') {
