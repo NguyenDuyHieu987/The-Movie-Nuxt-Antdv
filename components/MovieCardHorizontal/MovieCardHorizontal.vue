@@ -114,7 +114,7 @@
         imgWidth: imgWidth,
         rectBound: rectBound,
       }"
-      :interval="interval"
+      :timeOut="timeOut"
       :isEpisodes="isEpisodes"
       @setIsTeleportModal="(data : boolean) => (isTeleportPreviewModal = data)"
     />
@@ -153,7 +153,7 @@ const offsetHeight = ref<number>(0);
 const imgHeight = ref<number>(0);
 const imgWidth = ref<number>(0);
 const rectBound = ref<any>(0);
-const interval = ref<any>();
+const timeOut = ref<any>();
 
 const getData = async () => {
   loading.value = true;
@@ -238,13 +238,13 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
 
   rectBound.value = rect;
 
-  interval.value = setTimeout(() => {
+  timeOut.value = setTimeout(() => {
     isTeleportPreviewModal.value = true;
   }, 1000);
 
   target.addEventListener('pointerleave', () => {
     // isTeleportPreviewModal.value = false;
-    clearInterval(interval.value);
+    clearTimeout(timeOut.value);
   });
 };
 </script>

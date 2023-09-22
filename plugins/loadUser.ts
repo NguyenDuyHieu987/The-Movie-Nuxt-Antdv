@@ -6,8 +6,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     const store = useStore();
 
-    store.loadingUser = true;
-
     await store.loadUser();
   });
 });

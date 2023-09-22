@@ -48,6 +48,8 @@ export default defineStore('store', () => {
   const utils = useUtils();
 
   const loadUser = async () => {
+    loadingUser.value = true;
+
     if (
       utils.localStorage.getWithExpiry('user_token') != null ||
       utils.cookie.getCookie('user_token') != null
@@ -87,7 +89,7 @@ export default defineStore('store', () => {
           loadingUser.value = false;
         });
     } else {
-      loadingUser.value = false;
+      // loadingUser.value = false;
     }
   };
 

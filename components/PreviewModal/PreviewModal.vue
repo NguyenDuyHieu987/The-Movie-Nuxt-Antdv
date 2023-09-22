@@ -373,7 +373,7 @@ const props = defineProps<{
     imgWidth: number;
     rectBound: any;
   };
-  interval: any;
+  timeOut: any;
   isEpisodes: boolean;
 }>();
 
