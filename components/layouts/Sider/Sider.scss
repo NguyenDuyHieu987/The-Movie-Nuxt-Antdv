@@ -37,7 +37,7 @@
   }
 
   &.ant-layout-sider-has-trigger {
-    padding-bottom: calc(var(--header-height) - 5px);
+    padding-bottom: calc(var(--header-height) - 18px);
   }
 
   &:hover {
@@ -134,7 +134,7 @@
     position: sticky;
     bottom: 0;
     width: 100%;
-    height: calc(var(--header-height) - 5px);
+    height: calc(var(--header-height) - 18px);
     display: flex;
     flex: 0 0 auto;
     align-items: center;

@@ -359,6 +359,7 @@ import { getImage } from '~/services/image';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
+import gsap from 'gsap';
 
 const props = defineProps<{
   isTeleportPreviewModal: boolean;
@@ -465,12 +466,31 @@ watch(previewModal, () => {
     previewModal.value?.addEventListener('mouseenter', () => {
       isTeleport.value = true;
 
-      previewModal.value.addEventListener('mouseleave', () => {
+      previewModal.value.addEventListener('mouseleave', (el: any) => {
         isDisappear.value = true;
-        setTimeout(() => {
-          isDisappear.value = false;
-          isTeleport.value = false;
-        }, 250);
+
+        // setTimeout(() => {
+        //   isDisappear.value = false;
+        //   isTeleport.value = false;
+        // }, 250);
+
+        gsap.fromTo(
+          '.preview-modal',
+          {
+            width: '22vw',
+            minWidth: 350,
+          },
+          {
+            width: props.style.offsetWidth,
+            minWidth: props.style.offsetWidth,
+            maxHeight: props.style.offsetHeight,
+            duration: 0.25,
+            onComplete: () => {
+              isDisappear.value = false;
+              isTeleport.value = false;
+            },
+          }
+        );
       });
     });
   }

@@ -27,7 +27,7 @@
     animation: preview-modal-appear 0.3s;
 
     &.disappear {
-      animation: preview-modal-disappear 0.25s;
+      // animation: preview-modal-disappear 0.25s;
 
       .bottom-content {
         transition: all 0.25s;

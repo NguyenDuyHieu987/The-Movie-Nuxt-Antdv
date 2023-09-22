@@ -86,6 +86,8 @@ export default defineStore('store', () => {
         .finally(() => {
           loadingUser.value = false;
         });
+    } else {
+      loadingUser.value = false;
     }
   };
 
