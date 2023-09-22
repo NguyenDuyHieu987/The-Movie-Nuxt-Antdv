@@ -89,7 +89,7 @@ export default defineStore('store', () => {
           loadingUser.value = false;
         });
     } else {
-      // loadingUser.value = false;
+      loadingUser.value = false;
     }
   };
 
