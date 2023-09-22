@@ -72,7 +72,7 @@
         <template #default>
           <ul class="list-container">
             <li
-              v-for="(item, index) in dataEpisode.reverse()"
+              v-for="(item, index) in dataEpisode"
               :index="index"
               :key="item.id"
               :class="{ active: currentEpisode == item?.episode_number }"
@@ -121,7 +121,9 @@ const route: any = useRoute();
 const router = useRouter();
 const dataSeason = ref<any>(props.dataMovie?.seasons);
 const dataEpisode = ref<any[]>(
-  props.dataMovie?.episodes.filter((item: any) => item.air_date != null)
+  props.dataMovie?.episodes
+    .filter((item: any) => item.air_date != null)
+    .reverse()
 );
 const selectedSeasonId = ref<string>(props.dataMovie?.season_id);
 const currentEpisode = ref<number>(

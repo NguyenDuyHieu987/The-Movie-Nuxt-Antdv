@@ -1,7 +1,6 @@
 .ant-result {
-  .ant-result-title,
-  .ant-result-subtitle {
-    color: #fff !important;
+  .ant-result-title {
+    color: var(--text-color);
   }
 
   .ant-result-subtitle {
@@ -12,6 +11,7 @@
     .ant-btn {
       margin: 0px auto;
       border-radius: 3px;
+      color: var(--text-color);
     }
   }
 }

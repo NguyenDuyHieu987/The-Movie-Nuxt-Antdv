@@ -96,29 +96,47 @@
     </a-auto-complete> -->
 
     <div class="right-header">
-      <ul class="menu-header">
-        <li class="menu-item search-mobile">
-          <SearchMobile
-            v-model:valueInput="valueInput"
-            v-model:loading="loadingSearch"
-            @change="handleChangeInput(valueInput)"
-            @search="handleSearch"
+      <el-skeleton :loading="loadingUser" animated>
+        <template #template>
+          <el-skeleton-item
+            class="menu-item skeleton"
+            variant="button"
+            v-for="(item, index) in 2"
+            :index="index"
+            :key="index"
           />
-        </li>
+        </template>
 
-        <li
-          v-if="isLogin"
-          class="menu-item notification"
-          :show-timeout="0"
-          :hide-timeout="0"
-        >
-          <Notification />
-        </li>
+        <template #default>
+          <ul class="menu-header">
+            <li class="menu-item search-mobile">
+              <SearchMobile
+                v-model:valueInput="valueInput"
+                v-model:loading="loadingSearch"
+                @change="handleChangeInput(valueInput)"
+                @search="handleSearch"
+              />
+            </li>
 
-        <li class="menu-item account">
-          <DropdownAccount />
-        </li>
-      </ul>
+            <li
+              v-if="isLogin"
+              class="menu-item notification"
+              :show-timeout="0"
+              :hide-timeout="0"
+            >
+              <Notification />
+            </li>
+
+            <li class="menu-item account" v-if="isLogin">
+              <DropdownAccount />
+            </li>
+
+            <li v-else class="menu-item login-header">
+              <NuxtLink to="/login">Đăng Nhập</NuxtLink>
+            </li>
+          </ul>
+        </template>
+      </el-skeleton>
     </div>
   </header>
 </template>
@@ -135,7 +153,7 @@ import { storeToRefs } from 'pinia';
 import { MenuOutlined } from '@ant-design/icons-vue';
 
 const store = useStore();
-const { isLogin } = storeToRefs<any>(store);
+const { isLogin, loadingUser } = storeToRefs<any>(store);
 const router = useRouter();
 const route: any = useRoute();
 const dataSearch = ref<any[]>([]);

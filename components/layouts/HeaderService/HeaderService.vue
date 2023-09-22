@@ -20,20 +20,34 @@
     </div>
 
     <div class="right-header">
-      <ul class="menu-header">
-        <li
-          v-if="isLogin"
-          class="menu-item notification"
-          :show-timeout="0"
-          :hide-timeout="0"
-        >
-          <Notification />
-        </li>
+      <el-skeleton :loading="loadingUser" animated>
+        <template #template>
+          <el-skeleton-item
+            class="menu-item skeleton"
+            variant="button"
+            v-for="(item, index) in 2"
+            :index="index"
+            :key="index"
+          />
+        </template>
 
-        <li class="menu-item account">
-          <DropdownAccount />
-        </li>
-      </ul>
+        <template #default>
+          <ul class="menu-header">
+            <li
+              v-if="isLogin"
+              class="menu-item notification"
+              :show-timeout="0"
+              :hide-timeout="0"
+            >
+              <Notification />
+            </li>
+
+            <li class="menu-item account">
+              <DropdownAccount />
+            </li>
+          </ul>
+        </template>
+      </el-skeleton>
     </div>
   </header>
 </template>
@@ -48,7 +62,7 @@ import _ from 'lodash';
 
 const store = useStore();
 const utils = useUtils();
-const { isLogin, userAccount, role } = storeToRefs<any>(store);
+const { isLogin, loadingUser } = storeToRefs<any>(store);
 
 onMounted(() => {});
 

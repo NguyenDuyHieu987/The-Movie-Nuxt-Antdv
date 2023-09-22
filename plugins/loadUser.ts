@@ -1,48 +1,13 @@
-import { getUserToken } from '~/services/authentication';
-import { CloseCircleFilled } from '@ant-design/icons-vue';
-import { ElNotification } from 'element-plus';
-import axios from 'axios';
-
 export default defineNuxtPlugin((nuxtApp) => {
-  const store = useStore();
-  const utils = useUtils();
+  nuxtApp.hook('app:created', async () => {
+    const route = useRoute();
 
-  nuxtApp.hook('app:created', () => {
-    if (
-      utils.localStorage.getWithExpiry('user_token') != null ||
-      utils.cookie.getCookie('user_token') != null
-    ) {
-      getUserToken({
-        user_token: utils.localStorage.getWithExpiry('user_token'),
-      })
-        .then((accountResponse: any) => {
-          // console.log(accountResponse);
+    // route.matched[0].meta.layout != 'auth'
 
-          if (accountResponse?.isLogin == true) {
-            store.userAccount = accountResponse?.result;
+    const store = useStore();
 
-            if (utils.localStorage.getWithExpiry('user_token') == null) {
-              utils.localStorage.setWithExpiry(
-                'user_token',
-                utils.cookie.getCookie('user_token'),
-                24
-              );
-            }
-          } else {
-            window.localStorage.removeItem('user_token');
-          }
-        })
-        .catch((e) => {
-          ElNotification.error({
-            title: 'Lỗi!',
-            message: 'Some thing went wrong.',
-            icon: () =>
-              h(CloseCircleFilled, {
-                style: 'color: red',
-              }),
-          });
-          if (axios.isCancel(e)) return;
-        });
-    }
+    store.loadingUser = true;
+
+    await store.loadUser();
   });
 });

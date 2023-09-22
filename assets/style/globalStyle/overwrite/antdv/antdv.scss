@@ -120,7 +120,7 @@
 
       .ant-select-selection-placeholder,
       .ant-select-selection-item {
-        color: var(--text-color-gray1) !important;
+        color: #b8b8b8 !important;
         font-size: 1.5rem;
         line-height: 35px;
       }
@@ -420,6 +420,11 @@
 .ant-result {
   .ant-result-title {
     color: inherit;
+    color: var(--text-color);
+  }
+
+  .ant-result-subtitle {
+    color: var(--text-color-gray1);
   }
 }
 

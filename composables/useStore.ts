@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import { genre, country, year, user } from '@/types';
+import { getUserToken } from '~/services/authentication';
+import { CloseCircleFilled } from '@ant-design/icons-vue';
+import { ElNotification } from 'element-plus';
+import axios from 'axios';
 
 export default defineStore('store', () => {
   const userAccount = ref<user>(null);
@@ -8,12 +12,12 @@ export default defineStore('store', () => {
   const isLogin = computed<boolean>(() => !!userAccount.value);
   const collapsed = ref<boolean>(false);
   const headerScrolled = ref<boolean>(false);
-  // const collapsed = useLocalStorage(false, 'isCollapsedSiderbar');
   const openDrawer = ref<boolean>(false);
   const modalVisible = ref<boolean>(false);
   const openRequireAuthDialog = ref<boolean>(false);
   const breadCrumbValue = ref<string>('');
   const loadingApp = ref<boolean>(false);
+  const loadingUser = ref<boolean>(false);
   const allGenres = ref<genre[]>([]);
   const allCountries = ref<country[]>([]);
   const allYears = ref<year[]>([]);
@@ -41,6 +45,50 @@ export default defineStore('store', () => {
     },
   };
 
+  const utils = useUtils();
+
+  const loadUser = async () => {
+    if (
+      utils.localStorage.getWithExpiry('user_token') != null ||
+      utils.cookie.getCookie('user_token') != null
+    ) {
+      await getUserToken({
+        user_token: utils.localStorage.getWithExpiry('user_token'),
+      })
+        .then((accountResponse: any) => {
+          // console.log(accountResponse);
+
+          if (accountResponse?.isLogin == true) {
+            userAccount.value = accountResponse?.result;
+
+            if (utils.localStorage.getWithExpiry('user_token') == null) {
+              utils.localStorage.setWithExpiry(
+                'user_token',
+                utils.cookie.getCookie('user_token'),
+                24
+              );
+            }
+          } else {
+            window.localStorage.removeItem('user_token');
+          }
+        })
+        .catch((e) => {
+          ElNotification.error({
+            title: 'Lỗi!',
+            message: 'Some thing went wrong.',
+            icon: () =>
+              h(CloseCircleFilled, {
+                style: 'color: red',
+              }),
+          });
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loadingUser.value = false;
+        });
+    }
+  };
+
   return {
     userAccount,
     isLogin,
@@ -52,6 +100,7 @@ export default defineStore('store', () => {
     modalVisible,
     openRequireAuthDialog,
     loadingApp,
+    loadingUser,
     loadingAppInstance,
     allGenres,
     allCountries,
@@ -59,5 +108,6 @@ export default defineStore('store', () => {
     setCollapsed,
     setOpendrawer,
     setCloseRequireAuthDialog,
+    loadUser,
   };
 });

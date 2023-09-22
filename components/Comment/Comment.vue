@@ -113,4 +113,4 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" src="./Comment.scss" scoped></style>
+<style lang="scss" src="./Comment.scss"></style>

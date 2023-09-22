@@ -9,20 +9,19 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@element-plus/nuxt": "^1.0.5",
-    "@nuxt/devtools": "latest",
+    "@element-plus/nuxt": "^1.0.6",
     "@nuxtjs/fontaine": "^0.4.1",
     "@types/node": "^20.6.2",
     "element-plus": "^2.3.14",
     "node-sass": "^9.0.0",
     "nuxt": "^3.7.3",
-    "nuxt-delay-hydration": "^1.2.1",
+    "nuxt-delay-hydration": "^1.2.2",
     "nuxt-gtag": "^1.1.1",
     "nuxt-og-image": "^2.0.18",
     "nuxt-seo-experiments": "^3.1.4",
     "nuxt-seo-kit": "^1.3.13",
-    "nuxt-simple-robots": "^3.1.2",
-    "nuxt-simple-sitemap": "^3.3.3",
+    "nuxt-simple-robots": "^3.1.5",
+    "nuxt-simple-sitemap": "^3.3.4",
     "sass-loader": "^13.3.2",
     "terser": "^5.19.2",
     "unplugin-auto-import": "^0.16.6",
@@ -57,10 +56,10 @@
     "nuxt-swiper": "^1.2.2",
     "path": "^0.12.7",
     "pbkdf2": "^3.1.2",
-    "pinia": "^2.1.4",
-    "sass": "^1.66.1",
+    "pinia": "^2.1.6",
+    "sass": "^1.68.0",
     "scroll-bottom": "^0.1.0",
-    "std-env": "^3.3.3",
+    "std-env": "^3.4.3",
     "vue": "^3.3.4",
     "vue-fontawesome": "^0.0.2",
     "vue-gtag-next": "^1.14.0",
@@ -69,6 +68,6 @@
     "vue-social-sharing": "^4.0.0-alpha4",
     "vue3-emoji-picker": "^1.1.7",
     "vuex": "^4.1.0",
-    "wrangler": "^3.0.1"
+    "wrangler": "^3.9.0"
   }
 }

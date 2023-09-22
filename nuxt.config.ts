@@ -249,14 +249,7 @@ export default defineNuxtConfig({
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
   },
-  ogImage: {
-    runtimeCacheStorage: {
-      driver: 'redis',
-      host: 'redis-11171.c292.ap-southeast-1-1.ec2.cloud.redislabs.com',
-      port: 11171,
-      password: 'iMtb5g4jlRhXANp0oP0LNm5iZeX3QeNT',
-    },
-  },
+  ogImage: {},
   sitemap: {},
   gtag: {
     id: process.env.GOOGLE_ANALYTICS_ID,
@@ -326,12 +319,7 @@ export default defineNuxtConfig({
       routes: [],
       crawlLinks: true,
     },
-    storage: {
-      cache: {
-        driver: 'redis',
-        url: 'redis://default:iMtb5g4jlRhXANp0oP0LNm5iZeX3QeNT@redis-11171.c292.ap-southeast-1-1.ec2.cloud.redislabs.com:11171',
-      },
-    },
+    storage: {},
     // output: {
     //   dir: '.output',
     //   serverDir: '.output/server',
@@ -361,7 +349,7 @@ export default defineNuxtConfig({
     routes: [
       '/',
       '/feature',
-      '/televison',
+      '/television',
       '/search',
       '/discover',
       '/follow',

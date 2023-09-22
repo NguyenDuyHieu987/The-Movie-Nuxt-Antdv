@@ -91,7 +91,7 @@
       <div
         v-show="
           videoStates.isShowNotify &&
-          dataMovie?.in_history &&
+          dataMovie?.history_progress &&
           videoStates.isLoaded &&
           !videoStates.isLoading
         "
@@ -752,7 +752,7 @@ const videoStates = reactive({
   isMouseMoveOverlayProgress: false,
   isHideControls: false,
   isShowControls: false,
-  isShowNotify: props.dataMovie?.in_history || false,
+  isShowNotify: props.dataMovie?.history_progress || false,
   isActiveControlsAnimation: false,
   isRewind: {
     enable: false,

@@ -266,7 +266,7 @@
         />
 
         <div class="related-content">
-          <MovieRelated :movieId="dataMovie?.id" type="tv" />
+          <!-- <MovieRelated :movieId="dataMovie?.id" type="tv" /> -->
 
           <Comment :dataMovie="dataMovie" />
         </div>
