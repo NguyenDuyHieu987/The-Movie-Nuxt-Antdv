@@ -5,9 +5,10 @@ export function makeRequest(url: string, options: any = {}) {
   let headers: any = {};
 
   const api = axios.create({
-    baseURL: nuxtConfig.app.production_mode
-      ? nuxtConfig.app.apiGateway
-      : 'http://localhost:5000',
+    // baseURL: nuxtConfig.app.production_mode
+    //   ? nuxtConfig.app.apiGateway
+    //   : 'http://localhost:5000',
+    baseURL: 'http://localhost:5000',
     withCredentials: true,
   });
 
