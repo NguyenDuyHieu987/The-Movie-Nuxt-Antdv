@@ -4,7 +4,11 @@
       <div
         ref="previewModal"
         class="preview-modal"
-        :class="{ disappear: isDisappear }"
+        :class="{
+          disappear: isDisappear,
+          'only-left': isOnlyLeft,
+          'only-right': isOnlyRight,
+        }"
         @mouseover="onClickPreviewModal"
       >
         <el-skeleton :loading="loading" animated>
@@ -391,6 +395,8 @@ const previewModal = ref<any>(null);
 const urlShare = computed<string>((): string => window.location.href);
 const isTeleport = defineModel<boolean>('isTeleport');
 const isDisappear = ref<boolean>(false);
+const isOnlyLeft = ref<boolean>(false);
+const isOnlyRight = ref<boolean>(false);
 // const isTeleport = computed<boolean>({
 //   get() {
 //     return props.isTeleportPreviewModal;
@@ -443,19 +449,54 @@ watch(previewModal, () => {
         .replace('px', '') + 30;
     }
 
+    isOnlyLeft.value = false;
+    isOnlyRight.value = false;
+
     if (props.style.rectBound.left <= minRecLeft) {
+      // previewModal.value.style.setProperty(
+      //   '--left',
+      //   props.style.rectBound.left + 'px'
+      // );
+
+      // previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
+
+      isOnlyLeft.value = true;
+
       previewModal.value.style.setProperty(
         '--left',
         props.style.rectBound.left + 'px'
       );
-      previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
+
+      previewModal.value.style.setProperty(
+        '--left-only',
+        props.style.rectBound.left * 1.15 + 'px'
+      );
+
+      previewModal.value.style.transform =
+        'translateX(0%) translateY(-50%) scale(1.3)';
     } else {
       const minRectRight = window.innerWidth - props.style.rectBound.right;
 
       if (minRectRight <= 45) {
-        previewModal.value.style.right = minRectRight - 15 + 'px';
+        // previewModal.value.style.right = minRectRight - 15 + 'px';
+        // previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
+
+        isOnlyRight.value = true;
+
         previewModal.value.style.setProperty('--left', 'auto');
-        previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
+
+        previewModal.value.style.setProperty(
+          '--right',
+          minRectRight - 14 + 'px'
+        );
+
+        previewModal.value.style.setProperty(
+          '--right-only',
+          minRectRight + 14 * 1.8 + 'px'
+        );
+
+        previewModal.value.style.transform =
+          'translateX(0%) translateY(-50%) scale(1.3)';
       } else {
         previewModal.value.style.setProperty('--left', props.style.left + 'px');
       }
@@ -465,25 +506,45 @@ watch(previewModal, () => {
 
     previewModal.value?.addEventListener('mouseenter', () => {
       isTeleport.value = true;
+    });
 
-      previewModal.value.addEventListener('mouseleave', (el: any) => {
-        isDisappear.value = true;
+    previewModal.value.addEventListener('mouseleave', (el: any) => {
+      isDisappear.value = true;
 
-        // setTimeout(() => {
-        //   isDisappear.value = false;
-        //   isTeleport.value = false;
-        // }, 250);
+      // setTimeout(() => {
+      //   isDisappear.value = false;
+      //   isTeleport.value = false;
+      // }, 250);
 
+      // gsap.fromTo(
+      //   '.preview-modal',
+      //   {
+      //     width: '22vw',
+      //     minWidth: 350,
+      //   },
+      //   {
+      //     width: props.style.offsetWidth,
+      //     minWidth: props.style.offsetWidth,
+      //     maxHeight: props.style.offsetHeight,
+      //     duration: 0.25,
+      //     onComplete: () => {
+      //       isDisappear.value = false;
+      //       isTeleport.value = false;
+      //     },
+      //   }
+      // );
+
+      if (isOnlyLeft.value) {
         gsap.fromTo(
           '.preview-modal',
           {
-            width: '22vw',
-            minWidth: 350,
+            left: props.style.rectBound.left * 1.15 + 'px',
+            transform: 'translateX(0%) translateY(-50%) scale(1.3)',
           },
           {
-            width: props.style.offsetWidth,
-            minWidth: props.style.offsetWidth,
-            maxHeight: props.style.offsetHeight,
+            left: props.style.rectBound.left + 'px',
+            transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
+          scale(1)`,
             duration: 0.25,
             onComplete: () => {
               isDisappear.value = false;
@@ -491,7 +552,45 @@ watch(previewModal, () => {
             },
           }
         );
-      });
+        return;
+      } else if (isOnlyRight.value) {
+        const minRectRight = window.innerWidth - props.style.rectBound.right;
+
+        gsap.fromTo(
+          '.preview-modal',
+          {
+            right: minRectRight + 14 * 1.8 + 'px',
+            transform: 'translateX(0%) translateY(-50%) scale(1.3)',
+          },
+          {
+            right: minRectRight - 14 + 'px',
+            transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
+          scale(1)`,
+            duration: 0.25,
+            onComplete: () => {
+              isDisappear.value = false;
+              isTeleport.value = false;
+            },
+          }
+        );
+        return;
+      }
+
+      gsap.fromTo(
+        '.preview-modal',
+        {
+          transform: 'translateX(-50%) translateY(-50%) scale(1.3)',
+        },
+        {
+          transform: `translateX(-50%) translateY(calc(${props.style.offsetHeight}px / (-2)))
+          scale(1)`,
+          duration: 0.25,
+          onComplete: () => {
+            isDisappear.value = false;
+            isTeleport.value = false;
+          },
+        }
+      );
     });
   }
 });

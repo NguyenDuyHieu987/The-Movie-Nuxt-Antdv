@@ -13,9 +13,12 @@
     left: var(--left);
     top: var(--top);
     opacity: 1;
-    min-width: 350px;
-    width: 22vw;
-    // height: 345px;
+    // min-width: 350px;
+    // width: 22vw;
+    // max-height: 100vh;
+
+    width: 17vw;
+    min-width: 260px;
     max-height: 100vh;
     background-color: var(--preview-modal-background-color);
     color: var(--text-color);
@@ -23,8 +26,9 @@
     box-shadow: var(--box-shadow-medium);
     overflow: hidden;
     cursor: pointer;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%) scale(1.3);
     animation: preview-modal-appear 0.3s;
+    will-change: transform;
 
     &.disappear {
       // animation: preview-modal-disappear 0.25s;
@@ -35,19 +39,58 @@
       }
     }
 
+    &.only-left {
+      left: var(--left-only);
+      animation: preview-modal-appear-only-left 0.3s;
+    }
+
+    &.only-right {
+      right: var(--right-only);
+      animation: preview-modal-appear-only-right 0.3s;
+    }
+
     @keyframes preview-modal-appear {
       from {
-        width: var(--width);
-        min-width: var(--width);
-        // // height: var(--height);
-        max-height: var(--height);
+        // width: var(--width);
+        // min-width: var(--width);
+        // max-height: var(--height);
+
+        transform: translateX(-50%) translateY(calc(var(--height) / (-2)))
+          scale(1);
       }
 
       to {
-        min-width: 350px;
-        width: 22vw;
-        // height: 345px;
-        max-height: 100vh;
+        // min-width: 350px;
+        // width: 22vw;
+        // max-height: 100vh;
+
+        transform: translateX(-50%) translateY(-50%) scale(1.3);
+      }
+    }
+
+    @keyframes preview-modal-appear-only-left {
+      from {
+        left: var(--left);
+        transform: translateX(0%) translateY(calc(var(--height) / (-2)))
+          scale(1);
+      }
+
+      to {
+        left: var(--left-only);
+        transform: translateX(0%) translateY(-50%) scale(1.3);
+      }
+    }
+
+    @keyframes preview-modal-appear-only-right {
+      from {
+        right: var(--right);
+        transform: translateX(0%) translateY(calc(var(--height) / (-2)))
+          scale(1);
+      }
+
+      to {
+        right: var(--right-only);
+        transform: translateX(0%) translateY(-50%) scale(1.3);
       }
     }
 
@@ -58,21 +101,9 @@
       }
 
       to {
-        // height: var(--height);
         max-height: var(--height);
         width: var(--width);
         min-width: var(--width);
-      }
-    }
-
-    @keyframes img-preview-modal {
-      from {
-        // height: var(--img-height);
-        padding-bottom: var(--img-height);
-      }
-      to {
-        // height: calc(var(--preview-modal-height) * 0.6);
-        padding-bottom: 56.25%;
       }
     }
 
@@ -91,19 +122,29 @@
       }
 
       .bottom-content {
-        padding: 12px 15px;
+        // padding: 12px 15px;
+        padding: 10px 12px;
 
         .widget {
           .el-skeleton__item.el-skeleton__text.circle {
-            height: 43px;
-            width: 43px;
+            // height: 43px;
+            // width: 43px;
+            height: 32px;
+            width: 32px;
             border-radius: 50%;
           }
         }
 
         .info {
+          display: flex;
+          flex-direction: column;
+          // gap: 13px;
+          gap: 9px;
+          // margin-top: 5px;
+          margin-top: 2px;
+
           .el-skeleton__item.el-skeleton__text {
-            margin-top: 5px;
+            height: 10px;
           }
         }
       }
@@ -112,12 +153,9 @@
     .backdrop-box {
       display: flex;
       position: relative;
-      // height: 240px;
       height: 0px;
-      // aspect-ratio: 16/9;
       padding-bottom: 56.25%;
       overflow: hidden;
-      // animation: img-preview-modal 0.4s ease;
 
       .ant-image {
         position: absolute;
@@ -187,7 +225,8 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding: 12px 15px;
+      // padding: 12px 15px;
+      padding: 10px 12px;
 
       .widget {
         display: flex;
@@ -216,26 +255,15 @@
           justify-content: center;
           background-color: var(--btn-background-color-gray);
           border-color: var(--border-regular-btn);
-          height: 43px;
-          width: 43px;
+          min-width: auto;
+          height: 33px;
+          width: 33px;
           overflow: hidden;
 
           svg {
-            font-size: 2.6rem;
-            width: 2.6rem;
-            height: 2.6rem;
-          }
-
-          svg.icon {
-            font-size: 2.6rem;
-
-            &.info-icon {
-              // font-size: 2.6rem;
-            }
-
-            &.fa6-solid {
-              font-size: 2.1rem;
-            }
+            font-size: 2rem;
+            width: 2rem;
+            height: 2rem;
           }
 
           &:hover {
@@ -251,8 +279,8 @@
 
       .info {
         padding: 0px;
-        font-size: 1.5rem;
-        line-height: 1.7;
+        font-size: 1.2rem;
+        line-height: 1.5;
         color: inherit;
 
         .title {
@@ -269,7 +297,7 @@
         }
 
         .genres {
-          font-size: 1.6rem;
+          font-size: 1.3rem;
           max-width: 100%;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
@@ -293,6 +321,7 @@
         }
 
         .evidence-tags {
+          font-size: 1.2rem;
           color: #d0d0d0;
           display: flex;
           flex-direction: row;
@@ -313,6 +342,7 @@
         }
 
         .views-imdb {
+          font-size: 1.2rem;
           color: #d0d0d0;
           display: flex;
           flex-direction: row;
@@ -343,8 +373,10 @@
         .bottom-content {
           .el-skeleton__item.el-skeleton__text {
             &.circle {
-              height: 40px;
-              width: 40px;
+              // height: 40px;
+              // width: 40px;
+              height: 30px;
+              width: 30px;
             }
           }
         }
@@ -353,15 +385,18 @@
       .bottom-content {
         .widget {
           .ant-btn {
-            height: 40px;
-            width: 40px;
+            // height: 40px;
+            // width: 40px;
+            height: 30px;
+            width: 30px;
 
-            svg.icon {
-              font-size: 2.4rem;
-
-              &.fa6-solid {
-                font-size: 1.9rem;
-              }
+            svg {
+              // font-size: 2.4rem;
+              // width: 2.4rem;
+              // height: 2.4rem;
+              font-size: 1.8rem;
+              width: 1.8rem;
+              height: 1.8rem;
             }
           }
         }
