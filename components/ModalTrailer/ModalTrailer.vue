@@ -134,8 +134,8 @@
             <NuxtLink
               v-if="isEpisodes"
               :to="{
-                path: `/play-tv/${item?.id}/${item?.name
-                  ?.replace(/\s/g, '+')
+                path: `/play-tv/${item?.id}__${item?.name
+                  ?.replace(/\s/g, '-')
                   .toLowerCase()}/tap-1`,
               }"
               class="btn-play-now"
@@ -145,8 +145,8 @@
             <NuxtLink
               v-else-if="!isEpisodes"
               :to="{
-                path: `/play-movie/${item?.id}/${item?.name
-                  ?.replace(/\s/g, '+')
+                path: `/play-movie/${item?.id}__${item?.name
+                  ?.replace(/\s/g, '-')
                   .toLowerCase()}`,
               }"
               class="btn-play-now"

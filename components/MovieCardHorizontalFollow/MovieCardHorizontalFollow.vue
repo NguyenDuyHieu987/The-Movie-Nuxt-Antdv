@@ -20,13 +20,13 @@
         <NuxtLink
           :to="{
             path: isEpisodes
-              ? `/info-tv/${item?.movie_id}/${utils
+              ? `/info-tv/${item?.movie_id}__${utils
                   .removeVietnameseTones(item?.name)
-                  ?.replaceAll(/\s/g, '+')
+                  ?.replaceAll(/\s/g, '-')
                   .toLowerCase()}`
-              : `/info-movie/${item?.movie_id}/${utils
+              : `/info-movie/${item?.movie_id}__${utils
                   .removeVietnameseTones(item?.name)
-                  ?.replaceAll(/\s/g, '+')
+                  ?.replaceAll(/\s/g, '-')
                   .toLowerCase()}`,
           }"
           class="movie-follow-item"
@@ -158,9 +158,9 @@
                         <NuxtLink
                           v-if="isEpisodes && !loading"
                           :to="{
-                            path: `/play-tv/${item?.movie_id}/${utils
+                            path: `/play-tv/${item?.movie_id}__${utils
                               .removeVietnameseTones(item?.name)
-                              ?.replaceAll(/\s/g, '+')
+                              ?.replaceAll(/\s/g, '-')
                               .toLowerCase()}/tap-1`,
                           }"
                           class="btn-play-now"
@@ -170,9 +170,9 @@
                         <NuxtLink
                           v-else-if="!isEpisodes && !loading"
                           :to="{
-                            path: `/play-movie/${item?.movie_id}/${utils
+                            path: `/play-movie/${item?.movie_id}__${utils
                               .removeVietnameseTones(item?.name)
-                              ?.replaceAll(/\s/g, '+')
+                              ?.replaceAll(/\s/g, '-')
                               .toLowerCase()}`,
                           }"
                           class="btn-play-now"

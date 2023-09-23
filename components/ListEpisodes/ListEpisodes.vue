@@ -79,8 +79,8 @@
               :id="`episode-${item?.episode_number}`"
             >
               <a
-                :href="`/play-tv/${dataMovie?.id}/${dataMovie?.name
-                  ?.replace(/\s/g, '+')
+                :href="`/play-tv/${dataMovie?.id}__${dataMovie?.name
+                  ?.replace(/\s/g, '-')
                   .toLowerCase()}/tap-${item?.episode_number}`"
                 @click.prevent="handleChangeEpisode(item)"
               >
@@ -149,21 +149,11 @@ const emitUrlCode = (dataSeason: any) => {
   emit('changeUrlCode', urlCode);
 };
 
-onMounted(() => {
-  emitUrlCode(dataSeason.value);
-  emit(
-    'changeEpisode',
-    dataEpisode.value.find(
-      (item) => item?.episode_number == currentEpisode.value
-    )
-  );
-});
-
 onBeforeMount(async () => {
   // loading.value = true;
   // await useAsyncData(
-  //   `season/${route.params?.id}/${selectedSeasonId.value}`,
-  //   () => getSeason(route.params?.id, selectedSeasonId.value)
+  //   `season/${props.dataMovie?.id}/${selectedSeasonId.value}`,
+  //   () => getSeason(props.dataMovie?.id, selectedSeasonId.value)
   // )
   //   .then((episodesRespones) => {
   //     dataSeason.value = episodesRespones.data.value;
@@ -180,10 +170,21 @@ onBeforeMount(async () => {
 });
 
 onMounted(() => {
+  emitUrlCode(dataSeason.value);
+
+  emit(
+    'changeEpisode',
+    dataEpisode.value.find(
+      (item) => item?.episode_number == currentEpisode.value
+    )
+  );
+
   const episode = document.getElementById(
     `episode-${currentEpisode.value}`
   ) as HTMLElement;
-  episode.scrollIntoView();
+
+  console.log(episode);
+  // episode.scrollIntoView();
 });
 
 const handleChangeSeason = async (value: string) => {
@@ -193,8 +194,8 @@ const handleChangeSeason = async (value: string) => {
   window.history.replaceState(null, '', 'tap-1');
 
   await useAsyncData(
-    `season/${route.params?.id}/${selectedSeasonId.value}`,
-    () => getSeason(route.params?.id, selectedSeasonId.value)
+    `season/${props.dataMovie?.id}/${selectedSeasonId.value}`,
+    () => getSeason(props.dataMovie?.id, selectedSeasonId.value)
   )
     .then((episodesRespones: any) => {
       dataSeason.value = episodesRespones.data.value;

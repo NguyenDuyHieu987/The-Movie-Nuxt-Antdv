@@ -124,13 +124,13 @@
           :to="{
             path:
               item?.media_type == 'movie'
-                ? `/play-movie/${item?.id}/${utils
+                ? `/play-movie/${item?.id}__${utils
                     .removeVietnameseTones(item?.name)
-                    ?.replaceAll(/\s/g, '+')
+                    ?.replaceAll(/\s/g, '-')
                     .toLowerCase()}`
-                : `/play-tv/${item?.id}/${utils
+                : `/play-tv/${item?.id}__${utils
                     .removeVietnameseTones(item?.name)
-                    ?.replaceAll(/\s/g, '+')
+                    ?.replaceAll(/\s/g, '-')
                     .toLowerCase()}/tap-1`,
           }"
         >
@@ -157,13 +157,13 @@
           :to="{
             path:
               item?.media_type == 'movie'
-                ? `/info-movie/${item?.id}/${utils
+                ? `/info-movie/${item?.id}__${utils
                     .removeVietnameseTones(item?.name)
-                    ?.replace(/\s/g, '+')
+                    ?.replace(/\s/g, '-')
                     .toLowerCase()}`
-                : `/info-tv/${item?.id}/${utils
+                : `/info-tv/${item?.id}__${utils
                     .removeVietnameseTones(item?.name)
-                    ?.replace(/\s/g, '+')
+                    ?.replace(/\s/g, '-')
                     .toLowerCase()}`,
           }"
         >

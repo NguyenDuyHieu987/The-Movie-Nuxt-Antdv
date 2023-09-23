@@ -3,13 +3,13 @@
     :to="{
       path:
         item?.type || item?.media_type == 'tv'
-          ? `/info-tv/${item?.id}/${utils
+          ? `/info-tv/${item?.id}__${utils
               .removeVietnameseTones(item?.name)
-              ?.replaceAll(/\s/g, '+')
+              ?.replaceAll(/\s/g, '-')
               .toLowerCase()}`
-          : `/info-movie/${item?.id}/${utils
+          : `/info-movie/${item?.id}__${utils
               .removeVietnameseTones(item?.name)
-              ?.replaceAll(/\s/g, '+')
+              ?.replaceAll(/\s/g, '-')
               .toLowerCase()}`,
     }"
     class="movie-search-item"

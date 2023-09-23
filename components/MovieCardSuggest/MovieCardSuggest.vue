@@ -59,13 +59,13 @@
           class="info"
           :to="{
             path: isEpisodes
-              ? `/info-tv/${item?.id}/${utils
+              ? `/info-tv/${item?.id}__${utils
                   .removeVietnameseTones(item?.name)
-                  ?.replaceAll(/\s/g, '+')
+                  ?.replaceAll(/\s/g, '-')
                   .toLowerCase()}`
-              : `/info-movie/${item?.id}/${utils
+              : `/info-movie/${item?.id}__${utils
                   .removeVietnameseTones(item?.name)
-                  ?.replaceAll(/\s/g, '+')
+                  ?.replaceAll(/\s/g, '-')
                   .toLowerCase()}`,
           }"
         >
@@ -265,13 +265,13 @@ const handelAddToList = (e: any) => {
 const onClickPlay = () => {
   navigateTo({
     path: isEpisodes.value
-      ? `/play-tv/${props.item?.id}/${utils
+      ? `/play-tv/${props.item?.id}__${utils
           .removeVietnameseTones(props.item?.name)
-          ?.replaceAll(/\s/g, '+')
+          ?.replaceAll(/\s/g, '-')
           .toLowerCase()}/tap-1`
-      : `/play-movie/${props.item?.id}/${utils
+      : `/play-movie/${props.item?.id}__${utils
           .removeVietnameseTones(props.item?.name)
-          ?.replaceAll(/\s/g, '+')
+          ?.replaceAll(/\s/g, '-')
           .toLowerCase()}`,
   });
 };

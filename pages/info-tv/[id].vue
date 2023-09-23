@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-info">
+  <div class="tv-info">
     <LoadingCircle v-if="loading" class="loading-page" />
 
     <div class="info-conainer" v-else>
@@ -55,28 +55,32 @@
           </div>
         </div>
 
-        <div class="movie-content">
+        <div class="tv-content">
           <!-- <div class="variant-content"></div> -->
 
           <div class="main-content">
             <div class="detail-content-left">
               <div class="head-content">
-                <h1 class="movie-title">{{ dataMovie?.name }}</h1>
+                <h1 class="movie-title">
+                  {{ dataMovie?.name }}
+                  <!-- <span>
+                    {{ ' - Phần ' + dataMovie?.season?.season_number }}
+                  </span> -->
+                </h1>
                 <div class="action">
                   <div class="left">
                     <NuxtLink
                       class="action-btn"
                       :to="{
-                        path: `/play-movie/${dataMovie?.id}/${utils
+                        path: `/play-tv/${dataMovie?.id}__${utils
                           .removeVietnameseTones(dataMovie?.name)
-                          ?.replaceAll(/\s/g, '+')
-                          .toLowerCase()}`,
+                          ?.replaceAll(/\s/g, '-')
+                          .toLowerCase()}/tap-1`,
                       }"
                     >
                       <a-button size="large" type="text" class="play modern">
                         <template #icon>
-                          <!-- <Icon name="ci:play-arrow" class="play" /> -->
-
+                          <!-- <Icon name="ic:play-arrow" class="play" /> -->
                           <svg
                             class="play"
                             xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +100,6 @@
                         <template #icon>
                           <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
                           <Icon v-else name="ic:baseline-plus" /> -->
-
                           <svg
                             v-if="isAddToList"
                             xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +134,6 @@
                       <a-button size="large" type="text" class="trailer modern">
                         <template #icon>
                           <!-- <Icon name="fa6-brands:youtube" class="trailer" /> -->
-
                           <svg
                             class="trailer"
                             xmlns="http://www.w3.org/2000/svg"
@@ -194,12 +196,6 @@
               <Tags tagsLabel="Nội dung:" class="tags-overview">
                 <template #tagsInfo>
                   <Overview :content="dataMovie?.overview" />
-                  <!-- <span class="text">
-                      {{
-                        dataMovie?.overview ||
-                        'Sorry! This movie has not been updated overview content.'
-                      }}
-                    </span> -->
                 </template>
               </Tags>
 
@@ -214,6 +210,12 @@
                   }}</span>
                 </template>
               </Tags>
+
+              <LastestEpisodes
+                :dataMovie="dataMovie"
+                :numberOfEpisodes="dataMovie?.number_of_episodes"
+                :loading="loading"
+              />
             </div>
 
             <div class="detail-content-right">
@@ -235,15 +237,12 @@
                 <template #tagsInfo>
                   <span class="tags-item">
                     <NuxtLink
-                      :to="`/discover/year/${dataMovie?.release_date?.slice(
-                        0,
-                        4
-                      )}`"
+                      :to="`/discover/year/${release_date?.slice(0, 4)}`"
                     >
-                      {{ dataMovie?.release_date?.slice(0, 4) }}
+                      {{ release_date?.slice(0, 4) }}
                     </NuxtLink>
                     <span>
-                      {{ dataMovie?.release_date?.slice(4) }}
+                      {{ release_date?.slice(4) }}
                     </span>
                   </span>
                 </template>
@@ -293,11 +292,19 @@
                 </template>
               </Tags>
 
-              <Tags tagsLabel="Thời lượng:">
+              <Tags tagsLabel="Số tập:">
                 <template #tagsInfo>
                   <span class="tags-item">
-                    {{ dataMovie?.runtime + ' phút' }}</span
-                  >
+                    {{ dataMovie?.number_of_episodes + ' tập' }}
+                  </span>
+                </template>
+              </Tags>
+
+              <Tags tagsLabel="Thời lượng trêm tập:">
+                <template #tagsInfo>
+                  <span class="tags-item">
+                    {{ dataMovie?.episode_run_time[0] || 0 + ' phút' }}
+                  </span>
                 </template>
               </Tags>
 
@@ -324,7 +331,7 @@
       </div>
 
       <div class="related-content padding-content">
-        <MovieRelated :movieId="dataMovie?.id" type="movie" />
+        <MovieRelated :movieId="dataMovie?.id" type="tv" />
 
         <CastCrew :dataMovie="dataMovie" />
 
@@ -336,7 +343,7 @@
             :src="
               dataMovie?.videos?.length > 0
                 ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}` // Math.floor(Math.random() * dataMovie?.videos?.length)
-                : 'https://www.youtube.com/embed/itnqEauWQZM'
+                : 'https://www.youtube.com/embed/ndl1W4ltcmg'
             "
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media;
@@ -356,7 +363,7 @@
 import axios from 'axios';
 import { getItemList } from '~/services/list';
 import { getBackdrop, getImage } from '~/services/image';
-import { getMovieById } from '~/services/movie';
+import { getTvById } from '~/services/tv';
 import { getGenreById } from '~/services/genres';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '~/components/BackPage/BackPage.vue';
@@ -364,6 +371,7 @@ import Tags from '~/components/Tags/Tags.vue';
 import Overview from '~/components/Overview/Overview.vue';
 import Interaction from '~/components/Interaction/Interaction.vue';
 import RatingMovie from '~/components/RatingMovie/RatingMovie.vue';
+import LastestEpisodes from '~/components/LastestEpisodes/LastestEpisodes.vue';
 import CastCrew from '~/components/CastCrew/CastCrew.vue';
 import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressBar.vue';
@@ -379,8 +387,14 @@ const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
+const release_date = computed<string>(
+  () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
+);
 const disabledRate = ref<boolean>(false);
 const windowWidth = ref<number>(window.innerWidth);
+const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
+
+console.log(movieId.value);
 
 const internalInstance: any = getCurrentInstance();
 
@@ -402,8 +416,8 @@ const getData = async () => {
 
   srcBackdropList.value = [];
 
-  await useAsyncData(`movie/detail/${route.params?.id}`, () =>
-    getMovieById(route.params?.id, 'videos')
+  await useAsyncData(`tv/detail/${movieId.value}`, () =>
+    getTvById(movieId.value, 'videos')
   )
     .then((movieRespone) => {
       dataMovie.value = movieRespone.data.value;
@@ -435,8 +449,8 @@ const getData = async () => {
     isAddToList.value = dataMovie.value?.in_list == true;
 
     // await useAsyncData(
-    //   `itemlist/${store?.userAccount?.id}/${route.params?.id}`,
-    //   () => getItemList(route.params?.id)
+    //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
+    //   () => getItemList(movieId.value)
     // )
     //   .then((movieRespone: any) => {
     //     if (movieRespone.data.value.data.success == true) {
@@ -449,10 +463,9 @@ const getData = async () => {
   }
 };
 
-// onBeforeMount();
 getData();
 
-// onBeforeUnmount(() => {
+// nuxtApp.hook('page:start', () => {
 //   isAddToList.value = false;
 //   loading.value = true;
 //   internalInstance.appContext.config.globalProperties.$Progress.start();
@@ -460,13 +473,13 @@ getData();
 // });
 
 // const { data: dataMovie, pending } = await useAsyncData(
-//   `movie/detail/${route.params?.id}`,
-//   () => getMovieById(route.params?.id, 'videos')
-//   // {
-//   //   // lazy: true,
-//   //   // immediate: false,
-//   //   // server: false,
-//   // }
+//   `tv/detail/${movieId.value}`,
+//   () => getTvById(movieId.value, 'videos'),
+//   {
+//     // lazy: true,
+//     // immediate: false,
+//     // server: false,
+//   }
 // );
 
 // if (store.isLogin) {
@@ -474,12 +487,10 @@ getData();
 //   disabledRate.value = dataMovie.value?.is_rated == true;
 // }
 
-// onMounted(() => {
-//   if (dataMovie.value?.id) {
-//     setBackgroundColor(dataMovie.value.dominant_backdrop_color);
-//     loading.value = false;
-//     internalInstance.appContext.config.globalProperties.$Progress.finish();
-//   }
+// nuxtApp.hook('page:finish', () => {
+//   setBackgroundColor(dataMovie.value.dominant_backdrop_color);
+//   loading.value = false;
+//   internalInstance.appContext.config.globalProperties.$Progress.finish();
 // });
 
 useHead({
@@ -505,19 +516,19 @@ window.scrollTo({
 });
 
 const handelAddToList = () => {
-  if (!store.isLogin) {
+  if (!store?.isLogin) {
     store.openRequireAuthDialog = true;
     return;
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (!utils.handelAddItemToList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handelAddItemToList(dataMovie.value?.id, 'tv')) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id, 'tv')) {
       isAddToList.value = true;
     }
     return;
@@ -535,4 +546,4 @@ const scrollToComment = () => {
 };
 </script>
 
-<style lang="scss" src="./InfoMoviePage.scss"></style>
+<style lang="scss" src="./InfoTvPage.scss"></style>

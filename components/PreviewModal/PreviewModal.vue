@@ -63,9 +63,9 @@
                     <NuxtLink
                       v-if="isEpisodes"
                       :to="{
-                        path: `/play-tv/${item?.id}/${utils
+                        path: `/play-tv/${item?.id}__${utils
                           .removeVietnameseTones(item?.name)
-                          ?.replaceAll(/\s/g, '+')
+                          ?.replaceAll(/\s/g, '-')
                           .toLowerCase()}/tap-1`,
                       }"
                       class="btn-play-now"
@@ -93,9 +93,9 @@
                     <NuxtLink
                       v-else
                       :to="{
-                        path: `/play-movie/${item?.id}/${utils
+                        path: `/play-movie/${item?.id}__${utils
                           .removeVietnameseTones(item?.name)
-                          ?.replaceAll(/\s/g, '+')
+                          ?.replaceAll(/\s/g, '-')
                           .toLowerCase()}`,
                       }"
                       class="btn-play-now"
@@ -230,13 +230,13 @@
                     <NuxtLink
                       :to="{
                         path: isEpisodes
-                          ? `/info-tv/${item?.id}/${utils
+                          ? `/info-tv/${item?.id}__${utils
                               .removeVietnameseTones(item?.name)
-                              ?.replaceAll(/\s/g, '+')
+                              ?.replaceAll(/\s/g, '-')
                               .toLowerCase()}`
-                          : `/info-movie/${item?.id}/${utils
+                          : `/info-movie/${item?.id}__${utils
                               .removeVietnameseTones(item?.name)
-                              ?.replaceAll(/\s/g, '+')
+                              ?.replaceAll(/\s/g, '-')
                               .toLowerCase()}`,
                       }"
                     >
@@ -555,13 +555,13 @@ const onClickPreviewModal = (e: any) => {
     if (!actionBtn.value) {
       navigateTo({
         path: props.isEpisodes
-          ? `/info-tv/${props.item?.id}/${utils
+          ? `/info-tv/${props.item?.id}__${utils
               .removeVietnameseTones(props.item?.name)
-              ?.replaceAll(/\s/g, '+')
+              ?.replaceAll(/\s/g, '-')
               .toLowerCase()}`
-          : `/info-movie/${props.item?.id}/${utils
+          : `/info-movie/${props.item?.id}__${utils
               .removeVietnameseTones(props.item?.name)
-              ?.replaceAll(/\s/g, '+')
+              ?.replaceAll(/\s/g, '-')
               .toLowerCase()}`,
       });
     }

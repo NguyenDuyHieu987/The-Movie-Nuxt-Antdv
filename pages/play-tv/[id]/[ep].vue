@@ -1,5 +1,5 @@
 <template>
-  <div class="play-movie padding-content">
+  <div class="play-tv padding-content">
     <LoadingCircle v-if="loading" class="loading-page" />
 
     <div v-else class="play-container">
@@ -7,9 +7,9 @@
         <BackPage
           @onclick="
             navigateTo({
-              path: `/info-movie/${dataMovie?.id}/${utils
+              path: `/info-tv/${dataMovie?.id}__${utils
                 .removeVietnameseTones(dataMovie?.name)
-                .replaceAll(' ', '+')
+                ?.replaceAll(/\s/g, '-')
                 .toLowerCase()}
             `,
             })
@@ -45,7 +45,7 @@
 
           <VideoPlayer
             :dataMovie="dataMovie"
-            videoUrl="/feature/Transformer_5.mp4"
+            :videoUrl="'/television/' + urlCodeMovie"
             :backdrop="
               getImage(
                 dataMovie?.backdrop_path,
@@ -62,7 +62,12 @@
       <div class="movie-content">
         <div class="main-content">
           <div class="detail-content-left">
-            <h2 class="movie-title">{{ dataMovie?.name }}</h2>
+            <h2 class="movie-title">
+              {{ dataMovie?.name }}
+              <!-- <span>
+                    {{ ' - Phần ' + dataMovie?.season?.season_number }}
+                  </span> -->
+            </h2>
 
             <Tags tagsLabel="Lượt xem:">
               <template #tagsInfo>
@@ -167,15 +172,12 @@
                 <template #tagsInfo>
                   <span class="tags-item">
                     <NuxtLink
-                      :to="`/discover/year/${dataMovie?.release_date.slice(
-                        0,
-                        4
-                      )}`"
+                      :to="`/discover/year/${release_date?.slice(0, 4)}`"
                     >
-                      {{ dataMovie?.release_date.slice(0, 4) }}
+                      {{ release_date?.slice(0, 4) }}
                     </NuxtLink>
                     <span>
-                      {{ dataMovie?.release_date.slice(4) }}
+                      {{ release_date?.slice(4) }}
                     </span>
                   </span>
                 </template>
@@ -224,11 +226,19 @@
                 </template>
               </Tags>
 
-              <Tags tagsLabel="Thời lượng:">
+              <Tags tagsLabel="Số tập:">
                 <template #tagsInfo>
                   <span class="tags-item">
-                    {{ dataMovie?.runtime + ' phút' }}</span
-                  >
+                    {{ dataMovie?.number_of_episodes + ' tập' }}
+                  </span>
+                </template>
+              </Tags>
+
+              <Tags tagsLabel="Thời lượng trêm tập:">
+                <template #tagsInfo>
+                  <span class="tags-item">
+                    {{ dataMovie?.episode_run_time[0] + ' phút' }}
+                  </span>
                 </template>
               </Tags>
 
@@ -241,8 +251,22 @@
           </div>
         </div>
 
+        <ListEpisodes
+          :dataMovie="dataMovie"
+          :numberOfEpisodes="
+            dataMovie?.number_of_episodes
+            // dataMovie?.seasons?.find((item: any) =>
+            //   item.season_number === dataMovie?.last_episode_to_air?.season_number
+            //     ? item
+            //     : null
+            // )?.episode_count
+          "
+          @changeUrlCode="(data: string) => getUrlCode(data)"
+          @changeEpisode="(data: any) =>getCurrentEpisode(data)"
+        />
+
         <div class="related-content">
-          <!-- <MovieRelated :movieId="dataMovie?.id" type="movie" /> -->
+          <!-- <MovieRelated :movieId="dataMovie?.id" type="tv" /> -->
 
           <Comment :dataMovie="dataMovie" />
         </div>
@@ -254,8 +278,8 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getBackdrop, getImage } from '~/services/image';
-import { getVideoFeature } from '~/services/video';
-import { getMovieById } from '~/services/movie';
+import { getVideoTelevisons } from '~/services/video';
+import { getTvById } from '~/services/tv';
 import { getItemList } from '~/services/list';
 import { getItemHistory, add_update_History } from '~/services/history';
 import { UpdateView } from '~/services/updateView';
@@ -270,16 +294,17 @@ import Interaction from '~/components/Interaction/Interaction.vue';
 import RatingMovie from '~/components/RatingMovie/RatingMovie.vue';
 import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import Comment from '~/components/Comment/Comment.vue';
+import ListEpisodes from '~/components/ListEpisodes/ListEpisodes.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 
-const store: any = useStore();
 const utils = useUtils();
+const store: any = useStore();
 const route: any = useRoute();
 const router = useRouter();
 const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
-const urlCodeMovie = ref<string>('809431505');
+const urlCodeMovie = ref<string>('The_Witcher_S1_Ep1.mp4');
 const isAddToList = ref<boolean>(false);
 const seconds = ref<number>(0);
 const percent = ref<number>(0);
@@ -288,23 +313,27 @@ const isPlayVideo = ref<boolean>(false);
 const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
 const percentProgressHistory = ref<number>(0);
+const release_date = computed<string>(
+  () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
+);
 const disabledRate = ref<boolean>(false);
+const currentEpisode = ref<any>({});
 const windowWidth = ref<number>(window.innerWidth);
+const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
 
 const internalInstance: any = getCurrentInstance();
 
 const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
-
+  isEpisodes.value = true;
   loading.value = true;
-  isEpisodes.value = false;
 
-  await useAsyncData(`movie/short/${route.params?.id}`, () =>
-    getMovieById(route.params?.id)
+  await useAsyncData(`tv/short/${movieId.value}`, () =>
+    getTvById(movieId.value, 'seasons,episodes')
   )
-    .then((movieResponed: any) => {
-      dataMovie.value = movieResponed.data.value;
-      disabledRate.value = movieResponed.data.value?.is_rated == true;
+    .then((tvResponed: any) => {
+      dataMovie.value = tvResponed.data.value;
+      disabledRate.value = tvResponed.data.value?.is_rated == true;
     })
     .catch((e) => {
       navigateTo('/404');
@@ -326,10 +355,11 @@ const getData = async () => {
     }
 
     // await useAsyncData(
-    //   `itemlist/${store?.userAccount?.id}/${route.params?.id}`,
-    //   () => getItemList(route.params?.id)
-    // )
-    //   .then((movieRespone: any) => {
+    //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
+    //   () => getItemHistory(movieId.value)
+    // );
+    // getItemList(movieId.value)
+    //   .then((movieRespone) => {
     //     if (movieRespone.data.value.data.success == true) {
     //       isAddToList.value = true;
     //     }
@@ -339,8 +369,8 @@ const getData = async () => {
     //   });
 
     // await useAsyncData(
-    //   `itemhistory/${store?.userAccount?.id}/${route.params?.id}`,
-    //   () => getItemHistory(route.params?.id)
+    //   `itemhistory/${store?.userAccount?.id}/${movieId.value}`,
+    //   () => getItemHistory(movieId.value)
     // )
     //   .then((movieRespone: any) => {
     //     if (movieRespone.data.value.data.success == true) {
@@ -391,8 +421,9 @@ const updateHistory = () => {
       duration.value > 0
     ) {
       add_update_History({
-        media_type: 'movie',
+        media_type: 'tv',
         movie_id: dataMovie.value?.id,
+        episode: currentEpisode.value,
         duration: duration.value,
         percent: percent.value,
         seconds: seconds.value,
@@ -412,6 +443,14 @@ const updateHistory = () => {
 onBeforeRouteLeave(() => {
   updateHistory();
 });
+
+const getUrlCode = (urlCode: string) => {
+  urlCodeMovie.value = urlCode;
+};
+
+const getCurrentEpisode = (episode: any) => {
+  currentEpisode.value = episode;
+};
 
 const onPLayVideoPlayer = (e: any) => {
   duration.value = e?.duration;
@@ -439,7 +478,7 @@ const onTimeUpdateVideoPlayer = (e: any) => {
 
       if (seconds.value > e.duration / 2) {
         if (isUpdateView.value == true) {
-          UpdateView(route.params?.id, 'movie');
+          UpdateView(movieId.value, 'tv');
           isUpdateView.value = false;
         }
       }
@@ -454,13 +493,13 @@ const handelAddToList = () => {
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (!utils.handelAddItemToList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handelAddItemToList(dataMovie.value?.id, 'tv')) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handelRemoveItemFromList(dataMovie.value?.id, 'tv')) {
       isAddToList.value = true;
     }
     return;
@@ -473,4 +512,4 @@ const scrollToComment = () => {
 };
 </script>
 
-<style lang="scss" src="./PlayMoviePage.scss"></style>
+<style lang="scss" src="./PlayTvPage.scss"></style>
