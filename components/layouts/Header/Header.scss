@@ -327,10 +327,18 @@ header.header-bar {
         }
 
         &.login-header {
-          font-size: 1.7rem;
-          font-weight: 500;
           transition: all 0.15s;
           padding-right: 18px;
+
+          a {
+            font-size: 1.4rem;
+            font-weight: 500;
+            padding: 6px 17px;
+            border-radius: 25px;
+            line-height: normal;
+            border: 1px solid var(--app-background-color);
+            color: var(--app-background-color) !important;
+          }
 
           &:active {
             opacity: 0.8;

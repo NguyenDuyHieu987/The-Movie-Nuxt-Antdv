@@ -179,11 +179,10 @@ onMounted(() => {
     )
   );
 
-  const episode = document.getElementById(
-    `episode-${currentEpisode.value}`
-  ) as HTMLElement;
+  // const episode = document.getElementById(
+  //   `episode-${currentEpisode.value}`
+  // ) as HTMLElement;
 
-  console.log(episode);
   // episode.scrollIntoView();
 });
 
