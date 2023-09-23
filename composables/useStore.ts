@@ -58,8 +58,6 @@ export default defineStore('store', () => {
         user_token: utils.localStorage.getWithExpiry('user_token'),
       })
         .then((accountResponse: any) => {
-          // console.log(accountResponse);
-
           if (accountResponse?.isLogin == true) {
             userAccount.value = accountResponse?.result;
 
