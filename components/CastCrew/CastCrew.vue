@@ -47,12 +47,13 @@
       <el-tab-pane name="cast" label="Diễn viên">
         <el-skeleton :loading="loading" animated>
           <template #template>
-            <el-skeleton-item
-              class="skeleton-img"
-              v-for="(item, index) in 10"
-              :index="index"
-              :key="index"
-            />
+            <div v-for="(item, index) in 10" :index="index" :key="index">
+              <el-skeleton-item class="skeleton-img" />
+              <div class="content-skeleton">
+                <el-skeleton-item variant="text" style="width: 70%" />
+                <el-skeleton-item variant="text" style="width: 100%" />
+              </div>
+            </div>
           </template>
           <template #default>
             <SliderGroup :data="dataCredit?.cast?.slice(0, 20)">
@@ -69,7 +70,7 @@
           </template>
         </el-skeleton>
       </el-tab-pane>
-      <el-tab-pane name="crew" label="Đội ngũ" force-render>
+      <el-tab-pane name="crew" label="Đội ngũ">
         <el-skeleton :loading="loading" animated>
           <template #template>
             <el-skeleton-item

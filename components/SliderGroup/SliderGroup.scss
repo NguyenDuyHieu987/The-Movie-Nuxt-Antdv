@@ -1,16 +1,21 @@
 .slider-group {
   position: relative;
-  display: flex;
-  overflow-x: scroll;
-  padding-bottom: 12px;
-  gap: 10px;
+
+  .slider-group-wrapper {
+    position: relative;
+    display: flex;
+    overflow-x: scroll;
+    padding-bottom: 12px;
+    gap: 10px;
+  }
 
   .slider-button-next {
     position: absolute;
+    top: 0;
     right: 0;
+    height: 100%;
+    width: 50px;
     z-index: 1;
-    width: 30px;
-    // background-image: linear-gradient(90deg, #10101000 0, #101010 100%);
-    background-color: red;
+    background-image: linear-gradient(90deg, #10101000 0, #101010 100%);
   }
 }

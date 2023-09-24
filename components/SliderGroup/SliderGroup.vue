@@ -1,6 +1,8 @@
 <template>
   <div class="slider-group">
-    <slot name="content" />
+    <div class="slider-group-wrapper">
+      <slot name="content" />
+    </div>
 
     <div
       class="slider-button-next"

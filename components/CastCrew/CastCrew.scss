@@ -9,10 +9,16 @@
       flex-direction: row;
       gap: 10px;
 
-      .skeleton-img {
-        flex-shrink: 0;
+      .el-skeleton__item.skeleton-img {
         width: 150px;
-        height: 230px;
+        height: 180px;
+      }
+
+      .content-skeleton {
+        margin-top: 5px;
+
+        .el-skeleton__item.el-skeleton__text {
+        }
       }
     }
 

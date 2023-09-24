@@ -10,24 +10,9 @@
   min-width: 150px;
 
   .el-skeleton.is-animated {
-    .img-box {
+    .el-skeleton__item.skeleton-img {
       width: 100%;
-      height: 0px !important;
-      padding-bottom: 130%;
-      transition: all 0.3s;
-      overflow: hidden;
-
-      .el-skeleton__item.skeleton-img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        transition: opacity 0.3s;
-        object-fit: cover;
-      }
+      height: 180px;
     }
 
     .content-skeleton {
@@ -85,12 +70,6 @@
     border-bottom-right-radius: 5px;
     border-top: none;
     flex-grow: 1;
-
-    .name {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
 
     .name,
     .character,

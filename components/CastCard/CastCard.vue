@@ -2,9 +2,7 @@
   <div class="cast-item">
     <!-- <el-skeleton :loading="loading" animated class="cast-item">
       <template #template>
-        <div class="img-box">
-          <el-skeleton-item class="skeleton-img" />
-        </div>
+        <el-skeleton-item class="skeleton-img" />
         <div class="content-skeleton">
           <el-skeleton-item variant="text" style="width: 70%" />
           <el-skeleton-item variant="text" style="width: 100%" />
