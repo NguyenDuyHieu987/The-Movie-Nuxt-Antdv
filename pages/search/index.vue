@@ -86,6 +86,8 @@ useServerSeoMeta({
 });
 
 const getData = async () => {
+  await nextTick();
+
   await useAsyncData(`search/all/${searchQuery.value}/${page.value}`, () =>
     getDaTaSearch(searchQuery.value, page.value)
   )
@@ -106,11 +108,10 @@ const getData = async () => {
 };
 
 onBeforeMount(async () => {
-  await nextTick();
-
   internalInstance.appContext.config.globalProperties.$Progress.start();
-  getData();
 });
+
+getData();
 
 watch(
   () => route.query?.q,

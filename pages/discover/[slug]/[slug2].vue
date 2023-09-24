@@ -363,42 +363,31 @@ const getData = async () => {
   }
 };
 
-watch(route, () => {
-  // isFilter.value = false;
-  // loading.value = true;
-  // internalInstance.appContext.config.globalProperties.$Progress.start();
-  // getData();
-  // useHead({
-  //   title: '`Phimhay247 - ' + metaHead.value,
-  //   htmlAttrs: { lang: 'vi'},
-  // });
-  // loading.value = false;
-  // internalInstance.appContext.config.globalProperties.$Progress.finish();
-});
-
 onBeforeMount(() => {
-  isFilter.value = false;
-  loading.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  getData();
+  setTimeout(() => {
+    internalInstance.appContext.config.globalProperties.$Progress.finish();
+  }, 500);
+});
 
-  useHead({
-    title: () => 'Khám phá - ' + metaHead.value,
-    htmlAttrs: { lang: 'vi' },
-  });
+isFilter.value = false;
 
-  useServerSeoMeta({
-    title: () => 'Khám phá - ' + metaHead.value,
-    description: () => 'Khám phá phim mới cùng Phimhay247',
-    ogTitle: () => 'Khám phá - ' + metaHead.value,
-    ogType: 'video.movie',
-    // ogUrl: () => window.location.href,
-    ogDescription: () => 'Khám phá phim mới cùng Phimhay247',
-    ogLocale: 'vi',
-  });
+getData();
 
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
+useHead({
+  title: () => 'Khám phá - ' + metaHead.value,
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: () => 'Khám phá - ' + metaHead.value,
+  description: () => 'Khám phá phim mới cùng Phimhay247',
+  ogTitle: () => 'Khám phá - ' + metaHead.value,
+  ogType: 'video.movie',
+  // ogUrl: () => window.location.href,
+  ogDescription: () => 'Khám phá phim mới cùng Phimhay247',
+  ogLocale: 'vi',
 });
 
 const onChangePage = (

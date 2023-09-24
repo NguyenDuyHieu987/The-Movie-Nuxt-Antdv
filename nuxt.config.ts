@@ -306,11 +306,11 @@ export default defineNuxtConfig({
       crawlLinks: true,
     },
     storage: {},
-    // output: {
-    //   dir: '.output',
-    //   serverDir: '.output/server',
-    //   publicDir: '.output/public',
-    // },
+    output: {
+      dir: isProduction ? '.output' : 'D:\\MyWebsite\\Phimhay247\\.output',
+      // serverDir: '.output/server',
+      // publicDir: '.output/public',
+    },
   },
   hooks: {
     // ready: (ctx) => {
