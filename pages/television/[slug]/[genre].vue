@@ -128,22 +128,21 @@ import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimati
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/HeaderHomeBreadcrumb.vue';
-import { getGenreById } from '~/services/genres';
 import { FilterTvSlug } from '~/services/TvSlug';
 import type { genre, formfilter } from '~/types';
 
 useHead({
-  title: () => 'Phim bộ - ',
+  title: 'Phim bộ - ',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Phim bộ - ',
-  description: () => 'Phim bộ, Phim dài tập - Thể loại: ',
-  ogTitle: () => 'Phim bộ - ',
+  title: 'Phim bộ - ',
+  description: 'Phim bộ, Phim dài tập - Thể loại: ',
+  ogTitle: 'Phim bộ - ',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: () => 'Phim bộ, Phim dài tập - Thể loại: ',
+  ogDescription: 'Phim bộ, Phim dài tập - Thể loại: ',
   ogLocale: 'vi',
 });
 
@@ -211,20 +210,7 @@ const getData = async () => {
 
     // formFilter.value.genre = genreId.toString();
 
-    formFilter.value.genre = route.query.genre;
-
-    await useAsyncData(`discover/tv/all/${formFilter.value}`, () =>
-      FilterTvSlug(formFilter.value)
-    )
-      .then((response) => {
-        dataBilboard.value = response.data.value?.results;
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loading.value = false;
-      });
+    formFilter.value.genre = route.params.genre;
 
     await useAsyncData(
       `discover/tv/airingtoday/${{
@@ -306,6 +292,12 @@ const { data: dataBilboard, pending } = await useAsyncData(
 );
 
 onBeforeMount(getData);
+
+watch(
+  () => route.params,
+  async () => {},
+  { deep: true, immediate: true }
+);
 </script>
 
 <style src="../television.scss" lang="scss"></style>

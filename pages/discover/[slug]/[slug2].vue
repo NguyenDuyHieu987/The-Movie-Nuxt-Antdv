@@ -11,6 +11,7 @@
         <span>{{ metaHead }}</span>
       </h2>
     </div>
+
     <section class="discover-section" :class="{ collapsed: store.collapsed }">
       <div v-if="!loading" class="movie-group horizontal">
         <MovieCardHorizontal
@@ -87,6 +88,8 @@ const internalInstance: any = getCurrentInstance();
 
 const getData = async () => {
   loading.value = true;
+
+  await nextTick();
 
   if (isFilter.value) {
     await useAsyncData(`discover/${formFilter.value}}`, () =>
@@ -390,7 +393,7 @@ onBeforeMount(() => {
     description: () => 'Khám phá phim mới cùng Phimhay247',
     ogTitle: () => 'Khám phá - ' + metaHead.value,
     ogType: 'video.movie',
-    ogUrl: () => window.location.href,
+    // ogUrl: () => window.location.href,
     ogDescription: () => 'Khám phá phim mới cùng Phimhay247',
     ogLocale: 'vi',
   });

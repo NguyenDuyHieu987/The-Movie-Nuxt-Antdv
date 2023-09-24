@@ -380,7 +380,7 @@ const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
 const disabledRate = ref<boolean>(false);
-const windowWidth = ref<number>(window.innerWidth);
+const windowWidth = ref<number>(1200);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
 
 const internalInstance: any = getCurrentInstance();
@@ -402,6 +402,8 @@ const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   srcBackdropList.value = [];
+
+  await nextTick();
 
   await useAsyncData(`movie/detail/${movieId.value}`, () =>
     getMovieById(movieId.value, 'videos')
@@ -450,6 +452,16 @@ const getData = async () => {
   }
 };
 
+onBeforeMount(() => {
+  windowWidth.value = window.innerWidth;
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'instant',
+  });
+});
+
 getData();
 
 useHead({
@@ -462,16 +474,10 @@ useServerSeoMeta({
   description: () => dataMovie.value?.overview,
   ogTitle: () => 'Thông tin - ' + dataMovie.value?.name,
   ogType: 'video.movie',
-  ogUrl: () => window.location.href,
+  // ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,
   ogImage: () => getBackdrop(dataMovie.value?.backdrop_path),
   ogLocale: 'vi',
-});
-
-window.scrollTo({
-  top: 0,
-  left: 0,
-  behavior: 'instant',
 });
 
 const handelAddToList = () => {

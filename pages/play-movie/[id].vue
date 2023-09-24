@@ -289,16 +289,18 @@ const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
 const percentProgressHistory = ref<number>(0);
 const disabledRate = ref<boolean>(false);
-const windowWidth = ref<number>(window.innerWidth);
+const windowWidth = ref<number>(1200);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
 
 const internalInstance: any = getCurrentInstance();
 
 const getData = async () => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
   loading.value = true;
   isEpisodes.value = false;
+
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+
+  await nextTick();
 
   await useAsyncData(`movie/short/${movieId.value}`, () =>
     getMovieById(movieId.value)
@@ -321,7 +323,7 @@ const getData = async () => {
       isAddToList.value = true;
     }
 
-    if (dataMovie.value?.in_history) {
+    if (dataMovie.value?.history_progress) {
       isInHistory.value = true;
       percentProgressHistory.value = dataMovie.value?.history_progress?.percent;
     }
@@ -358,8 +360,16 @@ const getData = async () => {
 };
 
 onBeforeMount(() => {
-  getData();
+  windowWidth.value = window.innerWidth;
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'instant',
+  });
 });
+
+getData();
 
 useHead({
   title: () => 'Xem phim - ' + dataMovie.value?.name,
@@ -371,16 +381,10 @@ useServerSeoMeta({
   description: () => dataMovie.value?.overview,
   ogTitle: () => 'Xem phim - ' + dataMovie.value?.name,
   ogType: 'video.movie',
-  ogUrl: () => window.location.href,
+  // ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,
   ogImage: () => getBackdrop(dataMovie.value?.backdrop_path),
   ogLocale: 'vi',
-});
-
-window.scrollTo({
-  top: 0,
-  left: 0,
-  behavior: 'instant',
 });
 
 const updateHistory = () => {

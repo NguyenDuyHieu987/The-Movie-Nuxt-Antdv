@@ -128,7 +128,6 @@ import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimati
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/HeaderHomeBreadcrumb.vue';
-import { getGenreById } from '~/services/genres';
 import { FilterMovieSlug } from '~/services/movieSlug';
 import { genre, formfilter } from '~/types';
 
