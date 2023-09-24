@@ -1,7 +1,6 @@
 import { makeRequest } from './makeRequest';
 
 const URL_API_IMAGE = 'https://img.phimhay247.site';
-// const URL_API_IMAGE1 = 'https://ik.imagekit.io/z8fhvnk8u';
 // const URL_API_IMAGE1 = 'https://res.cloudinary.com/dvbhjlrdf/image/upload';
 
 // export function getImage(path: string, type: string, crop: string = '') {

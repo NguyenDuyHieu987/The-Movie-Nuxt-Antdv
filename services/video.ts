@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export function makeRequestVideo(url: string, options: any = {}) {
   const nuxtConfig = useRuntimeConfig();
-  // console.log(nuxtConfig);
 
   const api = axios.create({
     baseURL: nuxtConfig.app.production_mode
