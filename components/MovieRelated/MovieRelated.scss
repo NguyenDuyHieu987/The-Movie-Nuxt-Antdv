@@ -104,12 +104,18 @@
 @media only screen and (max-width: 1100px) {
   .movie-related {
     margin-top: 0px;
+
+    .movie-group.suggest,
+    .el-skeleton.is-animated.movie-group-suggest-skeleton {
+      gap: 15px;
+    }
   }
 }
 
 @media only screen and (max-width: 900px) {
   .movie-related {
-    .movie-group.suggest {
+    .movie-group.suggest,
+    .el-skeleton.is-animated.movie-group-suggest-skeleton {
       gap: 10px;
     }
   }

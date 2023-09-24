@@ -47,3 +47,11 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
     }
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .slider-group {
+    .slider-group-wrapper {
+      gap: 7px;
+    }
+  }
+}

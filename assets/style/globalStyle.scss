@@ -466,12 +466,12 @@ svg {
 
   &.ant-btn-dangerous:not([disabled]) {
     background-color: var(--btn-danger-color);
-    color: var(--btn-danger-color);
+    // color: var(--btn-danger-color);
     border-color: var(--btn-danger-color);
 
     &:hover {
       background-color: var(--btn-danger-color);
-      color: var(--btn-danger-color);
+      // color: var(--btn-danger-color);
       border-color: var(--btn-danger-color);
     }
   }

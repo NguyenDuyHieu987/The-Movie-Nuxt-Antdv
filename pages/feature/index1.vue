@@ -1,25 +1,25 @@
 <template>
-  <div class="home-container televison">
-    <HeaderHome title="Phim bộ" />
+  <div class="home-container feature">
+    <HeaderHome title="Phim lẻ" />
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
     <div class="home-content">
-      <section class="home-section outstanding" v-if="airingTodays?.length">
+      <section class="home-section outstanding" v-if="nowPlayings?.length">
         <h2 class="gradient-title-default">
-          <span>Airing Today</span>
+          <span>Now Playing</span>
           <NuxtLink
             :to="{
-              path: `/discover/tv/airingtoday`,
+              path: `/discover/movie/nowplaying`,
             }"
           >
             <span class="view-all">Xem tất cả</span>
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="airingTodays" :responsive="responsiveHorizoltal">
+        <CarouselGroup :data="nowPlayings" :responsive="responsiveHorizoltal">
           <template #content>
-            <SwiperSlide v-for="(item, index) in airingTodays">
+            <SwiperSlide v-for="(item, index) in nowPlayings">
               <MovieCardHorizontal
                 :item="item"
                 :index="index"
@@ -33,36 +33,10 @@
 
       <section class="home-section popular">
         <h2 class="gradient-title-default">
-          <span>On The Air</span>
-          <NuxtLink
-            :to="{
-              path: `/discover/tv/ontheair`,
-            }"
-          >
-            <span class="view-all">Xem tất cả</span>
-          </NuxtLink>
-        </h2>
-
-        <CarouselGroup :data="onTheAirs" :responsive="responsiveHorizoltal">
-          <template #content>
-            <SwiperSlide v-for="(item, index) in onTheAirs">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
-          </template>
-        </CarouselGroup>
-      </section>
-
-      <section class="home-section upcoming">
-        <h2 class="gradient-title-default">
           <span>Popular</span>
           <NuxtLink
             :to="{
-              path: `/discover/tv/popular`,
+              path: `/discover/movie/popular`,
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -83,12 +57,38 @@
         </CarouselGroup>
       </section>
 
+      <section class="home-section upcoming">
+        <h2 class="gradient-title-default">
+          <span>Upcomimg</span>
+          <NuxtLink
+            :to="{
+              path: `/discover/movie/upcoming`,
+            }"
+          >
+            <span class="view-all">Xem tất cả</span>
+          </NuxtLink>
+        </h2>
+
+        <CarouselGroup :data="upComings" :responsive="responsiveHorizoltal">
+          <template #content>
+            <SwiperSlide v-for="(item, index) in upComings">
+              <MovieCardHorizontal
+                :item="item"
+                :index="index"
+                :key="item.id"
+                :type="item.media_type"
+              />
+            </SwiperSlide>
+          </template>
+        </CarouselGroup>
+      </section>
+
       <section class="home-section toprated">
         <h2 class="gradient-title-default">
           <span>Top Rated</span>
           <NuxtLink
             :to="{
-              path: `/discover/tv/toprated`,
+              path: `/discover/movie/toprated`,
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -118,37 +118,37 @@ import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimati
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.vue';
-import {
-  getTvs,
-  getTvAiringToday,
-  getTvOntheAir,
-  getTvPopular,
-  getTvTopRated,
-  FilterTvSlug,
-} from '~/services/TvSlug';
 import { getGenreByShortName } from '~/services/genres';
-import type { formfilter } from '~/types';
+import {
+  getMovies,
+  getNowPlaying,
+  getUpComing,
+  getPopular,
+  getTopRated,
+  FilterMovieSlug,
+} from '~/services/movieSlug';
+import { genre, formfilter } from '~/types';
 
 useHead({
-  title: 'Phim bộ',
+  title: 'Phim lẻ',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Phim bộ',
-  description: 'Phim bộ, Phim dài tập',
-  ogTitle: 'Phim bộ',
+  title: 'Phim lẻ',
+  description: 'Phim lẻ, Phim chiếu rạp',
+  ogTitle: 'Phim lẻ',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Phim bộ, Phim dài tập',
+  ogDescription: 'Phim lẻ, Phim chiếu rạp',
   ogLocale: 'vi',
 });
 
 const store = useStore();
 const route = useRoute();
-const airingTodays = ref<any>([]);
-const onTheAirs = ref<any>([]);
+const nowPlayings = ref<any>([]);
 const populars = ref<any>([]);
+const upComings = ref<any>([]);
 const topRateds = ref<any>([]);
 const loading = ref<boolean>(false);
 const formFilter = ref<formfilter>({
@@ -199,23 +199,15 @@ const getData = async () => {
 
   await nextTick();
 
-  await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
+  await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
     .then((response) => {
-      airingTodays.value = response.data.value?.results.slice(0, 12);
+      nowPlayings.value = response.data.value?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData(`tv/ontheair/1`, () => getTvOntheAir(2))
-    .then((response) => {
-      onTheAirs.value = response.data.value?.results.slice(0, 12);
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
-
-  await useAsyncData('tv/popular/1', () => getTvPopular(3))
+  await useAsyncData(`movie/popular/1`, () => getPopular(2))
     .then((response) => {
       populars.value = response.data.value?.results.slice(0, 12);
     })
@@ -223,7 +215,15 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     });
 
-  await useAsyncData('tv/toprated/1', () => getTvTopRated(4))
+  await useAsyncData('movie/upcoming/1', () => getUpComing(3))
+    .then((response) => {
+      upComings.value = response.data.value?.results.slice(0, 12);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  await useAsyncData('movie/toprated/1', () => getTopRated(4))
     .then((response) => {
       topRateds.value = response.data.value?.results.slice(0, 12);
     })
@@ -235,8 +235,8 @@ const getData = async () => {
 };
 
 const { data: dataBilboard, pending } = await useAsyncData(
-  'tv/all/1',
-  () => getTvs(1),
+  'movie/all/1',
+  () => getMovies(1),
   {
     // default: () => {
     //   return { results: trendingsCache.value || [] };
@@ -248,6 +248,113 @@ const { data: dataBilboard, pending } = await useAsyncData(
 );
 
 onBeforeMount(getData);
+
+watch(
+  () => route.query,
+  async () => {
+    if (route.query?.genre) {
+      loading.value = true;
+      // const genreId: number = getGenreByShortName(
+      //   route.query.genre,
+      //   store.allGenres
+      // )!.id;
+
+      // formFilter.value.genre = genreId.toString();
+
+      formFilter.value.genre = route.query.genre;
+
+      await useAsyncData(`discover/movie/all/${formFilter.value}`, () =>
+        FilterMovieSlug(formFilter.value)
+      )
+        .then((response) => {
+          dataBilboard.value = response.data.value?.results;
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+
+      await useAsyncData(
+        `discover/movie/nowplaying/${{
+          ...formFilter.value,
+          type: 'nowplaying',
+        }}`,
+        () =>
+          FilterMovieSlug({
+            ...formFilter.value,
+            type: 'nowplaying',
+          })
+      )
+        .then((response) => {
+          nowPlayings.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+
+      await useAsyncData(
+        `discover/movie/popular/${{
+          ...formFilter.value,
+          type: 'popular',
+        }}`,
+        () =>
+          FilterMovieSlug({
+            ...formFilter.value,
+            type: 'popular',
+          })
+      )
+        .then((response) => {
+          populars.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+
+      await useAsyncData(
+        `discover/movie/upcoming/${{
+          ...formFilter.value,
+          type: 'upcoming',
+        }}`,
+        () =>
+          FilterMovieSlug({
+            ...formFilter.value,
+            type: 'upcoming',
+          })
+      )
+        .then((response) => {
+          upComings.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+
+      await useAsyncData(
+        `discover/movie/toprated/${{
+          ...formFilter.value,
+          type: 'toprated',
+        }}`,
+        () =>
+          FilterMovieSlug({
+            ...formFilter.value,
+            type: 'toprated',
+          })
+      )
+        .then((response) => {
+          topRateds.value = response.data.value?.results.slice(0, 12);
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {});
+    }
+  },
+  { deep: true, immediate: true }
+);
 </script>
 
-<style src="./television.scss" lang="scss"></style>
+<style src="./FeaturePage.scss" lang="scss"></style>

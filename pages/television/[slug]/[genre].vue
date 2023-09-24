@@ -153,7 +153,7 @@ const topRateds = ref<any>([]);
 const loading = ref<boolean>(false);
 const formFilter = ref<formfilter>({
   type: 'all',
-  genre: '',
+  genre: route.params.genre,
   year: '',
   country: '',
   page: 1,
@@ -199,44 +199,99 @@ const getData = async () => {
 
   await nextTick();
 
-  await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
-    .then((response) => {
-      airingTodays.value = response.data.value?.results.slice(0, 12);
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  if (route.params?.slug == 'genre') {
+    loading.value = true;
+    // const genreId: number = getGenreByShortName(
+    //   route.query.genre,
+    //   store.allGenres
+    // )!.id;
 
-  await useAsyncData(`tv/ontheair/1`, () => getTvOntheAir(2))
-    .then((response) => {
-      onTheAirs.value = response.data.value?.results.slice(0, 12);
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+    // formFilter.value.genre = genreId.toString();
 
-  await useAsyncData('tv/popular/1', () => getTvPopular(3))
-    .then((response) => {
-      populars.value = response.data.value?.results.slice(0, 12);
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+    formFilter.value.genre = route.query.genre;
 
-  await useAsyncData('tv/toprated/1', () => getTvTopRated(4))
-    .then((response) => {
-      topRateds.value = response.data.value?.results.slice(0, 12);
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+    await useAsyncData(`discover/tv/all/${formFilter.value}`, () =>
+      FilterTvSlug(formFilter.value)
+    )
+      .then((response) => {
+        dataBilboard.value = response.data.value?.results;
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {
+        loading.value = false;
+      });
+
+    await useAsyncData(
+      `discover/tv/airingtoday/${{
+        ...formFilter.value,
+        type: 'airingtoday',
+      }}`,
+      () => FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
+    )
+      .then((response) => {
+        airingTodays.value = response.data.value?.results.slice(0, 12);
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {});
+
+    await useAsyncData(
+      `discover/tv/ontheair/${{
+        ...formFilter.value,
+        type: 'ontheair',
+      }}`,
+      () => FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
+    )
+      .then((response) => {
+        onTheAirs.value = response.data.value?.results.slice(0, 12);
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {});
+
+    await useAsyncData(
+      `discover/tv/popular/${{
+        ...formFilter.value,
+        type: 'popular',
+      }}`,
+      () => FilterTvSlug({ ...formFilter.value, type: 'popular' })
+    )
+      .then((response) => {
+        populars.value = response.data.value?.results.slice(0, 12);
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {});
+
+    await useAsyncData(
+      `discover/tv/toprated/${{
+        ...formFilter.value,
+        type: 'toprated',
+      }}`,
+      () => FilterTvSlug({ ...formFilter.value, type: 'toprated' })
+    )
+      .then((response) => {
+        topRateds.value = response.data.value?.results.slice(0, 12);
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {});
+  } else {
+    navigateTo('/404');
+  }
 
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 };
 
 const { data: dataBilboard, pending } = await useAsyncData(
-  'tv/all/1',
-  () => getTvs(1),
+  `discover/tv/all/${formFilter.value}`,
+  () => FilterTvSlug(formFilter.value),
   {
     // default: () => {
     //   return { results: trendingsCache.value || [] };
@@ -250,4 +305,4 @@ const { data: dataBilboard, pending } = await useAsyncData(
 onBeforeMount(getData);
 </script>
 
-<style src="./television.scss" lang="scss"></style>
+<style src="../television.scss" lang="scss"></style>

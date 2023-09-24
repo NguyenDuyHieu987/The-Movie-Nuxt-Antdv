@@ -433,8 +433,8 @@ export default defineNuxtConfig({
   optimization: {},
   routeRules: {
     '/': { prerender: true },
-    '/feature': { prerender: true },
-    '/television': { prerender: true },
+    '/feature/**': { prerender: true },
+    '/television/**': { prerender: true },
     '/search/**': { prerender: true },
     '/discover/**': { ssr: false, prerender: true },
     '/follow/**': { prerender: true },

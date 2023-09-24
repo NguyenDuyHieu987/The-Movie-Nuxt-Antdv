@@ -144,21 +144,10 @@ useServerSeoMeta({
   ogLocale: 'vi',
 });
 
-const store = useStore();
-const route = useRoute();
 const nowPlayings = ref<any>([]);
 const populars = ref<any>([]);
 const upComings = ref<any>([]);
 const topRateds = ref<any>([]);
-const loading = ref<boolean>(false);
-const formFilter = ref<formfilter>({
-  type: 'all',
-  genre: '',
-  year: '',
-  country: '',
-  page: 1,
-  limit: 20,
-});
 const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({
@@ -248,113 +237,6 @@ const { data: dataBilboard, pending } = await useAsyncData(
 );
 
 onBeforeMount(getData);
-
-watch(
-  () => route.query,
-  async () => {
-    if (route.query?.genre) {
-      loading.value = true;
-      // const genreId: number = getGenreByShortName(
-      //   route.query.genre,
-      //   store.allGenres
-      // )!.id;
-
-      // formFilter.value.genre = genreId.toString();
-
-      formFilter.value.genre = route.query.genre;
-
-      await useAsyncData(`discover/movie/all/${formFilter.value}`, () =>
-        FilterMovieSlug(formFilter.value)
-      )
-        .then((response) => {
-          dataBilboard.value = response.data.value?.results;
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        })
-        .finally(() => {
-          loading.value = false;
-        });
-
-      await useAsyncData(
-        `discover/movie/nowplaying/${{
-          ...formFilter.value,
-          type: 'nowplaying',
-        }}`,
-        () =>
-          FilterMovieSlug({
-            ...formFilter.value,
-            type: 'nowplaying',
-          })
-      )
-        .then((response) => {
-          nowPlayings.value = response.data.value?.results.slice(0, 12);
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        })
-        .finally(() => {});
-
-      await useAsyncData(
-        `discover/movie/popular/${{
-          ...formFilter.value,
-          type: 'popular',
-        }}`,
-        () =>
-          FilterMovieSlug({
-            ...formFilter.value,
-            type: 'popular',
-          })
-      )
-        .then((response) => {
-          populars.value = response.data.value?.results.slice(0, 12);
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        })
-        .finally(() => {});
-
-      await useAsyncData(
-        `discover/movie/upcoming/${{
-          ...formFilter.value,
-          type: 'upcoming',
-        }}`,
-        () =>
-          FilterMovieSlug({
-            ...formFilter.value,
-            type: 'upcoming',
-          })
-      )
-        .then((response) => {
-          upComings.value = response.data.value?.results.slice(0, 12);
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        })
-        .finally(() => {});
-
-      await useAsyncData(
-        `discover/movie/toprated/${{
-          ...formFilter.value,
-          type: 'toprated',
-        }}`,
-        () =>
-          FilterMovieSlug({
-            ...formFilter.value,
-            type: 'toprated',
-          })
-      )
-        .then((response) => {
-          topRateds.value = response.data.value?.results.slice(0, 12);
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        })
-        .finally(() => {});
-    }
-  },
-  { deep: true, immediate: true }
-);
 </script>
 
 <style src="./FeaturePage.scss" lang="scss"></style>
