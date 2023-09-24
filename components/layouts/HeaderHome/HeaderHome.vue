@@ -32,7 +32,7 @@
               :key="index.toString()"
               @click="handleSelectGenre(item)"
             >
-              <NuxtLink :to="`${route.path}/genre/${item.id}`">
+              <NuxtLink :to="{ path: `/${route.path}/genre/${item.id}` }">
                 <span>{{ item.name_vietsub }}</span>
               </NuxtLink>
             </el-dropdown-item>
