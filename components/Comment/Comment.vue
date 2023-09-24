@@ -53,14 +53,12 @@ const disabledLoadMore = ref<boolean>(false);
 
 loading.value = true;
 
-await useAsyncData(
-  `${props.dataMovie?.media_type}/${props.dataMovie?.id}`,
-  () =>
-    getCommentByMovidId(
-      props.dataMovie?.id,
-      props.dataMovie?.media_type,
-      skip.value
-    )
+useAsyncData(`${props.dataMovie?.media_type}/${props.dataMovie?.id}`, () =>
+  getCommentByMovidId(
+    props.dataMovie?.id,
+    props.dataMovie?.media_type,
+    skip.value
+  )
 )
   .then((response) => {
     commentsList.value = response.data.value?.results;

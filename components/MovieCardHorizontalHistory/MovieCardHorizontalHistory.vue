@@ -407,7 +407,7 @@ const getData = async () => {
     switch (props?.type || props?.item?.media_type) {
       case 'movie':
         isEpisodes.value = false;
-        await useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
+        useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
           getMovieById(props.item?.movie_id)
         )
           .then((movieResponed: any) => {
@@ -423,7 +423,7 @@ const getData = async () => {
       case 'tv':
         isEpisodes.value = true;
 
-        await useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
+        useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
           getTvById(props.item?.movie_id)
         )
           .then((tvResponed: any) => {

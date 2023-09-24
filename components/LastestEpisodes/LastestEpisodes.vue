@@ -10,7 +10,8 @@
       >
         <NuxtLink
           :to="{
-            path: `/play-tv/${dataMovie?.id}__${dataMovie?.name
+            path: `/play-tv/${dataMovie?.id}__${utils
+              .removeVietnameseTones(dataMovie?.name)
               ?.replace(/\s/g, '-')
               .toLowerCase()}/tap-${item?.episode_number}`,
           }"
@@ -47,6 +48,7 @@ const props = defineProps({
   },
 });
 
+const utils = useUtils();
 const dataSeason = ref<any>(props.dataMovie);
 const dataEpisode = ref<any[]>([]);
 const loading = ref<boolean>(false);
@@ -54,7 +56,7 @@ const loading = ref<boolean>(false);
 onBeforeMount(async () => {
   loading.value = true;
 
-  await useAsyncData(
+  useAsyncData(
     `season/${props.dataMovie?.id}/${props?.dataMovie?.season_id}`,
     () => getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
   )

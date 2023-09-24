@@ -55,15 +55,18 @@
             />
           </template>
           <template #default>
-            <SliderGroup :data="dataCredit?.cast?.slice(0, 20)">
+            <SliderGroup
+              :data="dataCredit?.cast?.slice(0, 20)"
+              :responsive="responsiveCarousel"
+            >
               <template #content>
-                <CastCard
+                <SwiperSlide
                   v-for="(item, index) in dataCredit?.cast?.slice(0, 20)"
                   :index="index"
                   :key="item.id"
-                  :item="item"
-                  type="cast"
-                />
+                >
+                  <CastCard :item="item" type="cast" />
+                </SwiperSlide>
               </template>
             </SliderGroup>
           </template>
@@ -80,15 +83,18 @@
             />
           </template>
           <template #default>
-            <SliderGroup :data="dataCredit?.crew?.slice(0, 20)">
+            <SliderGroup
+              :data="dataCredit?.crew?.slice(0, 20)"
+              :responsive="responsiveCarousel"
+            >
               <template #content>
-                <CastCard
+                <SwiperSlide
                   v-for="(item, index) in dataCredit?.crew?.slice(0, 20)"
                   :index="index"
                   :key="item.id"
-                  :item="item"
-                  type="crew"
-                />
+                >
+                  <CastCard :item="item" type="crew" />
+                </SwiperSlide>
               </template>
             </SliderGroup>
           </template>
@@ -110,6 +116,54 @@ const props = defineProps<{
 const dataCredit = ref<any>(props.dataMovie?.credits);
 const loading = ref<boolean>(false);
 const activeTabCast = ref<string>('cast');
+const responsiveCarousel = ref<any>({
+  0: {
+    slidesPerView: 2,
+    // slidesPerGroup: 2,
+  },
+  450: {
+    slidesPerView: 3,
+    // slidesPerGroup: 3,
+  },
+  600: {
+    slidesPerView: 4,
+    // slidesPerGroup: 4,
+  },
+  700: {
+    slidesPerView: 5,
+    // slidesPerGroup: 5,
+  },
+  900: {
+    slidesPerView: 4,
+    // slidesPerGroup: 4,
+    spaceBetween: 3,
+  },
+  1000: {
+    slidesPerView: 5,
+    // slidesPerGroup: 5,
+  },
+  1100: {
+    slidesPerView: 6,
+    // slidesPerGroup: 6,
+  },
+  1300: {
+    slidesPerView: 7,
+    // slidesPerGroup: 7,
+  },
+  1550: {
+    slidesPerView: 8,
+    // slidesPerGroup: 8,
+    spaceBetween: 5,
+  },
+  1700: {
+    slidesPerView: 9,
+    // slidesPerGroup: 9,
+  },
+  2000: {
+    slidesPerView: 10,
+    // slidesPerGroup: 10,
+  },
+});
 
 loading.value = true;
 

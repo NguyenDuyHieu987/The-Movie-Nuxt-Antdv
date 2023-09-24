@@ -4,6 +4,18 @@
   margin-top: 25px;
 
   .cast-crew-tabs {
+    .el-skeleton.is-animated {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      .skeleton-img {
+        flex-shrink: 0;
+        width: 150px;
+        height: 230px;
+      }
+    }
+
     &.ant-tabs {
       overflow: visible;
 

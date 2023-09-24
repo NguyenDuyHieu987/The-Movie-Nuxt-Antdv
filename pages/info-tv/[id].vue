@@ -394,8 +394,6 @@ const disabledRate = ref<boolean>(false);
 const windowWidth = ref<number>(window.innerWidth);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
 
-console.log(movieId.value);
-
 const internalInstance: any = getCurrentInstance();
 
 const setBackgroundColor = (color: string[]) => {
@@ -464,34 +462,6 @@ const getData = async () => {
 };
 
 getData();
-
-// nuxtApp.hook('page:start', () => {
-//   isAddToList.value = false;
-//   loading.value = true;
-//   internalInstance.appContext.config.globalProperties.$Progress.start();
-//   srcBackdropList.value = [];
-// });
-
-// const { data: dataMovie, pending } = await useAsyncData(
-//   `tv/detail/${movieId.value}`,
-//   () => getTvById(movieId.value, 'videos'),
-//   {
-//     // lazy: true,
-//     // immediate: false,
-//     // server: false,
-//   }
-// );
-
-// if (store.isLogin) {
-//   isAddToList.value = dataMovie.value?.in_list == true;
-//   disabledRate.value = dataMovie.value?.is_rated == true;
-// }
-
-// nuxtApp.hook('page:finish', () => {
-//   setBackgroundColor(dataMovie.value.dominant_backdrop_color);
-//   loading.value = false;
-//   internalInstance.appContext.config.globalProperties.$Progress.finish();
-// });
 
 useHead({
   title: () => 'Thông tin - ' + dataMovie.value?.name,

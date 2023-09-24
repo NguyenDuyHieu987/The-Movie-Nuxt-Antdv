@@ -174,7 +174,7 @@ const getData = async () => {
       isInHistory.value = true;
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {
-      await useAsyncData(
+      useAsyncData(
         `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
         () => getItemHistory(props.item?.id, props.item?.media_type)
       )

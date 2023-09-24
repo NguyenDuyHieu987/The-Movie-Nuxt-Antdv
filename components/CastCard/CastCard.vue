@@ -1,6 +1,6 @@
 <template>
   <div class="cast-item">
-    <el-skeleton :loading="loading" animated class="cast-item">
+    <!-- <el-skeleton :loading="loading" animated class="cast-item">
       <template #template>
         <div class="img-box">
           <el-skeleton-item class="skeleton-img" />
@@ -11,31 +11,31 @@
         </div>
       </template>
 
-      <template #default>
-        <div class="img-box">
-          <div class="ant-image">
-            <img
-              v-lazy="getPosterCast(item?.profile_path)"
-              :lazy="true"
-              loading="lazy"
-              @load="onLoadImg"
-            />
-          </div>
-        </div>
+      <template #default> </template>
+    </el-skeleton> -->
 
-        <div class="info">
-          <p class="name">
-            {{ item?.name }}
-          </p>
-          <p v-if="type == 'cast'" class="character">
-            {{ item?.character }}
-          </p>
-          <p v-else-if="type == 'crew'" class="job">
-            {{ item?.job }}
-          </p>
-        </div>
-      </template>
-    </el-skeleton>
+    <div class="img-box">
+      <div class="ant-image">
+        <img
+          v-lazy="getPosterCast(item?.profile_path)"
+          :lazy="true"
+          loading="lazy"
+          @load="onLoadImg"
+        />
+      </div>
+    </div>
+
+    <div class="info">
+      <p class="name">
+        {{ item?.name }}
+      </p>
+      <p v-if="type == 'cast'" class="character">
+        {{ item?.character }}
+      </p>
+      <p v-else-if="type == 'crew'" class="job">
+        {{ item?.job }}
+      </p>
+    </div>
   </div>
 </template>
 

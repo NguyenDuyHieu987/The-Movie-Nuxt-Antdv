@@ -1,6 +1,6 @@
 <template>
   <div class="movie-card-item-suggest">
-    <el-skeleton :loading="loading" animated>
+    <!-- <el-skeleton :loading="loading" animated>
       <template #template>
         <div class="img-box">
           <el-skeleton-item class="skeleton-img" />
@@ -24,134 +24,132 @@
         </div>
       </template>
 
-      <template #default>
-        <div class="img-box" @click="onClickPlay">
-          <nuxt-img
-            class="ant-image"
-            :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
-            loading="lazy"
-            alt=""
-          />
+      <template #default> </template>
+    </el-skeleton> -->
 
-          <div v-show="isInHistory" class="viewed-overlay-bar">
-            <div
-              class="percent-viewed"
-              :style="{ width: percent * 100 + '%' }"
-            ></div>
-          </div>
+    <div class="img-box" @click="onClickPlay">
+      <nuxt-img
+        class="ant-image"
+        :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+        loading="lazy"
+        alt=""
+      />
 
-          <div class="play-icon">
-            <!-- <Icon name="ci:play-arrow" class="play" /> -->
+      <div v-show="isInHistory" class="viewed-overlay-bar">
+        <div
+          class="percent-viewed"
+          :style="{ width: percent * 100 + '%' }"
+        ></div>
+      </div>
 
-            <svg
-              class="play"
-              xmlns="http://www.w3.org/2000/svg"
-              width="5rem"
-              height="5rem"
-              viewBox="0 0 24 24"
-            >
-              <path fill="currentColor" d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-        </div>
+      <div class="play-icon">
+        <!-- <Icon name="ci:play-arrow" class="play" /> -->
 
-        <NuxtLink
-          class="info"
-          :to="{
-            path: isEpisodes
-              ? `/info-tv/${item?.id}__${utils
-                  .removeVietnameseTones(item?.name)
-                  ?.replaceAll(/\s/g, '-')
-                  .toLowerCase()}`
-              : `/info-movie/${item?.id}__${utils
-                  .removeVietnameseTones(item?.name)
-                  ?.replaceAll(/\s/g, '-')
-                  .toLowerCase()}`,
-          }"
+        <svg
+          class="play"
+          xmlns="http://www.w3.org/2000/svg"
+          width="5rem"
+          height="5rem"
+          viewBox="0 0 24 24"
         >
-          <p class="title">
-            {{ item?.name }}
-            <!-- <span v-if="isEpisodes">
+          <path fill="currentColor" d="M8 5v14l11-7z" />
+        </svg>
+      </div>
+    </div>
+
+    <NuxtLink
+      class="info"
+      :to="{
+        path: isEpisodes
+          ? `/info-tv/${item?.id}__${utils
+              .removeVietnameseTones(item?.name)
+              ?.replaceAll(/\s/g, '-')
+              .toLowerCase()}`
+          : `/info-movie/${item?.id}__${utils
+              .removeVietnameseTones(item?.name)
+              ?.replaceAll(/\s/g, '-')
+              .toLowerCase()}`,
+      }"
+    >
+      <p class="title">
+        {{ item?.name }}
+        <!-- <span v-if="isEpisodes">
               {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
             </span> -->
-          </p>
-          <div class="middle">
-            <div class="left">
-              <div
-                v-if="
-                  item?.release_date ||
-                  item?.last_air_date ||
-                  item?.first_air_date
-                "
-                class="release-date-box"
-              >
-                <span v-if="!isEpisodes" class="release-date">
-                  {{ item?.release_date?.slice(0, 4) }}
-                </span>
-                <span v-else class="release-date">
-                  {{
-                    item?.last_air_date?.slice(0, 4)
-                      ? item?.last_air_date?.slice(0, 4)
-                      : item?.first_air_date?.slice(0, 4)
-                  }}
-                </span>
-              </div>
-              <span class="views">
-                {{ utils.viewFormatter(item?.views) }} lượt xem
-              </span>
-            </div>
-            <div class="right">
-              <a-button
-                class="add click-active"
-                shape="circle"
-                size="large"
-                type="text"
-                @click.prevent="handelAddToList"
-              >
-                <template #icon>
-                  <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
+      </p>
+      <div class="middle">
+        <div class="left">
+          <div
+            v-if="
+              item?.release_date || item?.last_air_date || item?.first_air_date
+            "
+            class="release-date-box"
+          >
+            <span v-if="!isEpisodes" class="release-date">
+              {{ item?.release_date?.slice(0, 4) }}
+            </span>
+            <span v-else class="release-date">
+              {{
+                item?.last_air_date?.slice(0, 4)
+                  ? item?.last_air_date?.slice(0, 4)
+                  : item?.first_air_date?.slice(0, 4)
+              }}
+            </span>
+          </div>
+          <span class="views">
+            {{ utils.viewFormatter(item?.views) }} lượt xem
+          </span>
+        </div>
+        <div class="right">
+          <a-button
+            class="add click-active"
+            shape="circle"
+            size="large"
+            type="text"
+            @click.prevent="handelAddToList"
+          >
+            <template #icon>
+              <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
                   <Icon v-else name="ic:baseline-plus" /> -->
 
-                  <svg
-                    v-if="isAddToList"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="2.4rem"
-                    height="2.4rem"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"
-                    />
-                  </svg>
+              <svg
+                v-if="isAddToList"
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.4rem"
+                height="2.4rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"
+                />
+              </svg>
 
-                  <svg
-                    v-else
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="2.4rem"
-                    height="2.4rem"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"
-                    />
-                  </svg>
-                </template>
-              </a-button>
-            </div>
-          </div>
-          <div class="bottom">
-            <p class="overview">
-              {{
-                item?.overview ||
-                'Sorry! This movie has not been updated overview content.'
-              }}
-            </p>
-          </div>
-        </NuxtLink>
-      </template>
-    </el-skeleton>
+              <svg
+                v-else
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.4rem"
+                height="2.4rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"
+                />
+              </svg>
+            </template>
+          </a-button>
+        </div>
+      </div>
+      <div class="bottom">
+        <p class="overview">
+          {{
+            item?.overview ||
+            'Sorry! This movie has not been updated overview content.'
+          }}
+        </p>
+      </div>
+    </NuxtLink>
   </div>
 </template>
 
@@ -203,9 +201,8 @@ const getData = async () => {
     if (dataMovie.value?.in_list) {
       isAddToList.value = true;
     } else {
-      await useAsyncData(
-        `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-        () => getItemList(props.item?.id, props.item?.media_type)
+      useAsyncData(`itemlist/${store?.userAccount?.id}/${props.item?.id}`, () =>
+        getItemList(props.item?.id, props.item?.media_type)
       )
         .then((movieRespone: any) => {
           if (movieRespone.data.value.success == true) {
@@ -221,7 +218,7 @@ const getData = async () => {
       isInHistory.value = true;
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {
-      await useAsyncData(
+      useAsyncData(
         `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
         () => getItemHistory(props.item?.id, props.item?.media_type)
       )

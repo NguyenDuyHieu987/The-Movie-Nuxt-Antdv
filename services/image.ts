@@ -13,18 +13,18 @@ const URL_API_IMAGE = 'https://img.phimhay247.site';
 export function getImage(path: string, type: string, crop: string = '') {
   const nuxtConfig = useRuntimeConfig();
 
-  // const URL_API_IMAGE1 = nuxtConfig.app.production_mode
-  //   ? nuxtConfig.app.serverImageUrl
-  //   : 'http://localhost:5002/static/';
+  const URL_API_IMAGE1 = nuxtConfig.app.production_mode
+    ? nuxtConfig.app.serverImageUrl
+    : 'http://localhost:5002/static/';
 
-  // if (crop?.length == 0 || !nuxtConfig.app.production_mode)
-  //   return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
+  if (crop?.length == 0 || !nuxtConfig.app.production_mode)
+    return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
 
-  // return path ? `${URL_API_IMAGE1}/images/${type}/${path}/tr:${crop}` : ' ';
+  return path ? `${URL_API_IMAGE1}/images/${type}/${path}/tr:${crop}` : ' ';
 
-  const URL_API_IMAGE1 = 'http://localhost:5002/static/';
+  // const URL_API_IMAGE1 = 'http://localhost:5002/static/';
 
-  return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
+  // return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
 }
 
 export function getPoster(path: string, size = 'full') {

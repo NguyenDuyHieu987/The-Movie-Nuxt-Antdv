@@ -198,21 +198,10 @@ export default defineNuxtConfig({
     'ant-design-vue/dist/antd.dark.min.css',
     // 'element-plus/dist/index.css',
 
-    // 'ant-design-vue/es/menu/style/index.css',
-    // 'ant-design-vue/es/button/style/index.css',
-    // 'ant-design-vue/es/form/style/index.css',
-    // 'ant-design-vue/es/auto-complete/style/index.css',
-    // 'ant-design-vue/es/input/style/index.css',
-    // 'ant-design-vue/es/layout/style/index.css',
-    // 'ant-design-vue/es/select/style/index.css',
-    // 'ant-design-vue/es/dropdown/style/index.css',
-
     '~/assets/style/fonts/GoogleFonts.css',
     '~/assets/style/globalStyle/overwrite/antdv/antdv.scss',
     '~/assets/style/globalStyle/overwrite/element/element.scss',
     '~/assets/style/globalStyle.scss',
-    // '@fortawesome/fontawesome-svg-core/styles.css',
-    // 'material-icons/iconfont/material-icons.css',
   ],
   modules: [
     '@element-plus/nuxt',
@@ -240,11 +229,8 @@ export default defineNuxtConfig({
     'nuxt-seo-experiments',
     'nuxt-gtag',
     // 'vue-social-sharing/nuxt',
-    'nuxt-delay-hydration',
+    // 'nuxt-delay-hydration',
   ],
-  // elementPlus: {
-  //   /** Options */
-  // },
   extends: ['nuxt-seo-kit'],
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
@@ -454,10 +440,10 @@ export default defineNuxtConfig({
     '/follow/**': { prerender: true },
     '/history/**': { prerender: true },
     '/ranking/**': { prerender: true },
-    '/info-movie/**': { ssr: false },
-    '/info-tv/**': { ssr: false },
-    '/play-movie/**': { ssr: false },
-    '/play-tv/**': { ssr: false },
+    '/info-movie/**': { ssr: false, prerender: true },
+    '/info-tv/**': { ssr: false, prerender: true },
+    '/play-movie/**': { ssr: false, prerender: true },
+    '/play-tv/**': { ssr: false, prerender: true },
     '/oauth/**': { prerender: true },
     '/login': {
       prerender: true,

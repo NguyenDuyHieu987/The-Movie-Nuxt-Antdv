@@ -79,7 +79,8 @@
               :id="`episode-${item?.episode_number}`"
             >
               <a
-                :href="`/play-tv/${dataMovie?.id}__${dataMovie?.name
+                :href="`/play-tv/${dataMovie?.id}__${utils
+                  .removeVietnameseTones(dataMovie?.name)
                   ?.replace(/\s/g, '-')
                   .toLowerCase()}/tap-${item?.episode_number}`"
                 @click.prevent="handleChangeEpisode(item)"
@@ -118,6 +119,7 @@ const emit = defineEmits<{
 }>();
 
 const route: any = useRoute();
+const utils = useUtils();
 const router = useRouter();
 const dataSeason = ref<any>(props.dataMovie?.seasons);
 const dataEpisode = ref<any[]>(

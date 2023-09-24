@@ -1,53 +1,11 @@
 <template>
-  <div class="slider-container">
-    <Swiper
-      class="slider-group"
-      :modules="[
-        // SwiperAutoplay,
-        // SwiperNavigation,
-        SwiperFreeMode,
-        SwiperVirtual,
-        SwiperScrollbar,
-      ]"
-      :breakpoints="responsive"
-      :space-between="7"
-      :speed="500"
-      effect="creative"
-      :freeMode="{
-        enabled: true,
-        sticky: true,
-        momentum: false,
-        momentumBounce: false,
-      }"
-      :navigation="{
-        prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next',
-      }"
-      :autoplay="{
-        delay: 10000,
-        pauseOnMouseEnter: true,
-        reverseDirection: true,
-      }"
-      :scrollbar="{
-        el: '.swiper-scrollbar',
-        draggable: true,
-      }"
-      ref="swiper"
-      @scrollbar-drag-move="onScrollbarDrag"
-      @touch-move="onScrollbarDrag"
-    >
-      <slot name="content" />
-      <!-- <div class="swiper-button-prev">
-        <Icon name="bi:chevron-left"></Icon>
-      </div> -->
-      <div
-        class="swiper-button-next"
-        :class="{ 'swiper-button-disabled': isEndScrollbrDrag }"
-      >
-        <!-- <Icon name="bi:chevron-right"></Icon> -->
-      </div>
-      <div class="swiper-scrollbar"></div>
-    </Swiper>
+  <div class="slider-group">
+    <slot name="content" />
+
+    <div
+      class="slider-button-next"
+      :class="{ disabled: isEndScrollbrDrag }"
+    ></div>
   </div>
 </template>
 
@@ -57,7 +15,6 @@ const isEndScrollbrDrag = ref<boolean>(false);
 
 defineProps<{
   data: any[];
-  responsive: any;
 }>();
 
 const onScrollbarDrag = (e: any) => {

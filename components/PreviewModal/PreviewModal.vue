@@ -545,7 +545,7 @@ watch(previewModal, () => {
             left: props.style.rectBound.left + 'px',
             transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
           scale(1)`,
-            duration: 0.25,
+            duration: 0.2,
             onComplete: () => {
               isDisappear.value = false;
               isTeleport.value = false;
@@ -566,7 +566,7 @@ watch(previewModal, () => {
             right: minRectRight - 14 + 'px',
             transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
           scale(1)`,
-            duration: 0.25,
+            duration: 0.2,
             onComplete: () => {
               isDisappear.value = false;
               isTeleport.value = false;
@@ -584,7 +584,7 @@ watch(previewModal, () => {
         {
           transform: `translateX(-50%) translateY(calc(${props.style.offsetHeight}px / (-2)))
           scale(1)`,
-          duration: 0.25,
+          duration: 0.2,
           onComplete: () => {
             isDisappear.value = false;
             isTeleport.value = false;
