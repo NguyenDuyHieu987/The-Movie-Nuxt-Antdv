@@ -124,10 +124,7 @@ import {
   getTvOntheAir,
   getTvPopular,
   getTvTopRated,
-  FilterTvSlug,
 } from '~/services/TvSlug';
-import { getGenreByShortName } from '~/services/genres';
-import type { formfilter } from '~/types';
 
 useHead({
   title: 'Phim bộ',
@@ -145,20 +142,10 @@ useServerSeoMeta({
 });
 
 const store = useStore();
-const route = useRoute();
 const airingTodays = ref<any>([]);
 const onTheAirs = ref<any>([]);
 const populars = ref<any>([]);
 const topRateds = ref<any>([]);
-const loading = ref<boolean>(false);
-const formFilter = ref<formfilter>({
-  type: 'all',
-  genre: '',
-  year: '',
-  country: '',
-  page: 1,
-  limit: 20,
-});
 const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({
