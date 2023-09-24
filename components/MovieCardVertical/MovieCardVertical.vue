@@ -153,11 +153,11 @@ const rectBound = ref<any>(0);
 const timeOut = ref<any>();
 
 const getData = async () => {
-  loading.value = true;
+  // loading.value = true;
 
-  setTimeout(() => {
-    loading.value = false;
-  }, 500);
+  // setTimeout(() => {
+  //   loading.value = false;
+  // }, 500);
 
   if (props?.type || props?.item?.media_type) {
     switch (props?.type || props?.item?.media_type) {

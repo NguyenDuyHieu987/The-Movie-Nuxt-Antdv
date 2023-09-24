@@ -148,11 +148,11 @@ const percent = ref<number>(0);
 const isOpenModalTrailer = ref<boolean>(false);
 
 const getData = async () => {
-  loading.value = true;
+  // loading.value = true;
 
-  setTimeout(() => {
-    loading.value = false;
-  }, 500);
+  // setTimeout(() => {
+  //   loading.value = false;
+  // }, 500);
 
   if (props?.type || props?.item?.media_type) {
     switch (props?.type || props?.item?.media_type) {

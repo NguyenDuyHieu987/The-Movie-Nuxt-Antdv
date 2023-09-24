@@ -3,7 +3,9 @@
     <BillboardAnimation v-model:data="trendings" />
 
     <div class="home-content">
-      <section class="home-section outstanding" v-if="nowPlayings?.length">
+      <!-- v-if="nowPlayings?.length" -->
+
+      <section class="home-section outstanding">
         <h2 class="gradient-title-default">
           <span>Phim nổi bật</span>
           <NuxtLink
@@ -15,69 +17,77 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="nowPlayings" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingNowPlaying">
           <template #content>
-            <SwiperSlide v-for="(item, index) in nowPlayings">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup
+              :data="nowPlayings"
+              :responsive="responsiveHorizoltal"
+            >
+              <template #content>
+                <SwiperSlide v-for="(item, index) in nowPlayings">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
 
-      <section
-        class="home-section recommend"
-        v-if="store?.isLogin && recommends?.length"
-      >
+      <section class="home-section recommend" v-if="store?.isLogin">
         <h2 class="gradient-title-default">
           <span>Gợi ý cho bạn</span>
         </h2>
 
-        <section
-          class="movie-group vertical"
-          :class="{ expand: viewMoreRecommend }"
-        >
-          <MovieCardVertical
-            v-for="(item, index) in recommends"
-            :index="index"
-            :key="item.id"
-            :item="item"
-            :type="item.media_type"
-          />
-        </section>
-
-        <ViewMoreBar
-          v-show="recommends.length"
-          :isOpen="viewMoreRecommend"
-          @onClick="viewMoreRecommend = !viewMoreRecommend"
-        />
-
-        <a-button
-          v-show="recommends.length"
-          class="loadmore-btn"
-          type="text"
-          :loading="loadMoreRecommend"
-          @click="handleLoadMoreRecommend"
-        >
-          <template #icon>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="2rem"
-              height="2rem"
-              viewBox="0 0 24 24"
+        <LoadingSectionVertical v-model:loading="loadingRecommend">
+          <template #content>
+            <section
+              class="movie-group vertical"
+              :class="{ expand: viewMoreRecommend }"
             >
-              <path
-                fill="currentColor"
-                d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+              <MovieCardVertical
+                v-for="(item, index) in recommends"
+                :index="index"
+                :key="item.id"
+                :item="item"
+                :type="item.media_type"
               />
-            </svg>
+            </section>
+
+            <ViewMoreBar
+              v-show="recommends.length"
+              :isOpen="viewMoreRecommend"
+              @onClick="viewMoreRecommend = !viewMoreRecommend"
+            />
+
+            <a-button
+              v-show="recommends.length"
+              class="loadmore-btn"
+              type="text"
+              :loading="loadMoreRecommend"
+              @click="handleLoadMoreRecommend"
+            >
+              <template #icon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2rem"
+                  height="2rem"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                  />
+                </svg>
+              </template>
+              {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
+            </a-button>
           </template>
-          {{ loadMoreRecommend ? 'Đang tải...' : 'Tải thêm' }}
-        </a-button>
+        </LoadingSectionVertical>
       </section>
 
       <section class="home-section cartoon">
@@ -92,18 +102,22 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingCartoon">
           <template #content>
-            <SwiperSlide v-for="(item, index) in cartoons">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
+              <template #content>
+                <SwiperSlide v-for="(item, index) in cartoons">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
 
       <section class="home-section tv-new">
@@ -118,18 +132,25 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="tvAiringTodays" :responsive="responsiveVertical">
+        <LoadingSectionVertical v-model:loading="loadingTvAiringToday">
           <template #content>
-            <SwiperSlide v-for="(item, index) in tvAiringTodays">
-              <MovieCardVertical
-                :index="index"
-                :key="item.id"
-                :item="item"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup
+              :data="tvAiringTodays"
+              :responsive="responsiveVertical"
+            >
+              <template #content>
+                <SwiperSlide v-for="(item, index) in tvAiringTodays">
+                  <MovieCardVertical
+                    :index="index"
+                    :key="item.id"
+                    :item="item"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionVertical>
       </section>
 
       <section class="home-section trailer">
@@ -145,15 +166,19 @@
           </NuxtLink>
         </h2>
 
-        <section class="movie-group horizontal trailer">
-          <MovieCardHorizontalTrailer
-            v-for="(item, index) in upComings"
-            :index="index"
-            :key="item.id"
-            :item="item"
-            :type="item.me_type"
-          />
-        </section>
+        <LoadingSectionHorizontal v-model:loading="loadingUpComing">
+          <template #content>
+            <section class="movie-group horizontal trailer">
+              <MovieCardHorizontalTrailer
+                v-for="(item, index) in upComings"
+                :index="index"
+                :key="item.id"
+                :item="item"
+                :type="item.me_type"
+              />
+            </section>
+          </template>
+        </LoadingSectionHorizontal>
       </section>
 
       <section class="home-section theater">
@@ -168,18 +193,22 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="topRateds" :responsive="responsiveVertical">
+        <LoadingSectionVertical v-model:loading="loadingTopRated">
           <template #content>
-            <SwiperSlide v-for="(item, index) in topRateds">
-              <MovieCardVertical
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.me_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup :data="topRateds" :responsive="responsiveVertical">
+              <template #content>
+                <SwiperSlide v-for="(item, index) in topRateds">
+                  <MovieCardVertical
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.me_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionVertical>
       </section>
 
       <section class="home-section on-the-air">
@@ -194,18 +223,25 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="tvOnTheAirs" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingTvOnTheAir">
           <template #content>
-            <SwiperSlide v-for="(item, index) in tvOnTheAirs">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup
+              :data="tvOnTheAirs"
+              :responsive="responsiveHorizoltal"
+            >
+              <template #content>
+                <SwiperSlide v-for="(item, index) in tvOnTheAirs">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
     </div>
   </div>
@@ -219,6 +255,8 @@ import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
 import MovieCardHorizontalTrailer from '~/components/MovieCardHorizontalTrailer/MovieCardHorizontalTrailer.vue';
+import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';
+import LoadingSectionVertical from '~/components/LoadingSection/LoadingSectionVertical/LoadingSectionVertical.vue';
 import ViewMoreBar from '~/components/ViewMoreBar/ViewMoreBar.vue';
 import { getTrending } from '~/services/trending';
 import { getNowPlaying, getTopRated, getUpComing } from '~/services/movieSlug';
@@ -250,10 +288,16 @@ const tvOnTheAirs = ref<any>([]);
 const cartoons = ref<any>([]);
 const topRateds = ref<any>([]);
 const recommends = ref<any>([]);
+const loadingNowPlaying = ref<boolean>(false);
+const loadingUpComing = ref<boolean>(false);
+const loadingTvAiringToday = ref<boolean>(false);
+const loadingTvOnTheAir = ref<boolean>(false);
+const loadingCartoon = ref<boolean>(false);
+const loadingTopRated = ref<boolean>(false);
+const loadingRecommend = ref<boolean>(false);
+const skipRecommend = ref<number>(1);
 const viewMoreRecommend = ref<boolean>(false);
 const loadMoreRecommend = ref<boolean>(false);
-const skipRecommend = ref<number>(1);
-
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
     slidesPerView: 2,
@@ -333,6 +377,14 @@ const responsiveVertical = computed<any>((): any => ({
 }));
 
 const getData = async () => {
+  loadingNowPlaying.value = true;
+  loadingUpComing.value = true;
+  loadingTvAiringToday.value = true;
+  loadingTvOnTheAir.value = true;
+  loadingCartoon.value = true;
+  loadingTopRated.value = true;
+  loadingRecommend.value = true;
+
   await nextTick();
 
   // await useAsyncData(`trending/all/1`, () => getTrending(1))
@@ -349,6 +401,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingNowPlaying.value = false;
     });
 
   await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
@@ -359,6 +414,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingCartoon.value = false;
     });
 
   await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
@@ -367,6 +425,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvAiringToday.value = false;
     });
 
   await useAsyncData('movie/upcoming/1', () => getUpComing(1))
@@ -375,6 +436,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingUpComing.value = false;
     });
 
   await useAsyncData('movie/toprated/1', () => getTopRated(1))
@@ -383,6 +447,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTopRated.value = false;
     });
 
   await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
@@ -391,6 +458,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvOnTheAir.value = false;
     });
 
   if (store.isLogin) {
@@ -403,6 +473,9 @@ const getData = async () => {
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
+      })
+      .finally(() => {
+        loadingRecommend.value = false;
       });
   }
 };

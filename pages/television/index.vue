@@ -5,7 +5,8 @@
     <BillboardAnimation v-model:data="dataBilboard" />
 
     <div class="home-content">
-      <section class="home-section outstanding" v-if="airingTodays?.length">
+      <!-- v-if="airingTodays?.length" -->
+      <section class="home-section outstanding">
         <h2 class="gradient-title-default">
           <span>Airing Today</span>
           <NuxtLink
@@ -17,18 +18,25 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="airingTodays" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingTvAiringToday">
           <template #content>
-            <SwiperSlide v-for="(item, index) in airingTodays">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup
+              :data="airingTodays"
+              :responsive="responsiveHorizoltal"
+            >
+              <template #content>
+                <SwiperSlide v-for="(item, index) in airingTodays">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
 
       <section class="home-section popular">
@@ -43,18 +51,22 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="onTheAirs" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingTvOnTheAir">
           <template #content>
-            <SwiperSlide v-for="(item, index) in onTheAirs">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup :data="onTheAirs" :responsive="responsiveHorizoltal">
+              <template #content>
+                <SwiperSlide v-for="(item, index) in onTheAirs">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
 
       <section class="home-section upcoming">
@@ -69,18 +81,22 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="populars" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingTvPopular">
           <template #content>
-            <SwiperSlide v-for="(item, index) in populars">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup :data="populars" :responsive="responsiveHorizoltal">
+              <template #content>
+                <SwiperSlide v-for="(item, index) in populars">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
 
       <section class="home-section toprated">
@@ -95,18 +111,22 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="topRateds" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingTvTopRated">
           <template #content>
-            <SwiperSlide v-for="(item, index) in topRateds">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup :data="topRateds" :responsive="responsiveHorizoltal">
+              <template #content>
+                <SwiperSlide v-for="(item, index) in topRateds">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
     </div>
   </div>
@@ -118,6 +138,7 @@ import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimati
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.vue';
+import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';
 import {
   getTvs,
   getTvAiringToday,
@@ -146,6 +167,10 @@ const airingTodays = ref<any>([]);
 const onTheAirs = ref<any>([]);
 const populars = ref<any>([]);
 const topRateds = ref<any>([]);
+const loadingTvAiringToday = ref<boolean>(false);
+const loadingTvOnTheAir = ref<boolean>(false);
+const loadingTvPopular = ref<boolean>(false);
+const loadingTvTopRated = ref<boolean>(false);
 const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({
@@ -182,6 +207,11 @@ const responsiveHorizoltal = computed<any>((): any => ({
 }));
 
 const getData = async () => {
+  loadingTvAiringToday.value = true;
+  loadingTvOnTheAir.value = true;
+  loadingTvPopular.value = true;
+  loadingTvTopRated.value = true;
+
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await nextTick();
@@ -192,6 +222,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvAiringToday.value = false;
     });
 
   await useAsyncData(`tv/ontheair/1`, () => getTvOntheAir(2))
@@ -200,6 +233,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvOnTheAir.value = false;
     });
 
   await useAsyncData('tv/popular/1', () => getTvPopular(3))
@@ -208,6 +244,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvPopular.value = false;
     });
 
   await useAsyncData('tv/toprated/1', () => getTvTopRated(4))
@@ -216,6 +255,9 @@ const getData = async () => {
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvTopRated.value = false;
     });
 
   internalInstance.appContext.config.globalProperties.$Progress.finish();

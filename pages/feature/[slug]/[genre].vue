@@ -15,7 +15,8 @@
     <BillboardAnimation v-model:data="dataBilboard" />
 
     <div class="home-content">
-      <section class="home-section outstanding" v-if="nowPlayings?.length">
+      <!-- v-if="nowPlayings?.length" -->
+      <section class="home-section outstanding">
         <h2 class="gradient-title-default">
           <span>Now Playing</span>
           <NuxtLink
@@ -27,18 +28,25 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="nowPlayings" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingNowPlaying">
           <template #content>
-            <SwiperSlide v-for="(item, index) in nowPlayings">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup
+              :data="nowPlayings"
+              :responsive="responsiveHorizoltal"
+            >
+              <template #content>
+                <SwiperSlide v-for="(item, index) in nowPlayings">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
 
       <section class="home-section popular">
@@ -53,18 +61,22 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="populars" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingPopular">
           <template #content>
-            <SwiperSlide v-for="(item, index) in populars">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup :data="populars" :responsive="responsiveHorizoltal">
+              <template #content>
+                <SwiperSlide v-for="(item, index) in populars">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
 
       <section class="home-section upcoming">
@@ -79,18 +91,22 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="upComings" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingUpComing">
           <template #content>
-            <SwiperSlide v-for="(item, index) in upComings">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup :data="upComings" :responsive="responsiveHorizoltal">
+              <template #content>
+                <SwiperSlide v-for="(item, index) in upComings">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
 
       <section class="home-section toprated">
@@ -105,18 +121,22 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="topRateds" :responsive="responsiveHorizoltal">
+        <LoadingSectionHorizontal v-model:loading="loadingTopRated">
           <template #content>
-            <SwiperSlide v-for="(item, index) in topRateds">
-              <MovieCardHorizontal
-                :item="item"
-                :index="index"
-                :key="item.id"
-                :type="item.media_type"
-              />
-            </SwiperSlide>
+            <CarouselGroup :data="topRateds" :responsive="responsiveHorizoltal">
+              <template #content>
+                <SwiperSlide v-for="(item, index) in topRateds">
+                  <MovieCardHorizontal
+                    :item="item"
+                    :index="index"
+                    :key="item.id"
+                    :type="item.media_type"
+                  />
+                </SwiperSlide>
+              </template>
+            </CarouselGroup>
           </template>
-        </CarouselGroup>
+        </LoadingSectionHorizontal>
       </section>
     </div>
   </div>
@@ -128,6 +148,7 @@ import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimati
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/HeaderHomeBreadcrumb.vue';
+import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';
 import { getGenreById } from '~/services/genres';
 import { FilterMovieSlug } from '~/services/movieSlug';
 import { genre, formfilter } from '~/types';
@@ -139,6 +160,10 @@ const populars = ref<any>([]);
 const upComings = ref<any>([]);
 const topRateds = ref<any>([]);
 const loading = ref<boolean>(false);
+const loadingNowPlaying = ref<boolean>(false);
+const loadingPopular = ref<boolean>(false);
+const loadingTopRated = ref<boolean>(false);
+const loadingUpComing = ref<boolean>(false);
 const formFilter = ref<formfilter>({
   type: 'all',
   genre: route.params.genre,
@@ -203,6 +228,10 @@ useServerSeoMeta({
 });
 
 const getData = async () => {
+  loadingNowPlaying.value = true;
+  loadingTopRated.value = true;
+  loadingUpComing.value = true;
+  loadingPopular.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await nextTick();
@@ -235,7 +264,9 @@ const getData = async () => {
       .catch((e) => {
         if (axios.isCancel(e)) return;
       })
-      .finally(() => {});
+      .finally(() => {
+        loadingNowPlaying.value = false;
+      });
 
     await useAsyncData(
       `discover/movie/popular/${{
@@ -254,7 +285,9 @@ const getData = async () => {
       .catch((e) => {
         if (axios.isCancel(e)) return;
       })
-      .finally(() => {});
+      .finally(() => {
+        loadingPopular.value = false;
+      });
 
     await useAsyncData(
       `discover/movie/upcoming/${{
@@ -273,7 +306,9 @@ const getData = async () => {
       .catch((e) => {
         if (axios.isCancel(e)) return;
       })
-      .finally(() => {});
+      .finally(() => {
+        loadingUpComing.value = false;
+      });
 
     await useAsyncData(
       `discover/movie/toprated/${{
@@ -292,7 +327,9 @@ const getData = async () => {
       .catch((e) => {
         if (axios.isCancel(e)) return;
       })
-      .finally(() => {});
+      .finally(() => {
+        loadingTopRated.value = false;
+      });
   } else {
     navigateTo('/404');
   }
