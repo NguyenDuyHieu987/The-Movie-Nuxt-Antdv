@@ -128,23 +128,9 @@ import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimati
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/HeaderHomeBreadcrumb.vue';
+import { getGenreById } from '~/services/genres';
 import { FilterMovieSlug } from '~/services/movieSlug';
 import { genre, formfilter } from '~/types';
-
-useHead({
-  title: 'Phim lẻ - ',
-  htmlAttrs: { lang: 'vi' },
-});
-
-useServerSeoMeta({
-  title: 'Phim lẻ - ',
-  description: 'Phim lẻ, Phim chiếu rạp - Thể loại: ',
-  ogTitle: 'Phim lẻ - ',
-  ogType: 'video.movie',
-  // ogUrl: window.location.href,
-  ogDescription: 'Phim lẻ, Phim chiếu rạp - Thể loại: ',
-  ogLocale: 'vi',
-});
 
 const store = useStore();
 const route = useRoute();
@@ -161,6 +147,9 @@ const formFilter = ref<formfilter>({
   page: 1,
   limit: 20,
 });
+const genreRoute = ref<genre>(
+  getGenreById(route.params.genre, store.allGenres)
+);
 const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({
@@ -195,6 +184,23 @@ const responsiveHorizoltal = computed<any>((): any => ({
     slidesPerGroup: 6,
   },
 }));
+
+useHead({
+  title: () => 'Phim lẻ - ' + genreRoute.value.name_vietsub,
+  htmlAttrs: { lang: 'vi' },
+});
+
+useServerSeoMeta({
+  title: () => 'Phim lẻ - ' + genreRoute.value.name_vietsub,
+  description: () =>
+    'Phim lẻ, Phim chiếu rạp - Thể loại: ' + genreRoute.value.name_vietsub,
+  ogTitle: () => 'Phim lẻ - ' + genreRoute.value.name_vietsub,
+  ogType: 'video.movie',
+  // ogUrl: window.location.href,
+  ogDescription: () =>
+    'Phim lẻ, Phim chiếu rạp - Thể loại: ' + genreRoute.value.name_vietsub,
+  ogLocale: 'vi',
+});
 
 const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
