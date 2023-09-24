@@ -1,6 +1,16 @@
 <template>
   <div class="home-container feature">
-    <!-- <HeaderHome title="Phim lẻ" /> -->
+    <HeaderHomeBreadcrumb>
+      <template #label>
+        <NuxtLink
+          :to="{
+            path: '/feature',
+          }"
+        >
+          Phim lẻ
+        </NuxtLink>
+      </template>
+    </HeaderHomeBreadcrumb>
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
@@ -117,22 +127,23 @@ import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.vue';
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.vue';
+import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/HeaderHomeBreadcrumb.vue';
+import { getGenreById } from '~/services/genres';
 import { FilterMovieSlug } from '~/services/movieSlug';
 import { genre, formfilter } from '~/types';
 
 useHead({
-  title: 'Phim lẻ',
+  title: 'Phim lẻ - ',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Phim lẻ',
-  description: 'Phim lẻ, Phim chiếu rạp',
-  ogTitle: 'Phim lẻ',
+  title: 'Phim lẻ - ',
+  description: 'Phim lẻ, Phim chiếu rạp - Thể loại: ',
+  ogTitle: 'Phim lẻ - ',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Phim lẻ, Phim chiếu rạp',
+  ogDescription: 'Phim lẻ, Phim chiếu rạp - Thể loại: ',
   ogLocale: 'vi',
 });
 

@@ -1,6 +1,16 @@
 <template>
   <div class="home-container televison">
-    <!-- <HeaderHome title="Phim bộ" /> -->
+    <HeaderHomeBreadcrumb>
+      <template #label>
+        <NuxtLink
+          :to="{
+            path: '/television',
+          }"
+        >
+          Phim bộ
+        </NuxtLink>
+      </template>
+    </HeaderHomeBreadcrumb>
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
@@ -117,22 +127,23 @@ import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.vue';
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.vue';
+import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/HeaderHomeBreadcrumb.vue';
+import { getGenreById } from '~/services/genres';
 import { FilterTvSlug } from '~/services/TvSlug';
-import type { formfilter } from '~/types';
+import type { genre, formfilter } from '~/types';
 
 useHead({
-  title: 'Phim bộ',
+  title: () => 'Phim bộ - ',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Phim bộ',
-  description: 'Phim bộ, Phim dài tập',
-  ogTitle: 'Phim bộ',
+  title: () => 'Phim bộ - ',
+  description: () => 'Phim bộ, Phim dài tập - Thể loại: ',
+  ogTitle: () => 'Phim bộ - ',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Phim bộ, Phim dài tập',
+  ogDescription: () => 'Phim bộ, Phim dài tập - Thể loại: ',
   ogLocale: 'vi',
 });
 

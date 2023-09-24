@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import { genre } from '~/types';
-import { getGenreByShortName } from '~/services/genres';
+import { getGenreById } from '~/services/genres';
 
 defineProps<{
   title: string;
@@ -60,7 +60,7 @@ const route = useRoute();
 const genres = ref<genre[]>(store.allGenres);
 const genreDropdownTitle = ref<string>(
   route.query?.genre
-    ? getGenreByShortName(route.query.genre, store.allGenres)!.name_vietsub
+    ? getGenreById(route.query.genre, store.allGenres)!.name_vietsub
     : 'Thể loại'
 );
 

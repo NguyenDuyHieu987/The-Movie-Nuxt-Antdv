@@ -9,7 +9,7 @@ export function getAllGenre() {
 export function getGenreByShortName(
   genre_short_name: string,
   allGenres?: genre[]
-) {
+): genre {
   if (allGenres?.length != 0) {
     return allGenres!.find((gen) => gen.short_name == genre_short_name);
   } else {
@@ -17,7 +17,7 @@ export function getGenreByShortName(
   }
 }
 
-export function getGenreById(genre_id: number, allGenres?: genre[]) {
+export function getGenreById(genre_id: number, allGenres?: genre[]): genre {
   if (allGenres?.length != 0) {
     return allGenres!.find((gen) => gen.id == genre_id);
   } else {
@@ -25,7 +25,7 @@ export function getGenreById(genre_id: number, allGenres?: genre[]) {
   }
 }
 
-export function getGenreByName(genre_name: string, allGenres?: genre[]) {
+export function getGenreByName(genre_name: string, allGenres?: genre[]): genre {
   if (allGenres?.length != 0) {
     return allGenres!.find((gen) => gen.name == genre_name);
   } else {
