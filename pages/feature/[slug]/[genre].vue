@@ -1,6 +1,6 @@
 <template>
   <div class="home-container feature">
-    <HeaderHome title="Phim lẻ" />
+    <!-- <HeaderHome title="Phim lẻ" /> -->
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
@@ -118,15 +118,7 @@ import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimati
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.vue';
-import { getGenreByShortName } from '~/services/genres';
-import {
-  getMovies,
-  getNowPlaying,
-  getUpComing,
-  getPopular,
-  getTopRated,
-  FilterMovieSlug,
-} from '~/services/movieSlug';
+import { FilterMovieSlug } from '~/services/movieSlug';
 import { genre, formfilter } from '~/types';
 
 useHead({

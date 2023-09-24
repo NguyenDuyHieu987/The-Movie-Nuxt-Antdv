@@ -32,7 +32,15 @@
               :key="index.toString()"
               @click="handleSelectGenre(item)"
             >
-              <NuxtLink :to="{ path: `/${route.path}/genre/${item.id}` }">
+              <NuxtLink
+                :to="{
+                  path: `${route.path}/genre/${item.id}`,
+                  // params: {
+                  //   slug: 'genre',
+                  //   genre: item.id,
+                  // },
+                }"
+              >
                 <span>{{ item.name_vietsub }}</span>
               </NuxtLink>
             </el-dropdown-item>
@@ -63,6 +71,8 @@ const genreDropdownTitle = ref<string>(
     ? getGenreByShortName(route.query.genre, store.allGenres)!.name_vietsub
     : 'Thể loại'
 );
+
+console.log(route.path);
 
 const handleSelectGenre = (item: genre) => {
   genreDropdownTitle.value = item.name_vietsub;
