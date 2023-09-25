@@ -5,12 +5,16 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
 .slider-group {
   position: relative;
 
-  .slider-group-wrapper {
+  .slider-group-list {
     position: relative;
     display: flex;
     overflow-x: scroll;
     padding-bottom: 12px;
     gap: 10px;
+
+    .slider-item {
+      display: flex;
+    }
 
     &.dragging {
       cursor: grab;
@@ -48,9 +52,17 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
   }
 }
 
+@media only screen and (max-width: 1300px) {
+  .slider-group {
+    .slider-group-list {
+      gap: 8px;
+    }
+  }
+}
+
 @media only screen and (max-width: 900px) {
   .slider-group {
-    .slider-group-wrapper {
+    .slider-group-list {
       gap: 7px;
     }
   }

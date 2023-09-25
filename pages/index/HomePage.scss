@@ -18,8 +18,9 @@
 
     .home-container {
       .home-content {
-        // margin-top: -12%;
-        padding: 0px var(--padding-home-expand);
+        .home-section {
+          padding: 0px var(--padding-home-expand);
+        }
       }
     }
   }
@@ -29,21 +30,31 @@
   .home-content {
     position: relative;
     z-index: 1;
-    // margin-top: -12%;
     clip-path: inset(-100vh 0 -100vh 0);
-    // background-color: var(--background-content-color);
-    padding: 0px var(--padding-home);
-    // padding-bottom: 70px;
   }
 
   .home-section {
     position: relative;
+    padding: 0px var(--padding-home);
 
     &:hover {
       .gradient-title-default {
         .view-all {
           transition: all 0.5s;
           right: 0;
+        }
+      }
+    }
+
+    &.trailer {
+      padding: 0px;
+
+      &:hover {
+        .gradient-title-default {
+          .view-all {
+            transition: all 0.5s;
+            right: 16px;
+          }
         }
       }
     }
@@ -148,7 +159,8 @@
   .body-content:has(.home-container) {
     .home-container {
       .home-content {
-        padding: 0px 15px;
+        --padding-home: 15px;
+        // padding: 0px 15px;
         padding-bottom: 30px;
 
         .home-section {

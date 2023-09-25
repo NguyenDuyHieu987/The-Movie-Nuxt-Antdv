@@ -2,11 +2,13 @@
   <NuxtLink
     :to="{
       path: isEpisodes
-        ? `/info-tv/${item?.id}/${item?.name
-            ?.replaceAll(/\s/g, '+')
+        ? `/info-tv/${item?.id}__${utils
+            .removeVietnameseTones(item?.name)
+            ?.replaceAll(/\s/g, '-')
             .toLowerCase()}`
-        : `/info-movie/${item?.id}/${item?.name
-            ?.replaceAll(/\s/g, '+')
+        : `/info-movie/${item?.id}__${utils
+            .removeVietnameseTones(item?.name)
+            ?.replaceAll(/\s/g, '-')
             .toLowerCase()}`,
     }"
     class="movie-card-item horizontal trailer"
@@ -67,6 +69,7 @@
               height="5rem"
             >
               <path
+                fill="currentColor"
                 d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
               />
             </svg>
@@ -136,6 +139,7 @@ const props = defineProps<{
 }>();
 
 const store = useStore();
+const utils = useUtils();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
@@ -144,11 +148,11 @@ const percent = ref<number>(0);
 const isOpenModalTrailer = ref<boolean>(false);
 
 const getData = async () => {
-  loading.value = true;
+  // loading.value = true;
 
-  setTimeout(() => {
-    loading.value = false;
-  }, 500);
+  // setTimeout(() => {
+  //   loading.value = false;
+  // }, 500);
 
   if (props?.type || props?.item?.media_type) {
     switch (props?.type || props?.item?.media_type) {
@@ -166,11 +170,11 @@ const getData = async () => {
   }
 
   if (store.isLogin) {
-    if (dataMovie.value?.in_history) {
+    if (dataMovie.value?.history_progress) {
       isInHistory.value = true;
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {
-      await useAsyncData(
+      useAsyncData(
         `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
         () => getItemHistory(props.item?.id, props.item?.media_type)
       )

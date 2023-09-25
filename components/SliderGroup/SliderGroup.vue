@@ -1,8 +1,8 @@
 <template>
   <div class="slider-group">
     <div
-      ref="silder"
-      class="slider-group-wrapper"
+      ref="slider"
+      class="slider-group-list"
       :class="{
         dragging: sliderState.isDragging,
       }"
@@ -29,9 +29,12 @@
 </template>
 
 <script setup lang="ts">
-const store = useStore();
+const props = defineProps<{
+  data: any[];
+}>();
 
-const silder = ref();
+const store = useStore();
+const slider = ref();
 const sliderState = reactive({
   isScrubbing: false,
   isDragging: false,
@@ -40,13 +43,9 @@ const sliderState = reactive({
   isEndScroll: false,
 });
 
-defineProps<{
-  data: any[];
-}>();
-
 onMounted(() => {
   window.addEventListener('pointermove', (e: any) => {
-    if (e.target.closest('.slider-group-wrapper')) {
+    if (e.target.closest('.slider-group-list')) {
       return;
     }
 
@@ -57,15 +56,17 @@ onMounted(() => {
 });
 
 const onPointerDownSlider = (e: any) => {
-  sliderState.isScrubbing = true;
+  if (e.target.closest('.slider-item')) {
+    sliderState.isScrubbing = true;
+  }
 };
 
 const onPointerMoveSlider = (e: any) => {
   if (sliderState.isScrubbing) {
     sliderState.isDragging = true;
 
-    silder.value.scrollLeft -= e.movementX;
-    handleArrows(silder.value.scrollLeft);
+    slider.value.scrollLeft -= e.movementX;
+    handleArrows(slider.value.scrollLeft);
   }
 };
 
@@ -75,7 +76,7 @@ const onPointerUpSlider = () => {
 };
 
 const handleArrows = (scrollVal: number) => {
-  let maxScrollableWidth = silder.value.scrollWidth - silder.value.clientWidth;
+  let maxScrollableWidth = slider.value.scrollWidth - slider.value.clientWidth;
 
   sliderState.isStartScroll = scrollVal <= 0;
 
@@ -89,7 +90,7 @@ const handleArrows = (scrollVal: number) => {
 };
 
 const onScollSlider = (e: any) => {
-  handleArrows(silder.value.scrollLeft);
+  handleArrows(slider.value.scrollLeft);
 };
 </script>
 

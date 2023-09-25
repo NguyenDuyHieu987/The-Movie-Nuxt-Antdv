@@ -58,13 +58,17 @@
           <template #default>
             <SliderGroup :data="dataCredit?.cast?.slice(0, 20)">
               <template #content>
-                <CastCard
+                <div
+                  class="slider-item"
                   v-for="(item, index) in dataCredit?.cast?.slice(0, 20)"
-                  :index="index"
-                  :key="item.id"
-                  :item="item"
-                  type="cast"
-                />
+                >
+                  <CastCard
+                    :index="index"
+                    :key="item.id"
+                    :item="item"
+                    type="cast"
+                  />
+                </div>
               </template>
             </SliderGroup>
           </template>
@@ -83,13 +87,17 @@
           <template #default>
             <SliderGroup :data="dataCredit?.crew?.slice(0, 20)">
               <template #content>
-                <CastCard
+                <div
+                  class="slider-item"
                   v-for="(item, index) in dataCredit?.crew?.slice(0, 20)"
-                  :index="index"
-                  :key="item.id"
-                  :item="item"
-                  type="crew"
-                />
+                >
+                  <CastCard
+                    :index="index"
+                    :key="item.id"
+                    :item="item"
+                    type="crew"
+                  />
+                </div>
               </template>
             </SliderGroup>
           </template>

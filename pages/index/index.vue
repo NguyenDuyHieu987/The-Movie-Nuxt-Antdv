@@ -154,8 +154,8 @@
       </section>
 
       <section class="home-section trailer">
-        <h2 class="gradient-title-default">
-          <span>Trailer</span>
+        <!-- <h2 class="gradient-title-default">
+          <span>Latest Trailers</span>
 
           <NuxtLink
             :to="{
@@ -164,9 +164,9 @@
           >
             <span class="view-all">Xem tất cả</span>
           </NuxtLink>
-        </h2>
+        </h2> -->
 
-        <LoadingSectionHorizontal v-model:loading="loadingUpComing">
+        <!-- <LoadingSectionHorizontal v-model:loading="loadingUpComing">
           <template #content>
             <section class="movie-group horizontal trailer">
               <MovieCardHorizontalTrailer
@@ -178,7 +178,40 @@
               />
             </section>
           </template>
-        </LoadingSectionHorizontal>
+        </LoadingSectionHorizontal> -->
+
+        <section class="home-section trailer">
+          <SliderGroupBackground :data="upComings">
+            <template #title>
+              <h2 class="gradient-title-default">
+                <span>Latest Trailers</span>
+
+                <NuxtLink
+                  :to="{
+                    path: `/discover/movie/upcoming`,
+                  }"
+                >
+                  <span class="view-all">Xem tất cả</span>
+                </NuxtLink>
+              </h2>
+            </template>
+
+            <template #content>
+              <LoadingSectionHorizontal v-model:loading="loadingUpComing">
+                <template #content>
+                  <div class="slider-item" v-for="(item, index) in upComings">
+                    <MovieCardHorizontalTrailer
+                      :index="index"
+                      :key="item.id"
+                      :item="item"
+                      :type="item.me_type"
+                    />
+                  </div>
+                </template>
+              </LoadingSectionHorizontal>
+            </template>
+          </SliderGroupBackground>
+        </section>
       </section>
 
       <section class="home-section theater">
@@ -254,6 +287,7 @@ import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimati
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
+import SliderGroupBackground from '~/components/SliderGroup/SliderGroupBackground/SliderGroupBackground.vue';
 import MovieCardHorizontalTrailer from '~/components/MovieCardHorizontalTrailer/MovieCardHorizontalTrailer.vue';
 import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';
 import LoadingSectionVertical from '~/components/LoadingSection/LoadingSectionVertical/LoadingSectionVertical.vue';
@@ -432,7 +466,7 @@ const getData = async () => {
 
   await useAsyncData('movie/upcoming/1', () => getUpComing(1))
     .then((response) => {
-      upComings.value = response.data.value?.results.slice(0, 12);
+      upComings.value = response.data.value?.results.slice(0, 15);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

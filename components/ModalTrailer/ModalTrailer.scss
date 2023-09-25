@@ -1,5 +1,7 @@
 .modal-trailer {
   &.el-dialog {
+    background-color: var(--background-content-color1);
+
     .el-dialog__header {
       .icon.close {
         right: 10px;
@@ -70,6 +72,8 @@
   }
 
   &.ant-modal {
+    background-color: var(--background-content-color1);
+
     .ant-modal-content {
       iframe {
         height: 40vw;

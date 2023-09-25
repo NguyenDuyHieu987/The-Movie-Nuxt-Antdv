@@ -1,16 +1,14 @@
-.loading-section-vertical {
-  .el-skeleton.is-animated {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    overflow: hidden;
-    background-color: var(--background-content-color);
+.el-skeleton.is-animated.loading-section-vertical {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow: hidden;
+  background-color: var(--background-content-color);
 
-    .el-skeleton__item.skeleton-img {
-      height: 275px;
-      width: 177px;
-      flex-shrink: 0;
-    }
+  .el-skeleton__item.skeleton-img {
+    height: 275px;
+    width: 177px;
+    flex-shrink: 0;
   }
 }
