@@ -232,6 +232,7 @@ const getData = async () => {
   loadingTopRated.value = true;
   loadingUpComing.value = true;
   loadingPopular.value = true;
+
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await nextTick();

@@ -32,7 +32,6 @@
       </span> -->
 
       <!-- <a-select
-        v-show="dataSeason && dataSeason?.length"
         v-model:value="selectedSeasonId"
         style="width: 150px"
         @change="handleChangeSeason(selectedSeasonId)"
@@ -45,7 +44,7 @@
           >{{
             item.name?.split(' ')[0] === 'Phần' || item.name === 'Specials'
               ? item.name
-              : item.name.replace('Season', 'Phần')
+              : item.name?.replace('Season', 'Phần')
           }}
         </a-select-option>
       </a-select> -->
@@ -86,7 +85,7 @@
                 @click.prevent="handleChangeEpisode(item)"
               >
                 {{
-                  item?.episode_number == dataSeason.value?.episodes
+                  item?.episode_number == numberOfEpisodes
                     ? item?.episode_number < 10
                       ? '0' + item?.episode_number + ' - End'
                       : item?.episode_number + ' - End'
@@ -106,7 +105,7 @@
 <script setup lang="ts">
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import axios from 'axios';
-import { getSeason } from '~/services/season';
+import { getListSeason, getSeason } from '~/services/season';
 
 const props = defineProps<{
   dataMovie: any;
@@ -135,7 +134,7 @@ const currentEpisode = ref<number>(
 );
 const loading = ref(false);
 
-const emitUrlCode = (dataSeason: any) => {
+const emitUrlCode = () => {
   // const url_code_movie = dataSeason.episodes?.find(
   //   (item: any) => item.episode_number == currentEpisode.value
   // )?.url_code;
@@ -151,28 +150,27 @@ const emitUrlCode = (dataSeason: any) => {
   emit('changeUrlCode', urlCode);
 };
 
-onBeforeMount(async () => {
-  // loading.value = true;
-  // await useAsyncData(
-  //   `season/${props.dataMovie?.id}/${selectedSeasonId.value}`,
-  //   () => getSeason(props.dataMovie?.id, selectedSeasonId.value)
-  // )
-  //   .then((episodesRespones) => {
-  //     dataSeason.value = episodesRespones.data.value;
-  //     emitUrlCode(dataSeason.value);
-  //   })
-  //   .catch((e) => {
-  //     if (axios.isCancel(e)) return;
-  //   })
-  //   .finally(() => {
-  //     setTimeout(() => {
-  //       loading.value = false;
-  //     }, 500);
-  //   });
-});
+const getData = async () => {
+  loading.value = true;
+
+  useAsyncData(`season/list/${props.dataMovie?.series_id}`, () =>
+    getListSeason(props.dataMovie?.series_id)
+  )
+    .then((response) => {
+      dataSeason.value = response.data.value?.results;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
+};
+
+// getData();
 
 onMounted(() => {
-  emitUrlCode(dataSeason.value);
+  emitUrlCode();
 
   emit(
     'changeEpisode',
@@ -195,25 +193,20 @@ const handleChangeSeason = async (value: string) => {
   window.history.replaceState(null, '', 'tap-1');
 
   await useAsyncData(
-    `season/${props.dataMovie?.id}/${selectedSeasonId.value}`,
+    `season/get/${props.dataMovie?.id}/${selectedSeasonId.value}`,
     () => getSeason(props.dataMovie?.id, selectedSeasonId.value)
   )
-    .then((episodesRespones: any) => {
-      dataSeason.value = episodesRespones.data.value;
-
-      dataEpisode.value = dataSeason.value?.episodes.filter(
-        (item: any) => item.air_date != null
-      );
-
-      emitUrlCode(dataSeason.value);
-
-      setTimeout(() => {
-        loading.value = false;
-      }, 1000);
+    .then((response) => {
+      dataEpisode.value = response.data.value?.episodes
+        .filter((item: any) => item.air_date != null)
+        .reverse();
     })
     .catch((e) => {
       loading.value = false;
       if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loading.value = false;
     });
 };
 
@@ -223,7 +216,9 @@ const handleChangeEpisode = (item: any) => {
   window.history.replaceState(null, '', 'tap-' + item?.episode_number);
 
   currentEpisode.value = item?.episode_number;
-  emitUrlCode(dataSeason.value);
+
+  emitUrlCode();
+
   emit('changeEpisode', item);
 
   window.scrollTo({

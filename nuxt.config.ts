@@ -307,7 +307,8 @@ export default defineNuxtConfig({
     },
     storage: {},
     output: {
-      dir: isProduction ? '.output' : 'D:\\MyWebsite\\Phimhay247\\.output',
+      // dir:'.output',
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
       // serverDir: '.output/server',
       // publicDir: '.output/public',
     },

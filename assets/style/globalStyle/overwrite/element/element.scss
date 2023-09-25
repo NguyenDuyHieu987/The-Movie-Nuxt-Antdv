@@ -16,11 +16,13 @@
   display: none;
 }
 
-.el-skeleton {
-  // --el-skeleton-color: rgba(190, 190, 190, 0.2) !important;
-  // --el-skeleton-to-color: rgba(129, 129, 129, 0.24) !important;
-  --el-skeleton-color: rgba(70, 70, 70) !important;
-  --el-skeleton-to-color: rgba(60, 60, 60) !important;
+.el-skeleton.is-animated {
+  --el-skeleton-color: rgba(35, 35, 35) !important;
+  --el-skeleton-to-color: rgba(30, 30, 30) !important;
+
+  .el-skeleton__item {
+    animation-duration: 2s !important;
+  }
 }
 
 .el-image__wrapper,

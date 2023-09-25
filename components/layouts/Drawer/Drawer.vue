@@ -98,7 +98,7 @@
         </h4>
       </header>
 
-      <TheMenu />
+      <TheMenu :noCollapse="true" />
     </el-drawer>
   </ClientOnly> -->
 </template>

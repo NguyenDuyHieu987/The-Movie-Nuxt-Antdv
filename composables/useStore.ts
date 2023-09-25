@@ -87,7 +87,9 @@ export default defineStore('store', () => {
           loadingUser.value = false;
         });
     } else {
-      // loadingUser.value = false;
+      setTimeout(() => {
+        loadingUser.value = false;
+      }, 500);
     }
   };
 

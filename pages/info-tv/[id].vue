@@ -409,10 +409,9 @@ const setBackgroundColor = (color: string[]) => {
 const getData = async () => {
   isAddToList.value = false;
   loading.value = true;
+  srcBackdropList.value = [];
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
-
-  srcBackdropList.value = [];
 
   await nextTick();
 
