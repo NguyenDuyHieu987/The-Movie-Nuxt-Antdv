@@ -58,19 +58,15 @@ const currentImage = ref<string>(
   getImage(props.data[0]?.backdrop_path, 'backdrop', 'h-250')
 );
 
-watch(
-  props,
-  () => {
-    if (props.data) {
-      currentImage.value = getImage(
-        props.data[0]?.backdrop_path,
-        'backdrop',
-        'h-250'
-      );
-    }
-  },
-  { immediate: true, deep: true }
-);
+watchEffect(() => {
+  if (props.data) {
+    currentImage.value = getImage(
+      props.data[0]?.backdrop_path,
+      'backdrop',
+      'h-250'
+    );
+  }
+});
 
 onMounted(() => {
   window.addEventListener('pointermove', (e: any) => {
