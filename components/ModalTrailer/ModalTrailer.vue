@@ -2,80 +2,78 @@
   <!-- <Teleport v-if="isOpenModalTrailer" to="body"> -->
   <div class="modal-trailer-wrapper">
     <!-- <a-modal
-        v-model:visible="isTeleport"
-        class="modal-trailer"
-        :width="1300"
-        centered
-        :closable="false"
-      >
+      v-model:visible="isTeleport"
+      class="modal-trailer"
+      :width="1300"
+      centered
+      :closable="false"
+    >
+      <template #title>
+        <h3 class="title">
+          <strong>
+            {{ item?.name }}
+          </strong>
+        </h3>
         <CloseBtn @click="isTeleport = false" />
-  
-        <iframe
-          height="100%"
-          width="100%"
-          :src="
-            dataMovie?.videos?.length > 0
-              ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}`
-              : 'https://www.youtube.com/embed/ndl1W4ltcmg'
-          "
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+      </template>
+
+      <iframe
+        height="100%"
+        width="100%"
+        :src="
+          dataMovie?.videos?.length > 0
+            ? `https://www.youtube.com/embed/${dataMovie?.videos[0]?.key}`
+            : 'https://www.youtube.com/embed/ndl1W4ltcmg'
+        "
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media;
             gyroscope; picture-in-picture"
-          allowFullScreen
-          frameBorder="{0}"
-        />
-        <template #footer>
-          <div class="content">
-            <div class="info">
-              <h3>
-                <strong v-if="isEpisodes">
-                  {{ item?.name }}
-                  {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
-                </strong>
-                <strong v-else>
-                  {{ item?.name }}
-                </strong>
-              </h3>
-  
-              <p class="overview">
-                {{ item?.overview }}
-              </p>
-            </div>
-            <div class="action">
-              <a-button
-                class="default"
-                size="large"
-                type="text"
-                @click="isTeleport = false"
-              >
-                Đóng
-              </a-button>
-              <NuxtLink
-                v-if="isEpisodes"
-                :to="{
-                  path: `/play-tv/${item?.id}/${item?.name
-                    ?.replace(/\s/g, '+')
-                    .toLowerCase()}/tap-1`,
-                }"
-                class="btn-play-now"
-              >
-                Xem ngay
-              </NuxtLink>
-              <NuxtLink
-                v-else-if="!isEpisodes"
-                :to="{
-                  path: `/play-movie/${item?.id}/${item?.name
-                    ?.replace(/\s/g, '+')
-                    .toLowerCase()}`,
-                }"
-                class="btn-play-now"
-              >
-                Xem ngay
-              </NuxtLink>
-            </div>
+        allowFullScreen
+        frameBorder="{0}"
+      />
+      <template #footer>
+        <div class="content">
+          <div class="info">
+            <p class="overview">
+              <span>Nội dung: </span>
+              {{ item?.overview }}
+            </p>
           </div>
-        </template>
-      </a-modal> -->
+          <div class="action">
+            <a-button
+              class="default"
+              size="large"
+              type="text"
+              @click="isTeleport = false"
+            >
+              Đóng
+            </a-button>
+            <NuxtLink
+              v-if="isEpisodes"
+              :to="{
+                path: `/play-tv/${item?.id}/${item?.name
+                  ?.replace(/\s/g, '+')
+                  .toLowerCase()}/tap-1`,
+              }"
+              class="btn-play-now"
+            >
+              Xem ngay
+            </NuxtLink>
+            <NuxtLink
+              v-else-if="!isEpisodes"
+              :to="{
+                path: `/play-movie/${item?.id}/${item?.name
+                  ?.replace(/\s/g, '+')
+                  .toLowerCase()}`,
+              }"
+              class="btn-play-now"
+            >
+              Xem ngay
+            </NuxtLink>
+          </div>
+        </div>
+      </template>
+    </a-modal> -->
 
     <el-dialog
       v-model="isTeleport"
@@ -87,6 +85,16 @@
       :show-close="false"
     >
       <template #header>
+        <h3 class="title">
+          <strong v-if="isEpisodes">
+            {{ item?.name }}
+            <!-- {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }} -->
+          </strong>
+          <strong v-else>
+            {{ item?.name }}
+          </strong>
+        </h3>
+
         <CloseBtn @click="isTeleport = false" />
       </template>
 
@@ -108,17 +116,17 @@
       <template #footer>
         <div class="content">
           <div class="info">
-            <h3>
+            <!-- <h3 class="title">
               <strong v-if="isEpisodes">
                 {{ item?.name }}
-                {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
               </strong>
               <strong v-else>
                 {{ item?.name }}
               </strong>
-            </h3>
+            </h3> -->
 
             <p class="overview">
+              <span>Nội dung: </span>
               {{ item?.overview }}
             </p>
           </div>

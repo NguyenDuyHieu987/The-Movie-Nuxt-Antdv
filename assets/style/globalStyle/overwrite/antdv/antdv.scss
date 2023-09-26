@@ -49,6 +49,8 @@
   box-shadow: var(--box-shadow-large);
   border-radius: 2px;
   overflow: hidden;
+  font-size: inherit;
+  color: inherit;
 
   .ant-modal-content {
     background-color: var(--background-content-color1);
