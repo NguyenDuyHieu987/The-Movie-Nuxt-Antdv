@@ -211,17 +211,31 @@ const handleClickMoMoMethod = () => {};
 const handleClickZaloPayMethod = () => {};
 
 const handleClickVNPayMethod = () => {
-  registerPlan(planSelected.value!.id, 'VNPAY').then((response) => {
-    window.open(response?.url);
-    // window.location = response?.url;
-  });
+  store.loadingAppInstance.start();
+
+  registerPlan(planSelected.value!.id, 'VNPAY')
+    .then((response) => {
+      window.open(response?.url);
+      // window.location = response?.url;
+    })
+    .catch(() => {})
+    .finally(() => {
+      store.loadingAppInstance.finish();
+    });
 };
 
 const handleClickStripeMethod = () => {
-  registerPlan(planSelected.value!.id, 'STRIPE').then((response) => {
-    window.open(response?.url);
-    // window.location = response?.url;
-  });
+  store.loadingAppInstance.start();
+
+  registerPlan(planSelected.value!.id, 'STRIPE')
+    .then((response) => {
+      window.open(response?.url);
+      // window.location = response?.url;
+    })
+    .catch(() => {})
+    .finally(() => {
+      store.loadingAppInstance.finish();
+    });
 };
 </script>
 

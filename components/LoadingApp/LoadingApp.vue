@@ -1,6 +1,6 @@
 <template>
-  <div class="loading-app" :class="{ active: store.loadingApp }">
-    <div class="loading-app-container">
+  <div class="app-loading" :class="{ active: store.loadingApp }">
+    <div class="app-loading-container">
       <div class="logo">
         <!-- <nuxt-img :src="getImage('logo.png', 'logo', 'w-70')" alt="" /> -->
 

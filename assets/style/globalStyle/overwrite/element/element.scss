@@ -81,8 +81,11 @@
 }
 
 .el-popup-parent--hidden {
-  // width: 100% !important;
-  // overflow: visible !important;
+  .header-bar,
+  .header-bar-service,
+  .header-bar-auth {
+    width: calc(100% - 14px);
+  }
 }
 
 .el-menu {

@@ -2,9 +2,15 @@ body.loading-mask {
   overflow: hidden;
   width: calc(100% - 14px);
   touch-action: none;
+
+  .header-bar,
+  .header-bar-service,
+  .header-bar-auth {
+    width: calc(100% - 14px);
+  }
 }
 
-.loading-app {
+.app-loading {
   opacity: 0;
   position: fixed;
   left: 0;
@@ -28,7 +34,7 @@ body.loading-mask {
     z-index: 99999;
     transition: all 0.3s;
 
-    .loading-app-container {
+    .app-loading-container {
       .logo {
         .icon-loading {
           svg {
@@ -38,7 +44,7 @@ body.loading-mask {
     }
   }
 
-  .loading-app-container {
+  .app-loading-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
