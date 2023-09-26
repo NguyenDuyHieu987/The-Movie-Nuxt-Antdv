@@ -180,38 +180,36 @@
           </template>
         </LoadingSectionHorizontal> -->
 
-        <section class="home-section trailer">
-          <SliderGroupBackground :data="upComings">
-            <template #title>
-              <h2 class="gradient-title-default">
-                <span>Latest Trailers</span>
+        <SliderGroupBackground :data="upComings">
+          <template #title>
+            <h2 class="gradient-title-default">
+              <span>Latest Trailers</span>
 
-                <NuxtLink
-                  :to="{
-                    path: `/discover/movie/upcoming`,
-                  }"
-                >
-                  <span class="view-all">Xem tất cả</span>
-                </NuxtLink>
-              </h2>
-            </template>
+              <NuxtLink
+                :to="{
+                  path: `/discover/movie/upcoming`,
+                }"
+              >
+                <span class="view-all">Xem tất cả</span>
+              </NuxtLink>
+            </h2>
+          </template>
 
-            <template #content>
-              <LoadingSectionHorizontal v-model:loading="loadingUpComing">
-                <template #content>
-                  <div class="slider-item" v-for="(item, index) in upComings">
-                    <MovieCardHorizontalTrailer
-                      :index="index"
-                      :key="item.id"
-                      :item="item"
-                      :type="item.me_type"
-                    />
-                  </div>
-                </template>
-              </LoadingSectionHorizontal>
-            </template>
-          </SliderGroupBackground>
-        </section>
+          <template #content>
+            <LoadingSectionHorizontal v-model:loading="loadingUpComing">
+              <template #content>
+                <div class="slider-item" v-for="(item, index) in upComings">
+                  <MovieCardHorizontalTrailer
+                    :index="index"
+                    :key="item.id"
+                    :item="item"
+                    :type="item.me_type"
+                  />
+                </div>
+              </template>
+            </LoadingSectionHorizontal>
+          </template>
+        </SliderGroupBackground>
       </section>
 
       <section class="home-section theater">

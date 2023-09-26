@@ -107,7 +107,7 @@ const handleArrows = (scrollVal: number) => {
 
   sliderState.isScrollable = scrollVal > 0;
 
-  sliderState.isEndScroll = scrollVal == maxScrollableWidth;
+  sliderState.isEndScroll = Math.ceil(scrollVal) == maxScrollableWidth;
 
   // arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? 'none' : 'flex';
   // arrowIcons[1].parentElement.style.display =
@@ -120,7 +120,11 @@ const onScollSlider = (e: any) => {
 
 const onMouseOverSlider = (e: any) => {
   if (e.target.closest('.slider-item')) {
-    const sliderImage = e.target.closest('.ant-image') as HTMLImageElement;
+    const sliderItem = e.target.closest('.slider-item');
+
+    const sliderImage = sliderItem.querySelector(
+      '.img-box img'
+    ) as HTMLImageElement;
 
     if (sliderImage != null) {
       currentImage.value = sliderImage.src;

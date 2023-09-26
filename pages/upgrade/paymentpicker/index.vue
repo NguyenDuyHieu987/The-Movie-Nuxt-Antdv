@@ -85,7 +85,10 @@
           </div>
         </div>
 
-        <div class="payment-method visa-mastercard">
+        <div
+          class="payment-method visa-mastercard"
+          @click="handleClickStripeMethod"
+        >
           <div class="left">
             <nuxt-img
               :src="getImage('mastercard_1.jpg', 'payment', 'w-100')"
@@ -208,7 +211,17 @@ const handleClickMoMoMethod = () => {};
 const handleClickZaloPayMethod = () => {};
 
 const handleClickVNPayMethod = () => {
-  registerPlan(planSelected.value!.id);
+  registerPlan(planSelected.value!.id, 'VNPAY').then((response) => {
+    window.open(response?.url);
+    // window.location = response?.url;
+  });
+};
+
+const handleClickStripeMethod = () => {
+  registerPlan(planSelected.value!.id, 'STRIPE').then((response) => {
+    window.open(response?.url);
+    // window.location = response?.url;
+  });
 };
 </script>
 

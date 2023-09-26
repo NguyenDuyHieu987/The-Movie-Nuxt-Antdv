@@ -82,7 +82,7 @@ const handleArrows = (scrollVal: number) => {
 
   sliderState.isScrollable = scrollVal > 0;
 
-  sliderState.isEndScroll = scrollVal == maxScrollableWidth;
+  sliderState.isEndScroll = Math.ceil(scrollVal) == maxScrollableWidth;
 
   // arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? 'none' : 'flex';
   // arrowIcons[1].parentElement.style.display =

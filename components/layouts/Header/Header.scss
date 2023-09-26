@@ -331,13 +331,25 @@ header.header-bar {
           padding-right: 18px;
 
           a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            white-space: nowrap;
+            flex-wrap: nowrap;
             font-size: 1.4rem;
             font-weight: 500;
-            padding: 6px 17px;
+            padding: 5px 10px;
+            padding-right: 12px;
             border-radius: 25px;
             line-height: normal;
             border: 1px solid var(--app-background-color);
             color: var(--app-background-color) !important;
+
+            &:hover {
+              border: 1px solid transparent;
+              background-color: #0059983c;
+            }
           }
 
           &:active {
@@ -438,6 +450,23 @@ header.header-bar {
 
     .right-header {
       margin-right: -5px;
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  header.header-bar {
+    .right-header {
+      ul.menu-header {
+        li.menu-item {
+          &.login-header {
+            a {
+              font-size: 1.3rem;
+              padding: 4px 10px;
+            }
+          }
+        }
+      }
     }
   }
 }

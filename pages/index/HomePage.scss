@@ -18,8 +18,10 @@
 
     .home-container {
       .home-content {
+        // padding: 0px var(--padding-home-expand);
+        --padding-home: var(--padding-home-expand);
+
         .home-section {
-          padding: 0px var(--padding-home-expand);
         }
       }
     }
@@ -193,7 +195,8 @@
     &.expand {
       .home-container {
         .home-content {
-          padding: 0px 30px;
+          // padding: 0px 30px;
+          --padding-home: 30px;
           padding-bottom: 50px;
 
           .carousel-group {
@@ -218,9 +221,6 @@
   .body-content.expand:has(.home-container) {
     .home-container {
       .home-content {
-        padding: 0px 15px;
-        padding-bottom: 30px;
-
         .home-section {
           .gradient-title-default {
             font-size: 2.2rem;

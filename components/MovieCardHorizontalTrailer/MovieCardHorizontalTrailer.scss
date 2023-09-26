@@ -148,3 +148,10 @@
     }
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .movie-card-item.trailer {
+    width: 267px;
+    min-width: 267px;
+  }
+}
