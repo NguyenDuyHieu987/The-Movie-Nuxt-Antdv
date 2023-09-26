@@ -89,7 +89,7 @@
           .ant-btn:first-child {
             &:hover,
             &:focus {
-              border: 1px solid var(--border-regular-btn);
+              border: 1px solid var(--btn-border-color-hover);
             }
           }
         }
