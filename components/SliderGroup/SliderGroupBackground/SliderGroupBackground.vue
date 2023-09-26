@@ -82,6 +82,7 @@ onMounted(() => {
 
 const onPointerDownSlider = (e: any) => {
   if (e.target.closest('.slider-item')) {
+    e.preventDefault();
     sliderState.isScrubbing = true;
   }
 };
@@ -95,7 +96,8 @@ const onPointerMoveSlider = (e: any) => {
   }
 };
 
-const onPointerUpSlider = () => {
+const onPointerUpSlider = (e: any) => {
+  e.preventDefault();
   sliderState.isScrubbing = false;
   sliderState.isDragging = false;
 };
