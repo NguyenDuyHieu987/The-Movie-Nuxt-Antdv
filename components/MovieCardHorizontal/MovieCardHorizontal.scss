@@ -157,7 +157,7 @@
   }
 
   .movie-group.horizontal {
-    gap: 7px;
+    --card-movie-gap: 7px;
 
     .movie-card-item.horizontal {
       width: calc((100% - (3.01 * var(--card-movie-gap))) / 4);
@@ -194,6 +194,10 @@
 }
 
 @media only screen and (max-width: 900px) {
+  .movie-group.horizontal {
+    --card-movie-gap: 5px;
+  }
+
   .movie-card-item.horizontal {
   }
 }
