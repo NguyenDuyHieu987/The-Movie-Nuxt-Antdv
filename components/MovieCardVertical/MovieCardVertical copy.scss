@@ -70,7 +70,7 @@
       height: 0px !important;
       padding-bottom: 155%;
 
-      .ant-image {
+      .ing {
         position: absolute;
         width: 100%;
         object-fit: cover;
@@ -85,12 +85,6 @@
 
         &[lazy='error'] {
           background-size: 40%;
-        }
-
-        img {
-          // height: 100%;
-          transition: all 0.3s;
-          object-fit: cover;
         }
       }
 
