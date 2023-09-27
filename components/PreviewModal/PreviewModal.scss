@@ -21,6 +21,7 @@
     // min-width: 260px;
 
     width: var(--width);
+    max-width: 360px;
     max-height: 100vh;
     background-color: var(--preview-modal-background-color);
     color: var(--text-color);
@@ -241,6 +242,13 @@
       gap: 7px;
       // padding: 12px 15px;
       padding: 10px 12px;
+      background: linear-gradient(
+        90deg,
+        var(--dominant-poster-color) 0%,
+        var(--preview-modal-background-color) 5%,
+        var(--preview-modal-background-color) 95%,
+        var(--dominant-poster-color) 100%
+      );
 
       .widget {
         display: flex;
