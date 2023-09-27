@@ -3,6 +3,8 @@
     <div class="upgrade-container">
       <Transition appear name="slide-bottom">
         <div v-show="showAnimation" class="upgrade-header">
+          <p class="step">BƯỚC 1/2</p>
+
           <h2>Chọn gói dịch vụ phù hợp với bạn</h2>
 
           <ul>

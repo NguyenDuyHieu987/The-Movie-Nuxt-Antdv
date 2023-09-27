@@ -120,7 +120,7 @@
         </LoadingSectionHorizontal>
       </section>
 
-      <section class="home-section tv-new">
+      <section class="home-section tv-new hidden-bottom">
         <h2 class="gradient-title-default">
           <span>Phim bộ mới</span>
           <NuxtLink
@@ -137,6 +137,7 @@
             <CarouselGroup
               :data="tvAiringTodays"
               :responsive="responsiveVertical"
+              :gap="18"
             >
               <template #content>
                 <SwiperSlide v-for="(item, index) in tvAiringTodays">
@@ -212,7 +213,7 @@
         </SliderGroupBackground>
       </section>
 
-      <section class="home-section theater">
+      <section class="home-section theater hidden-bottom">
         <h2 class="gradient-title-default">
           <span>Phim chiếu rạp mới</span>
           <NuxtLink
@@ -226,7 +227,11 @@
 
         <LoadingSectionVertical v-model:loading="loadingTopRated">
           <template #content>
-            <CarouselGroup :data="topRateds" :responsive="responsiveVertical">
+            <CarouselGroup
+              :data="topRateds"
+              :responsive="responsiveVertical"
+              :gap="18"
+            >
               <template #content>
                 <SwiperSlide v-for="(item, index) in topRateds">
                   <MovieCardVertical
@@ -363,6 +368,51 @@ const responsiveHorizoltal = computed<any>((): any => ({
   },
 }));
 
+// const responsiveVertical = computed<any>((): any => ({
+//   0: {
+//     slidesPerView: 2,
+//     slidesPerGroup: 2,
+//   },
+//   500: {
+//     slidesPerView: 3,
+//     slidesPerGroup: 3,
+//   },
+//   600: {
+//     slidesPerView: 4,
+//     slidesPerGroup: 4,
+//   },
+//   800: {
+//     slidesPerView: 5,
+//     slidesPerGroup: 5,
+//   },
+//   900: {
+//     slidesPerView: 4,
+//     slidesPerGroup: 4,
+//     spaceBetween: 3,
+//   },
+//   1100: {
+//     slidesPerView: 5,
+//     slidesPerGroup: 5,
+//   },
+//   1300: {
+//     slidesPerView: 6,
+//     slidesPerGroup: 6,
+//   },
+//   1550: {
+//     slidesPerView: 7,
+//     slidesPerGroup: 7,
+//     spaceBetween: 5,
+//   },
+//   1700: {
+//     slidesPerView: 8,
+//     slidesPerGroup: 8,
+//   },
+//   2000: {
+//     slidesPerView: 9,
+//     slidesPerGroup: 9,
+//   },
+// }));
+
 const responsiveVertical = computed<any>((): any => ({
   0: {
     slidesPerView: 2,
@@ -375,15 +425,16 @@ const responsiveVertical = computed<any>((): any => ({
   600: {
     slidesPerView: 4,
     slidesPerGroup: 4,
+    spaceBetween: 13,
   },
   800: {
     slidesPerView: 5,
     slidesPerGroup: 5,
   },
   900: {
-    slidesPerView: 4,
-    slidesPerGroup: 4,
-    spaceBetween: 3,
+    slidesPerView: 5,
+    slidesPerGroup: 5,
+    spaceBetween: 15,
   },
   1100: {
     slidesPerView: 5,
@@ -396,7 +447,6 @@ const responsiveVertical = computed<any>((): any => ({
   1550: {
     slidesPerView: 7,
     slidesPerGroup: 7,
-    spaceBetween: 5,
   },
   1700: {
     slidesPerView: 8,

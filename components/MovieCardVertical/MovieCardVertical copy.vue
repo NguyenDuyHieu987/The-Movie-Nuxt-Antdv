@@ -2,11 +2,13 @@
   <NuxtLink
     :to="{
       path: isEpisodes
-        ? `/info-tv/${item?.id}/${item?.name
-            ?.replaceAll(/\s/g, '+')
+        ? `/info-tv/${item?.id}__${utils
+            .removeVietnameseTones(item?.name)
+            ?.replaceAll(/\s/g, '-')
             .toLowerCase()}`
-        : `/info-movie/${item?.id}/${item?.name
-            ?.replaceAll(/\s/g, '+')
+        : `/info-movie/${item?.id}__${utils
+            .removeVietnameseTones(item?.name)
+            ?.replaceAll(/\s/g, '-')
             .toLowerCase()}`,
     }"
     ref="cardItem"
@@ -110,7 +112,7 @@
         imgWidth: imgWidth,
         rectBound: rectBound,
       }"
-      :interval="interval"
+      :timeOut="timeOut"
       :isEpisodes="isEpisodes"
       @setIsTeleportModal="(data : boolean) => (isTeleportPreviewModal = data)"
     />
@@ -148,14 +150,14 @@ const offsetHeight = ref<number>(0);
 const imgHeight = ref<number>(0);
 const imgWidth = ref<number>(0);
 const rectBound = ref<any>(0);
-const interval = ref<any>();
+const timeOut = ref<any>();
 
 const getData = async () => {
-  loading.value = true;
+  // loading.value = true;
 
-  setTimeout(() => {
-    loading.value = false;
-  }, 500);
+  // setTimeout(() => {
+  //   loading.value = false;
+  // }, 500);
 
   if (props?.type || props?.item?.media_type) {
     switch (props?.type || props?.item?.media_type) {
@@ -188,11 +190,11 @@ const getData = async () => {
     //     if (axios.isCancel(e)) return;
     //   });
 
-    if (dataMovie.value?.in_history) {
+    if (dataMovie.value?.history_progress) {
       isInHistory.value = true;
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {
-      await useAsyncData(
+      useAsyncData(
         `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
         () => getItemHistory(props.item?.id, props.item?.media_type)
       )
@@ -233,13 +235,13 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
 
   rectBound.value = rect;
 
-  interval.value = setTimeout(() => {
+  timeOut.value = setTimeout(() => {
     isTeleportPreviewModal.value = true;
-  }, 2000);
+  }, 700);
 
   target.addEventListener('pointerleave', () => {
     // isTeleportPreviewModal.value = false;
-    clearInterval(interval.value);
+    clearTimeout(timeOut.value);
   });
 };
 </script>

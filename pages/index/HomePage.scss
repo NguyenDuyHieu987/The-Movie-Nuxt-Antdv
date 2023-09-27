@@ -61,6 +61,11 @@
       }
     }
 
+    &.hidden-bottom {
+      padding-bottom: 22px;
+      overflow: hidden;
+    }
+
     .gradient-title-default {
       display: flex;
       justify-content: space-between;

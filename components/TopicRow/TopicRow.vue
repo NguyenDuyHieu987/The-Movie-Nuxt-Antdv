@@ -1,5 +1,5 @@
 <template>
-  <section class="topic-row">
+  <section class="topic-row" ref="topicRow">
     <div class="row-container">
       <div class="top">
         <div class="backdrop">
@@ -237,6 +237,7 @@ const props = defineProps<{
 }>();
 
 const store = useStore();
+const topicRow = ref();
 const valueSearch = defineModel<string>('valueInput');
 const dataRow = defineModel<any>('dataRow');
 
@@ -252,22 +253,20 @@ watch(dataRow, (newVal, oldVal) => {
 const setBackgroundColor = (color: string[]) => {
   const main_color = `linear-gradient(to bottom, rgba(${color[0]}, ${color[1]}, ${color[2]}, 1), rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.5), rgba(0, 0, 0, 1));`;
 
-  const topic_row = document.getElementsByClassName(
-    'topic-row'
+  // const topic_row = document.getElementsByClassName(
+  //   'topic-row'
+  // )[0] as HTMLElement;
+
+  topicRow.value.setAttribute('style', `background-image: ${main_color}`);
+
+  const ant_input_affix_wrapper = topicRow.value.getElementsByClassName(
+    'ant-input-affix-wrapper'
   )[0] as HTMLElement;
 
-  if (topic_row) {
-    topic_row.setAttribute('style', `background-image: ${main_color}`);
-
-    const ant_input_affix_wrapper = topic_row.getElementsByClassName(
-      'ant-input-affix-wrapper'
-    )[0] as HTMLElement;
-
-    ant_input_affix_wrapper.setAttribute(
-      'style',
-      `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`
-    );
-  }
+  ant_input_affix_wrapper.setAttribute(
+    'style',
+    `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`
+  );
 };
 
 onMounted(() => {

@@ -1,8 +1,14 @@
 .upgrade {
   max-width: 1010px;
-  font-size: 1.55rem;
+  font-size: 1.6rem;
 
   .upgrade-container {
+    .step {
+      color: var(--text-color-gray1);
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
     .upgrade-header {
       margin-bottom: 20px;
 
@@ -41,6 +47,6 @@
 
 @media only screen and (max-width: 900px) {
   .upgrade {
-    font-size: 1.5rem;
+    font-size: 1.55rem;
   }
 }

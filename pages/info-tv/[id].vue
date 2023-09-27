@@ -442,6 +442,12 @@ const getData = async () => {
     .finally(() => {
       loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
+
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant',
+      });
     });
 
   if (store.isLogin) {
@@ -464,12 +470,6 @@ const getData = async () => {
 
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
-
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'instant',
-  });
 });
 
 getData();

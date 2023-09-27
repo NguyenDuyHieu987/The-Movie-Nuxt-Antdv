@@ -1,5 +1,5 @@
 <template>
-  <aside class="topic-column">
+  <aside class="topic-column" ref="topicColumn">
     <div class="column-container">
       <div class="backdrop">
         <NuxtLink
@@ -231,6 +231,7 @@ const props = defineProps<{
 }>();
 
 const store = useStore();
+const topicColumn = ref();
 const valueSearch = defineModel<string>('valueInput');
 const dataColumn = defineModel<any>('dataColumn');
 
@@ -246,21 +247,19 @@ watch(dataColumn, (newVal, oldVal) => {
 const setBackgroundColor = (color: string[]) => {
   const main_color = `linear-gradient(to bottom, rgba(${color[0]}, ${color[1]}, ${color[2]}, 1), rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.5), rgba(0, 0, 0, 1));`;
 
-  const topic_column = document.getElementsByClassName(
-    'topic-column'
+  // const topic_column = document.getElementsByClassName(
+  //   'topic-column'
+  // )[0] as HTMLElement;
+
+  topicColumn.value.setAttribute('style', `background-image: ${main_color}`);
+
+  const ant_input_affix_wrapper = topicColumn.value.getElementsByClassName(
+    'ant-input-affix-wrapper'
   )[0] as HTMLElement;
-
-  if (topic_column) {
-    topic_column.setAttribute('style', `background-image: ${main_color}`);
-
-    const ant_input_affix_wrapper = topic_column.getElementsByClassName(
-      'ant-input-affix-wrapper'
-    )[0] as HTMLElement;
-    ant_input_affix_wrapper.setAttribute(
-      'style',
-      `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`
-    );
-  }
+  ant_input_affix_wrapper.setAttribute(
+    'style',
+    `border-bottom: 2px solid rgb(${color[0]}, ${color[1]}, ${color[2]});`
+  );
 };
 
 onMounted(() => {

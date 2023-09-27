@@ -2,7 +2,10 @@
   <div class="service-page payment padding-content">
     <div v-if="store.isLogin" class="payment-container">
       <div class="payment-header">
+        <p class="step">BƯỚC 2/2</p>
+
         <h1>Chọn phương thức thanh toán</h1>
+
         <p>
           Tư cách thành viên trả phí của bạn sẽ bắt đầu ngay khi bạn thiết lập
           thanh toán.
@@ -20,6 +23,7 @@
             <nuxt-img
               :src="getImage('momo.jpg', 'payment', 'w-40')"
               loading="lazy"
+              :width="40"
             />
             <span>Ví MoMo</span>
           </div>
@@ -43,6 +47,7 @@
             <nuxt-img
               :src="getImage('zalopay.png', 'payment', 'w-40')"
               loading="lazy"
+              :width="40"
             />
 
             <span>Ví điện tử ZaloPay</span>
@@ -67,6 +72,7 @@
             <nuxt-img
               :src="getImage('vnpay.png', 'payment', 'w-40')"
               loading="lazy"
+              :width="40"
             />
             <span>ATM - Ngân hàng nội địa</span>
           </div>
@@ -93,10 +99,13 @@
             <nuxt-img
               :src="getImage('mastercard_1.jpg', 'payment', 'w-100')"
               loading="lazy"
+              :width="100"
             />
+
             <nuxt-img
               :src="getImage('visa.png', 'payment', 'w-40')"
               loading="lazy"
+              :width="40"
             />
 
             <span>Thẻ ghi nợ - Thẻ tín dụng</span>

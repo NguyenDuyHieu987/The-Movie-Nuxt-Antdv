@@ -28,6 +28,7 @@
   );
   // background-image: var(--main-color);
   z-index: 2;
+  transition: all background 0.5s;
 
   .row-container {
     .top {

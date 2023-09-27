@@ -10,7 +10,7 @@ export default defineStore('store', () => {
   const userAccount = ref<user>(null);
   const role = computed<string>(() => userAccount.value!?.role || 'normal');
   const isLogin = computed<boolean>(() => !!userAccount.value);
-  const collapsed = ref<boolean>(false);
+  const collapsed = ref<boolean>(true);
   const headerScrolled = ref<boolean>(false);
   const openDrawer = ref<boolean>(false);
   const modalVisible = ref<boolean>(false);

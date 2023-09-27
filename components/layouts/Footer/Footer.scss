@@ -16,7 +16,6 @@ footer.footer {
   color: inherit;
   border-top: 1px solid var(--border-regular-light);
   margin-top: auto;
-  font-size: 1.45rem;
   padding: 24px 50px;
 
   .footer-container {
@@ -72,6 +71,12 @@ footer.footer {
 
   .copyright {
     margin-top: 15px;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  footer.footer {
+    font-size: 1.45rem;
   }
 }
 

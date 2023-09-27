@@ -539,10 +539,14 @@ watch(previewModal, () => {
           '.preview-modal',
           {
             left: props.style.rectBound.left * 1.15 + 'px',
+            width: '17vw',
+            minWidth: 260,
             transform: 'translateX(0%) translateY(-50%) scale(1.3)',
           },
           {
             left: props.style.rectBound.left + 'px',
+            width: props.style.offsetWidth,
+            minWidth: props.style.offsetWidth,
             transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
           scale(1)`,
             duration: 0.2,
@@ -559,11 +563,15 @@ watch(previewModal, () => {
         gsap.fromTo(
           '.preview-modal',
           {
+            width: '17vw',
+            minWidth: 260,
             right: minRectRight + 14 * 1.8 + 'px',
             transform: 'translateX(0%) translateY(-50%) scale(1.3)',
           },
           {
             right: minRectRight - 14 + 'px',
+            width: props.style.offsetWidth,
+            minWidth: props.style.offsetWidth,
             transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
           scale(1)`,
             duration: 0.2,
@@ -579,9 +587,13 @@ watch(previewModal, () => {
       gsap.fromTo(
         '.preview-modal',
         {
+          width: '17vw',
+          minWidth: 260,
           transform: 'translateX(-50%) translateY(-50%) scale(1.3)',
         },
         {
+          width: props.style.offsetWidth,
+          minWidth: props.style.offsetWidth,
           transform: `translateX(-50%) translateY(calc(${props.style.offsetHeight}px / (-2)))
           scale(1)`,
           duration: 0.2,
