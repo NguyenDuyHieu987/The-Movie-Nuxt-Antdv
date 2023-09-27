@@ -18,6 +18,11 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
 
     &.dragging {
       cursor: grab;
+
+      .slider-item {
+        cursor: grab;
+        pointer-events: none;
+      }
     }
   }
 

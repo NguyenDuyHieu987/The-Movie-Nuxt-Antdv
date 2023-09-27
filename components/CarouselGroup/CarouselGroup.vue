@@ -24,6 +24,7 @@
       }"
     >
       <slot name="content" />
+
       <div class="swiper-button-prev">
         <!-- <Icon name="bi:chevron-left"/> -->
         <svg

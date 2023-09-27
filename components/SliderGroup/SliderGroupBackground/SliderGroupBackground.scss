@@ -28,7 +28,8 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
       left: 0;
       right: 0;
       z-index: 0;
-      background-color: rgba(0, 128, 174, 0.6);
+      // background-color: rgba(0, 128, 174, 0.6);
+      background-color: var(--dominant-backdrop-color, rgba(0, 128, 174, 0.6));
       opacity: 0.5;
       // filter: blur(10px);
     }
@@ -42,8 +43,34 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
       padding-top: 15px;
       padding-bottom: 25px;
 
+      .swiper-wrapper {
+        padding: 0px var(--padding-home);
+        padding-top: 15px;
+        padding-bottom: 25px;
+
+        .swiper-slide {
+          flex-shrink: unset;
+        }
+      }
+
+      .swiper-scrollbar {
+        left: 0;
+        height: 7px;
+        width: 100%;
+        bottom: 0;
+
+        .swiper-scrollbar-drag {
+          background-color: #686868;
+        }
+      }
+
       &.dragging {
         cursor: grab;
+
+        .slider-item {
+          pointer-events: none;
+          cursor: grab;
+        }
       }
     }
   }

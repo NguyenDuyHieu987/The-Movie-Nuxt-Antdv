@@ -4,30 +4,9 @@
       class="slider-group-background-wrapper"
       :style="{
         backgroundImage: 'url(' + currentImage + ')',
-        '--dominant-backdrop-color': dominantBackdropColor,
       }"
     >
       <slot name="title" />
-
-      <!-- <Swiper
-        class="slider-group-background-list"
-        ref="slider"
-        :modules="[SwiperFreeMode, SwiperScrollbar]"
-        :speed="500"
-        :slides-per-view="'auto'"
-        :space-between="15"
-        :free-mode="true"
-        :scrollbar="{
-          el: '.swiper-scrollbar',
-          draggable: true,
-        }"
-        :class="{
-          dragging: sliderState.isDragging,
-        }"
-      >
-        <slot name="content" />
-        <div class="swiper-scrollbar"></div>
-      </Swiper> -->
 
       <div
         class="slider-group-background-list"
@@ -61,7 +40,6 @@
 
 <script setup lang="ts">
 import { getImage } from '~/services/image';
-import 'swiper/css/scrollbar';
 
 const props = defineProps<{
   data: any[];
@@ -79,9 +57,6 @@ const sliderState = reactive({
 const currentImage = ref<string>(
   getImage(props.data[0]?.backdrop_path, 'backdrop', 'h-250')
 );
-const dominantBackdropColor = ref<string>(
-  `rgb(${props.data[0]?.dominant_backdrop_color[0]}, ${props.data[0]?.dominant_backdrop_color[1]},${props.data[0]?.dominant_backdrop_color[2]}, 0.6)`
-);
 
 watchEffect(() => {
   if (props.data) {
@@ -90,8 +65,6 @@ watchEffect(() => {
       'backdrop',
       'h-250'
     );
-
-    dominantBackdropColor.value = `rgb(${props.data[0]?.dominant_backdrop_color[0]}, ${props.data[0]?.dominant_backdrop_color[1]},${props.data[0]?.dominant_backdrop_color[2]}, 0.6)`;
   }
 });
 
@@ -100,8 +73,10 @@ onMounted(() => {
     if (e.target.closest('.slider-group-background-list')) {
       return;
     }
+
     onPointerMoveSlider(e);
   });
+
   window.addEventListener('pointerup', onPointerUpSlider);
 });
 
@@ -156,11 +131,6 @@ const onMouseOverSlider = (e: any) => {
     if (sliderImage != null) {
       currentImage.value = sliderImage.src;
     }
-    const indexItem = sliderItem
-      .querySelector('.movie-card-item')
-      .getAttribute('index');
-
-    dominantBackdropColor.value = `rgba(${props.data[indexItem]?.dominant_poster_color[0]}, ${props.data[indexItem]?.dominant_poster_color[1]},${props.data[indexItem]?.dominant_poster_color[2]}, 0.6)`;
   }
 };
 </script>
