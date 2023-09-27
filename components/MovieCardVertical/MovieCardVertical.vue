@@ -56,7 +56,10 @@
           </div>
         </div>
 
-        <div class="info-bottom">
+        <div
+          class="info-bottom"
+          :style="`--dominant-poster-box-shadow-color: rgba(${item.dominant_poster_color[0]}, ${item.dominant_poster_color[1]},${item.dominant_poster_color[2]}, 0.35)`"
+        >
           <p class="title">
             {{ item?.name }}
           </p>
