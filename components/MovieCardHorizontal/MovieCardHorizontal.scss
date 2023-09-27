@@ -1,6 +1,8 @@
 // @import '@/assets/style/globalStyle/MovieCardItem.scss';
 
 .movie-group.horizontal {
+  gap: var(--card-movie-gap);
+
   .movie-card-item.horizontal {
     width: calc((100% - (5 * var(--card-movie-gap))) / 6);
     //   margin: 4px;
@@ -122,7 +124,7 @@
 
     &:hover {
       .img-box {
-        border-radius: 0px;
+        // border-radius: 0px;
 
         img {
           opacity: 0.7;
@@ -155,6 +157,8 @@
   }
 
   .movie-group.horizontal {
+    gap: 7px;
+
     .movie-card-item.horizontal {
       width: calc((100% - (3.01 * var(--card-movie-gap))) / 4);
     }
