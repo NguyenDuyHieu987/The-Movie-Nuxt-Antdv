@@ -11,21 +11,27 @@
             ?.replaceAll(/\s/g, '-')
             .toLowerCase()}`,
     }"
+    class="movie-card-item horizontal"
     ref="cardItem"
-    class="movie-card-item vertical"
     @pointerenter="onMouseEnter"
-    :style="`--dominant-poster-color: rgb(${item.dominant_poster_color[0]}, ${item.dominant_poster_color[1]},${item.dominant_poster_color[2]})`"
   >
     <el-skeleton :loading="loading" animated>
       <template #template>
         <el-skeleton-item class="skeleton-img" />
+
+        <!-- <div class="content-skeleton">
+          <el-skeleton-item variant="text" />
+          <el-skeleton-item variant="text" style="width: 60%" />
+        </div> -->
       </template>
 
       <template #default>
         <div class="img-box">
+          <!-- v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h_250')" -->
+
           <img
             class="ant-image"
-            v-lazy="getImage(item?.poster_path, 'poster')"
+            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
             loading="lazy"
             alt=""
           />
@@ -37,11 +43,27 @@
             ></div>
           </div>
 
+          <!-- <div class="duration-episode-box">
+            <p v-if="!isEpisodes" class="duration-episode">
+              {{ item?.runtime + ' min' }}
+            </p>
+            <p v-else class="duration-episode">
+              {{
+                // dataMovie?.last_episode_to_air?.episode_number
+                //   ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
+                //   : ''
+                item?.episode_run_time[0]
+                  ? item?.episode_run_time[0] + ' min'
+                  : '? min / Ep'
+              }}
+            </p>
+          </div> -->
+
           <div
             v-if="
               item?.release_date || item?.last_air_date || item?.first_air_date
             "
-            class="release-date-wrapper"
+            class="release-date-box"
           >
             <p class="release-date" v-if="!isEpisodes">
               {{ item?.release_date?.slice(0, 4) }}
@@ -56,37 +78,55 @@
           </div>
         </div>
 
-        <div class="info-bottom">
+        <div class="info">
           <p class="title">
             {{ item?.name }}
+            <!-- <span v-if="isEpisodes">
+              {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
+            </span> -->
           </p>
-
-          <div class="genres">
-            <NuxtLink
-              class="genre-item"
-              v-for="(genre, index) in Array.from(item?.genres, (x: any) => x)"
-              :index="index"
-              :key="index"
-              :to="{
-                path: `/discover/genre/${
-                  getGenreById(genre.id, store.allGenres)?.short_name
-                }`,
-              }"
-            >
-              {{ genre?.name }}
-            </NuxtLink>
-          </div>
+          <!-- <div class="info-bottom">
+            <div class="genres">
+              <span
+                class="genre-item"
+                v-for="(genre, index) in Array.from(item?.genres, (x: any) => x.name)"
+                :index="index"
+                :key="index"
+              >
+                {{ genre }}
+              </span>
+            </div>
+          </div> -->
         </div>
       </template>
     </el-skeleton>
+
+    <PreviewModal
+      :isTeleportPreviewModal="isTeleportPreviewModal"
+      v-model:isTeleport="isTeleportPreviewModal"
+      :item="item"
+      :style="{
+        left: left,
+        top: top,
+        offsetHeight: offsetHeight,
+        offsetWidth: offsetWidth,
+        imgHeight: imgHeight,
+        imgWidth: imgWidth,
+        rectBound: rectBound,
+      }"
+      :timeOut="timeOut"
+      :isEpisodes="isEpisodes"
+      @setIsTeleportModal="(data : boolean) => (isTeleportPreviewModal = data)"
+    />
   </NuxtLink>
 </template>
+
 <script setup lang="ts">
-import axios from 'axios';
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+import axios from 'axios';
 import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
-import { getGenreById } from '~/services/genres';
+import PreviewModal from '~/components/PreviewModal/PreviewModal.vue';
 
 const props = defineProps<{
   item: any;
@@ -96,8 +136,8 @@ const props = defineProps<{
 const store = useStore();
 const utils = useUtils();
 const router = useRouter();
-const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
+const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
 const loadingImg = ref<boolean>(false);
 const isAddToList = ref<boolean>(false);
@@ -176,10 +216,6 @@ const getData = async () => {
 
 getData();
 
-onMounted(() => {
-  const swiperSlide = document.querySelector('.swiper-slide');
-});
-
 const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   if (loading.value) return;
 
@@ -212,5 +248,4 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   });
 };
 </script>
-
-<style lang="scss" src="./MovieCardVertical.scss"></style>
+<style lang="scss" src="./MovieCardHorizontal.scss"></style>

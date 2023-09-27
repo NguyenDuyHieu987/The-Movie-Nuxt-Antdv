@@ -2,6 +2,7 @@
   <div class="carousel-container">
     <Swiper
       class="carousel-group"
+      :class="cardMode || 'horizontal'"
       :modules="[
         // SwiperAutoplay,
         SwiperNavigation,
@@ -63,6 +64,7 @@ defineProps<{
   data: any[];
   responsive: any;
   gap?: number;
+  cardMode?: 'horizontal' | 'vertical';
 }>();
 </script>
 

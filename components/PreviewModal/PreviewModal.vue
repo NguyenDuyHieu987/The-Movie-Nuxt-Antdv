@@ -297,55 +297,49 @@
                   </span>
                 </div>
 
-                <div class="evidence-tags">
-                  <span class="evidence-item country">
-                    {{
-                      getCountryByOriginalLanguage(
-                        item?.original_language,
-                        store.allCountries
-                      )?.name || ''
-                    }}
-                  </span>
-                  <!-- <span v-if="isEpisodes" class="evidence-item lastest-episode">
-                    {{
-                      dataMovie?.last_episode_to_air?.episode_number
-                        ? 'Tập ' +
-                          dataMovie?.last_episode_to_air?.episode_number
-                        : ''
-                    }}
-                  </span> -->
-                </div>
+                <div class="bottom">
+                  <div class="evidence-tags">
+                    <span class="evidence-item country">
+                      {{
+                        getCountryByOriginalLanguage(
+                          item?.original_language,
+                          store.allCountries
+                        )?.name || ''
+                      }}
+                    </span>
+                  </div>
 
-                <div class="views-imdb">
-                  <p class="views">
-                    {{ utils.viewFormatter(dataMovie?.views) }} lượt xem
-                  </p>
+                  <div class="views-rate">
+                    <p class="views">
+                      {{ utils.viewFormatter(dataMovie?.views) }} lượt xem
+                    </p>
 
-                  <p>
-                    <span
-                      style="color: green; font-weight: bold"
-                      v-if="dataMovie?.vote_average >= 8"
-                    >
-                      {{ dataMovie?.vote_average.toFixed(2) }}
-                    </span>
-                    <span
-                      style="color: yellow; font-weight: bold"
-                      v-if="
-                        dataMovie?.vote_average >= 5 &&
-                        dataMovie?.vote_average < 8
-                      "
-                    >
-                      {{ dataMovie?.vote_average.toFixed(2) }}
-                    </span>
-                    <span
-                      style="color: red; font-weight: bold"
-                      v-if="dataMovie?.vote_average < 5"
-                    >
-                      {{ dataMovie?.vote_average.toFixed(2) }}
-                    </span>
-                    diểm /
-                    {{ dataMovie?.vote_count + ' lượt' }}
-                  </p>
+                    <p>
+                      <span
+                        style="color: green; font-weight: bold"
+                        v-if="dataMovie?.vote_average >= 8"
+                      >
+                        {{ dataMovie?.vote_average.toFixed(2) }}
+                      </span>
+                      <span
+                        style="color: yellow; font-weight: bold"
+                        v-if="
+                          dataMovie?.vote_average >= 5 &&
+                          dataMovie?.vote_average < 8
+                        "
+                      >
+                        {{ dataMovie?.vote_average.toFixed(2) }}
+                      </span>
+                      <span
+                        style="color: red; font-weight: bold"
+                        v-if="dataMovie?.vote_average < 5"
+                      >
+                        {{ dataMovie?.vote_average.toFixed(2) }}
+                      </span>
+                      diểm /
+                      {{ dataMovie?.vote_count + ' lượt' }}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -539,14 +533,14 @@ watch(previewModal, () => {
           '.preview-modal',
           {
             left: props.style.rectBound.left * 1.15 + 'px',
-            width: '17vw',
-            minWidth: 260,
+            // width: '17vw',
+            // minWidth: 260,
             transform: 'translateX(0%) translateY(-50%) scale(1.3)',
           },
           {
             left: props.style.rectBound.left + 'px',
-            width: props.style.offsetWidth,
-            minWidth: props.style.offsetWidth,
+            // width: props.style.offsetWidth,
+            // minWidth: props.style.offsetWidth,
             transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
           scale(1)`,
             duration: 0.2,
@@ -563,15 +557,15 @@ watch(previewModal, () => {
         gsap.fromTo(
           '.preview-modal',
           {
-            width: '17vw',
-            minWidth: 260,
+            // width: '17vw',
+            // minWidth: 260,
             right: minRectRight + 14 * 1.8 + 'px',
             transform: 'translateX(0%) translateY(-50%) scale(1.3)',
           },
           {
             right: minRectRight - 14 + 'px',
-            width: props.style.offsetWidth,
-            minWidth: props.style.offsetWidth,
+            // width: props.style.offsetWidth,
+            // minWidth: props.style.offsetWidth,
             transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
           scale(1)`,
             duration: 0.2,
@@ -587,13 +581,13 @@ watch(previewModal, () => {
       gsap.fromTo(
         '.preview-modal',
         {
-          width: '17vw',
-          minWidth: 260,
+          // width: '17vw',
+          // minWidth: 260,
           transform: 'translateX(-50%) translateY(-50%) scale(1.3)',
         },
         {
-          width: props.style.offsetWidth,
-          minWidth: props.style.offsetWidth,
+          // width: props.style.offsetWidth,
+          // minWidth: props.style.offsetWidth,
           transform: `translateX(-50%) translateY(calc(${props.style.offsetHeight}px / (-2)))
           scale(1)`,
           duration: 0.2,

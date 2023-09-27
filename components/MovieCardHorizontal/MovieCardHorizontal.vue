@@ -18,17 +18,10 @@
     <el-skeleton :loading="loading" animated>
       <template #template>
         <el-skeleton-item class="skeleton-img" />
-
-        <!-- <div class="content-skeleton">
-          <el-skeleton-item variant="text" />
-          <el-skeleton-item variant="text" style="width: 60%" />
-        </div> -->
       </template>
 
       <template #default>
         <div class="img-box">
-          <!-- v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h_250')" -->
-
           <img
             class="ant-image"
             v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
@@ -42,28 +35,17 @@
               :style="{ width: percent * 100 + '%' }"
             ></div>
           </div>
+        </div>
 
-          <!-- <div class="duration-episode-box">
-            <p v-if="!isEpisodes" class="duration-episode">
-              {{ item?.runtime + ' min' }}
-            </p>
-            <p v-else class="duration-episode">
-              {{
-                // dataMovie?.last_episode_to_air?.episode_number
-                //   ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
-                //   : ''
-                item?.episode_run_time[0]
-                  ? item?.episode_run_time[0] + ' min'
-                  : '? min / Ep'
-              }}
-            </p>
-          </div> -->
-
+        <div class="info">
+          <p class="title">
+            {{ item?.name }}
+          </p>
           <div
             v-if="
               item?.release_date || item?.last_air_date || item?.first_air_date
             "
-            class="release-date-box"
+            class="release-date-wrapper"
           >
             <p class="release-date" v-if="!isEpisodes">
               {{ item?.release_date?.slice(0, 4) }}
@@ -76,27 +58,6 @@
               }}
             </p>
           </div>
-        </div>
-
-        <div class="info">
-          <p class="title">
-            {{ item?.name }}
-            <!-- <span v-if="isEpisodes">
-              {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
-            </span> -->
-          </p>
-          <!-- <div class="info-bottom">
-            <div class="genres">
-              <span
-                class="genre-item"
-                v-for="(genre, index) in Array.from(item?.genres, (x: any) => x.name)"
-                :index="index"
-                :key="index"
-              >
-                {{ genre }}
-              </span>
-            </div>
-          </div> -->
         </div>
       </template>
     </el-skeleton>

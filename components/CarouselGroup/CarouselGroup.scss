@@ -54,6 +54,13 @@
     }
   }
 
+  &.vertical {
+    .swiper-button-prev,
+    .swiper-button-next {
+      background: transparent;
+    }
+  }
+
   .swiper-button-prev,
   .swiper-button-next {
     position: absolute;

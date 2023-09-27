@@ -137,6 +137,7 @@
             <CarouselGroup
               :data="tvAiringTodays"
               :responsive="responsiveVertical"
+              cardMode="vertical"
               :gap="18"
             >
               <template #content>
@@ -230,6 +231,7 @@
             <CarouselGroup
               :data="topRateds"
               :responsive="responsiveVertical"
+              cardMode="vertical"
               :gap="18"
             >
               <template #content>

@@ -1,6 +1,6 @@
 import { makeRequest } from './makeRequest';
 import type { genre } from '@/types';
-import ALLGENRES from '../constants/data/Genres';
+import ALLGENRES from '@/constants/data/Genres';
 
 export function getAllGenre() {
   return makeRequest(`/genre/all`);
@@ -9,7 +9,7 @@ export function getAllGenre() {
 export function getGenreByShortName(
   genre_short_name: string,
   allGenres?: genre[]
-): genre {
+) {
   if (allGenres?.length != 0) {
     return allGenres!.find((gen) => gen.short_name == genre_short_name);
   } else {
@@ -17,15 +17,15 @@ export function getGenreByShortName(
   }
 }
 
-export function getGenreById(genre_id: number, allGenres?: genre[]): genre {
+export function getGenreById(genre_id: number, allGenres?: genre[]) {
   if (allGenres?.length != 0) {
     return allGenres!.find((gen) => gen.id == genre_id);
   } else {
-    return ALLGENRES.find((gen) => gen.id == genre_id);
+    return ALLGENRES?.find((gen) => gen.id == genre_id);
   }
 }
 
-export function getGenreByName(genre_name: string, allGenres?: genre[]): genre {
+export function getGenreByName(genre_name: string, allGenres?: genre[]) {
   if (allGenres?.length != 0) {
     return allGenres!.find((gen) => gen.name == genre_name);
   } else {
