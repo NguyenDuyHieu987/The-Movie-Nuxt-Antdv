@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function makeRequest(url: string, options: any = {}) {
+export async function makeRequest(url: string, options: any = {}) {
   const nuxtConfig = useRuntimeConfig();
   let headers: any = {};
 
@@ -18,7 +18,10 @@ export function makeRequest(url: string, options: any = {}) {
     }
   }
 
-  return api(url, { headers: { ...headers, ...options?.headers }, ...options })
+  return await api(url, {
+    headers: { ...headers, ...options?.headers },
+    ...options,
+  })
     .then((res) => {
       const { headers, data } = res;
 
