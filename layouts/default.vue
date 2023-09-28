@@ -1,5 +1,8 @@
 <template>
-  <div :class="[collapsed ? 'expand' : '', 'body-content']">
+  <div
+    class="body-content"
+    :class="[collapsed || openSiderBarFixed ? 'expand' : '']"
+  >
     <Header />
 
     <div class="body-wrapper" id="body-wrapper">
@@ -36,7 +39,7 @@ import Footer from '~/components/layouts/Footer/Footer.vue';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();
-const { collapsed, isLogin } = storeToRefs(store);
+const { collapsed, isLogin, openSiderBarFixed } = storeToRefs(store);
 </script>
 
 <style lang="scss" src="~/assets/style/defaultLayout.scss"></style>

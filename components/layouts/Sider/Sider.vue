@@ -4,8 +4,10 @@
     width="var(--sider-width)"
     collapsedWidth="var(--sider-collapsed-width)"
     class="sider-bar"
+    :class="{ 'open-fixed': openSiderBarFixed }"
     collapsible
-    @collapse="handleCollapse"
+    :defaultCollapsed="true"
+    @change="handleCollapse"
   >
     <header class="sider-header">
       <div class="user-header">
@@ -51,20 +53,15 @@
     <TheMenu />
 
     <template #trigger>
-      <!-- @click="store.setCollapsed()" -->
-      <footer class="sider-footer">
-        <div :class="['trigger-collapse', { active: collapsed }]">
-          <!-- <DoubleLeftOutlined
-                style="transition: all 0.3s"
-                v-if="!collapsed"
-              />
-              <DoubleRightOutlined v-else /> -->
-
-          <!-- <Icon v-if="!collapsed" name="ic:baseline-keyboard-double-arrow-left" />
-            <Icon v-else name="ic:baseline-keyboard-double-arrow-right" /> -->
-
+      <footer class="sider-footer" @click="handleCollapse">
+        <div
+          :class="[
+            'trigger-collapse',
+            { collapsed: collapsed || openSiderBarFixed },
+          ]"
+        >
           <svg
-            v-if="collapsed"
+            v-if="collapsed || openSiderBarFixed"
             xmlns="http://www.w3.org/2000/svg"
             width="2rem"
             height="2rem"
@@ -87,7 +84,13 @@
             <path d="m11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z" />
           </svg>
 
-          <span class="title-trigger-collapse">Đóng</span>
+          <span
+            v-if="openSiderBarFixed && !collapsed"
+            class="title-trigger-collapse open"
+          >
+            Mở
+          </span>
+          <span v-else class="title-trigger-collapse collapsed"> Đóng </span>
         </div>
       </footer>
     </template>
@@ -101,7 +104,8 @@ import TheMenu from '~/components/TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();
-const { collapsed, isLogin, userAccount } = storeToRefs<any>(store);
+const { collapsed, isLogin, userAccount, openSiderBarFixed } =
+  storeToRefs<any>(store);
 
 onMounted(() => {
   const menu: HTMLElement | null = document.querySelector(
@@ -118,9 +122,33 @@ onMounted(() => {
       sider_header.style.backgroundColor = 'transparent';
     }
   });
+
+  // const siderBar = document.querySelector('.sider-bar');
+
+  // siderBar?.addEventListener('mouseover', (e: any) => {
+  //   if (store.collapsed == true) {
+  //     store.collapsed = false;
+  //     store.openSiderBarFixed = true;
+  //   }
+  // });
+
+  // siderBar?.addEventListener('mouseleave', () => {
+  //   if (store.collapsed == false && store.openSiderBarFixed == true) {
+  //     store.collapsed = true;
+  //     store.openSiderBarFixed = false;
+  //   }
+  // });
 });
 
-const handleCollapse = () => {};
+const handleCollapse = () => {
+  // if (store.collapsed == true) {
+  //   store.collapsed = false;
+  //   store.openSiderBarFixed = false;
+  // } else {
+  //   store.collapsed = true;
+  //   store.openSiderBarFixed = false;
+  // }
+};
 </script>
 
 <style lang="scss" src="./Sider.scss"></style>

@@ -195,7 +195,8 @@
   }
 
   .el-menu--popup-container.sub-menu-popper {
-    max-height: 100vh;
+    // max-height: 100vh;
+    max-height: 99.4vh;
     overflow-y: auto;
 
     .el-menu.el-menu--popup {
