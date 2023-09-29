@@ -6,18 +6,22 @@
           <span>Trending</span>
         </h2>
 
-        <section class="movie-group vertical ranking">
-          <MovieCardVertical
-            v-for="(item, index) in rankings"
-            :index="index"
-            :key="item.id"
-            :item="item"
-            :type="item?.media_type"
-          />
+        <section class="rank-list">
+          <div v-if="!loading" class="movie-group vertical ranking">
+            <MovieCardVertical
+              v-for="(item, index) in rankings"
+              :index="index"
+              :key="item.id"
+              :item="item"
+              :type="item?.media_type"
+            />
+          </div>
+
+          <LoadingCircle v-else class="loading-page" />
         </section>
 
         <ControlPage
-          v-show="rankings?.length"
+          v-show="!loading"
           :page="pageTrending"
           :total="totalPage"
           :pageSize="pageSize"
@@ -35,6 +39,7 @@ import { getTrending } from '~/services/trending';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
 import RankSide from '~/components/RankSide/RankSide.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
+import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 
 const router = useRouter();
 const route: any = useRoute();
@@ -42,6 +47,7 @@ const rankings = ref<any[]>([]);
 const pageTrending = ref<number>(route?.query?.page ? route?.query?.page : 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
+const loading = ref<boolean>(false);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
@@ -61,6 +67,8 @@ useServerSeoMeta({
 });
 
 const getData = async () => {
+  loading.value = true;
+
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await nextTick();
@@ -77,6 +85,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
+      loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };

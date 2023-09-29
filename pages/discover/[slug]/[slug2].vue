@@ -12,7 +12,7 @@
       </h2>
     </div>
 
-    <section class="discover-section" :class="{ collapsed: store.collapsed }">
+    <section class="discover-section">
       <div v-if="!loading" class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in dataDiscover"
