@@ -138,7 +138,7 @@
               :data="tvAiringTodays"
               :responsive="responsiveVertical"
               cardMode="vertical"
-              :gap="18"
+              :gap="15"
             >
               <template #content>
                 <SwiperSlide v-for="(item, index) in tvAiringTodays">
@@ -232,7 +232,7 @@
               :data="topRateds"
               :responsive="responsiveVertical"
               cardMode="vertical"
-              :gap="18"
+              :gap="15"
             >
               <template #content>
                 <SwiperSlide v-for="(item, index) in topRateds">

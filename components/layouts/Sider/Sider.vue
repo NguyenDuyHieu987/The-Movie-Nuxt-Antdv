@@ -149,21 +149,21 @@ onMounted(() => {
     }
   });
 
-  const siderBar = document.querySelector('.sider-bar');
+  // const siderBar = document.querySelector('.sider-bar');
 
-  siderBar?.addEventListener('mouseover', (e: any) => {
-    if (store.collapsed == true) {
-      store.collapsed = false;
-      store.openSiderBarFixed = true;
-    }
+  // siderBar?.addEventListener('mouseover', (e: any) => {
+  //   if (store.collapsed == true) {
+  //     store.collapsed = false;
+  //     store.openSiderBarFixed = true;
+  //   }
 
-    siderBar?.addEventListener('mouseleave', () => {
-      if (store.collapsed == false && store.openSiderBarFixed == true) {
-        store.collapsed = true;
-        store.openSiderBarFixed = false;
-      }
-    });
-  });
+  //   siderBar?.addEventListener('mouseleave', () => {
+  //     if (store.collapsed == false && store.openSiderBarFixed == true) {
+  //       store.collapsed = true;
+  //       store.openSiderBarFixed = false;
+  //     }
+  //   });
+  // });
 });
 
 const handleClickCollapse = () => {

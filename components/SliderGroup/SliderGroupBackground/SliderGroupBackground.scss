@@ -106,21 +106,11 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
   }
 }
 
-@media only screen and (max-width: 1300px) {
-  .slider-group-background {
-    .slider-group-background-wrapper {
-      .slider-group-background-list {
-        gap: 13px;
-      }
-    }
-  }
-}
-
 @media only screen and (max-width: 900px) {
   .slider-group-background {
     .slider-group-background-wrapper {
       .slider-group-background-list {
-        gap: 10px;
+        gap: 13px;
       }
     }
   }

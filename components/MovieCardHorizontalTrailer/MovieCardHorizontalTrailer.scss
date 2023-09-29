@@ -1,9 +1,7 @@
 .movie-card-item.trailer {
   display: inline-block;
-  // width: 267px;
-  // min-width: 267px;
-  width: 270px;
-  min-width: 270px;
+  width: calc((100vw - (4 * 15px)) / 5);
+  min-width: calc((100vw - (4 * 15px)) / 5);
   overflow: visible;
   cursor: default;
 
@@ -113,6 +111,7 @@
     justify-content: center;
     padding: 5px 5px;
     padding-top: 15px;
+    font-size: 0.9vw;
 
     .title,
     .original-title {
@@ -140,6 +139,17 @@
         opacity: 1;
         z-index: 1;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .movie-card-item.trailer {
+    width: 270px;
+    min-width: 270px;
+
+    .info-bottom {
+      font-size: 1.6rem;
     }
   }
 }

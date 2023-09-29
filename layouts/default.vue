@@ -1,7 +1,10 @@
 <template>
   <div
     class="body-content"
-    :class="[collapsed ? 'expand' : '', openSiderBarFixed ? 'fixed' : '']"
+    :class="[
+      collapsed || openSiderBarFixed ? 'expand' : '',
+      openSiderBarFixed ? 'fixed' : '',
+    ]"
   >
     <Header />
 
