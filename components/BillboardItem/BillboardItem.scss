@@ -3,7 +3,7 @@
     .el-carousel {
       .billboard-item {
         .billboard-item-body {
-          left: var(--padding-home-expand);
+          left: var(--padding-home);
         }
       }
     }
@@ -238,8 +238,6 @@
 @media only screen and (max-width: 1500px) {
   .billboard-item {
     .billboard-item-body {
-      left: 15px;
-
       .info {
         .head {
           .pngegg-icon {
@@ -316,7 +314,6 @@
       .el-carousel {
         .billboard-item {
           .billboard-item-body {
-            left: 30px;
           }
         }
       }
@@ -411,6 +408,19 @@
 
         .overview {
           max-width: 70%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .body-content {
+    &.expand {
+      .el-carousel {
+        .billboard-item {
+          .billboard-item-body {
+          }
         }
       }
     }

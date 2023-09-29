@@ -7,7 +7,7 @@
     :class="{ 'open-fixed': openSiderBarFixed }"
     collapsible
     :defaultCollapsed="true"
-    @change="handleCollapse"
+    @collapse="handleCollapse"
   >
     <header class="sider-header">
       <div class="user-header">
@@ -53,7 +53,7 @@
     <TheMenu />
 
     <template #trigger>
-      <footer class="sider-footer" @click="handleCollapse">
+      <footer class="sider-footer" @click="handleClickCollapse">
         <div
           :class="[
             'trigger-collapse',
@@ -102,12 +102,38 @@
 import { getImage } from '~/services/image';
 import TheMenu from '~/components/TheMenu/TheMenu.vue';
 import { storeToRefs } from 'pinia';
+import { useBreakpoints } from '@vueuse/core';
 
 const store = useStore();
 const { collapsed, isLogin, userAccount, openSiderBarFixed } =
   storeToRefs<any>(store);
 
+const breakpoints = useBreakpoints({
+  desktop: 1300,
+});
+const largerThanDesktop = breakpoints.greater('desktop');
+
+watch(largerThanDesktop, () => {
+  if (largerThanDesktop.value) {
+    store.collapsed = false;
+  } else {
+    store.collapsed = true;
+  }
+});
+
 onMounted(() => {
+  if (largerThanDesktop.value) {
+    store.collapsed = false;
+  }
+
+  // window.addEventListener('resize', () => {
+  //   if (window.innerWidth > 1300) {
+  //     store.collapsed = false;
+  //   } else {
+  //     store.collapsed = true;
+  //   }
+  // });
+
   const menu: HTMLElement | null = document.querySelector(
     '.sider-bar .ant-layout-sider-children'
   );
@@ -123,22 +149,29 @@ onMounted(() => {
     }
   });
 
-  // const siderBar = document.querySelector('.sider-bar');
+  const siderBar = document.querySelector('.sider-bar');
 
-  // siderBar?.addEventListener('mouseover', (e: any) => {
-  //   if (store.collapsed == true) {
-  //     store.collapsed = false;
-  //     store.openSiderBarFixed = true;
-  //   }
+  siderBar?.addEventListener('mouseover', (e: any) => {
+    if (store.collapsed == true) {
+      store.collapsed = false;
+      store.openSiderBarFixed = true;
+    }
 
-  //   siderBar?.addEventListener('mouseleave', () => {
-  //     if (store.collapsed == false && store.openSiderBarFixed == true) {
-  //       store.collapsed = true;
-  //       store.openSiderBarFixed = false;
-  //     }
-  //   });
-  // });
+    siderBar?.addEventListener('mouseleave', () => {
+      if (store.collapsed == false && store.openSiderBarFixed == true) {
+        store.collapsed = true;
+        store.openSiderBarFixed = false;
+      }
+    });
+  });
 });
+
+const handleClickCollapse = () => {
+  // if (store.collapsed == true) {
+  //   store.collapsed = false;
+  //   store.openSiderBarFixed = false;
+  // }
+};
 
 const handleCollapse = () => {
   // if (store.collapsed == true) {

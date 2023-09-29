@@ -15,7 +15,8 @@
     margin: 0px auto;
   }
 
-  &.expand {
+  &.expand,
+  &.fixed {
     margin-left: var(--sider-collapsed-width);
   }
 

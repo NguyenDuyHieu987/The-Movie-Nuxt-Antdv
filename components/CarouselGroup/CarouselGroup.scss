@@ -5,15 +5,15 @@
         .carousel-group {
           .swiper-button-prev,
           .swiper-button-next {
-            width: var(--padding-home-expand);
+            width: var(--padding-home);
           }
 
           .swiper-button-prev {
-            left: calc(0px - var(--padding-home-expand));
+            left: calc(0px - var(--padding-home));
           }
 
           .swiper-button-next {
-            right: calc(0px - var(--padding-home-expand));
+            right: calc(0px - var(--padding-home));
           }
         }
       }

@@ -1,7 +1,7 @@
 <template>
   <div
     class="body-content"
-    :class="[collapsed || openSiderBarFixed ? 'expand' : '']"
+    :class="[collapsed ? 'expand' : '', openSiderBarFixed ? 'fixed' : '']"
   >
     <Header />
 
