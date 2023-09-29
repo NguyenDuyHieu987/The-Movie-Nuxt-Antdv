@@ -310,7 +310,7 @@
           </div>
 
           <Tags
-            v-show="dataMovie?.history_progress"
+            v-if="dataMovie?.history_progress"
             tagsLabel="Đã xem:"
             class="progress-history-tags"
           >

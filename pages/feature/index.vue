@@ -167,10 +167,10 @@ const nowPlayings = ref<any>([]);
 const populars = ref<any>([]);
 const upComings = ref<any>([]);
 const topRateds = ref<any>([]);
-const loadingNowPlaying = ref<boolean>(false);
-const loadingPopular = ref<boolean>(false);
-const loadingTopRated = ref<boolean>(false);
-const loadingUpComing = ref<boolean>(false);
+const loadingNowPlaying = ref<boolean>(true);
+const loadingPopular = ref<boolean>(true);
+const loadingTopRated = ref<boolean>(true);
+const loadingUpComing = ref<boolean>(true);
 const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({

@@ -5,14 +5,6 @@
         <MenuOutlined />
       </button>
 
-      <!-- <button
-        v-if="collapsed == true"
-        class="menu-btn desktop"
-        @click="store.setCollapsed()"
-      >
-        <MenuOutlined />
-      </button> -->
-
       <div class="logo">
         <NuxtLink :to="{ path: '/' }">
           <nuxt-img
@@ -25,21 +17,6 @@
           <span> PhimHay247 </span>
         </NuxtLink>
       </div>
-
-      <!-- <ul class="menu-header">
-        <li
-          class="menu-header-item"
-          :class="{ active: $route.path == '/feature' }"
-        >
-          <NuxtLink to="/feature">Phim lẻ</NuxtLink>
-        </li>
-        <li
-          class="menu-header-item"
-          :class="{ active: $route.path == '/television' }"
-        >
-          <NuxtLink to="/television">Phim bộ</NuxtLink>
-        </li>
-      </ul> -->
     </div>
 
     <a-input-search
@@ -76,24 +53,6 @@
         </el-tooltip>
       </template>
     </a-input-search>
-
-    <!-- <a-auto-complete
-      v-model:value="valueInput"
-      class="search-header"
-      popupClassName="certain-category-search-dropdown"
-      :options="dataSearch"
-      :open="isOpenAutoComplete"
-      @change="handleChangeInput(valueInput)"
-      @focus="isOpenAutoComplete = true"
-      @blur="isOpenAutoComplete = false"
-      :backfill="true"
-    >
-      <template #options="item">
-        v-for="(item, index) in dataSearch" :index="index"
-
-        <SearchCard :key="item?.id" :item="item" :type="item.media_type" />
-      </template>
-    </a-auto-complete> -->
 
     <div class="right-header">
       <el-skeleton :loading="loadingUser" animated>

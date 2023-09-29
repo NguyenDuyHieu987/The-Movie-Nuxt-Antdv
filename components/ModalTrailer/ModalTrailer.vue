@@ -127,7 +127,10 @@
 
             <p class="overview">
               <span>Nội dung: </span>
-              {{ item?.overview }}
+              {{
+                item?.overview ||
+                'Sorry! This movie has not been updated overview content.'
+              }}
             </p>
           </div>
           <div class="action">

@@ -21,6 +21,7 @@
     // min-width: 260px;
 
     width: var(--width);
+    min-width: 255px;
     max-width: 290px;
     max-height: 100vh;
     background-color: var(--preview-modal-background-color);

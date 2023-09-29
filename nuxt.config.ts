@@ -219,7 +219,7 @@ export default defineNuxtConfig({
     },
     '@pinia/nuxt',
     'nuxt-swiper',
-    'nuxt-icon',
+    // 'nuxt-icon',
     '@nuxt/image',
     'nuxt-lazy-load',
     '@nuxtjs/fontaine',
@@ -291,7 +291,7 @@ export default defineNuxtConfig({
   plugins: [
     // '@/plugins/elementPlus',
     // '@/plugins/antd',
-    '@/plugins/iconify',
+    // '@/plugins/iconify',
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/vuelazyload',

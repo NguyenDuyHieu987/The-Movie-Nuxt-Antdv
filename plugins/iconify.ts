@@ -1,7 +1,7 @@
-import { disableCache } from '@iconify/vue';
+// import { disableCache } from '@iconify/vue';
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook('app:created', () => {
-    disableCache('all');
+    // disableCache('all');
   });
 });

@@ -159,11 +159,10 @@ const airingTodays = ref<any>([]);
 const onTheAirs = ref<any>([]);
 const populars = ref<any>([]);
 const topRateds = ref<any>([]);
-const loading = ref<boolean>(false);
-const loadingTvAiringToday = ref<boolean>(false);
-const loadingTvOnTheAir = ref<boolean>(false);
-const loadingTvPopular = ref<boolean>(false);
-const loadingTvTopRated = ref<boolean>(false);
+const loadingTvAiringToday = ref<boolean>(true);
+const loadingTvOnTheAir = ref<boolean>(true);
+const loadingTvPopular = ref<boolean>(true);
+const loadingTvTopRated = ref<boolean>(true);
 const formFilter = ref<formfilter>({
   type: 'all',
   genre: route.params.genre,
@@ -241,7 +240,6 @@ const getData = async () => {
   await nextTick();
 
   if (route.params?.slug == 'genre') {
-    loading.value = true;
     // const genreId: number = getGenreByShortName(
     //   route.query.genre,
     //   store.allGenres

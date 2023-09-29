@@ -130,13 +130,13 @@ onMounted(() => {
   //     store.collapsed = false;
   //     store.openSiderBarFixed = true;
   //   }
-  // });
 
-  // siderBar?.addEventListener('mouseleave', () => {
-  //   if (store.collapsed == false && store.openSiderBarFixed == true) {
-  //     store.collapsed = true;
-  //     store.openSiderBarFixed = false;
-  //   }
+  //   siderBar?.addEventListener('mouseleave', () => {
+  //     if (store.collapsed == false && store.openSiderBarFixed == true) {
+  //       store.collapsed = true;
+  //       store.openSiderBarFixed = false;
+  //     }
+  //   });
   // });
 });
 
