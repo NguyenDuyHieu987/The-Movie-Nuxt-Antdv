@@ -10,10 +10,10 @@
     @collapse="handleCollapse"
   >
     <header class="sider-header">
-      <div class="user-header">
+      <div class="user-header" v-if="isLogin">
         <div
           class="user-image-container"
-          v-if="!collapsed && isLogin && userAccount?.avatar"
+          v-if="!collapsed || openSiderBarFixed"
         >
           <nuxt-img
             class="avatar"
@@ -28,8 +28,8 @@
           />
         </div>
 
-        <div v-if="isLogin">
-          <h4 v-if="!collapsed">
+        <div>
+          <h4 v-if="!collapsed || openSiderBarFixed">
             {{ userAccount?.username }}
           </h4>
 
