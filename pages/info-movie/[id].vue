@@ -3,7 +3,7 @@
     <LoadingCircle v-if="loading" class="loading-page" />
 
     <div class="info-conainer" v-else>
-      <BackPage @onclick="$router.back()">
+      <BackPage :fixed="true" @onclick="$router.back()">
         <span> Quay lại</span>
       </BackPage>
 

@@ -85,11 +85,12 @@
                 @click.prevent="handleChangeEpisode(item)"
               >
                 {{
-                  item?.episode_number == numberOfEpisodes
-                    ? item?.episode_number < 10
-                      ? '0' + item?.episode_number + ' - End'
-                      : item?.episode_number + ' - End'
-                    : +item?.episode_number < 10
+                  // item?.episode_number == numberOfEpisodes
+                  //   ? item?.episode_number < 10
+                  //     ? '0' + item?.episode_number + ' - End'
+                  //     : item?.episode_number + ' - End'
+                  //   :
+                  +item?.episode_number < 10
                     ? '0' + item?.episode_number
                     : item?.episode_number
                 }}

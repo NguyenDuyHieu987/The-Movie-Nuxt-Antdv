@@ -209,7 +209,6 @@ watch(isTeleport, async () => {
         getVideos(props.item?.id)
       )
         .then((response) => {
-          console.log(response.data.value);
           dataVideos.value = response.data.value;
         })
         .catch((e) => {

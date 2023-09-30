@@ -1,5 +1,5 @@
 <template>
-  <div class="back-page" :class="{ fixed: isfixed }" ref="backPage">
+  <div class="back-page" :class="{ fixed: fixed }" ref="backPage">
     <a-button type="text" @click="emits('onclick')">
       <template #icon>
         <!-- <Icon name="ic:baseline-arrow-back" /> -->
@@ -26,8 +26,9 @@
 <script setup lang="ts">
 const emits = defineEmits<{ onclick: [] }>();
 
+const props = defineProps({ fixed: { type: Boolean, default: false } });
+
 const backPage = ref();
-const isfixed = ref<boolean>(false);
 
 onMounted(() => {
   // window.onscroll = () => {
