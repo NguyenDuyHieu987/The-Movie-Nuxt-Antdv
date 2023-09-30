@@ -1,5 +1,5 @@
 <template>
-  <div class="discover genre padding-content">
+  <div class="discover padding-content">
     <FilterBar
       @dataFiltered="(data: any[], formSelect: formfilter) => setDataFiltered(data, formSelect)"
       v-model:loading="loading"
@@ -38,18 +38,17 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getGenreByShortName } from '~/services/genres';
-import { getMoviesByGenres } from '~/services/discover';
+import { DiscoverMovie } from '~/services/discover';
 import { FilterMovie } from '~/services/discover';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '~/components/FilterBar/FilterBar.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
-import type { formfilter, genre } from '@/types';
+import type { formfilter, typeMovie } from '@/types';
 
 const route: any = useRoute();
 const router = useRouter();
-const store: any = useStore();
+const store = useStore();
 // const dataDiscover = ref<any[]>();
 const page = ref<number>(route.query?.page ? +route.query?.page : 1);
 const totalPage = ref<number>(100);
@@ -64,31 +63,29 @@ const formFilter = ref<formfilter>({
   country: '',
   page: 1,
 });
-const genreRoute = ref<genre>(
-  getGenreByShortName(route.params.genre, store.allGenres)
-);
-const metaHead = ref<string>('Thể loại: ' + genreRoute.value.name_vietsub);
+const movieSlugRoute = ref<typeMovie>(route.params.slug);
+const metaHead = ref<string>('Phim lẻ: ' + movieSlugRoute.value);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: () => 'Khám phá - Thể loại: ' + genreRoute.value.name_vietsub,
+  title: () => 'Khám phá - Phim lẻ: ' + movieSlugRoute.value,
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Khám phá - Thể loại: ' + genreRoute.value.name_vietsub,
+  title: () => 'Khám phá - Phim lẻ: ' + movieSlugRoute.value,
   description: () => 'Khám phá phim mới cùng Phimhay247',
-  ogTitle: () => 'Khám phá - Thể loại: ' + genreRoute.value.name_vietsub,
+  ogTitle: () => 'Khám phá - Phim lẻ: ' + movieSlugRoute.value,
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => 'Khám phá phim mới cùng Phimhay247',
   ogLocale: 'vi',
 });
 
-watch(genreRoute, () => {});
-
 const getData = async () => {
   loading.value = true;
+
+  await nextTick();
 
   if (isFilter.value) {
     await useAsyncData(`discover/${formFilter.value}}`, () =>
@@ -104,12 +101,13 @@ const getData = async () => {
         loading.value = false;
       });
   } else {
-    await useAsyncData(
-      `discover/genre/all/${route.params.genre}/${page.value}`,
-      () => getMoviesByGenres(route.params.genre, page.value)
+    await useAsyncData(`movie/${movieSlugRoute.value}/${page.value}`, () =>
+      DiscoverMovie(movieSlugRoute.value, page.value)
     )
       .then((movieResponse: any) => {
         dataDiscover.value = movieResponse.data.value?.results;
+        totalPage.value = movieResponse.data.value?.total;
+        pageSize.value = movieResponse.data.value?.page_size;
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
@@ -131,10 +129,12 @@ onBeforeMount(() => {
 // getData();
 
 const { data: dataDiscover, pending } = await useAsyncData(
-  `discover/genre/all/${route.params.genre}/${page.value}`,
-  () => getMoviesByGenres(route.params.genre, page.value),
+  `movie/${movieSlugRoute.value}/${page.value}`,
+  () => DiscoverMovie(movieSlugRoute.value, page.value),
   {
     transform: (data: any) => {
+      totalPage.value = data?.total;
+      pageSize.value = data?.page_size;
       loading.value = false;
       return data.results;
     },
@@ -170,8 +170,8 @@ const setDataFiltered = (data: any[], formSelect: formfilter) => {
 const cancelFilter = () => {
   isFilter.value = false;
   // getData();
-  metaHead.value = 'Thể loại: ' + genreRoute.value.name_vietsub;
-  refreshNuxtData(`discover/genre/all/${route.params.genre}/${page.value}`);
+  refreshNuxtData(`movie/${movieSlugRoute.value}/${page.value}`);
+  metaHead.value = 'Phim lẻ: ' + movieSlugRoute.value;
 };
 </script>
 

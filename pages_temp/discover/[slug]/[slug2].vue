@@ -27,7 +27,7 @@
     </section>
 
     <ControlPage
-      v-show="!loading"
+      v-show="dataDiscover?.length"
       :page="page"
       :total="totalPage"
       :pageSize="pageSize"
@@ -68,7 +68,7 @@ import type { formfilter } from '@/types';
 
 const route: any = useRoute();
 const router = useRouter();
-const store: any = useStore();
+const store = useStore();
 const dataDiscover = ref<any[]>();
 const page = ref<number>(route.query?.page ? +route.query?.page : 1);
 const totalPage = ref<number>(100);
@@ -353,7 +353,8 @@ const getData = async () => {
           });
 
         metaHead.value =
-          'Quốc gia: ' + getCountryByShortName(route.params?.slug2)?.name;
+          'Quốc gia: ' +
+          getCountryByShortName(route.params?.slug2, store.allCountries)?.name;
 
         break;
       default:

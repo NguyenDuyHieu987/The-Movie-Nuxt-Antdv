@@ -21,6 +21,20 @@ export declare interface sortby {
   name: string;
 }
 
+export declare type typeMovie =
+  | 'all'
+  | 'nowplaying'
+  | 'popular'
+  | 'toprated'
+  | 'upcoming';
+
+export declare type typeTv =
+  | 'all'
+  | 'airingtoday'
+  | 'ontheair'
+  | 'popular'
+  | 'toprated';
+
 export declare interface formfilter {
   type: string;
   sortBy?: string;

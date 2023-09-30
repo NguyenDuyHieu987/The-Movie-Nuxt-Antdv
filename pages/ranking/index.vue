@@ -21,7 +21,7 @@
         </section>
 
         <ControlPage
-          v-show="!loading"
+          v-show="rankings?.length"
           :page="pageTrending"
           :total="totalPage"
           :pageSize="pageSize"

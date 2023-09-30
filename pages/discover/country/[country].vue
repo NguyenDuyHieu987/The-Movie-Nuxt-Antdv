@@ -27,7 +27,7 @@
     </section>
 
     <ControlPage
-      v-show="!loading"
+      v-show="dataDiscover?.length"
       :page="page"
       :total="totalPage"
       :pageSize="pageSize"

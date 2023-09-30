@@ -2,9 +2,8 @@ import { makeRequest } from './makeRequest';
 import ALLGENRES from '../constants/data/Genres';
 import ALLCOUNTRIES from '@/constants/data/Country';
 import { getGenreByShortName, getGenreByName } from './genres';
-import type { country, genre } from '@/types';
 import { getCountryByShortName } from './country';
-import type { formfilter } from '@/types';
+import type { country, genre, formfilter, typeMovie, typeTv } from '@/types';
 
 export function FilterMovie(formFilter: formfilter) {
   const yearLte = formFilter.year != '' ? formFilter.year + '-12-30' : '';
@@ -29,6 +28,46 @@ export function FilterMovie(formFilter: formfilter) {
     : makeRequest(
         `/discover/${formFilter.type}?sort_by=${formFilter.sortBy}&primary_release_date_lte=${yearGte}&with_genres=${formFilter.genre}&with_original_language=${formFilter.country}&page=${formFilter.page}`
       );
+}
+
+export function DiscoverMovie(type: typeMovie, page: number = 1) {
+  switch (type) {
+    case 'all':
+      return makeRequest(`/movie/all?page=${page}`);
+      break;
+    case 'nowplaying':
+      return makeRequest(`/movie/nowplaying?page=${page}`);
+      break;
+    case 'popular':
+      return makeRequest(`/movie/popular?page=${page}`);
+      break;
+    case 'toprated':
+      return makeRequest(`/movie/toprated?page=${page}`);
+      break;
+    case 'upcoming':
+      return makeRequest(`/movie/upcoming?page=${page}`);
+      break;
+  }
+}
+
+export function DiscoverTv(type: typeTv, page: number = 1) {
+  switch (type) {
+    case 'all':
+      return makeRequest(`/tv/all?page=${page}`);
+      break;
+    case 'airingtoday':
+      return makeRequest(`/tv/airingtoday?page=${page}`);
+      break;
+    case 'ontheair':
+      return makeRequest(`/movie/ontheair?page=${page}`);
+      break;
+    case 'popular':
+      return makeRequest(`/tv/popular?page=${page}`);
+      break;
+    case 'toprated':
+      return makeRequest(`/tv/toprated?page=${page}`);
+      break;
+  }
 }
 
 export function getMoviesByGenres(genre_short_name: string, page: number = 1) {
