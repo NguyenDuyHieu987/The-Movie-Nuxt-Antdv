@@ -348,9 +348,10 @@ header.header-bar {
             // color: var(--app-background-color) !important;
             color: inherit;
             transition: background-color 0.15s;
+            user-select: none;
 
             &:hover {
-              background-color: var(--app-background-color7);
+              background-color: var(--app-background-color8);
               // border: 1px solid transparent;
               // background-color: #0059983c;
             }
