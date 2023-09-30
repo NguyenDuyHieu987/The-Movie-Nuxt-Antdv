@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    :collapse="props.noCollapse ? false : store.collapsed"
+    :collapse="openSiderBarFixed || props.noCollapse ? false : collapsed"
     :defaultOpeneds="state.openKeys"
     :defaultActive="state.selectedKeys"
     class="menu-sider-bar"
@@ -461,6 +461,7 @@ import { getAllGenre } from '~/services/genres';
 import { getAllCountry } from '~/services/country';
 import { getAllYear } from '~/services/year';
 import { genre, country, year } from '@/types';
+import { storeToRefs } from 'pinia';
 
 const props = defineProps<{
   noCollapse?: boolean | false;
@@ -469,6 +470,8 @@ const props = defineProps<{
 const route: any = useRoute();
 const utils = useUtils();
 const store = useStore();
+const { collapsed, openSiderBarFixed } = storeToRefs<any>(store);
+
 const state = reactive<{
   selectedKeys: string;
   openKeys: string[];

@@ -33,7 +33,15 @@
   }
 
   &.open-fixed {
+    flex: 0 0 var(--sider-width) !important;
+    max-width: var(--sider-width) !important;
+    min-width: var(--sider-width) !important;
+    width: var(--sider-width) !important;
     background: var(--background-content-color) !important;
+
+    .ant-layout-sider-trigger {
+      width: var(--sider-width) !important;
+    }
   }
 
   &.ant-layout-sider-collapsed {
@@ -168,7 +176,7 @@
       &.collapsed {
         .title-trigger-collapse {
           &.collapsed {
-            opacity: 0;
+            opacity: 1;
           }
 
           &.open {

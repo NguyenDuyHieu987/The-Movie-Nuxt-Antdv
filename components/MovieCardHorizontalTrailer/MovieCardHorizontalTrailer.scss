@@ -144,6 +144,11 @@
 }
 
 @media only screen and (max-width: 1500px) {
+  .body-content.expand {
+    .movie-card-item.trailer {
+    }
+  }
+
   .movie-card-item.trailer {
     width: 270px;
     min-width: 270px;

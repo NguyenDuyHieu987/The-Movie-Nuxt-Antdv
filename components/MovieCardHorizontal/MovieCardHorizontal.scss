@@ -148,14 +148,14 @@
     --card-movie-gap: 7px;
 
     .movie-card-item.horizontal {
-      width: calc((100% - (3.01 * var(--card-movie-gap))) / 4);
+      width: calc((100% - (3 * var(--card-movie-gap))) / 4);
     }
   }
 
   .body-content.expand {
     .movie-group.horizontal {
       .movie-card-item.horizontal {
-        width: calc((100% - (4.01 * var(--card-movie-gap))) / 5);
+        width: calc((100% - (4 * var(--card-movie-gap))) / 5);
       }
     }
   }
