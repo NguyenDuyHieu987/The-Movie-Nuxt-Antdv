@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { makeRequest } from './makeRequest';
 
 export function makeRequestVideo(url: string, options: any = {}) {
   const nuxtConfig = useRuntimeConfig();
@@ -23,6 +24,10 @@ export function makeRequestVideo(url: string, options: any = {}) {
 
 export function getVideo(path: string) {
   return makeRequestVideo(`/videos/${path}`);
+}
+
+export function getVideos(id: string) {
+  return makeRequest(`/videos/${id}`);
 }
 
 export function getVideoFeature(path: string) {
