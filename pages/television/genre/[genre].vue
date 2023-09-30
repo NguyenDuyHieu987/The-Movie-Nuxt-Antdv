@@ -239,86 +239,86 @@ const getData = async () => {
 
   await nextTick();
 
-  if (route.params?.slug == 'genre') {
-    // const genreId: number = getGenreByShortName(
-    //   route.query.genre,
-    //   store.allGenres
-    // )!.id;
+  // if (route.params?.slug == 'genre') {
+  // const genreId: number = getGenreByShortName(
+  //   route.query.genre,
+  //   store.allGenres
+  // )!.id;
 
-    // formFilter.value.genre = genreId.toString();
+  // formFilter.value.genre = genreId.toString();
 
-    formFilter.value.genre = route.params.genre;
+  formFilter.value.genre = route.params.genre;
 
-    await useAsyncData(
-      `discover/tv/airingtoday/${{
-        ...formFilter.value,
-        type: 'airingtoday',
-      }}`,
-      () => FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
-    )
-      .then((response) => {
-        airingTodays.value = response.data.value?.results.slice(0, 12);
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loadingTvAiringToday.value = false;
-      });
+  await useAsyncData(
+    `discover/tv/airingtoday/${{
+      ...formFilter.value,
+      type: 'airingtoday',
+    }}`,
+    () => FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
+  )
+    .then((response) => {
+      airingTodays.value = response.data.value?.results.slice(0, 12);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvAiringToday.value = false;
+    });
 
-    await useAsyncData(
-      `discover/tv/ontheair/${{
-        ...formFilter.value,
-        type: 'ontheair',
-      }}`,
-      () => FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
-    )
-      .then((response) => {
-        onTheAirs.value = response.data.value?.results.slice(0, 12);
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loadingTvOnTheAir.value = false;
-      });
+  await useAsyncData(
+    `discover/tv/ontheair/${{
+      ...formFilter.value,
+      type: 'ontheair',
+    }}`,
+    () => FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
+  )
+    .then((response) => {
+      onTheAirs.value = response.data.value?.results.slice(0, 12);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvOnTheAir.value = false;
+    });
 
-    await useAsyncData(
-      `discover/tv/popular/${{
-        ...formFilter.value,
-        type: 'popular',
-      }}`,
-      () => FilterTvSlug({ ...formFilter.value, type: 'popular' })
-    )
-      .then((response) => {
-        populars.value = response.data.value?.results.slice(0, 12);
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loadingTvPopular.value = false;
-      });
+  await useAsyncData(
+    `discover/tv/popular/${{
+      ...formFilter.value,
+      type: 'popular',
+    }}`,
+    () => FilterTvSlug({ ...formFilter.value, type: 'popular' })
+  )
+    .then((response) => {
+      populars.value = response.data.value?.results.slice(0, 12);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvPopular.value = false;
+    });
 
-    await useAsyncData(
-      `discover/tv/toprated/${{
-        ...formFilter.value,
-        type: 'toprated',
-      }}`,
-      () => FilterTvSlug({ ...formFilter.value, type: 'toprated' })
-    )
-      .then((response) => {
-        topRateds.value = response.data.value?.results.slice(0, 12);
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loadingTvTopRated.value = false;
-      });
-  } else {
-    navigateTo('/404');
-  }
+  await useAsyncData(
+    `discover/tv/toprated/${{
+      ...formFilter.value,
+      type: 'toprated',
+    }}`,
+    () => FilterTvSlug({ ...formFilter.value, type: 'toprated' })
+  )
+    .then((response) => {
+      topRateds.value = response.data.value?.results.slice(0, 12);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTvTopRated.value = false;
+    });
+  // } else {
+  //   navigateTo('/404');
+  // }
 
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 };

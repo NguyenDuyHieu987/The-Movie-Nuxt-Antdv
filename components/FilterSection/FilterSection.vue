@@ -1,6 +1,6 @@
 <template>
-  <div class="filter-bar">
-    <a-collapse class="filter-collapse" :bordered="false">
+  <section class="filter-section">
+    <a-collapse class="filter-section" :bordered="false">
       <!-- ghost -->
       <template #expandIcon="{ isActive }">
         <CaretRightFilled :rotate="isActive ? 90 : 0" />
@@ -221,7 +221,7 @@
         </template>
       </a-collapse-panel>
     </a-collapse>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -363,4 +363,4 @@ const handleChange = () => {
 };
 </script>
 
-<style lang="scss" src="./FilterBar.scss"></style>
+<style lang="scss" src="./FilterSection.scss"></style>

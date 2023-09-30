@@ -21,7 +21,7 @@ export default [
     iso_639_1: 'th',
     english_name: 'Thai',
     name: 'Thái Lan',
-    short_name: 'thai-lam',
+    short_name: 'thai-lan',
   },
   {
     iso_639_1: 'vi',

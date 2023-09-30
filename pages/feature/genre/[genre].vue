@@ -239,102 +239,102 @@ const getData = async () => {
 
   await nextTick();
 
-  if (route.params?.slug == 'genre') {
-    // const genreId: number = getGenreByShortName(
-    //   route.params.genre,
-    //   store.allGenres
-    // )!.id;
+  // if (route.params?.slug == 'genre') {
+  // const genreId: number = getGenreByShortName(
+  //   route.params.genre,
+  //   store.allGenres
+  // )!.id;
 
-    // formFilter.value.genre = genreId.toString();
+  // formFilter.value.genre = genreId.toString();
 
-    formFilter.value.genre = route.params.genre;
+  formFilter.value.genre = route.params.genre;
 
-    await useAsyncData(
-      `discover/movie/nowplaying/${{
+  await useAsyncData(
+    `discover/movie/nowplaying/${{
+      ...formFilter.value,
+      type: 'nowplaying',
+    }}`,
+    () =>
+      FilterMovieSlug({
         ...formFilter.value,
         type: 'nowplaying',
-      }}`,
-      () =>
-        FilterMovieSlug({
-          ...formFilter.value,
-          type: 'nowplaying',
-        })
-    )
-      .then((response) => {
-        nowPlayings.value = response.data.value?.results.slice(0, 12);
       })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loadingNowPlaying.value = false;
-      });
+  )
+    .then((response) => {
+      nowPlayings.value = response.data.value?.results.slice(0, 12);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingNowPlaying.value = false;
+    });
 
-    await useAsyncData(
-      `discover/movie/popular/${{
+  await useAsyncData(
+    `discover/movie/popular/${{
+      ...formFilter.value,
+      type: 'popular',
+    }}`,
+    () =>
+      FilterMovieSlug({
         ...formFilter.value,
         type: 'popular',
-      }}`,
-      () =>
-        FilterMovieSlug({
-          ...formFilter.value,
-          type: 'popular',
-        })
-    )
-      .then((response) => {
-        populars.value = response.data.value?.results.slice(0, 12);
       })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loadingPopular.value = false;
-      });
+  )
+    .then((response) => {
+      populars.value = response.data.value?.results.slice(0, 12);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingPopular.value = false;
+    });
 
-    await useAsyncData(
-      `discover/movie/upcoming/${{
+  await useAsyncData(
+    `discover/movie/upcoming/${{
+      ...formFilter.value,
+      type: 'upcoming',
+    }}`,
+    () =>
+      FilterMovieSlug({
         ...formFilter.value,
         type: 'upcoming',
-      }}`,
-      () =>
-        FilterMovieSlug({
-          ...formFilter.value,
-          type: 'upcoming',
-        })
-    )
-      .then((response) => {
-        upComings.value = response.data.value?.results.slice(0, 12);
       })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loadingUpComing.value = false;
-      });
+  )
+    .then((response) => {
+      upComings.value = response.data.value?.results.slice(0, 12);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingUpComing.value = false;
+    });
 
-    await useAsyncData(
-      `discover/movie/toprated/${{
+  await useAsyncData(
+    `discover/movie/toprated/${{
+      ...formFilter.value,
+      type: 'toprated',
+    }}`,
+    () =>
+      FilterMovieSlug({
         ...formFilter.value,
         type: 'toprated',
-      }}`,
-      () =>
-        FilterMovieSlug({
-          ...formFilter.value,
-          type: 'toprated',
-        })
-    )
-      .then((response) => {
-        topRateds.value = response.data.value?.results.slice(0, 12);
       })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loadingTopRated.value = false;
-      });
-  } else {
-    navigateTo('/404');
-  }
+  )
+    .then((response) => {
+      topRateds.value = response.data.value?.results.slice(0, 12);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTopRated.value = false;
+    });
+  // } else {
+  //   navigateTo('/404');
+  // }
 
   internalInstance.appContext.config.globalProperties.$Progress.finish();
 };
