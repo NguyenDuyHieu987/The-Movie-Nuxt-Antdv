@@ -171,7 +171,7 @@ const formFilter = ref<formfilter>({
   page: 1,
   limit: 20,
 });
-const genreRoute = ref<genre>(
+const genreRoute = computed<genre>(() =>
   getGenreById(route.params.genre, store.allGenres)
 );
 const internalInstance: any = getCurrentInstance();

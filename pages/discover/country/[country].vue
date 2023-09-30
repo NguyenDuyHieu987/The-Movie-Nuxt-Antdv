@@ -65,7 +65,7 @@ const formFilter = ref<formfilter>({
   country: '',
   page: 1,
 });
-const countryRoute = ref<country>(
+const countryRoute = computed<country>(() =>
   getCountryByShortName(route.params.country, store.allCountries)
 );
 const metaHead = ref<string>('Quốc gia: ' + countryRoute.value.name);

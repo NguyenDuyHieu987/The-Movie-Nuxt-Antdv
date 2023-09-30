@@ -63,7 +63,7 @@ const formFilter = ref<formfilter>({
   country: '',
   page: 1,
 });
-const movieSlugRoute = ref<typeMovie>(route.params.slug);
+const movieSlugRoute = computed<typeMovie>(() => route.params.slug);
 const metaHead = ref<string>('Phim lẻ: ' + movieSlugRoute.value);
 const internalInstance: any = getCurrentInstance();
 

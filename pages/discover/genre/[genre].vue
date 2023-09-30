@@ -64,7 +64,7 @@ const formFilter = ref<formfilter>({
   country: '',
   page: 1,
 });
-const genreRoute = ref<genre>(
+const genreRoute = computed<genre>(() =>
   getGenreByShortName(route.params.genre, store.allGenres)
 );
 const metaHead = ref<string>('Thể loại: ' + genreRoute.value.name_vietsub);

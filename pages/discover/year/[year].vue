@@ -63,7 +63,7 @@ const formFilter = ref<formfilter>({
   country: '',
   page: 1,
 });
-const yearRoute = ref<number | string>(
+const yearRoute = computed<number | string>(() =>
   /^\d+$/.test(route.params.year)
     ? +route.params.year
     : 'Trước năm ' + route.params.year?.slice(-4)

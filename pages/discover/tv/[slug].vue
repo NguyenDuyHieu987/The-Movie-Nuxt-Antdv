@@ -64,7 +64,7 @@ const formFilter = ref<formfilter>({
   country: '',
   page: 1,
 });
-const tvSlugRoute = ref<typeTv>(route.params.slug);
+const tvSlugRoute = computed<typeTv>(() => route.params.slug);
 const metaHead = ref<string>('Phim bộ: ' + tvSlugRoute.value);
 const internalInstance: any = getCurrentInstance();
 
