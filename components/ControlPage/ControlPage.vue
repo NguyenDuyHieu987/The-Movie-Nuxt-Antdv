@@ -9,6 +9,7 @@
       :responsive="true"
       @change="onChangePage"
     />
+
     <!-- :show-total="(total) => `Tổng ${total}`" -->
 
     <!-- <el-pagination

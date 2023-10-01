@@ -13,15 +13,15 @@
       @onFilter="handleFilter"
     />
 
-    <div class="discover-head">
+    <div class="discover-title">
       <h2 class="gradient-title-default underline">
         <span>{{ metaHead }}</span>
       </h2>
     </div>
 
     <section class="discover-section">
-      <div class="movie-group horizontal">
-        <MovieCardHorizontal
+      <div v-if="!loading" class="movie-group vertical">
+        <MovieCardVertical
           v-for="(item, index) in dataDiscover"
           :index="index"
           :key="item.id"
@@ -30,7 +30,7 @@
         />
       </div>
 
-      <!-- <LoadingCircle v-else class="loading-page" /> -->
+      <LoadingCircle v-else class="loading-page" />
     </section>
 
     <ControlPage
@@ -47,6 +47,7 @@
 import axios from 'axios';
 import { FilterMovieSlug } from '~/services/movieSlug';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
+import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
 import FilterSection from '~/components/FilterSection/FilterSection.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
@@ -67,7 +68,7 @@ const formFilter = computed<formfilter>(() => {
     genre: route.query.genre || '',
     year: route.query.year || '',
     country: route.query.country || '',
-    page: 1,
+    page: route.query.page || 1,
     limit: 20,
   };
 });
@@ -91,15 +92,15 @@ useServerSeoMeta({
 });
 
 const getData = async () => {
-  loading.value = true;
+  // loading.value = true;
 
-  await useAsyncData(`movie/${movieSlugRoute.value}/${page.value}`, () =>
+  await useAsyncData(`movie/discover/${formFilter.value}`, () =>
     FilterMovieSlug(formFilter.value)
   )
-    .then((movieResponse: any) => {
+    .then((movieResponse) => {
       dataDiscover.value = movieResponse.data.value?.results;
-      // totalPage.value = movieResponse.data.value?.total;
-      // pageSize.value = movieResponse.data.value?.page_size;
+      totalPage.value = movieResponse.data.value?.total;
+      pageSize.value = movieResponse.data.value?.page_size;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -117,20 +118,24 @@ onBeforeMount(() => {
   }, 500);
 });
 
+loading.value = true;
+
 const {
   data: dataDiscover,
   pending,
   refresh,
 } = await useAsyncData(
-  `movie/${movieSlugRoute.value}/${page.value}`,
+  `cache/movie/discover/${formFilter.value}`,
   () => FilterMovieSlug(formFilter.value),
   {
     transform: (data: any) => {
       totalPage.value = data?.total;
       pageSize.value = data?.page_size;
       loading.value = false;
+
       return data.results;
     },
+    server: false,
   }
 );
 
@@ -151,8 +156,9 @@ const onChangePage = (
   // pageSize
 ) => {
   page.value = pageSelected;
-  router.push({ query: { page: pageSelected } });
-  getData();
+  formFilter.value.page = pageSelected;
+  router.push({ query: { ...route.query, page: pageSelected } });
+  // getData();
 };
 
 const cancelFilter = () => {

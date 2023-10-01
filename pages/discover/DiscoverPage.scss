@@ -1,53 +1,7 @@
 .discover {
-  .filter-swiper {
-    width: 100%;
-    display: flex;
-    font-size: 1.4rem;
-
-    .swiper-slide {
-      display: flex;
-      width: auto;
-      border-radius: 7px;
-      background-color: #202020;
-
-      &.active {
-        background-color: #e3e3e3;
-
-        a {
-          font-weight: 500;
-          // color: var(--app-background-color);
-          color: var(--text-color-invert);
-        }
-      }
-
-      a {
-        padding: 6px 18px;
-        color: inherit;
-      }
-    }
-
-    .swiper-button-prev,
-    .swiper-button-next {
-      color: var(--text-color);
-
-      &.swiper-button-disabled {
-        display: none;
-      }
-    }
-
-    .swiper-button-prev {
-      left: -8px;
-      background-image: linear-gradient(to right, #101010 0%, #10101000 100%);
-    }
-
-    .swiper-button-next {
-      right: -7px;
-      background-image: linear-gradient(to left, #101010 0%, #10101000);
-    }
-  }
-
-  .discover-head {
+  .discover-title {
     .gradient-title-default {
+      margin-top: 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;

@@ -43,7 +43,7 @@ import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 
 const router = useRouter();
 const route: any = useRoute();
-const rankings = ref<any[]>([]);
+// const rankings = ref<any[]>([]);
 const pageTrending = ref<number>(route?.query?.page ? route?.query?.page : 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
@@ -90,19 +90,32 @@ const getData = async () => {
     });
 };
 
-getData();
+onBeforeMount(() => {
+  internalInstance.appContext.config.globalProperties.$Progress.start();
 
-// const { data: rankings, pending } = await useAsyncData(
-//   `trending/all/${pageTrending.value}`,
-//   () => getTrending(pageTrending.value),
-//   {
-//     transform: (data: any) => {
-//       totalPage.value = data?.total;
-//       pageSize.value = data?.page_size;
-//       return data.results;
-//     },
-//   }
-// );
+  setTimeout(() => {
+    internalInstance.appContext.config.globalProperties.$Progress.finish();
+  }, 500);
+});
+
+// getData();
+
+loading.value = true;
+
+const { data: rankings, pending } = await useAsyncData(
+  `trending/all/${pageTrending.value}`,
+  () => getTrending(pageTrending.value),
+  {
+    transform: (data: any) => {
+      totalPage.value = data?.total;
+      pageSize.value = data?.page_size;
+      loading.value = false;
+
+      return data.results;
+    },
+    server: false,
+  }
+);
 
 watch(pageTrending, async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>

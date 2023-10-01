@@ -13,14 +13,14 @@
       @onFilter="handleFilter"
     />
 
-    <div class="discover-head">
+    <div class="discover-title">
       <h2 class="gradient-title-default underline">
         <span>{{ metaHead }}</span>
       </h2>
     </div>
 
     <section class="discover-section">
-      <div class="movie-group horizontal">
+      <div v-if="!loading" class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in dataDiscover"
           :index="index"
@@ -30,7 +30,7 @@
         />
       </div>
 
-      <!-- <LoadingCircle v-else class="loading-page" /> -->
+      <LoadingCircle v-else class="loading-page" />
     </section>
 
     <ControlPage
@@ -59,7 +59,6 @@ const store = useStore();
 const page = ref<number>(route.query?.page ? +route.query?.page : 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
-const isFilter = ref<boolean>(false);
 const loading = ref<boolean>(false);
 const formFilter = computed<formfilter>(() => {
   return {
@@ -68,7 +67,7 @@ const formFilter = computed<formfilter>(() => {
     genre: route.query.genre || '',
     year: route.query.year || '',
     country: route.query.country || '',
-    page: 1,
+    page: route.query.page || 1,
     limit: 20,
   };
 });
@@ -92,15 +91,15 @@ useServerSeoMeta({
 });
 
 const getData = async () => {
-  loading.value = true;
+  // loading.value = true;
 
-  await useAsyncData(`tv/${tvSlugRoute.value}/${page.value}`, () =>
+  await useAsyncData(`tv/discover/${formFilter.value}`, () =>
     FilterTvSlug(formFilter.value)
   )
-    .then((movieResponse: any) => {
+    .then((movieResponse) => {
       dataDiscover.value = movieResponse.data.value?.results;
-      // totalPage.value = movieResponse.data.value?.total;
-      // pageSize.value = movieResponse.data.value?.page_size;
+      totalPage.value = movieResponse.data.value?.total;
+      pageSize.value = movieResponse.data.value?.page_size;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -118,12 +117,14 @@ onBeforeMount(() => {
   }, 500);
 });
 
+loading.value = true;
+
 const {
   data: dataDiscover,
   pending,
   refresh,
 } = await useAsyncData(
-  `tv/${tvSlugRoute.value}/${page.value}`,
+  `cache/tv/discover/${formFilter.value}`,
   () => FilterTvSlug(formFilter.value),
   {
     transform: (data: any) => {
@@ -133,6 +134,7 @@ const {
 
       return data.results;
     },
+    server: false,
   }
 );
 
@@ -152,14 +154,10 @@ const onChangePage = (
   pageSelected: number
   // pageSize
 ) => {
-  if (isFilter.value) {
-    formFilter.value['page'] = pageSelected;
-    getData();
-  } else {
-    page.value = pageSelected;
-    router.push({ query: { page: pageSelected } });
-    getData();
-  }
+  page.value = pageSelected;
+  formFilter.value.page = pageSelected;
+  router.push({ query: { ...route.query, page: pageSelected } });
+  // getData();
 };
 
 const cancelFilter = () => {

@@ -6,7 +6,7 @@
       :cancelFilter="cancelFilter"
     />
 
-    <div class="discover-head">
+    <div class="discover-title">
       <h2 class="gradient-title-default underline">
         <span>{{ metaHead }}</span>
       </h2>
@@ -301,7 +301,7 @@ const getData = async () => {
         break;
       case 'genre':
         await useAsyncData(`genre/${route.params?.slug2}/${page.value}`, () =>
-          getMoviesByGenres(route.params?.slug2, page.value)
+          getMoviesByGenres(route.params?.slug2, '', page.value)
         )
           .then((movieResponse: any) => {
             dataDiscover.value = movieResponse.data.value?.results;
@@ -321,7 +321,7 @@ const getData = async () => {
         break;
       case 'year':
         await useAsyncData(`year/${route.params?.slug2}/${page.value}`, () =>
-          getMoviesByYear(route.params?.slug2, page.value)
+          getMoviesByYear(route.params?.slug2, '', page.value)
         )
           .then((movieResponse: any) => {
             dataDiscover.value = movieResponse.data.value?.results;
@@ -340,7 +340,7 @@ const getData = async () => {
         break;
       case 'country':
         await useAsyncData(`country/${route.params?.slug2}/${page.value}`, () =>
-          getMovieByCountry(route.params?.slug2, page.value)
+          getMovieByCountry(route.params?.slug2, '', page.value)
         )
           .then((movieResponse: any) => {
             dataDiscover.value = movieResponse.data.value?.results;
@@ -423,4 +423,4 @@ const cancelFilter = () => {
 };
 </script>
 
-<style lang="scss" src="../DiscoverMoviePage.scss"></style>
+<style lang="scss" src="../DiscoverPage.scss"></style>

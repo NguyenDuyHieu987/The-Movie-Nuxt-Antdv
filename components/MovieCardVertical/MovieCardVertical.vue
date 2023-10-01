@@ -65,19 +65,19 @@
           </p>
 
           <div class="genres">
-            <NuxtLink
-              class="genre-item"
-              v-for="(genre, index) in Array.from(item?.genres, (x: any) => x)"
-              :index="index"
-              :key="index"
-              :to="{
-                path: `/discover/genre/${
+            <ClientOnly>
+              <NuxtLink
+                class="genre-item"
+                v-for="(genre, index) in Array.from(item?.genres, (x: any) => x)"
+                :index="index"
+                :key="index"
+                :to="`/discover/genre/${
                   getGenreById(genre.id, store.allGenres)?.short_name
-                }`,
-              }"
-            >
-              {{ genre?.name }}
-            </NuxtLink>
+                }`"
+              >
+                {{ genre?.name }}
+              </NuxtLink>
+            </ClientOnly>
           </div>
         </div>
       </template>
@@ -178,10 +178,6 @@ const getData = async () => {
 };
 
 getData();
-
-onMounted(() => {
-  const swiperSlide = document.querySelector('.swiper-slide');
-});
 
 const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   if (loading.value) return;

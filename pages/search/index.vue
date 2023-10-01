@@ -21,7 +21,7 @@
       </a-select>
     </h2>
     <section class="search-section" :class="{ collapsed: store.collapsed }">
-      <div class="movie-group horizontal">
+      <div v-if="!loading" class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in searchData"
           :index="index"
@@ -31,22 +31,23 @@
         />
       </div>
 
+      <LoadingCircle v-else class="loading-page" />
+
       <a-result
-        v-show="!searchData?.length && loading"
+        v-show="!searchData?.length && !loading"
         status="404"
         title="Opps!"
         :sub-title="`Không có kêt quả nào khớp với từ
         khóa: ${searchQuery}.`"
-      >
-      </a-result>
+      />
 
-      <!-- <ControlPage
+      <ControlPage
         v-show="searchData?.length"
         :page="page"
         :total="totalPage"
         :pageSize="pageSize"
         :onChangePage="onChangePage"
-      /> -->
+      />
     </section>
   </div>
 </template>
@@ -54,12 +55,14 @@
 <script setup lang="ts">
 import axios from 'axios';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-// import ControlPage from '~/components/ControlPage/ControlPage.vue';
+import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import { getDaTaSearch } from '~/services/search';
+import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 
 const store: any = useStore();
 const route: any = useRoute();
-const searchData = ref<any>([]);
+const router = useRouter();
+// const searchData = ref<any>([]);
 const searchDataMovie = ref<any[]>([]);
 const searchDataTv = ref<any[]>([]);
 const activeTabSearch = ref<string>('all');
@@ -86,7 +89,9 @@ useServerSeoMeta({
 });
 
 const getData = async () => {
-  await nextTick();
+  // loading.value = true;
+
+  internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(`search/all/${searchQuery.value}/${page.value}`, () =>
     getDaTaSearch(searchQuery.value, page.value)
@@ -102,16 +107,39 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = true;
+      loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };
 
-onBeforeMount(async () => {
+onBeforeMount(() => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
+
+  setTimeout(() => {
+    internalInstance.appContext.config.globalProperties.$Progress.finish();
+  }, 500);
 });
 
-getData();
+// getData();
+
+loading.value = true;
+
+const { data: searchData, pending } = await useAsyncData(
+  `cache/search/all/${route.params.genre}/${page.value}`,
+  () => getDaTaSearch(searchQuery.value, page.value),
+  {
+    transform: (data: any) => {
+      totalPage.value = data?.total;
+      pageSize.value = data?.page_size;
+      searchDataMovie.value = data?.movie;
+      searchDataTv.value = data?.tv;
+      loading.value = false;
+
+      return data.results;
+    },
+    server: false,
+  }
+);
 
 watch(
   () => route.query?.q,
@@ -136,17 +164,8 @@ const handleChangeType = (activeKey: any) => {
 
 const onChangePage = async (pageSelected: number) => {
   page.value = pageSelected;
-  await useAsyncData(`search/all/${searchQuery.value}/${pageSelected}`, () =>
-    getDaTaSearch(searchQuery.value, pageSelected)
-  )
-    .then((response: any) => {
-      searchData.value = response.data.value?.results;
-      searchDataMovie.value = response.data.value?.movie;
-      searchDataTv.value = response.data.value?.tv;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  router.push({ query: { ...route.query, page: pageSelected } });
+  getData();
 };
 </script>
 

@@ -6,18 +6,7 @@
       :cancelFilter="cancelFilter"
     /> -->
 
-    <Swiper
-      class="filter-swiper countries"
-      :modules="[SwiperFreeMode, SwiperNavigation]"
-      :slidesPerGroup="5"
-      :speed="500"
-      :slides-per-view="'auto'"
-      :space-between="10"
-      :free-mode="true"
-      :navigation="{
-        prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next',
-      }"
+    <DiscoverHead
       :initialSlide="
         countries.findIndex(
           (item1) => item1.short_name == route.params?.country
@@ -36,37 +25,9 @@
           {{ item?.name }}
         </NuxtLink>
       </SwiperSlide>
-      <div class="swiper-button-prev">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="3.5rem"
-          height="3.5rem"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-          />
-        </svg>
-      </div>
-      <div class="swiper-button-next">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="3.5rem"
-          height="3.5rem"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8L4.646 2.354a.5.5 0 0 1 0-.708z"
-          />
-        </svg>
-      </div>
-    </Swiper>
+    </DiscoverHead>
 
-    <div class="discover-head">
+    <div class="discover-title">
       <h2 class="gradient-title-default underline">
         <span>{{ metaHead }}</span>
       </h2>
@@ -100,8 +61,8 @@
 import axios from 'axios';
 import { getCountryByShortName } from '~/services/country';
 import { getMovieByCountry } from '~/services/discover';
-
 import { FilterMovie } from '~/services/discover';
+import DiscoverHead from '~/components/DiscoverHead/DiscoverHead.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '~/components/FilterBar/FilterBar.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
@@ -148,13 +109,13 @@ useServerSeoMeta({
 });
 
 const getData = async () => {
-  loading.value = true;
+  // loading.value = true;
 
   if (isFilter.value) {
     await useAsyncData(`discover/${formFilter.value}}`, () =>
       FilterMovie(formFilter.value)
     )
-      .then((movieResponse: any) => {
+      .then((movieResponse) => {
         dataDiscover.value = movieResponse.data.value?.results;
       })
       .catch((e) => {
@@ -168,10 +129,10 @@ const getData = async () => {
       `discover/country/all/${route.params.country}/${page.value}`,
       () => getMovieByCountry(route.params.country, '', page.value)
     )
-      .then((movieResponse: any) => {
+      .then((movieResponse) => {
         dataDiscover.value = movieResponse.data.value?.results;
-        // totalPage.value = movieResponse.data.value?.total;
-        // pageSize.value = movieResponse.data.value?.page_size;
+        totalPage.value = movieResponse.data.value?.total;
+        pageSize.value = movieResponse.data.value?.page_size;
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
@@ -192,8 +153,10 @@ onBeforeMount(() => {
 
 // getData();
 
+loading.value = true;
+
 const { data: dataDiscover, pending } = await useAsyncData(
-  `discover/country/all/${route.params.country}/${page.value}`,
+  `cache/discover/country/all/${route.params.country}/${page.value}`,
   () => getMovieByCountry(route.params.country, '', page.value),
   {
     transform: (data: any) => {
@@ -203,6 +166,7 @@ const { data: dataDiscover, pending } = await useAsyncData(
 
       return data.results;
     },
+    server: false,
   }
 );
 
