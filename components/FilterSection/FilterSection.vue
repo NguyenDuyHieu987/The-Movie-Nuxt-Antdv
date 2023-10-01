@@ -1,215 +1,237 @@
 <template>
   <section class="filter-section">
-    <a-collapse class="filter-section" :bordered="false">
-      <!-- ghost -->
+    <a-collapse class="filter-collapse" :bordered="false">
       <template #expandIcon="{ isActive }">
         <CaretRightFilled :rotate="isActive ? 90 : 0" />
       </template>
 
       <a-collapse-panel key="1" header="Tìm kiếm nâng cao">
         <div class="filter-body">
-          <div class="list-input-filter">
-            <a-button
-              class="filter-btn click-active"
-              type="text"
-              :disabled="disableBtnFilter"
-              @click="handleFilterMovie"
-            >
-              Lọc phim
-            </a-button>
-            <!-- <ClientOnly>
-              <el-select
-                ref="select"
-                v-model="formSelect.country"
-                style="width: 150px"
-                @change="handleChange"
-                size="large"
-                placeholder="Quốc gia"
-              >
-                <el-option
-                  v-for="(item, index) in countries"
-                  :index="index"
-                  :key="item?.iso_639_1"
-                  :value="item?.iso_639_1"
-                  :label="item?.name"
-                />
-              </el-select>
-  
-              <el-select
-                ref="select"
-                v-model="formSelect.year"
-                style="width: 170px"
-                @change="handleChange"
-                size="large"
-                placeholder="Năm phát hành"
-              >
-                <el-option
-                  v-for="(item, index) in years"
-                  :index="index"
-                  :key="item?.name"
-                  :value="item?.name"
-                  :label="item?.name"
-                />
-              </el-select>
-  
-              <el-select
-                ref="select"
-                v-model="formSelect.genre"
-                style="width: 170px"
-                @change="handleChange"
-                size="large"
-                placeholder="Thể loại"
-              >
-                <el-option
-                  v-for="(item, index) in genres"
-                  :index="index"
-                  :key="item?.id"
-                  :value="item?.id"
-                  :label="item?.name_vietsub"
-                />
-              </el-select>
-  
-              <el-select
-                ref="select"
-                v-model="formSelect.sortBy"
-                style="width: 170px"
-                @change="handleChange"
-                size="large"
-                placeholder="Sắp xếp theo"
-              >
-                <el-option
-                  v-for="(item, index) in listSortBy"
-                  :index="index"
-                  :key="item?.id"
-                  :value="item?.id"
-                  :label="item?.name"
-                />
-              </el-select>
-  
-              <el-select
-                ref="select"
-                v-model="formSelect.type"
-                style="width: 170px"
-                @change="handleChange"
-                size="large"
-              >
-                <el-option value="all" label="Tất cả" />
-                <el-option value="movieall" label="Phim lẻ" />
-                <el-option value="tvall" label="Phim bộ" />
-              </el-select>
-            </ClientOnly> -->
-
-            <a-select
-              ref="select"
-              v-model:value="formSelect.country"
-              style="width: 150px"
-              @change="handleChange"
-              size="large"
-              placeholder="Quốc gia"
-            >
-              <a-select-option v-if="formSelect.country == ''" value="">
-                Quốc gia
-              </a-select-option>
-
-              <a-select-option
-                v-for="(item, index) in countries"
+          <div class="filter-row">
+            <div class="filter-label">Danh sách</div>
+            <ul class="filter-options">
+              <li
+                class="filter-option"
+                v-for="(item, index) in listFilter"
                 :index="index"
-                :key="item?.iso_639_1"
-                :value="item?.iso_639_1"
+                :key="item.value"
+                :class="{
+                  active: route.query?.type
+                    ? item.value == route.query?.type
+                    : item.value == 'all',
+                }"
               >
-                {{ item?.name }}
-              </a-select-option>
-            </a-select>
-
-            <a-select
-              ref="select"
-              v-model:value="formSelect.year"
-              style="width: 170px"
-              @change="handleChange"
-              size="large"
-              placeholder="Năm phát hành"
-            >
-              <a-select-option v-if="formSelect.year == ''" value="">
-                Năm phát hành
-              </a-select-option>
-              <a-select-option
-                v-for="(item, index) in years"
+                <NuxtLink
+                  :to="{
+                    query: { ...route.query, type: item.value },
+                  }"
+                >
+                  {{ item?.name }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
+          <div class="filter-row">
+            <div class="filter-label">Sắp xếp</div>
+            <ul class="filter-options">
+              <li
+                class="filter-option"
+                v-for="(item, index) in listSortBy"
                 :index="index"
-                :key="item?.name"
-                :value="item?.name"
+                :key="item.id"
+                :class="{
+                  active: item.id == route.query?.sort_by,
+                }"
               >
-                {{ item?.name }}
-              </a-select-option>
-            </a-select>
-
-            <a-select
-              ref="select"
-              v-model:value="formSelect.genre"
-              style="width: 170px"
-              @change="handleChange"
-              size="large"
-              placeholder="Thể loại"
+                <NuxtLink
+                  :to="{
+                    query: { ...route.query, sort_by: item.id },
+                  }"
+                >
+                  {{ item?.name }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
+          <div class="filter-row">
+            <div class="filter-label">Thể loại</div>
+            <Swiper
+              class="filter-options"
+              :modules="[SwiperFreeMode, SwiperNavigation]"
+              :speed="500"
+              :slides-per-view="'auto'"
+              :space-between="10"
+              :free-mode="true"
+              :navigation="{
+                prevEl: '.swiper-button-prev',
+                nextEl: '.swiper-button-next',
+              }"
             >
-              <a-select-option v-if="formSelect.genre == ''" value="">
-                Thể loại
-              </a-select-option>
-              <a-select-option
+              <SwiperSlide
+                class="filter-option"
                 v-for="(item, index) in genres"
                 :index="index"
                 :key="item?.id"
-                :value="item?.id"
+                :class="{
+                  active: item.id == route.query?.genre,
+                }"
               >
-                {{ item?.name_vietsub }}
-              </a-select-option>
-            </a-select>
-
-            <a-select
-              ref="select"
-              v-model:value="formSelect.sortBy"
-              style="width: 170px"
-              @change="handleChange"
-              size="large"
-              placeholder="Sắp xếp theo"
+                <NuxtLink
+                  :to="{
+                    query: { ...route.query, genre: item.id },
+                  }"
+                >
+                  {{ item?.name_vietsub }}
+                </NuxtLink>
+              </SwiperSlide>
+              <div class="swiper-button-prev">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="3.5rem"
+                  height="3.5rem"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                  />
+                </svg>
+              </div>
+              <div class="swiper-button-next">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="3.5rem"
+                  height="3.5rem"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8L4.646 2.354a.5.5 0 0 1 0-.708z"
+                  />
+                </svg>
+              </div>
+            </Swiper>
+          </div>
+          <div class="filter-row">
+            <div class="filter-label">Năm</div>
+            <Swiper
+              class="filter-options"
+              :modules="[SwiperFreeMode, SwiperNavigation]"
+              :speed="500"
+              :slides-per-view="'auto'"
+              :space-between="10"
+              :free-mode="true"
+              :navigation="{
+                prevEl: '.swiper-button-prev',
+                nextEl: '.swiper-button-next',
+              }"
             >
-              <a-select-option v-if="formSelect.sortBy == ''" value="">
-                Sắp xếp theo
-              </a-select-option>
-              <a-select-option
-                v-for="(item, index) in listSortBy"
+              <SwiperSlide
+                class="filter-option"
+                v-for="(item, index) in years"
                 :index="index"
-                :key="item?.id"
-                :value="item?.id"
+                :key="item?.name"
+                :class="{
+                  active: item.name == route.query?.year,
+                }"
               >
-                {{ item?.name }}
-              </a-select-option>
-            </a-select>
-
-            <a-select
-              ref="select"
-              v-model:value="formSelect.type"
-              style="width: 170px"
-              @change="handleChange"
-              size="large"
-              placeholder="Tất cả"
+                <NuxtLink
+                  :to="{
+                    query: { ...route.query, year: item.name },
+                  }"
+                >
+                  {{ item?.name }}
+                </NuxtLink>
+              </SwiperSlide>
+              <div class="swiper-button-prev">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="3.5rem"
+                  height="3.5rem"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                  />
+                </svg>
+              </div>
+              <div class="swiper-button-next">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="3.5rem"
+                  height="3.5rem"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8L4.646 2.354a.5.5 0 0 1 0-.708z"
+                  />
+                </svg>
+              </div>
+            </Swiper>
+          </div>
+          <div class="filter-row">
+            <div class="filter-label">Quốc gia</div>
+            <Swiper
+              class="filter-options"
+              :modules="[SwiperFreeMode, SwiperNavigation]"
+              :speed="500"
+              :slides-per-view="'auto'"
+              :space-between="10"
+              :free-mode="true"
+              :navigation="{
+                prevEl: '.swiper-button-prev',
+                nextEl: '.swiper-button-next',
+              }"
             >
-              <a-select-option value="all"> Tất cả </a-select-option>
-              <a-select-option value="movie"> Phim lẻ </a-select-option>
-              <a-select-option value="tv"> Phim bộ </a-select-option>
-            </a-select>
-
-            <a-button
-              class="cancel-filter-btn click-active"
-              :disabled="disableBtnFilter"
-              danger
-              @click="handleCancelFilter"
-            >
-              Hủy lọc
-            </a-button>
+              <SwiperSlide
+                class="filter-option"
+                v-for="(item, index) in countries"
+                :index="index"
+                :key="item?.iso_639_1"
+                :class="{
+                  active: item.iso_639_1 == route.query?.country,
+                }"
+              >
+                <NuxtLink
+                  :to="{
+                    query: { ...route.query, country: item.iso_639_1 },
+                  }"
+                >
+                  {{ item?.name }}
+                </NuxtLink>
+              </SwiperSlide>
+              <div class="swiper-button-prev">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="3.5rem"
+                  height="3.5rem"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                  />
+                </svg>
+              </div>
+              <div class="swiper-button-next">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="3.5rem"
+                  height="3.5rem"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8L4.646 2.354a.5.5 0 0 1 0-.708z"
+                  />
+                </svg>
+              </div>
+            </Swiper>
           </div>
         </div>
         <template #extra>
-          <!-- <Icon name="ic:sharp-filter-alt" /> -->
-
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1.6rem"
@@ -225,25 +247,22 @@
 </template>
 
 <script setup lang="ts">
-import { FilterMovie } from '~/services/discover';
-import { getAllGenre } from '~/services/genres';
-import { getAllCountry } from '~/services/country';
-import { getAllYear } from '~/services/year';
 import { getAllSortBy } from '~/services/sortby';
-import axios from 'axios';
 import { CaretRightFilled } from '@ant-design/icons-vue';
 import type { genre, country, year, sortby, formfilter } from '@/types';
 
-const emits = defineEmits<{
-  dataFiltered: [data: any[], formSelect: any];
+const props = defineProps<{
+  listFilter: any[];
+  cancelFilter: () => void;
 }>();
 
-const props = defineProps<{
-  cancelFilter: () => void;
+const emits = defineEmits<{
+  onFilter: [];
 }>();
 
 const store = useStore();
 const route: any = useRoute();
+const listFilter = ref<any[]>(props.listFilter);
 const genres = ref<genre[]>(store.allGenres);
 const years = ref<year[]>(store.allYears);
 const countries = ref<country[]>(store.allCountries);
@@ -252,114 +271,18 @@ const loadingData = defineModel<boolean>('loading', {
   default: false,
 });
 
-const movieType = computed(() => {
-  if (route.params?.slug?.includes('movie')) {
-    if (route.params?.slug2?.replace('/', '') == 'all') {
-      return 'movie';
-    } else {
-      return 'movie';
-    }
-  } else if (route.params?.slug?.includes('tv')) {
-    if (route.params?.slug2?.replace('/', '') == 'all') {
-      return 'tv';
-    } else {
-      return 'tv';
-    }
-  } else if (route.params?.slug == 'search') {
-    return 'all';
-  } else {
-    return 'all';
-  }
-});
-
-const formSelect = reactive<formfilter>({
-  type: movieType.value,
-  sortBy: '',
-  genre: '',
-  year: '',
-  country: '',
-  page: 1,
-});
-
-watch(route, () => {
-  resetFilter();
-});
-
-const getData = async () => {
-  Promise.all([
-    await useAsyncData(`genre/all`, () => getAllGenre()),
-    await useAsyncData(`year/all`, () => getAllYear()),
-    await useAsyncData(`country/all`, () => getAllCountry()),
-    await useAsyncData(`sortby/all`, () => getAllSortBy()),
-  ])
-    .then((response: any) => {
-      genres.value = response[0].data.value?.results;
-      years.value = response[1].data.value?.results.sort(
-        (a: year, b: year): number => {
-          return +b.name.slice(-4) - +a.name.slice(-4);
-        }
-      );
-      countries.value = response[2].data.value?.results;
-      listSortBy.value = response[3].data.value?.results;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
-};
-
-// getData();
-
 const { data: listSortBy } = await useAsyncData(
   'sortby/all',
   () => getAllSortBy(),
   {
-    // default: () => {
-    //   return { results: trendingsCache.value || [] };
-    // },
     transform: (data: any) => {
       return data.results;
     },
   }
 );
 
-const disableBtnFilter = computed(
-  () =>
-    formSelect.type == movieType.value &&
-    formSelect.sortBy == '' &&
-    formSelect.genre == '' &&
-    formSelect.year == '' &&
-    formSelect.country == ''
-);
-
-const handleFilterMovie = async () => {
-  loadingData.value = true;
-  await useAsyncData(`discover/${formSelect}`, () => FilterMovie(formSelect))
-    .then((movieResponse) => {
-      emits('dataFiltered', movieResponse?.data.value.results, formSelect);
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      loadingData.value = false;
-    });
-};
-
-const resetFilter = () => {
-  formSelect.type = movieType.value;
-  formSelect.sortBy = '';
-  formSelect.genre = '';
-  formSelect.year = '';
-  formSelect.country = '';
-};
-
-const handleCancelFilter = () => {
-  resetFilter();
-  props.cancelFilter();
-};
-
-const handleChange = () => {
-  // console.log(formSelect);
+const onFilter = () => {
+  emits('onFilter');
 };
 </script>
 

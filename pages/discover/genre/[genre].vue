@@ -106,7 +106,7 @@ const getData = async () => {
   } else {
     await useAsyncData(
       `discover/genre/all/${route.params.genre}/${page.value}`,
-      () => getMoviesByGenres(route.params.genre, page.value)
+      () => getMoviesByGenres(route.params.genre, '', page.value)
     )
       .then((movieResponse: any) => {
         dataDiscover.value = movieResponse.data.value?.results;
@@ -132,7 +132,7 @@ onBeforeMount(() => {
 
 const { data: dataDiscover, pending } = await useAsyncData(
   `discover/genre/all/${route.params.genre}/${page.value}`,
-  () => getMoviesByGenres(route.params.genre, page.value),
+  () => getMoviesByGenres(route.params.genre, '', page.value),
   {
     transform: (data: any) => {
       loading.value = false;

@@ -105,7 +105,7 @@ const getData = async () => {
   } else {
     await useAsyncData(
       `discover/country/all/${route.params.country}/${page.value}`,
-      () => getMovieByCountry(route.params.country, page.value)
+      () => getMovieByCountry(route.params.country, '', page.value)
     )
       .then((movieResponse: any) => {
         dataDiscover.value = movieResponse.data.value?.results;
@@ -131,7 +131,7 @@ onBeforeMount(() => {
 
 const { data: dataDiscover, pending } = await useAsyncData(
   `discover/country/all/${route.params.country}/${page.value}`,
-  () => getMovieByCountry(route.params.country, page.value),
+  () => getMovieByCountry(route.params.country, '', page.value),
   {
     transform: (data: any) => {
       loading.value = false;

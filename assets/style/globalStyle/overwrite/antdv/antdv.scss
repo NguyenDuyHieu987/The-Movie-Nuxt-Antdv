@@ -447,21 +447,24 @@
 
   .ant-collapse-item {
     border: none;
-  }
 
-  .ant-collapse-header {
-    font-size: 1.5rem;
-    color: inherit !important;
+    .ant-collapse-header {
+      font-size: 1.5rem;
+      color: inherit !important;
 
-    .anticon {
-      svg {
-        font-size: 1.3rem;
+      .anticon {
+        svg {
+          font-size: 1.3rem;
+        }
       }
     }
-  }
 
-  .ant-collapse-content {
-    color: inherit !important;
+    .ant-collapse-content {
+      color: inherit !important;
+
+      .ant-collapse-content-box {
+      }
+    }
   }
 }
 

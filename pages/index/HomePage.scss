@@ -148,18 +148,6 @@
       clip-path: none;
     }
   }
-
-  .carousel-group {
-    .owl-prev,
-    .swiper-button-prev {
-      left: calc(0px - var(--padding-home));
-    }
-
-    .owl-next,
-    .swiper-button-next {
-      right: calc(0px - var(--padding-home));
-    }
-  }
 }
 
 @media only screen and (max-width: 1300px) {
@@ -169,43 +157,6 @@
         .home-section {
           .gradient-title-default {
             font-size: 2.5rem;
-          }
-        }
-
-        .carousel-group {
-          .owl-prev,
-          .owl-next,
-          .swiper-button-prev,
-          .swiper-button-next {
-            width: 30px;
-          }
-
-          .owl-prev,
-          .swiper-button-prev {
-            left: calc(-15px);
-          }
-
-          .owl-next,
-          .swiper-button-next {
-            right: calc(-15px);
-          }
-        }
-      }
-    }
-
-    &.expand {
-      .home-container {
-        .home-content {
-          .carousel-group {
-            .owl-prev,
-            .swiper-button-prev {
-              left: calc(-30px);
-            }
-
-            .owl-next,
-            .swiper-button-next {
-              right: calc(-30px);
-            }
           }
         }
       }
@@ -250,18 +201,6 @@
           }
         }
       }
-
-      .carousel-group {
-        .owl-prev,
-        .swiper-button-prev {
-          left: -15px;
-        }
-
-        .owl-next,
-        .swiper-button-next {
-          right: -15px;
-        }
-      }
     }
   }
 }
@@ -271,6 +210,7 @@
     --padding-home: 15px;
   }
 
+  .body-content:has(.home-container),
   .body-content.expand:has(.home-container) {
     .home-container {
       .home-content {

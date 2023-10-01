@@ -41,8 +41,8 @@ export declare interface formfilter {
   genre: string | string;
   year: string;
   country: string;
-  page?: number;
-  limit?: number;
+  page?: number | 1;
+  limit?: number | 20;
 }
 
 export declare interface plan {

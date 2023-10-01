@@ -105,7 +105,7 @@ const getData = async () => {
   } else {
     await useAsyncData(
       `discover/year/all/${route.params.year}/${page.value}`,
-      () => getMoviesByYear(route.params.year, page.value)
+      () => getMoviesByYear(route.params.year, '', page.value)
     )
       .then((movieResponse: any) => {
         dataDiscover.value = movieResponse.data.value?.results;
@@ -131,7 +131,7 @@ onBeforeMount(() => {
 
 const { data: dataDiscover, pending } = await useAsyncData(
   `discover/year/all/${route.params.year}/${page.value}`,
-  () => getMoviesByYear(route.params.year, page.value),
+  () => getMoviesByYear(route.params.year, '', page.value),
   {
     transform: (data: any) => {
       loading.value = false;

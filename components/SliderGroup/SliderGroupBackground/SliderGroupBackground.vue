@@ -21,9 +21,6 @@
           el: '.swiper-scrollbar',
           draggable: true,
         }"
-        :class="{
-          dragging: sliderState.isDragging,
-        }"
       >
         <slot name="content" />
         <div class="swiper-scrollbar"></div>
