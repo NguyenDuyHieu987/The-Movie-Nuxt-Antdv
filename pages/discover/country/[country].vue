@@ -1,10 +1,70 @@
 <template>
   <div class="discover genre padding-content">
-    <FilterBar
+    <!-- <FilterBar
       @dataFiltered="(data: any[], formSelect: formfilter) => setDataFiltered(data, formSelect)"
       v-model:loading="loading"
       :cancelFilter="cancelFilter"
-    />
+    /> -->
+
+    <Swiper
+      class="filter-swiper countries"
+      :modules="[SwiperFreeMode, SwiperNavigation]"
+      :slidesPerGroup="5"
+      :speed="500"
+      :slides-per-view="'auto'"
+      :space-between="10"
+      :free-mode="true"
+      :navigation="{
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next',
+      }"
+      :initialSlide="
+        countries.findIndex(
+          (item1) => item1.short_name == route.params?.country
+        )
+      "
+    >
+      <SwiperSlide
+        v-for="(item, index) in countries"
+        :index="index"
+        :key="item?.iso_639_1"
+        :class="{
+          active: item.short_name == route.params?.country,
+        }"
+      >
+        <NuxtLink :to="`/discover/country/${item.short_name}`">
+          {{ item?.name }}
+        </NuxtLink>
+      </SwiperSlide>
+      <div class="swiper-button-prev">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="3.5rem"
+          height="3.5rem"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+          />
+        </svg>
+      </div>
+      <div class="swiper-button-next">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="3.5rem"
+          height="3.5rem"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8L4.646 2.354a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
+      </div>
+    </Swiper>
 
     <div class="discover-head">
       <h2 class="gradient-title-default underline">
@@ -52,6 +112,7 @@ const route: any = useRoute();
 const router = useRouter();
 const store = useStore();
 // const dataDiscover = ref<any[]>();
+const countries = ref<country[]>(store.allCountries);
 const page = ref<number>(route.query?.page ? +route.query?.page : 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
@@ -109,6 +170,8 @@ const getData = async () => {
     )
       .then((movieResponse: any) => {
         dataDiscover.value = movieResponse.data.value?.results;
+        // totalPage.value = movieResponse.data.value?.total;
+        // pageSize.value = movieResponse.data.value?.page_size;
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
@@ -134,7 +197,10 @@ const { data: dataDiscover, pending } = await useAsyncData(
   () => getMovieByCountry(route.params.country, '', page.value),
   {
     transform: (data: any) => {
+      totalPage.value = data?.total;
+      pageSize.value = data?.page_size;
       loading.value = false;
+
       return data.results;
     },
   }
@@ -174,4 +240,4 @@ const cancelFilter = () => {
 };
 </script>
 
-<style lang="scss" src="../DiscoverMoviePage.scss"></style>
+<style lang="scss" src="../DiscoverPage.scss"></style>
