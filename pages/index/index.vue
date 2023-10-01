@@ -10,7 +10,10 @@
           <span>Phim nổi bật</span>
           <NuxtLink
             :to="{
-              path: `/discover/movie/nowplaying`,
+              path: `/discover/movie`,
+              query: {
+                type: 'nowplaying',
+              },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -93,11 +96,7 @@
       <section class="home-section cartoon">
         <h2 class="gradient-title-default">
           <span>Hoạt hình - Anime đặc sắc</span>
-          <NuxtLink
-            :to="{
-              path: `/discover/genre/hoat-hinh`,
-            }"
-          >
+          <NuxtLink :to="{ path: `/discover/genre/hoat-hinh` }">
             <span class="view-all">Xem tất cả</span>
           </NuxtLink>
         </h2>
@@ -125,7 +124,10 @@
           <span>Phim bộ mới</span>
           <NuxtLink
             :to="{
-              path: `/discover/tv/airingtoday`,
+              path: `/discover/tv`,
+              query: {
+                type: 'airingtoday',
+              },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -161,7 +163,10 @@
 
           <NuxtLink
             :to="{
-              path: `/discover/movie/upcoming`,
+              path: `/discover/movie`,
+              query: {
+                type: 'upcoming',
+              },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -189,7 +194,10 @@
 
               <NuxtLink
                 :to="{
-                  path: `/discover/movie/upcoming`,
+                  path: `/discover/movie`,
+                  query: {
+                    type: 'upcoming',
+                  },
                 }"
               >
                 <span class="view-all">Xem tất cả</span>
@@ -219,7 +227,10 @@
           <span>Phim chiếu rạp mới</span>
           <NuxtLink
             :to="{
-              path: `/discover/movie/toprated`,
+              path: `/discover/movie`,
+              query: {
+                type: 'toprated',
+              },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -254,7 +265,10 @@
           <span>TV On the air</span>
           <NuxtLink
             :to="{
-              path: `/discover/tv/ontheair`,
+              path: `/discover/tv`,
+              query: {
+                type: 'ontheair',
+              },
             }"
           >
             <span class="view-all">Xem tất cả</span>

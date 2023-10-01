@@ -38,13 +38,14 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { DiscoverMovie } from '~/services/discover';
+import { DiscoverTv } from '~/services/discover';
+
 import { FilterMovie } from '~/services/discover';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '~/components/FilterBar/FilterBar.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
-import type { formfilter, typeMovie } from '@/types';
+import type { formfilter, typeTv } from '@/types';
 
 const route: any = useRoute();
 const router = useRouter();
@@ -63,19 +64,19 @@ const formFilter = ref<formfilter>({
   country: '',
   page: 1,
 });
-const movieSlugRoute = computed<typeMovie>(() => route.params.slug);
-const metaHead = ref<string>('Phim lẻ: ' + movieSlugRoute.value);
+const tvSlugRoute = computed<typeTv>(() => route.query.type);
+const metaHead = ref<string>('Phim bộ: ' + tvSlugRoute.value);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: () => 'Khám phá - Phim lẻ: ' + movieSlugRoute.value,
+  title: () => 'Khám phá - Phim bộ: ' + tvSlugRoute.value,
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Khám phá - Phim lẻ: ' + movieSlugRoute.value,
+  title: () => 'Khám phá - Phim bộ: ' + tvSlugRoute.value,
   description: () => 'Khám phá phim mới cùng Phimhay247',
-  ogTitle: () => 'Khám phá - Phim lẻ: ' + movieSlugRoute.value,
+  ogTitle: () => 'Khám phá - Phim bộ: ' + tvSlugRoute.value,
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => 'Khám phá phim mới cùng Phimhay247',
@@ -101,8 +102,8 @@ const getData = async () => {
         loading.value = false;
       });
   } else {
-    await useAsyncData(`movie/${movieSlugRoute.value}/${page.value}`, () =>
-      DiscoverMovie(movieSlugRoute.value, page.value)
+    await useAsyncData(`tv/${tvSlugRoute.value}/${page.value}`, () =>
+      DiscoverTv(tvSlugRoute.value, page.value)
     )
       .then((movieResponse: any) => {
         dataDiscover.value = movieResponse.data.value?.results;
@@ -129,13 +130,14 @@ onBeforeMount(() => {
 // getData();
 
 const { data: dataDiscover, pending } = await useAsyncData(
-  `movie/${movieSlugRoute.value}/${page.value}`,
-  () => DiscoverMovie(movieSlugRoute.value, page.value),
+  `tv/${tvSlugRoute.value}/${page.value}`,
+  () => DiscoverTv(tvSlugRoute.value, page.value),
   {
     transform: (data: any) => {
       totalPage.value = data?.total;
       pageSize.value = data?.page_size;
       loading.value = false;
+
       return data.results;
     },
   }
@@ -170,8 +172,8 @@ const setDataFiltered = (data: any[], formSelect: formfilter) => {
 const cancelFilter = () => {
   isFilter.value = false;
   // getData();
-  refreshNuxtData(`movie/${movieSlugRoute.value}/${page.value}`);
-  metaHead.value = 'Phim lẻ: ' + movieSlugRoute.value;
+  refreshNuxtData(`tv/${tvSlugRoute.value}/${page.value}`);
+  metaHead.value = 'Phim bộ: ' + tvSlugRoute.value;
 };
 </script>
 

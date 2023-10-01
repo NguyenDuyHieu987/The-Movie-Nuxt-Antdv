@@ -1,6 +1,6 @@
 <template>
   <div class="home-container feature">
-    <HeaderHome title="Phim lẻ" viewAllLink="/discover/movie/all" />
+    <HeaderHome title="Phim lẻ" viewAllLink="/discover/movie?type=all" />
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
@@ -11,7 +11,10 @@
           <span>Now Playing</span>
           <NuxtLink
             :to="{
-              path: `/discover/movie/nowplaying`,
+              path: `/discover/movie`,
+              query: {
+                type: 'nowplaying',
+              },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -44,7 +47,10 @@
           <span>Popular</span>
           <NuxtLink
             :to="{
-              path: `/discover/movie/popular`,
+              path: `/discover/movie`,
+              query: {
+                type: 'popular',
+              },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -74,7 +80,10 @@
           <span>Upcomimg</span>
           <NuxtLink
             :to="{
-              path: `/discover/movie/upcoming`,
+              path: `/discover/movie`,
+              query: {
+                type: 'upcoming',
+              },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -104,7 +113,10 @@
           <span>Top Rated</span>
           <NuxtLink
             :to="{
-              path: `/discover/movie/toprated`,
+              path: `/discover/movie`,
+              query: {
+                type: 'toprated',
+              },
             }"
           >
             <span class="view-all">Xem tất cả</span>
