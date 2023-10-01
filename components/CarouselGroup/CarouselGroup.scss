@@ -99,7 +99,6 @@
     opacity: 0;
     transition: 0.15s all;
 
-    i,
     svg {
       font-size: 3.5rem;
       width: 3.5rem;
@@ -109,19 +108,15 @@
     }
 
     &:hover {
-      i,
       svg {
-        // font-size: 35px;
-        // color: #007ea5;
         color: #fff;
         transform: scale(1.2);
       }
     }
 
     &:active {
-      i,
       svg {
-        opacity: 0.7;
+        opacity: 0.8;
       }
     }
 

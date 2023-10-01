@@ -45,7 +45,10 @@
               >
                 <NuxtLink
                   :to="{
-                    query: { ...route.query, sort_by: item.id },
+                    query: {
+                      ...route.query,
+                      sort_by: item.id != route.query?.sort_by ? item.id : '',
+                    },
                   }"
                 >
                   {{ item?.name }}
@@ -60,12 +63,16 @@
               :modules="[SwiperFreeMode, SwiperNavigation]"
               :speed="500"
               :slides-per-view="'auto'"
+              :slidesPerGroup="5"
               :space-between="10"
               :free-mode="true"
               :navigation="{
                 prevEl: '.swiper-button-prev',
                 nextEl: '.swiper-button-next',
               }"
+              :initialSlide="
+                genres.findIndex((item1) => item1.id == route.query?.genre)
+              "
             >
               <SwiperSlide
                 class="filter-option"
@@ -78,7 +85,10 @@
               >
                 <NuxtLink
                   :to="{
-                    query: { ...route.query, genre: item.id },
+                    query: {
+                      ...route.query,
+                      genre: item.id != route.query?.genre ? item.id : '',
+                    },
                   }"
                 >
                   {{ item?.name_vietsub }}
@@ -119,12 +129,16 @@
               :modules="[SwiperFreeMode, SwiperNavigation]"
               :speed="500"
               :slides-per-view="'auto'"
+              :slidesPerGroup="5"
               :space-between="10"
               :free-mode="true"
               :navigation="{
                 prevEl: '.swiper-button-prev',
                 nextEl: '.swiper-button-next',
               }"
+              :initialSlide="
+                years.findIndex((item1) => item1.name == route.query?.year)
+              "
             >
               <SwiperSlide
                 class="filter-option"
@@ -137,7 +151,10 @@
               >
                 <NuxtLink
                   :to="{
-                    query: { ...route.query, year: item.name },
+                    query: {
+                      ...route.query,
+                      year: item.name != route.query?.year ? item.name : '',
+                    },
                   }"
                 >
                   {{ item?.name }}
@@ -176,6 +193,7 @@
             <Swiper
               class="filter-options"
               :modules="[SwiperFreeMode, SwiperNavigation]"
+              :slidesPerGroup="5"
               :speed="500"
               :slides-per-view="'auto'"
               :space-between="10"
@@ -184,6 +202,11 @@
                 prevEl: '.swiper-button-prev',
                 nextEl: '.swiper-button-next',
               }"
+              :initialSlide="
+                countries.findIndex(
+                  (item1) => item1.iso_639_1 == route.query?.country
+                )
+              "
             >
               <SwiperSlide
                 class="filter-option"
@@ -196,7 +219,13 @@
               >
                 <NuxtLink
                   :to="{
-                    query: { ...route.query, country: item.iso_639_1 },
+                    query: {
+                      ...route.query,
+                      country:
+                        item.iso_639_1 != route.query?.country
+                          ? item.iso_639_1
+                          : '',
+                    },
                   }"
                 >
                   {{ item?.name }}

@@ -1,9 +1,16 @@
 <template>
   <div class="discover padding-content">
-    <FilterBar
-      @dataFiltered="(data: any[], formSelect: formfilter) => setDataFiltered(data, formSelect)"
+    <FilterSection
+      :listFilter="[
+        { name: 'Tất cả', value: 'all' },
+        { name: 'Airing Today', value: 'airingtoday' },
+        { name: 'Ontheair', value: 'ontheair' },
+        { name: 'Popular', value: 'popular' },
+        { name: 'Toprated', value: 'toprated' },
+      ]"
       v-model:loading="loading"
       :cancelFilter="cancelFilter"
+      @onFilter="handleFilter"
     />
 
     <div class="discover-head">
@@ -13,7 +20,7 @@
     </div>
 
     <section class="discover-section">
-      <div v-if="!loading" class="movie-group horizontal">
+      <div class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in dataDiscover"
           :index="index"
@@ -23,7 +30,7 @@
         />
       </div>
 
-      <LoadingCircle v-else class="loading-page" />
+      <!-- <LoadingCircle v-else class="loading-page" /> -->
     </section>
 
     <ControlPage
@@ -38,11 +45,9 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { DiscoverTv } from '~/services/discover';
-
-import { FilterMovie } from '~/services/discover';
+import { FilterTvSlug } from '~/services/TvSlug';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import FilterBar from '~/components/FilterBar/FilterBar.vue';
+import FilterSection from '~/components/FilterSection/FilterSection.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 import type { formfilter, typeTv } from '@/types';
@@ -56,13 +61,16 @@ const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const isFilter = ref<boolean>(false);
 const loading = ref<boolean>(false);
-const formFilter = ref<formfilter>({
-  type: 'all',
-  sortBy: '',
-  genre: '',
-  year: '',
-  country: '',
-  page: 1,
+const formFilter = computed<formfilter>(() => {
+  return {
+    type: route.query.type || 'all',
+    sortBy: route.query.sort_by || '',
+    genre: route.query.genre || '',
+    year: route.query.year || '',
+    country: route.query.country || '',
+    page: 1,
+    limit: 20,
+  };
 });
 const tvSlugRoute = computed<typeTv>(() => route.query.type);
 const metaHead = ref<string>('Phim bộ: ' + tvSlugRoute.value);
@@ -86,37 +94,20 @@ useServerSeoMeta({
 const getData = async () => {
   loading.value = true;
 
-  await nextTick();
-
-  if (isFilter.value) {
-    await useAsyncData(`discover/${formFilter.value}}`, () =>
-      FilterMovie(formFilter.value)
-    )
-      .then((movieResponse: any) => {
-        dataDiscover.value = movieResponse.data.value?.results;
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loading.value = false;
-      });
-  } else {
-    await useAsyncData(`tv/${tvSlugRoute.value}/${page.value}`, () =>
-      DiscoverTv(tvSlugRoute.value, page.value)
-    )
-      .then((movieResponse: any) => {
-        dataDiscover.value = movieResponse.data.value?.results;
-        // totalPage.value = movieResponse.data.value?.total;
-        // pageSize.value = movieResponse.data.value?.page_size;
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loading.value = false;
-      });
-  }
+  await useAsyncData(`tv/${tvSlugRoute.value}/${page.value}`, () =>
+    FilterTvSlug(formFilter.value)
+  )
+    .then((movieResponse: any) => {
+      dataDiscover.value = movieResponse.data.value?.results;
+      // totalPage.value = movieResponse.data.value?.total;
+      // pageSize.value = movieResponse.data.value?.page_size;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
 };
 
 onBeforeMount(() => {
@@ -127,11 +118,13 @@ onBeforeMount(() => {
   }, 500);
 });
 
-// getData();
-
-const { data: dataDiscover, pending } = await useAsyncData(
+const {
+  data: dataDiscover,
+  pending,
+  refresh,
+} = await useAsyncData(
   `tv/${tvSlugRoute.value}/${page.value}`,
-  () => DiscoverTv(tvSlugRoute.value, page.value),
+  () => FilterTvSlug(formFilter.value),
   {
     transform: (data: any) => {
       totalPage.value = data?.total;
@@ -142,6 +135,18 @@ const { data: dataDiscover, pending } = await useAsyncData(
     },
   }
 );
+
+watch(
+  formFilter,
+  () => {
+    getData();
+  },
+  { deep: true }
+);
+
+const handleFilter = () => {
+  getData();
+};
 
 const onChangePage = (
   pageSelected: number
@@ -157,21 +162,7 @@ const onChangePage = (
   }
 };
 
-const setDataFiltered = (data: any[], formSelect: formfilter) => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
-  dataDiscover.value = data;
-  formFilter.value = formSelect;
-  isFilter.value = true;
-  page.value = formSelect.page!;
-  metaHead.value = 'Danh sách phim đã lọc';
-
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
-};
-
 const cancelFilter = () => {
-  isFilter.value = false;
-  // getData();
   refreshNuxtData(`tv/${tvSlugRoute.value}/${page.value}`);
   metaHead.value = 'Phim bộ: ' + tvSlugRoute.value;
 };
