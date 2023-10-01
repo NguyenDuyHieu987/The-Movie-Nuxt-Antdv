@@ -425,6 +425,10 @@ header.header-bar {
             display: flex;
           }
 
+          &.notification {
+            margin-right: 15px;
+          }
+
           &.login-header {
             padding-right: 15px;
           }

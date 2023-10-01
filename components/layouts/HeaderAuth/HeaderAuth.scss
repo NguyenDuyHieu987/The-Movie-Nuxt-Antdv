@@ -77,13 +77,6 @@ header.header-bar-auth {
     padding-left: 20px;
     padding-right: 20px;
 
-    .left-header {
-      .logo {
-        a {
-        }
-      }
-    }
-
     .right-header {
       .login-btn {
         font-size: 1.6rem;
@@ -107,9 +100,6 @@ header.header-bar-auth {
         }
       }
     }
-
-    .right-header {
-    }
   }
 }
 
@@ -117,24 +107,11 @@ header.header-bar-auth {
   header.header-bar-auth {
     padding-left: 15px;
     padding-right: 15px;
-
-    .left-header {
-      .logo {
-      }
-    }
-
-    .right-header {
-    }
   }
 }
 
 @media only screen and (max-width: 450px) {
   header.header-bar-auth {
-    .left-header {
-      .logo {
-      }
-    }
-
     .right-header {
       .signup-suggest {
         .signup-note {

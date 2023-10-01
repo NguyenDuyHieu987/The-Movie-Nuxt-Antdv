@@ -1,6 +1,6 @@
 <template>
   <div class="home-container feature">
-    <HeaderHome title="Phim lẻ" />
+    <HeaderHome title="Phim lẻ" viewAllLink="/discover/movie/all" />
 
     <BillboardAnimation v-model:data="dataBilboard" />
 

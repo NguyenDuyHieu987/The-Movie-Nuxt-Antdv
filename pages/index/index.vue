@@ -494,7 +494,7 @@ const getData = async () => {
     });
 
   await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
-    getMoviesByGenres('hoat-hinh', 'views_desc', 1)
+    getMoviesByGenres('hoat-hinh', 1, 'views_desc')
   )
     .then((response) => {
       cartoons.value = response.data.value?.results.slice(0, 12);

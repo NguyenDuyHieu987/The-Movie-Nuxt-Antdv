@@ -16,11 +16,10 @@
     <SeoKit />
     <OgImageStatic />
 
+    <LoadingApp />
+    <RequireAuthDialog />
+
     <div class="app-wrapper">
-      <LoadingApp />
-
-      <RequireAuthDialog />
-
       <NuxtLayout>
         <NuxtPage />
 

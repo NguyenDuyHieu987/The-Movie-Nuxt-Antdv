@@ -106,8 +106,8 @@ const getData = async () => {
     )
       .then((movieResponse: any) => {
         dataDiscover.value = movieResponse.data.value?.results;
-        totalPage.value = movieResponse.data.value?.total;
-        pageSize.value = movieResponse.data.value?.page_size;
+        // totalPage.value = movieResponse.data.value?.total;
+        // pageSize.value = movieResponse.data.value?.page_size;
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;

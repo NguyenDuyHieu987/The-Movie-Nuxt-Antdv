@@ -1,6 +1,6 @@
 <template>
   <div class="home-container televison">
-    <HeaderHome title="Phim bộ" />
+    <HeaderHome title="Phim bộ" viewAllLink="/discover/tv/all" />
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
