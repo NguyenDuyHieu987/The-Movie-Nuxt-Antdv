@@ -42,7 +42,7 @@
       />
 
       <ControlPage
-        v-show="searchData?.length"
+        v-show="searchData?.length && activeTabSearch == 'all'"
         :page="page"
         :total="totalPage"
         :pageSize="pageSize"

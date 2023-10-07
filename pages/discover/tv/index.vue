@@ -20,8 +20,8 @@
     </div>
 
     <section class="discover-section">
-      <div v-if="!loading" class="movie-group horizontal">
-        <MovieCardHorizontal
+      <div v-if="!loading" class="movie-group vertical">
+        <MovieCardVertical
           v-for="(item, index) in dataDiscover"
           :index="index"
           :key="item.id"
@@ -47,6 +47,7 @@
 import axios from 'axios';
 import { FilterTvSlug } from '~/services/TvSlug';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
+import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
 import FilterSection from '~/components/FilterSection/FilterSection.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
@@ -71,19 +72,18 @@ const formFilter = computed<formfilter>(() => {
     limit: 20,
   };
 });
-const tvSlugRoute = computed<typeTv>(() => route.query.type);
-const metaHead = ref<string>('Phim bộ: ' + tvSlugRoute.value);
+const metaHead = ref<string>('Phim bộ: ' + formFilter.value.type);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: () => 'Khám phá - Phim bộ: ' + tvSlugRoute.value,
+  title: () => 'Khám phá - Phim bộ: ' + formFilter.value.type,
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Khám phá - Phim bộ: ' + tvSlugRoute.value,
+  title: () => 'Khám phá - Phim bộ: ' + formFilter.value.type,
   description: () => 'Khám phá phim mới cùng Phimhay247',
-  ogTitle: () => 'Khám phá - Phim bộ: ' + tvSlugRoute.value,
+  ogTitle: () => 'Khám phá - Phim bộ: ' + formFilter.value.type,
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => 'Khám phá phim mới cùng Phimhay247',
@@ -161,8 +161,8 @@ const onChangePage = (
 };
 
 const cancelFilter = () => {
-  refreshNuxtData(`tv/${tvSlugRoute.value}/${page.value}`);
-  metaHead.value = 'Phim bộ: ' + tvSlugRoute.value;
+  refreshNuxtData(`tv/${formFilter.value.type}`);
+  metaHead.value = 'Phim bộ: ' + formFilter.value.type;
 };
 </script>
 

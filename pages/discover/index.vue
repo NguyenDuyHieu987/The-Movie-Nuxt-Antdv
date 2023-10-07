@@ -3,10 +3,8 @@
     <FilterSection
       :listFilter="[
         { name: 'Tất cả', value: 'all' },
-        { name: 'Nowplaying', value: 'nowplaying' },
-        { name: 'Popular', value: 'popular' },
-        { name: 'Upcoming', value: 'upcoming' },
-        { name: 'Toprated', value: 'toprated' },
+        { name: 'Phim lẻ', value: 'movie' },
+        { name: 'Phim bộ', value: 'tv' },
       ]"
       v-model:loading="loading"
       :cancelFilter="cancelFilter"
@@ -45,7 +43,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { FilterMovieSlug } from '~/services/movieSlug';
+import { FilterMovie } from '~/services/discover';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
 import FilterSection from '~/components/FilterSection/FilterSection.vue';
@@ -72,18 +70,18 @@ const formFilter = computed<formfilter>(() => {
     limit: 20,
   };
 });
-const metaHead = ref<string>('Phim lẻ: ' + formFilter.value.type);
+const metaHead = ref<string>('Khám phá');
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: () => 'Khám phá - Phim lẻ: ' + formFilter.value.type,
+  title: () => 'Khám phá',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Khám phá - Phim lẻ: ' + formFilter.value.type,
+  title: () => 'Khám phá',
   description: () => 'Khám phá phim mới cùng Phimhay247',
-  ogTitle: () => 'Khám phá - Phim lẻ: ' + formFilter.value.type,
+  ogTitle: () => 'Khám phá',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => 'Khám phá phim mới cùng Phimhay247',
@@ -93,8 +91,8 @@ useServerSeoMeta({
 const getData = async () => {
   // loading.value = true;
 
-  await useAsyncData(`movie/discover/${formFilter.value}`, () =>
-    FilterMovieSlug(formFilter.value)
+  await useAsyncData(`discover/${formFilter.value}`, () =>
+    FilterMovie(formFilter.value)
   )
     .then((movieResponse) => {
       dataDiscover.value = movieResponse.data.value?.results;
@@ -124,8 +122,8 @@ const {
   pending,
   refresh,
 } = await useAsyncData(
-  `cache/movie/discover/${formFilter.value}`,
-  () => FilterMovieSlug(formFilter.value),
+  `cache/discover/${formFilter.value}`,
+  () => FilterMovie(formFilter.value),
   {
     transform: (data: any) => {
       totalPage.value = data?.total;
@@ -161,9 +159,9 @@ const onChangePage = (
 };
 
 const cancelFilter = () => {
-  refreshNuxtData(`movie/${formFilter.value.type}`);
-  metaHead.value = 'Phim lẻ: ' + formFilter.value.type;
+  refreshNuxtData(`discover/${formFilter.value}`);
+  metaHead.value = 'Khám phá';
 };
 </script>
 
-<style lang="scss" src="../DiscoverPage.scss"></style>
+<style lang="scss" src="./DiscoverPage.scss"></style>
