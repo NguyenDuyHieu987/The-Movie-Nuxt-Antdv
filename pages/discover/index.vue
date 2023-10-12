@@ -13,13 +13,13 @@
 
     <div class="discover-title">
       <h2 class="gradient-title-default underline">
-        <span>{{ metaHead }}</span>
+        <span>Khám phá</span>
       </h2>
     </div>
 
     <section class="discover-section">
-      <div v-if="!loading" class="movie-group vertical">
-        <MovieCardVertical
+      <div v-if="!loading" class="movie-group horizontal">
+        <MovieCardHorizontal
           v-for="(item, index) in dataDiscover"
           :index="index"
           :key="item.id"
@@ -70,7 +70,6 @@ const formFilter = computed<formfilter>(() => {
     limit: 20,
   };
 });
-const metaHead = ref<string>('Khám phá');
 const internalInstance: any = getCurrentInstance();
 
 useHead({
@@ -160,7 +159,6 @@ const onChangePage = (
 
 const cancelFilter = () => {
   refreshNuxtData(`discover/${formFilter.value}`);
-  metaHead.value = 'Khám phá';
 };
 </script>
 

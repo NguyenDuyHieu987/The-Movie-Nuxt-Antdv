@@ -15,7 +15,7 @@
 
     <div class="discover-title">
       <h2 class="gradient-title-default underline">
-        <span>{{ metaHead }}</span>
+        <span>Phim bộ: {{ formFilter.type }}</span>
       </h2>
     </div>
 
@@ -72,7 +72,6 @@ const formFilter = computed<formfilter>(() => {
     limit: 20,
   };
 });
-const metaHead = ref<string>('Phim bộ: ' + formFilter.value.type);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
@@ -162,7 +161,6 @@ const onChangePage = (
 
 const cancelFilter = () => {
   refreshNuxtData(`tv/${formFilter.value.type}`);
-  metaHead.value = 'Phim bộ: ' + formFilter.value.type;
 };
 </script>
 

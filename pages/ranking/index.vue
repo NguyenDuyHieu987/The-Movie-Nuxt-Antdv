@@ -103,7 +103,7 @@ onBeforeMount(() => {
 loading.value = true;
 
 const { data: rankings, pending } = await useAsyncData(
-  `trending/all/${pageTrending.value}`,
+  `cache/trending/all/${pageTrending.value}`,
   () => getTrending(pageTrending.value),
   {
     transform: (data: any) => {
@@ -117,7 +117,10 @@ const { data: rankings, pending } = await useAsyncData(
   }
 );
 
-watch(pageTrending, async () => {
+const onChangePage = async (pageSelected: number) => {
+  pageTrending.value = pageSelected;
+  router.push({ query: { page: pageSelected } });
+
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )
@@ -127,11 +130,6 @@ watch(pageTrending, async () => {
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
-});
-
-const onChangePage = (pageSelected: number) => {
-  pageTrending.value = pageSelected;
-  router.push({ query: { page: pageSelected } });
 };
 </script>
 
