@@ -69,7 +69,7 @@
           </div>
         </NuxtLink>
 
-        <div class="info-bottom">
+        <div class="info">
           <p class="title">
             {{ item?.name }}
           </p>

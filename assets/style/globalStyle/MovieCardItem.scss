@@ -106,9 +106,6 @@
 
   .info {
     display: flex;
-    // padding: 3px 5px;
-    padding: 3px 8px;
-    padding-top: 15px;
     color: inherit;
     font-size: 0.9vw;
 
@@ -117,21 +114,6 @@
       position: relative;
       z-index: 1;
       transition: all 0.25s;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 100%;
-      width: 100%;
-      background-image: linear-gradient(
-        0deg,
-        var(--background-content-color) 0%,
-        rgba(7, 7, 7, 0) 100%
-      );
-      opacity: 0.7;
     }
 
     .title,
@@ -156,14 +138,6 @@
             padding-right: 0.4vw;
           }
         }
-      }
-    }
-
-    .info-bottom {
-      display: flex;
-
-      p + p {
-        margin-left: 5px;
       }
     }
   }
