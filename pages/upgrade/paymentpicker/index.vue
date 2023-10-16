@@ -141,13 +141,13 @@ import type { plan } from '@/types';
 definePageMeta({
   layout: 'service',
   middleware: [
-    (to, from) => {
+    async (to, from) => {
       if (!to.query.planorder) return navigateTo('/upgrade/plans');
 
       getAllPlan()
         .then((response: any) => {
           if (
-            !response.results?.some(
+            !response?.results.some(
               (item: plan) => item.order == Number(to.query.planorder)
             )
           )
@@ -171,19 +171,19 @@ const planSelected = ref<plan>();
 
 watch(
   route.query,
-  () => {
+  async () => {
     if (!route.query.planorder) return navigateTo('/upgrade/plans');
 
     getAllPlan()
       .then((response: any) => {
         if (
-          !response.results?.some(
+          !response?.results.some(
             (item: plan) => item.order == Number(route.query.planorder)
           )
         )
           navigateTo('/upgrade/plans');
 
-        planSelected.value = response.results?.find(
+        planSelected.value = response?.results.find(
           (item: plan) => item.order == Number(route.query.planorder)
         );
       })

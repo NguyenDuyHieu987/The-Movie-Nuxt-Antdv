@@ -41,7 +41,6 @@
 <script setup lang="ts">
 import PlanGrid from '~/components/PlanGrid/PlanGrid.vue';
 import type { plan } from '@/types';
-import gsap from 'gsap';
 
 definePageMeta({
   // layout: 'service',

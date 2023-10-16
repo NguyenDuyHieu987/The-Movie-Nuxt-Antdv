@@ -1,6 +1,6 @@
 .movie-card-item {
-  display: block;
   position: relative;
+  display: block;
   cursor: pointer;
   color: inherit !important;
   overflow: hidden;
@@ -111,10 +111,6 @@
     padding-top: 15px;
     color: inherit;
     font-size: 0.9vw;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
 
     .title,
     .genres {

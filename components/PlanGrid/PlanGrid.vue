@@ -74,7 +74,7 @@
                   <td class="plan-option price">
                     {{
                       item.price
-                        .toString()
+                        ?.toString()
                         ?.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' ₫'
                     }}
                   </td>
@@ -197,13 +197,14 @@ const loading = ref<boolean>(false);
 const selected = ref<string>('');
 
 onBeforeMount(async () => {
-  await nextTick();
-
   loading.value = true;
+
+  await nextTick();
 
   await useAsyncData(`plan/all`, () => getAllPlan())
     .then((response: any) => {
       plans.value = response.data.value?.results;
+
       selected.value = response.data.value?.results.find(
         (item: plan) => item.order == 3
       ).id;
@@ -217,9 +218,7 @@ onBeforeMount(async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      setTimeout(() => {
-        loading.value = false;
-      }, 500);
+      loading.value = false;
     });
 });
 
