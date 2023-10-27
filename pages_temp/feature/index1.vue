@@ -127,7 +127,7 @@ import {
   getTopRated,
   FilterMovieSlug,
 } from '~/services/movieSlug';
-import { genre, formfilter } from '~/types';
+import type { genre, formfilter } from '~/types';
 
 useHead({
   title: 'Phim lẻ',

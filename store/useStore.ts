@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { genre, country, year, user } from '@/types';
+import type { genre, country, year, user } from '@/types';
 
 export default defineStore('store', () => {
   const utils = useUtils();

@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 
   // The getCookie method is available to all
   // Nuxt routes by default. No need to import.
-  const token = getCookie(event, 'session_token');
+  const token = getCookie('session_token');
 
   console.log(token);
 

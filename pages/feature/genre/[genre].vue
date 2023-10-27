@@ -151,7 +151,7 @@ import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/Head
 import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';
 import { getGenreById } from '~/services/genres';
 import { FilterMovieSlug } from '~/services/movieSlug';
-import { genre, formfilter } from '~/types';
+import type { genre, formfilter } from '~/types';
 
 const store = useStore();
 const route = useRoute();

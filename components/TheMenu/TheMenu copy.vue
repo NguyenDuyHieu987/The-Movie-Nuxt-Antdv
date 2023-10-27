@@ -412,7 +412,7 @@ import { HomeOutlined } from '@ant-design/icons-vue';
 import { getAllGenre } from '~/services/genres';
 import { getAllCountry } from '~/services/country';
 import { getAllYear } from '~/services/year';
-import { genre, country, year } from '@/types';
+import type { genre, country, year } from '@/types';
 
 const route: any = useRoute();
 const utils = useUtils();

@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { genre } from '~/types';
+import type { genre } from '~/types';
 import { getGenreById } from '~/services/genres';
 
 defineProps<{

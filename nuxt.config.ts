@@ -6,7 +6,7 @@ import * as AntDV from 'ant-design-vue';
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 // import axios from 'axios';
-import { genre, country, year } from './types';
+import type { genre, country, year } from './types';
 import GENRES from './constants/data/Genres';
 import COUNTRIES from './constants/data/Country';
 import YEARS from './constants/data/Years';
@@ -187,6 +187,11 @@ export default defineNuxtConfig({
     restoreState: true,
     headNext: true,
     asyncContext: true,
+    defaults: {
+      useAsyncData: {
+        deep: false,
+      },
+    },
   },
   typescript: {
     strict: true,
