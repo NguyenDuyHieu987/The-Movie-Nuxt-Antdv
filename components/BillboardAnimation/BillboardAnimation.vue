@@ -1,12 +1,12 @@
 <template>
   <div class="billboard-animation-container">
     <div class="overlay-backdrop">
-      <!-- <NuxtImg
+      <NuxtImg
         :src="getImage(currenImage, 'backdrop', 'w-1200')"
         format="avif"
         loading="lazy"
         alt=""
-      /> -->
+      />
     </div>
 
     <div class="variant-backdrop"></div>
