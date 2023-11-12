@@ -22,6 +22,7 @@
       preload="metadata"
       autoplay
       muted
+      v-lazy-load
       @loadstart="onLoadStartVideo"
       @loadeddata="onLoadedDataVideo"
       @canplay="onCanPlayVideo"
@@ -32,7 +33,6 @@
       @play="onPlayVideo"
       @pause="onPauseVideo"
       @playing="onPLayingVideo"
-      v-lazy-load
     >
       <!-- <source :data-src="blobVideoSrc" ref="srcVideo" type="video/mp4" /> -->
     </video>
@@ -734,7 +734,7 @@ const videoSrc = computed<string>(
     // nuxtConfig.app.production_mode
     //   ? nuxtConfig.app.serverVideoUrl + '/videos/' + props.videoUrl
     //   : 'http://localhost:5002/videos/' + props.videoUrl
-    'http://localhost:5002/static/videos/' + props.videoUrl
+    'http://localhost:5002/videos/' + props.videoUrl
 );
 const blobVideoSrc = ref<string>('');
 const videoPlayer = ref();
@@ -868,6 +868,7 @@ onBeforeRouteLeave(() => {
 
   window.removeEventListener('pointerup', windowPointerUp);
   window.removeEventListener('touchend', windowTouchEnd);
+  video.value.removeEventListener('progress', onProgressVideo);
 });
 
 const windowPointerUp = () => {
@@ -903,8 +904,6 @@ const windowTouchEnd = () => {
 };
 
 onMounted(() => {
-  video.value.muted = false;
-
   window.addEventListener('pointerup', windowPointerUp);
 
   window.addEventListener('touchend', windowTouchEnd);
@@ -985,7 +984,10 @@ const onLoadStartVideo = () => {
 
 const onCanPlayVideo = () => {
   // console.log('can play video');
+  video.value.muted = false;
+  videoStates.isLoaded = true;
   videoStates.isPlayVideo = true;
+  videoStates.isLoading = false;
 };
 
 const onLoadedDataVideo = () => {
@@ -1010,12 +1012,23 @@ const onProgressVideo = (e: any) => {
   // console.log('buffered:', video.value.buffered.end(0));
   // console.log('seekable:', video.value.seekable.end(0));
 
-  // const seekableDuration = video.value.seekable.end(0);
-
   if (videoStates.isLoaded) {
-    const seekableDuration = video.value.buffered.end(0);
-    const percent = seekableDuration / e.target.duration;
-    overlayProgress.value.style.setProperty('--seekable-width', percent);
+    const bufferedLength: number = video.value.buffered.length;
+
+    for (let i = 0; i < bufferedLength; i++) {
+      const bufferedStart = video.value.buffered.start(bufferedLength - 1 - i);
+      const bufferedEnd = video.value.buffered.end(bufferedLength - 1 - i);
+
+      console.log(`buffered start ${bufferedLength - 1 - i}:`, bufferedStart);
+      console.log(`buffered end ${bufferedLength - 1 - i}:`, bufferedEnd);
+      console.log('video currentTime:', video.value.currentTime);
+
+      if (video.value.currentTime > bufferedStart) {
+        const percent = bufferedEnd / e.target.duration;
+        overlayProgress.value.style.setProperty('--seekable-width', percent);
+        break;
+      }
+    }
   }
 };
 
