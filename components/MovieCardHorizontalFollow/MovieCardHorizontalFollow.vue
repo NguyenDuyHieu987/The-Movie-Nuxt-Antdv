@@ -62,7 +62,7 @@
               </span>
 
               <!-- <span v-if="isEpisodes">
-                {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
+                {{ ' - Phần ' + dataMovie?.season?.season_number }}
               </span> -->
             </h2>
 

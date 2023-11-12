@@ -731,10 +731,10 @@ const emits = defineEmits<{
 const nuxtConfig = useRuntimeConfig();
 const videoSrc = computed<string>(
   () =>
-    nuxtConfig.app.production_mode
-      ? nuxtConfig.app.serverVideoUrl + '/videos/' + props.videoUrl
-      : 'http://localhost:5002/videos/' + props.videoUrl
-    // 'http://localhost:5002/videos/' + props.videoUrl
+    // nuxtConfig.app.production_mode
+    //   ? nuxtConfig.app.serverVideoUrl + '/videos/' + props.videoUrl
+    //   : 'http://localhost:5002/videos/' + props.videoUrl
+    'http://localhost:5002/static/videos/' + props.videoUrl
 );
 const blobVideoSrc = ref<string>('');
 const videoPlayer = ref();
@@ -1011,9 +1011,12 @@ const onProgressVideo = (e: any) => {
   // console.log('seekable:', video.value.seekable.end(0));
 
   // const seekableDuration = video.value.seekable.end(0);
-  const seekableDuration = video.value.buffered.end(0);
-  const percent = seekableDuration / e.target.duration;
-  overlayProgress.value.style.setProperty('--seekable-width', percent);
+
+  if (videoStates.isLoaded) {
+    const seekableDuration = video.value.buffered.end(0);
+    const percent = seekableDuration / e.target.duration;
+    overlayProgress.value.style.setProperty('--seekable-width', percent);
+  }
 };
 
 const onMouseMoveVideo = () => {
