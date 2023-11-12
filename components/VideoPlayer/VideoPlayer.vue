@@ -1019,9 +1019,8 @@ const onProgressVideo = (e: any) => {
       const bufferedStart = video.value.buffered.start(bufferedLength - 1 - i);
       const bufferedEnd = video.value.buffered.end(bufferedLength - 1 - i);
 
-      console.log(`buffered start ${bufferedLength - 1 - i}:`, bufferedStart);
-      console.log(`buffered end ${bufferedLength - 1 - i}:`, bufferedEnd);
-      console.log('video currentTime:', video.value.currentTime);
+      // console.log(`buffered start ${bufferedLength - 1 - i}:`, bufferedStart);
+      // console.log(`buffered end ${bufferedLength - 1 - i}:`, bufferedEnd);
 
       if (video.value.currentTime > bufferedStart) {
         const percent = bufferedEnd / e.target.duration;
