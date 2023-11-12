@@ -197,7 +197,7 @@ export default defineNuxtConfig({
     strict: true,
   },
   site: {
-    url: 'https://phimhay247.tech',
+    url: 'https://phimhay247z.org',
   },
   css: [
     'ant-design-vue/dist/antd.dark.min.css',
@@ -230,17 +230,17 @@ export default defineNuxtConfig({
     '@nuxtjs/fontaine',
     // '@nuxtjs/google-fonts',
     'nuxt-simple-sitemap',
-    'nuxt-og-image',
-    'nuxt-seo-experiments',
+    // 'nuxt-og-image',
+    // 'nuxt-seo-experiments',
     'nuxt-gtag',
     // 'vue-social-sharing/nuxt',
     // 'nuxt-delay-hydration',
   ],
-  extends: ['nuxt-seo-kit'],
+  // extends: ['nuxt-seo-kit'],
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
   },
-  ogImage: {},
+  // ogImage: {},
   sitemap: {},
   gtag: {
     id: process.env.GOOGLE_ANALYTICS_ID,

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <ClientOnly>
+    <ClientOnly>
       <vue-progress-bar
         style="
           background: linear-gradient(
@@ -11,7 +11,7 @@
           );
         "
       />
-    </ClientOnly> -->
+    </ClientOnly>
 
     <NuxtLoadingIndicator
       color="linear-gradient(
@@ -24,8 +24,8 @@
       :throttle="300"
     />
 
-    <SeoKit />
-    <OgImageStatic />
+    <!-- <SeoKit />
+    <OgImageStatic /> -->
 
     <LoadingApp />
     <RequireAuthDialog />
