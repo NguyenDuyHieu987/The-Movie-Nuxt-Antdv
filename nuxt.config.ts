@@ -430,7 +430,7 @@ export default defineNuxtConfig({
   ssr: true,
   sourcemap: {
     server: true,
-    client: true,
+    client: false,
   },
   router: {
     options: {
