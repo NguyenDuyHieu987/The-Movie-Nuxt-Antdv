@@ -165,6 +165,7 @@ const loadingTopRated = ref<boolean>(true);
 const loadingUpComing = ref<boolean>(true);
 const formFilter = ref<formfilter>({
   type: 'all',
+  sortBy: '',
   genre: route.params.genre,
   year: '',
   country: '',
@@ -212,19 +213,22 @@ const responsiveHorizoltal = computed<any>((): any => ({
 }));
 
 useHead({
-  title: () => 'Phim lẻ - ' + genreRoute.value.name_vietsub,
+  title: () =>
+    'Phim lẻ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Phim lẻ - ' + genreRoute.value.name_vietsub,
+  title: () =>
+    'Phim lẻ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
   description: () =>
-    'Phim lẻ, Phim chiếu rạp - Thể loại: ' + genreRoute.value.name_vietsub,
-  ogTitle: () => 'Phim lẻ - ' + genreRoute.value.name_vietsub,
+    'Phim lẻ, Phim chiếu rạp | Thể loại: ' + genreRoute.value.name_vietsub,
+  ogTitle: () =>
+    'Phim lẻ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: () =>
-    'Phim lẻ, Phim chiếu rạp - Thể loại: ' + genreRoute.value.name_vietsub,
+    'Phim lẻ, Phim chiếu rạp | Thể loại: ' + genreRoute.value.name_vietsub,
   ogLocale: 'vi',
 });
 

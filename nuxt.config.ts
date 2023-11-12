@@ -31,10 +31,10 @@ const discoverYears = async () => {
 export default defineNuxtConfig({
   app: {
     rootId: '__nuxt',
-    buildAssetsDir: 'home/',
+    // buildAssetsDir: 'home/',
     head: {
       title: 'Phimhay247',
-      titleTemplate: '%pageTitle %titleSeparator %siteName',
+      // titleTemplate: '%pageTitle %titleSeparator %siteName',
       meta: [
         {
           charset: 'utf-8',
@@ -426,10 +426,11 @@ export default defineNuxtConfig({
       },
     },
   },
+  vue: { defineModel: true, propsDestructure: true },
   ssr: true,
   sourcemap: {
     server: true,
-    client: false,
+    client: true,
   },
   router: {
     options: {

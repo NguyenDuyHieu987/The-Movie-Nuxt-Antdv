@@ -93,14 +93,14 @@ const metaHead = ref<string>('Năm: ' + yearRoute.value);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: () => 'Khám phá - Năm: ' + yearRoute.value,
+  title: () => 'Khám phá | Năm: ' + yearRoute.value + ' - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Khám phá - Năm: ' + yearRoute.value,
+  title: () => 'Khám phá | Năm: ' + yearRoute.value + ' - Phimhay247',
   description: () => 'Khám phá phim mới cùng Phimhay247',
-  ogTitle: () => 'Khám phá - Năm: ' + yearRoute.value,
+  ogTitle: () => 'Khám phá | Năm: ' + yearRoute.value + ' - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => 'Khám phá phim mới cùng Phimhay247',

@@ -195,14 +195,14 @@ watch(
 );
 
 useHead({
-  title: 'Thanh toán - Phương thức thanh toán',
+  title: 'Phương thức thanh toán - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Thanh toán - Phương thức thanh toán',
+  title: 'Phương thức thanh toán - Phimhay247',
   description: 'Thanh toán gói dịch vụ',
-  ogTitle: 'Thanh toán - Phương thức thanh toán',
+  ogTitle: 'Phương thức thanh toán - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Thanh toán gói dịch vụ',

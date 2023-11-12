@@ -74,14 +74,14 @@ const internalInstance: any = getCurrentInstance();
 const searchQuery = computed<string>(() => route.query.q?.replaceAll('+', ' '));
 
 useHead({
-  title: () => 'Tìm kiếm: ' + searchQuery.value,
+  title: () => 'Tìm kiếm: ' + searchQuery.value + ' - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Tìm kiếm: ' + searchQuery.value,
+  title: () => 'Tìm kiếm: ' + searchQuery.value + ' - Phimhay247',
   description: 'Tìm kiếm phim hay vói Phimhay247',
-  ogTitle: () => 'Tìm kiếm: ' + searchQuery.value,
+  ogTitle: () => 'Tìm kiếm: ' + searchQuery.value + ' - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Tìm kiếm phim hay vói Phimhay247',

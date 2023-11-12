@@ -459,14 +459,14 @@ onBeforeMount(() => {
 getData();
 
 useHead({
-  title: () => 'Thông tin - ' + dataMovie.value?.name,
+  title: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Thông tin - ' + dataMovie.value?.name,
+  title: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',
   description: () => dataMovie.value?.overview,
-  ogTitle: () => 'Thông tin - ' + dataMovie.value?.name,
+  ogTitle: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,

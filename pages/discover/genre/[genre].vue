@@ -92,14 +92,17 @@ const metaHead = ref<string>('Thể loại: ' + genreRoute.value.name_vietsub);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: () => 'Khám phá - Thể loại: ' + genreRoute.value.name_vietsub,
+  title: () =>
+    'Khám phá | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: () => 'Khám phá - Thể loại: ' + genreRoute.value.name_vietsub,
+  title: () =>
+    'Khám phá | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
   description: () => 'Khám phá phim mới cùng Phimhay247',
-  ogTitle: () => 'Khám phá - Thể loại: ' + genreRoute.value.name_vietsub,
+  ogTitle: () =>
+    'Khám phá | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => 'Khám phá phim mới cùng Phimhay247',

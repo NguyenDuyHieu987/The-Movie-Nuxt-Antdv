@@ -34,17 +34,17 @@ definePageMeta({
 });
 
 useHead({
-  title: 'Nâng cấp tài khoản thành công - Thanh toán bằng VNPAY',
+  title: 'Nâng cấp tài khoản thành công - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Nâng cấp tài khoản thành công - Thanh toán bằng VNPAY',
-  description: 'Nâng cấp tài khoản thành công - Thanh toán bằng VNPAY',
-  ogTitle: 'Nâng cấp tài khoản thành công - Thanh toán bằng VNPAY',
+  title: 'Nâng cấp tài khoản thành công - Phimhay247',
+  description: 'Nâng cấp tài khoản thành công, Thanh toán bằng VNPAY',
+  ogTitle: 'Nâng cấp tài khoản thành công - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Nâng cấp tài khoản thành công - Thanh toán bằng VNPAY',
+  ogDescription: 'Nâng cấp tài khoản thành công, Thanh toán bằng VNPAY',
   ogLocale: 'vi',
 });
 </script>

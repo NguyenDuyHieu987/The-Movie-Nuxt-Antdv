@@ -55,17 +55,17 @@ const internalInstance: any = getCurrentInstance();
 const showAnimation = ref<boolean>(false);
 
 useHead({
-  title: 'Nâng cấp tài khoản',
+  title: 'Nâng cấp tài khoản - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
   title: 'Nâng cấp tài khoản',
-  description: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
+  description: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói - Phimhay247',
   ogTitle: 'Nâng cấp tài khoản',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
+  ogDescription: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói - Phimhay247',
   ogLocale: 'vi',
 });
 

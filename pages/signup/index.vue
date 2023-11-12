@@ -201,14 +201,14 @@ definePageMeta({
 });
 
 useHead({
-  title: 'Đăng ký',
+  title: 'Đăng ký - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Đăng ký',
+  title: 'Đăng ký - Phimhay247',
   description: 'Xem phim thỏa thích cùng Phimhay247',
-  ogTitle: 'Đăng ký',
+  ogTitle: 'Đăng ký - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Xem phim thỏa thích cùng Phimhay247',

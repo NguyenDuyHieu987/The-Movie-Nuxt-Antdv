@@ -318,14 +318,14 @@ import { getMyRecommend } from '~/services/recommend';
 import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
 
 useHead({
-  title: 'Xem phim Online 24/7',
+  title: 'Xem phim Online 24/7 - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Xem phim Online 24/7',
+  title: 'Xem phim Online 24/7 - Phimhay247',
   description: 'Xem phim thỏa thích cùng Phimhay247',
-  ogTitle: 'Xem phim Online 24/7',
+  ogTitle: 'Xem phim Online 24/7 - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Xem phim thỏa thích cùng Phimhay247',
