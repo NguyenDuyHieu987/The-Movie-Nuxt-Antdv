@@ -984,7 +984,6 @@ const onLoadStartVideo = () => {
 
 const onCanPlayVideo = () => {
   // console.log('can play video');
-  video.value.muted = false;
   videoStates.isLoaded = true;
   videoStates.isPlayVideo = true;
   videoStates.isLoading = false;
@@ -992,6 +991,7 @@ const onCanPlayVideo = () => {
 
 const onLoadedDataVideo = () => {
   // console.log('loaded start video');
+  video.value.muted = false;
   videoStates.isLoaded = true;
   duration.value = formatDuration(video.value.duration);
 };
