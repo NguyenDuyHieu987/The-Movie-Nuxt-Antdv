@@ -238,8 +238,6 @@ const otpExpOffset = ref<number>(0);
 const showAnimation = ref<boolean>(true);
 const internalInstance: any = getCurrentInstance();
 
-onBeforeMount(() => {});
-
 const reset = () => {
   formSignup.fullname = '';
   formSignup.username = '';

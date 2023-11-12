@@ -214,8 +214,6 @@ onMounted(() => {
 });
 
 const getData = async () => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
   await useAsyncData(
     `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
     () => getHistory(activeTab.value, 1)
@@ -246,7 +244,6 @@ const getData = async () => {
     })
     .finally(() => {
       loading.value = true;
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };
 

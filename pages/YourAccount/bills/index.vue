@@ -33,11 +33,6 @@ useServerSeoMeta({
 });
 
 const internalInstance: any = getCurrentInstance();
-
-onBeforeMount(() => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
-});
 </script>
 
 <style scoped lang="scss" src="./BillsPage.scss"></style>

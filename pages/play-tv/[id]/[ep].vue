@@ -321,12 +321,9 @@ const currentEpisode = ref<any>({});
 const windowWidth = ref<number>(1200);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
 
-const internalInstance: any = getCurrentInstance();
-
 const getData = async () => {
   isEpisodes.value = true;
   loading.value = true;
-  internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await nextTick();
 
@@ -343,7 +340,6 @@ const getData = async () => {
     })
     .finally(() => {
       loading.value = false;
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
 
       window.scrollTo({
         top: 0,

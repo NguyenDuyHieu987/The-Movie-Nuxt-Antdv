@@ -183,7 +183,6 @@ const loadingNowPlaying = ref<boolean>(true);
 const loadingPopular = ref<boolean>(true);
 const loadingTopRated = ref<boolean>(true);
 const loadingUpComing = ref<boolean>(true);
-const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
@@ -226,8 +225,6 @@ const getData = async () => {
   loadingTopRated.value = true;
   loadingUpComing.value = true;
   loadingPopular.value = true;
-
-  internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await nextTick();
 
@@ -274,8 +271,6 @@ const getData = async () => {
     .finally(() => {
       loadingTopRated.value = false;
     });
-
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
 };
 
 const { data: dataBilboard, pending } = await useAsyncData(

@@ -70,11 +70,9 @@ useServerSeoMeta({
 });
 
 onBeforeMount(() => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
   setTimeout(() => {
     showAnimation.value = true;
   });
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
 });
 
 const handleOnSelectPlan = (plan: plan) => {

@@ -135,13 +135,6 @@ useServerSeoMeta({
   ogLocale: 'vi',
 });
 
-onBeforeMount(() => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
-  getForgotPasswordLocalStr();
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
-});
-
 const reset = () => {
   formForgotPassword.email = '';
 };

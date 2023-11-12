@@ -70,7 +70,6 @@ const formFilter = computed<formfilter>(() => {
     limit: 20,
   };
 });
-const internalInstance: any = getCurrentInstance();
 
 useHead({
   title: () => 'Khám phá',
@@ -105,14 +104,6 @@ const getData = async () => {
       loading.value = false;
     });
 };
-
-onBeforeMount(() => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
-  setTimeout(() => {
-    internalInstance.appContext.config.globalProperties.$Progress.finish();
-  }, 500);
-});
 
 loading.value = true;
 

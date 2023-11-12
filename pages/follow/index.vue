@@ -218,8 +218,6 @@ onMounted(() => {
 });
 
 const getData = async () => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
   await useAsyncData(
     `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
     () => getList(activeTab.value, 1)
@@ -250,7 +248,6 @@ const getData = async () => {
     })
     .finally(() => {
       loading.value = true;
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };
 

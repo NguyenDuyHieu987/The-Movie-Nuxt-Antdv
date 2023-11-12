@@ -90,14 +90,6 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
-  setTimeout(() => {
-    internalInstance.appContext.config.globalProperties.$Progress.finish();
-  }, 500);
-});
-
 // getData();
 
 loading.value = true;

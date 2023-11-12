@@ -383,8 +383,6 @@ const disabledRate = ref<boolean>(false);
 const windowWidth = ref<number>(1200);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
 
-const internalInstance: any = getCurrentInstance();
-
 const setBackgroundColor = (color: string[]) => {
   const main_color = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`;
 
@@ -399,8 +397,6 @@ const getData = async () => {
   isAddToList.value = false;
   loading.value = true;
   srcBackdropList.value = [];
-
-  internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await nextTick();
 
@@ -430,7 +426,6 @@ const getData = async () => {
     })
     .finally(() => {
       loading.value = false;
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
 
       window.scrollTo({
         top: 0,

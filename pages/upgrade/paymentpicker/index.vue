@@ -166,7 +166,6 @@ definePageMeta({
 
 const store = useStore();
 const route = useRoute();
-const internalInstance: any = getCurrentInstance();
 const planSelected = ref<plan>();
 
 watch(
@@ -208,11 +207,6 @@ useServerSeoMeta({
   // ogUrl: window.location.href,
   ogDescription: 'Thanh toán gói dịch vụ',
   ogLocale: 'vi',
-});
-
-onBeforeMount(() => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
 });
 
 const handleClickMoMoMethod = () => {};

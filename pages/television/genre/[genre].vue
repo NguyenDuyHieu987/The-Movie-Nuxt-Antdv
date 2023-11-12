@@ -174,7 +174,6 @@ const formFilter = ref<formfilter>({
 const genreRoute = computed<genre>(() =>
   getGenreById(route.params.genre, store.allGenres)
 );
-const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
@@ -234,8 +233,6 @@ const getData = async () => {
   loadingTvOnTheAir.value = true;
   loadingTvPopular.value = true;
   loadingTvTopRated.value = true;
-
-  internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await nextTick();
 
@@ -319,8 +316,6 @@ const getData = async () => {
   // } else {
   //   navigateTo('/404');
   // }
-
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
 };
 
 const { data: dataBilboard, pending } = await useAsyncData(

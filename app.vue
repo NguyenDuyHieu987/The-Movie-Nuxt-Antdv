@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ClientOnly>
+    <!-- <ClientOnly>
       <vue-progress-bar
         style="
           background: linear-gradient(
@@ -11,7 +11,18 @@
           );
         "
       />
-    </ClientOnly>
+    </ClientOnly> -->
+
+    <NuxtLoadingIndicator
+      color="linear-gradient(
+            90deg,
+            var(--loading-progress-bar1),
+            var(--loading-progress-bar2),
+            var(--loading-progress-bar3)
+          );"
+      :height="3"
+      :throttle="300"
+    />
 
     <SeoKit />
     <OgImageStatic />

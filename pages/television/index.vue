@@ -175,7 +175,6 @@ const loadingTvAiringToday = ref<boolean>(true);
 const loadingTvOnTheAir = ref<boolean>(true);
 const loadingTvPopular = ref<boolean>(true);
 const loadingTvTopRated = ref<boolean>(true);
-const internalInstance: any = getCurrentInstance();
 
 const responsiveHorizoltal = computed<any>((): any => ({
   0: {
@@ -218,8 +217,6 @@ const getData = async () => {
   loadingTvOnTheAir.value = true;
   loadingTvPopular.value = true;
   loadingTvTopRated.value = true;
-
-  internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await nextTick();
 
@@ -266,8 +263,6 @@ const getData = async () => {
     .finally(() => {
       loadingTvTopRated.value = false;
     });
-
-  internalInstance.appContext.config.globalProperties.$Progress.finish();
 };
 
 const { data: dataBilboard, pending } = await useAsyncData(
