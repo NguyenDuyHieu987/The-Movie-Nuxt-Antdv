@@ -31,7 +31,7 @@ const discoverYears = async () => {
 export default defineNuxtConfig({
   app: {
     rootId: '__nuxt',
-    // buildAssetsDir: 'home/',
+    buildAssetsDir: 'home/',
     head: {
       title: 'Phimhay247',
       // titleTemplate: '%pageTitle %titleSeparator %siteName',
@@ -166,11 +166,11 @@ export default defineNuxtConfig({
       googleOauth2ClientSecret: process.env.GOOGLE_OAUTH2_CLIENT_SECRET,
     },
     public: {
-      siteUrl: 'https://phimhay247z.org',
-      siteName: 'Phimhay247',
-      siteDescription: 'Xem phim thỏa thích cùng PhimHay247',
-      titleSeparator: '|',
-      language: 'vi',
+      // siteUrl: 'https://phimhay247z.org',
+      // siteName: 'Phimhay247',
+      // siteDescription: 'Xem phim thỏa thích cùng PhimHay247',
+      // titleSeparator: '|',
+      // language: 'vi',
       // trailingSlash: true,
     },
   },
@@ -181,7 +181,7 @@ export default defineNuxtConfig({
     // dirs: ['/services'],
   },
   experimental: {
-    payloadExtraction: false,
+    payloadExtraction: true,
     viewTransition: true,
     componentIslands: true,
     restoreState: true,
