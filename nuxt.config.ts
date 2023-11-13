@@ -299,12 +299,12 @@ export default defineNuxtConfig({
     // '@/plugins/elementPlus',
     // '@/plugins/antd',
     // '@/plugins/iconify',
-    '@/plugins/loadUser',
-    '@/plugins/vueprogressbar',
-    '@/plugins/sharenetwork',
-    '@/plugins/vuelazyload',
-    '@/plugins/googleTagManager',
-    { src: '@/plugins/loadFacebookSdk', mode: 'client' },
+    // '@/plugins/loadUser',
+    // { src: '@/plugins/vueProgressBar', mode: 'client' },
+    // '@/plugins/shareNetwork',
+    // '@/plugins/vueLazyLoad',
+    // '@/plugins/googleTagManager',
+    // { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
     preset: 'static',
@@ -427,7 +427,7 @@ export default defineNuxtConfig({
     },
     server: {
       hmr: {
-        overlay: false,
+        overlay: true,
       },
     },
   },

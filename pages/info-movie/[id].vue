@@ -360,10 +360,10 @@ import { getMovieById } from '~/services/movie';
 import { getGenreById } from '~/services/genres';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import BackPage from '~/components/BackPage/BackPage.vue';
-import Tags from '~/components/Tags/Tags.vue';
-import Overview from '~/components/Overview/Overview.vue';
+import Tags from '~/components/Tags/Tags.server.vue';
+import Overview from '~/components/Overview/Overview.server.vue';
 import Interaction from '~/components/Interaction/Interaction.vue';
-import RatingMovie from '~/components/RatingMovie/RatingMovie.vue';
+import RatingMovie from '~/components/RatingMovie/RatingMovie.server.vue';
 import CastCrew from '~/components/CastCrew/CastCrew.vue';
 import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressBar.vue';
@@ -457,6 +457,24 @@ onBeforeMount(() => {
 });
 
 getData();
+
+// isAddToList.value = false;
+// loading.value = true;
+// srcBackdropList.value = [];
+
+// await nextTick();
+
+// const { data: dataMovie } = await useAsyncData(
+//   `movie/detail/${movieId.value}`,
+//   () => getMovieById(movieId.value, 'videos')
+// );
+
+// disabledRate.value = !!dataMovie.value?.rated_value;
+// loading.value = false;
+
+// if (store.isLogin) {
+//   isAddToList.value = dataMovie.value?.in_list == true;
+// }
 
 useHead({
   title: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',

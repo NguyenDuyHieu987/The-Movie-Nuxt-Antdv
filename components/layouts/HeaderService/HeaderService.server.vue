@@ -54,8 +54,8 @@
 
 <script setup lang="ts">
 import { getImage } from '~/services/image';
-import DropdownAccount from '~/components/layouts/Header/DropdownAcount/DropdownAcount.vue';
-import Notification from '~/components/layouts/Header/Notification/Notification.vue';
+import DropdownAccount from '~/components/layouts/Header/DropdownAcount/DropdownAcount.server.vue';
+import Notification from '~/components/layouts/Header/Notification/Notification.server.vue';
 import { MenuOutlined } from '@ant-design/icons-vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';

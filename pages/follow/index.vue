@@ -104,10 +104,10 @@
 import axios from 'axios';
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import MovieCardHorizontalFollow from '~/components/MovieCardHorizontalFollow/MovieCardHorizontalFollow.vue';
-import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
+import RequireAuth from '~/components/RequireAuth/RequireAuth.server.vue';
 import SortTab from '~/components/SortTab/SortTab.vue';
-import TopicRow from '~/components/TopicRow/TopicRow.vue';
-import TopicColumn from '~/components/TopicColumn/TopicColumn.vue';
+import TopicRow from '~/components/TopicRow/TopicRow.server.vue';
+import TopicColumn from '~/components/TopicColumn/TopicColumn.server.vue';
 import { getList, searchList } from '~/services/list';
 import _ from 'lodash';
 import { storeToRefs } from 'pinia';

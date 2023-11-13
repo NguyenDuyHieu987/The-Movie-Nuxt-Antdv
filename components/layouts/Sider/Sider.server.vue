@@ -97,7 +97,7 @@
 <script setup lang="ts">
 // import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
 import { getImage } from '~/services/image';
-import TheMenu from '~/components/TheMenu/TheMenu.vue';
+import TheMenu from '~/components/TheMenu/TheMenu.server.vue';
 import { storeToRefs } from 'pinia';
 import { useBreakpoints } from '@vueuse/core';
 

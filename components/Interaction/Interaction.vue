@@ -46,8 +46,13 @@ const props = defineProps<{ dataMovie: any }>();
 // const route = useRoute();
 
 // alert(window.location.href);
-const urlShare = computed<string>((): string => window.location.href);
+// const urlShare = computed<string>((): string => window.location.href);
+const urlShare = ref<string>('');
 // alert(encodeURIComponent(urlShare.value));
+
+onBeforeMount(() => {
+  urlShare.value = window.location.href;
+});
 </script>
 
 <style lang="scss" scoped src="./Interaction.scss"></style>

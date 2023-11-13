@@ -19,7 +19,7 @@
             var(--loading-progress-bar1),
             var(--loading-progress-bar2),
             var(--loading-progress-bar3)
-          );"
+          )"
       :height="3"
       :throttle="300"
     />
@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 import LoadingApp from '~/components/LoadingApp/LoadingApp.vue';
-import RequireAuthDialog from '~/components/RequireAuthDialog/RequireAuthDialog.vue';
+import RequireAuthDialog from '~/components/RequireAuthDialog/RequireAuthDialog.server.vue';
 
 const onBackTop = () => {
   window.scrollTo({

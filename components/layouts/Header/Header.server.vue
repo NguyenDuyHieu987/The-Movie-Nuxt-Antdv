@@ -121,9 +121,9 @@
 import axios from 'axios';
 import { getDaTaSearch } from '~/services/search';
 import { getImage } from '~/services/image';
-import DropdownAccount from './DropdownAcount/DropdownAcount.vue';
-import Notification from './Notification/Notification.vue';
-import SearchMobile from './SearchMobile/SearchMobile.vue';
+import DropdownAccount from './DropdownAcount/DropdownAcount.server.vue';
+import Notification from './Notification/Notification.server.vue';
+import SearchMobile from './SearchMobile/SearchMobile.server.vue';
 // import SearchCard from '~/components/SearchCard/SearchCard.vue';
 import { storeToRefs } from 'pinia';
 import { MenuOutlined } from '@ant-design/icons-vue';

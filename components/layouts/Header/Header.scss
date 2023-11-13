@@ -214,13 +214,13 @@ header.header-bar {
 
     .el-skeleton.is-animated {
       display: flex;
-      gap: 15px;
+      gap: 12px;
       padding-right: 15px;
 
       .menu-item.el-skeleton__item.el-skeleton__button {
         display: inline-block;
-        height: 36px;
-        width: 36px;
+        height: 37px;
+        width: 37px;
         border-radius: 50%;
       }
     }

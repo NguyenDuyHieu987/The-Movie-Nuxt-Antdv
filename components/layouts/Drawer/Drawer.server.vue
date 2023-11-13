@@ -106,7 +106,7 @@
 <script setup lang="ts">
 // import { ElDrawer } from 'element-plus';
 import { getImage } from '~/services/image';
-import TheMenu from '~/components/TheMenu/TheMenu.vue';
+import TheMenu from '~/components/TheMenu/TheMenu.server.vue';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();

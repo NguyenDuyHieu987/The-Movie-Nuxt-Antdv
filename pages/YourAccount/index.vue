@@ -132,7 +132,7 @@
 </template>
 
 <script setup lang="ts">
-import RequireAuth from '~/components/RequireAuth/RequireAuth.vue';
+import RequireAuth from '~/components/RequireAuth/RequireAuth.server.vue';
 import { storeToRefs } from 'pinia';
 import { useBreakpoints } from '@vueuse/core';
 

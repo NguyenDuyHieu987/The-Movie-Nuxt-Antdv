@@ -1,19 +1,20 @@
-// import { disableCache } from '@iconify/vue';
+import { initFacebookSdk } from '@/utils/init-facebook-sdk';
 
 // export default defineNuxtPlugin((nuxtApp) => {
 //   nuxtApp.hook('app:created', () => {
-//     // disableCache('all');
+//     // nuxtApp.vueApp.use(initFacebookSdk());
+//     initFacebookSdk();
 //   });
 // });
 
 export default defineNuxtPlugin({
-  name: 'iconify',
+  name: 'loadFacebookSdk',
   async setup(nuxtApp) {
     // this is the equivalent of a normal functional plugin
   },
   hooks: {
     'app:created': async () => {
-      //     // disableCache('all');
+      initFacebookSdk();
     },
   },
   parallel: true,

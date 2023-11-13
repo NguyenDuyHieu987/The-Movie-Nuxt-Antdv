@@ -117,7 +117,7 @@ import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.vue';
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.vue';
+import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.server.vue';
 import { getGenreByShortName } from '~/services/genres';
 import {
   getMovies,
