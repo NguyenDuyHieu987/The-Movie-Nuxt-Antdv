@@ -31,7 +31,7 @@ const discoverYears = async () => {
 export default defineNuxtConfig({
   app: {
     rootId: '__nuxt',
-    buildAssetsDir: 'home/',
+    // buildAssetsDir: '/home/',
     head: {
       title: 'Phimhay247',
       // titleTemplate: '%pageTitle %titleSeparator %siteName',
