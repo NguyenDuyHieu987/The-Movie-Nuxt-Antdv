@@ -343,17 +343,18 @@ header.header-bar {
             padding: 5px 10px;
             border-radius: 25px;
             line-height: normal;
-            // border: 1px solid var(--app-background-color);
-            background-color: var(--app-background-color);
-            // color: var(--app-background-color) !important;
+            border: 1px solid var(--border-regular);
+            // background-color: var(--app-background-color);
+            // background-color: #003c52;
             color: inherit;
             transition: background-color 0.15s;
             user-select: none;
 
             &:hover {
-              background-color: var(--app-background-color8);
-              // border: 1px solid transparent;
-              // background-color: #0059983c;
+              background-color: #282828;
+              border: 1px solid transparent;
+              // background-color: var(--app-background-color8);
+              // background-color: #0043743c;
             }
           }
 
