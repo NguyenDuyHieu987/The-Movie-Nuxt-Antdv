@@ -35,6 +35,8 @@ export default defineNuxtConfig({
     head: {
       title: 'Phimhay247',
       // titleTemplate: '%pageTitle %titleSeparator %siteName',
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
       meta: [
         {
           charset: 'utf-8',
@@ -313,7 +315,7 @@ export default defineNuxtConfig({
     storage: {},
     output: {
       // dir:'.output',
-      dir: isProduction ? '.output' : 'D:\\MyWebsite\\Phimhay247\\.output',
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
       // serverDir: '.output/server',
       // publicDir: '.output/public',
     },
