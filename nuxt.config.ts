@@ -99,19 +99,19 @@ export default defineNuxtConfig({
         //   rel: 'stylesheet',
         //   href: '/icons/google-material-icons/css/material-icons.min.css',
         // },
-        {
-          rel: 'preconnect',
-          href: `https://fonts.googleapis.com`,
-        },
-        {
-          rel: 'preconnect',
-          href: `https://fonts.gstatic.com`,
-          crossorigin: 'anonymous',
-        },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Flex:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700&display=swap',
-        },
+        // {
+        //   rel: 'preconnect',
+        //   href: `https://fonts.googleapis.com`,
+        // },
+        // {
+        //   rel: 'preconnect',
+        //   href: `https://fonts.gstatic.com`,
+        //   crossorigin: 'anonymous',
+        // },
+        // {
+        //   rel: 'stylesheet',
+        //   href: 'https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Flex:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700&display=swap',
+        // },
       ],
       script: [
         // {
@@ -285,23 +285,23 @@ export default defineNuxtConfig({
   //   // useStylesheet: true,
   // },
   fontMetrics: {
-    fonts: [
-      'Inter',
-      {
-        family: 'Roboto Flex',
-        src: '~/assets/fonts/Roboto_Flex/RobotoFlex-Regular.woff2',
-      },
-    ],
+    // fonts: [
+    //   'Inter',
+    //   {
+    //     family: 'Roboto Flex',
+    //     src: '~/assets/fonts/Roboto_Flex/RobotoFlex-Regular.woff2',
+    //   },
+    // ],
   },
   plugins: [
     // '@/plugins/elementPlus',
     // '@/plugins/antd',
     // '@/plugins/iconify',
+    '@/plugins/loadUser',
     '@/plugins/vueprogressbar',
     '@/plugins/sharenetwork',
     '@/plugins/vuelazyload',
     '@/plugins/googleTagManager',
-    '@/plugins/loadUser',
     { src: '@/plugins/loadFacebookSdk', mode: 'client' },
   ],
   nitro: {
