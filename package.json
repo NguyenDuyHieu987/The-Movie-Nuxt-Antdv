@@ -13,7 +13,7 @@
     "@nuxtjs/fontaine": "^0.4.1",
     "@types/node": "^20.8.8",
     "element-plus": "^2.4.2",
-    "nuxt": "^3.8.0",
+    "nuxt": "^3.8.1",
     "nuxt-delay-hydration": "^1.2.3",
     "nuxt-gtag": "^1.1.1",
     "nuxt-og-image": "^2.1.3",

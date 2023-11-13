@@ -31,7 +31,7 @@ const discoverYears = async () => {
 export default defineNuxtConfig({
   app: {
     rootId: '__nuxt',
-    // buildAssetsDir: '/home/',
+    buildAssetsDir: '/home/',
     head: {
       title: 'Phimhay247',
       // titleTemplate: '%pageTitle %titleSeparator %siteName',
@@ -402,7 +402,7 @@ export default defineNuxtConfig({
       sourcemap: 'hidden',
       minify: 'terser',
       ssrManifest: true,
-      // assetsDir: 'home/',
+      assetsDir: 'home/',
       cssMinify: true,
       reportCompressedSize: false,
       terserOptions: {
