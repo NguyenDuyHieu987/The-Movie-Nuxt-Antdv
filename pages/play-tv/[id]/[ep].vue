@@ -325,14 +325,15 @@ const getData = async () => {
   isEpisodes.value = true;
   loading.value = true;
 
-  await nextTick();
+  // await nextTick();
 
-  await useAsyncData(`tv/short/${movieId.value}`, () =>
-    getTvById(movieId.value, 'seasons,episodes')
-  )
+  // await useAsyncData(`tv/short/${movieId.value}`, () =>
+  //   getTvById(movieId.value, 'seasons,episodes')
+  // )
+  getTvById(movieId.value, 'seasons,episodes')
     .then((tvResponed: any) => {
-      dataMovie.value = tvResponed.data.value;
-      disabledRate.value = tvResponed.data.value?.is_rated == true;
+      dataMovie.value = tvResponed;
+      disabledRate.value = tvResponed?.is_rated == true;
     })
     .catch((e) => {
       navigateTo('/404');
@@ -340,12 +341,6 @@ const getData = async () => {
     })
     .finally(() => {
       loading.value = false;
-
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant',
-      });
     });
 
   if (store.isLogin) {
@@ -392,6 +387,12 @@ const getData = async () => {
 
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'instant',
+  });
 });
 
 getData();

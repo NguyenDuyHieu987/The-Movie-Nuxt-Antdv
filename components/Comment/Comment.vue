@@ -53,16 +53,24 @@ const disabledLoadMore = ref<boolean>(false);
 
 loading.value = true;
 
-useAsyncData(`${props.dataMovie?.media_type}/${props.dataMovie?.id}`, () =>
-  getCommentByMovidId(
-    props.dataMovie?.id,
-    props.dataMovie?.media_type,
-    skip.value
-  )
+// await useAsyncData(
+//   `${props.dataMovie?.media_type}/${props.dataMovie?.id}`,
+//   () =>
+//     getCommentByMovidId(
+//       props.dataMovie?.id,
+//       props.dataMovie?.media_type,
+//       skip.value
+//     )
+// )
+
+await getCommentByMovidId(
+  props.dataMovie?.id,
+  props.dataMovie?.media_type,
+  skip.value
 )
   .then((response) => {
-    commentsList.value = response.data.value?.results;
-    total.value = response.data.value?.total;
+    commentsList.value = response?.results;
+    total.value = response?.total;
     skip.value++;
   })
   .catch((e) => {

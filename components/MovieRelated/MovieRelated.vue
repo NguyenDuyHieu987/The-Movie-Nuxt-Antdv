@@ -144,11 +144,12 @@ const getData = async () => {
   loadingSimilar.value = true;
   loadingRecommend.value = true;
 
-  useAsyncData(`similar/${props?.type}/${props?.movieId}/1`, () =>
-    getSimilar(props?.type, props?.movieId, 1, 12)
-  )
+  // useAsyncData(`similar/${props?.type}/${props?.movieId}/1`, () =>
+  //   getSimilar(props?.type, props?.movieId, 1, 12)
+  // )
+  getSimilar(props?.type, props?.movieId, 1, 12)
     .then((response: any) => {
-      dataSimilar.value = response.data.value?.results;
+      dataSimilar.value = response?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -157,11 +158,12 @@ const getData = async () => {
       loadingSimilar.value = false;
     });
 
-  useAsyncData(`trending/all/${randomRecommend.value}`, () =>
-    getTrending(randomRecommend.value, 12)
-  )
+  // useAsyncData(`trending/all/${randomRecommend.value}`, () =>
+  //   getTrending(randomRecommend.value, 12)
+  // )
+  getTrending(randomRecommend.value, 12)
     .then((response: any) => {
-      dataRecommend.value = response.data.value?.results;
+      dataRecommend.value = response?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

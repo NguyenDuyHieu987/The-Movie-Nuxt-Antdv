@@ -267,15 +267,17 @@ const isLoadmoreReplies = ref<boolean>(false);
 const commentAction = ref<string>('post');
 const commentContent = ref<string>(props.item?.content);
 
-onBeforeMount(() => {});
-
-const onClickShowReplies = () => {
+const onClickShowReplies = async () => {
   isShowReplies.value = !isShowReplies.value;
 
   if (listReplies.value.length == 0) {
     loadingReplies.value = true;
 
-    getCommentByMovidId_ParentId(props.movieId, props.item?.id, props.movieType)
+    await getCommentByMovidId_ParentId(
+      props.movieId,
+      props.item?.id,
+      props.movieType
+    )
       .then((response) => {
         listReplies.value = response?.results;
         skip.value++;
@@ -289,10 +291,10 @@ const onClickShowReplies = () => {
   }
 };
 
-const onLoadMoreReplies = () => {
+const onLoadMoreReplies = async () => {
   isLoadmoreReplies.value = true;
 
-  getCommentByMovidId_ParentId(
+  await getCommentByMovidId_ParentId(
     props.movieId,
     props.item?.id,
     props.movieType,

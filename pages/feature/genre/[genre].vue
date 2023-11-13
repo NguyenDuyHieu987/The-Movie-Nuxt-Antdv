@@ -250,19 +250,23 @@ const getData = async () => {
 
   formFilter.value.genre = route.params.genre;
 
-  await useAsyncData(
-    `discover/movie/nowplaying/${{
-      ...formFilter.value,
-      type: 'nowplaying',
-    }}`,
-    () =>
-      FilterMovieSlug({
-        ...formFilter.value,
-        type: 'nowplaying',
-      })
-  )
+  // await useAsyncData(
+  //   `discover/movie/nowplaying/${{
+  //     ...formFilter.value,
+  //     type: 'nowplaying',
+  //   }}`,
+  //   () =>
+  //     FilterMovieSlug({
+  //       ...formFilter.value,
+  //       type: 'nowplaying',
+  //     })
+  // )
+  FilterMovieSlug({
+    ...formFilter.value,
+    type: 'nowplaying',
+  })
     .then((response) => {
-      nowPlayings.value = response.data.value?.results.slice(0, 12);
+      nowPlayings.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -271,19 +275,23 @@ const getData = async () => {
       loadingNowPlaying.value = false;
     });
 
-  await useAsyncData(
-    `discover/movie/popular/${{
-      ...formFilter.value,
-      type: 'popular',
-    }}`,
-    () =>
-      FilterMovieSlug({
-        ...formFilter.value,
-        type: 'popular',
-      })
-  )
+  // await useAsyncData(
+  //   `discover/movie/popular/${{
+  //     ...formFilter.value,
+  //     type: 'popular',
+  //   }}`,
+  //   () =>
+  //     FilterMovieSlug({
+  //       ...formFilter.value,
+  //       type: 'popular',
+  //     })
+  // )
+  FilterMovieSlug({
+    ...formFilter.value,
+    type: 'popular',
+  })
     .then((response) => {
-      populars.value = response.data.value?.results.slice(0, 12);
+      populars.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -292,19 +300,23 @@ const getData = async () => {
       loadingPopular.value = false;
     });
 
-  await useAsyncData(
-    `discover/movie/upcoming/${{
-      ...formFilter.value,
-      type: 'upcoming',
-    }}`,
-    () =>
-      FilterMovieSlug({
-        ...formFilter.value,
-        type: 'upcoming',
-      })
-  )
+  // await useAsyncData(
+  //   `discover/movie/upcoming/${{
+  //     ...formFilter.value,
+  //     type: 'upcoming',
+  //   }}`,
+  //   () =>
+  //     FilterMovieSlug({
+  //       ...formFilter.value,
+  //       type: 'upcoming',
+  //     })
+  // )
+  FilterMovieSlug({
+    ...formFilter.value,
+    type: 'upcoming',
+  })
     .then((response) => {
-      upComings.value = response.data.value?.results.slice(0, 12);
+      upComings.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -313,19 +325,23 @@ const getData = async () => {
       loadingUpComing.value = false;
     });
 
-  await useAsyncData(
-    `discover/movie/toprated/${{
-      ...formFilter.value,
-      type: 'toprated',
-    }}`,
-    () =>
-      FilterMovieSlug({
-        ...formFilter.value,
-        type: 'toprated',
-      })
-  )
+  // await useAsyncData(
+  //   `discover/movie/toprated/${{
+  //     ...formFilter.value,
+  //     type: 'toprated',
+  //   }}`,
+  //   () =>
+  //     FilterMovieSlug({
+  //       ...formFilter.value,
+  //       type: 'toprated',
+  //     })
+  // )
+  FilterMovieSlug({
+    ...formFilter.value,
+    type: 'toprated',
+  })
     .then((response) => {
-      topRateds.value = response.data.value?.results.slice(0, 12);
+      topRateds.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

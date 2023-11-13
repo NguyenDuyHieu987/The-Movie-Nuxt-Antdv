@@ -57,12 +57,13 @@ const loading = ref<boolean>(false);
 onBeforeMount(async () => {
   loading.value = true;
 
-  useAsyncData(
-    `season/${props.dataMovie?.id}/${props?.dataMovie?.season_id}`,
-    () => getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
-  )
+  // await useAsyncData(
+  //   `season/${props.dataMovie?.id}/${props?.dataMovie?.season_id}`,
+  //   () => getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
+  // )
+  await getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
     .then((episodesRespones) => {
-      dataSeason.value = episodesRespones.data.value;
+      dataSeason.value = episodesRespones;
 
       dataEpisode.value = dataSeason.value?.episodes.filter(
         (item: any) => item.air_date != null

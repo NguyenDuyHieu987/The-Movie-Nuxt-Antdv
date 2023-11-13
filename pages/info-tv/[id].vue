@@ -409,14 +409,15 @@ const getData = async () => {
   loading.value = true;
   srcBackdropList.value = [];
 
-  await nextTick();
+  // await nextTick();
 
-  await useAsyncData(`tv/detail/${movieId.value}`, () =>
-    getTvById(movieId.value, 'videos')
-  )
+  // await useAsyncData(`tv/detail/${movieId.value}`, () =>
+  //   getTvById(movieId.value, 'videos')
+  // )
+  await getTvById(movieId.value, 'videos')
     .then((movieRespone) => {
-      dataMovie.value = movieRespone.data.value;
-      disabledRate.value = !!movieRespone.data.value?.rated_value;
+      dataMovie.value = movieRespone;
+      disabledRate.value = !!movieRespone?.rated_value;
 
       // movieRespone?.data?.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(
@@ -437,12 +438,6 @@ const getData = async () => {
     })
     .finally(() => {
       loading.value = false;
-
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant',
-      });
     });
 
   if (store.isLogin) {
@@ -465,6 +460,12 @@ const getData = async () => {
 
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'instant',
+  });
 });
 
 getData();
@@ -472,8 +473,6 @@ getData();
 // isAddToList.value = false;
 // loading.value = true;
 // srcBackdropList.value = [];
-
-// await nextTick();
 
 // const { data: dataMovie } = await useAsyncData(
 //   `tv/detail/${movieId.value}`,

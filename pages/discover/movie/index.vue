@@ -109,14 +109,6 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(() => {
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
-  setTimeout(() => {
-    internalInstance.appContext.config.globalProperties.$Progress.finish();
-  }, 500);
-});
-
 loading.value = true;
 
 const {

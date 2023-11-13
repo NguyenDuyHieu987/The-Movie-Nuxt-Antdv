@@ -398,14 +398,15 @@ const getData = async () => {
   loading.value = true;
   srcBackdropList.value = [];
 
-  await nextTick();
+  // await nextTick();
 
-  await useAsyncData(`movie/detail/${movieId.value}`, () =>
-    getMovieById(movieId.value, 'videos')
-  )
+  // await useAsyncData(`movie/detail/${movieId.value}`, () =>
+  //   getMovieById(movieId.value, 'videos')
+  // )
+  await getMovieById(movieId.value, 'videos')
     .then((movieRespone) => {
-      dataMovie.value = movieRespone.data.value;
-      disabledRate.value = !!movieRespone.data.value?.rated_value;
+      dataMovie.value = movieRespone;
+      disabledRate.value = !!movieRespone?.rated_value;
 
       // movieRespone?.data?.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(
@@ -426,12 +427,6 @@ const getData = async () => {
     })
     .finally(() => {
       loading.value = false;
-
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant',
-      });
     });
 
   if (store.isLogin) {
@@ -454,6 +449,12 @@ const getData = async () => {
 
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'instant',
+  });
 });
 
 getData();
@@ -462,19 +463,20 @@ getData();
 // loading.value = true;
 // srcBackdropList.value = [];
 
-// await nextTick();
-
 // const { data: dataMovie } = await useAsyncData(
 //   `movie/detail/${movieId.value}`,
-//   () => getMovieById(movieId.value, 'videos')
+//   () => getMovieById(movieId.value, 'videos'),
+//   {
+//     transform: (data) => {
+//       console.log(typeof data);
+//       return data;
+//     },
+//   }
 // );
 
 // disabledRate.value = !!dataMovie.value?.rated_value;
 // loading.value = false;
-
-// if (store.isLogin) {
-//   isAddToList.value = dataMovie.value?.in_list == true;
-// }
+// isAddToList.value = dataMovie.value?.in_list == true;
 
 useHead({
   title: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',

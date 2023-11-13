@@ -296,14 +296,15 @@ const getData = async () => {
   loading.value = true;
   isEpisodes.value = false;
 
-  await nextTick();
+  // await nextTick();
 
-  await useAsyncData(`movie/short/${movieId.value}`, () =>
-    getMovieById(movieId.value)
-  )
+  // await useAsyncData(`movie/short/${movieId.value}`, () =>
+  //   getMovieById(movieId.value)
+  // )
+  getMovieById(movieId.value)
     .then((movieResponed: any) => {
-      dataMovie.value = movieResponed.data.value;
-      disabledRate.value = movieResponed.data.value?.is_rated == true;
+      dataMovie.value = movieResponed;
+      disabledRate.value = movieResponed?.is_rated == true;
     })
     .catch((e) => {
       navigateTo('/404');
@@ -311,12 +312,6 @@ const getData = async () => {
     })
     .finally(() => {
       loading.value = false;
-
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant',
-      });
     });
 
   if (store.isLogin) {
@@ -362,6 +357,12 @@ const getData = async () => {
 
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'instant',
+  });
 });
 
 getData();

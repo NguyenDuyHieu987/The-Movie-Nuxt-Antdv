@@ -31,7 +31,6 @@ export function CommentMovie(params: any) {
 
   return makeRequest(`/comment/post/${params.movieType}/${params.movieId}`, {
     method: 'POST',
-
     data: bodyFormData,
   });
 }
@@ -44,7 +43,6 @@ export function EditComment(params: any) {
 
   return makeRequest(`/comment/edit/${params.movieType}/${params.movieId}`, {
     method: 'PUT',
-
     data: bodyFormData,
   });
 }
@@ -57,7 +55,6 @@ export function DeleteComment(params: any) {
 
   return makeRequest(`/comment/delete/${params.movieType}/${params.movieId}`, {
     method: 'DELETE',
-
     data: bodyFormData,
   });
 }

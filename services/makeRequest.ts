@@ -1,8 +1,19 @@
 import axios from 'axios';
+import type {
+  AxiosRequestHeaders,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 
-export async function makeRequest(url: string, options: any = {}) {
+export async function makeRequest(
+  url: string,
+  options?: {
+    noAuthHeaders?: boolean;
+    noResponseHeaders?: boolean;
+  } & AxiosRequestConfig
+) {
   const nuxtConfig = useRuntimeConfig();
-  let headers: any = {};
+  let headers: AxiosRequestHeaders | any = {};
 
   const api = axios.create({
     baseURL: nuxtConfig.app.production_mode
@@ -12,18 +23,22 @@ export async function makeRequest(url: string, options: any = {}) {
     withCredentials: true,
   });
 
-  if (getWithExpiry('user_token') && !options?.noAuthHeader) {
+  if (getWithExpiry('user_token') && !options?.noAuthHeaders) {
     if (!options?.headers?.hasOwnProperty('Authorization')) {
       headers.Authorization = `Bearer ${getWithExpiry('user_token')}`;
     }
   }
 
   return await api(url, {
-    headers: { ...headers, ...options?.headers },
     ...options,
+    headers: { ...headers, ...options?.headers },
   })
-    .then((res) => {
+    .then((res: AxiosResponse) => {
       const { headers, data } = res;
+
+      if (options?.noResponseHeaders) {
+        return data;
+      }
 
       return { headers, ...data };
     })

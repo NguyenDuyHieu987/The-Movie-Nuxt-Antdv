@@ -168,7 +168,7 @@ onMounted(() => {
     .getPropertyValue('--header-height')
     .replace('px', '');
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', async () => {
     if (dataList.value?.length == 0) {
       return;
     }
@@ -195,17 +195,16 @@ onMounted(() => {
       dataList.value?.length < total.value
     ) {
       loadMore.value = true;
-      useAsyncData(
-        `list/get/${store.userAccount?.id}/${activeTab.value}/${skip.value}`,
-        () => getList(activeTab.value, skip.value)
-      )
+      // await useAsyncData(
+      //   `list/get/${store.userAccount?.id}/${activeTab.value}/${skip.value}`,
+      //   () => getList(activeTab.value, skip.value)
+      // )
+      await getList(activeTab.value, skip.value)
         .then((movieRespone: any) => {
-          if (movieRespone.data.value?.results?.length > 0) {
+          if (movieRespone?.results?.length > 0) {
             setTimeout(() => {
               loadMore.value = false;
-              dataList.value = dataList.value.concat(
-                movieRespone.data.value?.results
-              );
+              dataList.value = dataList.value.concat(movieRespone?.results);
             }, 2000);
             skip.value += 1;
           }
@@ -218,14 +217,16 @@ onMounted(() => {
 });
 
 const getData = async () => {
-  await useAsyncData(
-    `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
-    () => getList(activeTab.value, 1)
-  )
+  // await useAsyncData(
+  //   `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
+  //   () => getList(activeTab.value, 1)
+  // )
+
+  await getList(activeTab.value, 1)
     .then((movieRespone: any) => {
-      if (movieRespone.data.value?.results?.length > 0) {
-        dataList.value = movieRespone.data.value?.results;
-        total.value = movieRespone.data.value?.total;
+      if (movieRespone?.results?.length > 0) {
+        dataList.value = movieRespone?.results;
+        total.value = movieRespone?.total;
         topicImage.value = dataList.value[0]?.backdrop_path;
         skip.value++;
       }
@@ -235,7 +236,7 @@ const getData = async () => {
       //     getColorImage(topicImage.value)
       //   )
       //     .then((colorResponse: any) => {
-      //       const color = colorResponse.data.value?.color;
+      //       const color = colorResponse?.color;
       //       setBackgroundColor(color);
       //     })
       //     .catch((e) => {
@@ -251,13 +252,15 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(async () => {
-  if (store.isLogin) {
-    await nextTick();
+// onBeforeMount(async () => {
+//   if (store.isLogin) {
+//     await nextTick();
 
-    getData();
-  }
-});
+//     getData();
+//   }
+// });
+
+getData();
 
 const getDataWhenRemoveList = (data: number) => {
   // dataList.value = data;
@@ -291,13 +294,14 @@ const searchFollow = (e: any) => {
 
     clearTimeout(debounce.value);
 
-    debounce.value = setTimeout(() => {
-      useAsyncData(
-        `list/search/${store.userAccount?.id}/${activeTab.value}/${e.target.value}`,
-        () => searchList(e.target.value, activeTab.value)
-      )
+    debounce.value = setTimeout(async () => {
+      // await useAsyncData(
+      //   `list/search/${store.userAccount?.id}/${activeTab.value}/${e.target.value}`,
+      //   () => searchList(e.target.value, activeTab.value)
+      // )
+      await searchList(e.target.value, activeTab.value)
         .then((movieRespone: any) => {
-          dataList.value = movieRespone.data.value?.results;
+          dataList.value = movieRespone?.results;
         })
         .catch((e) => {
           loadingSearch.value = false;
@@ -330,16 +334,17 @@ const handleChangeTab = async (value: string) => {
 
   switch (value) {
     case 'all':
-      await useAsyncData(
-        `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
-        () => getList(activeTab.value, 1)
-      )
+      // await useAsyncData(
+      //   `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
+      //   () => getList(activeTab.value, 1)
+      // )
+      await getList(activeTab.value, 1)
         .then((movieRespone: any) => {
-          dataList.value = movieRespone.data.value?.results;
+          dataList.value = movieRespone?.results;
           // title.value = 'Phim đã thêm vào danh sách phát';
-          total.value = movieRespone.data.value?.total;
+          total.value = movieRespone?.total;
 
-          if (movieRespone.data.value?.results?.length > 0) {
+          if (movieRespone?.results?.length > 0) {
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -352,16 +357,17 @@ const handleChangeTab = async (value: string) => {
         });
       break;
     case 'movie':
-      await useAsyncData(
-        `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
-        () => getList(activeTab.value, 1)
-      )
+      // await useAsyncData(
+      //   `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
+      //   () => getList(activeTab.value, 1)
+      // )
+      await getList(activeTab.value, 1)
         .then((movieRespone: any) => {
-          dataList.value = movieRespone.data.value?.results;
+          dataList.value = movieRespone?.results;
           // title.value = 'Phim lẻ';
-          total.value = movieRespone.data.value?.total;
+          total.value = movieRespone?.total;
 
-          if (movieRespone.data.value?.results?.length > 0) {
+          if (movieRespone?.results?.length > 0) {
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -374,16 +380,17 @@ const handleChangeTab = async (value: string) => {
         });
       break;
     case 'tv':
-      await useAsyncData(
-        `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
-        () => getList(activeTab.value, 1)
-      )
+      // await useAsyncData(
+      //   `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
+      //   () => getList(activeTab.value, 1)
+      // )
+      await getList(activeTab.value, 1)
         .then((movieRespone: any) => {
-          dataList.value = movieRespone.data.value?.results;
+          dataList.value = movieRespone?.results;
           // title.value = 'Phim bộ';
-          total.value = movieRespone.data.value?.total;
+          total.value = movieRespone?.total;
 
-          if (movieRespone.data.value?.results?.length > 0) {
+          if (movieRespone?.results?.length > 0) {
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
           }

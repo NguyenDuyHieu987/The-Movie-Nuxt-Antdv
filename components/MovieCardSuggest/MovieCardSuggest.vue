@@ -218,14 +218,15 @@ const getData = async () => {
       isInHistory.value = true;
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {
-      useAsyncData(
-        `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
-        () => getItemHistory(props.item?.id, props.item?.media_type)
-      )
+      // useAsyncData(
+      //   `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
+      //   () => getItemHistory(props.item?.id, props.item?.media_type)
+      // )
+      getItemHistory(props.item?.id, props.item?.media_type)
         .then((movieRespone: any) => {
-          if (movieRespone.data.value.success == true) {
+          if (movieRespone.success == true) {
             isInHistory.value = true;
-            percent.value = movieRespone.data.value?.result?.percent;
+            percent.value = movieRespone?.result?.percent;
           }
         })
         .catch((e) => {

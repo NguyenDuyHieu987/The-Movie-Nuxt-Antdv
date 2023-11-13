@@ -212,7 +212,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@element-plus/nuxt',
-    async function (options, nuxt) {
+    async function (options: any, nuxt: any) {
       for (const key in AntDV) {
         if (['version', 'install'].includes(key)) continue;
         await addComponent({
@@ -402,7 +402,7 @@ export default defineNuxtConfig({
       sourcemap: 'hidden',
       minify: 'terser',
       ssrManifest: true,
-      assetsDir: 'home/',
+      // assetsDir: 'home/',
       cssMinify: true,
       reportCompressedSize: false,
       terserOptions: {

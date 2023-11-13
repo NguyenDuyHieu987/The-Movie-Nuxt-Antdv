@@ -10,7 +10,7 @@
           :total="total"
           :topicImage="topicImage"
           :loadingSearch="loadingSearch"
-          :searchRow="searchHistoryT"
+          :searchRow="searchHistoryEvent"
           :deleteAll="removeAllHistoryList"
         />
 
@@ -22,7 +22,7 @@
             :total="total"
             :topicImage="topicImage"
             :loadingSearch="loadingSearch"
-            :searchRow="searchHistoryT"
+            :searchRow="searchHistoryEvent"
             :deleteAll="removeAllHistoryList"
           />
         </Teleport>
@@ -165,7 +165,7 @@ onMounted(() => {
     .getPropertyValue('--header-height')
     .replace('px', '');
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', async () => {
     if (dataHistory.value?.length == 0) {
       return;
     }
@@ -191,16 +191,17 @@ onMounted(() => {
       dataHistory.value?.length < total.value
     ) {
       loadMore.value = true;
-      useAsyncData(
-        `history/get/${store.userAccount?.id}/${activeTab.value}/${skip.value}`,
-        () => getHistory(activeTab.value, skip.value)
-      )
+      // await useAsyncData(
+      //   `history/get/${store.userAccount?.id}/${activeTab.value}/${skip.value}`,
+      //   () => getHistory(activeTab.value, skip.value)
+      // )
+      await getHistory(activeTab.value, skip.value)
         .then((movieRespone: any) => {
-          if (movieRespone.data.value?.results?.length > 0) {
+          if (movieRespone?.results?.length > 0) {
             setTimeout(() => {
               loadMore.value = false;
               dataHistory.value = dataHistory.value.concat(
-                movieRespone.data.value.data?.result
+                movieRespone.data?.result
               );
             }, 2000);
             skip.value += 1;
@@ -214,14 +215,15 @@ onMounted(() => {
 });
 
 const getData = async () => {
-  await useAsyncData(
-    `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
-    () => getHistory(activeTab.value, 1)
-  )
+  // await useAsyncData(
+  //   `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
+  //   () => getHistory(activeTab.value, 1)
+  // )
+  await getHistory(activeTab.value, 1)
     .then((movieRespone: any) => {
-      if (movieRespone.data.value?.results?.length > 0) {
-        dataHistory.value = movieRespone.data.value?.results;
-        total.value = movieRespone.data.value?.total;
+      if (movieRespone?.results?.length > 0) {
+        dataHistory.value = movieRespone?.results;
+        total.value = movieRespone?.total;
         topicImage.value = dataHistory.value[0]?.backdrop_path;
         skip.value++;
       }
@@ -231,7 +233,7 @@ const getData = async () => {
       //     getColorImage(topicImage.value)
       //   )
       //     .then((colorResponse: any) => {
-      //       const color = colorResponse.data.value?.color;
+      //       const color = colorResponse?.color;
       //       setBackgroundColor(color);
       //     })
       //     .catch((e) => {
@@ -247,13 +249,15 @@ const getData = async () => {
     });
 };
 
-onBeforeMount(async () => {
-  if (store.isLogin) {
-    await nextTick();
+// onBeforeMount(async () => {
+//   if (store.isLogin) {
+//     await nextTick();
 
-    getData();
-  }
-});
+//     getData();
+//   }
+// });
+
+getData();
 
 const getDataWhenRemoveHistory = (data: number) => {
   // dataHistory.value = data;
@@ -283,18 +287,19 @@ watch(route, () => {
   // getData();
 });
 
-const searchHistoryT = (e: any) => {
+const searchHistoryEvent = (e: any) => {
   if (e.target.value.length >= 0) {
     loadingSearch.value = true;
 
     clearTimeout(debounce.value);
-    debounce.value = setTimeout(() => {
-      useAsyncData(
-        `history/search/${store.userAccount?.id}/${activeTab.value}/${e.target.value}`,
-        () => searchHistory(e.target.value, activeTab.value)
-      )
+    debounce.value = setTimeout(async () => {
+      //  await useAsyncData(
+      //     `history/search/${store.userAccount?.id}/${activeTab.value}/${e.target.value}`,
+      //     () => searchHistory(e.target.value, activeTab.value)
+      //   )
+      await searchHistory(e.target.value, activeTab.value)
         .then((movieRespone: any) => {
-          dataHistory.value = movieRespone.data.value?.results;
+          dataHistory.value = movieRespone?.results;
           setTimeout(() => {
             loadingSearch.value = false;
           }, 500);
@@ -326,15 +331,16 @@ const handleChangeTab = async (value: string) => {
 
   switch (value) {
     case 'all':
-      await useAsyncData(
-        `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
-        () => getHistory(activeTab.value, 1)
-      )
+      // await useAsyncData(
+      //   `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
+      //   () => getHistory(activeTab.value, 1)
+      // )
+      await getHistory(activeTab.value, 1)
         .then((movieRespone: any) => {
-          dataHistory.value = movieRespone.data.value?.results;
-          total.value = movieRespone.data.value?.total;
+          dataHistory.value = movieRespone?.results;
+          total.value = movieRespone?.total;
 
-          if (movieRespone.data.value?.results?.length > 0) {
+          if (movieRespone?.results?.length > 0) {
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -347,15 +353,16 @@ const handleChangeTab = async (value: string) => {
         });
       break;
     case 'movie':
-      await useAsyncData(
-        `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
-        () => getHistory(activeTab.value, 1)
-      )
+      // await useAsyncData(
+      //   `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
+      //   () => getHistory(activeTab.value, 1)
+      // )
+      await getHistory(activeTab.value, 1)
         .then((movieRespone: any) => {
-          dataHistory.value = movieRespone.data.value?.results;
-          total.value = movieRespone.data.value?.total;
+          dataHistory.value = movieRespone?.results;
+          total.value = movieRespone?.total;
 
-          if (movieRespone.data.value?.results?.length > 0) {
+          if (movieRespone?.results?.length > 0) {
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -368,15 +375,16 @@ const handleChangeTab = async (value: string) => {
         });
       break;
     case 'tv':
-      await useAsyncData(
-        `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
-        () => getHistory(activeTab.value, 1)
-      )
+      // await useAsyncData(
+      //   `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
+      //   () => getHistory(activeTab.value, 1)
+      // )
+      await getHistory(activeTab.value, 1)
         .then((movieRespone: any) => {
-          dataHistory.value = movieRespone.data.value?.results;
-          total.value = movieRespone.data.value?.total;
+          dataHistory.value = movieRespone?.results;
+          total.value = movieRespone?.total;
 
-          if (movieRespone.data.value?.results?.length > 0) {
+          if (movieRespone?.results?.length > 0) {
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
           }

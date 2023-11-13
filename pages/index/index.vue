@@ -486,7 +486,7 @@ const getData = async () => {
   loadingTopRated.value = true;
   loadingRecommend.value = true;
 
-  await nextTick();
+  // await nextTick();
 
   // await useAsyncData(`trending/all/1`, () => getTrending(1))
   //   .then((response: any) => {
@@ -496,9 +496,10 @@ const getData = async () => {
   //     if (axios.isCancel(e)) return;
   //   });
 
-  await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
+  // await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
+  getNowPlaying(1)
     .then((response) => {
-      nowPlayings.value = response.data.value?.results.slice(0, 12);
+      nowPlayings.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -507,11 +508,12 @@ const getData = async () => {
       loadingNowPlaying.value = false;
     });
 
-  await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
-    getMoviesByGenres('hoat-hinh', 'views_desc', 1)
-  )
+  // await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
+  //   getMoviesByGenres('hoat-hinh', 'views_desc', 1)
+  // )
+  getMoviesByGenres('hoat-hinh', 'views_desc', 1)
     .then((response) => {
-      cartoons.value = response.data.value?.results.slice(0, 12);
+      cartoons.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -520,9 +522,10 @@ const getData = async () => {
       loadingCartoon.value = false;
     });
 
-  await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
+  // await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
+  getTvAiringToday(1)
     .then((response) => {
-      tvAiringTodays.value = response.data.value?.results.slice(0, 12);
+      tvAiringTodays.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -531,9 +534,10 @@ const getData = async () => {
       loadingTvAiringToday.value = false;
     });
 
-  await useAsyncData('movie/upcoming/1', () => getUpComing(1))
+  // await useAsyncData('movie/upcoming/1', () => getUpComing(1))
+  getUpComing(1)
     .then((response) => {
-      upComings.value = response.data.value?.results.slice(0, 15);
+      upComings.value = response?.results.slice(0, 15);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -542,9 +546,10 @@ const getData = async () => {
       loadingUpComing.value = false;
     });
 
-  await useAsyncData('movie/toprated/1', () => getTopRated(1))
+  // await useAsyncData('movie/toprated/1', () => getTopRated(1))
+  getTopRated(1)
     .then((response) => {
-      topRateds.value = response.data.value?.results.slice(0, 12);
+      topRateds.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -553,9 +558,10 @@ const getData = async () => {
       loadingTopRated.value = false;
     });
 
-  await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
+  // await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
+  getTvOntheAir(1)
     .then((response) => {
-      tvOnTheAirs.value = response.data.value?.results.slice(0, 12);
+      tvOnTheAirs.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -565,11 +571,12 @@ const getData = async () => {
     });
 
   if (store.isLogin) {
-    await useAsyncData('recommend/get/1', () =>
-      getMyRecommend(skipRecommend.value)
-    )
+    // await useAsyncData('recommend/get/1', () =>
+    //   getMyRecommend(skipRecommend.value)
+    // )
+    getMyRecommend(skipRecommend.value)
       .then((response) => {
-        recommends.value = response.data.value?.results;
+        recommends.value = response?.results;
         skipRecommend.value++;
       })
       .catch((e) => {

@@ -70,8 +70,6 @@ const getData = async () => {
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  await nextTick();
-
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )

@@ -607,9 +607,11 @@ watch(isTeleport, async () => {
     if (!dataMovie.value?.id) {
       loading.value = true;
       if (props.isEpisodes) {
-        await useAsyncData(`tv/short/${props.item?.id}`, () =>
-          getTvById(props.item?.id)
-        )
+        // await useAsyncData(`tv/short/${props.item?.id}`, () =>
+        //   getTvById(props.item?.id)
+        // )
+
+        await getTvById(props.item?.id)
           .then((tvResponed: any) => {
             dataMovie.value = tvResponed.data.value;
           })
@@ -622,9 +624,10 @@ watch(isTeleport, async () => {
             }, 500);
           });
       } else {
-        await useAsyncData(`movie/short/${props.item?.id}`, () =>
-          getMovieById(props.item?.id)
-        )
+        // await useAsyncData(`movie/short/${props.item?.id}`, () =>
+        //   getMovieById(props.item?.id)
+        // )
+        await getMovieById(props.item?.id)
           .then((movieRespone: any) => {
             dataMovie.value = movieRespone.data.value;
           })

@@ -250,15 +250,16 @@ const getData = async () => {
 
   formFilter.value.genre = route.params.genre;
 
-  await useAsyncData(
-    `discover/tv/airingtoday/${{
-      ...formFilter.value,
-      type: 'airingtoday',
-    }}`,
-    () => FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
-  )
+  // await useAsyncData(
+  //   `discover/tv/airingtoday/${{
+  //     ...formFilter.value,
+  //     type: 'airingtoday',
+  //   }}`,
+  //   () => FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
+  // )
+  FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
     .then((response) => {
-      airingTodays.value = response.data.value?.results.slice(0, 12);
+      airingTodays.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -267,15 +268,16 @@ const getData = async () => {
       loadingTvAiringToday.value = false;
     });
 
-  await useAsyncData(
-    `discover/tv/ontheair/${{
-      ...formFilter.value,
-      type: 'ontheair',
-    }}`,
-    () => FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
-  )
+  // await useAsyncData(
+  //   `discover/tv/ontheair/${{
+  //     ...formFilter.value,
+  //     type: 'ontheair',
+  //   }}`,
+  //   () => FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
+  // )
+  FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
     .then((response) => {
-      onTheAirs.value = response.data.value?.results.slice(0, 12);
+      onTheAirs.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -284,15 +286,16 @@ const getData = async () => {
       loadingTvOnTheAir.value = false;
     });
 
-  await useAsyncData(
-    `discover/tv/popular/${{
-      ...formFilter.value,
-      type: 'popular',
-    }}`,
-    () => FilterTvSlug({ ...formFilter.value, type: 'popular' })
-  )
+  // await useAsyncData(
+  //   `discover/tv/popular/${{
+  //     ...formFilter.value,
+  //     type: 'popular',
+  //   }}`,
+  //   () => FilterTvSlug({ ...formFilter.value, type: 'popular' })
+  // )
+  FilterTvSlug({ ...formFilter.value, type: 'popular' })
     .then((response) => {
-      populars.value = response.data.value?.results.slice(0, 12);
+      populars.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -301,15 +304,16 @@ const getData = async () => {
       loadingTvPopular.value = false;
     });
 
-  await useAsyncData(
-    `discover/tv/toprated/${{
-      ...formFilter.value,
-      type: 'toprated',
-    }}`,
-    () => FilterTvSlug({ ...formFilter.value, type: 'toprated' })
-  )
+  // await useAsyncData(
+  //   `discover/tv/toprated/${{
+  //     ...formFilter.value,
+  //     type: 'toprated',
+  //   }}`,
+  //   () => FilterTvSlug({ ...formFilter.value, type: 'toprated' })
+  // )
+  FilterTvSlug({ ...formFilter.value, type: 'toprated' })
     .then((response) => {
-      topRateds.value = response.data.value?.results.slice(0, 12);
+      topRateds.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

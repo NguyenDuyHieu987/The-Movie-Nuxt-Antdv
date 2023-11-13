@@ -193,12 +193,13 @@ const handleChangeSeason = async (value: string) => {
   loading.value = true;
   window.history.replaceState(null, '', 'tap-1');
 
-  await useAsyncData(
-    `season/get/${props.dataMovie?.id}/${selectedSeasonId.value}`,
-    () => getSeason(props.dataMovie?.id, selectedSeasonId.value)
-  )
+  // await useAsyncData(
+  //   `season/get/${props.dataMovie?.id}/${selectedSeasonId.value}`,
+  //   () => getSeason(props.dataMovie?.id, selectedSeasonId.value)
+  // )
+  await getSeason(props.dataMovie?.id, selectedSeasonId.value)
     .then((response) => {
-      dataEpisode.value = response.data.value?.episodes
+      dataEpisode.value = response?.episodes
         .filter((item: any) => item.air_date != null)
         .reverse();
     })

@@ -268,12 +268,13 @@ watch(
   () => store.isLogin,
   async () => {
     if (store.isLogin) {
-      await useAsyncData(
-        `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-        () => getItemList(props.item?.id, props.item?.media_type)
-      )
+      //  useAsyncData(
+      //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
+      //   () => getItemList(props.item?.id, props.item?.media_type)
+      // )
+      getItemList(props.item?.id, props.item?.media_type)
         .then((movieRespone: any) => {
-          if (movieRespone.data.value.success == true) {
+          if (movieRespone.success == true) {
             isAddToList.value = true;
           }
         })
