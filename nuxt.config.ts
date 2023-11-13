@@ -384,6 +384,9 @@ export default defineNuxtConfig({
       external: ['compute-scroll-into-view', 'ant-design-vue', 'moment'],
       noExternal: [],
     },
+    optimizeDeps: {
+      include: ['./components/**/*.vue'],
+    },
     css: {
       preprocessorOptions: {
         less: {
