@@ -315,7 +315,7 @@ export default defineNuxtConfig({
     storage: {},
     output: {
       // dir:'.output',
-      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
       // serverDir: '.output/server',
       // publicDir: '.output/public',
     },
@@ -431,6 +431,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  devtools: { enabled: false },
   vue: { defineModel: true, propsDestructure: true },
   ssr: true,
   sourcemap: {
