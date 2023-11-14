@@ -21,7 +21,8 @@
           <span>Airing Today</span>
           <NuxtLink
             :to="{
-              path: `/discover/tv/airingtoday`,
+              path: `/discover/tv`,
+              query: { type: 'airingtoday' },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -54,7 +55,8 @@
           <span>On The Air</span>
           <NuxtLink
             :to="{
-              path: `/discover/tv/ontheair`,
+              path: `/discover/tv`,
+              query: { type: 'ontheair' },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -84,7 +86,8 @@
           <span>Popular</span>
           <NuxtLink
             :to="{
-              path: `/discover/tv/popular`,
+              path: `/discover/tv`,
+              query: { type: 'popular' },
             }"
           >
             <span class="view-all">Xem tất cả</span>
@@ -114,7 +117,8 @@
           <span>Top Rated</span>
           <NuxtLink
             :to="{
-              path: `/discover/tv/toprated`,
+              path: `/discover/tv`,
+              query: { type: 'toprated' },
             }"
           >
             <span class="view-all">Xem tất cả</span>

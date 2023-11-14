@@ -315,7 +315,7 @@ export default defineNuxtConfig({
     storage: {},
     output: {
       // dir:'.output',
-      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
       // serverDir: '.output/server',
       // publicDir: '.output/public',
     },
@@ -334,9 +334,9 @@ export default defineNuxtConfig({
       const discountries = await discoverCountries();
       const disyears = await discoverYears();
 
-      nitroConfig.prerender?.routes?.push(...disGenres);
-      nitroConfig.prerender?.routes?.push(...discountries);
-      nitroConfig.prerender?.routes?.push(...disyears);
+      // nitroConfig.prerender?.routes?.push(...disGenres);
+      // nitroConfig.prerender?.routes?.push(...discountries);
+      // nitroConfig.prerender?.routes?.push(...disyears);
     },
   },
   generate: {
@@ -453,10 +453,10 @@ export default defineNuxtConfig({
     '/follow/**': { prerender: true },
     '/history/**': { prerender: true },
     '/ranking/**': { prerender: true },
-    '/info-movie/**': { prerender: true },
-    '/info-tv/**': { prerender: true },
-    '/play-movie/**': { prerender: true },
-    '/play-tv/**': { prerender: true },
+    '/info-movie/**': { prerender: false },
+    '/info-tv/**': { prerender: false },
+    '/play-movie/**': { prerender: false },
+    '/play-tv/**': { prerender: false },
     '/oauth/**': { prerender: true },
     '/login': {
       prerender: true,

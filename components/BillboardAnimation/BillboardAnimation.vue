@@ -110,7 +110,7 @@ const billboard = ref();
 const prevItemCarousel = ref<string>('');
 const nextItemCarousel = ref<string>('');
 const dataModel = defineModel<any[]>('data');
-const currenImage = ref<string>(dataModel.value![0].backdrop_path);
+const currenImage = ref<string>(dataModel.value![0]?.backdrop_path);
 
 watch(dataModel, () => {
   if (dataModel.value) {
