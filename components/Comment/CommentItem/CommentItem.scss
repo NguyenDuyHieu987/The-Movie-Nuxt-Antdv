@@ -116,7 +116,13 @@
       }
 
       .loading-replies {
-        padding: 5px 50px;
+        &.loading-circle {
+          padding: 5px 50px;
+        }
+
+        &.loading-spinner {
+          padding: 20px 50px;
+        }
       }
 
       .replies {
@@ -147,14 +153,6 @@
         }
 
         .list-replies {
-          // height: 0px;
-          // overflow: hidden;
-
-          // &.show {
-          //   height: auto;
-          //   overflow: visible;
-          // }
-
           .load-more {
             margin: 8px 0px;
             padding-left: 13px;

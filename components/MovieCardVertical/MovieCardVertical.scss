@@ -75,7 +75,8 @@
         max-height: 100%;
 
         &[lazy='error'] {
-          background-size: 40%;
+          // width: 50% !important;
+          background-size: 50%;
         }
       }
 

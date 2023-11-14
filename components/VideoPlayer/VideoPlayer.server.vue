@@ -22,7 +22,7 @@
       preload="metadata"
       autoplay
       muted
-      v-lazy-load
+      data-not-lazy
       @loadstart="onLoadStartVideo"
       @loadeddata="onLoadedDataVideo"
       @canplay="onCanPlayVideo"
@@ -48,7 +48,7 @@
           // videoStates.isLoaded
         "
       >
-        <svg
+        <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           width="5rem"
           height="5rem"
@@ -62,7 +62,9 @@
             stroke-width="4"
             d="M4 24c0 11.046 8.954 20 20 20s20-8.954 20-20S35.046 4 24 4"
           />
-        </svg>
+        </svg> -->
+
+        <LoadingSpinner />
       </div>
 
       <div class="replay" v-show="videoStates.isEndedVideo">
@@ -715,6 +717,7 @@
 <script setup lang="ts">
 // import axios from 'axios';
 import CloseBtn from '~/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 import { getVideo } from '~/services/video';
 
 const props = defineProps<{

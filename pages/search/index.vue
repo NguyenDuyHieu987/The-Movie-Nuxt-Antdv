@@ -31,10 +31,10 @@
         />
       </div>
 
-      <LoadingCircle v-else class="loading-page" />
+      <LoadingSpinner v-else class="loading-page" />
 
       <a-result
-        v-show="!searchData?.length && !loading"
+        v-if="!searchData?.length && !loading"
         status="404"
         title="Opps!"
         :sub-title="`Không có kêt quả nào khớp với từ
@@ -42,7 +42,7 @@
       />
 
       <ControlPage
-        v-show="searchData?.length && activeTabSearch == 'all'"
+        v-if="searchData?.length && activeTabSearch == 'all'"
         :page="page"
         :total="totalPage"
         :pageSize="pageSize"
@@ -57,21 +57,23 @@ import axios from 'axios';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import { getDaTaSearch } from '~/services/search';
-import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const store: any = useStore();
 const route: any = useRoute();
 const router = useRouter();
-// const searchData = ref<any>([]);
+const searchData = ref<any>([]);
 const searchDataMovie = ref<any[]>([]);
 const searchDataTv = ref<any[]>([]);
 const activeTabSearch = ref<string>('all');
 const loading = ref<boolean>(false);
-const page = ref<number>(1);
+const page = ref<number>(+route.query?.page || 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
-const searchQuery = computed<string>(() => route.query.q?.replaceAll('+', ' '));
+const searchQuery = computed<string>(
+  () => route.query.q?.replaceAll('+', ' ') || ''
+);
 
 useHead({
   title: () => 'Tìm kiếm: ' + searchQuery.value + ' - Phimhay247',
@@ -116,22 +118,29 @@ const getData = async () => {
 
 loading.value = true;
 
-const { data: searchData, pending } = await useAsyncData(
+const { data: searchDataCache, pending } = await useAsyncData(
   `cache/search/all/${route.params.genre}/${page.value}`,
   () => getDaTaSearch(searchQuery.value, page.value),
   {
-    transform: (data: any) => {
-      totalPage.value = data?.total;
-      pageSize.value = data?.page_size;
-      searchDataMovie.value = data?.movie;
-      searchDataTv.value = data?.tv;
-      loading.value = false;
-
-      return data.results;
-    },
-    server: false,
+    // transform: (data: any) => {
+    //   totalPage.value = data?.total;
+    //   pageSize.value = data?.page_size;
+    //   searchDataMovie.value = data?.movie;
+    //   searchDataTv.value = data?.tv;
+    //   loading.value = false;
+    //   return data.results;
+    // },
+    // server: false,
   }
 );
+
+searchData.value = searchDataCache.value?.results;
+
+totalPage.value = searchDataCache.value?.total;
+pageSize.value = searchDataCache.value?.page_size;
+searchDataMovie.value = searchDataCache.value?.movie;
+searchDataTv.value = searchDataCache.value?.tv;
+loading.value = false;
 
 watch(
   () => route.query?.q,

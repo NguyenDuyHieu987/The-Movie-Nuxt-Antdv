@@ -44,6 +44,7 @@
               <img
                 v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
                 loading="lazy"
+                alt=""
               />
             </div>
 
@@ -317,7 +318,7 @@ const getData = async () => {
         // )
         getTvById(props.item?.movie_id)
           .then((response: any) => {
-            dataMovie.value = response.data.value;
+            dataMovie.value = response;
 
             loading.value = false;
           })

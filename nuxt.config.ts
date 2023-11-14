@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { isProduction } from 'std-env';
 import { addComponent } from '@nuxt/kit';
 import * as AntDV from 'ant-design-vue';
+import svgLoader from 'vite-svg-loader';
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 // import axios from 'axios';
@@ -250,9 +251,9 @@ export default defineNuxtConfig({
     images: false,
     videos: true,
     audios: true,
-    iframes: false,
+    iframes: true,
     native: false,
-    directiveOnly: true,
+    directiveOnly: false,
 
     // Default image must be in the public folder
     // defaultImage: '/images/default-image.jpg',
@@ -364,6 +365,7 @@ export default defineNuxtConfig({
       //     }),
       //   ],
       // }),
+      svgLoader({}),
     ],
     ssr: {
       external: ['compute-scroll-into-view', 'ant-design-vue', 'moment'],

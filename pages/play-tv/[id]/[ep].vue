@@ -1,6 +1,6 @@
 <template>
   <div class="play-tv padding-content">
-    <LoadingCircle v-if="loading" class="loading-page" />
+    <LoadingSpinner v-if="loading" class="loading-page" />
 
     <div v-else class="play-container">
       <div class="top-page">
@@ -295,7 +295,7 @@ import RatingMovie from '~/components/RatingMovie/RatingMovie.server.vue';
 import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import Comment from '~/components/Comment/Comment.vue';
 import ListEpisodes from '~/components/ListEpisodes/ListEpisodes.vue';
-import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const utils = useUtils();
 const store: any = useStore();

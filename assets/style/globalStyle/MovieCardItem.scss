@@ -11,11 +11,15 @@
 
   .img-box {
     img {
+      &[lazy='loading'] {
+      }
+
       &[lazy='error'] {
-        // width: auto;
+        // width: 30% !important;
         // margin: 0px auto;
+        // object-fit: contain !important;
         background-image: url('https://ik.imagekit.io/z8fhvnk8u/images/svg/error-image.svg');
-        background-size: 50%;
+        background-size: 30%;
         background-repeat: no-repeat;
         background-position: center center;
         transition: background-position 0s !important;

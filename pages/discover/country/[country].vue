@@ -44,11 +44,10 @@
         />
       </div>
 
-      <LoadingCircle v-else class="loading-page" />
+      <LoadingSpinner v-else class="loading-page" />
     </section>
 
     <ControlPage
-      v-show="dataDiscover?.length"
       :page="page"
       :total="totalPage"
       :pageSize="pageSize"
@@ -66,7 +65,7 @@ import DiscoverHead from '~/components/DiscoverHead/DiscoverHead.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import FilterBar from '~/components/FilterBar/FilterBar.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
-import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 import type { formfilter, country } from '@/types';
 
 const route: any = useRoute();
@@ -74,7 +73,7 @@ const router = useRouter();
 const store = useStore();
 const dataDiscover = ref<any[]>();
 const countries = ref<country[]>(store.allCountries);
-const page = ref<number>(route.query?.page ? +route.query?.page : 1);
+const page = ref<number>(+route.query?.page || 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const isFilter = ref<boolean>(false);

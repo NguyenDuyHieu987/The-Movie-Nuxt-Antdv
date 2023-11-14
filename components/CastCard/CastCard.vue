@@ -18,7 +18,7 @@
           v-lazy="getPosterCast(item?.profile_path)"
           :lazy="true"
           loading="lazy"
-          @load="onLoadImg"
+          alt=""
         />
       </div>
     </div>
@@ -53,11 +53,5 @@ onBeforeMount(() => {
     loading.value = false;
   }, 300);
 });
-
-const onLoadImg = (e: any) => {
-  // const image = document.querySelector('.img-box img') as HTMLImageElement;
-  // console.log(image.getAttribute('lazy'));
-  // loading.value = image.getAttribute('lazy') == 'loading';
-};
 </script>
 <style lang="scss" src="./CastCard.scss"></style>

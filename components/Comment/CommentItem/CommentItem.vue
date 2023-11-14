@@ -220,9 +220,15 @@
             </div>
           </div>
 
-          <LoadingCircle
+          <!-- <LoadingCircle
             v-show="loadingReplies || isLoadmoreReplies"
             class="loading-replies"
+          /> -->
+
+          <LoadingSpinner
+            v-show="loadingReplies || isLoadmoreReplies"
+            class="loading-replies"
+            :width="25"
           />
         </div>
       </div>
@@ -242,6 +248,7 @@ import FormComment from '~/components/Comment/FormComment/FormComment.vue';
 import CommentItemChild from '~/components/Comment/CommentItemChild/CommentItemChild.vue';
 import LikeDislike from '~/components/Comment/LikeDislike/LikeDislike.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 

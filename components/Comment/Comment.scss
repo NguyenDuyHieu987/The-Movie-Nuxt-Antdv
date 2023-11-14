@@ -9,8 +9,10 @@
   .comment-body {
     .loading-comment {
       display: flex;
-      margin: 0px auto;
+      align-items: center;
+      justify-content: center;
       padding: 20px 0px;
+      padding-top: 40px;
 
       svg {
         font-size: 3.3rem;

@@ -30,11 +30,10 @@
         />
       </div>
 
-      <LoadingCircle v-else class="loading-page" />
+      <LoadingSpinner v-else class="loading-page" />
     </section>
 
     <ControlPage
-      v-show="dataDiscover?.length"
       :page="page"
       :total="totalPage"
       :pageSize="pageSize"
@@ -50,14 +49,14 @@ import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHoriz
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
 import FilterSection from '~/components/FilterSection/FilterSection.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
-import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 import type { formfilter, typeMovie } from '@/types';
 
 const route: any = useRoute();
 const router = useRouter();
 const store = useStore();
 const dataDiscover = ref<any[]>();
-const page = ref<number>(route.query?.page ? +route.query?.page : 1);
+const page = ref<number>(+route.query?.page || 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const loading = ref<boolean>(false);

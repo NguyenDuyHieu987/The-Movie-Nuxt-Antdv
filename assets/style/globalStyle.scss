@@ -25,6 +25,7 @@
   --loading-background: #101010;
 
   --loading-app-color: #0080ca;
+  --loading-spinner-color: #fff;
 
   --loading-progress-bar1: #1cb5e0;
   --loading-progress-bar2: #00dc82;
@@ -234,6 +235,11 @@ button,
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+}
+
+img {
+  border: none;
+  outline: none;
 }
 
 svg {

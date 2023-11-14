@@ -59,6 +59,7 @@
     "pinia": "^2.1.7",
     "scroll-bottom": "^0.1.0",
     "std-env": "^3.4.3",
+    "vite-svg-loader": "^4.0.0",
     "vue": "^3.3.8",
     "vue-lazyload": "^3.0.0",
     "vue-router": "^4.2.5",

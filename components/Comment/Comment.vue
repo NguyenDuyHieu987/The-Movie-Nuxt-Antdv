@@ -11,9 +11,11 @@
         :movieType="dataMovie?.media_type"
       />
 
-      <LoadingCircle v-if="loading" class="loading-comment" />
+      <!-- <LoadingCircle v-if="loading" class="loading-comment" /> -->
 
-      <div v-else class="list-comment">
+      <LoadingSpinner v-show="loading" class="loading-comment" :width="35" />
+
+      <div v-show="!loading" class="list-comment">
         <CommentItem
           v-for="(item, index) in commentsList"
           :key="item?.id"
@@ -25,9 +27,15 @@
         />
       </div>
 
-      <LoadingCircle
+      <!-- <LoadingCircle
         v-show="loadMore && !disabledLoadMore"
         class="loading-comment"
+      /> -->
+
+      <LoadingSpinner
+        v-show="loadMore && !disabledLoadMore"
+        class="loading-comment"
+        :width="35"
       />
     </div>
   </div>
@@ -39,6 +47,7 @@ import { getCommentByMovidId } from '~/services/comment';
 import FormComment from '~/components/Comment/FormComment/FormComment.vue';
 import CommentItem from '~/components/Comment/CommentItem/CommentItem.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const props = defineProps<{
   dataMovie: any;

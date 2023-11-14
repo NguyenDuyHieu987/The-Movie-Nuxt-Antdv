@@ -1,6 +1,6 @@
 <template>
   <div class="movie-info">
-    <LoadingCircle v-if="loading" class="loading-page" />
+    <LoadingSpinner v-if="loading" class="loading-page" />
 
     <div class="info-conainer" v-else>
       <BackPage :fixed="true" @onclick="$router.back()">
@@ -368,7 +368,7 @@ import CastCrew from '~/components/CastCrew/CastCrew.vue';
 import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressBar.vue';
 import Comment from '~/components/Comment/Comment.vue';
-import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const nuxtApp = useNuxtApp();
 const store = useStore();

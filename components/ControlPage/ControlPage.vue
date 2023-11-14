@@ -3,7 +3,7 @@
     <a-pagination
       class="pagination"
       :current="page"
-      :total="total"
+      :total="total || 100"
       :pageSize="pageSize"
       :showSizeChanger="false"
       :responsive="true"
@@ -26,7 +26,7 @@
 <script setup lang="ts">
 defineProps<{
   page: number;
-  total?: number | 100;
+  total?: number;
   pageSize: number;
   onChangePage?: (page: number) => void;
 }>();

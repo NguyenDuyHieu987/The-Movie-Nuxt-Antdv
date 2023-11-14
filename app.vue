@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import LoadingApp from '~/components/LoadingApp/LoadingApp.vue';
+import LoadingApp from '~/components/LoadingApp/LoadingApp.server.vue';
 import RequireAuthDialog from '~/components/RequireAuthDialog/RequireAuthDialog.server.vue';
 
 const onBackTop = () => {

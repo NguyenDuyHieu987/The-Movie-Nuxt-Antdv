@@ -45,6 +45,7 @@
               <img
                 v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
                 loading="lazy"
+                alt=""
               />
             </div>
 

@@ -61,7 +61,8 @@
       opacity: 1 !important;
 
       &[lazy='error'] {
-        background-size: 30%;
+        // width: 40% !important;
+        background-size: 40%;
       }
     }
 

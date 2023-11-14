@@ -17,11 +17,10 @@
             />
           </div>
 
-          <LoadingCircle v-else class="loading-page" />
+          <LoadingSpinner v-else class="loading-page" />
         </section>
 
         <ControlPage
-          v-show="rankings?.length"
           :page="pageTrending"
           :total="totalPage"
           :pageSize="pageSize"
@@ -39,12 +38,12 @@ import { getTrending } from '~/services/trending';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
 import RankSide from '~/components/RankSide/RankSide.server.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
-import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const router = useRouter();
 const route: any = useRoute();
 const rankings = ref<any[]>([]);
-const pageTrending = ref<number>(route?.query?.page ? route?.query?.page : 1);
+const pageTrending = ref<number>(+route?.query?.page || 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const loading = ref<boolean>(false);
