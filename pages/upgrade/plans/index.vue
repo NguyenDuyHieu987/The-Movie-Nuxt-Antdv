@@ -85,7 +85,7 @@ const onRouteToPaymentPage = () => {
   }
 
   navigateTo(
-    `/upgrade/paymentpicker?planorder=${selectedPlan.value!?.order || 3}`
+    `/upgrade/PaymentPicker?planorder=${selectedPlan.value!?.order || 3}`
   );
 };
 </script>

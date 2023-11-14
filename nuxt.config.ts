@@ -300,7 +300,7 @@ export default defineNuxtConfig({
     storage: {},
     output: {
       // dir:'.output',
-      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
       // serverDir: '.output/server',
       // publicDir: '.output/public',
     },
@@ -335,11 +335,11 @@ export default defineNuxtConfig({
       '/history',
       '/ranking',
       '/upgrade/plans',
-      '/youraccount',
+      '/YourAccount',
       '/oauth/google',
       '/login',
       '/signup',
-      '/forgotpassword',
+      '/ForgotPassword',
       // '/info-movie',
       // '/info-tv',
       // '/play-movie',
@@ -450,11 +450,11 @@ export default defineNuxtConfig({
     '/signup': {
       prerender: true,
     },
-    '/forgotpassword': { prerender: true },
+    '/ForgotPassword': { prerender: true },
     '/upgrade/plans': { prerender: true },
-    '/upgrade/paymentpicker': {
+    '/upgrade/PaymentPicker': {
       ssr: false,
     },
-    '/youraccount/**': { ssr: false },
+    '/YourAccount/**': { ssr: false },
   },
 });

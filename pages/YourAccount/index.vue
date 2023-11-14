@@ -150,7 +150,6 @@ const breakPoints = useBreakpoints({
   responesive: 650,
 });
 const showAnimation = ref<boolean>(false);
-const internalInstance: any = getCurrentInstance();
 
 const responesive = breakPoints.smallerOrEqual('responesive');
 
@@ -159,14 +158,14 @@ const joinSince = computed<string>(() =>
 );
 
 useHead({
-  title: 'Tài khoản',
+  title: 'Tài khoản - Phimhay247',
   htmlAttrs: { lang: 'vi' },
 });
 
 useServerSeoMeta({
-  title: 'Tài khoản',
+  title: 'Tài khoản - Phimhay247',
   description: 'Tài khoản của bạn',
-  ogTitle: 'Tài khoản',
+  ogTitle: 'Tài khoản - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Tài khoản của bạn',
