@@ -13,7 +13,7 @@
 
       <!-- <LoadingCircle v-if="loading" class="loading-comment" /> -->
 
-      <LoadingSpinner v-show="loading" class="loading-comment" :width="35" />
+      <!-- <LoadingSpinner v-show="loading" class="loading-comment" :width="35" /> -->
 
       <div v-show="!loading" class="list-comment">
         <CommentItem
@@ -33,7 +33,7 @@
       /> -->
 
       <LoadingSpinner
-        v-show="loadMore && !disabledLoadMore"
+        v-show="(loading || loadMore) && !disabledLoadMore"
         class="loading-comment"
         :width="35"
       />
@@ -89,7 +89,7 @@ await getCommentByMovidId(
   });
 
 onMounted(() => {
-  window.onscroll = () => {
+  window.onscroll = async () => {
     if (commentsList.value?.length == 0) {
       return;
     }
@@ -98,11 +98,12 @@ onMounted(() => {
 
     if (
       scrollHeight == document.documentElement.scrollHeight &&
-      commentsList.value?.length >= 20
+      commentsList.value?.length >= 20 &&
+      commentsList.value?.length < total.value
     ) {
       loadMore.value = true;
 
-      getCommentByMovidId(
+      await getCommentByMovidId(
         props.dataMovie?.id,
         props.dataMovie?.media_type,
         skip.value

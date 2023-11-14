@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <div v-if="store.isLogin" class="history-container">
-      <div v-if="loading">
+      <div v-if="!loading">
         <TopicRow
           v-show="responsive"
           v-model:dataRow="dataHistory"
@@ -14,7 +14,7 @@
           :deleteAll="removeAllHistoryList"
         />
 
-        <Teleport :disabled="!loading" to="#topic-history-column-teleport">
+        <Teleport :disabled="loading" to="#topic-history-column-teleport">
           <TopicColumn
             v-model:dataColumn="dataHistory"
             v-model:valueInput="valueInput"
@@ -128,7 +128,6 @@ const total = ref<number>(0);
 const skip = ref<number>(1);
 const dataHistory = ref<any[]>([]);
 const loading = ref<boolean>(false);
-const isScroll = ref<boolean>(false);
 const loadingSearch = ref<boolean>(false);
 const isFixedNavActiom = ref<boolean>(false);
 const loadMore = ref<boolean>(false);
@@ -178,7 +177,6 @@ onMounted(() => {
       }
     }
 
-    isScroll.value = true;
     // console.log(window.scrollY + window.innerHeight);
     // console.log(document.documentElement.scrollHeight);
     const scrollHeight = Math.round(window.scrollY + window.innerHeight);
@@ -186,7 +184,6 @@ onMounted(() => {
     if (
       scrollHeight == document.documentElement.scrollHeight &&
       // Math.floor(scrollBottom()) == 0 &&
-      isScroll.value == true &&
       total.value > 20 &&
       dataHistory.value?.length < total.value
     ) {
@@ -198,23 +195,23 @@ onMounted(() => {
       await getHistory(activeTab.value, skip.value)
         .then((response: any) => {
           if (response?.results?.length > 0) {
-            setTimeout(() => {
-              loadMore.value = false;
-              dataHistory.value = dataHistory.value.concat(
-                response.data?.result
-              );
-            }, 2000);
+            dataHistory.value = dataHistory.value.concat(response.data?.result);
             skip.value += 1;
           }
         })
         .catch((e) => {
           if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loadMore.value = false;
         });
     }
   });
 });
 
 const getData = async () => {
+  loading.value = true;
+
   // await useAsyncData(
   //   `history/get/${store.userAccount?.id}/${activeTab.value}/1`,
   //   () => getHistory(activeTab.value, 1)
@@ -245,7 +242,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = true;
+      loading.value = false;
     });
 };
 

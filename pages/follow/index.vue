@@ -1,7 +1,7 @@
 <template>
   <div class="follow">
     <div v-if="store.isLogin" class="follow-container">
-      <div v-if="loading">
+      <div v-if="!loading">
         <TopicRow
           v-show="responsive"
           v-model:dataRow="dataList"
@@ -14,7 +14,7 @@
           :deleteAll="removeAllFollowList"
         />
 
-        <Teleport to="#topic-follow-column-teleport">
+        <Teleport :disabled="loading" to="#topic-follow-column-teleport">
           <TopicColumn
             v-model:dataColumn="dataList"
             v-model:valueInput="valueInput"
@@ -133,7 +133,6 @@ const loading = ref<boolean>(false);
 const loadingSearch = ref<boolean>(false);
 const isFixedNavActiom = ref<boolean>(false);
 const loadMore = ref<boolean>(false);
-const isScroll = ref<boolean>(false);
 const topicImage = ref<string>('topic1.jpg');
 const followContent = ref();
 const title = ref<string>('Phim đã thêm vào danh sách phát');
@@ -181,16 +180,13 @@ onMounted(() => {
       }
     }
 
-    isScroll.value = true;
     // console.log(window.scrollY + window.innerHeight);
     // console.log(document.documentElement.scrollHeight);
-
     const scrollHeight = Math.round(window.scrollY + window.innerHeight);
 
     if (
       scrollHeight == document.documentElement.scrollHeight &&
       // Math.floor(scrollBottom()) == 0 &&
-      isScroll.value == true &&
       total.value > 20 &&
       dataList.value?.length < total.value
     ) {
@@ -202,26 +198,27 @@ onMounted(() => {
       await getList(activeTab.value, skip.value)
         .then((response: any) => {
           if (response?.results?.length > 0) {
-            setTimeout(() => {
-              loadMore.value = false;
-              dataList.value = dataList.value.concat(response?.results);
-            }, 2000);
+            dataList.value = dataList.value.concat(response?.results);
             skip.value += 1;
           }
         })
         .catch((e) => {
           if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loadMore.value = false;
         });
     }
   });
 });
 
 const getData = async () => {
+  loading.value = true;
+
   // await useAsyncData(
   //   `list/get/${store.userAccount?.id}/${activeTab.value}/1`,
   //   () => getList(activeTab.value, 1)
   // )
-
   await getList(activeTab.value, 1)
     .then((response: any) => {
       if (response?.results?.length > 0) {
@@ -248,7 +245,7 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loading.value = true;
+      loading.value = false;
     });
 };
 
