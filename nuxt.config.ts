@@ -32,7 +32,7 @@ const discoverYears = async () => {
 export default defineNuxtConfig({
   app: {
     rootId: '__nuxt',
-    buildAssetsDir: '/home/',
+    // buildAssetsDir: '/home/',
     head: {
       title: 'Phimhay247',
       // titleTemplate: '%pageTitle %titleSeparator %siteName',
@@ -153,18 +153,19 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in', appear: true },
   },
   runtimeConfig: {
-    // production_mode: process.env.NODE_ENV == 'production',
-    production_mode: isProduction,
-    apiGateway: process.env.API_GATEWAY,
-    serverImageUrl: process.env.SERVER_IMAGE_URL,
-    serverVideoUrl: process.env.SERVER_VIDEO_URL,
-    adminWebsiteUrl: process.env.ADMIN_WEBSITE_URL,
-    googleAnalyticsID: process.env.GOOGLE_ANALYTICS_ID,
-    googleTagManagerID: process.env.GOOGLE_TAG_MANAGER_ID,
-    facebookAppID: process.env.FACEBOOK_APP_ID,
-    googleOauth2ClientID: process.env.GOOGLE_OAUTH2_CLIENT_ID,
-    googleOauth2ClientSecret: process.env.GOOGLE_OAUTH2_CLIENT_SECRET,
-    app: {},
+    app: {
+      // production_mode: process.env.NODE_ENV == 'production',
+      production_mode: isProduction,
+      apiGateway: process.env.API_GATEWAY,
+      serverImageUrl: process.env.SERVER_IMAGE_URL,
+      serverVideoUrl: process.env.SERVER_VIDEO_URL,
+      adminWebsiteUrl: process.env.ADMIN_WEBSITE_URL,
+      googleAnalyticsID: process.env.GOOGLE_ANALYTICS_ID,
+      googleTagManagerID: process.env.GOOGLE_TAG_MANAGER_ID,
+      facebookAppID: process.env.FACEBOOK_APP_ID,
+      googleOauth2ClientID: process.env.GOOGLE_OAUTH2_CLIENT_ID,
+      googleOauth2ClientSecret: process.env.GOOGLE_OAUTH2_CLIENT_SECRET,
+    },
     public: {
       TMDBurl: process.env.TMDB_IMAGE_BASE_URL,
     },
@@ -299,7 +300,7 @@ export default defineNuxtConfig({
     storage: {},
     output: {
       // dir:'.output',
-      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
       // serverDir: '.output/server',
       // publicDir: '.output/public',
     },
@@ -387,7 +388,7 @@ export default defineNuxtConfig({
       sourcemap: 'hidden',
       minify: 'terser',
       ssrManifest: true,
-      assetsDir: 'home/',
+      // assetsDir: 'home/',
       cssMinify: true,
       reportCompressedSize: false,
       terserOptions: {

@@ -26,11 +26,11 @@ export default defineNuxtPlugin({
     // if (nuxtConfig.app.production_mode) {
     nuxtApp.vueApp.use(VueGtag, {
       property: {
-        id: nuxtConfig.googleAnalyticsID,
+        id: nuxtConfig.app.googleAnalyticsID,
         params: {},
       },
       appName: 'Phimhay247',
-      isEnabled: nuxtConfig.production_mode,
+      isEnabled: nuxtConfig.app.production_mode,
     });
     // }
     trackRouter(useRouter());

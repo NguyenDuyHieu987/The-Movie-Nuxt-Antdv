@@ -16,7 +16,7 @@ export async function initFacebookSdk() {
     window.fbAsyncInit = function () {
       const FB = window?.FB;
       FB.init({
-        appId: nuxtConfig.facebookAppID,
+        appId: nuxtConfig.app.facebookAppID,
         cookie: true,
         xfbml: true,
         autoLogAppEvents: true,

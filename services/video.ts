@@ -5,8 +5,8 @@ export function makeRequestVideo(url: string, options: any = {}) {
   const nuxtConfig = useRuntimeConfig();
 
   const api = axios.create({
-    baseURL: nuxtConfig.production_mode
-      ? nuxtConfig.serverVideoUrl
+    baseURL: nuxtConfig.app.production_mode
+      ? nuxtConfig.app.serverVideoUrl
       : 'http://localhost:5002',
     // withCredentials: true,
     headers: { Accept: 'video/mp4;charset=UTF-8' },

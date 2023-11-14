@@ -45,7 +45,7 @@
         </el-dropdown-item>
 
         <el-dropdown-item v-if="isLogin && role == 'admin'">
-          <NuxtLink :to="$config.adminWebsiteUrl" target="_blank">
+          <NuxtLink :to="$config.app.adminWebsiteUrl" target="_blank">
             Bảng điều khiển
           </NuxtLink>
         </el-dropdown-item>
