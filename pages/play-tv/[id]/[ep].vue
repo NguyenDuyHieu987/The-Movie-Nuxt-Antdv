@@ -333,7 +333,7 @@ const getData = async () => {
   getTvById(movieId.value, 'seasons,episodes')
     .then((tvResponed: any) => {
       dataMovie.value = tvResponed;
-      disabledRate.value = tvResponed?.is_rated == true;
+      disabledRate.value = dataMovie.value?.is_rated == true;
     })
     .catch((e) => {
       navigateTo('/404');
@@ -358,8 +358,8 @@ const getData = async () => {
     //   () => getItemHistory(movieId.value)
     // );
     // getItemList(movieId.value)
-    //   .then((movieRespone) => {
-    //     if (movieRespone.data.value.data.success == true) {
+    //   .then((response: any) => {
+    //     if (response.data.value.success == true) {
     //       isAddToList.value = true;
     //     }
     //   })
@@ -371,10 +371,10 @@ const getData = async () => {
     //   `itemhistory/${store?.userAccount?.id}/${movieId.value}`,
     //   () => getItemHistory(movieId.value)
     // )
-    //   .then((movieRespone: any) => {
-    //     if (movieRespone.data.value.data.success == true) {
+    //   .then((response: any) => {
+    //     if (response.data.value.success == true) {
     //       isInHistory.value = true;
-    //       dataItemHistory.value = movieRespone.data.value.data?.result;
+    //       dataItemHistory.value = movieRespone.data.value?.result;
     //     } else {
     //       isInHistory.value = false;
     //     }

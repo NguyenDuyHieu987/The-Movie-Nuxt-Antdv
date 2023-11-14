@@ -142,10 +142,10 @@ const getData = async () => {
       //   () => getItemHistory(props.item?.id, props.item?.media_type)
       // )
       getItemHistory(props.item?.id, props.item?.media_type)
-        .then((movieRespone: any) => {
-          if (movieRespone.success == true) {
+        .then((response: any) => {
+          if (response.success == true) {
             isInHistory.value = true;
-            percent.value = movieRespone?.result?.percent;
+            percent.value = response?.result?.percent;
           }
         })
         .catch((e) => {

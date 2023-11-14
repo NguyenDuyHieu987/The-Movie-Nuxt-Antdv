@@ -145,8 +145,8 @@ const getData = async () => {
     //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
     //   () => getItemList(store?.userAccount?.id, props.item?.id)
     // )
-    //   .then((movieRespone: any) => {
-    //     if (movieRespone.data.value.data.success == true) {
+    //   .then((response: any) => {
+    //     if (response.data.value.success == true) {
     //       isAddToList.value = true;
     //     }
     //   })
@@ -163,10 +163,10 @@ const getData = async () => {
       //   () => getItemHistory(props.item?.id, props.item?.media_type)
       // )
       getItemHistory(props.item?.id, props.item?.media_type)
-        .then((movieRespone: any) => {
-          if (movieRespone.success == true) {
+        .then((response: any) => {
+          if (response.success == true) {
             isInHistory.value = true;
-            percent.value = movieRespone?.result?.percent;
+            percent.value = response?.result?.percent;
           }
         })
         .catch((e) => {

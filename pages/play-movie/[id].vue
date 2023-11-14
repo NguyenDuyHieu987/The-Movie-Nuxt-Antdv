@@ -304,7 +304,7 @@ const getData = async () => {
   getMovieById(movieId.value)
     .then((movieResponed: any) => {
       dataMovie.value = movieResponed;
-      disabledRate.value = movieResponed?.is_rated == true;
+      disabledRate.value = dataMovie.value?.is_rated == true;
     })
     .catch((e) => {
       navigateTo('/404');
@@ -328,8 +328,8 @@ const getData = async () => {
     //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
     //   () => getItemList(movieId.value)
     // )
-    //   .then((movieRespone: any) => {
-    //     if (movieRespone.data.value.data.success == true) {
+    //   .then((response: any) => {
+    //     if (response.data.value.success == true) {
     //       isAddToList.value = true;
     //     }
     //   })
@@ -341,10 +341,10 @@ const getData = async () => {
     //   `itemhistory/${store?.userAccount?.id}/${movieId.value}`,
     //   () => getItemHistory(movieId.value)
     // )
-    //   .then((movieRespone: any) => {
-    //     if (movieRespone.data.value.data.success == true) {
+    //   .then((response: any) => {
+    //     if (response.data.value.success == true) {
     //       isInHistory.value = true;
-    //       dataItemHistory.value = movieRespone.data.value.data?.result;
+    //       dataItemHistory.value = response.data.value?.result;
     //     } else {
     //       isInHistory.value = false;
     //     }

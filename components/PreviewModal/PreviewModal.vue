@@ -610,10 +610,9 @@ watch(isTeleport, async () => {
         // await useAsyncData(`tv/short/${props.item?.id}`, () =>
         //   getTvById(props.item?.id)
         // )
-
         await getTvById(props.item?.id)
           .then((tvResponed: any) => {
-            dataMovie.value = tvResponed.data.value;
+            dataMovie.value = tvResponed;
           })
           .catch((e) => {
             if (axios.isCancel(e)) return;
@@ -629,7 +628,7 @@ watch(isTeleport, async () => {
         // )
         await getMovieById(props.item?.id)
           .then((movieRespone: any) => {
-            dataMovie.value = movieRespone.data.value;
+            dataMovie.value = movieRespone;
           })
           .catch((e) => {
             if (axios.isCancel(e)) return;

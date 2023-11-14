@@ -154,11 +154,12 @@ const emitUrlCode = () => {
 const getData = async () => {
   loading.value = true;
 
-  useAsyncData(`season/list/${props.dataMovie?.series_id}`, () =>
-    getListSeason(props.dataMovie?.series_id)
-  )
+  // await useAsyncData(`season/list/${props.dataMovie?.series_id}`, () =>
+  //   getListSeason(props.dataMovie?.series_id)
+  // )
+  await getListSeason(props.dataMovie?.series_id)
     .then((response) => {
-      dataSeason.value = response.data.value?.results;
+      dataSeason.value = response?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

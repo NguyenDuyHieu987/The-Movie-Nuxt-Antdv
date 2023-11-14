@@ -417,16 +417,16 @@ const getData = async () => {
   await getTvById(movieId.value, 'videos')
     .then((movieRespone) => {
       dataMovie.value = movieRespone;
-      disabledRate.value = !!movieRespone?.rated_value;
+      disabledRate.value = !!dataMovie.value?.rated_value;
 
-      // movieRespone?.data?.images?.backdrops?.forEach((item) => {
+      // dataMovie.value.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(
       //     'https://image.tmdb.org/t/p/original' + item?.file_path
       //   );
       // });
 
       // srcBackdropList.value = Array.from(
-      //   movieRespone.data.value.images?.backdrops,
+      //   dataMovie.value.images?.backdrops,
       //   (item: any) => 'https://image.tmdb.org/t/p/original' + item?.file_path
       // );
 
@@ -447,8 +447,8 @@ const getData = async () => {
     //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
     //   () => getItemList(movieId.value)
     // )
-    //   .then((movieRespone: any) => {
-    //     if (movieRespone.data.value.data.success == true) {
+    //   .then((response: any) => {
+    //     if (response.data.value.success == true) {
     //       isAddToList.value = true;
     //     }
     //   })

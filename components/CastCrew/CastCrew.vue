@@ -125,7 +125,6 @@ loading.value = true;
 // await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
 //   getCredits(props.dataMovie?.id)
 // )
-
 await getCredits(props.dataMovie?.id)
   .then((response) => {
     dataCredit.value = response;

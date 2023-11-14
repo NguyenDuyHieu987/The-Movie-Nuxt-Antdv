@@ -196,12 +196,12 @@ onMounted(() => {
       //   () => getHistory(activeTab.value, skip.value)
       // )
       await getHistory(activeTab.value, skip.value)
-        .then((movieRespone: any) => {
-          if (movieRespone?.results?.length > 0) {
+        .then((response: any) => {
+          if (response?.results?.length > 0) {
             setTimeout(() => {
               loadMore.value = false;
               dataHistory.value = dataHistory.value.concat(
-                movieRespone.data?.result
+                response.data?.result
               );
             }, 2000);
             skip.value += 1;
@@ -220,10 +220,10 @@ const getData = async () => {
   //   () => getHistory(activeTab.value, 1)
   // )
   await getHistory(activeTab.value, 1)
-    .then((movieRespone: any) => {
-      if (movieRespone?.results?.length > 0) {
-        dataHistory.value = movieRespone?.results;
-        total.value = movieRespone?.total;
+    .then((response: any) => {
+      if (response?.results?.length > 0) {
+        dataHistory.value = response?.results;
+        total.value = response?.total;
         topicImage.value = dataHistory.value[0]?.backdrop_path;
         skip.value++;
       }
@@ -298,8 +298,8 @@ const searchHistoryEvent = (e: any) => {
       //     () => searchHistory(e.target.value, activeTab.value)
       //   )
       await searchHistory(e.target.value, activeTab.value)
-        .then((movieRespone: any) => {
-          dataHistory.value = movieRespone?.results;
+        .then((response: any) => {
+          dataHistory.value = response?.results;
           setTimeout(() => {
             loadingSearch.value = false;
           }, 500);
@@ -336,11 +336,11 @@ const handleChangeTab = async (value: string) => {
       //   () => getHistory(activeTab.value, 1)
       // )
       await getHistory(activeTab.value, 1)
-        .then((movieRespone: any) => {
-          dataHistory.value = movieRespone?.results;
-          total.value = movieRespone?.total;
+        .then((response: any) => {
+          dataHistory.value = response?.results;
+          total.value = response?.total;
 
-          if (movieRespone?.results?.length > 0) {
+          if (response?.results?.length > 0) {
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -358,11 +358,11 @@ const handleChangeTab = async (value: string) => {
       //   () => getHistory(activeTab.value, 1)
       // )
       await getHistory(activeTab.value, 1)
-        .then((movieRespone: any) => {
-          dataHistory.value = movieRespone?.results;
-          total.value = movieRespone?.total;
+        .then((response: any) => {
+          dataHistory.value = response?.results;
+          total.value = response?.total;
 
-          if (movieRespone?.results?.length > 0) {
+          if (response?.results?.length > 0) {
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -380,11 +380,11 @@ const handleChangeTab = async (value: string) => {
       //   () => getHistory(activeTab.value, 1)
       // )
       await getHistory(activeTab.value, 1)
-        .then((movieRespone: any) => {
-          dataHistory.value = movieRespone?.results;
-          total.value = movieRespone?.total;
+        .then((response: any) => {
+          dataHistory.value = response?.results;
+          total.value = response?.total;
 
-          if (movieRespone?.results?.length > 0) {
+          if (response?.results?.length > 0) {
             topicImage.value = dataHistory.value[0]?.backdrop_path;
             skip.value = 2;
           }

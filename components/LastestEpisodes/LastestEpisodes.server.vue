@@ -62,8 +62,8 @@ onBeforeMount(async () => {
   //   () => getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
   // )
   await getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
-    .then((episodesRespones) => {
-      dataSeason.value = episodesRespones;
+    .then((response) => {
+      dataSeason.value = response;
 
       dataEpisode.value = dataSeason.value?.episodes.filter(
         (item: any) => item.air_date != null

@@ -201,11 +201,12 @@ const getData = async () => {
     if (dataMovie.value?.in_list) {
       isAddToList.value = true;
     } else {
-      useAsyncData(`itemlist/${store?.userAccount?.id}/${props.item?.id}`, () =>
-        getItemList(props.item?.id, props.item?.media_type)
-      )
-        .then((movieRespone: any) => {
-          if (movieRespone.data.value.success == true) {
+      // useAsyncData(`itemlist/${store?.userAccount?.id}/${props.item?.id}`, () =>
+      //   getItemList(props.item?.id, props.item?.media_type)
+      // )
+      getItemList(props.item?.id, props.item?.media_type)
+        .then((response: any) => {
+          if (response.success == true) {
             isAddToList.value = true;
           }
         })
@@ -223,10 +224,10 @@ const getData = async () => {
       //   () => getItemHistory(props.item?.id, props.item?.media_type)
       // )
       getItemHistory(props.item?.id, props.item?.media_type)
-        .then((movieRespone: any) => {
-          if (movieRespone.success == true) {
+        .then((response: any) => {
+          if (response.success == true) {
             isInHistory.value = true;
-            percent.value = movieRespone?.result?.percent;
+            percent.value = response?.result?.percent;
           }
         })
         .catch((e) => {

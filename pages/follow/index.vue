@@ -200,11 +200,11 @@ onMounted(() => {
       //   () => getList(activeTab.value, skip.value)
       // )
       await getList(activeTab.value, skip.value)
-        .then((movieRespone: any) => {
-          if (movieRespone?.results?.length > 0) {
+        .then((response: any) => {
+          if (response?.results?.length > 0) {
             setTimeout(() => {
               loadMore.value = false;
-              dataList.value = dataList.value.concat(movieRespone?.results);
+              dataList.value = dataList.value.concat(response?.results);
             }, 2000);
             skip.value += 1;
           }
@@ -223,10 +223,10 @@ const getData = async () => {
   // )
 
   await getList(activeTab.value, 1)
-    .then((movieRespone: any) => {
-      if (movieRespone?.results?.length > 0) {
-        dataList.value = movieRespone?.results;
-        total.value = movieRespone?.total;
+    .then((response: any) => {
+      if (response?.results?.length > 0) {
+        dataList.value = response?.results;
+        total.value = response?.total;
         topicImage.value = dataList.value[0]?.backdrop_path;
         skip.value++;
       }
@@ -300,8 +300,8 @@ const searchFollow = (e: any) => {
       //   () => searchList(e.target.value, activeTab.value)
       // )
       await searchList(e.target.value, activeTab.value)
-        .then((movieRespone: any) => {
-          dataList.value = movieRespone?.results;
+        .then((response: any) => {
+          dataList.value = response?.results;
         })
         .catch((e) => {
           loadingSearch.value = false;
@@ -339,12 +339,12 @@ const handleChangeTab = async (value: string) => {
       //   () => getList(activeTab.value, 1)
       // )
       await getList(activeTab.value, 1)
-        .then((movieRespone: any) => {
-          dataList.value = movieRespone?.results;
+        .then((response: any) => {
+          dataList.value = response?.results;
           // title.value = 'Phim đã thêm vào danh sách phát';
-          total.value = movieRespone?.total;
+          total.value = response?.total;
 
-          if (movieRespone?.results?.length > 0) {
+          if (response?.results?.length > 0) {
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -362,12 +362,12 @@ const handleChangeTab = async (value: string) => {
       //   () => getList(activeTab.value, 1)
       // )
       await getList(activeTab.value, 1)
-        .then((movieRespone: any) => {
-          dataList.value = movieRespone?.results;
+        .then((response: any) => {
+          dataList.value = response?.results;
           // title.value = 'Phim lẻ';
-          total.value = movieRespone?.total;
+          total.value = response?.total;
 
-          if (movieRespone?.results?.length > 0) {
+          if (response?.results?.length > 0) {
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
           }
@@ -385,12 +385,12 @@ const handleChangeTab = async (value: string) => {
       //   () => getList(activeTab.value, 1)
       // )
       await getList(activeTab.value, 1)
-        .then((movieRespone: any) => {
-          dataList.value = movieRespone?.results;
+        .then((response: any) => {
+          dataList.value = response?.results;
           // title.value = 'Phim bộ';
-          total.value = movieRespone?.total;
+          total.value = response?.total;
 
-          if (movieRespone?.results?.length > 0) {
+          if (response?.results?.length > 0) {
             topicImage.value = dataList.value[0]?.backdrop_path;
             skip.value = 2;
           }

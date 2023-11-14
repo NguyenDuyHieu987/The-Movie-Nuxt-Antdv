@@ -554,9 +554,6 @@ const { data: genres } = await useAsyncData('genre/all', () => getAllGenre(), {
 });
 
 const { data: years } = await useAsyncData('year/all', () => getAllYear(), {
-  // default: () => {
-  //   return { results: trendingsCache.value || [] };
-  // },
   transform: (data: any) => {
     const dataResponse = data.results.sort((a: year, b: year) => {
       return +b.name.slice(-4) - +a.name.slice(-4);
@@ -572,9 +569,6 @@ const { data: countries } = await useAsyncData(
   'country/all',
   () => getAllCountry(),
   {
-    // default: () => {
-    //   return { results: trendingsCache.value || [] };
-    // },
     transform: (data: any) => {
       store.allCountries = data.results;
 

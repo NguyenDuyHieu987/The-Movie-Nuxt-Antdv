@@ -296,11 +296,12 @@ const getData = async () => {
     switch (props?.type || props?.item?.media_type) {
       case 'movie':
         isEpisodes.value = false;
-        useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
-          getMovieById(props.item?.movie_id)
-        )
-          .then((movieResponed: any) => {
-            dataMovie.value = movieResponed.data.value;
+        // useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
+        //   getMovieById(props.item?.movie_id)
+        // )
+        getMovieById(props.item?.movie_id)
+          .then((response: any) => {
+            dataMovie.value = response;
 
             loading.value = false;
           })
@@ -311,12 +312,12 @@ const getData = async () => {
         break;
       case 'tv':
         isEpisodes.value = true;
-
-        useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
-          getTvById(props.item?.movie_id)
-        )
-          .then((tvResponed: any) => {
-            dataMovie.value = tvResponed.data.value;
+        // useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
+        //   getTvById(props.item?.movie_id)
+        // )
+        getTvById(props.item?.movie_id)
+          .then((response: any) => {
+            dataMovie.value = response.data.value;
 
             loading.value = false;
           })
@@ -339,10 +340,10 @@ const getData = async () => {
   //   `itemhistory/${store?.userAccount?.id}/${props.item?.movie_id}`,
   //   () => getItemHistory(props.item?.movie_id)
   // )
-  //   .then((movieRespone: any) => {
-  //     if (movieRespone.data.value.data.success == true) {
+  //   .then((response: any) => {
+  //     if (response.data.value.success == true) {
   //       isInHistory.value = true;
-  //       percent.value = movieRespone.data.value.data?.result?.percent;
+  //       percent.value = response.data.value?.result?.percent;
   //     }
   //   })
   //   .catch((e) => {
@@ -350,7 +351,6 @@ const getData = async () => {
   //   });
 };
 
-onBeforeMount(() => {});
 getData();
 
 const handleRemoveFromList = async () => {

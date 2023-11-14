@@ -73,10 +73,10 @@ const getData = async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )
-    .then((movieRespone: any) => {
-      rankings.value = movieRespone.data.value?.results;
-      totalPage.value = movieRespone.data.value?.total;
-      pageSize.value = movieRespone.data.value?.page_size;
+    .then((response: any) => {
+      rankings.value = response.data.value?.results;
+      totalPage.value = response.data.value?.total;
+      pageSize.value = response.data.value?.page_size;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -113,8 +113,8 @@ const onChangePage = async (pageSelected: number) => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )
-    .then((movieRespone: any) => {
-      rankings.value = movieRespone.data.value?.results;
+    .then((response: any) => {
+      rankings.value = response.data.value?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;

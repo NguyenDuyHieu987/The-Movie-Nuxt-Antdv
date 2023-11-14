@@ -192,35 +192,46 @@ const emits = defineEmits<{
 }>();
 
 const store = useStore();
-const plans = ref<plan[]>([]);
+// const plans = ref<plan[]>([]);
 const loading = ref<boolean>(false);
 const selected = ref<string>('');
 
-onBeforeMount(async () => {
-  loading.value = true;
+// onBeforeMount(async () => {
+// loading.value = true;
+// await nextTick();
+// await useAsyncData(`plan/all`, () => getAllPlan())
+//   .then((response: any) => {
+//     plans.value = response.data.value?.results;
+//     selected.value = plans.value.find((item: plan) => item.order == 3)!.id;
+//     emits(
+//       'onSelectPlan',
+//       plans.value.find((item: plan) => item.order == 3)
+//     );
+//   })
+//   .catch((e) => {
+//     if (axios.isCancel(e)) return;
+//   })
+//   .finally(() => {
+//     loading.value = false;
+//   });
+// });
 
-  await nextTick();
+loading.value = true;
 
-  await useAsyncData(`plan/all`, () => getAllPlan())
-    .then((response: any) => {
-      plans.value = response.data.value?.results;
-
-      selected.value = response.data.value?.results.find(
-        (item: plan) => item.order == 3
-      ).id;
-
-      emits(
-        'onSelectPlan',
-        response.data.value?.results.find((item: plan) => item.order == 3)
-      );
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      loading.value = false;
-    });
+const { data: plans } = await useAsyncData(`plan/all`, () => getAllPlan(), {
+  transform: (data) => {
+    return data?.results;
+  },
 });
+
+loading.value = false;
+
+selected.value = plans.value.find((item: plan) => item.order == 3)!.id;
+
+emits(
+  'onSelectPlan',
+  plans.value.find((item: plan) => item.order == 3)
+);
 
 const handleClickPlanOpiton = (plan: plan) => {
   if (selected.value == plan.id) return;

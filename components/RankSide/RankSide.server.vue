@@ -109,8 +109,8 @@ const getData = async (activeKey: string) => {
     case 'day':
       // await useAsyncData(`ranking/all/1`, () => getRanking(1, 10))
       await getRanking(1, 10)
-        .then((movieRespone: any) => {
-          rankData.value = movieRespone?.results;
+        .then((response: any) => {
+          rankData.value = response?.results;
         })
         .catch((e) => {
           if (axios.isCancel(e)) return;
@@ -127,8 +127,8 @@ const getData = async (activeKey: string) => {
     case 'week':
       // useAsyncData(`ranking/all/2`, () => getRanking(2, 10))
       getRanking(2, 10)
-        .then((movieRespone: any) => {
-          rankData.value = movieRespone?.results;
+        .then((response: any) => {
+          rankData.value = response?.results;
         })
         .catch((e) => {
           if (axios.isCancel(e)) return;
@@ -142,8 +142,8 @@ const getData = async (activeKey: string) => {
     case 'month':
       // useAsyncData(`ranking/all/3`, () => getRanking(3, 10))
       getRanking(3, 10)
-        .then((movieRespone: any) => {
-          rankData.value = movieRespone?.results;
+        .then((response: any) => {
+          rankData.value = response?.results;
         })
         .catch((e) => {
           if (axios.isCancel(e)) return;
@@ -157,8 +157,8 @@ const getData = async (activeKey: string) => {
     case 'all':
       // useAsyncData(`ranking/all/4`, () => getRanking(4, 10))
       getRanking(4, 10)
-        .then((movieRespone: any) => {
-          rankData.value = movieRespone?.results;
+        .then((response: any) => {
+          rankData.value = response?.results;
         })
         .catch((e) => {
           if (axios.isCancel(e)) return;
@@ -179,8 +179,8 @@ onBeforeMount(async () => {
 
 // useAsyncData(`ranking/all/1`, () => getRanking(1))
 await getRanking(1)
-  .then((movieRespone: any) => {
-    rankData.value = movieRespone?.results;
+  .then((response: any) => {
+    rankData.value = response?.results;
   })
   .catch((e) => {
     if (axios.isCancel(e)) return;

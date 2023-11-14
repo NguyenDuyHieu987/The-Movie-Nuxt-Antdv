@@ -147,8 +147,8 @@ const getData = async () => {
     //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
     //   () => getItemList(store?.userAccount?.id, props.item?.id)
     // )
-    //   .then((movieRespone: any) => {
-    //     if (movieRespone.data.value.data.success == true) {
+    //   .then((response: any) => {
+    //     if (response.data.value.success == true) {
     //       isAddToList.value = true;
     //     }
     //   })

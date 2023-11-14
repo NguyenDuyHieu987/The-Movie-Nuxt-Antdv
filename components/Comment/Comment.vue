@@ -62,7 +62,6 @@ loading.value = true;
 //       skip.value
 //     )
 // )
-
 await getCommentByMovidId(
   props.dataMovie?.id,
   props.dataMovie?.media_type,

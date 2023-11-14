@@ -232,17 +232,12 @@ export default defineNuxtConfig({
     '@nuxtjs/fontaine',
     // '@nuxtjs/google-fonts',
     'nuxt-simple-sitemap',
-    // 'nuxt-og-image',
-    // 'nuxt-seo-experiments',
     'nuxt-gtag',
-    // 'vue-social-sharing/nuxt',
-    // 'nuxt-delay-hydration',
+    'nuxt-delay-hydration',
   ],
-  // extends: ['nuxt-seo-kit'],
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
   },
-  // ogImage: {},
   sitemap: {},
   gtag: {
     id: process.env.GOOGLE_ANALYTICS_ID,
@@ -286,14 +281,10 @@ export default defineNuxtConfig({
   //   display: 'swap',
   //   // useStylesheet: true,
   // },
-  fontMetrics: {
-    // fonts: [
-    //   'Inter',
-    //   {
-    //     family: 'Roboto Flex',
-    //     src: '~/assets/fonts/Roboto_Flex/RobotoFlex-Regular.woff2',
-    //   },
-    // ],
+  fontMetrics: {},
+  delayHydration: {
+    debug: !isProduction,
+    mode: 'mount',
   },
   plugins: [
     // '@/plugins/elementPlus',
@@ -315,7 +306,7 @@ export default defineNuxtConfig({
     storage: {},
     output: {
       // dir:'.output',
-      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
       // serverDir: '.output/server',
       // publicDir: '.output/public',
     },
@@ -355,10 +346,10 @@ export default defineNuxtConfig({
       '/login',
       '/signup',
       '/forgotpassword',
-      '/info-movie',
-      '/info-tv',
-      '/play-movie',
-      '/play-tv',
+      // '/info-movie',
+      // '/info-tv',
+      // '/play-movie',
+      // '/play-tv',
     ],
   },
   build: {
@@ -453,10 +444,10 @@ export default defineNuxtConfig({
     '/follow/**': { prerender: true },
     '/history/**': { prerender: true },
     '/ranking/**': { prerender: true },
-    '/info-movie/**': { prerender: false },
-    '/info-tv/**': { prerender: false },
-    '/play-movie/**': { prerender: false },
-    '/play-tv/**': { prerender: false },
+    '/info-movie/**': { isr: true },
+    '/info-tv/**': { isr: true },
+    '/play-movie/**': { isr: true },
+    '/play-tv/**': { isr: true },
     '/oauth/**': { prerender: true },
     '/login': {
       prerender: true,
@@ -468,8 +459,7 @@ export default defineNuxtConfig({
     '/upgrade/plans': { prerender: true },
     '/upgrade/paymentpicker': {
       ssr: false,
-      prerender: true,
     },
-    '/youraccount/**': { prerender: true },
+    '/youraccount/**': { ssr: false },
   },
 });
