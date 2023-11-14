@@ -451,6 +451,7 @@ export default defineNuxtConfig({
       prerender: true,
     },
     '/ForgotPassword': { prerender: true },
+    '/upgrade': { redirect: '/upgrade/plans' },
     '/upgrade/plans': { prerender: true },
     '/upgrade/PaymentPicker': {
       ssr: false,
