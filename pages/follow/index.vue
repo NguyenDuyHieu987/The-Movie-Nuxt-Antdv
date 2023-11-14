@@ -199,7 +199,7 @@ onMounted(() => {
         .then((response: any) => {
           if (response?.results?.length > 0) {
             dataList.value = dataList.value.concat(response?.results);
-            skip.value += 1;
+            skip.value++;
           }
         })
         .catch((e) => {

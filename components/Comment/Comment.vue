@@ -28,12 +28,12 @@
       </div>
 
       <!-- <LoadingCircle
-        v-show="loadMore && !disabledLoadMore"
+        v-show="loadMore "
         class="loading-comment"
       /> -->
 
       <LoadingSpinner
-        v-show="(loading || loadMore) && !disabledLoadMore"
+        v-show="loading || loadMore"
         class="loading-comment"
         :width="35"
       />
@@ -58,7 +58,6 @@ const loading = ref<boolean>(false);
 const skip = ref<number>(1);
 const total = ref<number>(0);
 const loadMore = ref<boolean>(false);
-const disabledLoadMore = ref<boolean>(false);
 
 loading.value = true;
 
@@ -98,7 +97,7 @@ onMounted(() => {
 
     if (
       scrollHeight == document.documentElement.scrollHeight &&
-      commentsList.value?.length >= 20 &&
+      total.value > 20 &&
       commentsList.value?.length < total.value
     ) {
       loadMore.value = true;
@@ -109,13 +108,10 @@ onMounted(() => {
         skip.value
       )
         .then((response) => {
-          commentsList.value = commentsList.value.concat(response?.results);
-          if (response?.results?.length == 0) {
-            disabledLoadMore.value = true;
-            return;
+          if (response?.results?.length > 0) {
+            commentsList.value = commentsList.value.concat(response?.results);
+            skip.value++;
           }
-
-          skip.value++;
         })
         .catch((e) => {
           if (axios.isCancel(e)) return;

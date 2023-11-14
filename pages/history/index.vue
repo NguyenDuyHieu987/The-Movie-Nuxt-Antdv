@@ -196,7 +196,7 @@ onMounted(() => {
         .then((response: any) => {
           if (response?.results?.length > 0) {
             dataHistory.value = dataHistory.value.concat(response.data?.result);
-            skip.value += 1;
+            skip.value++;
           }
         })
         .catch((e) => {
