@@ -282,7 +282,7 @@ const { data: dataBilboard, pending } = await useAsyncData(
   }
 );
 
-onBeforeMount(getData);
+getData();
 </script>
 
 <style src="./television.scss" lang="scss"></style>

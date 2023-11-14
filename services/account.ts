@@ -18,6 +18,7 @@ export function AccountConfirm(params: any, type: string) {
   return makeRequest(`/account/confirm/${type}`, {
     method: 'POST',
     data: bodyFormData,
+    getResponseHeaders: true,
   });
 }
 
@@ -36,6 +37,7 @@ export function ChangePassword(params: {
     method: 'POST',
     // headers: headers,
     data: bodyFormData,
+    getResponseHeaders: true,
   });
 }
 

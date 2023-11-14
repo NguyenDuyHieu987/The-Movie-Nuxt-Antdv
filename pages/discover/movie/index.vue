@@ -56,7 +56,7 @@ import type { formfilter, typeMovie } from '@/types';
 const route: any = useRoute();
 const router = useRouter();
 const store = useStore();
-// const dataDiscover = ref<any[]>();
+const dataDiscover = ref<any[]>();
 const page = ref<number>(route.query?.page ? +route.query?.page : 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
@@ -112,23 +112,28 @@ const getData = async () => {
 loading.value = true;
 
 const {
-  data: dataDiscover,
+  data: dataDiscoverCache,
   pending,
   refresh,
 } = await useAsyncData(
   `cache/movie/discover/${formFilter.value}`,
   () => FilterMovieSlug(formFilter.value),
   {
-    transform: (data: any) => {
-      totalPage.value = data?.total;
-      pageSize.value = data?.page_size;
-      loading.value = false;
-
-      return data.results;
-    },
-    server: false,
+    // transform: (data: any) => {
+    //   totalPage.value = data?.total;
+    //   pageSize.value = data?.page_size;
+    //   loading.value = false;
+    //   return data.results;
+    // },
+    // server: false,
   }
 );
+
+loading.value = false;
+dataDiscover.value = dataDiscoverCache.value.results;
+
+totalPage.value = dataDiscoverCache.value?.total;
+pageSize.value = dataDiscoverCache.value?.page_size;
 
 watch(
   formFilter,

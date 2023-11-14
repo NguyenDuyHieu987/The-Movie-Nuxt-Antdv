@@ -3,7 +3,7 @@ export async function initGoogleSdk() {
 
   return await new Promise((resolve: any) => {
     window.google.accounts.id.initialize({
-      client_id: nuxtConfig.app.googleOauth2ClientID,
+      client_id: nuxtConfig.googleOauth2ClientID,
       // callback: handleCredentialResponse,
     });
     window.google.accounts.id.prompt();

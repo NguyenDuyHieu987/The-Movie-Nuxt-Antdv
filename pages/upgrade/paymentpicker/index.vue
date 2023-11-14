@@ -144,19 +144,36 @@ definePageMeta({
     async (to, from) => {
       if (!to.query.planorder) return navigateTo('/upgrade/plans');
 
-      getAllPlan()
-        .then((response: any) => {
-          if (
-            !response?.results.some(
-              (item: plan) => item.order == Number(to.query.planorder)
-            )
-          )
-            navigateTo('/upgrade/plans');
-        })
-        .catch((e) => {
-          navigateTo('/upgrade/plans');
-          if (axios.isCancel(e)) return;
-        });
+      // getAllPlan()
+      //   .then((response) => {
+      //     if (
+      //       !response?.results.some(
+      //         (item: plan) => item.order == Number(to.query.planorder)
+      //       )
+      //     )
+      //       return navigateTo('/upgrade/plans');
+      //   })
+      //   .catch((e) => {
+      //     navigateTo('/upgrade/plans');
+      //     if (axios.isCancel(e)) return;
+      //   });
+
+      const { data: plans } = await useAsyncData(
+        `plan/all`,
+        () => getAllPlan(),
+        {
+          transform: (data) => {
+            return data?.results;
+          },
+        }
+      );
+
+      if (
+        !plans.value.some(
+          (item: plan) => item.order == Number(to.query.planorder)
+        )
+      )
+        return navigateTo('/upgrade/plans');
     },
   ],
   pageTransition: {
@@ -173,23 +190,40 @@ watch(
   async () => {
     if (!route.query.planorder) return navigateTo('/upgrade/plans');
 
-    getAllPlan()
-      .then((response: any) => {
-        if (
-          !response?.results.some(
-            (item: plan) => item.order == Number(route.query.planorder)
-          )
-        )
-          navigateTo('/upgrade/plans');
+    // getAllPlan()
+    //   .then((response) => {
+    //     if (
+    //       !response?.results.some(
+    //         (item: plan) => item.order == Number(route.query.planorder)
+    //       )
+    //     )
+    //       return navigateTo('/upgrade/plans');
 
-        planSelected.value = response?.results.find(
-          (item: plan) => item.order == Number(route.query.planorder)
-        );
-      })
-      .catch((e) => {
-        navigateTo('/upgrade/plans');
-        if (axios.isCancel(e)) return;
-      });
+    //     planSelected.value = response?.results.find(
+    //       (item: plan) => item.order == Number(route.query.planorder)
+    //     );
+    //   })
+    //   .catch((e) => {
+    //     navigateTo('/upgrade/plans');
+    //     if (axios.isCancel(e)) return;
+    //   });
+
+    const { data: plans } = await useAsyncData(`plan/all`, () => getAllPlan(), {
+      transform: (data) => {
+        return data?.results;
+      },
+    });
+
+    if (
+      !plans.value.some(
+        (item: plan) => item.order == Number(route.query.planorder)
+      )
+    )
+      return navigateTo('/upgrade/plans');
+
+    planSelected.value = plans.value.find(
+      (item: plan) => item.order == Number(route.query.planorder)
+    );
   },
   { immediate: true, deep: true }
 );

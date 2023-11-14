@@ -5,10 +5,7 @@ export function getMovieById(
   append_to_response: string = ''
 ) {
   return makeRequest(
-    `/movie/detail/${movieId}?append_to_response=${append_to_response}`,
-    {
-      noResponseHeaders: true,
-    }
+    `/movie/detail/${movieId}?append_to_response=${append_to_response}`
   );
 }
 

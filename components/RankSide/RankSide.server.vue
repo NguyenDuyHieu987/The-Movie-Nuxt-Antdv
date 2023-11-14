@@ -172,11 +172,6 @@ const getData = async (activeKey: string) => {
   }
 };
 
-onBeforeMount(async () => {
-  // await nextTick();
-  // loading.value = true;
-});
-
 // useAsyncData(`ranking/all/1`, () => getRanking(1))
 await getRanking(1)
   .then((response: any) => {

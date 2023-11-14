@@ -14,6 +14,7 @@ export function LogIn(params: any) {
   return makeRequest(`/auth/login`, {
     method: 'POST',
     data: bodyFormData,
+    getResponseHeaders: true,
   });
 }
 
@@ -23,6 +24,7 @@ export function loginFacebook(params: any) {
   return makeRequest(`/auth/login-facebook`, {
     method: 'POST',
     headers: headers,
+    getResponseHeaders: true,
   });
 }
 
@@ -32,6 +34,7 @@ export function loginGoogle(params: any) {
   return makeRequest(`/auth/login-google`, {
     method: 'POST',
     headers: headers,
+    getResponseHeaders: true,
   });
 }
 
@@ -66,6 +69,7 @@ export function verifySignUp(params: any, type: string) {
   return makeRequest(`auth/verify-signup/${type}`, {
     method: 'POST',
     data: bodyFormData,
+    getResponseHeaders: true,
   });
 }
 

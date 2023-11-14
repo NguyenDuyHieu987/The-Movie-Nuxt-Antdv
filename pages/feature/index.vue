@@ -290,7 +290,7 @@ const { data: dataBilboard, pending } = await useAsyncData(
   }
 );
 
-onBeforeMount(getData);
+getData();
 </script>
 
 <style src="./FeaturePage.scss" lang="scss"></style>

@@ -51,7 +51,6 @@ definePageMeta({
 
 const store = useStore();
 const selectedPlan = ref<plan>();
-const internalInstance: any = getCurrentInstance();
 const showAnimation = ref<boolean>(false);
 
 useHead({

@@ -43,7 +43,7 @@ import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 
 const router = useRouter();
 const route: any = useRoute();
-// const rankings = ref<any[]>([]);
+const rankings = ref<any[]>([]);
 const pageTrending = ref<number>(route?.query?.page ? route?.query?.page : 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
@@ -91,20 +91,25 @@ const getData = async () => {
 
 loading.value = true;
 
-const { data: rankings, pending } = await useAsyncData(
+const { data: rankingsCache, pending } = await useAsyncData(
   `cache/trending/all/${pageTrending.value}`,
   () => getTrending(pageTrending.value),
   {
-    transform: (data: any) => {
-      totalPage.value = data?.total;
-      pageSize.value = data?.page_size;
-      loading.value = false;
-
-      return data.results;
-    },
-    server: false,
+    // transform: (data: any) => {
+    //   totalPage.value = data?.total;
+    //   pageSize.value = data?.page_size;
+    //   loading.value = false;
+    //   return data.results;
+    // },
+    // server: false,
   }
 );
+
+loading.value = false;
+rankings.value = rankingsCache.value.results;
+
+totalPage.value = rankingsCache.value?.total;
+pageSize.value = rankingsCache.value?.page_size;
 
 const onChangePage = async (pageSelected: number) => {
   pageTrending.value = pageSelected;

@@ -32,7 +32,8 @@
     </div>
 
     <section class="discover-section">
-      <div v-if="!loading" class="movie-group horizontal">
+      <!-- v-if="!loading" -->
+      <div class="movie-group horizontal">
         <MovieCardHorizontal
           v-for="(item, index) in dataDiscover"
           :index="index"
@@ -42,11 +43,10 @@
         />
       </div>
 
-      <LoadingCircle v-else class="loading-page" />
+      <!-- <LoadingCircle v-else class="loading-page" /> -->
     </section>
 
     <ControlPage
-      v-show="dataDiscover?.length"
       :page="page"
       :total="totalPage"
       :pageSize="pageSize"
@@ -70,7 +70,7 @@ import type { formfilter, genre } from '@/types';
 const route: any = useRoute();
 const router = useRouter();
 const store: any = useStore();
-// const dataDiscover = ref<any[]>();
+const dataDiscover = ref<any[]>();
 const genres = ref<genre[]>(store.allGenres);
 const page = ref<number>(route.query?.page ? +route.query?.page : 1);
 const totalPage = ref<number>(100);
@@ -114,69 +114,54 @@ watch(genreRoute, () => {});
 const getData = async () => {
   // loading.value = true;
 
-  if (isFilter.value) {
-    await useAsyncData(`discover/${formFilter.value}}`, () =>
-      FilterMovie(formFilter.value)
-    )
-      .then((movieResponse) => {
-        dataDiscover.value = movieResponse.data.value?.results;
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loading.value = false;
-      });
-  } else {
-    await useAsyncData(
-      `discover/genre/all/${route.params.genre}/${page.value}`,
-      () => getMoviesByGenres(route.params.genre, '', page.value)
-    )
-      .then((movieResponse) => {
-        dataDiscover.value = movieResponse.data.value?.results;
-        totalPage.value = movieResponse.data.value?.total;
-        pageSize.value = movieResponse.data.value?.page_size;
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      })
-      .finally(() => {
-        loading.value = false;
-      });
-  }
+  await useAsyncData(
+    `discover/genre/all/${route.params.genre}/${page.value}`,
+    () => getMoviesByGenres(route.params.genre, '', page.value)
+  )
+    .then((response) => {
+      dataDiscover.value = response.data.value?.results;
+      totalPage.value = response.data.value?.total;
+      pageSize.value = response.data.value?.page_size;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
 };
 
 // getData();
 
 loading.value = true;
 
-const { data: dataDiscover, pending } = await useAsyncData(
+const { data: dataDiscoverCache, pending } = await useAsyncData(
   `cache/discover/genre/all/${route.params.genre}/${page.value}`,
   () => getMoviesByGenres(route.params.genre, '', page.value),
   {
-    transform: (data: any) => {
-      totalPage.value = data?.total;
-      pageSize.value = data?.page_size;
-      loading.value = false;
-
-      return data.results;
-    },
-    server: false,
+    // transform: (data: any) => {
+    //   totalPage.value = data?.total;
+    //   pageSize.value = data?.page_size;
+    //   loading.value = false;
+    //   return data.results;
+    // },
+    // server: false,
   }
 );
+
+loading.value = false;
+dataDiscover.value = dataDiscoverCache.value.results;
+
+totalPage.value = dataDiscoverCache.value?.total;
+pageSize.value = dataDiscoverCache.value?.page_size;
 
 const onChangePage = (
   pageSelected: number
   // pageSize
 ) => {
-  if (isFilter.value) {
-    formFilter.value['page'] = pageSelected;
-    getData();
-  } else {
-    page.value = pageSelected;
-    router.push({ query: { page: pageSelected } });
-    getData();
-  }
+  page.value = pageSelected;
+  router.push({ query: { page: pageSelected } });
+  getData();
 };
 
 const setDataFiltered = (data: any[], formSelect: formfilter) => {

@@ -5,10 +5,7 @@ export function getTvById(
   append_to_response: string = ''
 ) {
   return makeRequest(
-    `/tv/detail/${movieId}?append_to_response=${append_to_response}`,
-    {
-      noResponseHeaders: true,
-    }
+    `/tv/detail/${movieId}?append_to_response=${append_to_response}`
   );
 }
 

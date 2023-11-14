@@ -250,7 +250,7 @@ const getData = async () => {
   loadingUpComing.value = true;
   loadingPopular.value = true;
 
-  await nextTick();
+  // await nextTick();
 
   // if (route.params?.slug == 'genre') {
   // const genreId: number = getGenreByShortName(
@@ -379,7 +379,7 @@ const { data: dataBilboard, pending } = await useAsyncData(
   }
 );
 
-onBeforeMount(getData);
+getData();
 
 watch(
   () => route.params,

@@ -56,7 +56,7 @@ import type { formfilter, typeTv } from '@/types';
 const route: any = useRoute();
 const router = useRouter();
 const store = useStore();
-// const dataDiscover = ref<any[]>();
+const dataDiscover = ref<any[]>();
 const page = ref<number>(route.query?.page ? +route.query?.page : 1);
 const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
@@ -96,10 +96,10 @@ const getData = async () => {
   await useAsyncData(`tv/discover/${formFilter.value}`, () =>
     FilterTvSlug(formFilter.value)
   )
-    .then((movieResponse) => {
-      dataDiscover.value = movieResponse.data.value?.results;
-      totalPage.value = movieResponse.data.value?.total;
-      pageSize.value = movieResponse.data.value?.page_size;
+    .then((response) => {
+      dataDiscover.value = response.data.value?.results;
+      totalPage.value = response.data.value?.total;
+      pageSize.value = response.data.value?.page_size;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -112,23 +112,28 @@ const getData = async () => {
 loading.value = true;
 
 const {
-  data: dataDiscover,
+  data: dataDiscoverCache,
   pending,
   refresh,
 } = await useAsyncData(
   `cache/tv/discover/${formFilter.value}`,
   () => FilterTvSlug(formFilter.value),
   {
-    transform: (data: any) => {
-      totalPage.value = data?.total;
-      pageSize.value = data?.page_size;
-      loading.value = false;
-
-      return data.results;
-    },
-    server: false,
+    // transform: (data: any) => {
+    //   totalPage.value = data?.total;
+    //   pageSize.value = data?.page_size;
+    //   loading.value = false;
+    //   return data.results;
+    // },
+    // server: false,
   }
 );
+
+loading.value = false;
+dataDiscover.value = dataDiscoverCache.value.results;
+
+totalPage.value = dataDiscoverCache.value?.total;
+pageSize.value = dataDiscoverCache.value?.page_size;
 
 watch(
   formFilter,

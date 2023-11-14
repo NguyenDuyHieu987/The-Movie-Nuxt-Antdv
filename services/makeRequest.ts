@@ -5,19 +5,24 @@ import type {
   AxiosResponse,
 } from 'axios';
 
+type MakeRequestOptions = {
+  noAuthHeaders?: boolean;
+  getResponseHeaders?: boolean;
+} & AxiosRequestConfig;
+
 export async function makeRequest(
   url: string,
-  options?: {
-    noAuthHeaders?: boolean;
-    noResponseHeaders?: boolean;
-  } & AxiosRequestConfig
+  options: MakeRequestOptions = {
+    noAuthHeaders: false,
+    getResponseHeaders: false,
+  }
 ) {
   const nuxtConfig = useRuntimeConfig();
   let headers: AxiosRequestHeaders | any = {};
 
   const api = axios.create({
-    baseURL: nuxtConfig.app.production_mode
-      ? nuxtConfig.app.apiGateway
+    baseURL: nuxtConfig.production_mode
+      ? nuxtConfig.apiGateway
       : 'http://localhost:5000',
     // baseURL: 'http://localhost:5000',
     withCredentials: true,
@@ -36,11 +41,11 @@ export async function makeRequest(
     .then((res: AxiosResponse) => {
       const { headers, data } = res;
 
-      if (options?.noResponseHeaders) {
-        return data;
+      if (options?.getResponseHeaders) {
+        return { headers, ...data };
       }
 
-      return { headers, ...data };
+      return data;
     })
     .catch((error) =>
       Promise.reject(error?.response?.data?.message ?? 'Error')

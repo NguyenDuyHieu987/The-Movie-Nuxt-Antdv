@@ -12,11 +12,11 @@ const URL_API_IMAGE = 'https://img.phimhay247.site';
 export function getImage(path: string, type: string, crop: string = '') {
   const nuxtConfig = useRuntimeConfig();
 
-  const URL_API_IMAGE1 = nuxtConfig.app.production_mode
-    ? nuxtConfig.app.serverImageUrl
+  const URL_API_IMAGE1 = nuxtConfig.production_mode
+    ? nuxtConfig.serverImageUrl
     : 'http://localhost:5002/static/';
 
-  if (crop?.length == 0 || !nuxtConfig.app.production_mode)
+  if (crop?.length == 0 || !nuxtConfig.production_mode)
     return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
 
   return path ? `${URL_API_IMAGE1}/images/${type}/${path}/tr:${crop}` : ' ';
@@ -40,7 +40,7 @@ export function getColorImage(path: string) {
 
 export function getPosterCast(path: string) {
   const nuxtConfig = useRuntimeConfig();
-  const TMDB_IMAGE_BASE_URL = nuxtConfig.app.TMDBurl;
+  const TMDB_IMAGE_BASE_URL = nuxtConfig.public.TMDBurl;
 
   return `${TMDB_IMAGE_BASE_URL}/original${path}`;
 }
