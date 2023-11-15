@@ -10,6 +10,7 @@ export default defineNuxtPlugin({
   name: 'antd',
   async setup(nuxtApp) {
     // this is the equivalent of a normal functional plugin
+    // nuxtApp.vueApp.use(Antd);
   },
   hooks: {},
   parallel: true,

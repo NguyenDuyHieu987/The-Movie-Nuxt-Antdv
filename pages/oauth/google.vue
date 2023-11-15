@@ -107,7 +107,8 @@ import { ElNotification } from 'element-plus';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
 definePageMeta({
-  layout: 'oauth',
+  // layout: 'oauth',
+  layout: false,
 });
 
 const utils = useUtils();
@@ -196,9 +197,9 @@ onBeforeMount(() => {
     .finally(() => {
       loading.value = false;
 
-      setTimeout(() => {
-        // store.loadingAppInstance.finish();
-      }, 300);
+      // setTimeout(() => {
+      // store.loadingAppInstance.finish();
+      // }, 300);
     });
 });
 

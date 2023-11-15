@@ -15,52 +15,50 @@
     ref="cardItem"
     @pointerenter="onMouseEnter"
   >
-    <el-skeleton :loading="loading" animated>
+    <!-- <el-skeleton :loading="loading" animated>
       <template #template>
         <el-skeleton-item class="skeleton-img" />
-      </template>
+      </template> -->
 
-      <template #default>
-        <div class="img-box">
-          <img
-            class="ant-image"
-            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
-            loading="lazy"
-            alt=""
-          />
+    <!-- <template #default> -->
+    <div class="img-box">
+      <img
+        class="ant-image"
+        v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+        loading="lazy"
+        alt=""
+      />
 
-          <div v-show="isInHistory" class="viewed-overlay-bar">
-            <div
-              class="percent-viewed"
-              :style="{ width: percent * 100 + '%' }"
-            ></div>
-          </div>
-        </div>
+      <div v-show="isInHistory" class="viewed-overlay-bar">
+        <div
+          class="percent-viewed"
+          :style="{ width: percent * 100 + '%' }"
+        ></div>
+      </div>
+    </div>
 
-        <div class="info">
-          <p class="title">
-            {{ item?.name }}
-          </p>
-          <div
-            v-if="
-              item?.release_date || item?.last_air_date || item?.first_air_date
-            "
-            class="release-date-wrapper"
-          >
-            <p class="release-date" v-if="!isEpisodes">
-              {{ item?.release_date?.slice(0, 4) }}
-            </p>
-            <p v-else class="release-date">
-              {{
-                item?.last_air_date?.slice(0, 4)
-                  ? item?.last_air_date?.slice(0, 4)
-                  : item?.first_air_date?.slice(0, 4)
-              }}
-            </p>
-          </div>
-        </div>
-      </template>
-    </el-skeleton>
+    <div class="info">
+      <p class="title">
+        {{ item?.name }}
+      </p>
+      <div
+        v-if="item?.release_date || item?.last_air_date || item?.first_air_date"
+        class="release-date-wrapper"
+      >
+        <p class="release-date" v-if="!isEpisodes">
+          {{ item?.release_date?.slice(0, 4) }}
+        </p>
+        <p v-else class="release-date">
+          {{
+            item?.last_air_date?.slice(0, 4)
+              ? item?.last_air_date?.slice(0, 4)
+              : item?.first_air_date?.slice(0, 4)
+          }}
+        </p>
+      </div>
+    </div>
+    <!-- </template>
+    </el-skeleton> -->
 
     <PreviewModal
       :isTeleportPreviewModal="isTeleportPreviewModal"
@@ -100,7 +98,6 @@ const router = useRouter();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
-const loadingImg = ref<boolean>(false);
 const isAddToList = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);

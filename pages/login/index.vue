@@ -217,7 +217,7 @@ const formLogin = reactive<any>({
   password: '',
   rememberMe: true,
 });
-const tokenClient = ref<any>({});
+const tokenClient = ref<any>();
 const urlBack = computed(() =>
   router.options.history.state?.back
     ? ['/signup', '/oauth', '/forgotpassword'].includes(
@@ -434,26 +434,6 @@ const handleClickGoogleLogin = () => {
     form.appendChild(input);
   }
 
-  // Object.entries(params).forEach(([key, value], index: number) => {
-  //   if (index == 0) {
-  //     oauth2Endpoint += '?' + key + '=' + value;
-  //   } else {
-  //     oauth2Endpoint +=
-  //       '&' + key + '=' + value.toString().split(' ').join('%20');
-  //   }
-  // });
-
-  // const authWindow = window.open(oauth2Endpoint);
-
-  // const authenticationSuccessUrl = authWindow!.location;
-
-  // if (authWindow) {
-  //   authWindow.onclose = () => {
-  //     authWindow.close();
-  //     window.location = authenticationSuccessUrl;
-  //   };
-  // }
-
   // Add form to page and submit it to open the OAuth 2.0 endpoint.
 
   document.body.appendChild(form);
@@ -462,8 +442,10 @@ const handleClickGoogleLogin = () => {
 
 const handleGooglePopupCallback = (googleOauthResponse: any) => {
   // console.log(googleOauthResponse);
+
   if (googleOauthResponse && googleOauthResponse?.access_token) {
     loadingGoogleLogin.value = true;
+
     loginGoogle({
       accessToken: googleOauthResponse?.access_token,
     })
@@ -479,18 +461,22 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           });
           store.userAccount = response?.result;
           utils.localStorage.setWithExpiry(
-            'user_token',
-            response.headers.get('Authorization'),
-            24
+            'user_account',
+            {
+              user_token: response.headers.get('Authorization'),
+            },
+            30
           );
           // navigateTo({ path: '/' });
           navigateTo({ path: urlBack.value });
         } else if (response.isLogin == true) {
           store.userAccount = response?.result;
           utils.localStorage.setWithExpiry(
-            'user_token',
-            response.headers.get('Authorization'),
-            24
+            'user_account',
+            {
+              user_token: response.headers.get('Authorization'),
+            },
+            30
           );
           // navigateTo({ path: '/' });
           navigateTo({ path: urlBack.value });

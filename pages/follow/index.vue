@@ -96,7 +96,7 @@
       </div>
     </div>
 
-    <RequireAuth v-if="!store.isLogin" />
+    <RequireAuth v-else />
   </div>
 </template>
 

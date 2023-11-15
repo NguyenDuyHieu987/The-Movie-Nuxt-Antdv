@@ -3,8 +3,6 @@
     <BillboardAnimation v-model:data="trendings" />
 
     <div class="home-content">
-      <!-- v-if="nowPlayings?.length" -->
-
       <section class="home-section outstanding">
         <h2 class="gradient-title-default">
           <span>Phim nổi bật</span>
@@ -316,6 +314,11 @@ import { getNowPlaying, getTopRated, getUpComing } from '~/services/movieSlug';
 import { getMoviesByGenres } from '~/services/discover';
 import { getMyRecommend } from '~/services/recommend';
 import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
+
+definePageMeta({
+  keepalive: true,
+  key: (route) => route.fullPath,
+});
 
 useHead({
   title: 'Xem phim Online 24/7 - Phimhay247',

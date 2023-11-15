@@ -1,5 +1,23 @@
 <template>
   <div id="app">
+    <!-- <a-config-provider
+      :theme="{
+        token: {
+          colorPrimary: '#008ddf',
+          fontSize: 15,
+          fontFamily: 'Roboto Flex, sans-serif',
+          borderRadius: 2,
+          borderRadiusLG: 5,
+          lineHeight: 1.5,
+        },
+      }"
+    /> -->
+
+    <!-- <a-style-provider
+      hash-priority="high"
+      :transformers="[legacyLogicalPropertiesTransformer]"
+    /> -->
+
     <ClientOnly>
       <vue-progress-bar
         style="
@@ -32,7 +50,7 @@
 
     <div class="app-wrapper">
       <NuxtLayout>
-        <NuxtPage />
+        <NuxtPage :keepalive="{ include: [], exclude: [] }" />
 
         <el-backtop
           class="app-back-top click-active"
@@ -57,6 +75,7 @@
 </template>
 
 <script setup lang="ts">
+import legacyLogicalPropertiesTransformer from 'ant-design-vue';
 import LoadingApp from '~/components/LoadingApp/LoadingApp.server.vue';
 import RequireAuthDialog from '~/components/RequireAuthDialog/RequireAuthDialog.server.vue';
 

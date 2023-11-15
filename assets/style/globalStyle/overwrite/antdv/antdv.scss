@@ -476,7 +476,8 @@
     color: inherit;
   }
 
-  .ant-row.ant-form-item {
+  .ant-row.ant-form-item,
+  .ant-form-row {
     display: flex;
     flex-direction: column;
     font-size: inherit;

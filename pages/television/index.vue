@@ -5,7 +5,6 @@
     <BillboardAnimation v-model:data="dataBilboard" />
 
     <div class="home-content">
-      <!-- v-if="airingTodays?.length" -->
       <section class="home-section outstanding">
         <h2 class="gradient-title-default">
           <span>Airing Today</span>
