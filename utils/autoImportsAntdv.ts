@@ -3,7 +3,7 @@ import * as AntDV from 'ant-design-vue';
 
 export default async function resolveAntDVComponents(options: any, nuxt: any) {
   for (const key in AntDV) {
-    if (['version', 'install'].includes(key)) continue;
+    // if (['version', 'install'].includes(key)) continue;
     if (typeof key === 'string') {
       await addComponent({
         filePath: 'ant-design-vue/es',

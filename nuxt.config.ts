@@ -78,8 +78,8 @@ export default defineNuxtConfig({
     url: 'https://phimhay247z.org',
   },
   css: [
-    'ant-design-vue/dist/antd.dark.min.css',
-    // 'ant-design-vue/dist/reset.css',
+    // 'ant-design-vue/dist/antd.dark.min.css',
+    'ant-design-vue/dist/reset.css',
     '~/assets/style/fonts/GoogleFonts.css',
     '~/assets/style/globalStyle/overwrite/antdv/antdv.scss',
     '~/assets/style/globalStyle/overwrite/element/element.scss',
@@ -201,24 +201,26 @@ export default defineNuxtConfig({
     },
     css: {
       preprocessorOptions: {},
+      lightningcss: {},
     },
     build: {
       sourcemap: 'hidden',
-      minify: 'terser',
       ssrManifest: true,
       assetsDir: '_nuxt/',
-      cssMinify: true,
+      cssMinify: 'lightningcss',
       reportCompressedSize: false,
+      minify: 'terser',
       terserOptions: {
-        ecma: 2016,
+        ecma: 2020,
         sourceMap: true,
         parse: {
           html5_comments: false,
         },
         compress: false,
+        toplevel: true,
         mangle: {},
         format: {
-          ecma: 2016,
+          ecma: 2020,
           comments: false,
         },
       },

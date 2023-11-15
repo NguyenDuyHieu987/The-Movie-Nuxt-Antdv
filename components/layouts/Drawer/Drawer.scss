@@ -1,10 +1,12 @@
-.ant-drawer.menu-drawer {
+.ant-drawer.menu-drawer,
+.ant-drawer {
   // margin-top: var(--header-height);
 
   .ant-drawer-content-wrapper {
     transition: all 0.15s ease;
 
-    .ant-drawer-content {
+    .ant-drawer-content,
+    .ant-drawer-content.menu-drawer {
       background-color: var(--background-content-color);
 
       .ant-drawer-header {

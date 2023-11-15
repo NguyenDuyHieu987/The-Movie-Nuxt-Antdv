@@ -13,11 +13,6 @@
       }"
     /> -->
 
-    <!-- <a-style-provider
-      hash-priority="high"
-      :transformers="[legacyLogicalPropertiesTransformer]"
-    /> -->
-
     <ClientOnly>
       <vue-progress-bar
         style="
@@ -75,7 +70,6 @@
 </template>
 
 <script setup lang="ts">
-import legacyLogicalPropertiesTransformer from 'ant-design-vue';
 import LoadingApp from '~/components/LoadingApp/LoadingApp.server.vue';
 import RequireAuthDialog from '~/components/RequireAuthDialog/RequireAuthDialog.server.vue';
 
