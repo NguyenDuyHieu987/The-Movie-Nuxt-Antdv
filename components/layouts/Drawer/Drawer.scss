@@ -1,5 +1,5 @@
-.ant-drawer.menu-drawer,
-.ant-drawer {
+.ant-drawer:has(.menu-drawer),
+.ant-drawer.menu-drawer {
   // margin-top: var(--header-height);
 
   .ant-drawer-content-wrapper {

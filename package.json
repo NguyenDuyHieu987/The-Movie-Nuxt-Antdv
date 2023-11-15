@@ -2,12 +2,12 @@
   "name": "nuxt-app",
   "private": true,
   "scripts": {
-    "build:nuxt": "nuxt build",
-    "build": "cross-env NODE_ENV=production run-s gen:css build:nuxt",
-    "dev:nuxt": "nuxt dev",
-    "dev": "run-s gen:css dev:nuxt",
-    "generate:nuxt": "nuxt generate",
-    "generate": "run-s gen:css generate:nuxt",
+    "build": "nuxt build",
+    "build:gencss": "cross-env NODE_ENV=production run-s gen:css build",
+    "dev": "nuxt dev",
+    "dev:gencss": "run-s gen:css dev",
+    "generate": "nuxt generate",
+    "generate:gencss": "run-s gen:css generate",
     "preview": "nuxt preview --port=3001",
     "postinstall": "nuxt prepare",
     "gen:css": "esno utils/genAntdStyle.ts"

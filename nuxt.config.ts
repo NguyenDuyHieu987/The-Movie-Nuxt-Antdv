@@ -2,7 +2,12 @@
 import { resolve } from 'path';
 import { isProduction } from 'std-env';
 import svgLoader from 'vite-svg-loader';
-import resolveAntDVComponents from './utils/autoImportsAntdv';
+// import resolveAntDVComponents from './utils/autoImportsAntdv';
+import { version } from 'ant-design-vue';
+
+const antdVersion: number = +version.split('.')[0];
+
+console.log('antdVersion:', antdVersion);
 
 export default defineNuxtConfig({
   app: {
@@ -19,10 +24,12 @@ export default defineNuxtConfig({
         { name: 'color-scheme', content: 'only dark' },
       ],
       link: [
-        {
-          rel: 'stylesheet',
-          href: '/css/antdv4.css',
-        },
+        antdVersion == 4
+          ? {
+              rel: 'stylesheet',
+              href: isProduction ? '/css/antdv4.css' : '/css/antdv4.dev.css',
+            }
+          : {},
       ],
       script: [
         {
@@ -78,16 +85,17 @@ export default defineNuxtConfig({
     url: 'https://phimhay247z.org',
   },
   css: [
-    // 'ant-design-vue/dist/antd.dark.min.css',
-    'ant-design-vue/dist/reset.css',
+    antdVersion == 4
+      ? 'ant-design-vue/dist/reset.css'
+      : 'ant-design-vue/dist/antd.dark.min.css',
     '~/assets/style/fonts/GoogleFonts.css',
     '~/assets/style/globalStyle/overwrite/antdv/antdv.scss',
     '~/assets/style/globalStyle/overwrite/element/element.scss',
     '~/assets/style/globalStyle.scss',
   ],
   modules: [
-    // '@ant-design-vue/nuxt',
-    resolveAntDVComponents,
+    // antdVersion == 4 ? '@ant-design-vue/nuxt' : resolveAntDVComponents,
+    '@ant-design-vue/nuxt',
     '@element-plus/nuxt',
     '@pinia/nuxt',
     'nuxt-swiper',
@@ -98,9 +106,9 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     'nuxt-delay-hydration',
   ],
-  // antd: {
-  //   icons: false,
-  // },
+  antd: {
+    icons: false,
+  },
   elementPlus: {
     icon: false,
   },
@@ -146,36 +154,7 @@ export default defineNuxtConfig({
     mode: 'mount',
   },
   plugins: [],
-  nitro: {
-    preset: 'static',
-    prerender: {
-      routes: [],
-      crawlLinks: true,
-    },
-    storage: {},
-    output: {
-      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
-    },
-  },
   hooks: {},
-  generate: {
-    routes: [
-      '/',
-      '/feature',
-      '/television',
-      '/search',
-      '/discover',
-      '/follow',
-      '/history',
-      '/ranking',
-      '/upgrade/plans',
-      '/YourAccount',
-      '/oauth/google',
-      '/login',
-      '/signup',
-      '/ForgotPassword',
-    ],
-  },
   build: {
     // analyze: true,
   },
@@ -187,13 +166,48 @@ export default defineNuxtConfig({
       },
     ],
   },
+  devtools: { enabled: false },
+  vue: { defineModel: true, propsDestructure: true },
+  ssr: true,
+  sourcemap: {
+    server: true,
+    client: false,
+  },
+  router: {
+    options: {
+      // strict: true,
+    },
+  },
+  optimization: {},
+  nitro: {
+    // preset: 'static',
+    prerender: {
+      routes: [],
+      // crawlLinks: true,
+    },
+    minify: true,
+    compressPublicAssets: { gzip: true },
+    storage: {
+      redis: {
+        driver: 'redis',
+      },
+    },
+    output: {
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+    },
+  },
   vite: {
     resolve: {
-      alias: {},
+      alias: {
+        'ant-design-vue/dist': 'ant-design-vue/dist',
+        'ant-design-vue/es': 'ant-design-vue/es',
+        'ant-design-vue/lib': 'ant-design-vue/es',
+        'ant-design-vue': 'ant-design-vue/es',
+      },
     },
     plugins: [svgLoader({})],
     ssr: {
-      external: ['ant-design-vue', 'moment'],
+      // external: ['ant-design-vue'],
       noExternal: [],
     },
     optimizeDeps: {
@@ -237,42 +251,47 @@ export default defineNuxtConfig({
       },
     },
   },
-  devtools: { enabled: false },
-  vue: { defineModel: true, propsDestructure: true },
-  ssr: true,
-  sourcemap: {
-    server: true,
-    client: false,
+  generate: {
+    routes: [
+      // '/',
+      // '/feature',
+      // '/television',
+      // '/search',
+      // '/discover',
+      // '/follow',
+      // '/history',
+      // '/ranking',
+      // '/upgrade/plans',
+      // '/YourAccount',
+      // '/oauth/google',
+      // '/login',
+      // '/signup',
+      // '/ForgotPassword',
+    ],
   },
-  router: {
-    options: {
-      // strict: true,
-    },
-  },
-  optimization: {},
   routeRules: {
-    '/': { prerender: true },
-    '/feature/**': { prerender: true },
-    '/television/**': { prerender: true },
-    '/discover/**': { prerender: true },
-    '/search/**': { prerender: true },
-    '/follow/**': { prerender: true },
-    '/history/**': { prerender: true },
-    '/ranking/**': { prerender: true },
-    '/info-movie/**': { prerender: true },
-    '/info-tv/**': { prerender: true },
-    '/play-movie/**': { prerender: true },
-    '/play-tv/**': { prerender: true },
-    '/oauth/**': { prerender: true },
+    '/': { isr: true },
+    '/feature/**': { isr: true },
+    '/television/**': { isr: true },
+    '/discover/**': { isr: true },
+    '/search/**': { isr: true },
+    '/follow/**': { isr: true },
+    '/history/**': { isr: true },
+    '/ranking/**': { isr: true },
+    '/info-movie/**': { isr: true },
+    '/info-tv/**': { isr: true },
+    '/play-movie/**': { isr: true },
+    '/play-tv/**': { isr: true },
+    '/oauth/**': { isr: true },
     '/login': {
-      prerender: true,
+      isr: true,
     },
     '/signup': {
-      prerender: true,
+      isr: true,
     },
-    '/ForgotPassword': { prerender: true },
+    '/ForgotPassword': { isr: true },
     '/upgrade': { redirect: '/upgrade/plans' },
-    '/upgrade/plans': { prerender: true },
+    '/upgrade/plans': { isr: true },
     '/upgrade/PaymentPicker': {
       ssr: false,
     },
