@@ -328,7 +328,7 @@ const getData = async () => {
     //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
     //   () => getItemList(movieId.value)
     // )
-    //   .then((response: any) => {
+    //   .then((response) => {
     //     if (response.data.value.success == true) {
     //       isAddToList.value = true;
     //     }
@@ -341,7 +341,7 @@ const getData = async () => {
     //   `itemhistory/${store?.userAccount?.id}/${movieId.value}`,
     //   () => getItemHistory(movieId.value)
     // )
-    //   .then((response: any) => {
+    //   .then((response) => {
     //     if (response.data.value.success == true) {
     //       isInHistory.value = true;
     //       dataItemHistory.value = response.data.value?.result;

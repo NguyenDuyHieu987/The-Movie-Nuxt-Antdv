@@ -200,7 +200,7 @@ const selected = ref<string>('');
 // loading.value = true;
 // await nextTick();
 // await useAsyncData(`plan/all`, () => getAllPlan())
-//   .then((response: any) => {
+//   .then((response) => {
 //     plans.value = response.data.value?.results;
 //     selected.value = plans.value.find((item: plan) => item.order == 3)!.id;
 //     emits(

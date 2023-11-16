@@ -193,7 +193,7 @@ const handleSubmit = () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   AccountConfirm({ email: store.userAccount?.email }, 'email')
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response);
 
       if (response?.isSended === true) {
@@ -266,7 +266,7 @@ const handleVerify = (formVerify: any) => {
     otp: formVerify.otp,
     jwtVerifyEmail: jwtVerifyEmail.value,
   })
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response);
       if (response?.success == true) {
         ElNotification.success({
@@ -328,7 +328,7 @@ const handleResendVerifyEmail = () => {
   loadingResend.value = true;
 
   AccountConfirm({ email: store.userAccount?.email }, 'email')
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response);
 
       if (response?.isSended === true) {

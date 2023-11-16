@@ -17,7 +17,7 @@ export async function handelAddItemToList(
     movie_id: movieId,
     media_type: media_type,
   })
-    .then((response: any) => {
+    .then((response) => {
       if (response?.success == true) {
         // message.destroy();
         // ElMessage({
@@ -75,7 +75,7 @@ export async function handelRemoveItemFromList(
     movie_id: movieId,
     media_type: media_type,
   })
-    .then((response: any) => {
+    .then((response) => {
       if (response?.success == true) {
         message.destroy();
         // ElMessage({
@@ -183,7 +183,7 @@ export async function handleRemoveItemFromHistory(
     movie_id: movieId,
     media_type: media_type,
   })
-    .then((response: any) => {
+    .then((response) => {
       if (response?.success == true) {
         message.destroy();
         // ElMessage({

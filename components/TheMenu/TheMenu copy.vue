@@ -446,7 +446,7 @@ const getData = async () => {
     await useAsyncData(`year/all`, () => getAllYear()),
     await useAsyncData(`country/all`, () => getAllCountry()),
   ])
-    .then((response: any) => {
+    .then((response) => {
       genres.value = response[0].data.value?.results;
 
       years.value = response[1].data.value?.results.sort((a: year, b: year) => {

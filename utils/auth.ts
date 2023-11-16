@@ -10,7 +10,7 @@ export function onLogOut() {
     store.loadingAppInstance.start();
 
     LogOut({})
-      .then((response: any) => {
+      .then((response) => {
         if (response?.isLogout == true) {
           new Promise((resolve, reject) => {
             resolve(navigateTo('/login'));

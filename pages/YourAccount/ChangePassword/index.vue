@@ -287,7 +287,7 @@ const handleSubmit = () => {
     },
     'change-password'
   )
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response);
 
       if (response?.isSended === true) {
@@ -359,7 +359,7 @@ const handleVerify = (formVerify: any) => {
     otp: formVerify.otp,
     jwtVerifyEmail: jwtVerifyEmail.value,
   })
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response);
       if (response?.success == true) {
         ElNotification.success({
@@ -439,7 +439,7 @@ const handleResendVerifyEmail = () => {
     },
     'change-password'
   )
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response);
 
       titleVerify.value = `Một mã xác nhận khác đã được gửi đến Email: `;

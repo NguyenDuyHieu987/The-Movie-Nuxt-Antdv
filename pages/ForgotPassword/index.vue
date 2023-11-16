@@ -185,7 +185,7 @@ const handleSubmit = () => {
     },
     'email'
   )
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response);
 
       if (response?.isSended === true) {
