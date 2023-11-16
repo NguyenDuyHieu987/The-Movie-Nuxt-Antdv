@@ -606,7 +606,7 @@ const { data: trendings, pending } = await useAsyncData(
   }
 );
 
-onBeforeMount(getData);
+getData();
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;

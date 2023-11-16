@@ -126,6 +126,15 @@ export default defineNuxtConfig({
   },
   image: {
     // provider: 'cloudinary',
+    presets: {
+      avatar: {
+        modifiers: {
+          format: 'jpg',
+          width: 50,
+          height: 50,
+        },
+      },
+    },
     provider: 'imagekit',
     imagekit: {
       // baseURL: 'https://ik.imagekit.io/8toa5f2rp/images',

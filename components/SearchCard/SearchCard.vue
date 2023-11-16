@@ -30,8 +30,9 @@
       <template #default>
         <div class="img-box">
           <div class="ant-image">
-            <nuxt-img
+            <NuxtImg
               :src="getImage(item?.poster_path, 'poster', 'w-120')"
+              format="avif"
               loading="lazy"
               alt=""
             />

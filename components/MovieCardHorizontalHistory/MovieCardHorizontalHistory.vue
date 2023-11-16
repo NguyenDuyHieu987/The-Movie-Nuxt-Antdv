@@ -42,8 +42,15 @@
     >
       <div class="img-box">
         <div class="ant-image">
-          <img
+          <!-- <img
             v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+            loading="lazy"
+            alt=""
+          /> -->
+
+          <NuxtImg
+            :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+            format="avif"
             loading="lazy"
             alt=""
           />

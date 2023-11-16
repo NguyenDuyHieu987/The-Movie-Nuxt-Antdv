@@ -28,9 +28,10 @@
     </el-skeleton> -->
 
     <div class="img-box" @click="onClickPlay">
-      <nuxt-img
+      <NuxtImg
         class="ant-image"
         :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+        format="avif"
         loading="lazy"
         alt=""
       />

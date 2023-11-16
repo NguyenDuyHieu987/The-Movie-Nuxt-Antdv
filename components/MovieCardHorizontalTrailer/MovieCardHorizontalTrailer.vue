@@ -21,17 +21,17 @@
       }"
     >
       <div class="img-box">
-        <!-- <NuxtImg
-              class="ant-image"
-              :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
-              format="avif"
-              loading="lazy"
-              alt=""
-            /> -->
-
-        <img
+        <!-- <img
           class="ant-image"
           v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+          loading="lazy"
+          alt=""
+        /> -->
+
+        <NuxtImg
+          class="ant-image"
+          :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+          format="avif"
           loading="lazy"
           alt=""
         />

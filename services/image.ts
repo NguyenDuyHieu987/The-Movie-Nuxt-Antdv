@@ -16,22 +16,28 @@ export function getImage(path: string, type: string, crop: string = '') {
     ? nuxtConfig.app.serverImageUrl
     : 'http://localhost:5002/static/';
 
-  if (crop?.length == 0 || !nuxtConfig.app.production_mode)
-    return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
+  if (!path) return ' ';
 
-  return path ? `${URL_API_IMAGE1}/images/${type}/${path}/tr:${crop}` : ' ';
+  if (crop.length == 0 || !nuxtConfig.app.production_mode)
+    return `${URL_API_IMAGE1}/images/${type}/${path}`;
+
+  return `${URL_API_IMAGE1}/images/${type}/${path}/tr:${crop}`;
 
   // const URL_API_IMAGE1 = 'http://localhost:5002/static/';
 
-  // return path ? `${URL_API_IMAGE1}/images/${type}/${path}` : ' ';
+  // return`${URL_API_IMAGE1}/images/${type}/${path}`;
 }
 
 export function getPoster(path: string, size = 'full') {
-  return path ? `${URL_API_IMAGE}/image/poster/${path}?size=${size}` : ' ';
+  if (!path) return ' ';
+
+  return `${URL_API_IMAGE}/image/poster/${path}?size=${size}`;
 }
 
 export function getBackdrop(path: string, size = 'full') {
-  return path ? `${URL_API_IMAGE}/image/backdrop/${path}?size=${size}` : ' ';
+  if (!path) return ' ';
+
+  return `${URL_API_IMAGE}/image/backdrop/${path}?size=${size}`;
 }
 
 export function getColorImage(path: string) {

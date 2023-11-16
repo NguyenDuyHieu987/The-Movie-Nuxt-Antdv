@@ -12,9 +12,12 @@
                 .toLowerCase()}/ep-1`,
             }"
           >
-            <nuxt-img
+            <NuxtImg
               class="ant-image"
               :src="getImage(topicImage, 'backdrop', 'h-300')"
+              format="avif"
+              loading="lazy"
+              alt=""
             />
             <div class="play-now">
               <!-- <Icon name="ci:play-arrow" class="play" /> -->
@@ -42,9 +45,12 @@
                 .toLowerCase()}`,
             }"
           >
-            <nuxt-img
+            <NuxtImg
               class="ant-image"
               :src="getImage(topicImage, 'backdrop', 'h-300')"
+              format="avif"
+              loading="lazy"
+              alt=""
             />
 
             <div class="play-now">
@@ -63,14 +69,17 @@
           </NuxtLink>
 
           <div v-if="!dataRow?.length" class="img-box">
-            <nuxt-img
+            <NuxtImg
               class="ant-image"
               :src="getImage('topic1.jpg', 'misc', 'h-300')"
+              format="avif"
+              loading="lazy"
+              alt=""
             />
           </div>
         </div>
 
-        <nuxt-img
+        <NuxtImg
           class="overlay-image"
           :src="
             getImage(
@@ -81,6 +90,9 @@
               'h-300'
             )
           "
+          format="avif"
+          loading="lazy"
+          alt=""
         />
 
         <div class="info">

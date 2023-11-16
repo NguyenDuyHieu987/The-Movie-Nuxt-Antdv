@@ -23,9 +23,17 @@
 
     <!-- <template #default> -->
     <div class="img-box">
-      <img
+      <!-- <img
         class="ant-image"
         v-lazy="getImage(item?.poster_path, 'poster')"
+        loading="lazy"
+        alt=""
+      /> -->
+
+      <NuxtImg
+        class="ant-image"
+        :src="getImage(item?.poster_path, 'poster')"
+        format="avif"
         loading="lazy"
         alt=""
       />

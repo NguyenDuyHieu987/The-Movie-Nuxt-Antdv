@@ -5,12 +5,18 @@ import { getUserToken } from '~/services/authentication';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
 import { ElNotification } from 'element-plus';
 import axios from 'axios';
+import { useBreakpoints } from '@vueuse/core';
+const breakpoints = useBreakpoints({
+  desktop: 1300,
+});
 
 export default defineStore('store', () => {
+  const collapsed = breakpoints.smaller('desktop');
+
   const userAccount = ref<user>(null);
   const role = computed<string>(() => userAccount.value!?.role || 'normal');
   const isLogin = computed<boolean>(() => !!userAccount.value);
-  const collapsed = ref<boolean>(true);
+  // const collapsed = ref<boolean>(!largerThanDesktop.value);
   const openSiderBarFixed = ref<boolean>(false);
   const headerScrolled = ref<boolean>(false);
   const openDrawer = ref<boolean>(false);
@@ -22,6 +28,14 @@ export default defineStore('store', () => {
   const allGenres = ref<genre[]>([]);
   const allCountries = ref<country[]>([]);
   const allYears = ref<year[]>([]);
+
+  // watch(largerThanDesktop, () => {
+  //   if (largerThanDesktop.value) {
+  //     collapsed.value = false;
+  //   } else {
+  //     collapsed.value = true;
+  //   }
+  // });
 
   const setCollapsed = () => {
     collapsed.value = !collapsed.value;

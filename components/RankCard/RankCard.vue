@@ -30,15 +30,17 @@
       <template #default>
         <div class="img-box">
           <div class="ant-image">
-            <!-- <nuxt-img
-              :src="getImage(item?.poster_path, 'poster', 'w-120')"
+            <!-- <img
+              v-lazy="getImage(item?.poster_path, 'poster', 'w-120')"
+              :lazy="true"
               loading="lazy"
               alt=""
             /> -->
 
-            <img
-              v-lazy="getImage(item?.poster_path, 'poster', 'w-120')"
-              :lazy="true"
+            <NuxtImg
+              class="ant-image"
+              :src="getImage(item?.poster_path, 'poster', 'w-120')"
+              format="avif"
               loading="lazy"
               alt=""
             />

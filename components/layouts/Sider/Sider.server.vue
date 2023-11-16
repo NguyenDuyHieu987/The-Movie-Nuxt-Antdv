@@ -110,13 +110,13 @@ const breakpoints = useBreakpoints({
 });
 const largerThanDesktop = breakpoints.greater('desktop');
 
-watch(largerThanDesktop, () => {
-  if (largerThanDesktop.value) {
-    store.collapsed = false;
-  } else {
-    store.collapsed = true;
-  }
-});
+// watch(largerThanDesktop, () => {
+//   if (largerThanDesktop.value) {
+//     store.collapsed = false;
+//   } else {
+//     store.collapsed = true;
+//   }
+// });
 
 watch(collapsed, (oldVal, newVal) => {
   if (oldVal) {
@@ -129,9 +129,9 @@ watch(collapsed, (oldVal, newVal) => {
 });
 
 onMounted(() => {
-  if (largerThanDesktop.value) {
-    store.collapsed = false;
-  }
+  // if (largerThanDesktop.value) {
+  //   store.collapsed = false;
+  // }
 
   // window.addEventListener('resize', () => {
   //   if (window.innerWidth > 1300) {

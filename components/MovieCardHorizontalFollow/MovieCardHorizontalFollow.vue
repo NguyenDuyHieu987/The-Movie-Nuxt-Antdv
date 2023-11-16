@@ -32,17 +32,16 @@
       class="movie-follow-item"
     >
       <div class="img-box">
-        <!-- <el-image
-              class="ant-image"
-              :src="getBackdrop(item?.backdrop_path, ',250')"
-              :preview="false"
-              :lazy="true"
-              loading="lazy"
-            /> -->
-
         <div class="ant-image">
-          <img
+          <!-- <img
             v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+            loading="lazy"
+            alt=""
+          /> -->
+
+          <NuxtImg
+            :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+            format="avif"
             loading="lazy"
             alt=""
           />

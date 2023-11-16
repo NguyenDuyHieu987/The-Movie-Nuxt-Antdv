@@ -71,7 +71,6 @@ const formFilter = computed<formfilter>(() => {
     limit: 20,
   };
 });
-const internalInstance: any = getCurrentInstance();
 
 useHead({
   title: () => 'Khám phá | Phim lẻ: ' + formFilter.value.type + ' - Phimhay247',
