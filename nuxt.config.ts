@@ -111,6 +111,11 @@ export default defineNuxtConfig({
   },
   elementPlus: {
     icon: false,
+    injectionID: {
+      // prefix: 1024,
+      prefix: Math.floor(Math.random() * 10000),
+      current: 0,
+    },
   },
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
@@ -193,7 +198,7 @@ export default defineNuxtConfig({
       },
     },
     output: {
-      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
     },
   },
   vite: {

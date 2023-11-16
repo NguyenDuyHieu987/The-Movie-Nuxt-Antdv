@@ -5,6 +5,10 @@ export function getHistory(
   skip: number = 1,
   limit: number = 20
 ) {
+  const store = useStore();
+
+  if (!store.isLogin) return new Promise(() => {});
+
   return makeRequest(`/history/get/${type}?skip=${skip}&limit=${limit}`);
 }
 

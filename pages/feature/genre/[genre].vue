@@ -156,7 +156,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.vue';
+import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/HeaderHomeBreadcrumb.server.vue';

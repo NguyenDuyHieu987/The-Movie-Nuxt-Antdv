@@ -300,7 +300,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
-import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.vue';
+import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
 import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';

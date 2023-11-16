@@ -5,6 +5,10 @@ export function getList(
   skip: number = 1,
   limit: number = 20
 ) {
+  const store = useStore();
+
+  if (!store.isLogin) return new Promise(() => {});
+
   return makeRequest(`/list/get/${type}?skip=${skip}&limit=${limit}`);
 }
 

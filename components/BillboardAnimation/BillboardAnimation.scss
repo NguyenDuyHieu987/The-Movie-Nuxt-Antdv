@@ -49,6 +49,22 @@
     top: 0;
     right: 0;
 
+    &.loaded {
+      .el-carousel__container {
+        .el-carousel__item {
+          &:first-child {
+            opacity: 0;
+            z-index: 0;
+
+            &.is-active {
+              opacity: 1;
+              z-index: 1;
+            }
+          }
+        }
+      }
+    }
+
     .el-carousel__container {
       position: relative;
       // height: 100vh;
@@ -56,11 +72,13 @@
       padding-bottom: 56.25%;
 
       .el-carousel__item {
+        display: block !important;
         transform: translate(0px) scale(1) !important;
         transition: opacity 0.5s;
         opacity: 0;
 
-        &.is-active {
+        &.is-active,
+        &:first-child {
           opacity: 1;
           z-index: 1;
         }
