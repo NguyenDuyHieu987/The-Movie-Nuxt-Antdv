@@ -196,7 +196,7 @@ onMounted(() => {
       //   () => getList(activeTab.value, skip.value)
       // )
       await getList(activeTab.value, skip.value)
-        .then((response: any) => {
+        .then((response) => {
           if (response?.results?.length > 0) {
             dataList.value = dataList.value.concat(response?.results);
             skip.value++;
@@ -220,7 +220,7 @@ const getData = async () => {
   //   () => getList(activeTab.value, 1)
   // )
   await getList(activeTab.value, 1)
-    .then((response: any) => {
+    .then((response) => {
       if (response?.results?.length > 0) {
         dataList.value = response?.results;
         total.value = response?.total;
@@ -232,7 +232,7 @@ const getData = async () => {
       //   useAsyncData(`image/color/${topicImage.value}`, () =>
       //     getColorImage(topicImage.value)
       //   )
-      //     .then((colorResponse: any) => {
+      //     .then((colorResponse) => {
       //       const color = colorResponse?.color;
       //       setBackgroundColor(color);
       //     })
@@ -297,7 +297,7 @@ const searchFollow = (e: any) => {
       //   () => searchList(e.target.value, activeTab.value)
       // )
       await searchList(e.target.value, activeTab.value)
-        .then((response: any) => {
+        .then((response) => {
           dataList.value = response?.results;
         })
         .catch((e) => {
@@ -336,7 +336,7 @@ const handleChangeTab = async (value: string) => {
       //   () => getList(activeTab.value, 1)
       // )
       await getList(activeTab.value, 1)
-        .then((response: any) => {
+        .then((response) => {
           dataList.value = response?.results;
           // title.value = 'Phim đã thêm vào danh sách phát';
           total.value = response?.total;
@@ -359,7 +359,7 @@ const handleChangeTab = async (value: string) => {
       //   () => getList(activeTab.value, 1)
       // )
       await getList(activeTab.value, 1)
-        .then((response: any) => {
+        .then((response) => {
           dataList.value = response?.results;
           // title.value = 'Phim lẻ';
           total.value = response?.total;
@@ -382,7 +382,7 @@ const handleChangeTab = async (value: string) => {
       //   () => getList(activeTab.value, 1)
       // )
       await getList(activeTab.value, 1)
-        .then((response: any) => {
+        .then((response) => {
           dataList.value = response?.results;
           // title.value = 'Phim bộ';
           total.value = response?.total;

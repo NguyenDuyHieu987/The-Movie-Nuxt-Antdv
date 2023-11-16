@@ -138,7 +138,7 @@ const getData = async () => {
       //   () => getItemHistory(props.item?.id, props.item?.media_type)
       // )
       getItemHistory(props.item?.id, props.item?.media_type)
-        .then((response: any) => {
+        .then((response) => {
           if (response.success == true) {
             isInHistory.value = true;
             percent.value = response?.result?.percent;

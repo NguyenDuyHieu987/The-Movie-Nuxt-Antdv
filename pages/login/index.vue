@@ -273,7 +273,7 @@ const handleLogin = () => {
     password: utils.encryptPassword(formLogin.password),
     // password: md5(formLogin.password),
   })
-    .then((response: any) => {
+    .then((response) => {
       if (response?.isLogin == true) {
         store.userAccount = response?.result;
 
@@ -344,7 +344,7 @@ const handleClickFacebookLogin = async () => {
   loginFacebook({
     accessToken: authResponse.accessToken,
   })
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response?.result);
       if (response.isSignUp == true) {
         ElNotification.success({
@@ -449,7 +449,7 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
     loginGoogle({
       accessToken: googleOauthResponse?.access_token,
     })
-      .then((response: any) => {
+      .then((response) => {
         if (response.isSignUp == true) {
           ElNotification.success({
             title: 'Thành công!',

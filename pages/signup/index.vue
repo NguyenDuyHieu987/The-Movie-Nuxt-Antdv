@@ -324,7 +324,7 @@ const handleSignUp = (e: any) => {
     },
     'email'
   )
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response);
 
       if (response?.isInValidEmail == true) {
@@ -414,7 +414,7 @@ const handleResendVerifyEmail = () => {
     },
     'email'
   )
-    .then((response: any) => {
+    .then((response) => {
       // console.log(response);
 
       if (response?.isSended == true) {

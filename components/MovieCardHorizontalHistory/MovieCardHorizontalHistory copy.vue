@@ -413,8 +413,8 @@ const getData = async () => {
         await useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
           getMovieById(props.item?.movie_id)
         )
-          .then((movieResponed: any) => {
-            dataMovie.value = movieResponed.data.value;
+          .then((response) => {
+            dataMovie.value = response.data.value;
 
             loading.value = false;
           })
@@ -429,8 +429,8 @@ const getData = async () => {
         await useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
           getTvById(props.item?.movie_id)
         )
-          .then((tvResponed: any) => {
-            dataMovie.value = tvResponed.data.value;
+          .then((response) => {
+            dataMovie.value = response.data.value;
 
             loading.value = false;
           })

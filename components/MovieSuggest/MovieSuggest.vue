@@ -99,7 +99,7 @@ const getData = async () => {
       getTrending(randomRecommend.value)
     ),
   ])
-    .then((response: any) => {
+    .then((response) => {
       dataSimilar.value = response[0].data.value?.results;
       dataRecommend.value = response[1].data.value?.results;
     })

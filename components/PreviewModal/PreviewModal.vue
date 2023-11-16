@@ -611,8 +611,8 @@ watch(isTeleport, async () => {
         //   getTvById(props.item?.id)
         // )
         await getTvById(props.item?.id)
-          .then((tvResponed: any) => {
-            dataMovie.value = tvResponed;
+          .then((tvResponse) => {
+            dataMovie.value = tvResponse;
           })
           .catch((e) => {
             if (axios.isCancel(e)) return;
@@ -627,7 +627,7 @@ watch(isTeleport, async () => {
         //   getMovieById(props.item?.id)
         // )
         await getMovieById(props.item?.id)
-          .then((movieRespone: any) => {
+          .then((movieRespone) => {
             dataMovie.value = movieRespone;
           })
           .catch((e) => {

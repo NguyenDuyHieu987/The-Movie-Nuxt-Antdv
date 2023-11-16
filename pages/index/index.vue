@@ -492,7 +492,7 @@ const getData = async () => {
   // await nextTick();
 
   // await useAsyncData(`trending/all/1`, () => getTrending(1))
-  //   .then((response: any) => {
+  //   .then((response) => {
   //     trendings.value = response.data.value?.results;
   //   })
   //   .catch((e) => {
@@ -610,14 +610,13 @@ getData();
 
 const handleLoadMoreRecommend = async () => {
   loadMoreRecommend.value = true;
-  await useAsyncData(`recommend/get/${skipRecommend.value}`, () =>
-    getMyRecommend(skipRecommend.value)
-  )
-    .then((movieResponse: any) => {
-      if (movieResponse.data.value?.results.length > 0) {
-        recommends.value = recommends.value.concat(
-          movieResponse.data.value?.results
-        );
+  // await useAsyncData(`recommend/get/${skipRecommend.value}`, () =>
+  //   getMyRecommend(skipRecommend.value)
+  // )
+  await getMyRecommend(skipRecommend.value)
+    .then((response) => {
+      if (response?.results.length > 0) {
+        recommends.value = recommends.value.concat(response?.results);
         skipRecommend.value++;
 
         if (viewMoreRecommend.value == false) {

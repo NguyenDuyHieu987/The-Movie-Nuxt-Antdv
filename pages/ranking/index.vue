@@ -72,7 +72,7 @@ const getData = async () => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )
-    .then((response: any) => {
+    .then((response) => {
       rankings.value = response.data.value?.results;
       totalPage.value = response.data.value?.total;
       pageSize.value = response.data.value?.page_size;
@@ -117,7 +117,7 @@ const onChangePage = async (pageSelected: number) => {
   await useAsyncData(`trending/all/${pageTrending.value}`, () =>
     getTrending(pageTrending.value)
   )
-    .then((response: any) => {
+    .then((response) => {
       rankings.value = response.data.value?.results;
     })
     .catch((e) => {

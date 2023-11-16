@@ -193,7 +193,7 @@ onMounted(() => {
       //   () => getHistory(activeTab.value, skip.value)
       // )
       await getHistory(activeTab.value, skip.value)
-        .then((response: any) => {
+        .then((response) => {
           if (response?.results?.length > 0) {
             dataHistory.value = dataHistory.value.concat(response.data?.result);
             skip.value++;
@@ -217,7 +217,7 @@ const getData = async () => {
   //   () => getHistory(activeTab.value, 1)
   // )
   await getHistory(activeTab.value, 1)
-    .then((response: any) => {
+    .then((response) => {
       if (response?.results?.length > 0) {
         dataHistory.value = response?.results;
         total.value = response?.total;
@@ -229,7 +229,7 @@ const getData = async () => {
       //   useAsyncData(`image/color/${topicImage.value}`, () =>
       //     getColorImage(topicImage.value)
       //   )
-      //     .then((colorResponse: any) => {
+      //     .then((colorResponse) => {
       //       const color = colorResponse?.color;
       //       setBackgroundColor(color);
       //     })
@@ -295,7 +295,7 @@ const searchHistoryEvent = (e: any) => {
       //     () => searchHistory(e.target.value, activeTab.value)
       //   )
       await searchHistory(e.target.value, activeTab.value)
-        .then((response: any) => {
+        .then((response) => {
           dataHistory.value = response?.results;
           setTimeout(() => {
             loadingSearch.value = false;
@@ -333,7 +333,7 @@ const handleChangeTab = async (value: string) => {
       //   () => getHistory(activeTab.value, 1)
       // )
       await getHistory(activeTab.value, 1)
-        .then((response: any) => {
+        .then((response) => {
           dataHistory.value = response?.results;
           total.value = response?.total;
 
@@ -355,7 +355,7 @@ const handleChangeTab = async (value: string) => {
       //   () => getHistory(activeTab.value, 1)
       // )
       await getHistory(activeTab.value, 1)
-        .then((response: any) => {
+        .then((response) => {
           dataHistory.value = response?.results;
           total.value = response?.total;
 
@@ -377,7 +377,7 @@ const handleChangeTab = async (value: string) => {
       //   () => getHistory(activeTab.value, 1)
       // )
       await getHistory(activeTab.value, 1)
-        .then((response: any) => {
+        .then((response) => {
           dataHistory.value = response?.results;
           total.value = response?.total;
 

@@ -148,7 +148,7 @@ const getData = async () => {
   //   getSimilar(props?.type, props?.movieId, 1, 12)
   // )
   getSimilar(props?.type, props?.movieId, 1, 12)
-    .then((response: any) => {
+    .then((response) => {
       dataSimilar.value = response?.results;
     })
     .catch((e) => {
@@ -162,7 +162,7 @@ const getData = async () => {
   //   getTrending(randomRecommend.value, 12)
   // )
   getTrending(randomRecommend.value, 12)
-    .then((response: any) => {
+    .then((response) => {
       dataRecommend.value = response?.results;
     })
     .catch((e) => {

@@ -302,8 +302,8 @@ const getData = async () => {
   //   getMovieById(movieId.value)
   // )
   getMovieById(movieId.value)
-    .then((movieResponed: any) => {
-      dataMovie.value = movieResponed;
+    .then((response) => {
+      dataMovie.value = response;
       disabledRate.value = dataMovie.value?.is_rated == true;
     })
     .catch((e) => {

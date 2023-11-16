@@ -410,8 +410,8 @@ const getData = async () => {
   //   getMovieById(movieId.value, 'videos')
   // )
   await getMovieById(movieId.value, 'videos')
-    .then((movieRespone) => {
-      dataMovie.value = movieRespone;
+    .then((response) => {
+      dataMovie.value = response;
       disabledRate.value = !!dataMovie.value?.rated_value;
 
       // dataMovie.value.images?.backdrops?.forEach((item) => {
@@ -438,12 +438,13 @@ const getData = async () => {
   if (store.isLogin) {
     isAddToList.value = dataMovie.value?.in_list == true;
 
-    // await useAsyncData(
-    //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
-    //   () => getItemList(movieId.value)
-    // )
-    //   .then((response: any) => {
-    //     if (response.data.value.success == true) {
+    // // await useAsyncData(
+    // //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
+    // //   () => getItemList(movieId.value, 'movie')
+    // // )
+    // getItemList(movieId.value, 'movie')
+    //   .then((response) => {
+    //     if (response.success == true) {
     //       isAddToList.value = true;
     //     }
     //   })
@@ -470,18 +471,13 @@ loading.value = true;
 srcBackdropList.value = [];
 
 const { data: dataMovie } = await useAsyncData(
-  `movie/detail/${movieId.value}`,
-  () => getMovieById(movieId.value, 'videos'),
-  {
-    // transform: (data) => {
-    //   return data;
-    // },
-  }
+  `cache/movie/detail/${movieId.value}`,
+  () => getMovieById(movieId.value, 'videos')
 );
 
+isAddToList.value = dataMovie.value?.in_list == true;
 disabledRate.value = !!dataMovie.value?.rated_value;
 loading.value = false;
-isAddToList.value = dataMovie.value?.in_list == true;
 
 useHead({
   title: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',

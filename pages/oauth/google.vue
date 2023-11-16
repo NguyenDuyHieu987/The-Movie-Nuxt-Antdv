@@ -133,7 +133,7 @@ onBeforeMount(() => {
   loginGoogle({
     accessToken: access_token,
   })
-    .then((response: any) => {
+    .then((response) => {
       if (response.isSignUp == true) {
         ElNotification.success({
           title: 'Thành công!',

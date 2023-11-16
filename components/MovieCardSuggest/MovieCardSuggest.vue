@@ -206,7 +206,7 @@ const getData = async () => {
       //   getItemList(props.item?.id, props.item?.media_type)
       // )
       getItemList(props.item?.id, props.item?.media_type)
-        .then((response: any) => {
+        .then((response) => {
           if (response.success == true) {
             isAddToList.value = true;
           }
@@ -225,7 +225,7 @@ const getData = async () => {
       //   () => getItemHistory(props.item?.id, props.item?.media_type)
       // )
       getItemHistory(props.item?.id, props.item?.media_type)
-        .then((response: any) => {
+        .then((response) => {
           if (response.success == true) {
             isInHistory.value = true;
             percent.value = response?.result?.percent;

@@ -253,8 +253,8 @@ onBeforeMount(async () => {
   //     `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
   //     () => getItemList(props.item?.id, props.item?.media_type)
   //   )
-  //     .then((movieRespone: any) => {
-  //       if (movieRespone.data.value.success == true) {
+  //     .then((response) => {
+  //       if (response.data.value.success == true) {
   //         isAddToList.value = true;
   //       }
   //     })
@@ -273,8 +273,8 @@ watch(
       //   () => getItemList(props.item?.id, props.item?.media_type)
       // )
       getItemList(props.item?.id, props.item?.media_type)
-        .then((movieRespone: any) => {
-          if (movieRespone.success == true) {
+        .then((response) => {
+          if (response.success == true) {
             isAddToList.value = true;
           }
         })

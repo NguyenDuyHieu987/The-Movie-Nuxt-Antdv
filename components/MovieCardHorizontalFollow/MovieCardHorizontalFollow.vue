@@ -300,7 +300,7 @@ const getData = async () => {
         //   getMovieById(props.item?.movie_id)
         // )
         getMovieById(props.item?.movie_id)
-          .then((response: any) => {
+          .then((response) => {
             dataMovie.value = response;
 
             loading.value = false;
@@ -316,7 +316,7 @@ const getData = async () => {
         //   getTvById(props.item?.movie_id)
         // )
         getTvById(props.item?.movie_id)
-          .then((response: any) => {
+          .then((response) => {
             dataMovie.value = response;
 
             loading.value = false;
@@ -340,7 +340,7 @@ const getData = async () => {
   //   `itemhistory/${store?.userAccount?.id}/${props.item?.movie_id}`,
   //   () => getItemHistory(props.item?.movie_id)
   // )
-  //   .then((response: any) => {
+  //   .then((response) => {
   //     if (response.data.value.success == true) {
   //       isInHistory.value = true;
   //       percent.value = response.data.value?.result?.percent;

@@ -189,8 +189,8 @@ const handleChangeInput = (query: string) => {
       // await useAsyncData(`search/all/${query}`, () =>
       //   getDaTaSearch(query, page.value)
       // )
-      //   .then((movieRespone) => {
-      //     dataSearch.value = movieRespone.data.value.data?.results;
+      //   .then((response) => {
+      //     dataSearch.value = response.data.value.data?.results;
       //     loadingSearch.value = false;
       //   })
       //   .catch((e) => {
