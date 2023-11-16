@@ -9,7 +9,7 @@
       /> -->
 
     <div class="img-wrapper">
-      <nuxt-img
+      <NuxtImg
         class="ant-image"
         :src="
           getImage(

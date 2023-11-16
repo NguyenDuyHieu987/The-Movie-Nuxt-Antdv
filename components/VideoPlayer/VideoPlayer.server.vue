@@ -11,7 +11,7 @@
   >
     <div v-if="settingStates.switchBackgroud" class="overlay-backdrop">
       <!-- <canvas ref="canvasOverlayBackdrop"> </canvas> -->
-      <nuxt-img :src="backdrop" loading="lazy" alt="" />
+      <NuxtImg :src="backdrop" format="avif" loading="lazy" alt="" />
     </div>
 
     <video
@@ -180,7 +180,7 @@
       <div class="timeline-container">
         <div class="img-box">
           <canvas class="canvas-preview-img" ref="canvasPreviewImg"> </canvas>
-          <!-- <nuxt-img class="preview-img" loading="lazy" /> -->
+          <!-- <NuxtImg class="preview-img" format="avif" loading="lazy" alt="" /> -->
         </div>
       </div>
       <span class="timeline-indicator">{{ timelineUpdate }} </span>

@@ -19,7 +19,7 @@
               :lazy="true"
               loading="lazy"
             /> -->
-            <nuxt-img
+            <NuxtImg
               class="ant-image"
               :src="
                 getImage(
@@ -28,21 +28,25 @@
                   'w-' + windowWidth.toString()
                 )
               "
+              format="avif"
               loading="lazy"
+              alt=""
             />
           </div>
           <div class="poster">
             <div class="poster-wrapper">
-              <nuxt-img
+              <NuxtImg
                 class="ant-image"
                 :src="getImage(dataMovie?.poster_path, 'poster', 'w-250')"
+                format="avif"
                 loading="lazy"
+                alt=""
               />
             </div>
           </div>
 
           <div class="overlay-backdrop">
-            <nuxt-img
+            <NuxtImg
               :src="
                 getImage(
                   dataMovie?.backdrop_path,
@@ -50,7 +54,9 @@
                   'w-' + windowWidth.toString()
                 )
               "
+              format="avif"
               loading="lazy"
+              alt=""
             />
           </div>
         </div>

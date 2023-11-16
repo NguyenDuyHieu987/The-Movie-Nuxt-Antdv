@@ -19,7 +19,7 @@
               :lazy="true"
               loading="lazy"
             /> -->
-            <nuxt-img
+            <NuxtImg
               class="ant-image"
               :src="
                 getImage(
@@ -28,21 +28,25 @@
                   'w-' + windowWidth.toString()
                 )
               "
+              format="avif"
               loading="lazy"
+              alt=""
             />
           </div>
           <div class="poster">
             <div class="poster-wrapper">
-              <nuxt-img
+              <NuxtImg
                 class="ant-image"
                 :src="getImage(dataMovie?.poster_path, 'poster', 'w-250')"
+                format="avif"
                 loading="lazy"
+                alt=""
               />
             </div>
           </div>
 
           <div class="overlay-backdrop">
-            <nuxt-img
+            <NuxtImg
               :src="
                 getImage(
                   dataMovie?.backdrop_path,
@@ -50,7 +54,9 @@
                   'w-' + windowWidth.toString()
                 )
               "
+              format="avif"
               loading="lazy"
+              alt=""
             />
           </div>
         </div>
@@ -324,9 +330,9 @@
       </div>
 
       <div class="related-content padding-content">
-        <MovieRelated :movieId="dataMovie?.id" type="movie" />
+        <!-- <MovieRelated :movieId="dataMovie?.id" type="movie" /> -->
 
-        <CastCrew :dataMovie="dataMovie" />
+        <!-- <CastCrew :dataMovie="dataMovie" /> -->
 
         <div class="trailer" id="trailer">
           <h2 class="title-default">Trailer</h2>
@@ -346,7 +352,7 @@
           />
         </div>
 
-        <Comment :dataMovie="dataMovie" />
+        <!-- <Comment :dataMovie="dataMovie" /> -->
       </div>
     </div>
   </div>
@@ -375,7 +381,7 @@ const store = useStore();
 const utils = useUtils();
 const route: any = useRoute();
 const router = useRouter();
-const dataMovie = ref<any>({});
+// const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
@@ -457,26 +463,25 @@ onBeforeMount(() => {
   });
 });
 
-getData();
+// getData();
 
-// isAddToList.value = false;
-// loading.value = true;
-// srcBackdropList.value = [];
+isAddToList.value = false;
+loading.value = true;
+srcBackdropList.value = [];
 
-// const { data: dataMovie } = await useAsyncData(
-//   `movie/detail/${movieId.value}`,
-//   () => getMovieById(movieId.value, 'videos'),
-//   {
-//     transform: (data) => {
-//       console.log(typeof data);
-//       return data;
-//     },
-//   }
-// );
+const { data: dataMovie } = await useAsyncData(
+  `movie/detail/${movieId.value}`,
+  () => getMovieById(movieId.value, 'videos'),
+  {
+    // transform: (data) => {
+    //   return data;
+    // },
+  }
+);
 
-// disabledRate.value = !!dataMovie.value?.rated_value;
-// loading.value = false;
-// isAddToList.value = dataMovie.value?.in_list == true;
+disabledRate.value = !!dataMovie.value?.rated_value;
+loading.value = false;
+isAddToList.value = dataMovie.value?.in_list == true;
 
 useHead({
   title: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',

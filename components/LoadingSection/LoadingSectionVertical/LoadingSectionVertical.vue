@@ -1,13 +1,15 @@
 <template>
   <el-skeleton class="loading-section-vertical" :loading="loading" animated>
     <template #template>
-      <el-skeleton-item
+      <div
+        class="skeleton-img"
         v-for="(item, index) in 10"
         :index="index"
         :key="index"
         :item="item"
-        class="skeleton-img"
-      />
+      >
+        <el-skeleton-item />
+      </div>
     </template>
     <template #default> <slot name="content" /> </template>
   </el-skeleton>

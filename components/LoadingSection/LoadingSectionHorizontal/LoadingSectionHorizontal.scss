@@ -6,9 +6,16 @@
   overflow: hidden;
   // background-color: var(--background-content-color);
 
-  .el-skeleton__item.skeleton-img {
-    height: 150px;
+  .skeleton-img {
+    display: flex;
+    // height: 150px;
     width: 267px;
     flex-shrink: 0;
+
+    .el-skeleton__item {
+      width: 100%;
+      height: 0px !important;
+      padding-bottom: 56.25%;
+    }
   }
 }
