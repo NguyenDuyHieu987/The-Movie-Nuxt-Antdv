@@ -18,7 +18,7 @@
         >
           {{ 'Tập ' }}
           {{
-            // item?.episode_number == numberOfEpisodes
+            // item?.episode_number == dataEpisode.length
             //   ? item?.episode_number < 10
             //     ? '0' + item?.episode_number + ' - End'
             //     : item?.episode_number + ' - End'
@@ -35,14 +35,12 @@
 
 <script setup lang="ts">
 import { getSeason } from '~/services/season';
+import { getListEpisode } from '~/services/episode';
 import axios from 'axios';
 
 const props = defineProps({
   dataMovie: {
     type: Object,
-  },
-  numberOfEpisodes: {
-    type: Number,
   },
   loading: {
     type: Boolean,
@@ -50,22 +48,20 @@ const props = defineProps({
 });
 
 const utils = useUtils();
-const dataSeason = ref<any>(props.dataMovie);
-const dataEpisode = ref<any[]>([]);
+const dataSeason = ref<any>(props.dataMovie?.seasons);
+const dataEpisode = ref<any[]>(
+  props.dataMovie?.episodes
+    ? props.dataMovie?.episodes.filter((item: any) => item.air_date != null)
+    : []
+);
 const loading = ref<boolean>(false);
 
-onBeforeMount(async () => {
+if (dataEpisode.value.length == 0) {
   loading.value = true;
 
-  // await useAsyncData(
-  //   `season/${props.dataMovie?.id}/${props?.dataMovie?.season_id}`,
-  //   () => getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
-  // )
-  await getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
+  getListEpisode(props.dataMovie?.id, props?.dataMovie?.season_id)
     .then((response) => {
-      dataSeason.value = response;
-
-      dataEpisode.value = dataSeason.value?.episodes.filter(
+      dataEpisode.value = response?.results.filter(
         (item: any) => item.air_date != null
       );
     })
@@ -75,7 +71,26 @@ onBeforeMount(async () => {
     .finally(() => {
       loading.value = false;
     });
-});
+}
+
+// // useAsyncData(
+// //   `season/${props.dataMovie?.id}/${props?.dataMovie?.season_id}`,
+// //   () => getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
+// // )
+// getSeason(props.dataMovie?.id, props?.dataMovie?.season_id)
+//   .then((response) => {
+//     dataSeason.value = response;
+
+//     dataEpisode.value = dataSeason.value?.episodes.filter(
+//       (item: any) => item.air_date != null
+//     );
+//   })
+//   .catch((e) => {
+//     if (axios.isCancel(e)) return;
+//   })
+//   .finally(() => {
+//     loading.value = false;
+//   });
 </script>
 
 <style scoped lang="scss" src="./LastestEpisodes.scss"></style>

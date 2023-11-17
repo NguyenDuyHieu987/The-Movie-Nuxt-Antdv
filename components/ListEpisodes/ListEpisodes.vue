@@ -85,7 +85,7 @@
                 @click.prevent="handleChangeEpisode(item)"
               >
                 {{
-                  // item?.episode_number == numberOfEpisodes
+                  // item?.episode_number == dataEpisode.length
                   //   ? item?.episode_number < 10
                   //     ? '0' + item?.episode_number + ' - End'
                   //     : item?.episode_number + ' - End'
@@ -107,10 +107,10 @@
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import axios from 'axios';
 import { getListSeason, getSeason } from '~/services/season';
+import { getListEpisode } from '~/services/episode';
 
 const props = defineProps<{
   dataMovie: any;
-  numberOfEpisodes: number;
 }>();
 
 const emit = defineEmits<{
@@ -124,8 +124,10 @@ const router = useRouter();
 const dataSeason = ref<any>(props.dataMovie?.seasons);
 const dataEpisode = ref<any[]>(
   props.dataMovie?.episodes
-    .filter((item: any) => item.air_date != null)
-    .reverse()
+    ? props.dataMovie?.episodes
+        .filter((item: any) => item.air_date != null)
+        .reverse()
+    : []
 );
 const selectedSeasonId = ref<string>(props.dataMovie?.season_id);
 const currentEpisode = ref<number>(
@@ -154,12 +156,12 @@ const emitUrlCode = () => {
 const getData = async () => {
   loading.value = true;
 
-  // await useAsyncData(`season/list/${props.dataMovie?.series_id}`, () =>
-  //   getListSeason(props.dataMovie?.series_id)
-  // )
-  await getListSeason(props.dataMovie?.series_id)
+  useAsyncData(`season/list/${props.dataMovie?.series_id}`, () =>
+    getListSeason(props.dataMovie?.series_id)
+  )
+    // getListSeason(props.dataMovie?.series_id)
     .then((response) => {
-      dataSeason.value = response?.results;
+      dataSeason.value = response.data.value?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
@@ -170,6 +172,23 @@ const getData = async () => {
 };
 
 // getData();
+
+if (dataEpisode.value.length == 0) {
+  loading.value = true;
+
+  getListEpisode(props.dataMovie?.id, props?.dataMovie?.season_id)
+    .then((response) => {
+      dataEpisode.value = response?.results
+        .filter((item: any) => item.air_date != null)
+        .reverse();
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
+}
 
 onMounted(() => {
   emitUrlCode();

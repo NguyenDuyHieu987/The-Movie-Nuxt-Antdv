@@ -217,11 +217,7 @@
                 </template>
               </Tags>
 
-              <LastestEpisodes
-                :dataMovie="dataMovie"
-                :numberOfEpisodes="dataMovie?.number_of_episodes"
-                :loading="loading"
-              />
+              <LastestEpisodes :dataMovie="dataMovie" :loading="loading" />
             </div>
 
             <div class="detail-content-right">
@@ -323,23 +319,21 @@
           </div>
 
           <Tags
-            v-if="dataMovie?.history_progress"
+            v-if="isInHistory"
             tagsLabel="Đã xem:"
             class="progress-history-tags"
           >
             <template #tagsInfo>
-              <HistoryProgressBar
-                :historyProgress="dataMovie?.history_progress?.percent"
-              />
+              <HistoryProgressBar :historyProgress="percentProgressHistory" />
             </template>
           </Tags>
         </div>
       </div>
 
       <div class="related-content padding-content">
-        <!-- <MovieRelated :movieId="dataMovie?.id" type="tv" /> -->
+        <MovieRelated :dataMovie="dataMovie" />
 
-        <!-- <CastCrew :dataMovie="dataMovie" /> -->
+        <CastCrew :dataMovie="dataMovie" />
 
         <div class="trailer" id="trailer">
           <h2 class="title-default">Trailer</h2>
@@ -359,7 +353,7 @@
           />
         </div>
 
-        <!-- <Comment :dataMovie="dataMovie" /> -->
+        <Comment :dataMovie="dataMovie" />
       </div>
     </div>
   </div>
@@ -368,6 +362,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getItemList } from '~/services/list';
+import { getItemHistory } from '~/services/history';
 import { getBackdrop, getImage } from '~/services/image';
 import { getTvById } from '~/services/tv';
 import { getGenreById } from '~/services/genres';
@@ -378,7 +373,7 @@ import Tags from '~/components/Tags/Tags.server.vue';
 import Overview from '~/components/Overview/Overview.server.vue';
 import Interaction from '~/components/Interaction/Interaction.vue';
 import RatingMovie from '~/components/RatingMovie/RatingMovie.vue';
-import LastestEpisodes from '~/components/LastestEpisodes/LastestEpisodes.server.vue';
+import LastestEpisodes from '~/components/LastestEpisodes/LastestEpisodes.vue';
 import CastCrew from '~/components/CastCrew/CastCrew.vue';
 import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressBar.vue';
@@ -394,6 +389,8 @@ const router = useRouter();
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
+const isInHistory = ref<boolean>(false);
+const percentProgressHistory = ref<number>(0);
 const release_date = computed<string>(
   () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
@@ -412,13 +409,11 @@ const setBackgroundColor = (color: string[]) => {
 };
 
 const getData = async () => {
-  isAddToList.value = false;
   loading.value = true;
-  srcBackdropList.value = [];
 
   // await nextTick();
 
-  // await useAsyncData(`tv/detail/${movieId.value}`, () =>
+  // await useAsyncData(`tv/detail/${movieId.value}/videos`, () =>
   //   getTvById(movieId.value, 'videos')
   // )
   await getTvById(movieId.value, 'videos')
@@ -449,19 +444,10 @@ const getData = async () => {
   if (store.isLogin) {
     isAddToList.value = dataMovie.value?.in_list == true;
 
-    // // await useAsyncData(
-    // //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
-    // //   () => getItemList(movieId.value, 'tv')
-    // // )
-    // getItemList(movieId.value, 'tv')
-    //   .then((response) => {
-    //     if (response.success == true) {
-    //       isAddToList.value = true;
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     if (axios.isCancel(e)) return;
-    //   });
+    if (dataMovie.value?.history_progress) {
+      isInHistory.value = true;
+      percentProgressHistory.value = dataMovie.value?.history_progress?.percent;
+    }
 
     // disabledRate.value = !!dataMovie.value?.rated_value;
     ratedValue.value = dataMovie.value?.rated_value;
@@ -471,26 +457,22 @@ const getData = async () => {
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
 
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'instant',
-  });
+  // window.scrollTo({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: 'instant',
+  // });
 });
 
 // getData();
 
-isAddToList.value = false;
 loading.value = true;
-srcBackdropList.value = [];
 
 const { data: dataMovie } = await useAsyncData(
-  `cache/tv/detail/${movieId.value}`,
-  () => getTvById(movieId.value, 'videos')
+  `cache/tv/detail/${movieId.value}/videos,episodes`,
+  () => getTvById(movieId.value, 'videos,episodes')
 );
 
-// isAddToList.value = dataMovie.value?.in_list == true;
-// ratedValue.value = dataMovie.value?.rated_value;
 if (store.isLogin) {
   getItemList(movieId.value, 'tv')
     .then((response) => {
@@ -506,6 +488,17 @@ if (store.isLogin) {
     .then((response) => {
       if (response.success == true) {
         ratedValue.value = response.result?.rate_value;
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  getItemHistory(movieId.value, 'tv')
+    .then((response) => {
+      if (response.data.value.success == true) {
+        isInHistory.value = true;
+        percentProgressHistory.value = response.result?.percent;
       }
     })
     .catch((e) => {

@@ -78,19 +78,21 @@
               />
             </svg>
 
-            <EmojiPicker
-              :class="'emoji-picker-' + comment?.id"
-              v-show="isShowEmoji"
-              :native="true"
-              :display-recent="true"
-              :static-texts="{
-                placeholder: 'Tìm kiếm biểu tượng cảm xúc',
-              }"
-              :hide-group-names="true"
-              :disable-sticky-group-names="true"
-              :disable-skin-tones="true"
-              @select="onSelectEmoji"
-            />
+            <ClientOnly>
+              <EmojiPicker
+                v-if="isShowEmoji"
+                :class="'emoji-picker-' + comment?.id"
+                :native="true"
+                :display-recent="true"
+                :static-texts="{
+                  placeholder: 'Tìm kiếm biểu tượng cảm xúc',
+                }"
+                :hide-group-names="true"
+                :disable-sticky-group-names="true"
+                :disable-skin-tones="true"
+                @select="onSelectEmoji"
+              />
+            </ClientOnly>
           </div>
           <div class="right">
             <a-button
@@ -167,7 +169,7 @@ onMounted(() => {
   // });
 });
 
-watch(props, () => {
+watchEffect(() => {
   if (props.isShowFormComment) {
     const currentTextArea = document.getElementById(
       'textarea-' + props.comment?.id

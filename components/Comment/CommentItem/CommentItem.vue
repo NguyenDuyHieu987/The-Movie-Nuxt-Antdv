@@ -293,7 +293,9 @@ const onClickShowReplies = async () => {
         if (axios.isCancel(e)) return;
       })
       .finally(() => {
-        loadingReplies.value = false;
+        setTimeout(() => {
+          loadingReplies.value = false;
+        }, 300);
       });
   }
 };

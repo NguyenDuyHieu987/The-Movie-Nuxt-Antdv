@@ -7,6 +7,7 @@
       'hide-controls': videoStates.isHideControls,
       'show-controls': videoStates.isShowControls,
       pause: !videoStates.isPlayVideo || videoStates.isEndedVideo,
+      'full-screen': videoStates.isFullScreen,
     }"
   >
     <div v-if="settingStates.switchBackgroud" class="overlay-backdrop">
@@ -49,6 +50,7 @@
         "
       >
         <!-- <svg
+          class="loading-video-icon"
           xmlns="http://www.w3.org/2000/svg"
           width="5rem"
           height="5rem"
@@ -93,7 +95,7 @@
       <div
         v-show="
           videoStates.isShowNotify &&
-          dataMovie?.history_progress &&
+          isInHistory &&
           videoStates.isLoaded &&
           !videoStates.isLoading
         "
@@ -186,8 +188,8 @@
       <span class="timeline-indicator">{{ timelineUpdate }} </span>
     </div>
 
+    <!-- v-show="videoStates.isLoaded" -->
     <div
-      v-show="videoStates.isLoaded"
       class="controls"
       :class="{
         scrubbing: videoStates.isScrubbingProgressBar,
@@ -720,11 +722,17 @@ import CloseBtn from '~/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 import { getVideo } from '~/services/video';
 
-const props = defineProps<{
-  dataMovie: any;
-  backdrop: string;
-  videoUrl: string;
-}>();
+const props = withDefaults(
+  defineProps<{
+    dataMovie: any;
+    isInHistory: boolean;
+    backdrop: string;
+    videoUrl: string;
+  }>(),
+  {
+    isInHistory: false,
+  }
+);
 
 const emits = defineEmits<{
   onPlay: [e: any];
@@ -749,7 +757,7 @@ const canvasPreviewImg = ref();
 const videoStates = reactive({
   isLoading: false,
   isLoaded: false,
-  isPlayVideo: false,
+  isPlayVideo: true,
   isScrubbingProgressBar: false,
   isFullScreen: false,
   isVolumeOff: false,
@@ -795,7 +803,10 @@ const settings = reactive({
 const volume = ref<number>(100);
 const timeUpdate = ref<string>('00:00');
 const timelineUpdate = ref<string>('00:00');
-const duration = ref<string>('00:00');
+// const duration = ref<string>('00:00');
+const duration = computed<string>(
+  () => formatDuration(video.value?.duration) || '00:00'
+);
 const timeOut = ref<any>();
 
 const setBlobSrcVideo = (value: string) => {
@@ -856,6 +867,13 @@ onBeforeMount(() => {
   // initVideo(props.videoUrl);
 });
 
+watchEffect(() => {
+  if (video.value?.paused && video.value?.autoplay) {
+    // alert(video.value?.paused);
+    video.value.play();
+  }
+});
+
 watch(
   () => props.videoUrl,
   (newVal, oldVal) => {
@@ -907,6 +925,14 @@ const windowTouchEnd = () => {
 };
 
 onMounted(() => {
+  if (
+    video.value.paused == false &&
+    videoStates.isPlayVideo == false &&
+    video.value.autoplay == true
+  ) {
+    videoStates.isPlayVideo = true;
+  }
+
   window.addEventListener('pointerup', windowPointerUp);
 
   window.addEventListener('touchend', windowTouchEnd);
@@ -962,6 +988,10 @@ const handleTimeUpdate = (e: any) => {
 };
 
 const formatDuration = (time: number) => {
+  if (isNaN(time)) {
+    return;
+  }
+
   let hours: number | string = Math.floor(time / 3600);
   let mins: number | string = Math.floor(time / 60);
   let seconds: number | string = Math.floor(time % 60);
@@ -996,11 +1026,11 @@ const onLoadedDataVideo = () => {
   // console.log('loaded start video');
   video.value.muted = false;
   videoStates.isLoaded = true;
-  duration.value = formatDuration(video.value.duration);
+  // duration.value = formatDuration(video.value.duration);
 };
 
 const onTimeUpdateVideo = (e: any) => {
-  timeUpdate.value = formatDuration(e.target.currentTime);
+  timeUpdate.value = formatDuration(e.target.currentTime)!;
   const percent = e.target.currentTime / e.target.duration;
   progressBar.value?.style.setProperty('--progress-width', percent);
 
@@ -1281,7 +1311,7 @@ const drawTimeLine = (e: any) => {
   const percent =
     Math.min(Math.max(0, e.x - rect.left), rect.width) / rect.width;
 
-  timelineUpdate.value = formatDuration(percent * video.value.duration);
+  timelineUpdate.value = formatDuration(percent * video.value.duration)!;
 
   const timeLinePosition = Math.max(0, e.x - rect.left);
 

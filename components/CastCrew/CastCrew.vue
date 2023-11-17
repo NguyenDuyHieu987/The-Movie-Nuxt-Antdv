@@ -122,16 +122,15 @@ const activeTabCast = ref<string>('cast');
 
 loading.value = true;
 
-// await useAsyncData(`credits/${props.dataMovie?.id}`, () =>
+// useAsyncData(`credits/${props.dataMovie?.id}`, () =>
 //   getCredits(props.dataMovie?.id)
 // )
-await getCredits(props.dataMovie?.id)
+getCredits(props.dataMovie?.id)
   .then((response) => {
     dataCredit.value = response;
-  })
-  .finally(() => {
     loading.value = false;
-  });
+  })
+  .finally(() => {});
 
 // const { data: dataCredit, pending } = await useAsyncData(
 //   `credits/${props.dataMovie?.id}`,

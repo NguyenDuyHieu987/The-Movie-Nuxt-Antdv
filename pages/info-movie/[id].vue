@@ -316,23 +316,21 @@
           </div>
 
           <Tags
-            v-if="dataMovie?.history_progress"
+            v-if="isInHistory"
             tagsLabel="Đã xem:"
             class="progress-history-tags"
           >
             <template #tagsInfo>
-              <HistoryProgressBar
-                :historyProgress="dataMovie?.history_progress?.percent"
-              />
+              <HistoryProgressBar :historyProgress="percentProgressHistory" />
             </template>
           </Tags>
         </div>
       </div>
 
       <div class="related-content padding-content">
-        <!-- <MovieRelated :movieId="dataMovie?.id" type="movie" /> -->
+        <MovieRelated :dataMovie="dataMovie" />
 
-        <!-- <CastCrew :dataMovie="dataMovie" /> -->
+        <CastCrew :dataMovie="dataMovie" />
 
         <div class="trailer" id="trailer">
           <h2 class="title-default">Trailer</h2>
@@ -352,7 +350,7 @@
           />
         </div>
 
-        <!-- <Comment :dataMovie="dataMovie" /> -->
+        <Comment :dataMovie="dataMovie" />
       </div>
     </div>
   </div>
@@ -361,6 +359,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { getItemList } from '~/services/list';
+import { getItemHistory } from '~/services/history';
 import { getBackdrop, getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getGenreById } from '~/services/genres';
@@ -386,6 +385,8 @@ const router = useRouter();
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
+const isInHistory = ref<boolean>(false);
+const percentProgressHistory = ref<number>(0);
 const ratedValue = ref<number | undefined>();
 const windowWidth = ref<number>(1200);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
@@ -401,13 +402,11 @@ const setBackgroundColor = (color: string[]) => {
 };
 
 const getData = async () => {
-  isAddToList.value = false;
   loading.value = true;
-  srcBackdropList.value = [];
 
   // await nextTick();
 
-  // await useAsyncData(`movie/detail/${movieId.value}`, () =>
+  // await useAsyncData(`movie/detail/${movieId.value}/videos`, () =>
   //   getMovieById(movieId.value, 'videos')
   // )
   await getMovieById(movieId.value, 'videos')
@@ -438,19 +437,10 @@ const getData = async () => {
   if (store.isLogin) {
     isAddToList.value = dataMovie.value?.in_list == true;
 
-    // // await useAsyncData(
-    // //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
-    // //   () => getItemList(movieId.value, 'movie')
-    // // )
-    // getItemList(movieId.value, 'movie')
-    //   .then((response) => {
-    //     if (response.success == true) {
-    //       isAddToList.value = true;
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     if (axios.isCancel(e)) return;
-    //   });
+    if (dataMovie.value?.history_progress) {
+      isInHistory.value = true;
+      percentProgressHistory.value = dataMovie.value?.history_progress?.percent;
+    }
 
     // disabledRate.value = !!dataMovie.value?.rated_value;
     ratedValue.value = dataMovie.value?.rated_value;
@@ -460,21 +450,19 @@ const getData = async () => {
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
 
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'instant',
-  });
+  // window.scrollTo({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: 'instant',
+  // });
 });
 
 // getData();
 
-isAddToList.value = false;
 loading.value = true;
-srcBackdropList.value = [];
 
 const { data: dataMovie } = await useAsyncData(
-  `cache/movie/detail/${movieId.value}`,
+  `cache/movie/detail/${movieId.value}/videos`,
   () => getMovieById(movieId.value, 'videos'),
   {
     // server: false,
@@ -483,8 +471,6 @@ const { data: dataMovie } = await useAsyncData(
   }
 );
 
-// isAddToList.value = dataMovie.value?.in_list == true;
-// ratedValue.value = dataMovie.value?.rated_value;
 if (store.isLogin) {
   getItemList(movieId.value, 'movie')
     .then((response) => {
@@ -500,6 +486,17 @@ if (store.isLogin) {
     .then((response) => {
       if (response.success == true) {
         ratedValue.value = response.result?.rate_value;
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  getItemHistory(movieId.value, 'movie')
+    .then((response) => {
+      if (response.success == true) {
+        isInHistory.value = true;
+        percentProgressHistory.value = response.result?.percent;
       }
     })
     .catch((e) => {

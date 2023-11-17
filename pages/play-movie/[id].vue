@@ -44,6 +44,7 @@
             ></iframe> -->
 
           <VideoPlayer
+            :isInHistory="isInHistory"
             :dataMovie="dataMovie"
             videoUrl="/feature/Transformer_5.mp4"
             :backdrop="
@@ -80,7 +81,7 @@
               </template>
             </Tags>
 
-            <RatingMovie :dataMovie="dataMovie" :disabled="disabledRate" />
+            <RatingMovie :dataMovie="dataMovie" :ratedValue="ratedValue" />
 
             <div class="action">
               <div class="left">
@@ -261,9 +262,10 @@ import { getItemHistory, add_update_History } from '~/services/history';
 import { UpdateView } from '~/services/updateView';
 import { getGenreById } from '~/services/genres';
 import { getCountryByOriginalLanguage } from '~/services/country';
+import { getRating } from '~/services/rating';
 import BackPage from '~/components/BackPage/BackPage.vue';
 import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressBar.vue';
-import VideoPlayer from '~/components/VideoPlayer/VideoPlayer.server.vue';
+import VideoPlayer from '~/components/VideoPlayer/VideoPlayer.vue';
 import Tags from '~/components/Tags/Tags.server.vue';
 import Overview from '~/components/Overview/Overview.server.vue';
 import Interaction from '~/components/Interaction/Interaction.vue';
@@ -276,8 +278,7 @@ const store: any = useStore();
 const utils = useUtils();
 const route: any = useRoute();
 const router = useRouter();
-const isEpisodes = ref<boolean>(false);
-const dataMovie = ref<any>({});
+// const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
 const urlCodeMovie = ref<string>('809431505');
 const isAddToList = ref<boolean>(false);
@@ -288,23 +289,21 @@ const isPlayVideo = ref<boolean>(false);
 const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
 const percentProgressHistory = ref<number>(0);
-const disabledRate = ref<boolean>(false);
+const ratedValue = ref<number | undefined>();
 const windowWidth = ref<number>(1200);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
 
 const getData = async () => {
   loading.value = true;
-  isEpisodes.value = false;
 
   // await nextTick();
 
-  // await useAsyncData(`movie/short/${movieId.value}`, () =>
+  // await useAsyncData(`movie/detail/${movieId.value}`, () =>
   //   getMovieById(movieId.value)
   // )
   getMovieById(movieId.value)
     .then((response) => {
       dataMovie.value = response;
-      disabledRate.value = dataMovie.value?.is_rated == true;
     })
     .catch((e) => {
       navigateTo('/404');
@@ -315,57 +314,70 @@ const getData = async () => {
     });
 
   if (store.isLogin) {
-    if (dataMovie.value?.in_list) {
-      isAddToList.value = true;
-    }
+    isAddToList.value = dataMovie.value?.in_list == true;
 
     if (dataMovie.value?.history_progress) {
       isInHistory.value = true;
       percentProgressHistory.value = dataMovie.value?.history_progress?.percent;
     }
 
-    // await useAsyncData(
-    //   `itemlist/${store?.userAccount?.id}/${movieId.value}`,
-    //   () => getItemList(movieId.value)
-    // )
-    //   .then((response) => {
-    //     if (response.data.value.success == true) {
-    //       isAddToList.value = true;
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     if (axios.isCancel(e)) return;
-    //   });
-
-    // await useAsyncData(
-    //   `itemhistory/${store?.userAccount?.id}/${movieId.value}`,
-    //   () => getItemHistory(movieId.value)
-    // )
-    //   .then((response) => {
-    //     if (response.data.value.success == true) {
-    //       isInHistory.value = true;
-    //       dataItemHistory.value = response.data.value?.result;
-    //     } else {
-    //       isInHistory.value = false;
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     if (axios.isCancel(e)) return;
-    //   });
+    // disabledRate.value = !!dataMovie.value?.rated_value;
+    ratedValue.value = dataMovie.value?.rated_value;
   }
 };
 
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
 
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'instant',
-  });
+  // window.scrollTo({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: 'instant',
+  // });
 });
 
-getData();
+// getData();
+
+loading.value = true;
+
+const { data: dataMovie } = await useAsyncData(
+  `cache/movie/detail/${movieId.value}`,
+  () => getMovieById(movieId.value)
+);
+
+if (store.isLogin) {
+  getItemList(movieId.value, 'movie')
+    .then((response) => {
+      if (response.success == true) {
+        isAddToList.value = true;
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  getRating(movieId.value, 'movie')
+    .then((response) => {
+      if (response.success == true) {
+        ratedValue.value = response.result?.rate_value;
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  getItemHistory(movieId.value, 'movie')
+    .then((response) => {
+      if (response.success == true) {
+        isInHistory.value = true;
+        percentProgressHistory.value = response.result?.percent;
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+}
+loading.value = false;
 
 useHead({
   title: () => 'Xem phim: ' + dataMovie.value?.name + ' - Phimhay247',

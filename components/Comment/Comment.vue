@@ -11,7 +11,7 @@
         :movieType="dataMovie?.media_type"
       />
 
-      <!-- <LoadingCircle v-if="loading" class="loading-comment" /> -->
+      <!-- <LoadingCircle v-show="loading" class="loading-comment" /> -->
 
       <!-- <LoadingSpinner v-show="loading" class="loading-comment" :width="35" /> -->
 
@@ -61,7 +61,7 @@ const loadMore = ref<boolean>(false);
 
 loading.value = true;
 
-// await useAsyncData(
+// useAsyncData(
 //   `${props.dataMovie?.media_type}/${props.dataMovie?.id}`,
 //   () =>
 //     getCommentByMovidId(
@@ -70,7 +70,7 @@ loading.value = true;
 //       skip.value
 //     )
 // )
-await getCommentByMovidId(
+getCommentByMovidId(
   props.dataMovie?.id,
   props.dataMovie?.media_type,
   skip.value

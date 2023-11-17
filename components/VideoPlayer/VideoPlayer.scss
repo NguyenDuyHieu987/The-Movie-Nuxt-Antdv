@@ -5,6 +5,8 @@ video::-webkit-media-controls {
 .video-player {
   position: relative;
   display: flex;
+  overflow: hidden;
+  border-radius: 10px;
 
   .overlay-backdrop {
     position: absolute;
@@ -43,7 +45,7 @@ video::-webkit-media-controls {
   #video-player {
     height: 100%;
     width: 100%;
-    // background-color: var(--background-content-color);
+    background-color: var(--background-content-color);
   }
 
   svg {
@@ -71,7 +73,7 @@ video::-webkit-media-controls {
     .loading-video {
       user-select: none;
 
-      svg {
+      svg.loading-video-icon {
         stroke: var(--text-color);
         font-size: 5rem;
         width: 5rem;
@@ -862,6 +864,10 @@ video::-webkit-media-controls {
     .background-controls {
       opacity: 1;
     }
+  }
+
+  &.full-screen {
+    border-radius: 0px;
   }
 
   &:hover {

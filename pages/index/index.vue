@@ -39,7 +39,7 @@
         </LoadingSectionHorizontal>
       </section>
 
-      <section class="home-section recommend" v-if="store?.isLogin">
+      <section v-show="store.isLogin" class="home-section recommend">
         <h2 class="gradient-title-default">
           <span>Gợi ý cho bạn</span>
         </h2>

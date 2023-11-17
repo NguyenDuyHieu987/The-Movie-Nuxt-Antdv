@@ -1,7 +1,10 @@
 <template>
   <div class="movie-related">
     <div class="similar-section">
-      <h2 class="gradient-title-default">
+      <h2
+        v-show="loadingSimilar || dataSimilar?.length"
+        class="gradient-title-default"
+      >
         <span>Phim tương tự</span>
       </h2>
 
@@ -61,7 +64,10 @@
     </div>
 
     <div class="recommend-section">
-      <h2 class="gradient-title-default">
+      <h2
+        v-show="loadingSimilar || dataRecommend?.length"
+        class="gradient-title-default"
+      >
         <span>Có thể bạn quan tâm</span>
       </h2>
 
@@ -130,8 +136,8 @@ import ViewMoreBar from '~/components/ViewMoreBar/ViewMoreBar.vue';
 import MovieCardSuggest from '~/components/MovieCardSuggest/MovieCardSuggest.vue';
 
 const props = defineProps<{
-  movieId: string;
-  type: string;
+  dataMovie: any;
+  type?: string;
 }>();
 const dataSimilar = ref<any[]>([]);
 const dataRecommend = ref<any[]>([]);
@@ -140,44 +146,40 @@ const viewMore = ref<boolean>(false);
 const loadingSimilar = ref<boolean>(false);
 const loadingRecommend = ref<boolean>(false);
 
-const getData = async () => {
-  loadingSimilar.value = true;
-  loadingRecommend.value = true;
+loadingSimilar.value = true;
+loadingRecommend.value = true;
 
-  // useAsyncData(`similar/${props?.type}/${props?.movieId}/1`, () =>
-  //   getSimilar(props?.type, props?.movieId, 1, 12)
-  // )
-  getSimilar(props?.type, props?.movieId, 1, 12)
-    .then((response) => {
-      dataSimilar.value = response?.results;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      loadingSimilar.value = false;
-    });
+// useAsyncData(`similar/${props?.dataMovie.media_type}/${props?.dataMovie.id}/1`, () =>
+//   getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, 1, 12)
+// )
+getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, 1, 12)
+  .then((response) => {
+    dataSimilar.value = response?.results;
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  })
+  .finally(() => {
+    loadingSimilar.value = false;
+  });
 
-  // useAsyncData(`trending/all/${randomRecommend.value}`, () =>
-  //   getTrending(randomRecommend.value, 12)
-  // )
-  getTrending(randomRecommend.value, 12)
-    .then((response) => {
-      dataRecommend.value = response?.results;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      loadingRecommend.value = false;
-    });
-};
-
-getData();
+// useAsyncData(`trending/all/${randomRecommend.value}`, () =>
+//   getTrending(randomRecommend.value, 12)
+// )
+getTrending(randomRecommend.value, 12)
+  .then((response) => {
+    dataRecommend.value = response?.results;
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  })
+  .finally(() => {
+    loadingRecommend.value = false;
+  });
 
 // const { data: dataSimilar } = await useAsyncData(
-//   `similar/${props?.type}/${props?.movieId}/1`,
-//   () => getSimilar(props?.type, props?.movieId, 1, 12),
+//   `similar/${props?.dataMovie.media_type}/${props?.dataMovie.id}/1`,
+//   () => getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, 1, 12),
 //   {
 //     // lazy: true,
 //     // immediate: false,
