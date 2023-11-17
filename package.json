@@ -42,6 +42,7 @@
     "pbkdf2": "^3.1.2",
     "pinia": "^2.1.7",
     "scroll-bottom": "^0.1.0",
+    "swiper": "^11.0.4",
     "vite-svg-loader": "^4.0.0",
     "vue": "^3.3.8",
     "vue-lazyload": "^3.0.0",

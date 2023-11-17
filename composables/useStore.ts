@@ -104,7 +104,7 @@ export default defineStore('store', () => {
     } else {
       setTimeout(() => {
         loadingUser.value = false;
-      }, 500);
+      }, 300);
     }
   };
 

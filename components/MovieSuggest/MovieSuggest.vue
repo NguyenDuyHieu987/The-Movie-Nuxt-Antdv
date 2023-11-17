@@ -5,7 +5,7 @@
         <span>Phim tương tự</span>
       </h2>
 
-      <CarouselGroup :data="dataSimilar" :responsive="responsive">
+      <SwiperCarouselGroup :data="dataSimilar" :responsive="responsive">
         <template #content>
           <SwiperSlide v-for="(item, index) in dataSimilar">
             <MovieCardVertical
@@ -16,7 +16,7 @@
             />
           </SwiperSlide>
         </template>
-      </CarouselGroup>
+      </SwiperCarouselGroup>
     </div>
 
     <div class="recommend-section">
@@ -24,7 +24,7 @@
         <span>Có thể bạn quan tâm</span>
       </h2>
 
-      <CarouselGroup :data="dataRecommend" :responsive="responsive">
+      <SwiperCarouselGroup :data="dataRecommend" :responsive="responsive">
         <template #content>
           <SwiperSlide v-for="(item, index) in dataRecommend">
             <MovieCardVertical
@@ -35,7 +35,7 @@
             />
           </SwiperSlide>
         </template>
-      </CarouselGroup>
+      </SwiperCarouselGroup>
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ import axios from 'axios';
 import { getSimilar } from '~/services/similar';
 import { getTrending } from '~/services/trending';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
-import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
+import SwiperCarouselGroup from '~/components/CarouselGroup/SwiperCarouselGroup/SwiperCarouselGroup.vue';
 
 const props = defineProps<{
   movieId: string;

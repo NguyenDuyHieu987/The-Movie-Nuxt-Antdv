@@ -119,6 +119,7 @@ export default defineNuxtConfig({
   },
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
+    styleLang: 'css',
   },
   sitemap: {},
   gtag: {
@@ -298,17 +299,17 @@ export default defineNuxtConfig({
       isr: true,
     },
     '/ForgotPassword': { isr: true },
-    '/follow/**': { isr: true },
-    '/history/**': { isr: true },
-    '/info-movie/**': { isr: true },
-    '/info-tv/**': { isr: true },
-    '/play-movie/**': { isr: true },
-    '/play-tv/**': { isr: true },
+    '/follow/**': { isr: false },
+    '/history/**': { isr: false },
+    '/info-movie/**': { isr: false },
+    '/info-tv/**': { isr: false },
+    '/play-movie/**': { isr: false },
+    '/play-tv/**': { isr: false },
     '/upgrade': { redirect: '/upgrade/plans' },
     '/upgrade/plans': { isr: true },
     '/upgrade/PaymentPicker': {
-      ssr: false,
+      isr: false,
     },
-    '/YourAccount/**': { ssr: false },
+    '/YourAccount/**': { isr: false },
   },
 });

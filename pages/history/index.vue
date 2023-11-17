@@ -1,22 +1,11 @@
 <template>
   <div class="history">
-    <div v-if="store.isLogin" class="history-container">
-      <div v-if="!loading">
-        <TopicRow
-          v-show="responsive"
-          v-model:dataRow="dataHistory"
-          v-model:valueInput="valueInput"
-          :title="title"
-          :total="total"
-          :topicImage="topicImage"
-          :loadingSearch="loadingSearch"
-          :searchRow="searchHistoryEvent"
-          :deleteAll="removeAllHistoryList"
-        />
-
-        <Teleport :disabled="loading" to="#topic-history-column-teleport">
-          <TopicColumn
-            v-model:dataColumn="dataHistory"
+    <div v-if="!store.loadingUser">
+      <div v-if="store.isLogin" class="history-container">
+        <div v-if="!loading">
+          <TopicRow
+            v-show="responsive"
+            v-model:dataRow="dataHistory"
             v-model:valueInput="valueInput"
             :title="title"
             :total="total"
@@ -25,76 +14,89 @@
             :searchRow="searchHistoryEvent"
             :deleteAll="removeAllHistoryList"
           />
-        </Teleport>
+          <!-- :disabled="loading" -->
+          <Teleport to="#topic-history-column-teleport">
+            <TopicColumn
+              v-model:dataColumn="dataHistory"
+              v-model:valueInput="valueInput"
+              :title="title"
+              :total="total"
+              :topicImage="topicImage"
+              :loadingSearch="loadingSearch"
+              :searchRow="searchHistoryEvent"
+              :deleteAll="removeAllHistoryList"
+            />
+          </Teleport>
 
-        <section class="history-main-content" ref="historyContent">
-          <div class="padding-content horizontal">
-            <h2 class="gradient-title-default underline">
-              <span>Lịch sử xem</span>
-            </h2>
-          </div>
+          <section class="history-main-content" ref="historyContent">
+            <div class="padding-content horizontal">
+              <h2 class="gradient-title-default underline">
+                <span>Lịch sử xem</span>
+              </h2>
+            </div>
 
-          <div
-            class="nav-action padding-content horizontal"
-            :style="{
-              '--width': historyContent?.offsetWidth + 'px',
-            }"
-            :class="{ fixed: isFixedNavActiom }"
-          >
-            <SortTab @onChangeTab="handleChangeTab" />
-          </div>
-
-          <Transition name="slide-right">
-            <TransitionGroup
-              v-show="showData"
-              tag="div"
-              class="movie-history padding-content horizontal"
-              :duration="0.3"
-              @beforeEnter="beforeEnter"
-              @enter="enter"
-              @beforeLeave="beforeLeave"
-              @leave="leave"
+            <div
+              class="nav-action padding-content horizontal"
+              :style="{
+                '--width': historyContent?.offsetWidth + 'px',
+              }"
+              :class="{ fixed: isFixedNavActiom }"
             >
-              <MovieCardHorizontalHistory
-                v-for="(item, index) in dataHistory"
-                :index="index"
-                :key="item.id"
-                :item="item"
-                :prevItem="dataHistory[index - 1]"
-                :type="item?.media_type"
-                :getDataWhenRemoveHistory="getDataWhenRemoveHistory"
-              />
-            </TransitionGroup>
-          </Transition>
+              <SortTab @onChangeTab="handleChangeTab" />
+            </div>
 
-          <div class="skeleton-loadmore padding-content" v-show="loadMore">
-            <el-skeleton
-              :loading="true"
-              animated
-              v-for="index in 2"
-              :key="index"
-            >
-              <template #template>
-                <div class="img-box">
-                  <el-skeleton-item class="skeleton-img" />
-                </div>
-                <div class="content-skeleton">
-                  <el-skeleton-item variant="text" style="width: 40%" />
-                  <el-skeleton-item variant="text" style="width: 20%" />
-                  <el-skeleton-item variant="text" style="width: 30%" />
-                  <div class="overview">
-                    <el-skeleton-item variant="text" />
-                    <el-skeleton-item variant="text" style="width: 50%" />
+            <Transition name="slide-right">
+              <TransitionGroup
+                v-show="showData"
+                tag="div"
+                class="movie-history padding-content horizontal"
+                :duration="0.3"
+                @beforeEnter="beforeEnter"
+                @enter="enter"
+                @beforeLeave="beforeLeave"
+                @leave="leave"
+              >
+                <MovieCardHorizontalHistory
+                  v-for="(item, index) in dataHistory"
+                  :index="index"
+                  :key="item.id"
+                  :item="item"
+                  :prevItem="dataHistory[index - 1]"
+                  :type="item?.media_type"
+                  :getDataWhenRemoveHistory="getDataWhenRemoveHistory"
+                />
+              </TransitionGroup>
+            </Transition>
+
+            <div class="skeleton-loadmore padding-content" v-show="loadMore">
+              <el-skeleton
+                :loading="true"
+                animated
+                v-for="index in 2"
+                :key="index"
+              >
+                <template #template>
+                  <div class="img-box">
+                    <el-skeleton-item class="skeleton-img" />
                   </div>
-                </div>
-              </template>
-            </el-skeleton>
-          </div>
-        </section>
+                  <div class="content-skeleton">
+                    <el-skeleton-item variant="text" style="width: 40%" />
+                    <el-skeleton-item variant="text" style="width: 20%" />
+                    <el-skeleton-item variant="text" style="width: 30%" />
+                    <div class="overview">
+                      <el-skeleton-item variant="text" />
+                      <el-skeleton-item variant="text" style="width: 50%" />
+                    </div>
+                  </div>
+                </template>
+              </el-skeleton>
+            </div>
+          </section>
+        </div>
       </div>
-    </div>
 
-    <RequireAuth v-else />
+      <RequireAuth v-else />
+    </div>
   </div>
 </template>
 

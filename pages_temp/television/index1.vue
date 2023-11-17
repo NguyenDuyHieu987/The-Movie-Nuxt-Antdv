@@ -17,7 +17,10 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="airingTodays" :responsive="responsiveHorizoltal">
+        <SwiperCarouselGroup
+          :data="airingTodays"
+          :responsive="responsiveHorizoltal"
+        >
           <template #content>
             <SwiperSlide v-for="(item, index) in airingTodays">
               <MovieCardHorizontal
@@ -28,7 +31,7 @@
               />
             </SwiperSlide>
           </template>
-        </CarouselGroup>
+        </SwiperCarouselGroup>
       </section>
 
       <section class="home-section popular">
@@ -43,7 +46,10 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="onTheAirs" :responsive="responsiveHorizoltal">
+        <SwiperCarouselGroup
+          :data="onTheAirs"
+          :responsive="responsiveHorizoltal"
+        >
           <template #content>
             <SwiperSlide v-for="(item, index) in onTheAirs">
               <MovieCardHorizontal
@@ -54,7 +60,7 @@
               />
             </SwiperSlide>
           </template>
-        </CarouselGroup>
+        </SwiperCarouselGroup>
       </section>
 
       <section class="home-section upcoming">
@@ -69,7 +75,10 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="populars" :responsive="responsiveHorizoltal">
+        <SwiperCarouselGroup
+          :data="populars"
+          :responsive="responsiveHorizoltal"
+        >
           <template #content>
             <SwiperSlide v-for="(item, index) in populars">
               <MovieCardHorizontal
@@ -80,7 +89,7 @@
               />
             </SwiperSlide>
           </template>
-        </CarouselGroup>
+        </SwiperCarouselGroup>
       </section>
 
       <section class="home-section toprated">
@@ -95,7 +104,10 @@
           </NuxtLink>
         </h2>
 
-        <CarouselGroup :data="topRateds" :responsive="responsiveHorizoltal">
+        <SwiperCarouselGroup
+          :data="topRateds"
+          :responsive="responsiveHorizoltal"
+        >
           <template #content>
             <SwiperSlide v-for="(item, index) in topRateds">
               <MovieCardHorizontal
@@ -106,7 +118,7 @@
               />
             </SwiperSlide>
           </template>
-        </CarouselGroup>
+        </SwiperCarouselGroup>
       </section>
     </div>
   </div>
@@ -115,7 +127,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
-import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
+import SwiperCarouselGroup from '~/components/CarouselGroup/SwiperCarouselGroup/SwiperCarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.server.vue';
 import {

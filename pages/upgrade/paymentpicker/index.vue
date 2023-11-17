@@ -1,133 +1,135 @@
 <template>
   <div class="service-page payment padding-content">
-    <div v-if="store.isLogin" class="payment-container">
-      <div class="payment-header">
-        <p class="step">BƯỚC 2/2</p>
+    <div v-if="!store.loadingUser">
+      <div v-if="store.isLogin" class="payment-container">
+        <div class="payment-header">
+          <p class="step">BƯỚC 2/2</p>
 
-        <h1>Chọn phương thức thanh toán</h1>
+          <h1>Chọn phương thức thanh toán</h1>
 
-        <p>
-          Tư cách thành viên trả phí của bạn sẽ bắt đầu ngay khi bạn thiết lập
-          thanh toán.
-        </p>
+          <p>
+            Tư cách thành viên trả phí của bạn sẽ bắt đầu ngay khi bạn thiết lập
+            thanh toán.
+          </p>
 
-        <div class="encouragement">
-          <p>An toàn để an tâm.</p>
-          <p>Hủy trực tuyến dễ dàng.</p>
+          <div class="encouragement">
+            <p>An toàn để an tâm.</p>
+            <p>Hủy trực tuyến dễ dàng.</p>
+          </div>
         </div>
+
+        <section class="payment-methods">
+          <div class="payment-method momo" @click="handleClickMoMoMethod">
+            <div class="left">
+              <nuxt-img
+                :src="getImage('momo.jpg', 'payment', 'w-40')"
+                loading="lazy"
+                :width="40"
+              />
+              <span>Ví MoMo</span>
+            </div>
+
+            <div class="right">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.4rem"
+                height="2.4rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="payment-method zalopay" @click="handleClickZaloPayMethod">
+            <div class="left">
+              <nuxt-img
+                :src="getImage('zalopay.png', 'payment', 'w-40')"
+                loading="lazy"
+                :width="40"
+              />
+
+              <span>Ví điện tử ZaloPay</span>
+            </div>
+
+            <div class="right">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.4rem"
+                height="2.4rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="payment-method atm" @click="handleClickVNPayMethod">
+            <div class="left">
+              <nuxt-img
+                :src="getImage('vnpay.png', 'payment', 'w-40')"
+                loading="lazy"
+                :width="40"
+              />
+              <span>ATM - Ngân hàng nội địa</span>
+            </div>
+
+            <div class="right">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.4rem"
+                height="2.4rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div
+            class="payment-method visa-mastercard"
+            @click="handleClickStripeMethod"
+          >
+            <div class="left">
+              <nuxt-img
+                :src="getImage('mastercard_1.jpg', 'payment', 'w-100')"
+                loading="lazy"
+                :width="100"
+              />
+
+              <nuxt-img
+                :src="getImage('visa.png', 'payment', 'w-40')"
+                loading="lazy"
+                :width="40"
+              />
+
+              <span>Thẻ ghi nợ - Thẻ tín dụng</span>
+            </div>
+
+            <div class="right">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.4rem"
+                height="2.4rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
+                />
+              </svg>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <section class="payment-methods">
-        <div class="payment-method momo" @click="handleClickMoMoMethod">
-          <div class="left">
-            <nuxt-img
-              :src="getImage('momo.jpg', 'payment', 'w-40')"
-              loading="lazy"
-              :width="40"
-            />
-            <span>Ví MoMo</span>
-          </div>
-
-          <div class="right">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="2.4rem"
-              height="2.4rem"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
-              />
-            </svg>
-          </div>
-        </div>
-
-        <div class="payment-method zalopay" @click="handleClickZaloPayMethod">
-          <div class="left">
-            <nuxt-img
-              :src="getImage('zalopay.png', 'payment', 'w-40')"
-              loading="lazy"
-              :width="40"
-            />
-
-            <span>Ví điện tử ZaloPay</span>
-          </div>
-
-          <div class="right">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="2.4rem"
-              height="2.4rem"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
-              />
-            </svg>
-          </div>
-        </div>
-
-        <div class="payment-method atm" @click="handleClickVNPayMethod">
-          <div class="left">
-            <nuxt-img
-              :src="getImage('vnpay.png', 'payment', 'w-40')"
-              loading="lazy"
-              :width="40"
-            />
-            <span>ATM - Ngân hàng nội địa</span>
-          </div>
-
-          <div class="right">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="2.4rem"
-              height="2.4rem"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
-              />
-            </svg>
-          </div>
-        </div>
-
-        <div
-          class="payment-method visa-mastercard"
-          @click="handleClickStripeMethod"
-        >
-          <div class="left">
-            <nuxt-img
-              :src="getImage('mastercard_1.jpg', 'payment', 'w-100')"
-              loading="lazy"
-              :width="100"
-            />
-
-            <nuxt-img
-              :src="getImage('visa.png', 'payment', 'w-40')"
-              loading="lazy"
-              :width="40"
-            />
-
-            <span>Thẻ ghi nợ - Thẻ tín dụng</span>
-          </div>
-
-          <div class="right">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="2.4rem"
-              height="2.4rem"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
-              />
-            </svg>
-          </div>
-        </div>
-      </section>
+      <RequireAuth v-else />
     </div>
-
-    <RequireAuth v-if="!store.isLogin" />
   </div>
 </template>
 

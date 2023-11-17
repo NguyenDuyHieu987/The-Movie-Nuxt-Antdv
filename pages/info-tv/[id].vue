@@ -482,7 +482,7 @@ loading.value = true;
 srcBackdropList.value = [];
 
 const { data: dataMovie } = await useAsyncData(
-  `tv/detail/${movieId.value}`,
+  `cache/tv/detail/${movieId.value}`,
   () => getTvById(movieId.value, 'videos')
 );
 

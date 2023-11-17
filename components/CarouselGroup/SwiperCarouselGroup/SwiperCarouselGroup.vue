@@ -69,4 +69,4 @@ defineProps<{
 }>();
 </script>
 
-<style lang="scss" src="./CarouselGroup.scss"></style>
+<style lang="scss" src="./SwiperCarouselGroup.scss"></style>

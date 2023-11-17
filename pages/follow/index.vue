@@ -1,22 +1,11 @@
 <template>
   <div class="follow">
-    <div v-if="store.isLogin" class="follow-container">
-      <div v-if="!loading">
-        <TopicRow
-          v-show="responsive"
-          v-model:dataRow="dataList"
-          v-model:valueInput="valueInput"
-          :title="title"
-          :total="total"
-          :topicImage="topicImage"
-          :loadingSearch="loadingSearch"
-          :searchRow="searchFollow"
-          :deleteAll="removeAllFollowList"
-        />
-
-        <Teleport :disabled="loading" to="#topic-follow-column-teleport">
-          <TopicColumn
-            v-model:dataColumn="dataList"
+    <div v-if="!store.loadingUser">
+      <div v-if="store.isLogin" class="follow-container">
+        <div v-if="!loading">
+          <TopicRow
+            v-show="responsive"
+            v-model:dataRow="dataList"
             v-model:valueInput="valueInput"
             :title="title"
             :total="total"
@@ -25,78 +14,91 @@
             :searchRow="searchFollow"
             :deleteAll="removeAllFollowList"
           />
-        </Teleport>
+          <!-- :disabled="loading" -->
+          <Teleport to="#topic-follow-column-teleport">
+            <TopicColumn
+              v-model:dataColumn="dataList"
+              v-model:valueInput="valueInput"
+              :title="title"
+              :total="total"
+              :topicImage="topicImage"
+              :loadingSearch="loadingSearch"
+              :searchRow="searchFollow"
+              :deleteAll="removeAllFollowList"
+            />
+          </Teleport>
 
-        <section class="follow-main-content" ref="followContent">
-          <div class="padding-content horizontal">
-            <h2 class="gradient-title-default underline">
-              <span>Danh sách phát</span>
-            </h2>
-          </div>
+          <section class="follow-main-content" ref="followContent">
+            <div class="padding-content horizontal">
+              <h2 class="gradient-title-default underline">
+                <span>Danh sách phát</span>
+              </h2>
+            </div>
 
-          <div
-            class="nav-action padding-content horizontal"
-            :style="{
-              '--width': followContent?.offsetWidth + 'px',
-            }"
-            :class="{ fixed: isFixedNavActiom }"
-          >
-            <SortTab @onChangeTab="handleChangeTab" />
-          </div>
-
-          <Transition name="slide-left">
-            <TransitionGroup
-              v-show="showData"
-              tag="div"
-              class="movie-follow padding-content horizontal"
-              :duration="0.3"
-              @beforeEnter="beforeEnter"
-              @enter="enter"
-              @beforeLeave="beforeLeave"
-              @leave="leave"
+            <div
+              class="nav-action padding-content horizontal"
+              :style="{
+                '--width': followContent?.offsetWidth + 'px',
+              }"
+              :class="{ fixed: isFixedNavActiom }"
             >
-              <MovieCardHorizontalFollow
-                v-for="(item, index) in dataList"
-                :index="index"
-                :key="item.id"
-                :item="item"
-                :type="item?.media_type"
-                :getDataWhenRemoveList="getDataWhenRemoveList"
-              />
-            </TransitionGroup>
-          </Transition>
+              <SortTab @onChangeTab="handleChangeTab" />
+            </div>
 
-          <div class="skeleton-loadmore" v-show="loadMore">
-            <el-skeleton
-              :loading="true"
-              animated
-              v-for="index in 2"
-              :key="index"
-            >
-              <template #template>
-                <p class="index-item">{{ dataList?.length + index }}</p>
-                <div class="item-skeleton">
-                  <div class="img-box">
-                    <el-skeleton-item class="skeleton-img" />
-                  </div>
-                  <div class="content-skeleton">
-                    <el-skeleton-item variant="text" style="width: 40%" />
-                    <el-skeleton-item variant="text" style="width: 20%" />
-                    <el-skeleton-item variant="text" style="width: 30%" />
-                    <div class="overview">
-                      <el-skeleton-item variant="text" />
-                      <el-skeleton-item variant="text" style="width: 50%" />
+            <Transition name="slide-left">
+              <TransitionGroup
+                v-show="showData"
+                tag="div"
+                class="movie-follow padding-content horizontal"
+                :duration="0.3"
+                @beforeEnter="beforeEnter"
+                @enter="enter"
+                @beforeLeave="beforeLeave"
+                @leave="leave"
+              >
+                <MovieCardHorizontalFollow
+                  v-for="(item, index) in dataList"
+                  :index="index"
+                  :key="item.id"
+                  :item="item"
+                  :type="item?.media_type"
+                  :getDataWhenRemoveList="getDataWhenRemoveList"
+                />
+              </TransitionGroup>
+            </Transition>
+
+            <div class="skeleton-loadmore" v-show="loadMore">
+              <el-skeleton
+                :loading="true"
+                animated
+                v-for="index in 2"
+                :key="index"
+              >
+                <template #template>
+                  <p class="index-item">{{ dataList?.length + index }}</p>
+                  <div class="item-skeleton">
+                    <div class="img-box">
+                      <el-skeleton-item class="skeleton-img" />
+                    </div>
+                    <div class="content-skeleton">
+                      <el-skeleton-item variant="text" style="width: 40%" />
+                      <el-skeleton-item variant="text" style="width: 20%" />
+                      <el-skeleton-item variant="text" style="width: 30%" />
+                      <div class="overview">
+                        <el-skeleton-item variant="text" />
+                        <el-skeleton-item variant="text" style="width: 50%" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </template>
-            </el-skeleton>
-          </div>
-        </section>
+                </template>
+              </el-skeleton>
+            </div>
+          </section>
+        </div>
       </div>
-    </div>
 
-    <RequireAuth v-else />
+      <RequireAuth v-else />
+    </div>
   </div>
 </template>
 

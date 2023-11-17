@@ -472,10 +472,24 @@ srcBackdropList.value = [];
 
 const { data: dataMovie } = await useAsyncData(
   `cache/movie/detail/${movieId.value}`,
-  () => getMovieById(movieId.value, 'videos')
+  () => getMovieById(movieId.value, 'videos'),
+  {
+    server: false,
+    // lazy: true,
+    // immediate: false,
+  }
 );
 
-isAddToList.value = dataMovie.value?.in_list == true;
+// isAddToList.value = dataMovie.value?.in_list == true;
+await getItemList(movieId.value, 'movie')
+  .then((response) => {
+    if (response.success == true) {
+      isAddToList.value = true;
+    }
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  });
 disabledRate.value = !!dataMovie.value?.rated_value;
 loading.value = false;
 

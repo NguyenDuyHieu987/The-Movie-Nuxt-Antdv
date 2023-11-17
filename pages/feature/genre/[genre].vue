@@ -33,7 +33,7 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingNowPlaying">
           <template #content>
-            <CarouselGroup
+            <SwiperCarouselGroup
               :data="nowPlayings"
               :responsive="responsiveHorizoltal"
             >
@@ -47,7 +47,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -69,7 +69,10 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingPopular">
           <template #content>
-            <CarouselGroup :data="populars" :responsive="responsiveHorizoltal">
+            <SwiperCarouselGroup
+              :data="populars"
+              :responsive="responsiveHorizoltal"
+            >
               <template #content>
                 <SwiperSlide v-for="(item, index) in populars">
                   <MovieCardHorizontal
@@ -80,7 +83,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -102,7 +105,10 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingUpComing">
           <template #content>
-            <CarouselGroup :data="upComings" :responsive="responsiveHorizoltal">
+            <SwiperCarouselGroup
+              :data="upComings"
+              :responsive="responsiveHorizoltal"
+            >
               <template #content>
                 <SwiperSlide v-for="(item, index) in upComings">
                   <MovieCardHorizontal
@@ -113,7 +119,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -135,7 +141,10 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingTopRated">
           <template #content>
-            <CarouselGroup :data="topRateds" :responsive="responsiveHorizoltal">
+            <SwiperCarouselGroup
+              :data="topRateds"
+              :responsive="responsiveHorizoltal"
+            >
               <template #content>
                 <SwiperSlide v-for="(item, index) in topRateds">
                   <MovieCardHorizontal
@@ -146,7 +155,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -157,7 +166,8 @@
 <script setup lang="ts">
 import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
-import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
+import SwiperCarouselGroup from '~/components/CarouselGroup/SwiperCarouselGroup/SwiperCarouselGroup.vue';
+import SlickCarouselGroup from '~/components/CarouselGroup/SlickCarouselGroup/SlickCarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/HeaderHomeBreadcrumb.server.vue';
 import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';

@@ -20,7 +20,7 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingNowPlaying">
           <template #content>
-            <CarouselGroup
+            <SwiperCarouselGroup
               :data="nowPlayings"
               :responsive="responsiveHorizoltal"
             >
@@ -34,7 +34,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -101,7 +101,10 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingCartoon">
           <template #content>
-            <CarouselGroup :data="cartoons" :responsive="responsiveHorizoltal">
+            <SwiperCarouselGroup
+              :data="cartoons"
+              :responsive="responsiveHorizoltal"
+            >
               <template #content>
                 <SwiperSlide v-for="(item, index) in cartoons">
                   <MovieCardHorizontal
@@ -112,7 +115,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -134,7 +137,7 @@
 
         <LoadingSectionVertical v-model:loading="loadingTvAiringToday">
           <template #content>
-            <CarouselGroup
+            <SwiperCarouselGroup
               :data="tvAiringTodays"
               :responsive="responsiveVertical"
               cardMode="vertical"
@@ -150,7 +153,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionVertical>
       </section>
@@ -237,7 +240,7 @@
 
         <LoadingSectionVertical v-model:loading="loadingTopRated">
           <template #content>
-            <CarouselGroup
+            <SwiperCarouselGroup
               :data="topRateds"
               :responsive="responsiveVertical"
               cardMode="vertical"
@@ -253,7 +256,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionVertical>
       </section>
@@ -275,7 +278,7 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingTvOnTheAir">
           <template #content>
-            <CarouselGroup
+            <SwiperCarouselGroup
               :data="tvOnTheAirs"
               :responsive="responsiveHorizoltal"
             >
@@ -289,7 +292,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -301,7 +304,7 @@
 import axios from 'axios';
 // import carousel from 'vue-owl-carousel/src/Carousel';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
-import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
+import SwiperCarouselGroup from '~/components/CarouselGroup/SwiperCarouselGroup/SwiperCarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
 import SliderGroupBackground from '~/components/SliderGroup/SliderGroupBackground/SliderGroupBackground.vue';

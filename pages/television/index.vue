@@ -20,7 +20,7 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingTvAiringToday">
           <template #content>
-            <CarouselGroup
+            <SwiperCarouselGroup
               :data="airingTodays"
               :responsive="responsiveHorizoltal"
             >
@@ -34,7 +34,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -54,7 +54,10 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingTvOnTheAir">
           <template #content>
-            <CarouselGroup :data="onTheAirs" :responsive="responsiveHorizoltal">
+            <SwiperCarouselGroup
+              :data="onTheAirs"
+              :responsive="responsiveHorizoltal"
+            >
               <template #content>
                 <SwiperSlide v-for="(item, index) in onTheAirs">
                   <MovieCardHorizontal
@@ -65,7 +68,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -85,7 +88,10 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingTvPopular">
           <template #content>
-            <CarouselGroup :data="populars" :responsive="responsiveHorizoltal">
+            <SwiperCarouselGroup
+              :data="populars"
+              :responsive="responsiveHorizoltal"
+            >
               <template #content>
                 <SwiperSlide v-for="(item, index) in populars">
                   <MovieCardHorizontal
@@ -96,7 +102,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -116,7 +122,10 @@
 
         <LoadingSectionHorizontal v-model:loading="loadingTvTopRated">
           <template #content>
-            <CarouselGroup :data="topRateds" :responsive="responsiveHorizoltal">
+            <SwiperCarouselGroup
+              :data="topRateds"
+              :responsive="responsiveHorizoltal"
+            >
               <template #content>
                 <SwiperSlide v-for="(item, index) in topRateds">
                   <MovieCardHorizontal
@@ -127,7 +136,7 @@
                   />
                 </SwiperSlide>
               </template>
-            </CarouselGroup>
+            </SwiperCarouselGroup>
           </template>
         </LoadingSectionHorizontal>
       </section>
@@ -138,7 +147,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
-import CarouselGroup from '~/components/CarouselGroup/CarouselGroup.vue';
+import SwiperCarouselGroup from '~/components/CarouselGroup/SwiperCarouselGroup/SwiperCarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.server.vue';
 import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';
