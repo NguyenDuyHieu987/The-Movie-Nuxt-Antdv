@@ -201,14 +201,14 @@ export default defineNuxtConfig({
       // crawlLinks: true,
     },
     minify: true,
-    compressPublicAssets: { gzip: true },
+    compressPublicAssets: { gzip: true, brotli: true },
     storage: {
       redis: {
         driver: 'redis',
       },
     },
     output: {
-      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
     },
   },
   vite: {
