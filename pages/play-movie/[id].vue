@@ -267,7 +267,7 @@ import VideoPlayer from '~/components/VideoPlayer/VideoPlayer.server.vue';
 import Tags from '~/components/Tags/Tags.server.vue';
 import Overview from '~/components/Overview/Overview.server.vue';
 import Interaction from '~/components/Interaction/Interaction.vue';
-import RatingMovie from '~/components/RatingMovie/RatingMovie.server.vue';
+import RatingMovie from '~/components/RatingMovie/RatingMovie.vue';
 import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import Comment from '~/components/Comment/Comment.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';

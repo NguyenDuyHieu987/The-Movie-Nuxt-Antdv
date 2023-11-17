@@ -1,7 +1,7 @@
 import { makeRequest } from './makeRequest';
 
-export function getRating(moveid: string, type: string) {
-  return makeRequest(`/rating/get/${type}/${moveid}`);
+export function getRating(moveId: string, type: string) {
+  return makeRequest(`/rating/get/${type}/${moveId}`);
 }
 
 export function rating(moveid: string, type: string, value: number) {

@@ -5,7 +5,7 @@
         {{ disabledRate ? 'Đã đánh giá: ' : 'Đánh giá: ' }}
       </label>
       <a-rate
-        v-model:value="temp"
+        v-model:value="myRate"
         :class="{ rated: disabledRate }"
         allow-half
         :count="10"
@@ -59,14 +59,12 @@ import { rating } from '~/services/rating';
 
 const props = defineProps<{
   dataMovie: any;
-  disabled?: boolean;
+  ratedValue: number | undefined;
 }>();
 
 const store = useStore();
-const disabledRate = ref<boolean>(props.disabled || false);
-const temp = ref<number>(
-  props.disabled ? props.dataMovie.rated_value : props.dataMovie?.vote_average
-);
+const disabledRate = ref<boolean>(props.ratedValue ? true : false);
+const myRate = ref<number>(props.ratedValue || props.dataMovie?.vote_average);
 const vote_Average = ref<number>(props.dataMovie?.vote_average);
 const vote_Count = ref<number>(props.dataMovie?.vote_count);
 
@@ -83,9 +81,20 @@ const tooltipRating = ref<string[]>([
   'Tuyệt hay',
 ]);
 
+watchEffect(() => {
+  if (props.ratedValue) {
+    disabledRate.value = true;
+    myRate.value = props.ratedValue;
+  }
+});
+
 const handleRating = (value: number) => {
-  if (!store?.isLogin) {
+  if (!store.isLogin) {
     store.openRequireAuthDialog = true;
+    return;
+  }
+
+  if (props.ratedValue) {
     return;
   }
 

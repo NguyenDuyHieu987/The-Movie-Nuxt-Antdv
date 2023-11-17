@@ -209,7 +209,7 @@
                 </template>
               </Tags>
 
-              <RatingMovie :dataMovie="dataMovie" :disabled="disabledRate" />
+              <RatingMovie :dataMovie="dataMovie" :ratedValue="ratedValue" />
 
               <Tags tagsLabel="Lượt xem:">
                 <template #tagsInfo>
@@ -365,11 +365,12 @@ import { getBackdrop, getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getGenreById } from '~/services/genres';
 import { getCountryByOriginalLanguage } from '~/services/country';
+import { getRating } from '~/services/rating';
 import BackPage from '~/components/BackPage/BackPage.vue';
 import Tags from '~/components/Tags/Tags.server.vue';
 import Overview from '~/components/Overview/Overview.server.vue';
 import Interaction from '~/components/Interaction/Interaction.vue';
-import RatingMovie from '~/components/RatingMovie/RatingMovie.server.vue';
+import RatingMovie from '~/components/RatingMovie/RatingMovie.vue';
 import CastCrew from '~/components/CastCrew/CastCrew.vue';
 import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressBar.vue';
@@ -385,7 +386,7 @@ const router = useRouter();
 const loading = ref<boolean>(false);
 const srcBackdropList = ref<string[]>([]);
 const isAddToList = ref<boolean>(false);
-const disabledRate = ref<boolean>(false);
+const ratedValue = ref<number | undefined>();
 const windowWidth = ref<number>(1200);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
 
@@ -412,7 +413,6 @@ const getData = async () => {
   await getMovieById(movieId.value, 'videos')
     .then((response) => {
       dataMovie.value = response;
-      disabledRate.value = !!dataMovie.value?.rated_value;
 
       // dataMovie.value.images?.backdrops?.forEach((item) => {
       //   srcBackdropList.value.push(
@@ -451,6 +451,9 @@ const getData = async () => {
     //   .catch((e) => {
     //     if (axios.isCancel(e)) return;
     //   });
+
+    // disabledRate.value = !!dataMovie.value?.rated_value;
+    ratedValue.value = dataMovie.value?.rated_value;
   }
 };
 
@@ -474,23 +477,35 @@ const { data: dataMovie } = await useAsyncData(
   `cache/movie/detail/${movieId.value}`,
   () => getMovieById(movieId.value, 'videos'),
   {
-    server: false,
+    // server: false,
     // lazy: true,
     // immediate: false,
   }
 );
 
 // isAddToList.value = dataMovie.value?.in_list == true;
-await getItemList(movieId.value, 'movie')
-  .then((response) => {
-    if (response.success == true) {
-      isAddToList.value = true;
-    }
-  })
-  .catch((e) => {
-    if (axios.isCancel(e)) return;
-  });
-disabledRate.value = !!dataMovie.value?.rated_value;
+// ratedValue.value = dataMovie.value?.rated_value;
+if (store.isLogin) {
+  getItemList(movieId.value, 'movie')
+    .then((response) => {
+      if (response.success == true) {
+        isAddToList.value = true;
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  getRating(movieId.value, 'movie')
+    .then((response) => {
+      if (response.success == true) {
+        ratedValue.value = response.result?.rate_value;
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+}
 loading.value = false;
 
 useHead({
