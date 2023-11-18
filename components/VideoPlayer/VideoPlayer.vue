@@ -18,8 +18,8 @@
     <video
       id="video-player"
       ref="video"
-      :poster="backdrop"
       :src="videoSrc"
+      :poster="backdrop"
       preload="metadata"
       autoplay
       muted
@@ -42,9 +42,10 @@
       <div
         class="loading-video"
         v-show="
-          videoStates.isLoading &&
-          !videoStates.isEndedVideo &&
-          !videoStates.isRewind.enable
+          (videoStates.isLoading &&
+            !videoStates.isEndedVideo &&
+            !videoStates.isRewind.enable) ||
+          !mounted
           // &&
           // videoStates.isLoaded
         "
@@ -188,7 +189,7 @@
       <span class="timeline-indicator">{{ timelineUpdate }} </span>
     </div>
 
-    <!-- v-show="videoStates.isLoaded" -->
+    <!-- v-show="videoStates.isLoaded || mounted" -->
     <div
       class="controls"
       :class="{
@@ -717,7 +718,8 @@
 </template>
 
 <script setup lang="ts">
-// import axios from 'axios';
+import axios from 'axios';
+import Hls from 'hls.js';
 import CloseBtn from '~/components/ButtonTemplate/CloseBtn/CloseBtn.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 import { getVideo } from '~/services/video';
@@ -744,8 +746,9 @@ const videoSrc = computed<string>(
   () =>
     // nuxtConfig.app.production_mode
     //   ? nuxtConfig.app.serverVideoUrl + '/videos/' + props.videoUrl
-    //   : 'http://localhost:5002/videos/' + props.videoUrl
-    'http://localhost:5002/videos/' + props.videoUrl
+    //   : 'http://localhost:5002/videos' + props.videoUrl
+    'http://localhost:5002/videos' + props.videoUrl
+  // + '.m3u8'
 );
 const blobVideoSrc = ref<string>('');
 const videoPlayer = ref();
@@ -803,73 +806,86 @@ const settings = reactive({
 const volume = ref<number>(100);
 const timeUpdate = ref<string>('00:00');
 const timelineUpdate = ref<string>('00:00');
-// const duration = ref<string>('00:00');
-const duration = computed<string>(
-  () => formatDuration(video.value?.duration) || '00:00'
-);
+const duration = ref<string>('00:00');
+// const duration = computed<string>(
+//   () => formatDuration(video.value?.duration) || '00:00'
+// );
 const timeOut = ref<any>();
+const mounted = ref<boolean>(false);
+let startByte: number = 0;
+const chunkSize: number = 1024 * 1024; // 1 MB
 
-const setBlobSrcVideo = (value: string) => {
-  return new Promise(async (resolve, reject) => {
-    videoStates.isLoading = true;
+const fetchVideoChunk = async (value: string) => {
+  const endByte: number = startByte + chunkSize - 1;
 
-    await getVideo(value)
-      .then((response) => {
-        // const metadata = {
-        //   type: data.type || 'video/mp4',
-        // };
+  // return new Promise(async (resolve, reject) => {
+  // videoStates.isLoading = true;
 
-        // const file = new File([data], 'test.mp4', metadata);
+  await getVideo(value, startByte, endByte)
+    .then((response) => {
+      // console.log(response);
+      // const blobSrc = URL.createObjectURL(blob);
 
-        const blobSrc = (window.URL || window.webkitURL).createObjectURL(
-          new Blob([response.data])
-        );
+      const blobSrc = (window.URL || window.webkitURL).createObjectURL(
+        new Blob([response.data], { type: 'video/mp4' })
+      );
 
-        // const blobSrc = URL.createObjectURL(blob);
+      // if (video.value) {
+      //   // const myVid = document.getElementById(
+      //   //   'video-player'
+      //   // ) as HTMLVideoElement;
+      //   // myVid!.setAttribute('src', blobSrc);
+      //   video.value.src = blobSrc;
+      //   video.value.muted = false;
+      //   video.value.autoplay = true;
+      //   // video.value.load();
+      //   // myVid!.play();
+      //   videoStates.isPlayVideo = true;
+      // }
 
+      if (!video.value.src) {
         video.value.src = blobSrc;
+        video.value.load();
+      }
 
-        resolve({ success: true });
-      })
-      .catch((e) => {
-        reject(e);
-      })
-      .finally(() => {
-        videoStates.isLoading = false;
-        // video.value.load();
-      });
-  });
+      startByte = endByte + 1;
+
+      // Fetch next chunk
+      fetchVideoChunk(value);
+
+      //   resolve({ success: true });
+      // })
+      // .catch((e) => {
+      //   reject(e);
+      // })
+      // .finally(() => {
+      //   videoStates.isLoading = false;
+      //   // video.value.load();
+      // });
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
 };
 
 const initVideo = async (newVideoUrl: string) => {
   if (newVideoUrl && newVideoUrl?.length > 0) {
     if (props.dataMovie?.media_type == 'movie') {
-      await setBlobSrcVideo(newVideoUrl).then(() => {
-        // video.value.volume = volume.value / 100;
-        // progressBar.value.style.setProperty('--progress-width', 0);
-        // video.value.play();
-        videoStates.isPlayVideo = true;
-      });
+      fetchVideoChunk(newVideoUrl);
     } else if (props.dataMovie?.media_type == 'tv') {
       if (videoStates.isPlayVideo) {
         video.value.pause();
         videoStates.isPlayVideo = false;
       }
-      await setBlobSrcVideo(newVideoUrl).then(() => {
-        // video.value.play();
-        videoStates.isPlayVideo = true;
-      });
+      fetchVideoChunk(newVideoUrl);
     }
   }
 };
 
-onBeforeMount(() => {
-  // initVideo(props.videoUrl);
-});
-
 watchEffect(() => {
   if (video.value?.paused && video.value?.autoplay) {
     // alert(video.value?.paused);
+    video.value.muted = false;
     video.value.play();
   }
 });
@@ -890,6 +906,22 @@ onBeforeRouteLeave(() => {
   window.removeEventListener('pointerup', windowPointerUp);
   window.removeEventListener('touchend', windowTouchEnd);
   video.value.removeEventListener('progress', onProgressVideo);
+});
+
+onBeforeMount(() => {
+  // initVideo(props.videoUrl);
+  // if (Hls.isSupported()) {
+  //   // const myVideo = document.getElementById('video-player') as HTMLVideoElement;
+  //   const hls = new Hls();
+  //   console.log(videoSrc.value);
+  //   hls.on(Hls.Events.ERROR, (event, data) => {
+  //     console.error(`hls.js error: ${data.type} - ${data.details}`);
+  //   });
+  //   hls.loadSource(videoSrc.value);
+  //   hls.attachMedia(video.value);
+  // } else {
+  //   console.error('HLS is not supported on your browser.');
+  // }
 });
 
 const windowPointerUp = () => {
@@ -925,6 +957,12 @@ const windowTouchEnd = () => {
 };
 
 onMounted(() => {
+  mounted.value = true;
+
+  // video.value.muted = false;
+  // video.value.autoplay = true;
+  duration.value = formatDuration(video.value.duration)! || '00:00';
+
   if (
     video.value.paused == false &&
     videoStates.isPlayVideo == false &&
@@ -1010,9 +1048,10 @@ const onLoadStartVideo = () => {
   // console.log('load start video');
   videoStates.isLoading = true;
   videoStates.isPlayVideo = false;
-  video.value.currentTime = 0;
-  progressBar.value.style.setProperty('--progress-width', 0);
-  overlayProgress.value.style.setProperty('--seekable-width', 0);
+
+  // video.value.currentTime = 0;
+  // progressBar.value.style.setProperty('--progress-width', 0);
+  // overlayProgress.value.style.setProperty('--seekable-width', 0);
 };
 
 const onCanPlayVideo = () => {
@@ -1026,7 +1065,7 @@ const onLoadedDataVideo = () => {
   // console.log('loaded start video');
   video.value.muted = false;
   videoStates.isLoaded = true;
-  // duration.value = formatDuration(video.value.duration);
+  duration.value = formatDuration(video.value.duration)!;
 };
 
 const onTimeUpdateVideo = (e: any) => {

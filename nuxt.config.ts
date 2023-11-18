@@ -147,11 +147,11 @@ export default defineNuxtConfig({
   },
   lazyLoad: {
     images: false,
-    videos: true,
-    audios: true,
-    iframes: true,
+    videos: false,
+    audios: false,
+    iframes: false,
     native: false,
-    directiveOnly: false,
+    directiveOnly: true,
 
     // Default image must be in the public folder
     // defaultImage: '/images/default-image.jpg',
@@ -208,7 +208,7 @@ export default defineNuxtConfig({
       },
     },
     output: {
-      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
     },
   },
   vite: {

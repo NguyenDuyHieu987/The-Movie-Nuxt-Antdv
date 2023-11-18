@@ -14,7 +14,7 @@ export function getImage(path: string, type: string, crop: string = '') {
 
   const URL_API_IMAGE1 = nuxtConfig.app.production_mode
     ? nuxtConfig.app.serverImageUrl
-    : 'http://localhost:5002/static/';
+    : 'http://localhost:5002/static';
 
   if (!path) return ' ';
 

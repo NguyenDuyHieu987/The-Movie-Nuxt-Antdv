@@ -1,7 +1,10 @@
-import axios from 'axios';
+import axios, { type AxiosRequestConfig } from 'axios';
 import { makeRequest } from './makeRequest';
 
-export function makeRequestVideo(url: string, options: any = {}) {
+export async function makeRequestVideo(
+  url: string,
+  options: AxiosRequestConfig = {}
+) {
   const nuxtConfig = useRuntimeConfig();
 
   const api = axios.create({
@@ -9,11 +12,13 @@ export function makeRequestVideo(url: string, options: any = {}) {
       ? nuxtConfig.app.serverVideoUrl
       : 'http://localhost:5002',
     // withCredentials: true,
-    headers: { Accept: 'video/mp4;charset=UTF-8' },
-    responseType: 'blob',
+    headers: {
+      Accept: 'video/mp4;charset=UTF-8',
+    },
+    responseType: 'arraybuffer',
   });
 
-  return api(url, options)
+  return await api(url, options)
     .then((res) => {
       return res;
     })
@@ -22,12 +27,16 @@ export function makeRequestVideo(url: string, options: any = {}) {
     );
 }
 
-export function getVideo(path: string) {
-  return makeRequestVideo(`/videos/${path}`);
-}
-
-export function getVideos(id: string) {
-  return makeRequest(`/videos/${id}`);
+export function getVideo(
+  path: string,
+  startByte: number = 0,
+  endByte: number = 1024 * 1024
+) {
+  return makeRequestVideo(`/videos/${path}`, {
+    headers: {
+      Range: `bytes=${startByte}-${endByte}`,
+    },
+  });
 }
 
 export function getVideoFeature(path: string) {

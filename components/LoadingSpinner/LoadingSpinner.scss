@@ -14,7 +14,7 @@
   .ytp-spinner {
     position: relative;
     width: var(--width);
-    margin-left: calc(0px - (var(--width) / 2));
+    // margin-left: calc(0px - (var(--width) / 2));
     z-index: 18;
     pointer-events: none;
 

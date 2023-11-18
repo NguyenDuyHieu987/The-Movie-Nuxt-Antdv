@@ -142,12 +142,12 @@ const emitUrlCode = () => {
   //   (item: any) => item.episode_number == currentEpisode.value
   // )?.url_code;
 
-  let urlCode = `The_Witcher_S1_Ep1.mp4`;
+  let urlCode = `The_Witcher_S1_Ep1`;
 
   if (currentEpisode.value > 1 && currentEpisode.value <= 8) {
-    urlCode = `The_Witcher_S1_Ep${currentEpisode.value}.mp4`;
+    urlCode = `The_Witcher_S1_Ep${currentEpisode.value}`;
   } else if (currentEpisode.value > 8) {
-    urlCode = `The_Witcher_S1_Ep8.mp4`;
+    urlCode = `The_Witcher_S1_Ep8`;
   }
 
   emit('changeUrlCode', urlCode);
