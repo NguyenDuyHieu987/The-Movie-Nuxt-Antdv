@@ -54,7 +54,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Bảng xếp hạng - Phimhay247',
   description: 'Trending, bảng xếp hạng',
   ogTitle: 'Bảng xếp hạng - Phimhay247',

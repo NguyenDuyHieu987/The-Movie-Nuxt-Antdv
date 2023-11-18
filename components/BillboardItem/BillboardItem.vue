@@ -1,13 +1,5 @@
 <template>
   <div class="billboard-item">
-    <!-- <el-image
-        class="ant-image"
-        :src="getBackdrop(item?.backdrop_path)"
-        :preview="false"
-        :lazy="true"
-        loading="lazy"
-      /> -->
-
     <div class="img-wrapper">
       <NuxtImg
         class="ant-image"

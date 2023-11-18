@@ -98,7 +98,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: () =>
     'Khám phá | Quốc gia: ' + countryRoute.value.name + ' - Phimhay247',
   description: () => 'Khám phá phim mới cùng Phimhay247',

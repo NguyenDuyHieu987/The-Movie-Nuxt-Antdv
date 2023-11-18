@@ -125,7 +125,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Trợ giúp, Quên mật khẩu - Phimhay247',
   description: 'Quên mật khẩu của bạn',
   ogTitle: 'Trợ giúp, Quên mật khẩu - Phimhay247',

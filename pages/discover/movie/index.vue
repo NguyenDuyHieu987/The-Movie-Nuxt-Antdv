@@ -77,7 +77,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: () => 'Khám phá | Phim lẻ: ' + formFilter.value.type + ' - Phimhay247',
   description: () => 'Khám phá phim mới cùng Phimhay247',
   ogTitle: () =>

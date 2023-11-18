@@ -1,7 +1,7 @@
 import axios, { type AxiosRequestConfig } from 'axios';
 import { makeRequest } from './makeRequest';
 
-export async function makeRequestVideo(
+export async function makeVideoRequest(
   url: string,
   options: AxiosRequestConfig = {}
 ) {
@@ -11,11 +11,7 @@ export async function makeRequestVideo(
     baseURL: nuxtConfig.app.production_mode
       ? nuxtConfig.app.serverVideoUrl
       : 'http://localhost:5002',
-    // withCredentials: true,
-    headers: {
-      Accept: 'video/mp4;charset=UTF-8',
-    },
-    responseType: 'arraybuffer',
+    withCredentials: true,
   });
 
   return await api(url, options)
@@ -27,22 +23,20 @@ export async function makeRequestVideo(
     );
 }
 
+export function getVideos(id: string) {
+  return makeRequest(`/videos/${id}`);
+}
+
 export function getVideo(
   path: string,
   startByte: number = 0,
   endByte: number = 1024 * 1024
 ) {
-  return makeRequestVideo(`/videos/${path}`, {
+  return makeVideoRequest(`/videos/${path}`, {
     headers: {
+      Accept: 'video/mp4;charset=UTF-8',
       Range: `bytes=${startByte}-${endByte}`,
     },
+    responseType: 'arraybuffer',
   });
-}
-
-export function getVideoFeature(path: string) {
-  return makeRequestVideo(`/videos/feature/${path}`);
-}
-
-export function getVideoTelevisons(path: string) {
-  return makeRequestVideo(`/videos/televisons/${path}`);
 }

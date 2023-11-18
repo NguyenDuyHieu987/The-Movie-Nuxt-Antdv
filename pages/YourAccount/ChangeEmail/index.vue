@@ -156,7 +156,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Thay đỏi Email - Phimhay247',
   description: 'Đỏi Email của bạn',
   ogTitle: 'Thay đổi Email - Phimhay247',

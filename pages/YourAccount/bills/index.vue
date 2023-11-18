@@ -22,7 +22,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Lịch sử giao dịch, Hóa đơn - Phimhay247',
   description: 'Hóa đơn của bạn. Lịch sử giao dịch',
   ogTitle: 'Lịch sử giao dịch, Hóa đơn - Phimhay247',

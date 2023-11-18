@@ -34,7 +34,7 @@
           <div class="img-box">
             <!-- <el-image
               class="ant-image"
-              :src="getBackdrop(item?.backdrop_path, ',250')"
+              :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
               :preview="false"
               :lazy="true"
               loading="lazy"

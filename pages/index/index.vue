@@ -328,7 +328,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Xem phim Online 24/7 - Phimhay247',
   description: 'Xem phim thỏa thích cùng Phimhay247',
   ogTitle: 'Xem phim Online 24/7 - Phimhay247',

@@ -146,7 +146,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Phim bộ',
   description: 'Phim bộ, Phim dài tập',
   ogTitle: 'Phim bộ',

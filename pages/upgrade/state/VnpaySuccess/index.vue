@@ -38,7 +38,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Nâng cấp tài khoản thành công - Phimhay247',
   description: 'Nâng cấp tài khoản thành công, Thanh toán bằng VNPAY',
   ogTitle: 'Nâng cấp tài khoản thành công - Phimhay247',

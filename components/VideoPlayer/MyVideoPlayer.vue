@@ -1056,6 +1056,9 @@ const onLoadStartVideo = () => {
 
 const onCanPlayVideo = () => {
   // console.log('can play video');
+  videoStates.isLoaded = true;
+  videoStates.isPlayVideo = true;
+  videoStates.isLoading = false;
 };
 
 const onLoadedDataVideo = () => {

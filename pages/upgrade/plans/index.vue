@@ -63,7 +63,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Nâng cấp tài khoản',
   description: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói - Phimhay247',
   ogTitle: 'Nâng cấp tài khoản',

@@ -270,8 +270,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop, getImage } from '~/services/image';
-import { getVideoTelevisons } from '~/services/video';
+import { getImage, getServerImage } from '~/services/image';
 import { getTvById } from '~/services/tv';
 import { getItemList } from '~/services/list';
 import { getItemHistory, add_update_History } from '~/services/history';
@@ -410,7 +409,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: () =>
     'Xem phim: ' +
     dataMovie.value?.name +
@@ -427,7 +426,12 @@ useServerSeoMeta({
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,
-  ogImage: () => getBackdrop(dataMovie.value?.backdrop_path),
+  ogImage: () =>
+    getServerImage(
+      dataMovie.value?.backdrop_path,
+      'backdrop',
+      'w-' + windowWidth.toString()
+    ),
   ogLocale: 'vi',
 });
 

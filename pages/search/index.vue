@@ -80,7 +80,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: () => 'Tìm kiếm: ' + searchQuery.value + ' - Phimhay247',
   description: 'Tìm kiếm phim hay vói Phimhay247',
   ogTitle: () => 'Tìm kiếm: ' + searchQuery.value + ' - Phimhay247',

@@ -12,13 +12,6 @@
       <div class="main-info">
         <div class="backdrop-img">
           <div class="backdrop-wrapper">
-            <!-- <el-image
-              :src="getBackdrop(dataMovie?.backdrop_path)"
-              :preview-src-list="srcBackdropList"
-              :preview-teleported="true"
-              :lazy="true"
-              loading="lazy"
-            /> -->
             <NuxtImg
               class="ant-image"
               :src="
@@ -360,7 +353,7 @@
 import axios from 'axios';
 import { getItemList } from '~/services/list';
 import { getItemHistory } from '~/services/history';
-import { getBackdrop, getImage } from '~/services/image';
+import { getImage, getServerImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getGenreById } from '~/services/genres';
 import { getCountryByOriginalLanguage } from '~/services/country';
@@ -510,14 +503,19 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',
   description: () => dataMovie.value?.overview,
   ogTitle: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,
-  ogImage: () => getBackdrop(dataMovie.value?.backdrop_path),
+  ogImage: () =>
+    getServerImage(
+      dataMovie.value?.backdrop_path,
+      'backdrop',
+      'w-' + windowWidth.toString()
+    ),
   ogLocale: 'vi',
 });
 

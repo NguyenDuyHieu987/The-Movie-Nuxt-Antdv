@@ -167,7 +167,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Tài khoản - Phimhay247',
   description: 'Tài khoản của bạn',
   ogTitle: 'Tài khoản - Phimhay247',

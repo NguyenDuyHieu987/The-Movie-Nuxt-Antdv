@@ -146,7 +146,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Phim lẻ',
   description: 'Phim lẻ, Phim chiếu rạp',
   ogTitle: 'Phim lẻ',

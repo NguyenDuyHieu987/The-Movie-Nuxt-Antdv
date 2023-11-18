@@ -96,7 +96,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: () =>
     'Khám phá | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
   description: () => 'Khám phá phim mới cùng Phimhay247',

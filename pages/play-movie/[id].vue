@@ -254,8 +254,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getBackdrop, getImage } from '~/services/image';
-import { getVideoFeature } from '~/services/video';
+import { getImage, getServerImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getItemList } from '~/services/list';
 import { getItemHistory, add_update_History } from '~/services/history';
@@ -384,14 +383,19 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: () => 'Xem phim: ' + dataMovie.value?.name + ' - Phimhay247',
   description: () => dataMovie.value?.overview,
   ogTitle: () => 'Xem phim: ' + dataMovie.value?.name + ' - Phimhay247',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,
-  ogImage: () => getBackdrop(dataMovie.value?.backdrop_path),
+  ogImage: () =>
+    getServerImage(
+      dataMovie.value?.backdrop_path,
+      'backdrop',
+      'w-' + windowWidth.toString()
+    ),
   ogLocale: 'vi',
 });
 

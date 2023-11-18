@@ -231,7 +231,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: () =>
     'Phim bộ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
   description: () =>

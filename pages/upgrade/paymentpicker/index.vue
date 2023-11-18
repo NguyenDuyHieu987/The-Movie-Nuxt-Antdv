@@ -235,7 +235,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Phương thức thanh toán - Phimhay247',
   description: 'Thanh toán gói dịch vụ',
   ogTitle: 'Phương thức thanh toán - Phimhay247',

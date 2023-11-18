@@ -180,7 +180,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Đỏi mật khẩu - Phimhay247',
   description: 'Đỏi mật khẩu của bạn',
   ogTitle: 'Đỏi mật khẩu - Phimhay247',

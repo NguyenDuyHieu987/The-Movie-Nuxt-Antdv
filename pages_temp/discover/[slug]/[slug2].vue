@@ -381,7 +381,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: () => 'Khám phá - ' + metaHead.value,
   description: () => 'Khám phá phim mới cùng Phimhay247',
   ogTitle: () => 'Khám phá - ' + metaHead.value,

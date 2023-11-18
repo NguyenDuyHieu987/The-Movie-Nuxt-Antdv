@@ -1,13 +1,32 @@
+import axios, { type AxiosRequestConfig } from 'axios';
 import { makeRequest } from './makeRequest';
+import { isProduction } from 'std-env';
 
-const URL_API_IMAGE = 'https://img.phimhay247.site';
-// const URL_API_IMAGE1 = 'https://res.cloudinary.com/dvbhjlrdf/image/upload';
+// const URL_API_IMAGE = 'https://img.phimhay247.site';
+const URL_API_IMAGE = 'https://ik.imagekit.io/8toa5f2rp';
+// const URL_API_IMAGE = 'https://res.cloudinary.com/dvbhjlrdf/image/upload';
 
-// export function getImage(path: string, type: string, crop: string = '') {
-//   return path
-//     ? `${URL_API_IMAGE1}/${crop}/v1688106333/images/${type}/${path}`
-//     : ' ';
-// }
+export async function makeImageRequest(
+  url: string,
+  options: AxiosRequestConfig = {}
+) {
+  const nuxtConfig = useRuntimeConfig();
+
+  const api = axios.create({
+    baseURL: nuxtConfig.app.production_mode
+      ? nuxtConfig.app.serverVideoUrl
+      : 'http://localhost:5002',
+    withCredentials: true,
+  });
+
+  return await api(url, options)
+    .then((res) => {
+      return res;
+    })
+    .catch((error) =>
+      Promise.reject(error?.response?.data?.message ?? 'Error')
+    );
+}
 
 export function getImage(path: string, type: string, crop: string = '') {
   const nuxtConfig = useRuntimeConfig();
@@ -28,20 +47,17 @@ export function getImage(path: string, type: string, crop: string = '') {
   // return`${URL_API_IMAGE1}/images/${type}/${path}`;
 }
 
-export function getPoster(path: string, size = 'full') {
+export function getServerImage(path: string, type: string, crop = '') {
   if (!path) return ' ';
 
-  return `${URL_API_IMAGE}/image/poster/${path}?size=${size}`;
-}
+  const URL_API_IMAGE1 = isProduction
+    ? URL_API_IMAGE
+    : 'http://localhost:5002/static';
 
-export function getBackdrop(path: string, size = 'full') {
-  if (!path) return ' ';
+  if (crop.length == 0 || !isProduction)
+    return `${URL_API_IMAGE1}/images/${type}/${path}`;
 
-  return `${URL_API_IMAGE}/image/backdrop/${path}?size=${size}`;
-}
-
-export function getColorImage(path: string) {
-  return makeRequest(`${URL_API_IMAGE}/imagecolor/backdrop/${path}`);
+  return `${URL_API_IMAGE}/images/${type}/${path}/tr:${crop}`;
 }
 
 export function getPosterCast(path: string) {
@@ -49,4 +65,12 @@ export function getPosterCast(path: string) {
   const TMDB_IMAGE_BASE_URL = nuxtConfig.public.TMDBurl;
 
   return `${TMDB_IMAGE_BASE_URL}/original${path}`;
+}
+
+export function getImages(id: string) {
+  return makeRequest(`/images/${id}`);
+}
+
+export function getColorImage(path: string) {
+  return makeImageRequest(`/image/color/backdrop/${path}`);
 }

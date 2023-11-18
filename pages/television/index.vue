@@ -164,7 +164,7 @@ useHead({
   htmlAttrs: { lang: 'vi' },
 });
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Phim bộ - Phimhay247',
   description: 'Phim bộ, Phim dài tập',
   ogTitle: 'Phim bộ - Phimhay247',
