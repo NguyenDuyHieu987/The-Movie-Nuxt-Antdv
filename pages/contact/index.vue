@@ -1,5 +1,5 @@
 <template>
-  <div class="contact center-page padding-content"></div>
+  <div class="contact padding-content"></div>
 </template>
 
 <script setup lang="ts"></script>

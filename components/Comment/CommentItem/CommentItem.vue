@@ -166,14 +166,14 @@
                 class="caret"
                 :class="{ active: isShowReplies }"
                 xmlns="http://www.w3.org/2000/svg"
-                width="2.8rem"
-                height="2.8rem"
+                width="2.5rem"
+                height="2.5rem"
                 viewBox="0 0 24 24"
               >
                 <path d="m7 10l5 5l5-5z" />
               </svg>
             </template>
-            {{ numberReplies != 0 && numberReplies + ' Phản hồi' }}
+            {{ numberReplies != 0 && numberReplies + ' phản hồi' }}
           </a-button>
 
           <div v-show="isShowReplies && !loadingReplies" class="list-replies">
