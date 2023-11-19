@@ -164,7 +164,7 @@
 
         .head-content {
           .movie-title {
-            font-weight: 600;
+            font-weight: 500;
           }
 
           .action {
@@ -178,17 +178,17 @@
               color: inherit;
             }
 
+            .action-btn {
+              min-height: 40px;
+              height: 42px;
+            }
+
             .left {
               display: flex;
               flex-direction: row;
               align-items: center;
               gap: 13px;
               // gap: 0.7vw;
-
-              .action-btn {
-                min-height: 40px;
-                height: 42px;
-              }
 
               .ant-btn {
                 svg {
@@ -239,11 +239,6 @@
             .right {
               display: flex;
               align-items: center;
-
-              .action-btn {
-                min-height: 40px;
-                height: 42px;
-              }
 
               .ant-btn {
                 padding: 9px 13px;
@@ -356,11 +351,11 @@
         .tv-content {
           .head-content {
             .action {
-              .left {
-                .action-btn {
-                  height: 40px;
-                }
+              .action-btn {
+                height: 40px;
+              }
 
+              .left {
                 .ant-btn {
                   font-size: 1.5rem;
 
@@ -421,6 +416,12 @@
                   padding: 7px 20px;
                 }
               }
+
+              .right {
+                .ant-btn {
+                  padding: 7px 10px;
+                }
+              }
             }
           }
         }
@@ -456,12 +457,6 @@
               justify-content: unset;
               align-items: unset;
               flex-wrap: wrap;
-
-              .right {
-                .ant-btn {
-                  padding: 7px 10px;
-                }
-              }
             }
           }
 

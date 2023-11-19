@@ -60,7 +60,7 @@
           width: 65%;
 
           .movie-title {
-            font-weight: 600;
+            font-weight: 500;
           }
 
           .tags {
@@ -80,7 +80,7 @@
             gap: 10px;
             margin-top: 13px;
 
-            a {
+            .action-btn {
               min-height: 40px;
               height: 42px;
             }
@@ -218,6 +218,12 @@
                   padding: 7px 20px;
                 }
               }
+
+              .right {
+                .ant-btn {
+                  padding: 7px 10px;
+                }
+              }
             }
           }
         }
@@ -226,7 +232,7 @@
   }
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1000px) {
   .play-tv {
     .play-container {
       .movie-content {

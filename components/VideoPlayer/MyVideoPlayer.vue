@@ -1047,7 +1047,6 @@ const formatDuration = (time: number) => {
 const onLoadStartVideo = () => {
   // console.log('load start video');
   videoStates.isLoading = true;
-  videoStates.isPlayVideo = false;
 
   // video.value.currentTime = 0;
   // progressBar.value.style.setProperty('--progress-width', 0);
@@ -1056,9 +1055,6 @@ const onLoadStartVideo = () => {
 
 const onCanPlayVideo = () => {
   // console.log('can play video');
-  videoStates.isLoaded = true;
-  videoStates.isPlayVideo = true;
-  videoStates.isLoading = false;
 };
 
 const onLoadedDataVideo = () => {

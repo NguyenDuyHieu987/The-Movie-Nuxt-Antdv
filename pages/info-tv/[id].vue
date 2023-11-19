@@ -152,7 +152,7 @@
                   </div>
 
                   <div class="right">
-                    <Interaction :dataMovie="dataMovie" />
+                    <Interaction class="action-btn" :dataMovie="dataMovie" />
 
                     <div class="action-btn" @click="scrollToComment">
                       <a-button size="large" type="text" class="comment modern">

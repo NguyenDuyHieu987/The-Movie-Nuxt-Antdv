@@ -1,5 +1,8 @@
 <template>
-  <div class="video-player">
+  <div
+    class="video-player"
+    :style="{ '--plyr-color-main': 'var(--app-background-color)' }"
+  >
     <video
       id="video-player"
       ref="video"

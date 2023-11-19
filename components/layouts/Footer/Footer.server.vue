@@ -32,8 +32,8 @@
             <svg
               class="fa-facebook-f"
               xmlns="http://www.w3.org/2000/svg"
-              width="1.5rem"
-              height="1.5rem"
+              width="1.6rem"
+              height="1.6rem"
               viewBox="0 0 320 512"
               fill="currentColor"
             >
@@ -42,11 +42,11 @@
               />
             </svg>
 
-            facebook
+            Facebook
           </NuxtLink>
           <NuxtLink class="email click-active" to="mailto:vaicut6941@gmail.com">
             <svg
-              class="fa-envelope"
+              class="email-icon"
               xmlns="http://www.w3.org/2000/svg"
               width="2rem"
               height="2rem"
@@ -54,7 +54,7 @@
               fill="currentColor"
             >
               <path
-                d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5l-8-5h16zm0 12H4V8l8 5l8-5v10z"
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"
               />
             </svg>
 
