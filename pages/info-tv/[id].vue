@@ -439,7 +439,7 @@ const getData = async () => {
 
     if (dataMovie.value?.history_progress) {
       isInHistory.value = true;
-      percentProgressHistory.value = dataMovie.value?.history_progress?.percent;
+      percentProgressHistory.value = dataMovie.value?.history_progress.percent;
     }
 
     // disabledRate.value = !!dataMovie.value?.rated_value;
@@ -466,37 +466,52 @@ const { data: dataMovie } = await useAsyncData(
   () => getTvById(movieId.value, 'videos,episodes')
 );
 
+isAddToList.value = dataMovie.value?.in_list == true;
+
+if (dataMovie.value?.history_progress) {
+  isInHistory.value = true;
+  percentProgressHistory.value = dataMovie.value?.history_progress.percent;
+}
+
+ratedValue.value = dataMovie.value?.rated_value;
+
 if (store.isLogin) {
-  getItemList(movieId.value, 'tv')
-    .then((response) => {
-      if (response.success == true) {
-        isAddToList.value = true;
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  if (!isAddToList.value) {
+    getItemList(movieId.value, 'tv')
+      .then((response) => {
+        if (response.success == true) {
+          isAddToList.value = true;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+  }
 
-  getRating(movieId.value, 'tv')
-    .then((response) => {
-      if (response.success == true) {
-        ratedValue.value = response.result?.rate_value;
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  if (!isInHistory.value) {
+    getItemHistory(movieId.value, 'tv')
+      .then((response) => {
+        if (response.success == true) {
+          isInHistory.value = true;
+          percentProgressHistory.value = response.result?.percent;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+  }
 
-  getItemHistory(movieId.value, 'tv')
-    .then((response) => {
-      if (response.data.value.success == true) {
-        isInHistory.value = true;
-        percentProgressHistory.value = response.result?.percent;
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  if (!ratedValue.value) {
+    getRating(movieId.value, 'tv')
+      .then((response) => {
+        if (response.success == true) {
+          ratedValue.value = response.result?.rate_value;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+  }
 }
 loading.value = false;
 

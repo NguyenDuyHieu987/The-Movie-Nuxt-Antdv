@@ -62,11 +62,21 @@
 }
 
 .center-page {
+  max-width: var(--max-width-center-page);
   margin: 0px auto;
 }
 
+body:has(.center-page, .change-page) {
+  footer.footer {
+    .footer-container {
+      max-width: var(--max-width-center-page);
+      margin: 0px auto;
+    }
+  }
+}
+
 .change-page {
-  max-width: 700px;
+  max-width: var(--max-width-change-page);
   margin: 0px auto;
 
   .back-page-btn {

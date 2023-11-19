@@ -13,12 +13,12 @@ import Artplayer from 'artplayer';
 const props = withDefaults(
   defineProps<{
     dataMovie: any;
-    isInHistory: boolean;
+    // isInHistory: boolean;
     backdrop: string;
     videoUrl: string;
   }>(),
   {
-    isInHistory: false,
+    // isInHistory: false,
   }
 );
 
@@ -43,6 +43,18 @@ const overlayProgress = ref();
 const progressBar = ref();
 const timeline = ref();
 const canvasPreviewImg = ref();
+const isInHistory = defineModel<boolean>('isInHistory', { default: false });
+const historyProgress = defineModel<{
+  duration: number;
+  percent: number;
+  seconds: number;
+}>('historyProgress', {
+  default: {
+    duration: 0,
+    percent: 0,
+    seconds: 0,
+  },
+});
 const videoStates = reactive({
   isLoading: false,
   isLoaded: false,
@@ -54,7 +66,7 @@ const videoStates = reactive({
   isMouseMoveOverlayProgress: false,
   isHideControls: false,
   isShowControls: false,
-  isShowNotify: props.dataMovie?.history_progress || false,
+  isShowNotify: isInHistory.value || false,
   isActiveControlsAnimation: false,
   isRewind: {
     enable: false,

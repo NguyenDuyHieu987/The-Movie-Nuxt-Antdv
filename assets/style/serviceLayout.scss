@@ -48,6 +48,13 @@
       flex-grow: 1;
       height: 100%;
     }
+
+    footer.footer {
+      .footer-container {
+        max-width: var(--max-width-center-page);
+        margin: 0px auto;
+      }
+    }
   }
 }
 

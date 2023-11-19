@@ -1,8 +1,9 @@
 .payment {
-  max-width: 1200px;
+  // max-width: var(--max-width-center-page);
+  max-width: 1024px;
+  height: 100%;
   margin: 0px auto;
   font-size: 1.6rem;
-  height: 100%;
 
   .payment-container {
     // display: flex;

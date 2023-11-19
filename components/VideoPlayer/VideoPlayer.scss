@@ -103,7 +103,7 @@ video::-webkit-media-controls {
       }
     }
 
-    .notify {
+    .notify-keep-watching {
       position: relative;
       background-color: #131313a6;
       border-radius: 2px;
@@ -121,7 +121,7 @@ video::-webkit-media-controls {
         height: 2.5rem;
       }
 
-      .notify-content {
+      .notify-played {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -133,7 +133,7 @@ video::-webkit-media-controls {
         }
       }
 
-      .notify-footer {
+      .notify-actions {
         display: flex;
         justify-content: center;
         padding: 5px;

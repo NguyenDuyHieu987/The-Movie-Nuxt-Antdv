@@ -18,7 +18,7 @@
           <span> {{ dataMovie?.name }}</span>
         </BackPage>
 
-        <HistoryProgressBar :historyProgress="percentProgressHistory" />
+        <HistoryProgressBar :historyProgress="historyProgress.percent" />
       </div>
 
       <div class="video">
@@ -44,7 +44,8 @@
             ></iframe> -->
 
           <VideoPlayer
-            :isInHistory="isInHistory"
+            v-model:isInHistory="isInHistory"
+            v-model:historyProgress="historyProgress"
             :dataMovie="dataMovie"
             :videoUrl="'/television/' + urlCodeMovie"
             :backdrop="
@@ -154,101 +155,97 @@
             </div>
           </div>
           <div class="detail-content-right">
-            <div class="box-short-content">
-              <Tags tagsLabel="Tên gốc:">
-                <template #tagsInfo>
-                  <span class="tags-item">
-                    {{ dataMovie?.original_name }}
+            <Tags tagsLabel="Tên gốc:">
+              <template #tagsInfo>
+                <span class="tags-item">
+                  {{ dataMovie?.original_name }}
+                </span>
+              </template>
+            </Tags>
+
+            <Tags tagsLabel="Đang phát:">
+              <template #tagsInfo>
+                <span class="tags-item">HD - Vietsub</span>
+              </template>
+            </Tags>
+
+            <Tags tagsLabel="Ngày phát hành:">
+              <template #tagsInfo>
+                <span class="tags-item">
+                  <NuxtLink :to="`/discover/year/${release_date?.slice(0, 4)}`">
+                    {{ release_date?.slice(0, 4) }}
+                  </NuxtLink>
+                  <span>
+                    {{ release_date?.slice(4) }}
                   </span>
-                </template>
-              </Tags>
+                </span>
+              </template>
+            </Tags>
 
-              <Tags tagsLabel="Đang phát:">
-                <template #tagsInfo>
-                  <span class="tags-item">HD - Vietsub</span>
-                </template>
-              </Tags>
-
-              <Tags tagsLabel="Ngày phát hành:">
-                <template #tagsInfo>
-                  <span class="tags-item">
-                    <NuxtLink
-                      :to="`/discover/year/${release_date?.slice(0, 4)}`"
-                    >
-                      {{ release_date?.slice(0, 4) }}
-                    </NuxtLink>
-                    <span>
-                      {{ release_date?.slice(4) }}
-                    </span>
-                  </span>
-                </template>
-              </Tags>
-
-              <Tags tagsLabel="Quốc gia:">
-                <template #tagsInfo>
-                  <span class="tags-item">
-                    <NuxtLink
-                      :to="`/discover/country/${
-                        getCountryByOriginalLanguage(
-                          dataMovie?.original_language,
-                          store.allCountries
-                        )?.short_name || 'au-my'
-                      }`"
-                    >
-                      {{
-                        getCountryByOriginalLanguage(
-                          dataMovie?.original_language,
-                          store.allCountries
-                        )?.name || ''
-                      }}
-                    </NuxtLink>
-                  </span>
-                </template>
-              </Tags>
-
-              <Tags tagsLabel="Thể loại:">
-                <template #tagsInfo>
-                  <span
-                    class="tags-item"
-                    v-for="(item, index) in dataMovie?.genres"
-                    :key="item?.id"
-                    :index="index"
+            <Tags tagsLabel="Quốc gia:">
+              <template #tagsInfo>
+                <span class="tags-item">
+                  <NuxtLink
+                    :to="`/discover/country/${
+                      getCountryByOriginalLanguage(
+                        dataMovie?.original_language,
+                        store.allCountries
+                      )?.short_name || 'au-my'
+                    }`"
                   >
-                    <NuxtLink
-                      :to="`/discover/genre/${
-                        getGenreById(item?.id, store.allGenres)?.short_name
-                      }`"
-                      >{{ item?.name }}
-                    </NuxtLink>
-                    <span>
-                      {{ index + 1 != dataMovie?.genres?.length ? ', ' : '' }}
-                    </span>
-                  </span>
-                </template>
-              </Tags>
+                    {{
+                      getCountryByOriginalLanguage(
+                        dataMovie?.original_language,
+                        store.allCountries
+                      )?.name || ''
+                    }}
+                  </NuxtLink>
+                </span>
+              </template>
+            </Tags>
 
-              <Tags tagsLabel="Số tập:">
-                <template #tagsInfo>
-                  <span class="tags-item">
-                    {{ dataMovie?.number_of_episodes + ' tập' }}
+            <Tags tagsLabel="Thể loại:">
+              <template #tagsInfo>
+                <span
+                  class="tags-item"
+                  v-for="(item, index) in dataMovie?.genres"
+                  :key="item?.id"
+                  :index="index"
+                >
+                  <NuxtLink
+                    :to="`/discover/genre/${
+                      getGenreById(item?.id, store.allGenres)?.short_name
+                    }`"
+                    >{{ item?.name }}
+                  </NuxtLink>
+                  <span>
+                    {{ index + 1 != dataMovie?.genres?.length ? ', ' : '' }}
                   </span>
-                </template>
-              </Tags>
+                </span>
+              </template>
+            </Tags>
 
-              <Tags tagsLabel="Thời lượng trêm tập:">
-                <template #tagsInfo>
-                  <span class="tags-item">
-                    {{ dataMovie?.episode_run_time[0] + ' phút' }}
-                  </span>
-                </template>
-              </Tags>
+            <Tags tagsLabel="Số tập:">
+              <template #tagsInfo>
+                <span class="tags-item">
+                  {{ dataMovie?.number_of_episodes + ' tập' }}
+                </span>
+              </template>
+            </Tags>
 
-              <Tags tagsLabel="Trạng thái:">
-                <template #tagsInfo>
-                  <span class="tags-item"> {{ dataMovie?.status }}</span>
-                </template>
-              </Tags>
-            </div>
+            <Tags tagsLabel="Thời lượng trêm tập:">
+              <template #tagsInfo>
+                <span class="tags-item">
+                  {{ dataMovie?.episode_run_time[0] + ' phút' }}
+                </span>
+              </template>
+            </Tags>
+
+            <Tags tagsLabel="Trạng thái:">
+              <template #tagsInfo>
+                <span class="tags-item"> {{ dataMovie?.status }}</span>
+              </template>
+            </Tags>
           </div>
         </div>
 
@@ -304,7 +301,15 @@ const duration = ref<number>(0);
 const isPlayVideo = ref<boolean>(false);
 const isUpdateView = ref<boolean>(true);
 const isInHistory = ref<boolean>(false);
-const percentProgressHistory = ref<number>(0);
+const historyProgress = ref<{
+  duration: number;
+  percent: number;
+  seconds: number;
+}>({
+  duration: 0,
+  percent: 0,
+  seconds: 0,
+});
 const release_date = computed<string>(
   () => dataMovie.value?.last_air_date || dataMovie.value?.first_air_date || ''
 );
@@ -338,7 +343,7 @@ const getData = async () => {
 
     if (dataMovie.value?.history_progress) {
       isInHistory.value = true;
-      percentProgressHistory.value = dataMovie.value?.history_progress?.percent;
+      historyProgress.value = dataMovie.value?.history_progress;
     }
 
     // disabledRate.value = !!dataMovie.value?.rated_value;
@@ -365,37 +370,52 @@ const { data: dataMovie } = await useAsyncData(
   () => getTvById(movieId.value, 'episodes')
 );
 
+isAddToList.value = dataMovie.value?.in_list == true;
+
+if (dataMovie.value?.history_progress) {
+  isInHistory.value = true;
+  historyProgress.value = dataMovie.value?.history_progress;
+}
+
+ratedValue.value = dataMovie.value?.rated_value;
+
 if (store.isLogin) {
-  getItemList(movieId.value, 'tv')
-    .then((response) => {
-      if (response.success == true) {
-        isAddToList.value = true;
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  if (!isAddToList.value) {
+    getItemList(movieId.value, 'tv')
+      .then((response) => {
+        if (response.success == true) {
+          isAddToList.value = true;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+  }
 
-  getRating(movieId.value, 'tv')
-    .then((response) => {
-      if (response.success == true) {
-        ratedValue.value = response.result?.rate_value;
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  if (!isInHistory.value) {
+    getItemHistory(movieId.value, 'tv')
+      .then((response) => {
+        if (response.success == true) {
+          isInHistory.value = true;
+          historyProgress.value = response.result;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+  }
 
-  getItemHistory(movieId.value, 'tv')
-    .then((response) => {
-      if (response.data.value.success == true) {
-        isInHistory.value = true;
-        percentProgressHistory.value = response.result?.percent;
-      }
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    });
+  if (!ratedValue.value) {
+    getRating(movieId.value, 'tv')
+      .then((response) => {
+        if (response.success == true) {
+          ratedValue.value = response.result?.rate_value;
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+  }
 }
 loading.value = false;
 
@@ -482,7 +502,7 @@ const onPLayVideoPlayer = (e: any) => {
 
 const onTimeUpdateVideoPlayer = (e: any) => {
   if (e?.seconds > 0) {
-    percentProgressHistory.value = e.percent;
+    historyProgress.value.percent = e.percent;
 
     if (e.seconds > seconds.value && e.percent > percent.value) {
       if (seconds.value > e.duration - 6) {

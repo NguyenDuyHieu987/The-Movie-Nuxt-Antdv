@@ -1,41 +1,29 @@
 <template>
   <footer class="footer">
     <div class="footer-container">
-      <div v-if="$route.path != '/contact'" class="footer-header">
-        <h2 class="help-title">Bạn cần thêm trợ giúp?</h2>
-
-        <NuxtLink class="contact-us-button" to="/contact">
-          <a-button class="click-active" size="large">
-            Liên hệ với chúng tôi
-          </a-button>
-        </NuxtLink>
-      </div>
-
       <div class="footer-body">
-        <div class="footer-section default">
-          <div class="logo">
-            <NuxtLink :to="{ path: '/' }">
-              <nuxt-img
-                :src="getImage('logo.png', 'logo', 'w-60')"
-                loading="lazy"
-                alt=""
-                :height="45"
-                :width="45"
-              />
-              Phimhay247
-            </NuxtLink>
-          </div>
-
-          <p class="note">
-            Mọi thông tin, hình ảnh, video trên website đều được sưu tầm trên
-            Internet. Chúng tôi không sở hữu hay chịu trách nhiệm bất kỳ thông
-            tin nào trên web này. Nếu làm ảnh hưởng đến cá nhân hay tổ chức nào,
-            khi được yêu cầu, chúng tôi sẽ xem xét và gỡ bỏ ngay lập tức.
-          </p>
+        <div class="logo">
+          <NuxtLink :to="{ path: '/' }">
+            <nuxt-img
+              :src="getImage('logo.png', 'logo', 'w-60')"
+              loading="lazy"
+              alt=""
+              :height="45"
+              :width="45"
+            />
+            Phimhay247
+          </NuxtLink>
         </div>
 
-        <div class="footer-section support">
-          <p class="footer-section-title">Thông tin liên hệ</p>
+        <p class="note">
+          Mọi thông tin, hình ảnh, video trên website đều được sưu tầm trên
+          Internet. Chúng tôi không sở hữu hay chịu trách nhiệm bất kỳ thông tin
+          nào trên web này. Nếu làm ảnh hưởng đến cá nhân hay tổ chức nào, khi
+          được yêu cầu, chúng tôi sẽ xem xét và gỡ bỏ ngay lập tức.
+        </p>
+
+        <div class="support">
+          <p>Thông tin liên hệ:</p>
           <div class="support-social">
             <NuxtLink
               class="facebook click-active"
@@ -55,7 +43,7 @@
                 />
               </svg>
 
-              Facebook: Hiếu Duy Nguyễn
+              Facebook
             </NuxtLink>
             <NuxtLink
               class="email click-active"

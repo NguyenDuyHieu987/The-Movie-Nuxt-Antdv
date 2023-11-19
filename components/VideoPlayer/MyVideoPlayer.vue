@@ -95,31 +95,28 @@
 
       <div
         v-show="
-          videoStates.isShowNotify &&
-          isInHistory &&
-          videoStates.isLoaded &&
-          !videoStates.isLoading
+          videoStates.isShowNotify && isInHistory && !videoStates.isLoading
         "
-        class="notify"
+        class="notify-keep-watching"
       >
         <CloseBtn
           class="transparent close-notify"
           @click="videoStates.isShowNotify = false"
         />
 
-        <div class="notify-content">
+        <div class="notify-played">
           <span>
             Bạn đã xem đến:
-            {{ formatDuration(dataMovie?.history_progress?.seconds) }}
+            {{ formatDuration(historyProgress.seconds) }}
           </span>
         </div>
 
-        <div class="notify-footer">
+        <div class="notify-actions">
           <a-button class="click-active" type="text" @click="onClickPlayAgain">
             Xem lại từ đầu
           </a-button>
           <a-button
-            v-show="video?.duration - dataMovie?.history_progress?.seconds > 10"
+            v-show="video?.duration - historyProgress.seconds > 10"
             class="click-active"
             type="text"
             @click="onClickKeepWatching"
@@ -727,12 +724,13 @@ import { getVideo } from '~/services/video';
 const props = withDefaults(
   defineProps<{
     dataMovie: any;
-    isInHistory: boolean;
+    // isInHistory: boolean;
+    // historyProgress: { duration: number; percent: number; seconds: number };
     backdrop: string;
     videoUrl: string;
   }>(),
   {
-    isInHistory: false,
+    // isInHistory: false,
   }
 );
 
@@ -757,6 +755,18 @@ const overlayProgress = ref();
 const progressBar = ref();
 const timeline = ref();
 const canvasPreviewImg = ref();
+const isInHistory = defineModel<boolean>('isInHistory', { default: false });
+const historyProgress = defineModel<{
+  duration: number;
+  percent: number;
+  seconds: number;
+}>('historyProgress', {
+  default: {
+    duration: 0,
+    percent: 0,
+    seconds: 0,
+  },
+});
 const videoStates = reactive({
   isLoading: false,
   isLoaded: false,
@@ -768,7 +778,7 @@ const videoStates = reactive({
   isMouseMoveOverlayProgress: false,
   isHideControls: false,
   isShowControls: false,
-  isShowNotify: props.dataMovie?.history_progress || false,
+  isShowNotify: isInHistory.value || false,
   isActiveControlsAnimation: false,
   isRewind: {
     enable: false,
@@ -898,6 +908,16 @@ watch(
     video.value.load();
   }
   // { immediate: true }
+);
+
+watch(
+  isInHistory,
+  () => {
+    if (isInHistory.value) {
+      videoStates.isShowNotify = true;
+    }
+  },
+  { immediate: true }
 );
 
 onBeforeRouteLeave(() => {
@@ -1446,10 +1466,10 @@ const onClickPlayAgain = () => {
 };
 
 const onClickKeepWatching = () => {
-  video.value.currentTime = props.dataMovie?.history_progress?.seconds;
+  video.value.currentTime = historyProgress.value.seconds;
   progressBar.value.style.setProperty(
     '--progress-width',
-    props.dataMovie?.history_progress?.percent
+    historyProgress.value.percent
   );
   videoStates.isShowNotify = false;
   video.value.play();

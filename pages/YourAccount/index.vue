@@ -1,5 +1,5 @@
 <template>
-  <div class="service-page your-account center-page padding-content">
+  <div class="service-page your-account center-page">
     <div v-if="!store.loadingUser">
       <div v-if="isLogin" class="your-account-container">
         <!-- <Transition appear name="slide-bottom">

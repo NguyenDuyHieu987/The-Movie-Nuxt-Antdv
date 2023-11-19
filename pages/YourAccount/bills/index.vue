@@ -31,8 +31,6 @@ useSeoMeta({
   ogDescription: 'Hóa đơn của bạn. Lịch sử giao dịch',
   ogLocale: 'vi',
 });
-
-const internalInstance: any = getCurrentInstance();
 </script>
 
 <style scoped lang="scss" src="./BillsPage.scss"></style>

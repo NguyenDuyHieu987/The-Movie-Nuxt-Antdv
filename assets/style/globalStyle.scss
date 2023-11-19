@@ -96,6 +96,8 @@
   --drawer-width: 240px;
   --max-width-app: 2200px;
   --max-width-collapsed-sider: 900px;
+  --max-width-center-page: 1024px;
+  --max-width-change-page: 700px;
   --card-movie-gap: 0.35vw;
   --card-movie-vertical-gap: 15px;
   --line-height-regular: 1.5;
@@ -262,7 +264,7 @@ svg {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Lobster', cursive;
-    font-size: 1.9em;
+    font-size: 2.25rem;
 
     &.animated {
       animation: textclip 3s linear infinite;

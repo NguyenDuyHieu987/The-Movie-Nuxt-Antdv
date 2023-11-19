@@ -130,12 +130,21 @@
 
         .detail-content-right {
           display: flex;
-          width: 35%;
+          flex-direction: column;
           gap: 10px;
+          width: 35%;
 
-          .box-short-content {
-            .tags + .tags {
-              margin-top: 10px;
+          .tags + .tags {
+            // margin-top: 10px;
+          }
+
+          .tags {
+            .tags-item {
+              a {
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
             }
           }
         }

@@ -1,5 +1,5 @@
 <template>
-  <div class="service-page payment padding-content">
+  <div class="service-page payment center-page padding-content">
     <div v-if="!store.loadingUser">
       <div v-if="store.isLogin" class="payment-container">
         <div class="payment-header">
@@ -278,4 +278,4 @@ const handleClickStripeMethod = () => {
 };
 </script>
 
-<style lang="scss" src="./PaymentPage.scss"></style>
+<style lang="scss" src="./PaymentPickerPage.scss"></style>
