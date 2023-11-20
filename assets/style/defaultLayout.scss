@@ -47,7 +47,7 @@
 }
 
 // .upgrade, .payment, .your-account, .bills
-.body-content:has(.service-page, .change-page) {
+.body-content:has(.service-page, .change-page, .center-page) {
   --sider-width: 0px;
   --sider-collapsed-width: 0px;
   margin-left: 0px;
