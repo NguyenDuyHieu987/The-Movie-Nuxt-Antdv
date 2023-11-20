@@ -11,9 +11,8 @@
 
       <div class="main-info">
         <div class="backdrop-img">
-          <div class="backdrop-wrapper">
+          <div class="backdrop-wrapper ratio-16-9">
             <NuxtImg
-              class="ant-image"
               :src="
                 getImage(
                   dataMovie?.backdrop_path,
@@ -27,7 +26,7 @@
             />
           </div>
           <div class="poster">
-            <div class="poster-wrapper">
+            <div class="poster-wrapper ratio-2-3">
               <NuxtImg
                 class="ant-image"
                 :src="getImage(dataMovie?.poster_path, 'poster', 'w-250')"
