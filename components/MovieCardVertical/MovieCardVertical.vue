@@ -16,22 +16,20 @@
     @pointerenter="onMouseEnter"
     :style="`--dominant-poster-color: rgb(${item.dominant_poster_color[0]}, ${item.dominant_poster_color[1]},${item.dominant_poster_color[2]})`"
   >
-    <!-- <el-skeleton :loading="loading" animated>
+    <!-- <el-skeleton :loading="loading" animated class="ratio-2-3">
       <template #template>
         <el-skeleton-item class="skeleton-img" />
       </template> -->
 
     <!-- <template #default> -->
-    <div class="img-box">
+    <div class="img-box ratio-2-3">
       <!-- <img
-        class="ant-image"
         v-lazy="getImage(item?.poster_path, 'poster')"
         loading="lazy"
         alt=""
       /> -->
 
       <NuxtImg
-        class="ant-image"
         :src="getImage(item?.poster_path, 'poster')"
         format="avif"
         loading="lazy"

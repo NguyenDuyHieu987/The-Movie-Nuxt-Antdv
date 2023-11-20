@@ -1,6 +1,6 @@
 <template>
   <div class="movie-card-item trailer">
-    <!-- <el-skeleton :loading="loading" animated>
+    <!-- <el-skeleton :loading="loading" animated class="ratio-16-9">
       <template #template>
         <el-skeleton-item class="skeleton-img" />
       </template>
@@ -20,16 +20,14 @@
               .toLowerCase()}`,
       }"
     >
-      <div class="img-box">
+      <div class="img-box ratio-16-9">
         <!-- <img
-          class="ant-image"
           v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
           loading="lazy"
           alt=""
         /> -->
 
         <NuxtImg
-          class="ant-image"
           :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
           format="avif"
           loading="lazy"

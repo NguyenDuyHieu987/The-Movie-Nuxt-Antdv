@@ -2,7 +2,7 @@
   <div class="movie-card-item-suggest">
     <!-- <el-skeleton :loading="loading" animated>
       <template #template>
-        <div class="img-box">
+        <div class="img-box ratio-16-9">
           <el-skeleton-item class="skeleton-img" />
         </div>
         <div class="content-skeleton">
@@ -27,9 +27,8 @@
       <template #default> </template>
     </el-skeleton> -->
 
-    <div class="img-box" @click="onClickPlay">
+    <div class="img-box ratio-16-9" @click="onClickPlay">
       <NuxtImg
-        class="ant-image"
         :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
         format="avif"
         loading="lazy"

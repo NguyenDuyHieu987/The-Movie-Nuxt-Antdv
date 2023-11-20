@@ -228,6 +228,31 @@ a {
   }
 }
 
+[class*=' ratio-'],
+[class^='ratio-'],
+[class|='ratio'] {
+  height: 0 !important;
+
+  img,
+  .skeleton-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.ratio-16-9 {
+  padding-bottom: 56.25%;
+}
+
+.ratio-2-3 {
+  padding-bottom: 150%;
+}
+
 img,
 button,
 .logo {

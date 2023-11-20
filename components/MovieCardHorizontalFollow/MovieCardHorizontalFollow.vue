@@ -3,7 +3,7 @@
     <p class="index-item">{{ index + 1 }}</p>
     <!-- <el-skeleton :loading="loading" animated>
       <template #template>
-        <div class="img-box">
+        <div class="img-box ratio-16-9">
           <el-skeleton-item class="skeleton-img" />
         </div>
         <div class="content-skeleton">
@@ -32,7 +32,7 @@
       class="movie-follow-item"
     >
       <div class="img-box">
-        <div class="ant-image">
+        <div class="img-wrapper ratio-16-9">
           <!-- <img
             v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
             loading="lazy"

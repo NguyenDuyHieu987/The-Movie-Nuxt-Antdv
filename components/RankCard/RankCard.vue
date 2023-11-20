@@ -14,10 +14,10 @@
     }"
     class="movie-rank-item"
   >
-    <el-skeleton :loading="loading" animated>
+    <el-skeleton :loading="true" animated>
       <template #template>
         <div class="img-box">
-          <el-skeleton-item class="skeleton-img" />
+          <el-skeleton-item class="skeleton-img ratio-2-3" />
         </div>
         <div class="content-skeleton">
           <el-skeleton-item variant="text" style="width: 80%" />
@@ -29,7 +29,7 @@
 
       <template #default>
         <div class="img-box">
-          <div class="ant-image">
+          <div class="img-wrapper ratio-2-3">
             <!-- <img
               v-lazy="getImage(item?.poster_path, 'poster', 'w-120')"
               :lazy="true"
@@ -38,7 +38,6 @@
             /> -->
 
             <NuxtImg
-              class="ant-image"
               :src="getImage(item?.poster_path, 'poster', 'w-120')"
               format="avif"
               loading="lazy"

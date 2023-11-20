@@ -25,18 +25,11 @@
       // border-top-left-radius: 5px;
       border-radius: 5px;
       transition: all 0.3s;
-      height: 0px !important;
-      padding-bottom: 56.25%;
 
       .el-skeleton__item.skeleton-img {
-        position: absolute;
         width: 100%;
         height: 100%;
         transition: all 0.3s;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
       }
 
       .content-skeleton {
@@ -57,21 +50,13 @@
       // border-top-left-radius: 5px;
       border-radius: 5px;
       // transition: all 0.3s;
-      height: 0px !important;
-      padding-bottom: 56.25%;
 
       img {
-        position: absolute;
+        height: 100%;
         width: 100%;
         object-fit: cover;
-        transition: all 0.3s;
         background-color: var(--background-content-color);
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        min-height: 100%;
-        max-height: 100%;
+        transition: all 0.3s;
 
         &[lazy='error'] {
           // width: 30% !important;
