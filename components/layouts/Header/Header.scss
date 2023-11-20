@@ -332,7 +332,7 @@ header.header-bar {
 
         &.login-header {
           transition: all 0.15s;
-          padding-right: 18px;
+          padding-right: 0px;
 
           a {
             display: flex;
@@ -421,18 +421,15 @@ header.header-bar {
 
       ul.menu-header {
         li.menu-item {
-          padding: 0px;
-
           &.search-mobile {
             display: flex;
+            padding-right: 0px;
           }
 
           &.notification {
-            margin-right: 15px;
           }
 
           &.login-header {
-            padding-right: 15px;
           }
         }
       }
@@ -456,8 +453,6 @@ header.header-bar {
       ul.menu-header {
         li.menu-item {
           &.login-header {
-            padding-right: 10px;
-
             a {
               font-size: 1.3rem;
               padding: 4px 10px;

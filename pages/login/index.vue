@@ -465,7 +465,7 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
             {
               user_token: response.headers.get('Authorization'),
             },
-            30
+            24
           );
           // navigateTo({ path: '/' });
           navigateTo({ path: urlBack.value });
@@ -476,7 +476,7 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
             {
               user_token: response.headers.get('Authorization'),
             },
-            30
+            24
           );
           // navigateTo({ path: '/' });
           navigateTo({ path: urlBack.value });

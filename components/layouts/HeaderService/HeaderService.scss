@@ -225,7 +225,7 @@ header.header-bar-service {
   }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 800px) {
   header.header-bar-service {
     .ant-select-show-search.search-header {
       display: none;
@@ -264,7 +264,6 @@ header.header-bar-service {
     }
 
     .right-header {
-      margin-right: -5px;
     }
   }
 }

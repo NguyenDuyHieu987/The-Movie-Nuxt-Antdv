@@ -55,6 +55,7 @@ header.header-bar-center-page {
     display: flex;
     align-items: center;
     height: 100%;
+    list-style: none;
 
     .el-skeleton.is-animated {
       display: flex;
@@ -157,6 +158,42 @@ header.header-bar-center-page {
         .el-popper.el-dropdown__popper.header {
           top: calc(var(--header-height) / 1.46) !important;
         }
+
+        &.login-header {
+          transition: all 0.15s;
+          padding-right: 0px;
+
+          a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+            font-size: 1.4rem;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 25px;
+            line-height: normal;
+            border: 1px solid var(--border-regular);
+            // background-color: var(--app-background-color);
+            // background-color: #003c52;
+            color: inherit;
+            transition: background-color 0.15s;
+            user-select: none;
+
+            &:hover {
+              background-color: #282828;
+              border: 1px solid transparent;
+              // background-color: var(--app-background-color8);
+              // background-color: #0043743c;
+            }
+          }
+
+          &:active {
+            opacity: 0.8;
+          }
+        }
       }
     }
   }
@@ -176,6 +213,7 @@ header.header-bar-center-page {
     left: 50% !important;
     transform: translateX(-50%);
     width: 100% !important;
+
     .section-title.search {
       margin-top: 0px;
     }
@@ -189,7 +227,7 @@ header.header-bar-center-page {
   }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 800px) {
   header.header-bar-center-page {
     .ant-select-show-search.search-header {
       display: none;
@@ -201,6 +239,8 @@ header.header-bar-center-page {
 
       ul.menu-header {
         li.menu-item {
+          &.login-header {
+          }
         }
       }
     }
@@ -216,7 +256,21 @@ header.header-bar-center-page {
     }
 
     .right-header {
-      margin-right: -5px;
+      ul.menu-header {
+        li.menu-item {
+          &.login-header {
+            a {
+              font-size: 1.3rem;
+              padding: 4px 10px;
+            }
+
+            svg {
+              width: 2.1rem;
+              height: 2.1rem;
+            }
+          }
+        }
+      }
     }
   }
 }

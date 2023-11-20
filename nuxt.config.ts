@@ -208,7 +208,7 @@ export default defineNuxtConfig({
       },
     },
     output: {
-      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
     },
   },
   vite: {

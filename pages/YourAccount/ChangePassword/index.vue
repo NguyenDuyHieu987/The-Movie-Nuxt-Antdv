@@ -385,7 +385,7 @@ const handleVerify = (formVerify: any) => {
           utils.localStorage.setWithExpiry(
             'user_token',
             response.headers.get('Authorization'),
-            30
+            24
           );
         }
 
