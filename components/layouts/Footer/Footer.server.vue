@@ -1,14 +1,22 @@
 <template>
   <footer class="footer">
     <div class="footer-container">
-      <div v-if="$route.path != '/contact'" class="footer-header">
-        <h2 class="help-title">Bạn cần thêm trợ giúp?</h2>
+      <div class="footer-header">
+        <div v-if="$route.path != '/contact'" class="contactus-section">
+          <h2 class="help-title">Bạn cần thêm trợ giúp?</h2>
 
-        <NuxtLink class="contact-us-button" to="/contact">
-          <a-button class="click-active" size="large">
-            Liên hệ với chúng tôi
-          </a-button>
-        </NuxtLink>
+          <NuxtLink class="contact-us-button" to="/contact">
+            <a-button class="click-active" size="large">
+              Liên hệ với chúng tôi
+            </a-button>
+          </NuxtLink>
+        </div>
+
+        <div v-if="$route.path == '/contact'">
+          <NuxtLink class="helpcenter-logo" to="/help">
+            Trung tâm trợ giúp
+          </NuxtLink>
+        </div>
       </div>
 
       <div class="footer-body">

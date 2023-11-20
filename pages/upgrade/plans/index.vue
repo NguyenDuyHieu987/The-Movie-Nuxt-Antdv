@@ -1,6 +1,6 @@
 <template>
-  <div class="service-page upgrade center-page padding-content">
-    <div class="upgrade-container">
+  <div class="service-page upgrade padding-content">
+    <div class="upgrade-container center-page">
       <!-- <Transition appear name="slide-bottom"> -->
       <!-- v-show="showAnimation" -->
       <div class="upgrade-header">

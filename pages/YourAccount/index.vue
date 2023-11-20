@@ -1,137 +1,142 @@
 <template>
-  <div class="service-page your-account center-page">
-    <div v-if="!store.loadingUser">
-      <div v-if="isLogin" class="your-account-container">
-        <!-- <Transition appear name="slide-bottom">
-          <div v-show="showAnimation"> -->
-        <div class="your-account-header">
-          <h1>Tài khoản của bạn</h1>
-          <div class="join-since">
-            <span>{{ 'Tham gia từ ' + joinSince }} </span>
-          </div>
-        </div>
-
-        <section class="account-grid">
-          <div class="account-grid-row info-account">
-            <div class="row-label">
-              <span>Thông tin tài khoản</span>
-              <Teleport to="#bottom-zone" :disabled="!responesive">
-                <!-- <a-button
-                      class="delete-account-btn"
-                      type="text"
-                      @click="deleteAccount"
-                    >
-                      Xóa tài khoản
-                    </a-button> -->
-
-                <a-button
-                  class="switch-account-btn click-active"
-                  type="text"
-                  @click="navigateTo('/login')"
-                >
-                  Chuyển tài khoản
-                </a-button>
-              </Teleport>
-            </div>
-            <div class="row-content">
-              <div class="row-content-item">
-                <div class="left">
-                  <span class="label">Tài khoản: </span>
-                  <span> {{ userAccount?.username }}</span>
-                </div>
-              </div>
-
-              <div class="row-content-item">
-                <div class="left">
-                  <span class="label">Họ và tên: </span>
-                  <span> {{ userAccount?.full_name }}</span>
-                </div>
-              </div>
-
-              <div class="row-content-item">
-                <div class="left">
-                  <span class="label">Email: </span>
-                  <span>{{ userAccount?.email }}</span>
-                </div>
-                <div v-if="userAccount?.auth_type == 'email'" class="right">
-                  <NuxtLink class="click-active" to="/YourAccount/ChangeEmail">
-                    Thay đổi email
-                  </NuxtLink>
-                </div>
-              </div>
-
-              <div
-                v-if="userAccount?.auth_type == 'email'"
-                class="row-content-item password"
-              >
-                <div class="left">
-                  <span class="label">Mật khẩu: </span>
-                  <span>**********</span>
-                </div>
-                <div class="right">
-                  <NuxtLink
-                    class="click-active"
-                    to="/YourAccount/ChangePassword"
-                  >
-                    Thay đổi mật khẩu
-                  </NuxtLink>
-                </div>
-              </div>
+  <div class="service-page your-account padding-content">
+    <div class="center-page">
+      <div v-if="!store.loadingUser">
+        <div v-if="isLogin" class="your-account-container">
+          <!-- <Transition appear name="slide-bottom">
+            <div v-show="showAnimation"> -->
+          <div class="your-account-header">
+            <h1>Tài khoản của bạn</h1>
+            <div class="join-since">
+              <span>{{ 'Tham gia từ ' + joinSince }} </span>
             </div>
           </div>
 
-          <div class="account-grid-row">
-            <div class="row-label">Thông tin gói dịch vụ</div>
-            <div class="row-content">
-              <div class="row-content-item">
-                <div class="left">
-                  <span>Miên phí</span>
-                </div>
-                <div class="right">
+          <section class="account-grid">
+            <div class="account-grid-row info-account">
+              <div class="row-label">
+                <span>Thông tin tài khoản</span>
+                <Teleport to="#bottom-zone" :disabled="!responesive">
+                  <!-- <a-button
+                        class="delete-account-btn"
+                        type="text"
+                        @click="deleteAccount"
+                      >
+                        Xóa tài khoản
+                      </a-button> -->
+
                   <a-button
-                    class="upgrade-btn click-active"
+                    class="switch-account-btn click-active"
                     type="text"
-                    @click="navigateTo('/upgrade/plans')"
+                    @click="navigateTo('/login')"
                   >
-                    Nâng cấp
+                    Chuyển tài khoản
                   </a-button>
+                </Teleport>
+              </div>
+              <div class="row-content">
+                <div class="row-content-item">
+                  <div class="left">
+                    <span class="label">Tài khoản: </span>
+                    <span> {{ userAccount?.username }}</span>
+                  </div>
+                </div>
+
+                <div class="row-content-item">
+                  <div class="left">
+                    <span class="label">Họ và tên: </span>
+                    <span> {{ userAccount?.full_name }}</span>
+                  </div>
+                </div>
+
+                <div class="row-content-item">
+                  <div class="left">
+                    <span class="label">Email: </span>
+                    <span>{{ userAccount?.email }}</span>
+                  </div>
+                  <div v-if="userAccount?.auth_type == 'email'" class="right">
+                    <NuxtLink
+                      class="click-active"
+                      to="/YourAccount/ChangeEmail"
+                    >
+                      Thay đổi email
+                    </NuxtLink>
+                  </div>
+                </div>
+
+                <div
+                  v-if="userAccount?.auth_type == 'email'"
+                  class="row-content-item password"
+                >
+                  <div class="left">
+                    <span class="label">Mật khẩu: </span>
+                    <span>**********</span>
+                  </div>
+                  <div class="right">
+                    <NuxtLink
+                      class="click-active"
+                      to="/YourAccount/ChangePassword"
+                    >
+                      Thay đổi mật khẩu
+                    </NuxtLink>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="account-grid-row">
-            <div class="row-label">Lịch sử giao dịch</div>
-            <div class="row-content">
-              <div class="row-content-item">
-                <div class="left">
-                  <span>Không có hóa đơn nào gần đây</span>
-                </div>
-
-                <div class="right">
-                  <NuxtLink class="click-active" to="/YourAccount/bills">
-                    Xem thêm
-                  </NuxtLink>
+            <div class="account-grid-row">
+              <div class="row-label">Thông tin gói dịch vụ</div>
+              <div class="row-content">
+                <div class="row-content-item">
+                  <div class="left">
+                    <span>Miên phí</span>
+                  </div>
+                  <div class="right">
+                    <a-button
+                      class="upgrade-btn click-active"
+                      type="text"
+                      @click="navigateTo('/upgrade/plans')"
+                    >
+                      Nâng cấp
+                    </a-button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        <div id="bottom-zone" class="bottom-zone">
-          <a-button
-            class="logout-btn click-active"
-            type="text"
-            @click="handleLogout"
-          >
-            <span>Đăng xuất</span>
-          </a-button>
+            <div class="account-grid-row">
+              <div class="row-label">Lịch sử giao dịch</div>
+              <div class="row-content">
+                <div class="row-content-item">
+                  <div class="left">
+                    <span>Không có hóa đơn nào gần đây</span>
+                  </div>
+
+                  <div class="right">
+                    <NuxtLink class="click-active" to="/YourAccount/bills">
+                      Xem thêm
+                    </NuxtLink>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div id="bottom-zone" class="bottom-zone">
+            <a-button
+              class="logout-btn click-active"
+              type="text"
+              @click="handleLogout"
+            >
+              <span>Đăng xuất</span>
+            </a-button>
+          </div>
+          <!-- </div>
+          </Transition> -->
         </div>
-        <!-- </div>
-        </Transition> -->
-      </div>
 
-      <RequireAuth v-else />
+        <RequireAuth v-else />
+      </div>
     </div>
   </div>
 </template>

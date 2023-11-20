@@ -1,118 +1,120 @@
 <template>
-  <div class="service-page change-page email center-page padding-content">
-    <div v-if="isLogin" class="email-container">
-      <Transition appear name="slide-left">
-        <div v-show="showAnimation">
-          <div v-if="!isChangeEmail">
-            <a-button class="back-page-btn click-active" type="text">
-              <template #icon>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="2rem"
-                  height="2rem"
-                  role="img"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M20 11H7.83l5.59-5.59L12 4l-8 8l8 8l1.41-1.41L7.83 13H20v-2z"
-                  />
-                </svg>
-              </template>
-              <NuxtLink to="/YourAccount"> Tài khoản</NuxtLink>
-            </a-button>
+  <div class="service-page change-page email padding-content">
+    <div class="center-page">
+      <div v-if="isLogin" class="email-container">
+        <Transition appear name="slide-left">
+          <div v-show="showAnimation">
+            <div v-if="!isChangeEmail">
+              <a-button class="back-page-btn click-active" type="text">
+                <template #icon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="2rem"
+                    height="2rem"
+                    role="img"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M20 11H7.83l5.59-5.59L12 4l-8 8l8 8l1.41-1.41L7.83 13H20v-2z"
+                    />
+                  </svg>
+                </template>
+                <NuxtLink to="/YourAccount"> Tài khoản</NuxtLink>
+              </a-button>
 
-            <div class="changeEmail-header">
-              <div class="note">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="8rem"
-                  height="8rem"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm7 10c0 4.52-2.98 8.69-7 9.93c-4.02-1.24-7-5.41-7-9.93V6.3l7-3.11l7 3.11V11zm-11.59.59L6 13l4 4l8-8l-1.41-1.42L10 14.17z"
-                  />
-                </svg>
-                <h1>Trước tiên, Hãy xác nhận Email này là của bạn</h1>
-                <p>
-                  Trước khi cấp phép thực hiện bất kỳ thay đổi nào, chúng tôi
-                  cần đảm bảo đây là bạn.
-                </p>
+              <div class="changeEmail-header">
+                <div class="note">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="8rem"
+                    height="8rem"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm7 10c0 4.52-2.98 8.69-7 9.93c-4.02-1.24-7-5.41-7-9.93V6.3l7-3.11l7 3.11V11zm-11.59.59L6 13l4 4l8-8l-1.41-1.42L10 14.17z"
+                    />
+                  </svg>
+                  <h1>Trước tiên, Hãy xác nhận Email này là của bạn</h1>
+                  <p>
+                    Trước khi cấp phép thực hiện bất kỳ thay đổi nào, chúng tôi
+                    cần đảm bảo đây là bạn.
+                  </p>
+                </div>
               </div>
+
+              <a-form
+                :model="formChangeEmail"
+                name="change-email-form"
+                class="form-change-email"
+                :class="{ disabled: loadingChangeEmail }"
+                @finish="handleSubmit"
+                hideRequiredMark
+              >
+                <a-form-item class="email" name="email">
+                  <button
+                    class="submit-form-button submit-btn click-active"
+                    html-type="submit"
+                  >
+                    <div class="left">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="3rem"
+                        height="3rem"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"
+                        />
+                      </svg>
+                      <span> {{ store.userAccount?.email }}</span>
+                    </div>
+
+                    <div class="right">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="2.4rem"
+                        height="2.4rem"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                </a-form-item>
+              </a-form>
             </div>
 
-            <a-form
-              :model="formChangeEmail"
-              name="change-email-form"
-              class="form-change-email"
-              :class="{ disabled: loadingChangeEmail }"
-              @finish="handleSubmit"
-              hideRequiredMark
+            <VerifyPinOTPForm
+              v-model:isShowForm="isChangeEmail"
+              :email="store.userAccount?.email"
+              :jwtVerifyEmail="jwtVerifyEmail"
+              v-model:otpExpOffset="otpExpOffset"
+              v-model:loadingResend="loadingResend"
+              v-model:disabled_countdown="disabled_countdown"
+              v-model:loadingVerify="loadingVerify"
+              @onVerify="handleVerify"
+              @onResend="handleResendVerifyEmail"
+              @onClickBack="handleClickBack"
             >
-              <a-form-item class="email" name="email">
-                <button
-                  class="submit-form-button submit-btn click-active"
-                  html-type="submit"
-                >
-                  <div class="left">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="3rem"
-                      height="3rem"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"
-                      />
-                    </svg>
-                    <span> {{ store.userAccount?.email }}</span>
-                  </div>
+              <template #title>
+                <h1>Xác nhận Email của bạn</h1>
 
-                  <div class="right">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="2.4rem"
-                      height="2.4rem"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2l10 10l-10 10Z"
-                      />
-                    </svg>
-                  </div>
-                </button>
-              </a-form-item>
-            </a-form>
+                <p>
+                  {{ titleVerify }}
+                  <strong> {{ store.userAccount?.email }}</strong>
+                </p>
+              </template>
+            </VerifyPinOTPForm>
           </div>
-
-          <VerifyPinOTPForm
-            v-model:isShowForm="isChangeEmail"
-            :email="store.userAccount?.email"
-            :jwtVerifyEmail="jwtVerifyEmail"
-            v-model:otpExpOffset="otpExpOffset"
-            v-model:loadingResend="loadingResend"
-            v-model:disabled_countdown="disabled_countdown"
-            v-model:loadingVerify="loadingVerify"
-            @onVerify="handleVerify"
-            @onResend="handleResendVerifyEmail"
-            @onClickBack="handleClickBack"
-          >
-            <template #title>
-              <h1>Xác nhận Email của bạn</h1>
-
-              <p>
-                {{ titleVerify }}
-                <strong> {{ store.userAccount?.email }}</strong>
-              </p>
-            </template>
-          </VerifyPinOTPForm>
-        </div>
-      </Transition>
+        </Transition>
+      </div>
+      <RequireAuth v-if="!isLogin" />
     </div>
-    <RequireAuth v-if="!isLogin" />
   </div>
 </template>
 

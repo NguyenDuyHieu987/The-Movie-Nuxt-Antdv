@@ -162,11 +162,11 @@
   }
 
   .info {
-    color: inherit;
     padding: 10px;
     padding-bottom: 15px;
     background-color: var(--background-content-color1);
     flex-grow: 1;
+    color: inherit !important;
     transition: all 0.15s;
 
     .middle {

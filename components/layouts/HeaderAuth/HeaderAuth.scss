@@ -2,8 +2,7 @@ header.header-bar-auth {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 22px;
-  padding-right: 22px;
+  padding: 0px 24px;
   height: var(--header-height);
   position: fixed;
   left: 0;
@@ -74,8 +73,7 @@ header.header-bar-auth {
 
 @media only screen and (max-width: 900px) {
   header.header-bar-auth {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0px 20px;
 
     .right-header {
       .login-btn {
@@ -105,8 +103,7 @@ header.header-bar-auth {
 
 @media only screen and (max-width: 650px) {
   header.header-bar-auth {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 0px 15px;
   }
 }
 

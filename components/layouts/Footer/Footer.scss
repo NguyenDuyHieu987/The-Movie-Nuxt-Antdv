@@ -8,7 +8,8 @@ footer.footer {
     ),
     var(--background-content-color);
   font-size: 1.4rem;
-  color: inherit;
+  // color: inherit;
+  color: var(--text-color);
   border-top: 1px solid var(--border-regular-light);
   margin-top: auto;
   padding: 25px 50px;
@@ -20,32 +21,51 @@ footer.footer {
     .footer-header {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       align-items: center;
       gap: 30px;
       padding-bottom: 20px;
       margin-bottom: 25px;
       border-bottom: 1px solid var(--border-regular-light);
-      width: 60%;
+      // width: 60%;
 
-      .help-title {
-        font-size: 2rem;
-        font-weight: 500;
+      .contactus-section {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+
+        .help-title {
+          font-size: 2rem;
+          font-weight: 500;
+        }
+
+        .contact-us-button {
+          color: inherit;
+
+          button {
+            padding: 10px 20px;
+            background: #000406;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 1.5rem;
+            color: inherit;
+
+            &:hover {
+              background: rgba(0, 4, 6, 0.35);
+            }
+          }
+        }
       }
 
-      .contact-us-button {
-        color: inherit;
+      .helpcenter-logo {
+        font-weight: 500;
+        font-size: 1.7rem;
+        line-height: normal;
+        color: var(--text-color) !important;
 
-        button {
-          padding: 10px 20px;
-          background: #000406;
-          border: none;
-          border-radius: 4px;
-          font-weight: 500;
-          font-size: 1.5rem;
-
-          &:hover {
-            background: rgba(0, 4, 6, 0.35);
-          }
+        &:hover {
+          text-decoration: underline;
         }
       }
     }

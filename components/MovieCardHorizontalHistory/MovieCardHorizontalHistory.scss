@@ -146,7 +146,7 @@
 
   .info {
     position: relative;
-    font-size: 1.45rem;
+    font-size: 1.5rem;
     width: 100%;
 
     .title {
@@ -157,6 +157,7 @@
       text-overflow: ellipsis;
       color: inherit;
       max-width: 90%;
+      font-size: 1.9rem;
     }
 
     .duration-episode {
@@ -310,22 +311,22 @@
 //   overflow: hidden;
 // }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (max-width: 1500px) {
   .movie-history-item {
     .info {
-      font-size: 1.45rem;
+      font-size: 1.4rem;
     }
   }
 }
 
 @media only screen and (max-width: 680px) {
   .movie-history-item {
-    .title {
-      font-size: 2rem;
-    }
-
     .info {
       font-size: 1.4rem;
+
+      .title {
+        font-size: 1.7rem;
+      }
     }
 
     .action {

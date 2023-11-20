@@ -1,6 +1,6 @@
 <template>
-  <div v-if="isLogin" class="service-page bills center-page padding-content">
-    This is Bills page
+  <div v-if="isLogin" class="service-page bills padding-content">
+    <div class="center-page">This is Bills page</div>
   </div>
 
   <RequireAuth v-if="!isLogin" />

@@ -16,9 +16,21 @@
   height: 100%;
 
   .img-wrapper {
+    position: relative;
+    height: 0px !important;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-radius: 10px;
+
     .ant-image {
     }
+
     img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       height: 100%;
       width: 100%;
       object-fit: cover;
@@ -324,6 +336,10 @@
 
 @media only screen and (max-width: 1300px) {
   .billboard-item {
+    .img-wrapper {
+      border-radius: 7px;
+    }
+
     .billboard-item-body {
       .info {
         .head {
@@ -358,6 +374,10 @@
 
 @media only screen and (max-width: 1000px) {
   .billboard-item {
+    .img-wrapper {
+      border-radius: 5px;
+    }
+
     .billboard-item-body {
       .action {
         .action-btn {

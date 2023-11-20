@@ -1,7 +1,9 @@
 .change-page.email {
-  // max-width: var(--max-width-change-page);
-  max-width: 700px;
-  margin: 0px auto;
+  .center-page {
+    // max-width: var(--max-width-change-page);
+    max-width: 700px;
+    margin: 0px auto;
+  }
 
   .email-container {
     padding-top: 20px;
