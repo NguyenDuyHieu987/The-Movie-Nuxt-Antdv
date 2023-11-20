@@ -6,16 +6,14 @@
   overflow: hidden;
   // background-color: var(--background-content-color);
 
-  .skeleton-img {
+  .img-box {
     display: flex;
     // height: 275px;
     width: 177px;
     flex-shrink: 0;
 
-    .el-skeleton__item {
+    .el-skeleton__item.skeleton-img {
       width: 100%;
-      height: 0px !important;
-      padding-bottom: 150%;
     }
   }
 }

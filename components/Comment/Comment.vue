@@ -21,9 +21,9 @@
           :key="item?.id"
           :index="index"
           :item="item"
+          v-model:commentsList="commentsList"
           :movieId="dataMovie?.id"
           :movieType="dataMovie?.media_type"
-          v-model:commentsList="commentsList"
         />
       </div>
 
@@ -48,12 +48,13 @@ import FormComment from '~/components/Comment/FormComment/FormComment.vue';
 import CommentItem from '~/components/Comment/CommentItem/CommentItem.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
+import type { commentForm } from '~/types';
 
 const props = defineProps<{
   dataMovie: any;
 }>();
 
-const commentsList = ref<any[]>([]);
+const commentsList = ref<commentForm[]>([]);
 const loading = ref<boolean>(false);
 const skip = ref<number>(1);
 const total = ref<number>(0);

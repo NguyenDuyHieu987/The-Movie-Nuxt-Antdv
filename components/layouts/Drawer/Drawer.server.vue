@@ -29,13 +29,12 @@
 
     <header class="user-header">
       <div class="user-image-container" v-if="!collapsed && isLogin">
-        <nuxt-img
+        <NuxtImg
           class="avatar"
           :src="
-            !isNaN(+userAccount?.avatar)
-              ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
-              : userAccount?.avatar
+            getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar', 'w-50')
           "
+          loading="lazy"
           alt=""
           preload
         />

@@ -27,6 +27,7 @@ export function CommentMovie(params: any) {
   const bodyFormData = new FormData();
   bodyFormData.append('content', params.content);
   params?.parentId && bodyFormData.append('parent_id', params.parentId);
+  params?.replyTo && bodyFormData.append('reply_to', params.replyTo);
   bodyFormData.append('type', params.commentType);
 
   return makeRequest(`/comment/post/${params.movieType}/${params.movieId}`, {

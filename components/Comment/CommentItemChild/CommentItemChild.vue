@@ -1,16 +1,15 @@
 <template>
-  <div class="comment-item-child">
+  <div class="comment-item-child" :id="item?.id">
     <div class="comment-item-child-container">
       <div class="author">
         <div class="author-image">
-          <nuxt-img
+          <NuxtImg
             class="avatar"
             :src="
-              !isNaN(+item?.user_avatar)
-                ? getImage(`account${item?.user_avatar}.jpg`, 'user_avatar')
-                : item?.user_avatar
+              getImage(`account${item?.user_avatar}.jpg`, 'user_avatar', 'w-50')
             "
             loading="lazy"
+            alt=""
           />
         </div>
       </div>
@@ -18,12 +17,17 @@
         <div class="top">
           <span class="author-username">{{ item?.username }}</span>
           <span class="created-at">
-            {{ utils.dateFormater.fromNow(item?.created_at) }}
+            {{ utils.dateFormater.fromNow(item?.created_at!) }}
           </span>
           <span v-if="isUpdated" class="updated-text"> (Đã chỉnh sửa) </span>
         </div>
 
-        <p class="content">{{ commentContent }}</p>
+        <div class="content">
+          <div v-if="item?.reply_to" class="reply-to" @click="onClickReplyTo">
+            <span> @{{ commentReplyTo?.username || 'Đi tới' }} </span>
+          </div>
+          <p>{{ commentContent }}</p>
+        </div>
 
         <div class="actions">
           <LikeDislike :comment="item" />
@@ -40,16 +44,16 @@
 
         <FormComment
           v-show="isShowFormComment"
-          v-model:listReplies="listReplies"
-          :movieId="movieId"
-          :movieType="movieType"
+          v-model:commentsList="listReplies"
+          :movieId="item?.movie_id"
+          :movieType="item?.movie_type"
           :showActions="true"
           :parent="parent"
           :comment="item"
           :isShowFormComment="isShowFormComment"
           commentType="children"
           :action="commentAction"
-          :replyTo="item?.username"
+          :replyTo="item?.id"
           @onClickCancel="isShowFormComment = false"
           @onSuccessCommentChild="handleSuccessCommentChild"
           @onSuccessEditComment="handleSuccessEditComment"
@@ -147,14 +151,15 @@ import { getImage } from '~/services/image';
 import FormComment from '~/components/Comment/FormComment/FormComment.vue';
 import LikeDislike from '~/components/Comment/LikeDislike/LikeDislike.vue';
 import { storeToRefs } from 'pinia';
+import type { commentForm } from '~/types';
 import _ from 'lodash';
-import { LikeOutlined, DislikeOutlined } from '@ant-design/icons-vue';
 
 const props = defineProps<{
-  item: any;
-  movieId: string;
-  parent: any;
-  movieType: string;
+  // movieId: string;
+  // movieType: string;
+  item: commentForm;
+  parent: commentForm;
+  onLoadMoreReplies: () => void;
 }>();
 
 const emits = defineEmits<{
@@ -168,10 +173,24 @@ const { userAccount } = storeToRefs<any>(store);
 const listReplies = defineModel<any[]>('listReplies');
 const isShowFormComment = ref<boolean>(false);
 const commentAction = ref<string>('post');
-const commentContent = ref<string>(props.item?.content);
-const isUpdated = ref<boolean>(props.item?.isUpdated);
+const commentContent = ref<string>(props.item?.content || '');
+const isUpdated = ref<boolean>(props.item?.updated || false);
+const commentReplyTo = computed<commentForm>(() =>
+  props.item?.reply_to
+    ? listReplies.value!.find((x: commentForm) => x!.id == props.item?.reply_to)
+    : null
+);
 
-onBeforeMount(() => {});
+onMounted(() => {
+  window.onclick = (e: any) => {
+    if (!e.target.closest('.reply-to')) {
+      const listRepliesEl = document.querySelectorAll(
+        `.comment-item-child`
+      ) as NodeListOf<Element>;
+      listRepliesEl.forEach((el) => el.classList.remove('focused'));
+    }
+  };
+});
 
 const handleSuccessCommentChild = (data: any) => {
   emits('onSuccessCommentChild', data);
@@ -181,7 +200,7 @@ const handleEditComment = () => {
   isShowFormComment.value = !isShowFormComment.value;
   if (isShowFormComment.value) {
     commentAction.value = 'edit';
-    commentContent.value = props.item?.content;
+    commentContent.value = props.item?.content!;
   }
 };
 
@@ -194,9 +213,9 @@ const handleSuccessEditComment = (data: string) => {
 const handleRemoveComment = () => {
   DeleteComment({
     id: props.item?.id,
-    movieId: props.movieId,
+    movieId: props.item?.movie_id,
     parentId: props.parent?.id,
-    movieType: props.movieType,
+    movieType: props.item?.movie_id,
     commentType: 'children',
   })
     .then((response) => {
@@ -227,6 +246,32 @@ const handleRemoveComment = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {});
+};
+
+const onClickReplyTo = async () => {
+  if (commentReplyTo.value) {
+    const replyToEl = document.getElementById(
+      props.item?.reply_to!
+    ) as HTMLElement;
+
+    // const listRepliesEl = document.querySelectorAll(
+    //   `.comment-item-child[data-parent-id='${props.parent?.id}']`
+    // ) as NodeListOf<Element>;
+
+    const listRepliesEl = document.querySelectorAll(
+      `.comment-item-child`
+    ) as NodeListOf<Element>;
+
+    // console.log(listRepliesEl);
+
+    listRepliesEl.forEach((el) => el.classList.remove('focused'));
+
+    replyToEl.classList.toggle('focused');
+
+    replyToEl.scrollIntoView({ block: 'center' });
+  } else {
+    props.onLoadMoreReplies();
+  }
 };
 </script>
 

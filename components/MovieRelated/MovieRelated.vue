@@ -21,7 +21,7 @@
             :key="index"
             :item="item"
           >
-            <div class="img-box">
+            <div class="img-box ratio-16-9">
               <el-skeleton-item class="skeleton-img" />
             </div>
             <div class="content-skeleton">
@@ -84,7 +84,7 @@
             :key="index"
             :item="item"
           >
-            <div class="img-box">
+            <div class="img-box ratio-16-9">
               <el-skeleton-item class="skeleton-img" />
             </div>
             <div class="content-skeleton">

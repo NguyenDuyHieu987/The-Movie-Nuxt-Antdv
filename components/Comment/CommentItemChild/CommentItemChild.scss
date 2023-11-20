@@ -3,7 +3,16 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 10px;
+  padding: 7px 0px;
+
+  &.focused {
+    padding: 7px;
+    margin-left: -7px;
+    border-radius: 4px;
+    background-color: #151515;
+    border: 1px solid var(--app-background-color);
+    box-shadow: 0 0 6px #008ddfad;
+  }
 
   & + .comment-item-child {
   }
@@ -45,8 +54,16 @@
       }
 
       .content {
+        display: flex;
+        gap: 10px;
         font-size: 1.4rem;
-        margin-top: 5px;
+        margin-top: 3px;
+
+        .reply-to {
+          font-weight: 500;
+          color: #008ddf;
+          cursor: pointer;
+        }
       }
 
       .actions {
@@ -54,7 +71,6 @@
         align-items: center;
         gap: 10px;
         margin-top: 7px;
-        margin-bottom: 3px;
 
         .ant-btn {
           font-size: 1.3rem;

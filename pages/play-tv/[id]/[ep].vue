@@ -551,7 +551,7 @@ const handelAddToList = () => {
 
 const scrollToComment = () => {
   const comment = document.getElementById('comment') as HTMLElement;
-  comment.scrollIntoView();
+  comment.scrollIntoView({ block: 'center' });
 };
 </script>
 

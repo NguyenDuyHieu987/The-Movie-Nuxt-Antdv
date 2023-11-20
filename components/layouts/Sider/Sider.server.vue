@@ -15,12 +15,15 @@
           class="user-image-container"
           v-if="!collapsed || openSiderBarFixed"
         >
-          <nuxt-img
+          <NuxtImg
             class="avatar"
             :src="
-              !isNaN(+userAccount?.avatar) // ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
-                ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
-                : userAccount?.avatar
+              // !isNaN(+userAccount?.avatar) ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
+              getImage(
+                `account${userAccount?.avatar}.jpg`,
+                'user_avatar',
+                'w-50'
+              )
             "
             loading="lazy"
             alt=""

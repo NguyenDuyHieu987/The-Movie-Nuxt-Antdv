@@ -3,14 +3,13 @@
     <div class="comment-item-container">
       <div class="author">
         <div class="author-image">
-          <nuxt-img
+          <NuxtImg
             class="avatar"
             :src="
-              !isNaN(+item?.user_avatar)
-                ? getImage(`account${item?.user_avatar}.jpg`, 'user_avatar')
-                : item?.user_avatar
+              getImage(`account${item?.user_avatar}.jpg`, 'user_avatar', 'w-50')
             "
             loading="lazy"
+            alt=""
           />
         </div>
       </div>
@@ -21,7 +20,7 @@
               <div class="top">
                 <span class="author-username">{{ item?.username }}</span>
                 <span class="created-at">
-                  {{ utils.dateFormater.fromNow(item?.created_at) }}
+                  {{ utils.dateFormater.fromNow(item?.created_at!) }}
                 </span>
 
                 <span v-if="isUpdated" class="updated-text">
@@ -29,7 +28,9 @@
                 </span>
               </div>
 
-              <p class="content">{{ commentContent }}</p>
+              <div class="content">
+                <p>{{ commentContent }}</p>
+              </div>
 
               <div class="actions">
                 <LikeDislike :comment="item" />
@@ -50,8 +51,7 @@
 
             <FormComment
               v-show="isShowFormComment"
-              v-model:commentsList="commentsList"
-              v-model:listReplies="listReplies"
+              v-model:commentsList="listReplies"
               :movieId="movieId"
               :movieType="movieType"
               :showActions="true"
@@ -176,16 +176,19 @@
             {{ numberReplies != 0 && numberReplies + ' phản hồi' }}
           </a-button>
 
-          <div v-show="isShowReplies && !loadingReplies" class="list-replies">
+          <div
+            v-show="isShowReplies && !loadingReplies"
+            class="list-replies"
+            :id="item?.id"
+          >
             <CommentItemChild
               v-for="(item1, index) in listReplies"
               :key="item1?.id"
               :index="index"
               :item="item1"
-              :movieId="item1?.movie_id"
-              :parent="item"
-              :movieType="movieType"
               v-model:listReplies="listReplies"
+              :parent="item"
+              :onLoadMoreReplies="onLoadMoreReplies"
               @onSuccessCommentChild="handleSuccessCommentChild"
               @omSuccessRemoveCommentChild="handleSuccessRemoveCommentChild"
             />
@@ -249,30 +252,31 @@ import CommentItemChild from '~/components/Comment/CommentItemChild/CommentItemC
 import LikeDislike from '~/components/Comment/LikeDislike/LikeDislike.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
+import type { commentForm } from '@/types';
 import { storeToRefs } from 'pinia';
 import _ from 'lodash';
 
 const props = defineProps<{
-  item: any;
   movieId: string;
   movieType: string;
+  item: commentForm;
 }>();
 
 const utils = useUtils();
 const store = useStore();
 const { userAccount } = storeToRefs<any>(store);
-const commentsList = defineModel<any[]>('commentsList');
+const commentsList = defineModel<commentForm[]>('commentsList');
 const isShowFormComment = ref<boolean>(false);
 const isShowReplies = ref<boolean>(false);
-const listReplies = ref<any[]>([]);
+const listReplies = ref<commentForm[]>([]);
 const loading = ref<boolean>(false);
-const isUpdated = ref<boolean>(props.item?.updated);
+const isUpdated = ref<boolean>(props.item?.updated || false);
 const loadingReplies = ref<boolean>(false);
-const numberReplies = ref<number>(+props.item?.childrens || 0);
+const numberReplies = ref<number>(Number(props.item?.childrens || 0));
 const skip = ref<number>(1);
 const isLoadmoreReplies = ref<boolean>(false);
 const commentAction = ref<string>('post');
-const commentContent = ref<string>(props.item?.content);
+const commentContent = ref<string>(props.item?.content || '');
 
 const onClickShowReplies = async () => {
   isShowReplies.value = !isShowReplies.value;
@@ -282,7 +286,7 @@ const onClickShowReplies = async () => {
 
     await getCommentByMovidId_ParentId(
       props.movieId,
-      props.item?.id,
+      props.item?.id!,
       props.movieType
     )
       .then((response) => {
@@ -305,7 +309,7 @@ const onLoadMoreReplies = async () => {
 
   await getCommentByMovidId_ParentId(
     props.movieId,
-    props.item?.id,
+    props.item?.id!,
     props.movieType,
     skip.value,
     10
@@ -318,7 +322,9 @@ const onLoadMoreReplies = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      isLoadmoreReplies.value = false;
+      setTimeout(() => {
+        isLoadmoreReplies.value = false;
+      }, 300);
     });
 };
 
@@ -326,7 +332,7 @@ const handleSuccessCommentChild = (data: any) => {
   if (!isShowReplies.value) {
     isShowReplies.value = true;
   }
-  listReplies.value.push(data);
+  listReplies.value.unshift(data);
   numberReplies.value++;
 };
 
@@ -338,7 +344,7 @@ const handleEditComment = () => {
   isShowFormComment.value = !isShowFormComment.value;
   if (isShowFormComment.value) {
     commentAction.value = 'edit';
-    commentContent.value = props.item?.content;
+    commentContent.value = props.item?.content!;
   }
 };
 
@@ -357,8 +363,8 @@ const handleRemoveComment = () => {
   })
     .then((response) => {
       if (response?.success) {
-        commentsList.value = _.reject(commentsList.value, (x) => {
-          return x.id === props.item?.id;
+        commentsList.value = _.reject(commentsList.value, (x: commentForm) => {
+          return x!.id === props.item?.id;
         });
 
         ElNotification({

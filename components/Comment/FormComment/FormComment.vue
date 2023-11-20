@@ -8,21 +8,19 @@
   >
     <div class="author">
       <div class="author-image">
-        <nuxt-img
+        <NuxtImg
           v-if="isLogin && userAccount?.avatar"
           class="avatar"
-          :src="
-            !isNaN(+userAccount?.avatar)
-              ? getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')
-              : userAccount?.avatar
-          "
+          :src="getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar')"
           loading="lazy"
+          alt=""
         />
 
-        <nuxt-img
+        <NuxtImg
           v-else
           :src="getImage(`user.png`, 'comment_avatar')"
           loading="lazy"
+          alt=""
         />
       </div>
     </div>
@@ -32,6 +30,14 @@
         focus: isFocus,
       }"
     >
+      <div v-if="replyTo" class="reply-to">
+        <span>
+          @{{
+            commentsList!.find((x: commentForm) => x!.id == replyTo)?.username
+          }}
+        </span>
+      </div>
+
       <a-textarea
         :id="'textarea-' + comment?.id"
         v-model:value="content"
@@ -124,20 +130,41 @@ import { getImage } from '~/services/image';
 import { CommentMovie, EditComment } from '~/services/comment';
 import { storeToRefs } from 'pinia';
 import { ElNotification } from 'element-plus';
+import type { commentForm } from '~/types';
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
 
-const props = defineProps({
-  movieId: { type: String },
-  parent: { type: Object },
-  comment: { type: Object },
-  movieType: { type: String },
-  replyTo: { type: String, default: '' },
-  commentType: { type: String, default: 'parent' },
-  action: { type: String, default: 'post' },
-  showActions: { type: Boolean, default: false },
-  isShowFormComment: { type: Boolean, default: false },
-});
+// const props = defineProps({
+//   movieId: { type: String },
+//   parent: { type: Object },
+//   comment: { type: commentForm },
+//   movieType: { type: String },
+//   replyTo: { type: String, default: '' },
+//   commentType: { type: String, default: 'parent' },
+//   action: { type: String, default: 'post' },
+//   showActions: { type: Boolean, default: false },
+//   isShowFormComment: { type: Boolean, default: false },
+// });
+
+const props = withDefaults(
+  defineProps<{
+    movieId?: string;
+    movieType?: string;
+    parent?: commentForm;
+    comment?: commentForm;
+    replyTo?: string | null;
+    commentType: string;
+    action: string;
+    showActions: boolean;
+    isShowFormComment: boolean;
+  }>(),
+  {
+    commentType: 'parent',
+    action: 'post',
+    showActions: false,
+    isShowFormComment: false,
+  }
+);
 
 const emits = defineEmits<{
   onClickCancel: [];
@@ -153,7 +180,7 @@ const isShowActions = ref<boolean>(false);
 const disabledButton = ref<boolean>(true);
 const loading = ref<boolean>(false);
 const isShowEmoji = ref<boolean>(false);
-const commentsList = defineModel<any[]>('commentsList');
+const commentsList = defineModel<commentForm[]>('commentsList');
 
 onMounted(() => {
   // window.addEventListener('click', (e: any) => {
@@ -185,7 +212,7 @@ watchEffect(() => {
       content.value = '';
       break;
     case 'edit':
-      content.value = props.comment?.content;
+      content.value = props.comment?.content!;
       break;
   }
 });
@@ -225,6 +252,10 @@ const onSubmit = () => {
         content: content.value,
         movieId: props.movieId,
         parentId: props.commentType == 'children' && props.parent?.id,
+        replyTo:
+          props.commentType == 'children' && props?.replyTo
+            ? props.replyTo
+            : null,
         movieType: props.movieType,
         commentType: props.commentType,
       })
