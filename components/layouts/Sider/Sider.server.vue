@@ -18,12 +18,14 @@
           <NuxtImg
             class="avatar"
             :src="
-              // !isNaN(+userAccount?.avatar) ? `/images/account_avatar/account${userAccount?.avatar}.jpg`
-              getImage(
-                `account${userAccount?.avatar}.jpg`,
-                'user_avatar',
-                'w-50'
-              )
+              // `/images/account_avatar/account${userAccount?.avatar}.jpg`
+              !isNaN(+userAccount?.avatar)
+                ? getImage(
+                    `account${userAccount?.avatar}.jpg`,
+                    'user_avatar',
+                    'w-50'
+                  )
+                : userAccount?.avatar
             "
             loading="lazy"
             alt=""

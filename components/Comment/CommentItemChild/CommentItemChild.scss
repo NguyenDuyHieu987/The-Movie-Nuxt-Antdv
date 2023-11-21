@@ -58,9 +58,11 @@
         gap: 10px;
         font-size: 1.4rem;
         margin-top: 3px;
+        white-space: pre-line;
 
         .reply-to {
-          font-weight: 500;
+          display: inline;
+          white-space: nowrap;
           color: #008ddf;
           cursor: pointer;
         }

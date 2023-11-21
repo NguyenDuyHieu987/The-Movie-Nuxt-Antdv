@@ -6,7 +6,13 @@
           <NuxtImg
             class="avatar"
             :src="
-              getImage(`account${item?.user_avatar}.jpg`, 'user_avatar', 'w-50')
+              !isNaN(+item?.user_avatar!)
+                ? getImage(
+                    `account${item?.user_avatar}.jpg`,
+                    'user_avatar',
+                    'w-50'
+                  )
+                : item?.user_avatar
             "
             loading="lazy"
             alt=""
@@ -29,7 +35,12 @@
               </div>
 
               <div class="content">
-                <p>{{ commentContent }}</p>
+                <!-- <p>{{ commentContent }}</p> -->
+
+                <div
+                  class="formatted-comment"
+                  v-html="sanitizedHtmlComment"
+                ></div>
               </div>
 
               <div class="actions">
@@ -242,6 +253,9 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { ElNotification } from 'element-plus';
+import { storeToRefs } from 'pinia';
+import DOMPurify from 'dompurify';
+import _ from 'lodash';
 import {
   getCommentByMovidId_ParentId,
   DeleteComment,
@@ -253,8 +267,6 @@ import LikeDislike from '~/components/Comment/LikeDislike/LikeDislike.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 import type { commentForm } from '@/types';
-import { storeToRefs } from 'pinia';
-import _ from 'lodash';
 
 const props = defineProps<{
   movieId: string;
@@ -277,6 +289,12 @@ const skip = ref<number>(1);
 const isLoadmoreReplies = ref<boolean>(false);
 const commentAction = ref<string>('post');
 const commentContent = ref<string>(props.item?.content || '');
+const sanitizedHtmlComment = computed(() => {
+  // Sử dụng DOMPurify để loại bỏ HTML độc hại
+  return DOMPurify.sanitize(commentContent.value, {
+    USE_PROFILES: { html: true },
+  });
+});
 
 const onClickShowReplies = async () => {
   isShowReplies.value = !isShowReplies.value;
@@ -332,7 +350,7 @@ const handleSuccessCommentChild = (data: any) => {
   if (!isShowReplies.value) {
     isShowReplies.value = true;
   }
-  listReplies.value.unshift(data);
+  listReplies.value.push(data);
   numberReplies.value++;
 };
 

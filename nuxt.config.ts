@@ -311,6 +311,7 @@ export default defineNuxtConfig({
       isr: true,
       prerender: true,
     },
+    '/upgrade/**': { isr: true, prerender: true },
     '/YourAccount/**': { isr: true },
     '/help/**': { isr: true, prerender: true },
     '/contact/**': { isr: true, prerender: true },

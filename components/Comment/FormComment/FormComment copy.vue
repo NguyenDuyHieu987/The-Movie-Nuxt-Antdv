@@ -38,18 +38,37 @@
         focus: isFocus,
       }"
     >
-      <div class="contenteditable-input-field">
-        <div
-          ref="contenteditableInputField"
-          id="contenteditable-root"
-          :class="{updated: contenteditableInputField!?.innerText.length != 0}"
-          contenteditable
-          @change="handleChange"
-          @input="handleChange"
-          @focus="handleFocus"
-          @blur="handleBlur"
-        ></div>
+      <div v-if="replyTo" class="reply-to">
+        <span>
+          @{{
+            commentsList!.find((x: commentForm) => x!.id == replyTo)?.username
+          }}
+        </span>
       </div>
+
+      <!-- allowClear -->
+      <a-textarea
+        ref="commentTextAreaField"
+        class="comment-input-field"
+        v-model:value="content"
+        show-count
+        :maxlength="3000"
+        :autoSize="{ minRows: 1, maxRows: 10 }"
+        placeholder="Viết bình luận..."
+        @change="handleChange"
+        @focus="handleFocus"
+        @blur="handleBlur"
+      />
+
+      <!-- <el-input
+        class="comment-input-field"
+        v-model="comment"
+        :maxlength="3000"
+        show-word-limit
+        type="textarea"
+        :autosize="{ minRows: 1, maxRows: 4 }"
+        placeholder="Please input"
+      /> -->
 
       <div
         class="actions"
@@ -128,10 +147,10 @@ import 'vue3-emoji-picker/css';
 
 // const props = defineProps({
 //   movieId: { type: String },
-//   movieType: { type: String },
-//   parent: { type: commentForm },
+//   parent: { type: Object },
 //   comment: { type: commentForm },
-//   replyTo: { type: commentForm },
+//   movieType: { type: String },
+//   replyTo: { type: String, default: '' },
 //   commentType: { type: String, default: 'parent' },
 //   action: { type: String, default: 'post' },
 //   showActions: { type: Boolean, default: false },
@@ -144,7 +163,7 @@ const props = withDefaults(
     movieType?: string;
     parent?: commentForm;
     comment?: commentForm;
-    replyTo?: commentForm;
+    replyTo?: string | null;
     commentType: string;
     action: string;
     showActions: boolean;
@@ -166,30 +185,18 @@ const emits = defineEmits<{
 
 const store = useStore();
 const { isLogin, userAccount } = storeToRefs<any>(store);
-const contenteditableInputField = ref<HTMLDivElement>();
 const content = ref<string>('');
+const commentTextAreaField = ref<HTMLTextAreaElement>();
 const isFocus = ref<boolean>(false);
 const isShowActions = ref<boolean>(false);
 const disabledButton = ref<boolean>(true);
 const loading = ref<boolean>(false);
 const isShowEmoji = ref<boolean>(false);
 const commentsList = defineModel<commentForm[]>('commentsList');
-const sanitizedHtmlComment = ref<string>(
-  props.commentType == 'children' && props?.replyTo
-    ? DOMPurify.sanitize(
-        `<span class="reply-to">@${props.replyTo!.username}&nbsp;</span>`,
-        { USE_PROFILES: { html: true } }
-      )
-    : ''
-);
-const replyToFirstEl = computed<string>(() =>
-  DOMPurify.sanitize(
-    `<span class="reply-to">@${props.replyTo!.username}&nbsp;</span>`,
-    {
-      USE_PROFILES: { html: true },
-    }
-  )
-);
+const formattedComment = computed(() => {
+  // Sử dụng DOMPurify để loại bỏ HTML độc hại
+  return DOMPurify.sanitize(content.value, { USE_PROFILES: { html: true } });
+});
 
 onMounted(() => {
   // window.addEventListener('click', (e: any) => {
@@ -209,106 +216,27 @@ watchEffect(() => {
   if (props.isShowFormComment) {
     switch (props.action) {
       case 'post':
-        if (contenteditableInputField.value) {
-          contenteditableInputField.value!.innerHTML = '';
-        }
+        content.value = '';
         break;
       case 'edit':
-        contenteditableInputField.value!.innerHTML = props.comment?.content!;
+        content.value = props.comment?.content!;
         break;
-    }
-
-    if (props.commentType == 'children' && props?.replyTo) {
-      contenteditableInputField.value!.insertAdjacentHTML(
-        'afterbegin',
-        replyToFirstEl.value
-      );
-
-      const replyToEl = contenteditableInputField.value?.querySelector(
-        '.reply-to'
-      ) as HTMLElement;
-      replyToEl.setAttribute('contenteditable', 'false');
     }
 
     setTimeout(() => {
-      const range = document.createRange();
-      const selection = window.getSelection();
-      range.selectNodeContents(contenteditableInputField.value!);
-      range.collapse(false);
-      selection!.removeAllRanges();
-      selection!.addRange(range);
-
-      contenteditableInputField.value!.focus();
+      commentTextAreaField.value!.focus();
     }, 10);
   }
 });
 
 const handleChange = (e: any) => {
-  // e.preventDefault();
-
-  if (contenteditableInputField.value!?.innerText.length >= 3000) {
-    contenteditableInputField.value!.innerHTML =
-      contenteditableInputField.value!.innerHTML.slice(0, 3000);
-    return e.preventDefault();
-  }
-
-  if (props.commentType == 'children' && props?.replyTo) {
-    if (
-      e.inputType == 'deleteContentBackward' ||
-      e.inputType == 'deleteContentForward'
-    ) {
-      const replyToEl = contenteditableInputField.value?.querySelector(
-        '.reply-to'
-      ) as HTMLElement;
-
-      if (
-        replyToEl?.innerText.trim().length <
-        ('@' + props?.replyTo.username).length
-      ) {
-        replyToEl.remove();
-      }
-    } else {
-      if (
-        contenteditableInputField.value?.innerText.toLocaleLowerCase().trim() ==
-        '@' + props?.replyTo!.username.toLocaleLowerCase()
-      ) {
-        contenteditableInputField.value!.innerHTML = '';
-
-        contenteditableInputField.value!.insertAdjacentHTML(
-          'afterbegin',
-          replyToFirstEl.value
-        );
-
-        const replyToEl = contenteditableInputField.value?.querySelector(
-          '.reply-to'
-        ) as HTMLElement;
-        replyToEl.setAttribute('contenteditable', 'false');
-
-        const range = document.createRange();
-        const selection = window.getSelection();
-        range.selectNodeContents(contenteditableInputField.value!);
-        range.collapse(false);
-        selection!.removeAllRanges();
-        selection!.addRange(range);
-      }
-    }
-  }
-
-  sanitizedHtmlComment.value = DOMPurify.sanitize(
-    contenteditableInputField.value!.innerHTML,
-    { USE_PROFILES: { html: true } }
-  );
-  // .replaceAll(/&nbsp;/g, ' ');
-
   switch (props.action) {
     case 'post':
-      disabledButton.value =
-        contenteditableInputField.value?.innerText.length == 0;
+      disabledButton.value = content.value.length == 0;
       break;
     case 'edit':
       disabledButton.value =
-        contenteditableInputField.value?.innerText.length == 0 ||
-        contenteditableInputField.value?.innerHTML == props.comment?.content;
+        content.value.length == 0 || content.value == props.comment?.content;
       break;
   }
 };
@@ -334,12 +262,12 @@ const onSubmit = () => {
     case 'post':
       CommentMovie({
         // content: content.value,
-        content: sanitizedHtmlComment.value,
+        content: formattedComment.value,
         movieId: props.movieId,
         parentId: props.commentType == 'children' && props.parent?.id,
         replyTo:
-          props.commentType == 'children' && props?.replyTo
-            ? props.replyTo.id
+          props.commentType == 'children' && props?.replyTo?.length
+            ? props.replyTo
             : null,
         movieType: props.movieType,
         commentType: props.commentType,
@@ -353,7 +281,7 @@ const onSubmit = () => {
               emits('onSuccessCommentChild', response?.result);
             }
 
-            contenteditableInputField.value!.innerHTML = '';
+            content.value = '';
             disabledButton.value = true;
             isShowEmoji.value = false;
           }
@@ -374,7 +302,7 @@ const onSubmit = () => {
         movieType: props.movieType,
         commentType: props.commentType,
         // content: content.value,
-        content: sanitizedHtmlComment.value,
+        content: formattedComment.value,
       })
         .then((response) => {
           if (response?.success) {
@@ -386,7 +314,7 @@ const onSubmit = () => {
               duration: 3000,
             });
 
-            contenteditableInputField.value!.innerHTML = '';
+            content.value = '';
             disabledButton.value = true;
             isShowEmoji.value = false;
 
@@ -413,13 +341,13 @@ const onSubmit = () => {
 const handleClickCanel = () => {
   isShowEmoji.value = false;
   isShowActions.value = false;
-  contenteditableInputField.value!.innerHTML = '';
+  content.value = '';
   emits('onClickCancel');
 };
 
 const onSelectEmoji = (emoji: any) => {
   // console.log(emoji);
-  contenteditableInputField.value!.innerHTML += emoji.i;
+  content.value += emoji.i;
   disabledButton.value = content.value.length == 0;
 };
 </script>

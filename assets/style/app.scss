@@ -1,6 +1,14 @@
 .app-wrapper {
   overflow: hidden;
 
+  .body-wrapper {
+    .main-content {
+      & > .container {
+        min-height: calc(100vh - 50px - var(--header-height));
+      }
+    }
+  }
+
   .app-back-top {
     align-items: center;
     justify-content: center;

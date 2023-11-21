@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import PlanGrid from '~/components/PlanGrid/PlanGrid.server.vue';
-import type { plan } from '@/types';
+import type { plan } from '~/types';
 
 definePageMeta({
   // layout: 'service',

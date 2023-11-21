@@ -32,7 +32,13 @@
         <NuxtImg
           class="avatar"
           :src="
-            getImage(`account${userAccount?.avatar}.jpg`, 'user_avatar', 'w-50')
+            !isNaN(+userAccount?.avatar)
+              ? getImage(
+                  `account${userAccount?.avatar}.jpg`,
+                  'user_avatar',
+                  'w-50'
+                )
+              : userAccount?.avatar
           "
           loading="lazy"
           alt=""

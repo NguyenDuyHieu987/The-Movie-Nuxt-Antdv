@@ -40,7 +40,7 @@ export function EditComment(params: any) {
   const bodyFormData = new FormData();
   bodyFormData.append('id', params.id);
   bodyFormData.append('type', params.commentType);
-  bodyFormData.append('content', params.commentContent);
+  bodyFormData.append('content', params.content);
 
   return makeRequest(`/comment/edit/${params.movieType}/${params.movieId}`, {
     method: 'PUT',

@@ -1,12 +1,18 @@
 <template>
-  <div class="comment-item-child" :id="item?.id">
+  <div class="comment-item-child" ref="commentItemChild" :id="item?.id">
     <div class="comment-item-child-container">
       <div class="author">
         <div class="author-image">
           <NuxtImg
             class="avatar"
             :src="
-              getImage(`account${item?.user_avatar}.jpg`, 'user_avatar', 'w-50')
+              !isNaN(+item?.user_avatar!)
+                ? getImage(
+                    `account${item?.user_avatar}.jpg`,
+                    'user_avatar',
+                    'w-50'
+                  )
+                : item?.user_avatar
             "
             loading="lazy"
             alt=""
@@ -23,10 +29,12 @@
         </div>
 
         <div class="content">
-          <div v-if="item?.reply_to" class="reply-to" @click="onClickReplyTo">
+          <!-- <div v-if="item?.reply_to" class="reply-to" @click="onClickReplyTo">
             <span> @{{ commentReplyTo?.username || 'Đi tới' }} </span>
-          </div>
-          <p>{{ commentContent }}</p>
+          </div> -->
+
+          <!-- <p>{{ commentContent }}</p> -->
+          <div class="formatted-comment" v-html="sanitizedHtmlComment"></div>
         </div>
 
         <div class="actions">
@@ -53,7 +61,7 @@
           :isShowFormComment="isShowFormComment"
           commentType="children"
           :action="commentAction"
-          :replyTo="item?.id"
+          :replyTo="item"
           @onClickCancel="isShowFormComment = false"
           @onSuccessCommentChild="handleSuccessCommentChild"
           @onSuccessEditComment="handleSuccessEditComment"
@@ -89,7 +97,7 @@
               <div class="main-action">
                 <a-menu-item
                   key="edit-comment"
-                  class="remove-item"
+                  class="edit-item"
                   @click="handleEditComment"
                 >
                   <template #icon>
@@ -145,14 +153,15 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+import DOMPurify from 'dompurify';
+import _ from 'lodash';
+import { storeToRefs } from 'pinia';
 import { ElNotification } from 'element-plus';
 import { DeleteComment } from '~/services/comment';
 import { getImage } from '~/services/image';
 import FormComment from '~/components/Comment/FormComment/FormComment.vue';
 import LikeDislike from '~/components/Comment/LikeDislike/LikeDislike.vue';
-import { storeToRefs } from 'pinia';
 import type { commentForm } from '~/types';
-import _ from 'lodash';
 
 const props = defineProps<{
   // movieId: string;
@@ -163,13 +172,14 @@ const props = defineProps<{
 }>();
 
 const emits = defineEmits<{
-  onSuccessCommentChild: [data: any];
+  onSuccessCommentChild: [data: commentForm];
   omSuccessRemoveCommentChild: [];
 }>();
 
 const utils = useUtils();
 const store = useStore();
 const { userAccount } = storeToRefs<any>(store);
+const commentItemChild = ref<HTMLElement>();
 const listReplies = defineModel<any[]>('listReplies');
 const isShowFormComment = ref<boolean>(false);
 const commentAction = ref<string>('post');
@@ -180,19 +190,34 @@ const commentReplyTo = computed<commentForm>(() =>
     ? listReplies.value!.find((x: commentForm) => x!.id == props.item?.reply_to)
     : null
 );
+const sanitizedHtmlComment = computed(() => {
+  // Sử dụng DOMPurify để loại bỏ HTML độc hại
+  return DOMPurify.sanitize(commentContent.value, {
+    USE_PROFILES: { html: true },
+  });
+});
 
 onMounted(() => {
   window.onclick = (e: any) => {
-    if (!e.target.closest('.reply-to')) {
+    if (!e.target.closest('.comment-item-child .formatted-comment .reply-to')) {
       const listRepliesEl = document.querySelectorAll(
         `.comment-item-child`
       ) as NodeListOf<Element>;
+
       listRepliesEl.forEach((el) => el.classList.remove('focused'));
     }
   };
+
+  const replyToEl = commentItemChild.value!.querySelector(
+    '.formatted-comment .reply-to'
+  ) as HTMLElement;
+
+  if (replyToEl) {
+    replyToEl.addEventListener('click', onClickReplyTo);
+  }
 });
 
-const handleSuccessCommentChild = (data: any) => {
+const handleSuccessCommentChild = (data: commentForm) => {
   emits('onSuccessCommentChild', data);
 };
 
@@ -215,7 +240,7 @@ const handleRemoveComment = () => {
     id: props.item?.id,
     movieId: props.item?.movie_id,
     parentId: props.parent?.id,
-    movieType: props.item?.movie_id,
+    movieType: props.item?.movie_type,
     commentType: 'children',
   })
     .then((response) => {

@@ -116,7 +116,7 @@
             Xem lại từ đầu
           </a-button>
           <a-button
-            v-show="video?.duration - historyProgress.seconds > 10"
+            v-show="video!?.duration - historyProgress.seconds > 10"
             class="click-active"
             type="text"
             @click="onClickKeepWatching"
@@ -750,7 +750,7 @@ const videoSrc = computed<string>(
 );
 const blobVideoSrc = ref<string>('');
 const videoPlayer = ref();
-const video = ref();
+const video = ref<HTMLVideoElement>();
 const overlayProgress = ref();
 const progressBar = ref();
 const timeline = ref();
@@ -853,9 +853,9 @@ const fetchVideoChunk = async (value: string) => {
       //   videoStates.isPlayVideo = true;
       // }
 
-      if (!video.value.src) {
-        video.value.src = blobSrc;
-        video.value.load();
+      if (!video.value!.src) {
+        video.value!.src = blobSrc;
+        video.value!.load();
       }
 
       startByte = endByte + 1;
@@ -884,7 +884,7 @@ const initVideo = async (newVideoUrl: string) => {
       fetchVideoChunk(newVideoUrl);
     } else if (props.dataMovie?.media_type == 'tv') {
       if (videoStates.isPlayVideo) {
-        video.value.pause();
+        video.value!.pause();
         videoStates.isPlayVideo = false;
       }
       fetchVideoChunk(newVideoUrl);
@@ -904,8 +904,8 @@ watch(
   () => props.videoUrl,
   (newVal, oldVal) => {
     // initVideo(newVal);
-    video.value.src = videoSrc.value;
-    video.value.load();
+    video.value!.src = videoSrc.value;
+    video.value!.load();
   }
   // { immediate: true }
 );
@@ -921,11 +921,11 @@ watch(
 );
 
 onBeforeRouteLeave(() => {
-  video.value.pause();
+  video.value!.pause();
 
   window.removeEventListener('pointerup', windowPointerUp);
   window.removeEventListener('touchend', windowTouchEnd);
-  video.value.removeEventListener('progress', onProgressVideo);
+  video.value!.removeEventListener('progress', onProgressVideo);
 });
 
 onBeforeMount(() => {
@@ -947,7 +947,7 @@ onBeforeMount(() => {
 const windowPointerUp = () => {
   if (videoStates.isScrubbingProgressBar) {
     if (videoStates.isPlayVideo) {
-      video.value.play();
+      video.value!.play();
     }
   }
 
@@ -971,7 +971,7 @@ const windowTouchEnd = () => {
     }
 
     if (videoStates.isPlayVideo) {
-      video.value.play();
+      video.value!.play();
     }
   }
 };
@@ -981,12 +981,12 @@ onMounted(() => {
 
   // video.value.muted = false;
   // video.value.autoplay = true;
-  duration.value = formatDuration(video.value.duration)! || '00:00';
+  duration.value = formatDuration(video.value!.duration)! || '00:00';
 
   if (
-    video.value.paused == false &&
+    video.value!.paused == false &&
     videoStates.isPlayVideo == false &&
-    video.value.autoplay == true
+    video.value!.autoplay == true
   ) {
     videoStates.isPlayVideo = true;
   }
@@ -1028,7 +1028,7 @@ onMounted(() => {
 
 const handleTimeUpdate = (e: any) => {
   if (videoStates.isPlayVideo) {
-    video.value.pause();
+    video.value!.pause();
   }
 
   const rect = overlayProgress.value.getBoundingClientRect();
@@ -1038,9 +1038,9 @@ const handleTimeUpdate = (e: any) => {
 
   progressBar.value.style.setProperty('--progress-width', percent);
 
-  video.value.currentTime = percent * video.value.duration;
+  video.value!.currentTime = percent * video.value!.duration;
 
-  videoStates.isEndedVideo = video.value.currentTime == video.value.duration;
+  videoStates.isEndedVideo = video.value!.currentTime == video.value!.duration;
 
   drawTimeLine(e);
 };
@@ -1079,9 +1079,9 @@ const onCanPlayVideo = () => {
 
 const onLoadedDataVideo = () => {
   // console.log('loaded start video');
-  video.value.muted = false;
+  video.value!.muted = false;
   videoStates.isLoaded = true;
-  duration.value = formatDuration(video.value.duration)!;
+  duration.value = formatDuration(video.value!.duration)!;
 };
 
 const onTimeUpdateVideo = (e: any) => {
@@ -1090,8 +1090,8 @@ const onTimeUpdateVideo = (e: any) => {
   progressBar.value?.style.setProperty('--progress-width', percent);
 
   emits('onTimeUpdate', {
-    seconds: video.value?.currentTime,
-    percent: video.value?.currentTime / video.value?.duration,
+    seconds: video.value!.currentTime,
+    percent: video.value!.currentTime / video.value!.duration,
     duration: video.value?.duration,
   });
 };
@@ -1101,16 +1101,16 @@ const onProgressVideo = (e: any) => {
   // console.log('seekable:', video.value.seekable.end(0));
 
   if (videoStates.isLoaded) {
-    const bufferedLength: number = video.value.buffered.length;
+    const bufferedLength: number = video.value!.buffered.length;
 
     for (let i = 0; i < bufferedLength; i++) {
-      const bufferedStart = video.value.buffered.start(bufferedLength - 1 - i);
-      const bufferedEnd = video.value.buffered.end(bufferedLength - 1 - i);
+      const bufferedStart = video.value!.buffered.start(bufferedLength - 1 - i);
+      const bufferedEnd = video.value!.buffered.end(bufferedLength - 1 - i);
 
       // console.log(`buffered start ${bufferedLength - 1 - i}:`, bufferedStart);
       // console.log(`buffered end ${bufferedLength - 1 - i}:`, bufferedEnd);
 
-      if (video.value.currentTime > bufferedStart) {
+      if (video.value!.currentTime > bufferedStart) {
         const percent = bufferedEnd / e.target.duration;
         overlayProgress.value.style.setProperty('--seekable-width', percent);
         break;
@@ -1159,7 +1159,7 @@ const onPauseVideo = () => {
 };
 
 const checkEndedVideo = () => {
-  if (video.value.ended) {
+  if (video.value!.ended) {
     videoStates.isEndedVideo = true;
   } else {
     videoStates.isEndedVideo = false;
@@ -1173,25 +1173,25 @@ const onEndedVideo = () => {
 
 const onClickPlay = () => {
   videoStates.isPlayVideo = true;
-  video.value.play();
+  video.value!.play();
 };
 
 const onClickPause = () => {
   videoStates.isPlayVideo = false;
-  video.value.pause();
+  video.value!.pause();
 };
 
 const onClickReplayVideo = () => {
-  video.value.currentTime = 0;
+  video.value!.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
   videoStates.isPlayVideo = true;
   videoStates.isEndedVideo = false;
   videoStates.isShowControls = false;
-  video.value.play();
+  video.value!.play();
 };
 
 const playVideo = () => {
-  video.value.play();
+  video.value!.play();
   videoStates.isPlayVideo = true;
 
   new Promise((resolve, reject) => {
@@ -1204,7 +1204,7 @@ const playVideo = () => {
 };
 
 const pauseVideo = () => {
-  video.value.pause();
+  video.value!.pause();
   videoStates.isPlayVideo = false;
 
   new Promise((resolve, reject) => {
@@ -1217,7 +1217,7 @@ const pauseVideo = () => {
 };
 
 const onClickVideo = (e: any) => {
-  if (video.value.ended || videoStates.isEndedVideo || videoStates.isLoading) {
+  if (video.value!.ended || videoStates.isEndedVideo || videoStates.isLoading) {
     return;
   }
 
@@ -1239,15 +1239,15 @@ const onClickVideo = (e: any) => {
 };
 
 const rewindVideo = (value: number) => {
-  if (video.value.currentTime != 0) {
-    video.value.currentTime -= value;
+  if (video.value!.currentTime != 0) {
+    video.value!.currentTime -= value;
     checkEndedVideo();
 
-    const percent = video.value.currentTime / video.value.duration;
+    const percent = video.value!.currentTime / video.value!.duration;
     progressBar.value.style.setProperty('--progress-width', percent);
 
     if (videoStates.isPlayVideo) {
-      video.value.play();
+      video.value!.play();
     }
 
     new Promise((resolve, reject) => {
@@ -1268,10 +1268,10 @@ const onClickRewind = () => {
 
 const forwardVideo = (value: number) => {
   if (!videoStates.isEndedVideo) {
-    video.value.currentTime += value;
+    video.value!.currentTime += value;
     checkEndedVideo();
 
-    const percent = video.value.currentTime / video.value.duration;
+    const percent = video.value!.currentTime / video.value!.duration;
     progressBar.value.style.setProperty('--progress-width', percent);
 
     new Promise((resolve, reject) => {
@@ -1310,7 +1310,7 @@ const onTouchEndProgressBar = (e: any) => {
   videoStates.isMouseMoveOverlayProgress = false;
 
   if (videoStates.isPlayVideo) {
-    video.value.play();
+    video.value!.play();
   }
 };
 
@@ -1318,7 +1318,7 @@ const onMouseUpProgressBar = () => {
   videoStates.isScrubbingProgressBar = false;
 
   if (videoStates.isPlayVideo) {
-    video.value.play();
+    video.value!.play();
   }
 };
 
@@ -1366,7 +1366,7 @@ const drawTimeLine = (e: any) => {
   const percent =
     Math.min(Math.max(0, e.x - rect.left), rect.width) / rect.width;
 
-  timelineUpdate.value = formatDuration(percent * video.value.duration)!;
+  timelineUpdate.value = formatDuration(percent * video.value!.duration)!;
 
   const timeLinePosition = Math.max(0, e.x - rect.left);
 
@@ -1385,7 +1385,7 @@ const drawTimeLine = (e: any) => {
 
   // const ctx = canvasPreviewImg.value.getContext('2d');
 
-  // ctx.drawImage(video.value, 0, 0, 160, 90);
+  // ctx.drawImage(video.value!, 0, 0, 160, 90);
 
   // canvasPreviewImg.value.toBlob((blob: any) => {
   //   const previewImg = timeline.value.querySelector(
@@ -1413,39 +1413,39 @@ const onClickFullScreenExit = () => {
 };
 
 const onClickVolumeUp = () => {
-  video.value.muted = true;
+  video.value!.muted = true;
   videoStates.isVolumeOff = true;
 };
 
 const onClickVolumeOff = () => {
-  video.value.muted = false;
+  video.value!.muted = false;
   videoStates.isVolumeOff = false;
 };
 
 const onChangeVolume = (value: number) => {
   volume.value = value;
-  video.value.volume = value / 100;
+  video.value!.volume = value / 100;
 
-  if (volume.value > 0 && video.value.muted) {
-    video.value.muted = false;
+  if (volume.value > 0 && video.value!.muted) {
+    video.value!.muted = false;
   }
 };
 
 watch(volume, (newVal, oldVal) => {
-  videoStates.isVolumeOff = video.value.volume == 0;
+  videoStates.isVolumeOff = video.value!.volume == 0;
 });
 
 const onClickPictureInPicture = () => {
-  video.value.requestPictureInPicture();
+  video.value!.requestPictureInPicture();
 };
 
 const onClickItemPlayback = (item: string) => {
   settings.playback.current = item;
 
   if (item == 'Bình thường') {
-    video.value.playbackRate = 1;
+    video.value!.playbackRate = 1;
   } else {
-    video.value.playbackRate = +item;
+    video.value!.playbackRate = +item;
   }
 };
 
@@ -1458,21 +1458,21 @@ const onCloseSettings = () => {
 };
 
 const onClickPlayAgain = () => {
-  video.value.currentTime = 0;
+  video.value!.currentTime = 0;
   progressBar.value.style.setProperty('--progress-width', 0);
   videoStates.isShowNotify = false;
-  video.value.play();
+  video.value!.play();
   videoStates.isPlayVideo = true;
 };
 
 const onClickKeepWatching = () => {
-  video.value.currentTime = historyProgress.value.seconds;
+  video.value!.currentTime = historyProgress.value.seconds;
   progressBar.value.style.setProperty(
     '--progress-width',
     historyProgress.value.percent
   );
   videoStates.isShowNotify = false;
-  video.value.play();
+  video.value!.play();
   videoStates.isPlayVideo = true;
 };
 
@@ -1505,10 +1505,10 @@ const onKeyDownVideo = (e: any) => {
       break;
     case 77:
       if (videoStates.isVolumeOff) {
-        video.value.muted = false;
+        video.value!.muted = false;
         videoStates.isVolumeOff = false;
       } else {
-        video.value.muted = true;
+        video.value!.muted = true;
         videoStates.isVolumeOff = true;
       }
       break;
