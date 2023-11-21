@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import PlanGrid from '~/components/PlanGrid/PlanGrid.server.vue';
+import PlanGrid from '~/components/PlanGrid/PlanGrid.vue';
 import type { plan } from '~/types';
 
 definePageMeta({

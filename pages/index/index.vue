@@ -319,8 +319,8 @@ import { getMyRecommend } from '~/services/recommend';
 import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
 
 definePageMeta({
-  // keepalive: true,
-  // key: (route) => route.fullPath,
+  keepalive: true,
+  key: (route) => route.fullPath,
 });
 
 useHead({

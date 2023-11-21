@@ -22,10 +22,12 @@
           <section class="payment-methods">
             <div class="payment-method momo" @click="handleClickMoMoMethod">
               <div class="left">
-                <nuxt-img
+                <NuxtImg
                   :src="getImage('momo.jpg', 'payment', 'w-40')"
                   loading="lazy"
                   :width="40"
+                  alt=""
+
                 />
                 <span>Ví MoMo</span>
               </div>
@@ -49,10 +51,11 @@
               @click="handleClickZaloPayMethod"
             >
               <div class="left">
-                <nuxt-img
+                <NuxtImg
                   :src="getImage('zalopay.png', 'payment', 'w-40')"
                   loading="lazy"
                   :width="40"
+                  alt=""
                 />
 
                 <span>Ví điện tử ZaloPay</span>
@@ -74,10 +77,12 @@
 
             <div class="payment-method atm" @click="handleClickVNPayMethod">
               <div class="left">
-                <nuxt-img
+                <NuxtImg
                   :src="getImage('vnpay.png', 'payment', 'w-40')"
                   loading="lazy"
                   :width="40"
+                  alt=""
+
                 />
                 <span>ATM - Ngân hàng nội địa</span>
               </div>
@@ -101,16 +106,20 @@
               @click="handleClickStripeMethod"
             >
               <div class="left">
-                <nuxt-img
+                <NuxtImg
                   :src="getImage('mastercard_1.jpg', 'payment', 'w-100')"
                   loading="lazy"
                   :width="100"
+                  alt=""
+
                 />
 
-                <nuxt-img
+                <NuxtImg
                   :src="getImage('visa.png', 'payment', 'w-40')"
                   loading="lazy"
                   :width="40"
+                  alt=""
+
                 />
 
                 <span>Thẻ ghi nợ - Thẻ tín dụng</span>
