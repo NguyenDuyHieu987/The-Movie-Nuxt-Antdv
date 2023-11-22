@@ -48,12 +48,17 @@
               :rules="[
                 {
                   required: true,
-                  message: 'Vui lòng nhập username!',
+                  message: 'Vui lòng nhập tên tài khoản!',
                   trigger: ['change', 'blur'],
                 },
                 {
-                  message: 'Username phải có ít nhất 6 ký tụ!',
+                  message: 'Tên tài khoản phải có ít nhất 6 ký tụ!',
                   min: 6,
+                  trigger: ['change', 'blur'],
+                },
+                {
+                  message: 'Tên tài khoản chỉ được tối đa 20 ký tụ!',
+                  max: 20,
                   trigger: ['change', 'blur'],
                 },
               ]"

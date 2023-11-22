@@ -14,7 +14,7 @@
           </h1>
 
           <a-form-item
-            label="Email"
+            label="Tài khoản"
             name="username"
             :rules="[
               {
@@ -24,6 +24,11 @@
                 pattern: new RegExp(
                   /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
                 ),
+                trigger: ['change', 'blur'],
+              },
+              {
+                message: 'Tên tài khoản phải có ít nhất 6 ký tụ!',
+                min: 6,
                 trigger: ['change', 'blur'],
               },
             ]"
