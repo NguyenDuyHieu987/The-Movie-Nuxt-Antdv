@@ -2,7 +2,6 @@
   <div class="billboard-item">
     <div class="img-wrapper ratio-16-9">
       <NuxtImg
-        class="ant-image"
         :src="
           getImage(
             item?.backdrop_path,
