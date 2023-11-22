@@ -61,6 +61,10 @@
                   max: 20,
                   trigger: ['change', 'blur'],
                 },
+                {
+                  validator: checkSpecialCharacters,
+                  trigger: ['change', 'blur'],
+                },
               ]"
             >
               <a-input
@@ -142,6 +146,17 @@
               label="Nhập lại mật khẩu"
               name="confirmPass"
               has-feedback
+              :rules="[
+                {
+                  required: true,
+                  message: 'Vui lòng nhập lại mật khẩu!',
+                  trigger: ['change', 'blur'],
+                },
+                {
+                  validator: checkConfirmPassword,
+                  trigger: ['change', 'blur'],
+                },
+              ]"
             >
               <a-input-password
                 v-model:value="formSignup.confirmPass"
@@ -253,19 +268,25 @@ const reset = () => {
 
 const disabled = computed<boolean>((): boolean => {
   return !(
-    (
-      formSignup.fullname &&
-      formSignup.username &&
-      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formSignup.email) &&
-      formSignup.password &&
-      formSignup.confirmPass
-    )
-    //  &&
-    // formSignup.password == formSignup.confirmPass
+    formSignup.fullname &&
+    formSignup.username &&
+    !/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(formSignup.username) &&
+    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formSignup.email) &&
+    formSignup.password &&
+    formSignup.confirmPass &&
+    formSignup.password == formSignup.confirmPass
   );
 });
 
-const checkConfirmPassword = async (_rule: any, value: string) => {
+const checkSpecialCharacters = async (_rule: Rule, value: string) => {
+  if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(value)) {
+    return Promise.reject('Tên tài khoản không được có ký tự đặc biệt!');
+  } else {
+    return Promise.resolve();
+  }
+};
+
+const checkConfirmPassword = async (_rule: Rule, value: string) => {
   if (value !== formSignup.password) {
     return Promise.reject('Mật khẩu nhập lại không khớp!');
   } else {
