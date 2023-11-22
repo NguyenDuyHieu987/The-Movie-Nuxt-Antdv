@@ -25,8 +25,13 @@
                   trigger: ['change', 'blur'],
                 },
                 {
-                  message: 'Họ và tên phải có ít nhất 6 ký tụ!',
-                  min: 6,
+                  message: 'Họ và tên phải có ít nhất 4 ký tụ!',
+                  min: 4,
+                  trigger: ['change', 'blur'],
+                },
+                {
+                  message: 'Họ và tên chỉ được tối đa 30 ký tụ!',
+                  max: 30,
                   trigger: ['change', 'blur'],
                 },
               ]"
