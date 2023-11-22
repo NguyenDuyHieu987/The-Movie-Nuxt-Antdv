@@ -45,11 +45,11 @@
                     :rules="[
                       {
                         required: true,
-                        message: 'Vui lòng nhập mật khẩu!',
+                        message: 'Vui lòng nhập mật khẩu cũ!',
                         trigger: ['change', 'blur'],
                       },
                       // {
-                      //   message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
+                      //   message: 'Mật khẩu cũ phải có ít nhất 6 ký tụ!',
                       //   min: 6,
                       //   trigger: ['change', 'blur'],
                       // },
@@ -83,7 +83,7 @@
                   >
                     <a-input-password
                       v-model:value="formChangePassword.confirmNewPassword"
-                      placeholder="Xác nhận lại mật khẩu..."
+                      placeholder="Xác nhận lại mật khẩu mới..."
                       allow-clear
                     />
                   </a-form-item>
@@ -227,7 +227,7 @@ const checkNewPassword = async (_rule: any, value: string) => {
 
 const checkConfirmNewPassword = async (_rule: any, value: string) => {
   if (value !== formChangePassword.newPassword) {
-    return Promise.reject('Mật khẩu nhập lại không khớp!');
+    return Promise.reject('Mật khẩu mới nhập lại không khớp!');
   } else {
     return Promise.resolve();
   }
@@ -237,7 +237,7 @@ const rules: Record<string, Rule[]> = {
   newPassword: [
     {
       required: true,
-      message: 'Vui lòng nhập mật khẩu!',
+      message: 'Vui lòng nhập mật khẩu mới!',
       trigger: ['change', 'blur'],
     },
     // {
@@ -253,7 +253,7 @@ const rules: Record<string, Rule[]> = {
   confirmNewPassword: [
     {
       required: true,
-      message: 'Vui lòng nhập lại mật khẩu!',
+      message: 'Vui lòng nhập lại mật khẩu mới!',
       trigger: ['change', 'blur'],
     },
     {
