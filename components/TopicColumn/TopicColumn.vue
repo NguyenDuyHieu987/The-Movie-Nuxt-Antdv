@@ -4,7 +4,7 @@
       <div class="backdrop">
         <NuxtLink
           v-if="dataColumn[0]?.media_type == 'tv' && dataColumn[0]?.movie_id"
-          class="img-box"
+          class="img-box ratio-16-9"
           :to="{
             path: `/play-tv/${dataColumn[0]?.movie_id}/${dataColumn[0]?.name
               ?.replace(/\s/g, '+')
@@ -12,7 +12,6 @@
           }"
         >
           <NuxtImg
-            class="ant-image"
             :src="getImage(topicImage, 'backdrop', 'h-300')"
             format="avif"
             loading="lazy"
@@ -72,7 +71,6 @@
 
         <div v-if="!dataColumn?.length" class="img-box">
           <NuxtImg
-            class="ant-image"
             :src="getImage('topic1.jpg', 'misc', 'h-300')"
             format="avif"
             loading="lazy"
