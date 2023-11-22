@@ -220,7 +220,7 @@ loading.value = true;
 
 const { data: plans } = await useAsyncData(`plan/all`, () => getAllPlan(), {
   transform: (data) => {
-    return data?.results;
+    return data.results;
   },
 });
 
