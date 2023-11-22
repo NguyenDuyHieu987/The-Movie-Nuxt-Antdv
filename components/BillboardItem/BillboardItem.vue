@@ -7,7 +7,7 @@
           getImage(
             item?.backdrop_path,
             'backdrop',
-            'w-' +  windowWidth!.toString()
+            'w-' + windowWidth.toString()
           )
         "
         format="avif"
@@ -239,44 +239,23 @@ const windowWidth = ref<number>(1200);
 
 onBeforeMount(async () => {
   windowWidth.value = window.innerWidth;
-
-  // if (store.isLogin) {
-  //   await useAsyncData(
-  //     `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-  //     () => getItemList(props.item?.id, props.item?.media_type)
-  //   )
-  //     .then((response) => {
-  //       if (response.data.value.success == true) {
-  //         isAddToList.value = true;
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       if (axios.isCancel(e)) return;
-  //     });
-  // }
 });
 
-watch(
-  () => store.isLogin,
-  async () => {
-    if (store.isLogin) {
-      //  useAsyncData(
-      //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-      //   () => getItemList(props.item?.id, props.item?.media_type)
-      // )
-      getItemList(props.item?.id, props.item?.media_type)
-        .then((response) => {
-          if (response.success == true) {
-            isAddToList.value = true;
-          }
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        });
-    }
-  },
-  { immediate: true }
-);
+if (store.isLogin) {
+  //  useAsyncData(
+  //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
+  //   () => getItemList(props.item?.id, props.item?.media_type)
+  // )
+  getItemList(props.item?.id, props.item?.media_type)
+    .then((response) => {
+      if (response.success == true) {
+        isAddToList.value = true;
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+}
 
 const handelAddToList = () => {
   if (!store?.isLogin) {

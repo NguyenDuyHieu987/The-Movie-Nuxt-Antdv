@@ -576,20 +576,20 @@ const getData = async () => {
       loadingTvOnTheAir.value = false;
     });
 
-  // await useAsyncData('recommend/get/1', () =>
-  //   getMyRecommend(skipRecommend.value)
-  // )
-  getMyRecommend(skipRecommend.value)
-    .then((response) => {
-      recommends.value = response?.results;
-      skipRecommend.value++;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      loadingRecommend.value = false;
-    });
+    // await useAsyncData('recommend/get/1', () =>
+    //   getMyRecommend(skipRecommend.value)
+    // )
+    getMyRecommend(skipRecommend.value)
+      .then((response) => {
+        recommends.value = response?.results;
+        skipRecommend.value++;
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {
+        loadingRecommend.value = false;
+      });
 };
 
 // const { results: trendings, pending } = await getTrending(1);
