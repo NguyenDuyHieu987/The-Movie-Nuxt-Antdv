@@ -19,16 +19,15 @@
             :rules="[
               {
                 required: true,
+                message: 'Vui lòng nhập email!',
+                trigger: ['change', 'blur'],
+              },
+              {
                 message:
                   'Vui lòng nhập đúng định dạng email (vd: ...@gmail.com)!',
                 pattern: new RegExp(
                   /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
                 ),
-                trigger: ['change', 'blur'],
-              },
-              {
-                message: 'Tên tài khoản phải có ít nhất 6 ký tụ!',
-                min: 6,
                 trigger: ['change', 'blur'],
               },
             ]"

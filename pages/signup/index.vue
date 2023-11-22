@@ -85,6 +85,10 @@
               :rules="[
                 {
                   required: true,
+                  message: 'Vui lòng nhập email!',
+                  trigger: ['change', 'blur'],
+                },
+                {
                   message:
                     'Vui lòng nhập đúng định dạng email (vd: ...@gmail.com)!',
                   pattern: new RegExp(
