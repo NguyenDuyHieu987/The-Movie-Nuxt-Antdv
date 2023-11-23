@@ -742,10 +742,10 @@ const emits = defineEmits<{
 const nuxtConfig = useRuntimeConfig();
 const videoSrc = computed<string>(
   () =>
-    // nuxtConfig.app.production_mode
-    //   ? nuxtConfig.app.serverVideoUrl + '/videos/' + props.videoUrl
-    //   : 'http://localhost:5002/videos' + props.videoUrl
-    'http://localhost:5002/videos' + props.videoUrl
+    nuxtConfig.app.production_mode
+      ? `${nuxtConfig.app.serverVideoUrl}/videos` + props.videoUrl
+      : 'http://localhost:5002/videos' + props.videoUrl
+  // 'http://localhost:5002/videos' + props.videoUrl
   // + '.m3u8'
 );
 const blobVideoSrc = ref<string>('');
