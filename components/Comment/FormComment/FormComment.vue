@@ -316,6 +316,7 @@ const handleChange = (e: any) => {
 const handleFocus = (e: any) => {
   if (!store.isLogin) {
     store.openRequireAuthDialog = true;
+    e.target.blur();
     return;
   }
 
