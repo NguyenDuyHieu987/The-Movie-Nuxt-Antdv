@@ -326,7 +326,7 @@ const handleSubmit = () => {
       } else if (response?.isWrongPassword == true) {
         ElNotification.error({
           title: 'Thất bại!',
-          message: 'Sai mật khẩu.',
+          message: 'Mật khẩu cũ không đúng.',
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -476,7 +476,7 @@ const handleResendVerifyEmail = () => {
       } else if (response?.isWrongPassword == true) {
         ElNotification.error({
           title: 'Thất bại!',
-          message: 'Sai mật khẩu.',
+          message: 'Mật khẩu cũ không đúng.',
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
