@@ -57,6 +57,11 @@ export default defineNuxtConfig({
     },
     public: {
       TMDBurl: process.env.TMDB_IMAGE_BASE_URL,
+
+      // SEO
+      siteUrl: 'https://phimhay247z.org',
+      siteName: 'Phimhay247',
+      siteDescription: 'Xem phim Online 24/7',
     },
   },
   alias: {
@@ -82,9 +87,6 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
-  site: {
-    url: 'https://phimhay247z.org',
-  },
   css: [
     antdVersion == 4
       ? 'ant-design-vue/dist/reset.css'
@@ -103,9 +105,13 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-lazy-load',
     '@nuxtjs/fontaine',
-    'nuxt-simple-sitemap',
     'nuxt-gtag',
     'nuxt-delay-hydration',
+
+    // SEO
+    'nuxt-simple-sitemap',
+    'nuxt-og-image',
+    'nuxt-simple-robots',
   ],
   antd: {
     icons: false,
@@ -122,7 +128,6 @@ export default defineNuxtConfig({
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],
     styleLang: 'css',
   },
-  sitemap: {},
   gtag: {
     id: process.env.GOOGLE_ANALYTICS_ID,
   },
@@ -168,6 +173,11 @@ export default defineNuxtConfig({
   delayHydration: {
     debug: !isProduction,
     mode: 'mount',
+  },
+  sitemap: {},
+  extends: ['nuxt-seo-kit'],
+  site: {
+    url: 'https://phimhay247z.org',
   },
   plugins: [],
   hooks: {},

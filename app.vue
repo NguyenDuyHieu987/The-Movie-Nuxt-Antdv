@@ -37,8 +37,8 @@
       :throttle="300"
     />
 
-    <!-- <SeoKit /> -->
-    <!-- <OgImageStatic /> -->
+    <SeoKit />
+    <OgImageStatic />
 
     <LoadingApp />
     <RequireAuthDialog />

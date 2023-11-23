@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <NuxtLayout>
-      <a-result status="404" :title="`${error.statusCode} Not Found`">
-        <template #subTitle>
-          <h2>Ops!, Không thể tìm thấy trang này.</h2>
-        </template>
-        <template #extra>
-          <NuxtLink :to="{ path: '/' }">
-            <a-button type="text" size="large" class="default gradient">
-              Quay về trang chủ
-            </a-button>
-          </NuxtLink>
-        </template>
-      </a-result>
-    </NuxtLayout>
-  </div>
+  <NuxtLayout>
+    <a-result status="404" :title="`${error.statusCode} Not Found`">
+      <template #subTitle>
+        <h2>Ops!, Không thể tìm thấy trang này.</h2>
+      </template>
+      <template #extra>
+        <NuxtLink :to="{ path: '/' }">
+          <a-button type="text" size="large" class="default gradient">
+            Quay về trang chủ
+          </a-button>
+        </NuxtLink>
+      </template>
+    </a-result>
+  </NuxtLayout>
 </template>
 <script setup lang="ts">
 defineProps(['error']);
