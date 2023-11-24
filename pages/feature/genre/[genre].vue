@@ -388,7 +388,9 @@ const { data: dataBilboard, pending } = await useAsyncData(
   }
 );
 
-getData();
+// getData();
+
+onBeforeMount(getData);
 
 watch(
   () => route.params,
