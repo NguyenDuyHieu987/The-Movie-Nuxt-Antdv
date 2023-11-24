@@ -63,6 +63,7 @@ export default defineNuxtConfig({
       siteName: 'Phimhay247',
       siteDescription: 'Xem phim Online 24/7',
       language: 'vi',
+      trailingSlash: false,
     },
   },
   alias: {
