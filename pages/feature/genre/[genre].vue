@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container feature">
+  <div class="home-page feature genre-page">
     <HeaderHomeBreadcrumb>
       <template #label>
         <NuxtLink

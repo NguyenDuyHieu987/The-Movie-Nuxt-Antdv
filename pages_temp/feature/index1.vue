@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container feature">
+  <div class="home-page feature">
     <HeaderHome title="Phim lẻ" />
 
     <BillboardAnimation v-model:data="dataBilboard" />

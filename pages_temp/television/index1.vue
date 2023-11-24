@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container televison">
+  <div class="home-page televison">
     <HeaderHome title="Phim bộ" />
 
     <BillboardAnimation v-model:data="dataBilboard" />
@@ -353,4 +353,4 @@ watch(
 );
 </script>
 
-<style src="./television.scss" lang="scss"></style>
+<style src="./TelevisionPage.scss" lang="scss"></style>

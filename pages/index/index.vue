@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container">
+  <div class="home-page">
     <BillboardAnimation v-model:data="trendings" />
 
     <div class="home-content">

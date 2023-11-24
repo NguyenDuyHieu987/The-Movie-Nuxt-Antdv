@@ -1,4 +1,4 @@
-.body-content:has(.home-container) {
+.body-content:has(.home-page) {
   .body-wrapper {
     max-width: 100%;
   }
@@ -16,7 +16,7 @@
   &.expand {
     // margin-top: 0px;
 
-    .home-container {
+    .home-page {
       .home-content {
         // padding: 0px var(--padding-home-expand);
         --padding-home: var(--padding-home-expand);
@@ -28,7 +28,7 @@
   }
 }
 
-.home-container {
+.home-page {
   .home-content {
     position: relative;
     z-index: 1;
@@ -151,8 +151,8 @@
 }
 
 @media only screen and (max-width: 1300px) {
-  .body-content:has(.home-container) {
-    .home-container {
+  .body-content:has(.home-page) {
+    .home-page {
       .home-content {
         .home-section {
           .gradient-title-default {
@@ -169,8 +169,8 @@
     --padding-home: 20px;
   }
 
-  .body-content:has(.home-container) {
-    .home-container {
+  .body-content:has(.home-page) {
+    .home-page {
       .home-content {
         --padding-home: 20px;
         // padding: 0px 15px;
@@ -179,7 +179,7 @@
     }
 
     &.expand {
-      .home-container {
+      .home-page {
         .home-content {
           --padding-home: 20px;
           // padding: 0px 30px;
@@ -191,9 +191,9 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .body-content:has(.home-container),
-  .body-content.expand:has(.home-container) {
-    .home-container {
+  .body-content:has(.home-page),
+  .body-content.expand:has(.home-page) {
+    .home-page {
       .home-content {
         .home-section {
           .gradient-title-default {
@@ -210,9 +210,9 @@
     --padding-home: 15px;
   }
 
-  .body-content:has(.home-container),
-  .body-content.expand:has(.home-container) {
-    .home-container {
+  .body-content:has(.home-page),
+  .body-content.expand:has(.home-page) {
+    .home-page {
       .home-content {
         --padding-home: 15px;
       }

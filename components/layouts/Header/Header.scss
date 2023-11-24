@@ -2,7 +2,7 @@ header.header-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 24px;
+  padding: 0px 20px;
   // border-bottom: 0.25px solid var(--border-regular-light);
   height: var(--header-height);
   position: fixed;
@@ -374,7 +374,7 @@ header.header-bar {
     padding: 0px 20px;
 
     &:has(.menu-btn.desktop) {
-      padding: 0px 22px;
+      padding: 0px 20px;
     }
 
     .left-header {

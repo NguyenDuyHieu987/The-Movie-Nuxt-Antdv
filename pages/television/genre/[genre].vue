@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container televison">
+  <div class="home-page televison genre-page">
     <HeaderHomeBreadcrumb>
       <template #label>
         <NuxtLink
@@ -363,4 +363,4 @@ watch(
 );
 </script>
 
-<style src="../television.scss" lang="scss"></style>
+<style src="../TelevisionPage.scss" lang="scss"></style>

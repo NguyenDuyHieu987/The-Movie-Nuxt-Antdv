@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container feature">
+  <div class="home-page feature">
     <HeaderHome title="Phim lẻ" viewAllLink="/discover/movie?type=all" />
 
     <BillboardAnimation v-model:data="dataBilboard" />

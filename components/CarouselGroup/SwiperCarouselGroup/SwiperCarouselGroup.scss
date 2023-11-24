@@ -1,5 +1,5 @@
-.body-content:has(.home-container) {
-  .home-container {
+.body-content:has(.home-page) {
+  .home-page {
     .home-content {
       .carousel-group {
         .swiper-button-prev,
@@ -19,7 +19,7 @@
   }
 
   &.expand {
-    .home-container {
+    .home-page {
       .home-content {
         .carousel-group {
           .swiper-button-prev,
@@ -150,8 +150,8 @@
 }
 
 @media only screen and (max-width: 1500px) {
-  .body-content:has(.home-container) {
-    .home-container {
+  .body-content:has(.home-page) {
+    .home-page {
       .home-content {
         .carousel-group {
           .swiper-button-prev,
@@ -163,7 +163,7 @@
     }
 
     &.expand {
-      .home-container {
+      .home-page {
         .home-content {
           .carousel-group {
             .swiper-button-prev,
@@ -178,8 +178,8 @@
 }
 
 @media only screen and (max-width: 1100px) {
-  .body-content:has(.home-container) {
-    .home-container {
+  .body-content:has(.home-page) {
+    .home-page {
       .home-content {
         .carousel-group {
           .swiper-button-prev,
@@ -191,7 +191,7 @@
     }
 
     &.expand {
-      .home-container {
+      .home-page {
         .home-content {
           .carousel-group {
             .swiper-button-prev,

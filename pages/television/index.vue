@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container televison">
+  <div class="home-page televison">
     <HeaderHome title="Phim bộ" viewAllLink="/discover/tv?type=all" />
 
     <BillboardAnimation v-model:data="dataBilboard" />
@@ -293,4 +293,4 @@ const { data: dataBilboard, pending } = await useAsyncData(
 getData();
 </script>
 
-<style src="./television.scss" lang="scss"></style>
+<style src="./TelevisionPage.scss" lang="scss"></style>
