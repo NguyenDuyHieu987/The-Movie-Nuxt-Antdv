@@ -62,6 +62,7 @@ export default defineNuxtConfig({
       siteUrl: 'https://phimhay247z.org',
       siteName: 'Phimhay247',
       siteDescription: 'Xem phim Online 24/7',
+      language: 'vi',
     },
   },
   alias: {
@@ -84,6 +85,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  devtools: { enabled: false },
   typescript: {
     strict: true,
   },
@@ -113,6 +115,7 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     'nuxt-simple-robots',
   ],
+  extends: ['nuxt-seo-kit'],
   antd: {
     icons: false,
   },
@@ -174,8 +177,8 @@ export default defineNuxtConfig({
     debug: !isProduction,
     mode: 'mount',
   },
+  // SEO
   sitemap: {},
-  extends: ['nuxt-seo-kit'],
   site: {
     url: 'https://phimhay247z.org',
   },
@@ -192,7 +195,6 @@ export default defineNuxtConfig({
       },
     ],
   },
-  devtools: { enabled: false },
   vue: { defineModel: true, propsDestructure: true },
   ssr: true,
   sourcemap: {
@@ -209,7 +211,7 @@ export default defineNuxtConfig({
     // preset: 'static',
     prerender: {
       routes: [],
-      // crawlLinks: true,
+      crawlLinks: false,
     },
     minify: true,
     compressPublicAssets: { gzip: true, brotli: true },
