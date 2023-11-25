@@ -45,6 +45,11 @@ jobs:
 
           rsync -ru --ignore-existing ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
+
+      - name: Install PM2
+      run: |
+        npm install -g pm2
+
       - name: Start app on Server
         uses: appleboy/ssh-action@master
         with:
@@ -54,4 +59,4 @@ jobs:
           script: |
             sudo su root
             cd /home/phimhay247z/htdocs/phimhay247z.org
-            /root/.nvm/versions/node/v19.9.0/bin/pm2 restart ecosystem.config.cjs
+            pm2 restart ecosystem.config.cjs
