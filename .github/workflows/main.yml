@@ -46,6 +46,7 @@ jobs:
 
           scp -r -i ~/.ssh/id_rsa ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
+
       - name: Deploy to Server
         run: |
           ssh -o StrictHostKeyChecking=no \
