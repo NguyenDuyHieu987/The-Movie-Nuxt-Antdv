@@ -24,7 +24,11 @@ jobs:
           sudo npm install pm2 -g
 
       - name: Install SSH key
-        run: echo "${{ secrets.PHIMHAY247_PK }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PHIMHAY247_PK }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -t rsa ${{ secrets.PHIMHAY247_IP }} >> ~/.ssh/known_hosts
 
       - name: Deploy to Server
         run: |
