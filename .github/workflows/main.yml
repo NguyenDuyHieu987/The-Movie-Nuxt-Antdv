@@ -22,10 +22,10 @@ jobs:
       - name: Create .env file
         run: echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
 
-      # - name: Install Dependencies and Build
-      #   run: |
-      #     npm install
-      #     npm run build
+      - name: Install Dependencies and Build
+        run: |
+          npm install
+          npm run build
 
       - name: Install SSH key
         run: |
@@ -41,6 +41,10 @@ jobs:
           chmod 700 ~/.ssh
           chmod 600 ~/.ssh/id_rsa
 
+          scp -r ./output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+
+          scp -r ./output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+
           scp -r ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
       - name: Deploy to Server
@@ -52,7 +56,6 @@ jobs:
           script: |
             sudo -i 
             cd /home/phimhay247z/htdocs/phimhay247z.org
-            git pull 
             npm install
             npm run build:pm2
             pm2 reload ecosystem.config.cjs
