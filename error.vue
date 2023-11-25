@@ -1,8 +1,12 @@
 <template>
   <NuxtLayout>
-    <a-result status="404" :title="`${error.statusCode} Not Found`">
+    <a-result
+      class="error-page"
+      status="404"
+      :title="`${error.statusCode} Not Found`"
+    >
       <template #subTitle>
-        <h2>Ops!, Không thể tìm thấy trang này.</h2>
+        <h3>Ops!, Không thể tìm thấy trang này.</h3>
       </template>
       <template #extra>
         <NuxtLink :to="{ path: '/' }">
@@ -22,4 +26,4 @@ useHead({
 });
 </script>
 
-<style lang="scss" src="~/assets/style/error404Page.scss" scoped></style>
+<style lang="scss" src="~/assets/style/error404Page.scss"></style>

@@ -1,10 +1,13 @@
-.ant-result {
+.ant-result.error-page {
   .ant-result-title {
     color: var(--text-color-invert);
+    font-size: 2.3rem;
   }
 
   .ant-result-subtitle {
-    font-size: 1.8rem;
+    h3 {
+      font-size: 1.8rem;
+    }
   }
 
   .ant-result-extra {

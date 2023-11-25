@@ -114,7 +114,6 @@ export default defineNuxtConfig({
     // SEO
     'nuxt-simple-sitemap',
     'nuxt-og-image',
-    'nuxt-simple-robots',
   ],
   extends: ['nuxt-seo-kit'],
   antd: {
@@ -208,23 +207,6 @@ export default defineNuxtConfig({
     },
   },
   optimization: {},
-  nitro: {
-    // preset: 'static',
-    prerender: {
-      routes: [],
-      crawlLinks: false,
-    },
-    minify: true,
-    compressPublicAssets: { gzip: true, brotli: true },
-    storage: {
-      redis: {
-        driver: 'redis',
-      },
-    },
-    output: {
-      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
-    },
-  },
   vite: {
     resolve: {
       alias: {
@@ -280,6 +262,32 @@ export default defineNuxtConfig({
       },
     },
   },
+  nitro: {
+    // preset: 'static',
+    prerender: {
+      routes: [],
+      crawlLinks: true,
+      ignore: [
+        '/follow',
+        '/history',
+        '/YourAccount',
+        '/info-movie',
+        '/info-tv',
+        '/play-movie',
+        '/play-tv',
+      ],
+    },
+    minify: true,
+    compressPublicAssets: { gzip: true, brotli: true },
+    storage: {
+      redis: {
+        driver: 'redis',
+      },
+    },
+    output: {
+      dir: 'D:\\MyWebsite\\Phimhay247\\.output',
+    },
+  },
   generate: {
     routes: [
       // '/',
@@ -297,8 +305,9 @@ export default defineNuxtConfig({
       '/signup',
       '/ForgotPassword',
       '/help',
-   '/contact'
+      '/contact',
     ],
+    exclude: [],
   },
   routeRules: {
     '/': { isr: true, prerender: true },
@@ -311,7 +320,7 @@ export default defineNuxtConfig({
       isr: true,
       prerender: true,
     },
-    '/oauth/**': { isr: true},
+    '/oauth/**': { isr: true },
     '/signup': {
       isr: true,
       prerender: true,
@@ -323,7 +332,7 @@ export default defineNuxtConfig({
     '/info-tv/**': { isr: true },
     '/play-movie/**': { isr: true },
     '/play-tv/**': { isr: true },
-    '/upgrade/**': { isr: true},
+    '/upgrade/**': { isr: true },
     '/upgrade': { redirect: '/upgrade/plans' },
     '/YourAccount/**': { isr: true },
     '/help/**': { isr: true, prerender: true },
