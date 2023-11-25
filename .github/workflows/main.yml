@@ -32,7 +32,7 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -o StrictHostKeyChecking=no \
+          ssh -v -o StrictHostKeyChecking=no \
           -i ~/.ssh/id_rsa azure@${{ secrets.PHIMHAY247_IP }} \
           "cd /home/phimhay247z/htdocs/phimhay247z.org \
           && git pull && npm install && npm run build:pm2 \
