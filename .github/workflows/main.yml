@@ -31,6 +31,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo -e "${{ secrets.PHIMHAY247_PK }}" > ~/.ssh/id_rsa
+          chmod 700 ~/.ssh
           chmod 600 ~/.ssh/id_rsa
 
       - name: Set up known hosts
@@ -38,14 +39,11 @@ jobs:
 
       - name: Copy public and server folders
         run: |
-          chmod 700 ~/.ssh
-          chmod 600 ~/.ssh/id_rsa
+          rsync -ru --ignore-existing ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
-          scp -r ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+          rsync -ru --ignore-existing ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
-          scp -r ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
-
-          scp -r ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+          rsync -ru --ignore-existing ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
