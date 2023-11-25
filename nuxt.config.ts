@@ -113,7 +113,6 @@ export default defineNuxtConfig({
 
     // SEO
     'nuxt-simple-sitemap',
-    'nuxt-og-image',
   ],
   extends: ['nuxt-seo-kit'],
   antd: {

@@ -38,7 +38,7 @@
     />
 
     <SeoKit />
-    <OgImageStatic />
+    <!-- <OgImageStatic /> -->
 
     <LoadingApp />
     <RequireAuthDialog />

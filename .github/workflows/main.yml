@@ -29,7 +29,9 @@ jobs:
           mkdir -p ~/.ssh
           echo -e "${{ secrets.PHIMHAY247_PK }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -t rsa ${{ secrets.PHIMHAY247_IP }} >> ~/.ssh/known_hosts
+
+      - name: Set up known hosts
+        run: ssh-keyscan -t rsa ${{ secrets.PHIMHAY247_IP }} >> ~/.ssh/known_hosts
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
@@ -38,6 +40,7 @@ jobs:
           username: ${{ secrets.PHIMHAY247_USERNAME }}
           key: ${{ secrets.PHIMHAY247_PK }}
           script: |
+            scp -r -i ~/.ssh/id_rsa ./ ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
             sudo -i 
             cd /home/phimhay247z/htdocs/phimhay247z.org
             git pull 
