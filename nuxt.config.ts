@@ -177,10 +177,10 @@ export default defineNuxtConfig({
     mode: 'mount',
   },
   // SEO
-  sitemap: {},
-  site: {
-    url: 'https://phimhay247z.org',
-  },
+  // sitemap: {},
+  // site: {
+  //   url: 'https://phimhay247z.org',
+  // },
   plugins: [],
   hooks: {},
   build: {
