@@ -41,7 +41,7 @@ jobs:
         with:
           host: ${{ secrets.PHIMHAY247_IP }}
           username: ${{ secrets.PHIMHAY247_USERNAME }}
-          key: ${{ secrets.PHIMHAY247_PK }}
+          key: ggg
           script: |
             scp -r -i ~/.ssh/id_rsa ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
             scp -r -i ~/.ssh/id_rsa ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
