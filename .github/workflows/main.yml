@@ -19,6 +19,9 @@ jobs:
           node-version: '19.9.0'
           registry-url: 'https://registry.npmjs.org/'
 
+      - name: Create .env file
+        run: echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
+
       - name: Install Dependencies and Build
         run: |
           npm install
@@ -40,7 +43,8 @@ jobs:
           username: ${{ secrets.PHIMHAY247_USERNAME }}
           key: ${{ secrets.PHIMHAY247_PK }}
           script: |
-            scp -r -i ~/.ssh/id_rsa ./ ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+            scp -r -i ~/.ssh/id_rsa ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+            scp -r -i ~/.ssh/id_rsa ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
             sudo -i 
             cd /home/phimhay247z/htdocs/phimhay247z.org
             git pull 
