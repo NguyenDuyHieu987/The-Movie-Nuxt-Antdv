@@ -38,6 +38,7 @@ jobs:
 
       - name: Copy public and server folders
         run: |
+          chmod 700 ~/.ssh
           chmod 600 ~/.ssh/id_rsa
 
           scp -r ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
