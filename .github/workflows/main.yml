@@ -53,5 +53,4 @@ jobs:
           key: ${{ secrets.PHIMHAY247_PK }}
           script: |
             cd /home/phimhay247z/htdocs/phimhay247z.org
-            npm install -g pm2
             pm2 restart ecosystem.config.cjs
