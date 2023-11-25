@@ -46,7 +46,7 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -v -o StrictHostKeyChecking=no \
+          ssh -o StrictHostKeyChecking=no \
           -i ~/.ssh/id_rsa ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }} \
           cd /home/phimhay247z/htdocs/phimhay247z.org \
           pm2 reload ecosystem.config.cjs
