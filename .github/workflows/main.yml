@@ -36,6 +36,14 @@ jobs:
       - name: Set up known hosts
         run: ssh-keyscan -t rsa ${{ secrets.PHIMHAY247_IP }} >> ~/.ssh/known_hosts
 
+      - name: Copy public and server folders
+        run: |
+          scp -r -i ~/.ssh/id_rsa ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+
+          scp -r -i ~/.ssh/id_rsa ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+
+          scp -r -i ~/.ssh/id_rsa ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
@@ -44,11 +52,6 @@ jobs:
           key: ${{ secrets.PHIMHAY247_PK }}
           script: |
             sudo -i
-            scp -r -i ~/.ssh/id_rsa ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
-
-            scp -r -i ~/.ssh/id_rsa ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
-
-            scp -r -i ~/.ssh/id_rsa ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
             cd /home/phimhay247z/htdocs/phimhay247z.org
             pm2 reload ecosystem.config.cjs
