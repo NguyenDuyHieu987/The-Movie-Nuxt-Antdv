@@ -22,10 +22,10 @@ jobs:
       - name: Create .env file
         run: echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
 
-      - name: Install Dependencies and Build
-        run: |
-          npm install
-          npm run build
+      # - name: Install Dependencies and Build
+      #   run: |
+      #     npm install
+      #     npm run build
 
       - name: Install SSH key
         run: |
@@ -38,9 +38,9 @@ jobs:
 
       - name: Copy public and server folders
         run: |
-          scp -r -i ~/.ssh/id_rsa ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+          # scp -r -i ~/.ssh/id_rsa ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
-          scp -r -i ~/.ssh/id_rsa ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+          # scp -r -i ~/.ssh/id_rsa ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
           scp -r -i ~/.ssh/id_rsa ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
