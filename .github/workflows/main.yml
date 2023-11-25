@@ -52,6 +52,7 @@ jobs:
           username: ${{ secrets.PHIMHAY247_USERNAME }}
           key: ${{ secrets.PHIMHAY247_PK }}
           script: |
+            sudo -s
             cd /home/phimhay247z/htdocs/phimhay247z.org
             nvm use 19.9.0
             npm i pm2 -g
