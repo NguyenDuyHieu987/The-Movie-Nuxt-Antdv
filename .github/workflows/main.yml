@@ -53,5 +53,6 @@ jobs:
           key: ${{ secrets.PHIMHAY247_PK }}
           script: |
             cd /home/phimhay247z/htdocs/phimhay247z.org
+            nvm use 19.9.0
             npm i pm2 -g
             pm2 restart ecosystem.config.cjs
