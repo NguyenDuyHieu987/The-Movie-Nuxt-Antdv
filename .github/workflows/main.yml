@@ -32,7 +32,7 @@ jobs:
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
-        run:
+        with:
           host: ${{ secrets.PHIMHAY247_IP }}
           username: ${{ secrets.PHIMHAY247_USERNAME }}
           key: ${{ secrets.PHIMHAY247_PK }}
