@@ -32,8 +32,8 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -v -o StrictHostKeyChecking=no \
+          ssh -o StrictHostKeyChecking=no \
           -i ~/.ssh/id_rsa phimhay247z@${{ secrets.PHIMHAY247_IP }} \
           "sudo -i && cd /home/phimhay247z/htdocs/phimhay247z.org \
           && git pull && npm install && npm run build:pm2 \
-          && pm2 reload ecosystem.config.js"
+          && pm2 reload ecosystem.config.cjs"
