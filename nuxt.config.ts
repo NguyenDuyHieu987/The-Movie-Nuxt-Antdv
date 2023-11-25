@@ -112,9 +112,9 @@ export default defineNuxtConfig({
     'nuxt-delay-hydration',
 
     // SEO
-    'nuxt-simple-sitemap',
+    // 'nuxt-simple-sitemap',
   ],
-  extends: ['nuxt-seo-kit'],
+  // extends: ['nuxt-seo-kit'],
   antd: {
     icons: false,
   },
