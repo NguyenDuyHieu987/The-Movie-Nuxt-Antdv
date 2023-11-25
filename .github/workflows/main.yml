@@ -37,7 +37,7 @@ jobs:
       - name: Set up known hosts
         run: ssh-keyscan -t rsa ${{ secrets.PHIMHAY247_IP }} >> ~/.ssh/known_hosts
 
-      - name: Copy public and server folders
+      - name: Deploy to Server
         run: |
           rsync -ru --ignore-existing ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
@@ -45,7 +45,7 @@ jobs:
 
           rsync -ru --ignore-existing ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
-      - name: Deploy to Server
+      - name: Start app on Server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PHIMHAY247_IP }}
