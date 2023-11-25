@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Node.js and npm
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y nodejs
-          sudo apt-get install -y npm
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '19.9.0'
+          registry-url: 'https://registry.npmjs.org/'
 
       - name: Install PM2
         run: |
