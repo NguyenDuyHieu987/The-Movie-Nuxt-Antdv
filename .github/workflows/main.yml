@@ -31,6 +31,7 @@ jobs:
           ssh-keyscan -t rsa ${{ secrets.PHIMHAY247_IP }} >> ~/.ssh/known_hosts
 
       - name: Deploy to Server
+        uses: appleboy/ssh-action@master
         run:
           host: ${{ secrets.PHIMHAY247_IP }}
           username: ${{ secrets.PHIMHAY247_USERNAME }}
