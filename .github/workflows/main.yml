@@ -45,10 +45,10 @@ jobs:
           script: |
             sudo -i
             scp -r -i ~/.ssh/id_rsa ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+
             scp -r -i ~/.ssh/id_rsa ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
-            sudo -i 
+
+            scp -r -i ~/.ssh/id_rsa ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+
             cd /home/phimhay247z/htdocs/phimhay247z.org
-            git pull 
-            npm install
-            npm run build:pm2
             pm2 reload ecosystem.config.cjs
