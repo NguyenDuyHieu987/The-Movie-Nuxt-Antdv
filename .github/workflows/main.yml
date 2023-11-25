@@ -40,16 +40,18 @@ jobs:
         run: |
           chmod 600 ~/.ssh/id_rsa
 
-      #     scp -r -i ~/.ssh/id_rsa ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
-
-      #     scp -r -i ~/.ssh/id_rsa ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
-
           scp -r -i ~/.ssh/id_rsa ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
-
       - name: Deploy to Server
-        run: |
-          ssh -o StrictHostKeyChecking=no \
-          -i ~/.ssh/id_rsa ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }} \
-          cd /home/phimhay247z/htdocs/phimhay247z.org \
-          pm2 reload ecosystem.config.cjs
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PHIMHAY247_IP }}
+          username: ${{ secrets.PHIMHAY247_USERNAME }}
+          key: ${{ secrets.PHIMHAY247_PK }}
+          script: |
+            sudo -i 
+            cd /home/phimhay247z/htdocs/phimhay247z.org
+            git pull 
+            npm install
+            npm run build:pm2
+            pm2 reload ecosystem.config.cjs
