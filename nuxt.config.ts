@@ -265,7 +265,7 @@ export default defineNuxtConfig({
     // preset: 'static',
     prerender: {
       routes: [],
-      crawlLinks: true,
+      crawlLinks: false,
       ignore: [
         '/follow',
         '/history',
@@ -290,10 +290,10 @@ export default defineNuxtConfig({
   generate: {
     routes: [
       // '/',
-      '/feature',
-      '/television',
-      '/search',
-      '/discover',
+      // '/feature',
+      // '/television',
+      // '/search',
+      // '/discover',
       // '/follow',
       // '/history',
       '/ranking',
