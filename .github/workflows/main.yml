@@ -39,11 +39,11 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          rsync -ru --ignore-existing ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+          rsync -r --update --delete-after --ignore-existing ./.output/public ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
-          rsync -ru --ignore-existing ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+          rsync -r --update --delete-after --ignore-existing ./.output/server ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
-          rsync -ru --ignore-existing ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
+          rsync -r --update --delete-after --ignore-existing ./ecosystem.config.cjs ${{ secrets.PHIMHAY247_USERNAME }}@${{ secrets.PHIMHAY247_IP }}:/home/phimhay247z/htdocs/phimhay247z.org
 
       - name: Start app on Server
         uses: appleboy/ssh-action@master
