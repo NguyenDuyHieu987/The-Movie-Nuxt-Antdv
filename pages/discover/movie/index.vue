@@ -20,8 +20,8 @@
     </div>
 
     <section class="discover-section">
-      <div v-if="!loading" class="movie-group horizontal">
-        <MovieCardHorizontal
+      <div v-if="!loading" class="movie-group vertical">
+        <MovieCardVertical
           v-for="(item, index) in dataDiscover"
           :index="index"
           :key="item.id"

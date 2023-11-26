@@ -69,7 +69,7 @@
       </p>
 
       <div class="genres">
-        <ClientOnly>
+        <!-- <ClientOnly>
           <NuxtLink
             class="genre-item"
             v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
@@ -81,15 +81,17 @@
           >
             {{ genre?.name }}
           </NuxtLink>
-        </ClientOnly>
+        </ClientOnly> -->
 
-        <!-- <div
+        <div
           class="genre-item"
           v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
           :index="index"
           :key="index"
           @click.prevent="handleClickGenreItem(genre)"
-        ></div> -->
+        >
+          {{ genre?.name }}
+        </div>
       </div>
     </div>
     <!-- </template>
