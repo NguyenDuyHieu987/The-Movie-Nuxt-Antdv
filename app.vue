@@ -37,7 +37,7 @@
       :throttle="300"
     />
 
-    <!-- <SeoKit /> -->
+    <SeoKit />
     <!-- <OgImageStatic /> -->
 
     <LoadingApp />
