@@ -114,7 +114,7 @@ export default defineNuxtConfig({
     // SEO
     // 'nuxt-simple-sitemap',
   ],
-  extends: ['nuxt-seo-kit'],
+  // extends: ['nuxt-seo-kit'],
   antd: {
     icons: false,
   },
@@ -289,10 +289,10 @@ export default defineNuxtConfig({
   generate: {
     routes: [
       // '/',
-      // '/feature',
-      // '/television',
-      // '/search',
-      // '/discover',
+      '/feature',
+      '/television',
+      '/search',
+      '/discover',
       // '/follow',
       // '/history',
       '/ranking',
