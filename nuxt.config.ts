@@ -109,7 +109,7 @@ export default defineNuxtConfig({
     'nuxt-lazy-load',
     '@nuxtjs/fontaine',
     'nuxt-gtag',
-    // 'nuxt-delay-hydration',
+    'nuxt-delay-hydration',
 
     // SEO
     'nuxt-simple-sitemap',
@@ -172,11 +172,11 @@ export default defineNuxtConfig({
     observerConfig: {},
   },
   fontMetrics: {},
-  // delayHydration: {
-  //   debug: !isProduction,
-  //   mode: 'mount',
-  // },
-  // SEO
+  delayHydration: {
+    debug: !isProduction,
+    mode: 'init',
+  },
+  SEO
   site: {
     url: 'https://phimhay247z.org',
   },
