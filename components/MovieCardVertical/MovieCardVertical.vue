@@ -69,23 +69,27 @@
       </p>
 
       <div class="genres">
-        <!-- <ClientOnly> -->
-        <div
+        <ClientOnly>
+          <!-- <div
           class="genre-item"
           v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
           :index="index"
           :key="index"
           @click.prevent="handleClickGenreItem(genre)"
-        >
-          <!-- <NuxtLink
+        > -->
+          <NuxtLink
+            class="genre-item"
+            v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
+            :index="index"
+            :key="index"
             :to="`/discover/genre/${
               getGenreById(genre.id, store?.allGenres)?.short_name
             }`"
-          > -->
-          {{ genre?.name }}
-          <!-- </NuxtLink> -->
-        </div>
-        <!-- </ClientOnly> -->
+          >
+            {{ genre?.name }}
+          </NuxtLink>
+          <!-- </div> -->
+        </ClientOnly>
       </div>
     </div>
     <!-- </template>
