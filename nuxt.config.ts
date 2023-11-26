@@ -112,9 +112,9 @@ export default defineNuxtConfig({
     'nuxt-delay-hydration',
 
     // SEO
-    'nuxt-simple-sitemap',
+    // 'nuxt-simple-sitemap',
   ],
-  extends: ['nuxt-seo-kit'],
+  // extends: ['nuxt-seo-kit'],
   antd: {
     icons: false,
   },
@@ -177,9 +177,9 @@ export default defineNuxtConfig({
     mode: 'mount',
   },
   // SEO
-  site: {
-    url: 'https://phimhay247z.org',
-  },
+  // site: {
+  //   url: 'https://phimhay247z.org',
+  // },
   plugins: [],
   hooks: {},
   build: {
@@ -289,10 +289,10 @@ export default defineNuxtConfig({
   generate: {
     routes: [
       // '/',
-      '/feature',
-      '/television',
-      '/search',
-      '/discover',
+      // '/feature',
+      // '/television',
+      // '/search',
+      // '/discover',
       // '/follow',
       // '/history',
       '/ranking',

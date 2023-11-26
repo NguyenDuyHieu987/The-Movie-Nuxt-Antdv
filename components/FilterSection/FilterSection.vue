@@ -299,7 +299,7 @@ const emits = defineEmits<{
 }>();
 
 const store = useStore();
-const route: any = useRoute();
+const route = useRoute();
 const listFilter = ref<any[]>(props.listFilter);
 const genres = ref<genre[]>(store.allGenres);
 const years = ref<year[]>(store.allYears);
