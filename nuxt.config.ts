@@ -176,7 +176,7 @@ export default defineNuxtConfig({
     debug: !isProduction,
     mode: 'init',
   },
-  SEO
+  // SEO
   site: {
     url: 'https://phimhay247z.org',
   },
