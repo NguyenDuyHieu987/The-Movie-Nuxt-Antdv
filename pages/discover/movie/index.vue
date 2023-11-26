@@ -52,9 +52,9 @@ import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 import type { formfilter, typeMovie } from '@/types';
 
-const route: any = useRoute();
-const router = useRouter();
 const store = useStore();
+const route = useRoute();
+const router = useRouter();
 const dataDiscover = ref<any[]>();
 const page = ref<number>(+route.query?.page || 1);
 const totalPage = ref<number>(100);
