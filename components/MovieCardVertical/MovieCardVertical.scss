@@ -146,7 +146,7 @@
         margin-top: 5px;
         max-width: 100%;
         overflow: hidden;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
 
         &::after {
           content: '';
@@ -168,8 +168,9 @@
         }
 
         .genre-item {
-          padding: 3px 7px;
+          padding: 4px 8px;
           background-color: #8686866f;
+          line-height: normal;
           white-space: nowrap;
           border-radius: 3px;
           color: inherit;
