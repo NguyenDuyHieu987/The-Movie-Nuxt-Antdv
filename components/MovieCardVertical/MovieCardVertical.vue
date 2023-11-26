@@ -70,13 +70,6 @@
 
       <div class="genres">
         <ClientOnly>
-          <!-- <div
-          class="genre-item"
-          v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
-          :index="index"
-          :key="index"
-          @click.prevent="handleClickGenreItem(genre)"
-        > -->
           <NuxtLink
             class="genre-item"
             v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
@@ -88,8 +81,15 @@
           >
             {{ genre?.name }}
           </NuxtLink>
-          <!-- </div> -->
         </ClientOnly>
+
+        <!-- <div
+          class="genre-item"
+          v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
+          :index="index"
+          :key="index"
+          @click.prevent="handleClickGenreItem(genre)"
+        ></div> -->
       </div>
     </div>
     <!-- </template>
