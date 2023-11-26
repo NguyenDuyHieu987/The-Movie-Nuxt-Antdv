@@ -69,19 +69,23 @@
       </p>
 
       <div class="genres">
-        <ClientOnly>
-          <NuxtLink
-            class="genre-item"
-            v-for="(genre, index) in Array.from(item?.genres, (x: any) => x)"
-            :index="index"
-            :key="index"
+        <!-- <ClientOnly> -->
+        <div
+          class="genre-item"
+          v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
+          :index="index"
+          :key="index"
+          @click.prevent="handleClickGenreItem(genre)"
+        >
+          <!-- <NuxtLink
             :to="`/discover/genre/${
-              getGenreById(genre.id, store.allGenres)?.short_name
+              getGenreById(genre.id, store?.allGenres)?.short_name
             }`"
-          >
-            {{ genre?.name }}
-          </NuxtLink>
-        </ClientOnly>
+          > -->
+          {{ genre?.name }}
+          <!-- </NuxtLink> -->
+        </div>
+        <!-- </ClientOnly> -->
       </div>
     </div>
     <!-- </template>
@@ -94,6 +98,7 @@ import axios from 'axios';
 import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import { getGenreById } from '~/services/genres';
+import type { genre } from '~/types';
 
 const props = defineProps<{
   item: any;
@@ -213,6 +218,14 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
     // isTeleportPreviewModal.value = false;
     clearTimeout(timeOut.value);
   });
+};
+
+const handleClickGenreItem = (genreItem: genre) => {
+  navigateTo(
+    `/discover/genre/${
+      getGenreById(genreItem.id, store?.allGenres)?.short_name
+    }`
+  );
 };
 </script>
 
