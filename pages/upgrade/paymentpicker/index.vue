@@ -27,7 +27,6 @@
                   loading="lazy"
                   :width="40"
                   alt=""
-
                 />
                 <span>Ví MoMo</span>
               </div>
@@ -82,7 +81,6 @@
                   loading="lazy"
                   :width="40"
                   alt=""
-
                 />
                 <span>ATM - Ngân hàng nội địa</span>
               </div>
@@ -111,7 +109,6 @@
                   loading="lazy"
                   :width="100"
                   alt=""
-
                 />
 
                 <NuxtImg
@@ -119,7 +116,6 @@
                   loading="lazy"
                   :width="40"
                   alt=""
-
                 />
 
                 <span>Thẻ ghi nợ - Thẻ tín dụng</span>
@@ -158,13 +154,13 @@ definePageMeta({
   layout: 'service',
   middleware: [
     async (to, from) => {
-      if (!to.query.planorder) return navigateTo('/upgrade/plans');
+      if (!to.query?.planorder) return navigateTo('/upgrade/plans');
 
       // getAllPlan()
       //   .then((response) => {
       //     if (
       //       !response?.results.some(
-      //         (item: plan) => item.order == Number(to.query.planorder)
+      //         (item: plan) => item.order == Number(to.query?.planorder)
       //       )
       //     )
       //       return navigateTo('/upgrade/plans');
@@ -186,7 +182,7 @@ definePageMeta({
 
       if (
         !plans.value.some(
-          (item: plan) => item.order == Number(to.query.planorder)
+          (item: plan) => item.order == Number(to.query?.planorder)
         )
       )
         return navigateTo('/upgrade/plans');
@@ -204,19 +200,19 @@ const planSelected = ref<plan>();
 watch(
   route.query,
   async () => {
-    if (!route.query.planorder) return navigateTo('/upgrade/plans');
+    if (!route.query?.planorder) return navigateTo('/upgrade/plans');
 
     // getAllPlan()
     //   .then((response) => {
     //     if (
     //       !response?.results.some(
-    //         (item: plan) => item.order == Number(route.query.planorder)
+    //         (item: plan) => item.order == Number(route.query?.planorder)
     //       )
     //     )
     //       return navigateTo('/upgrade/plans');
 
     //     planSelected.value = response?.results.find(
-    //       (item: plan) => item.order == Number(route.query.planorder)
+    //       (item: plan) => item.order == Number(route.query?.planorder)
     //     );
     //   })
     //   .catch((e) => {
@@ -232,13 +228,13 @@ watch(
 
     if (
       !plans.value.some(
-        (item: plan) => item.order == Number(route.query.planorder)
+        (item: plan) => item.order == Number(route.query?.planorder)
       )
     )
       return navigateTo('/upgrade/plans');
 
     planSelected.value = plans.value.find(
-      (item: plan) => item.order == Number(route.query.planorder)
+      (item: plan) => item.order == Number(route.query?.planorder)
     );
   },
   { immediate: true, deep: true }

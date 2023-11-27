@@ -138,7 +138,7 @@ const loadingSearch = ref<boolean>(false);
 const isOpenAutoComplete = ref<boolean>(true);
 const isShowSearch = ref<boolean>(false);
 const debounce = ref<any>();
-const valueInput = ref<string>(route.query.q);
+const valueInput = ref<string>(route.query?.q);
 
 onMounted(() => {
   isShowSearch.value = true;
@@ -173,7 +173,7 @@ onMounted(() => {
 });
 
 watchEffect(() => {
-  valueInput.value = route.query.q;
+  valueInput.value = route.query?.q;
 });
 
 const handleChangeInput = (query: string) => {

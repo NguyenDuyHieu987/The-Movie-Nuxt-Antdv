@@ -255,7 +255,7 @@ const getData = async () => {
 
   // if (route.params?.slug == 'genre') {
   // const genreId: number = getGenreByShortName(
-  //   route.query.genre,
+  //   route.query?.genre,
   //   store.allGenres
   // )!.id;
 

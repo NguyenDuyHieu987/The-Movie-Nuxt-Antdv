@@ -267,13 +267,13 @@ watch(
     if (route.query?.genre) {
       loading.value = true;
       // const genreId: number = getGenreByShortName(
-      //   route.query.genre,
+      //   route.query?.genre,
       //   store.allGenres
       // )!.id;
 
       // formFilter.value.genre = genreId.toString();
 
-      formFilter.value.genre = route.query.genre;
+      formFilter.value.genre = route.query?.genre;
 
       await useAsyncData(`discover/tv/all/${formFilter.value}`, () =>
         FilterTvSlug(formFilter.value)

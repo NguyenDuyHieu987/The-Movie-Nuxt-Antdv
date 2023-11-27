@@ -62,12 +62,12 @@ const pageSize = ref<number>(20);
 const loading = ref<boolean>(false);
 const formFilter = computed<formfilter>(() => {
   return {
-    type: route.query.type || 'all',
-    sortBy: route.query.sort_by || '',
-    genre: route.query.genre || '',
-    year: route.query.year || '',
-    country: route.query.country || '',
-    page: route.query.page || 1,
+    type: route.query?.type || 'all',
+    sortBy: route.query?.sort_by || '',
+    genre: route.query?.genre || '',
+    year: route.query?.year || '',
+    country: route.query?.country || '',
+    page: route.query?.page || 1,
     limit: 20,
   };
 });

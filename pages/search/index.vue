@@ -2,7 +2,7 @@
   <div class="search padding-content">
     <h2 class="gradient-title-default underline">
       <span
-        >Kết quả tìm kiếm cho: {{ route.query.q?.replaceAll('+', ' ') }}
+        >Kết quả tìm kiếm cho: {{ route.query?.q?.replaceAll('+', ' ') }}
       </span>
 
       <a-select
@@ -72,7 +72,7 @@ const totalPage = ref<number>(100);
 const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
 const searchQuery = computed<string>(
-  () => route.query.q?.replaceAll('+', ' ') || ''
+  () => route.query?.q?.replaceAll('+', ' ') || ''
 );
 
 useHead({
