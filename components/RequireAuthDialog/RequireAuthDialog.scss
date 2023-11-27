@@ -42,9 +42,10 @@
 
     .el-dialog__footer {
       display: flex;
-      padding-bottom: 40px;
+      padding-bottom: 35px;
       gap: 15px;
       justify-content: center;
+      margin-top: 20px;
 
       a {
         color: var(--text-color);
