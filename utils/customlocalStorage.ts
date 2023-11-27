@@ -1,4 +1,4 @@
-export function setWithExpiry(key: string, value: any, ttl: number) {
+function setWithExpiry(key: string, value: any, ttl: number) {
   const now = new Date();
 
   // `item` is an object which contains the original value
@@ -15,7 +15,7 @@ export function setWithExpiry(key: string, value: any, ttl: number) {
   }
 }
 
-export function getWithExpiry(key: string) {
+function getWithExpiry(key: string) {
   let itemJson = null;
   if (process.client) {
     itemJson = window.localStorage.getItem(key);
@@ -46,6 +46,7 @@ export function getWithExpiry(key: string) {
 
 export function getWithExpiry_ExpRemain(key: any) {
   let itemJson = null;
+
   if (process.client) {
     itemJson = window.localStorage.getItem(key);
   }
@@ -84,25 +85,10 @@ export function getWithExpiry_ExpRemain(key: any) {
   return item.value;
 }
 
-export function useLocalStorage(initialVal: any, key: string) {
-  const val = ref<any>(initialVal);
-  let storageVal = null;
-
-  if (process.client) {
-    storageVal = window.localStorage.getItem(key);
-  }
-
-  if (storageVal) {
-    val.value = JSON.parse(storageVal);
-  }
-
-  watch(
-    () => val,
-    (newVal) => {
-      window.localStorage.setItem(key, JSON.stringify(newVal));
-    },
-    { immediate: true, deep: true }
-  );
-
-  return val;
-}
+export const customLocalStorage = () => {
+  return {
+    setWithExpiry,
+    getWithExpiry,
+    getWithExpiry_ExpRemain,
+  };
+};

@@ -26,7 +26,7 @@
               <div class="top">
                 <span class="author-username">{{ item?.username }}</span>
                 <span class="created-at">
-                  {{ utils.dateFormater.fromNow(item?.created_at!) }}
+                  {{ utils.dateTimeFormater.fromNow(item?.created_at!) }}
                 </span>
 
                 <span v-if="isUpdated" class="updated-text">

@@ -95,7 +95,7 @@ onMounted(() => {});
 
 const handleLogout = () => {
   if (isLogin) {
-    utils.auth.onLogOut();
+    store.logOut();
   }
 };
 </script>

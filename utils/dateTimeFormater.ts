@@ -1,4 +1,4 @@
-export function format(date: string, formats?: string) {
+function format(date: string, formats?: string) {
   const dateObj = new Date(date);
   const options1: any = {
     year: 'numeric',
@@ -38,7 +38,7 @@ export function format(date: string, formats?: string) {
   return newDate;
 }
 
-export function fromNow(
+function fromNow(
   date: string,
   options?: {
     onlyDay: boolean | false;
@@ -102,3 +102,7 @@ export function fromNow(
 
   return fromNowStr;
 }
+
+export const dateTimeFormater = () => {
+  return { format, fromNow };
+};

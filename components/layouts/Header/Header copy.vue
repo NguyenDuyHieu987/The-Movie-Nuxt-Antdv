@@ -414,7 +414,7 @@ const handleSearch = (value: string) => {
 };
 
 const handleLogout = () => {
-  utils.auth.onLogOut();
+  store.logOut();
 };
 </script>
 

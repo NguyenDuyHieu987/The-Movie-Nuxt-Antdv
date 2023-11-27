@@ -70,7 +70,7 @@ const store = useStore();
 const { isLogin, userAccount, role } = storeToRefs<any>(store);
 
 const handleLogout = () => {
-  utils.auth.onLogOut();
+  store.logOut();
 };
 </script>
 

@@ -18,6 +18,7 @@ export async function makeRequest(
   }
 ) {
   const nuxtConfig = useRuntimeConfig();
+  const utils = useUtils();
   let headers: AxiosRequestHeaders | any = {};
 
   const api = axios.create({
@@ -28,9 +29,14 @@ export async function makeRequest(
     withCredentials: true,
   });
 
-  if (getWithExpiry('user_token') && !options?.noAuthHeaders) {
+  if (
+    utils.localStorage.getWithExpiry('user_token') &&
+    !options?.noAuthHeaders
+  ) {
     if (!options?.headers?.hasOwnProperty('Authorization')) {
-      headers.Authorization = `Bearer ${getWithExpiry('user_token')}`;
+      headers.Authorization = `Bearer ${utils.localStorage.getWithExpiry(
+        'user_token'
+      )}`;
     }
   }
 

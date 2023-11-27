@@ -70,7 +70,10 @@ export default defineNuxtConfig({
     '@': resolve(__dirname, './'),
   },
   imports: {
-    // dirs: ['/services'],
+    dirs: [
+      // '/services',
+    //  '/stores'
+    ],
   },
   experimental: {
     payloadExtraction: true,
@@ -125,6 +128,9 @@ export default defineNuxtConfig({
       prefix: Math.floor(Math.random() * 10000),
       current: 0,
     },
+  },
+  pinia: {
+    storesDirs: ['./stores/**'],
   },
   swiper: {
     modules: ['navigation', 'virtual', 'free-mode', 'scrollbar'],

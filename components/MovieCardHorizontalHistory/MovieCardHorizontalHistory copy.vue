@@ -379,7 +379,7 @@ const getData = async () => {
 
   // console.log('a: ', now.getTimezoneOffset());
 
-  // console.log(utils.dateFormater.fromNow('2023-08-04T12:33:02.293Z'));
+  // console.log(utils.dateTimeFormater.fromNow('2023-08-04T12:33:02.293Z'));
 
   // Is 2nd onwards
   if (props?.prevItem) {
@@ -393,17 +393,21 @@ const getData = async () => {
       diffDays > 1
     ) {
       timeLine.value =
-        utils.dateFormater.fromNow(props.item?.created_at, { onlyDay: true }) +
+        utils.dateTimeFormater.fromNow(props.item?.created_at, {
+          onlyDay: true,
+        }) +
         ' - ' +
-        utils.dateFormater.format(props.item?.created_at, 'LL');
+        utils.dateTimeFormater.format(props.item?.created_at, 'LL');
     }
   }
   // Is first item
   else {
     timeLine.value =
-      utils.dateFormater.fromNow(props.item?.created_at, { onlyDay: true }) +
+      utils.dateTimeFormater.fromNow(props.item?.created_at, {
+        onlyDay: true,
+      }) +
       ' - ' +
-      utils.dateFormater.format(props.item?.created_at, 'LL');
+      utils.dateTimeFormater.format(props.item?.created_at, 'LL');
   }
 
   if (props?.type || props?.item?.media_type) {

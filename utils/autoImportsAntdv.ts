@@ -1,7 +1,7 @@
 import { addComponent } from '@nuxt/kit';
 import * as AntDV from 'ant-design-vue';
 
-export default async function resolveAntDVComponents(options: any, nuxt: any) {
+export async function resolveAntDVComponents(options: any, nuxt: any) {
   for (const component in AntDV) {
     if (['version', 'install'].includes(component)) continue;
     if (typeof component === 'string') {

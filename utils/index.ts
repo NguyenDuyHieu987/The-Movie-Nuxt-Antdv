@@ -1,6 +1,5 @@
 export const useUtils = () => {
   return {
-    auth: { onLogOut },
     handelAddItemToList,
     viewFormatter,
     encryptPassword,
@@ -10,16 +9,22 @@ export const useUtils = () => {
     handleRemoveAllitemFromHistory,
     initFacebookSdk,
     initGoogleSdk,
-    cookie: { getCookie, setCookie },
-    localStorage: {
-      setWithExpiry,
-      getWithExpiry,
-      getWithExpiry_ExpRemain,
-      useLocalStorage,
-    },
-    dateFormater: { format, fromNow },
+    cookie: customCookie(),
+    localStorage: customLocalStorage(),
+    dateTimeFormater: dateTimeFormater(),
     conrfirmMessageModal,
     removeVietnameseTones,
-    textUppercase,
   };
 };
+
+export * from './convertViews';
+export * from './customCookie';
+export * from './customLocalStorage';
+export * from './dateTimeFormater';
+export * from './encryptPassword';
+export * from './facebookService';
+export * from './handelAddRemoveItemList_History';
+export * from './init-facebook-sdk';
+export * from './init-google-sdk';
+export * from './messageModal';
+export * from './removeVietnameseTones';

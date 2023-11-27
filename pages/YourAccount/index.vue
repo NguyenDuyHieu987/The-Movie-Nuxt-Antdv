@@ -164,7 +164,7 @@ const showAnimation = ref<boolean>(false);
 const responesive = breakPoints.smallerOrEqual('responesive');
 
 const joinSince = computed<string>(() =>
-  utils.dateFormater.format(store.userAccount?.created_at!, 'LLL')
+  utils.dateTimeFormater.format(store.userAccount?.created_at!, 'LLL')
 );
 
 useHead({
@@ -202,7 +202,7 @@ const deleteAccount = () => {
 };
 
 const handleLogout = () => {
-  utils.auth.onLogOut();
+  store.logOut();
 };
 </script>
 

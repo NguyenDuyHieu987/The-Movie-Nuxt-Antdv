@@ -146,7 +146,7 @@ const props = withDefaults(
     comment?: commentForm;
     replyTo?: commentForm;
     commentType?: string;
-    action?: 'post' | 'edit';
+    action?: 'post' | 'edit' | string;
     showActions?: boolean;
     isShowFormComment?: boolean;
   }>(),

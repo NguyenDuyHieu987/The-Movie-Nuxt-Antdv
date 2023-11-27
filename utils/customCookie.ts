@@ -1,4 +1,4 @@
-export function setCookie(cname: string, cvalue: any, exp: number) {
+function setCookie(cname: string, cvalue: any, exp: number) {
   const d = new Date();
   d.setTime(d.getTime() + exp * 3600 * 1000);
   let expires = 'expires=' + d.toUTCString();
@@ -8,7 +8,7 @@ export function setCookie(cname: string, cvalue: any, exp: number) {
   }
 }
 
-export function getCookie(cname: string) {
+function getCookie(cname: string) {
   let name = cname + '=';
   let decodedCookie = '';
 
@@ -30,3 +30,11 @@ export function getCookie(cname: string) {
 
   return null;
 }
+
+export const customCookie = () => {
+  return {
+    setCookie,
+    getCookie,
+    getWithExpiry_ExpRemain,
+  };
+};
