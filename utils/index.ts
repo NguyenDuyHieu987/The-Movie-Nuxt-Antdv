@@ -27,4 +27,4 @@ export * from './handelAddRemoveItemList_History';
 export * from './init-facebook-sdk';
 export * from './init-google-sdk';
 export * from './messageModal';
-export * from './removeVietnameseTones';
+export * from './TemoveVietnameseTones';
