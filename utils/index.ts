@@ -19,7 +19,7 @@ export const useUtils = () => {
 
 export * from './convertViews';
 export * from './customCookie';
-export * from './customLocalStorage1';
+export * from './customLocalStorage';
 export * from './dateTimeFormater';
 export * from './encryptPassword';
 export * from './facebookService';
