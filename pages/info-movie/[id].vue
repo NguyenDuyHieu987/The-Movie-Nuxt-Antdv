@@ -383,8 +383,6 @@ const ratedValue = ref<number | undefined>();
 const windowWidth = ref<number>(1200);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
 
-console.log(router);
-
 const setBackgroundColor = (color: string[]) => {
   const main_color = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`;
 

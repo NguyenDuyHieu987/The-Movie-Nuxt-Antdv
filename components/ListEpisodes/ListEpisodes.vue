@@ -1,5 +1,5 @@
 <template>
-  <div class="list-episodes">
+  <div class="list-episodes-section">
     <!-- <div class="control-episodes">
       <a-button
         type="text"
@@ -52,7 +52,7 @@
 
     <div
       v-show="dataEpisode?.length"
-      class="list"
+      class="list-episodes-wrapper"
       v-loading="loading"
       element-loading-text="Đang tải tập..."
       element-loading-background="rgba(0, 0, 0, 0.6)"
@@ -69,7 +69,7 @@
         </template>
 
         <template #default>
-          <ul class="list-container">
+          <ul class="list-episodes" ref="listEpisodes">
             <li
               v-for="(item, index) in dataEpisode"
               :index="index"
@@ -82,6 +82,8 @@
                   .removeVietnameseTones(dataMovie?.name)
                   ?.replace(/\s/g, '-')
                   .toLowerCase()}/tap-${item?.episode_number}`"
+                replace
+                force
                 @click.prevent="handleChangeEpisode(item)"
               >
                 {{
@@ -121,6 +123,7 @@ const emit = defineEmits<{
 const route = useRoute();
 const utils = useUtils();
 const router = useRouter();
+const listEpisodes = ref<HTMLUListElement>();
 const dataSeason = ref<any>(props.dataMovie?.seasons);
 const dataEpisode = ref<any[]>(
   props.dataMovie?.episodes
@@ -200,9 +203,14 @@ onMounted(() => {
     )
   );
 
-  // const episode = document.getElementById(
-  //   `episode-${currentEpisode.value}`
-  // ) as HTMLElement;
+  const episode = document.getElementById(
+    `episode-${currentEpisode.value}`
+  ) as HTMLElement;
+
+  listEpisodes.value?.scrollTo({
+    top: episode.offsetTop,
+    behavior: 'smooth',
+  });
 
   // episode.scrollIntoView();
 });

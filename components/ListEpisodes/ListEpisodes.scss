@@ -1,4 +1,4 @@
-.list-episodes {
+.list-episodes-section {
   position: relative;
 
   .control-episodes {
@@ -32,7 +32,7 @@
     margin-bottom: 5px;
   }
 
-  .list {
+  .list-episodes-wrapper {
     padding: 7px;
 
     .el-skeleton.is-animated {
@@ -47,7 +47,7 @@
       }
     }
 
-    ul.list-container {
+    ul.list-episodes {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
       gap: 7px;

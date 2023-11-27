@@ -68,7 +68,7 @@ import type { formfilter, genre } from '@/types';
 
 const route = useRoute();
 const router = useRouter();
-const store: any = useStore();
+const store = useStore();
 const dataDiscover = ref<any[]>();
 const genres = ref<genre[]>(store.allGenres);
 const page = ref<number>(+route.query?.page || 1);

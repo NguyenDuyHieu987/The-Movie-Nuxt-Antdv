@@ -904,8 +904,16 @@ watch(
   () => props.videoUrl,
   (newVal, oldVal) => {
     // initVideo(newVal);
-    video.value!.src = videoSrc.value;
-    video.value!.load();
+
+    if (props.dataMovie?.media_type == 'tv') {
+      video.value!.src = videoSrc.value;
+      video.value!.load();
+
+      if (video.value!.paused) {
+        // video.value!.play();
+        videoStates.isPlayVideo = true;
+      }
+    }
   }
   // { immediate: true }
 );
