@@ -272,9 +272,9 @@ import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import Comment from '~/components/Comment/Comment.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
-const route: any = useRoute();
+const route = useRoute();
 const router = useRouter();
 // const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);

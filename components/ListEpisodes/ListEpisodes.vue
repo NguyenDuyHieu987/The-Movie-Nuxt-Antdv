@@ -118,7 +118,7 @@ const emit = defineEmits<{
   changeEpisode: [episode: any];
 }>();
 
-const route: any = useRoute();
+const route = useRoute();
 const utils = useUtils();
 const router = useRouter();
 const dataSeason = ref<any>(props.dataMovie?.seasons);

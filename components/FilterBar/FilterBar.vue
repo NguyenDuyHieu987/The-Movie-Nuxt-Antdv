@@ -246,7 +246,7 @@ const props = defineProps<{
 }>();
 
 const store = useStore();
-const route: any = useRoute();
+const route = useRoute();
 const genres = ref<genre[]>(store.allGenres);
 const years = ref<year[]>(store.allYears);
 const countries = ref<country[]>(store.allCountries);

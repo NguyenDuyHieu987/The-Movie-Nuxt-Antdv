@@ -414,7 +414,7 @@ import { getAllCountry } from '~/services/country';
 import { getAllYear } from '~/services/year';
 import type { genre, country, year } from '@/types';
 
-const route: any = useRoute();
+const route = useRoute();
 const utils = useUtils();
 const store = useStore();
 const state = reactive<any>({

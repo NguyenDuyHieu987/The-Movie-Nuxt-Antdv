@@ -9,6 +9,7 @@
         v-model:commentsList="commentsList"
         :movieId="dataMovie?.id"
         :movieType="dataMovie?.media_type"
+        action="post"
       />
 
       <!-- <LoadingCircle v-show="loading" class="loading-comment" /> -->

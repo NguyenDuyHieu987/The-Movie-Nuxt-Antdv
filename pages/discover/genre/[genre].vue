@@ -66,7 +66,7 @@ import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 import type { formfilter, genre } from '@/types';
 
-const route: any = useRoute();
+const route = useRoute();
 const router = useRouter();
 const store: any = useStore();
 const dataDiscover = ref<any[]>();

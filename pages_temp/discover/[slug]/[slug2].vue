@@ -66,7 +66,7 @@ import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 import type { formfilter } from '@/types';
 
-const route: any = useRoute();
+const route = useRoute();
 const router = useRouter();
 const store = useStore();
 const dataDiscover = ref<any[]>();

@@ -158,7 +158,7 @@ definePageMeta({
   },
 });
 
-const store: any = useStore();
+const store = useStore();
 const utils = useUtils();
 const { isLogin } = storeToRefs<any>(store);
 const loadingChangePassword = ref<boolean>(false);

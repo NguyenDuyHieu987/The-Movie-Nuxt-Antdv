@@ -123,7 +123,7 @@ definePageMeta({
 const store = useStore();
 const utils = useUtils();
 const { isLogin } = storeToRefs<any>(store);
-const route: any = useRoute();
+const route = useRoute();
 const valueInput = ref<string>('');
 const debounce = ref<any>();
 const total = ref<number>(0);

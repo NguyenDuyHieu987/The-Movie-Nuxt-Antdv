@@ -145,10 +145,10 @@ const props = withDefaults(
     parent?: commentForm;
     comment?: commentForm;
     replyTo?: commentForm;
-    commentType: string;
-    action: string;
-    showActions: boolean;
-    isShowFormComment: boolean;
+    commentType?: string;
+    action?: 'post' | 'edit';
+    showActions?: boolean;
+    isShowFormComment?: boolean;
   }>(),
   {
     commentType: 'parent',

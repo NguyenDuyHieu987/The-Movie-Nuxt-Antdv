@@ -375,7 +375,7 @@ import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 const nuxtApp = useNuxtApp();
 const store = useStore();
 const utils = useUtils();
-const route: any = useRoute();
+const route = useRoute();
 const router = useRouter();
 // const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);

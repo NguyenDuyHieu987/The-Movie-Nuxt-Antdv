@@ -326,7 +326,7 @@ const store = useStore();
 const { openDrawer, collapsed, isLogin, userAccount, role } =
   storeToRefs<any>(store);
 const router = useRouter();
-const route: any = useRoute();
+const route = useRoute();
 const dataSearch = ref<any[]>([]);
 const page = ref<number>(1);
 const loadingSearch = ref<boolean>(false);

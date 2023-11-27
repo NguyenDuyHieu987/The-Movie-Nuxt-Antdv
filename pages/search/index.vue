@@ -59,8 +59,8 @@ import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import { getDaTaSearch } from '~/services/search';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
-const store: any = useStore();
-const route: any = useRoute();
+const store = useStore();
+const route = useRoute();
 const router = useRouter();
 const searchData = ref<any>([]);
 const searchDataMovie = ref<any[]>([]);

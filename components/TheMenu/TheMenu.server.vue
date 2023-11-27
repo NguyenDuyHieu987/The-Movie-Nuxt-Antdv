@@ -492,7 +492,7 @@ const props = defineProps<{
   noCollapse?: boolean | false;
 }>();
 
-const route: any = useRoute();
+const route = useRoute();
 const utils = useUtils();
 const store = useStore();
 const { collapsed, openSiderBarFixed } = storeToRefs<any>(store);

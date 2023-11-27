@@ -41,7 +41,7 @@ import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const router = useRouter();
-const route: any = useRoute();
+const route = useRoute();
 const rankings = ref<any[]>([]);
 const pageTrending = ref<number>(+route?.query?.page || 1);
 const totalPage = ref<number>(100);

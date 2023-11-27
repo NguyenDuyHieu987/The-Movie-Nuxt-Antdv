@@ -4,7 +4,7 @@
 
     <div class="info-conainer" v-else>
       <BackPage :fixed="true" @onclick="$router.back()">
-        <span> Quay lại</span>
+        <span> Quay lại </span>
       </BackPage>
 
       <div class="variant-backdrop"></div>
@@ -371,7 +371,7 @@ import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 const nuxtApp = useNuxtApp();
 const store = useStore();
 const utils = useUtils();
-const route: any = useRoute();
+const route = useRoute();
 const router = useRouter();
 // const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
@@ -382,6 +382,8 @@ const percentProgressHistory = ref<number>(0);
 const ratedValue = ref<number | undefined>();
 const windowWidth = ref<number>(1200);
 const movieId = computed<string>((): string => route.params?.id.split('__')[0]);
+
+console.log(router);
 
 const setBackgroundColor = (color: string[]) => {
   const main_color = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`;

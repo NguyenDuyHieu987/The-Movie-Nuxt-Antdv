@@ -288,8 +288,8 @@ import ListEpisodes from '~/components/ListEpisodes/ListEpisodes.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const utils = useUtils();
-const store: any = useStore();
-const route: any = useRoute();
+const store = useStore();
+const route = useRoute();
 const router = useRouter();
 // const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);

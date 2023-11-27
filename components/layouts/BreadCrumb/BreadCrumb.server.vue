@@ -34,8 +34,8 @@
 import { getGenreByShortName } from '~/services/genres';
 import type { country } from '@/types';
 
-const route: any = useRoute();
-const store: any = useStore();
+const route = useRoute();
+const store = useStore();
 
 const getParamsRoute = () => {
   const breadList = [];
@@ -91,7 +91,7 @@ const getParamsRoute = () => {
       breadList.push({
         params: 'genre',
         // name: route.params?.slug2
-        name: getGenreByShortName(route.params?.slug2, store.state?.allGenres)
+        name: getGenreByShortName(route.params?.slug2, store?.allGenres)
           ?.name_vietsub,
       });
       break;
@@ -102,7 +102,7 @@ const getParamsRoute = () => {
       breadList.push({
         params: 'countrie',
         // name: store.state.breadCrumbValue,
-        name: store.state.allCountries.find(
+        name: store.allCountries.find(
           (country: country) => country.short_name === route.params?.slug2
         )?.name,
       });

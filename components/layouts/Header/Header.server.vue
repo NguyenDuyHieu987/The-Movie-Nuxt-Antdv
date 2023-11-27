@@ -131,7 +131,7 @@ import { MenuOutlined } from '@ant-design/icons-vue';
 const store = useStore();
 const { isLogin, loadingUser } = storeToRefs<any>(store);
 const router = useRouter();
-const route: any = useRoute();
+const route = useRoute();
 const dataSearch = ref<any[]>([]);
 const page = ref<number>(1);
 const loadingSearch = ref<boolean>(false);
