@@ -109,7 +109,7 @@ const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const urlShare = computed<string>((): string => window.location.href);
 const isTeleportPreviewModal = ref<boolean>(false);
-const cardItem = ref<any>(null);
+const cardItem = ref<HTMLElement>();
 const left = ref<number>(0);
 const top = ref<number>(0);
 const offsetWidth = ref<number>(0);

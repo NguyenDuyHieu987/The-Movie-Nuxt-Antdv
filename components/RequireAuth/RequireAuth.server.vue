@@ -18,4 +18,4 @@
 
 <script setup lang="ts"></script>
 
-<style scoped lang="scss" src="./RequireAuth.scss"></style>
+<style lang="scss" src="./RequireAuth.scss"></style>
