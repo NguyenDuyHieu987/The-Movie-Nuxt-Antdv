@@ -14,6 +14,7 @@
     class="movie-card-item horizontal"
     ref="cardItem"
     @pointerenter="onMouseEnter"
+    :style="`--dominant-backdrop-color: ${item.dominant_backdrop_color[0]}, ${item.dominant_backdrop_color[1]},${item.dominant_backdrop_color[2]}`"
   >
     <!-- <el-skeleton :loading="loading" animated class="ratio-16-9">
       <template #template>
@@ -44,9 +45,16 @@
     </div>
 
     <div class="info">
-      <p class="title">
-        {{ item?.name }}
-      </p>
+      <div class="title-wrapper">
+        <p class="title">
+          {{ item?.name }}
+        </p>
+
+        <p class="original-title">
+          {{ item?.original_name }}
+        </p>
+      </div>
+
       <div
         v-if="item?.release_date || item?.last_air_date || item?.first_air_date"
         class="release-date-wrapper"
@@ -198,8 +206,8 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   offsetWidth.value = target.offsetWidth;
   offsetHeight.value = target.offsetHeight;
 
-  imgHeight.value = target.querySelector('img')!?.offsetHeight;
-  imgWidth.value = target.querySelector('img')!?.offsetWidth;
+  imgHeight.value = target.querySelector('img')!.offsetHeight;
+  imgWidth.value = target.querySelector('img')!.offsetWidth;
 
   rectBound.value = rect;
 

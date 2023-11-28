@@ -14,92 +14,65 @@
     class="movie-card-item horizontal"
     ref="cardItem"
     @pointerenter="onMouseEnter"
+    :style="`--dominant-backdrop-color: ${item.dominant_backdrop_color[0]}, ${item.dominant_backdrop_color[1]},${item.dominant_backdrop_color[2]}`"
   >
-    <el-skeleton :loading="loading" animated>
+    <!-- <el-skeleton :loading="loading" animated class="ratio-16-9">
       <template #template>
         <el-skeleton-item class="skeleton-img" />
+      </template> -->
 
-        <!-- <div class="content-skeleton">
-          <el-skeleton-item variant="text" />
-          <el-skeleton-item variant="text" style="width: 60%" />
-        </div> -->
-      </template>
+    <!-- <template #default> -->
+    <div class="img-box ratio-16-9">
+      <!-- <img
+        v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+        loading="lazy"
+        alt=""
+      /> -->
 
-      <template #default>
-        <div class="img-box">
-          <!-- v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h_250')" -->
+      <NuxtImg
+        :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+        format="avif"
+        loading="lazy"
+        alt=""
+      />
 
-          <img
-            class="ant-image"
-            v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
-            loading="lazy"
-            alt=""
-          />
+      <div v-show="isInHistory" class="viewed-overlay-bar">
+        <div
+          class="percent-viewed"
+          :style="{ width: percent * 100 + '%' }"
+        ></div>
+      </div>
+    </div>
 
-          <div v-show="isInHistory" class="viewed-overlay-bar">
-            <div
-              class="percent-viewed"
-              :style="{ width: percent * 100 + '%' }"
-            ></div>
-          </div>
+    <div class="info">
+      <div class="title-wrapper">
+        <p class="title">
+          {{ item?.name }}
+        </p>
 
-          <!-- <div class="duration-episode-box">
-            <p v-if="!isEpisodes" class="duration-episode">
-              {{ item?.runtime + ' min' }}
-            </p>
-            <p v-else class="duration-episode">
-              {{
-                // dataMovie?.last_episode_to_air?.episode_number
-                //   ? 'Tập ' + dataMovie?.last_episode_to_air?.episode_number
-                //   : ''
-                item?.episode_run_time[0]
-                  ? item?.episode_run_time[0] + ' min'
-                  : '? min / Ep'
-              }}
-            </p>
-          </div> -->
+        <p class="original-title">
+          {{ item?.original_name }}
+        </p>
+      </div>
 
-          <div
-            v-if="
-              item?.release_date || item?.last_air_date || item?.first_air_date
-            "
-            class="release-date-box"
-          >
-            <p class="release-date" v-if="!isEpisodes">
-              {{ item?.release_date?.slice(0, 4) }}
-            </p>
-            <p v-else class="release-date">
-              {{
-                item?.last_air_date?.slice(0, 4)
-                  ? item?.last_air_date?.slice(0, 4)
-                  : item?.first_air_date?.slice(0, 4)
-              }}
-            </p>
-          </div>
-        </div>
-
-        <div class="info">
-          <p class="title">
-            {{ item?.name }}
-            <!-- <span v-if="isEpisodes">
-              {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
-            </span> -->
-          </p>
-          <!-- <div class="info-bottom">
-            <div class="genres">
-              <span
-                class="genre-item"
-                v-for="(genre, index) in Array.from(item?.genres, (x: any) => x.name)"
-                :index="index"
-                :key="index"
-              >
-                {{ genre }}
-              </span>
-            </div>
-          </div> -->
-        </div>
-      </template>
-    </el-skeleton>
+      <div
+        v-if="item?.release_date || item?.last_air_date || item?.first_air_date"
+        class="release-date-wrapper"
+      >
+        <p class="release-date" v-if="!isEpisodes">
+          {{ item?.release_date?.slice(0, 4) }}
+        </p>
+        <p v-else class="release-date">
+          {{
+            item?.last_air_date?.slice(0, 4)
+              ? item?.last_air_date?.slice(0, 4)
+              : item?.first_air_date?.slice(0, 4)
+          }}
+        </p>
+      </div>
+    </div>
+    <!-- </template>
+    </el-skeleton> -->
 
     <PreviewModal
       :isTeleportPreviewModal="isTeleportPreviewModal"
@@ -139,13 +112,12 @@ const router = useRouter();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
-const loadingImg = ref<boolean>(false);
 const isAddToList = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const urlShare = computed<string>((): string => window.location.href);
 const isTeleportPreviewModal = ref<boolean>(false);
-const cardItem = ref<any>(null);
+const cardItem = ref<HTMLElement>();
 const left = ref<number>(0);
 const top = ref<number>(0);
 const offsetWidth = ref<number>(0);
@@ -184,8 +156,8 @@ const getData = async () => {
     //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
     //   () => getItemList(store?.userAccount?.id, props.item?.id)
     // )
-    //   .then((movieRespone: any) => {
-    //     if (movieRespone.data.value.data.success == true) {
+    //   .then((response) => {
+    //     if (response.data.value.success == true) {
     //       isAddToList.value = true;
     //     }
     //   })
@@ -197,14 +169,15 @@ const getData = async () => {
       isInHistory.value = true;
       percent.value = dataMovie.value?.history_progress?.percent;
     } else {
-      useAsyncData(
-        `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
-        () => getItemHistory(props.item?.id, props.item?.media_type)
-      )
-        .then((movieRespone: any) => {
-          if (movieRespone.data.value.success == true) {
+      // useAsyncData(
+      //   `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
+      //   () => getItemHistory(props.item?.id, props.item?.media_type)
+      // )
+      getItemHistory(props.item?.id, props.item?.media_type)
+        .then((response) => {
+          if (response.success == true) {
             isInHistory.value = true;
-            percent.value = movieRespone.data.value?.result?.percent;
+            percent.value = response?.result?.percent;
           }
         })
         .catch((e) => {
@@ -233,8 +206,8 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   offsetWidth.value = target.offsetWidth;
   offsetHeight.value = target.offsetHeight;
 
-  imgHeight.value = target.querySelector('img')!?.offsetHeight;
-  imgWidth.value = target.querySelector('img')!?.offsetWidth;
+  imgHeight.value = target.querySelector('img')!.offsetHeight;
+  imgWidth.value = target.querySelector('img')!.offsetWidth;
 
   rectBound.value = rect;
 
