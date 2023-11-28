@@ -38,7 +38,7 @@
   --background-select-dropdown-color: #101010;
   --background-dropdown-selected-color: #373737;
 
-  --preview-modal-background-color: #181818;
+  --preview-modal-background-color: #131313;
 
   --tooltip-background-color: #222222;
 
@@ -80,10 +80,10 @@
   --breadcrumb-background-color: #101010;
   --footer-background-color: #101010;
 
-  --box-shadow-small: 0 3px 10px rgba(0, 0, 0, 0.7);
-  --box-shadow-small1: 0 1px 10px rgba(0, 0, 0, 0.7);
-  --box-shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.7);
-  --box-shadow-medium1: 0 5px 15px rgba(0, 0, 0, 0.7);
+  --box-shadow-small: 0 3px 10px rgba(0, 0, 0, 0.8);
+  --box-shadow-small1: 0 1px 10px rgba(0, 0, 0, 0.8);
+  --box-shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.8);
+  --box-shadow-medium1: 0 5px 15px rgba(0, 0, 0, 0.8);
   --box-shadow-large: 0 15px 30px rgba(0, 0, 0, 0.8);
 
   --padding-home: 30px;
@@ -132,15 +132,16 @@ body {
 }
 
 body {
-  font-size: 1.5rem;
-  // line-height: 2.2rem;
-  line-height: var(--line-height-regular);
-  // font-size: clamp(1.4rem, 1vw, 10rem);
-  font-family: 'Roboto Flex', sans-serif;
-  text-rendering: optimizeSpeed;
+  width: 100%;
   background-color: var(--background-content-color);
   color: var(--text-color);
+  // font-size: clamp(1.4rem, 1vw, 10rem);
+  font-size: 1.5rem;
+  font-weight: 400;
   font-variant: normal;
+  line-height: var(--line-height-regular);
+  font-family: 'Roboto Flex', sans-serif;
+  text-rendering: optimizeSpeed;
 
   &::-webkit-scrollbar {
     // display: none;
@@ -173,11 +174,11 @@ body {
 
 ::-moz-selection {
   /* Code for Firefox */
-  background-color: #0085ad;
+  background-color: #00a9c3;
 }
 
 ::selection {
-  background-color: #0085ad;
+  background-color: #00a9c3;
 }
 
 ::placeholder {
@@ -208,6 +209,13 @@ li,
 dl {
   margin: 0px;
   padding: 0px;
+}
+
+p,
+span,
+ol,
+ul {
+  // line-height: 1.8;
 }
 
 h1,

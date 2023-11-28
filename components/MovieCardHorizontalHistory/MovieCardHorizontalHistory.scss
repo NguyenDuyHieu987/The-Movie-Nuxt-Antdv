@@ -64,7 +64,8 @@
     }
 
     .info {
-      color: #fff;
+      .title {
+      }
     }
 
     .action {
@@ -150,7 +151,7 @@
       text-overflow: ellipsis;
       color: inherit;
       max-width: 90%;
-      font-size: 1.9rem;
+      font-size: 1.8rem;
     }
 
     .duration-episode {

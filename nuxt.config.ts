@@ -72,7 +72,7 @@ export default defineNuxtConfig({
   imports: {
     dirs: [
       // '/services',
-    //  '/stores'
+      //  '/stores'
     ],
   },
   experimental: {
@@ -123,6 +123,7 @@ export default defineNuxtConfig({
   },
   elementPlus: {
     icon: false,
+    themes: ['dark'],
     injectionID: {
       // prefix: 1024,
       prefix: Math.floor(Math.random() * 10000),

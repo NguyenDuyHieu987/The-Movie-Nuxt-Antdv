@@ -10,7 +10,7 @@
           'only-right': isOnlyRight,
         }"
         @mouseover="onClickPreviewModal"
-        :style="`--dominant-poster-color: rgba(${item.dominant_poster_color[0]}, ${item.dominant_poster_color[1]},${item.dominant_poster_color[2]}, 0.5)`"
+        :style="`--dominant-backdrop-color: ${item.dominant_backdrop_color[0]}, ${item.dominant_backdrop_color[1]},${item.dominant_backdrop_color[2]}`"
       >
         <el-skeleton :loading="loading" animated>
           <template #template>

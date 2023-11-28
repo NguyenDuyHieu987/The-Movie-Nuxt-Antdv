@@ -14,7 +14,7 @@
     ref="cardItem"
     class="movie-card-item vertical"
     @pointerenter="onMouseEnter"
-    :style="`--dominant-poster-color: rgb(${item.dominant_poster_color[0]}, ${item.dominant_poster_color[1]},${item.dominant_poster_color[2]})`"
+    :style="`--dominant-poster-color: ${item.dominant_poster_color[0]}, ${item.dominant_poster_color[1]},${item.dominant_poster_color[2]}`"
   >
     <!-- <el-skeleton :loading="loading" animated class="ratio-2-3">
       <template #template>
@@ -60,37 +60,36 @@
       </div>
     </div>
 
-    <div
-      class="info"
-      :style="`--dominant-poster-box-shadow-color: rgba(${item.dominant_poster_color[0]}, ${item.dominant_poster_color[1]},${item.dominant_poster_color[2]}, 0.35)`"
-    >
+    <div class="info">
       <p class="title">
         {{ item?.name }}
       </p>
 
-      <div class="genres">
-        <!-- <ClientOnly>
-          <NuxtLink
+      <div class="genres-wrapper">
+        <div class="genres">
+          <!-- <ClientOnly>
+            <NuxtLink
+              class="genre-item"
+              v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
+              :index="index"
+              :key="index"
+              :to="`/discover/genre/${
+                getGenreById(genre.id, store?.allGenres)?.short_name
+              }`"
+            >
+              {{ genre?.name }}
+            </NuxtLink>
+          </ClientOnly> -->
+
+          <div
             class="genre-item"
             v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
             :index="index"
             :key="index"
-            :to="`/discover/genre/${
-              getGenreById(genre.id, store?.allGenres)?.short_name
-            }`"
+            @click.prevent="handleClickGenreItem(genre)"
           >
             {{ genre?.name }}
-          </NuxtLink>
-        </ClientOnly> -->
-
-        <div
-          class="genre-item"
-          v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
-          :index="index"
-          :key="index"
-          @click.prevent="handleClickGenreItem(genre)"
-        >
-          {{ genre?.name }}
+          </div>
         </div>
       </div>
     </div>

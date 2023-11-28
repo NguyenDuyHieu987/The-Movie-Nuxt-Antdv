@@ -129,21 +129,21 @@
       text-overflow: ellipsis;
     }
 
-    .genres {
-      .genre-item {
-        padding-right: 0.4vw;
+    // .genres {
+    //   .genre-item {
+    //     padding-right: 0.4vw;
 
-        &:not(:first-child) {
-          &::before {
-            content: '\2022';
-            // color: #d0d0d0;
-            color: inherit;
-            display: inline-block;
-            padding-right: 0.4vw;
-          }
-        }
-      }
-    }
+    //     &:not(:first-child) {
+    //       &::before {
+    //         content: '\2022';
+    //         // color: #d0d0d0;
+    //         color: inherit;
+    //         display: inline-block;
+    //         padding-right: 0.4vw;
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 

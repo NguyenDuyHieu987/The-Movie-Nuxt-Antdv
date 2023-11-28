@@ -45,12 +45,12 @@
 
     &.only-left {
       left: var(--left-only);
-      animation: preview-modal-appear-only-left 0.3s;
+      animation: preview-modal-appear-only-left 0.25s;
     }
 
     &.only-right {
       right: var(--right-only);
-      animation: preview-modal-appear-only-right 0.3s;
+      animation: preview-modal-appear-only-right 0.25s;
     }
 
     @keyframes preview-modal-appear {
@@ -243,13 +243,15 @@
       gap: 7px;
       // padding: 12px 15px;
       padding: 10px 12px;
-      background: linear-gradient(
-        90deg,
-        var(--dominant-poster-color) 0%,
-        var(--preview-modal-background-color) 5%,
-        var(--preview-modal-background-color) 95%,
-        var(--dominant-poster-color) 100%
-      );
+      // background: linear-gradient(
+      //   90deg,
+      //   var(--dominant-backdrop-color) 0%,
+      //   var(--preview-modal-background-color) 5%,
+      //   var(--preview-modal-background-color) 95%,
+      //   var(--dominant-backdrop-color) 100%
+      // );
+
+      background-color: rgb(var(--dominant-backdrop-color), 0.1);
 
       .widget {
         display: flex;
