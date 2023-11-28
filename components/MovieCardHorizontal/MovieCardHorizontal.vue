@@ -13,7 +13,6 @@
     }"
     class="movie-card-item horizontal"
     ref="cardItem"
-    @pointerenter="onMouseEnter"
     :style="`--dominant-backdrop-color: ${item.dominant_backdrop_color[0]}, ${item.dominant_backdrop_color[1]},${item.dominant_backdrop_color[2]}`"
   >
     <!-- <el-skeleton :loading="loading" animated class="ratio-16-9">
@@ -22,7 +21,7 @@
       </template> -->
 
     <!-- <template #default> -->
-    <div class="img-box ratio-16-9">
+    <div class="img-box ratio-16-9" @pointerenter="onMouseEnter">
       <!-- <img
         v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
         loading="lazy"
@@ -189,7 +188,7 @@ const getData = async () => {
 
 getData();
 
-const onMouseEnter = ({ target }: { target: HTMLElement }) => {
+const onMouseEnter = ({ target }: { target: HTMLElement | any }) => {
   if (loading.value) return;
 
   const rect = target.getBoundingClientRect();
