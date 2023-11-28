@@ -250,8 +250,7 @@
       //   var(--preview-modal-background-color) 95%,
       //   var(--dominant-backdrop-color) 100%
       // );
-
-      background-color: rgb(var(--dominant-backdrop-color), 0.1);
+      background-color: rgb(var(--dominant-backdrop-color), 0.2);
 
       .widget {
         display: flex;
@@ -279,7 +278,8 @@
           align-items: center;
           justify-content: center;
           background-color: var(--btn-background-color-gray);
-          border-color: var(--border-regular-btn);
+          // border-color: var(--border-regular-btn);
+          border-color: rgb(var(--dominant-backdrop-color, (90, 90, 90)));
           min-width: auto;
           height: 33px;
           width: 33px;
