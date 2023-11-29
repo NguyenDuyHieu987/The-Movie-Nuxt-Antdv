@@ -13,7 +13,6 @@
     }"
     ref="cardItem"
     class="movie-card-item vertical"
-    @pointerenter="onMouseEnter"
     :style="`--dominant-poster-color: ${item.dominant_poster_color[0]}, ${item.dominant_poster_color[1]},${item.dominant_poster_color[2]}`"
   >
     <!-- <el-skeleton :loading="loading" animated class="ratio-2-3">
