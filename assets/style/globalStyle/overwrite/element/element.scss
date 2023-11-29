@@ -81,6 +81,8 @@
 }
 
 .el-popup-parent--hidden {
+  // overflow: visible !important;
+
   .header-bar,
   .header-bar-service,
   .header-bar-auth {
