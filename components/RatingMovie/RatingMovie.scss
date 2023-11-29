@@ -5,19 +5,19 @@
     display: inline-flex;
     align-items: center;
     margin-bottom: 5px;
-    margin-top: 11px;
+    margin-top: 10px;
 
     .label {
       white-space: nowrap;
       // margin-right: 0.3rem;
       margin-right: 1rem;
       color: var(--text-label-color);
+      line-height: normal;
     }
 
     .ant-rate {
       display: flex;
-      // height: 35px;
-      height: 2.5rem;
+      height: 2.2rem;
 
       .ant-rate-star {
         & > div,
