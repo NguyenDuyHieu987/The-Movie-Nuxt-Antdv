@@ -36,7 +36,7 @@
 import axios from 'axios';
 import { getTrending } from '~/services/trending';
 import MovieCardVertical from '~/components/MovieCardVertical/MovieCardVertical.vue';
-import RankSide from '~/components/RankSide/RankSide.server.vue';
+import RankSide from '~/components/RankSide/RankSide.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
