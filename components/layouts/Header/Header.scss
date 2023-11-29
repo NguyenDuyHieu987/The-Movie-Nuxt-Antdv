@@ -184,7 +184,7 @@ header.header-bar {
           height: 40px;
           border-radius: 0 20px 20px 0;
           border-left: none;
-          padding: 0px 18px;
+          padding: 0px 20px;
           margin: 0;
           line-height: 0;
 
@@ -194,6 +194,7 @@ header.header-bar {
             font-size: 1.8rem;
             width: 1.8rem;
             height: 1.8rem;
+            margin: 0;
           }
 
           &:active {
