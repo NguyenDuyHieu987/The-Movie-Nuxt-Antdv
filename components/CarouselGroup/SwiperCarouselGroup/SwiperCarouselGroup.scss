@@ -41,9 +41,8 @@
 }
 
 .carousel-group {
+  overflow: visible;
   position: relative;
-  overflow: hidden;
-  padding-bottom: 10px;
 
   .swiper-wrapper {
     // gap: var(--card-movie-gap);
