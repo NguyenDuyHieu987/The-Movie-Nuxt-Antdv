@@ -141,15 +141,15 @@
           </a-button>
         </el-tooltip>
 
-        <el-tooltip
-          title="Chia sẻ"
-          content="Chia sẻ"
-          placement="right"
-          popper-class="popper-tooltip"
-          :hide-after="0"
-          :mouseLeaveDelay="0"
-        >
-          <ClientOnly>
+        <ClientOnly>
+          <el-tooltip
+            title="Chia sẻ"
+            content="Chia sẻ"
+            placement="right"
+            popper-class="popper-tooltip"
+            :hide-after="0"
+            :mouseLeaveDelay="0"
+          >
             <ShareNetwork
               network="facebook"
               :url="urlShare"
@@ -180,8 +180,8 @@
                 </template>
               </a-button>
             </ShareNetwork>
-          </ClientOnly>
-        </el-tooltip>
+          </el-tooltip>
+        </ClientOnly>
       </div>
     </div>
 
