@@ -29,7 +29,7 @@
       /> -->
 
       <NuxtImg
-        :src="getImage(item?.poster_path, 'poster')"
+        :src="getImage(item?.poster_path, 'poster', 'w-250')"
         format="avif"
         loading="lazy"
         alt=""
