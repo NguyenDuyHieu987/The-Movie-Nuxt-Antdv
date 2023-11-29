@@ -9,7 +9,7 @@
           'only-left': isOnlyLeft,
           'only-right': isOnlyRight,
         }"
-        @mouseover="onClickPreviewModal"
+        @click.prevent="onClickPreviewModal"
         :style="`--dominant-backdrop-color: ${item.dominant_backdrop_color[0]}, ${item.dominant_backdrop_color[1]},${item.dominant_backdrop_color[2]}`"
       >
         <el-skeleton :loading="loading" animated>
@@ -66,14 +66,18 @@
                     :mouseLeaveDelay="0"
                   >
                     <NuxtLink
-                      v-if="isEpisodes"
-                      :to="{
-                        path: `/play-tv/${item?.id}__${utils
-                          .removeVietnameseTones(item?.name)
-                          ?.replaceAll(/\s/g, '-')
-                          .toLowerCase()}/tap-1`,
-                      }"
                       class="btn-play-now"
+                      :to="{
+                        path: isEpisodes
+                          ? `/play-tv/${item?.id}__${utils
+                              .removeVietnameseTones(item?.name)
+                              ?.replaceAll(/\s/g, '-')
+                              .toLowerCase()}/tap-1`
+                          : `/play-movie/${item?.id}__${utils
+                              .removeVietnameseTones(item?.name)
+                              ?.replaceAll(/\s/g, '-')
+                              .toLowerCase()}`,
+                      }"
                     >
                       <a-button
                         class="click-active"
@@ -83,36 +87,6 @@
                       >
                         <template #icon>
                           <!-- <Icon name="ic:play-arrow" /> -->
-
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="2rem"
-                            height="2rem"
-                            viewBox="0 0 24 24"
-                          >
-                            <path fill="currentColor" d="M8 5v14l11-7z" />
-                          </svg>
-                        </template>
-                      </a-button>
-                    </NuxtLink>
-                    <NuxtLink
-                      v-else
-                      :to="{
-                        path: `/play-movie/${item?.id}__${utils
-                          .removeVietnameseTones(item?.name)
-                          ?.replaceAll(/\s/g, '-')
-                          .toLowerCase()}`,
-                      }"
-                      class="btn-play-now"
-                    >
-                      <a-button
-                        class="click-active"
-                        shape="circle"
-                        size="large"
-                        type="text"
-                      >
-                        <template #icon>
-                          <!-- <Icon name="ci:play-arrow" /> -->
 
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -186,7 +160,6 @@
                     popper-class="popper-tooltip"
                     :hide-after="0"
                     :mouseLeaveDelay="0"
-                    @click.prevent
                   >
                     <ShareNetwork
                       network="facebook"
@@ -194,6 +167,7 @@
                       :title="item?.name"
                       hashtags="phimhay247.site,vite"
                       style="white-space: nowrap; display: block"
+                      @click.prevent
                     >
                       <a-button
                         class="click-active"
@@ -657,23 +631,19 @@ watch(isTeleport, async () => {
 const actionBtn = ref<any>(null);
 
 const onClickPreviewModal = (e: any) => {
-  actionBtn.value = e.target.closest('.ant-btn');
-
-  e.target.addEventListener('click', () => {
-    if (!actionBtn.value) {
-      navigateTo({
-        path: props.isEpisodes
-          ? `/info-tv/${props.item?.id}__${utils
-              .removeVietnameseTones(props.item?.name)
-              ?.replaceAll(/\s/g, '-')
-              .toLowerCase()}`
-          : `/info-movie/${props.item?.id}__${utils
-              .removeVietnameseTones(props.item?.name)
-              ?.replaceAll(/\s/g, '-')
-              .toLowerCase()}`,
-      });
-    }
-  });
+  if (!actionBtn.value) {
+    navigateTo({
+      path: props.isEpisodes
+        ? `/info-tv/${props.item?.id}__${utils
+            .removeVietnameseTones(props.item?.name)
+            ?.replaceAll(/\s/g, '-')
+            .toLowerCase()}`
+        : `/info-movie/${props.item?.id}__${utils
+            .removeVietnameseTones(props.item?.name)
+            ?.replaceAll(/\s/g, '-')
+            .toLowerCase()}`,
+    });
+  }
 };
 
 const handelAddToList = (e: any) => {

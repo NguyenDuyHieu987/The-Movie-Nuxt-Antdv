@@ -67,68 +67,37 @@
           :hide-after="0"
           :mouseLeaveDelay="0"
         >
-          <NuxtLink
-            v-if="isEpisodes"
-            :to="{
-              path: `/play-tv/${item?.id}__${utils
-                .removeVietnameseTones(item?.name)
-                ?.replaceAll(/\s/g, '-')
-                .toLowerCase()}/tap-1`,
-            }"
-            class="btn-play-now"
+          <a-button
+            class="click-active"
+            shape="circle"
+            size="large"
+            type="text"
+            @click.prevent="
+              navigateTo(
+                isEpisodes
+                  ? `/play-tv/${item?.id}__${utils
+                      .removeVietnameseTones(item?.name)
+                      ?.replaceAll(/\s/g, '-')
+                      .toLowerCase()}/tap-1`
+                  : `/play-movie/${item?.id}__${utils
+                      .removeVietnameseTones(item?.name)
+                      ?.replaceAll(/\s/g, '-')
+                      .toLowerCase()}`
+              )
+            "
           >
-            <a-button
-              class="click-active"
-              shape="circle"
-              size="large"
-              type="text"
-            >
-              <template #icon>
-                <!-- <Icon name="ic:play-arrow" /> -->
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="2rem"
-                  height="2rem"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </template>
-            </a-button>
-          </NuxtLink>
-          <NuxtLink
-            v-else
-            :to="{
-              path: `/play-movie/${item?.id}__${utils
-                .removeVietnameseTones(item?.name)
-                ?.replaceAll(/\s/g, '-')
-                .toLowerCase()}`,
-            }"
-            class="btn-play-now"
-          >
-            <a-button
-              class="click-active"
-              shape="circle"
-              size="large"
-              type="text"
-            >
-              <template #icon>
-                <!-- <Icon name="ci:play-arrow" /> -->
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="2rem"
-                  height="2rem"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </template>
-            </a-button>
-          </NuxtLink>
+            <template #icon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2rem"
+                height="2rem"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </template>
+          </a-button>
         </el-tooltip>
 
         <el-tooltip
@@ -147,9 +116,6 @@
             @click.prevent="handelAddToList"
           >
             <template #icon>
-              <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
-                        <Icon v-else name="ic:baseline-plus" /> -->
-
               <svg
                 v-if="isAddToList"
                 xmlns="http://www.w3.org/2000/svg"
@@ -182,40 +148,39 @@
           popper-class="popper-tooltip"
           :hide-after="0"
           :mouseLeaveDelay="0"
-          @click.prevent
         >
-          <ShareNetwork
-            network="facebook"
-            :url="urlShare"
-            :title="item?.name"
-            hashtags="phimhay247.site,vite"
-            style="white-space: nowrap; display: block"
-          >
-            <a-button
-              class="click-active"
-              shape="circle"
-              size="large"
-              type="text"
+          <ClientOnly>
+            <ShareNetwork
+              network="facebook"
+              :url="urlShare"
+              :title="item?.name"
+              hashtags="phimhay247.site,vite"
+              style="white-space: nowrap; display: block"
               @click.prevent
             >
-              <template #icon>
-                <!-- <Icon name="fa6-solid:share" class="fa6-solid" /> -->
-                <!-- <Icon name="mdi:share" /> -->
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="2rem"
-                  height="2rem"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="m21 12l-7-7v4C7 10 4 15 3 20c2.5-3.5 6-5.1 11-5.1V19l7-7Z"
-                  />
-                </svg>
-              </template>
-            </a-button>
-          </ShareNetwork>
+              <a-button
+                class="click-active"
+                shape="circle"
+                size="large"
+                type="text"
+                @click.prevent
+              >
+                <template #icon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="2rem"
+                    height="2rem"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="m21 12l-7-7v4C7 10 4 15 3 20c2.5-3.5 6-5.1 11-5.1V19l7-7Z"
+                    />
+                  </svg>
+                </template>
+              </a-button>
+            </ShareNetwork>
+          </ClientOnly>
         </el-tooltip>
       </div>
     </div>

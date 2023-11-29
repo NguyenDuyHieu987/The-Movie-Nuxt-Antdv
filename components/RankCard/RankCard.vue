@@ -14,7 +14,7 @@
     }"
     class="movie-rank-item"
   >
-    <el-skeleton :loading="true" animated>
+    <!-- <el-skeleton :loading="loading" animated>
       <template #template>
         <div class="img-box">
           <el-skeleton-item class="skeleton-img ratio-2-3" />
@@ -27,62 +27,60 @@
         </div>
       </template>
 
-      <template #default>
-        <div class="img-box">
-          <div class="img-wrapper ratio-2-3">
-            <!-- <img
+      <template #default> -->
+    <div class="img-box">
+      <div class="img-wrapper ratio-2-3">
+        <!-- <img
               v-lazy="getImage(item?.poster_path, 'poster', 'w-120')"
               :lazy="true"
               loading="lazy"
               alt=""
             /> -->
 
-            <NuxtImg
-              :src="getImage(item?.poster_path, 'poster', 'w-120')"
-              format="avif"
-              loading="lazy"
-              alt=""
-            />
-          </div>
-        </div>
+        <NuxtImg
+          :src="getImage(item?.poster_path, 'poster', 'w-120')"
+          format="avif"
+          loading="lazy"
+          alt=""
+        />
+      </div>
+    </div>
 
-        <div class="info">
-          <div class="top">
-            <p class="title">
-              {{ item?.name }}
-              <span v-if="type == 'tv'">
-                {{ ' - Phần ' + item?.last_episode_to_air?.season_number }}
-              </span>
-            </p>
-            <p class="genres">
-              {{ Array?.from(item?.genres, (x: any) => x.name).join(' • ') }}
-            </p>
+    <div class="info">
+      <div class="top">
+        <p class="title">
+          {{ item?.name }}
+          <span v-if="type == 'tv'">
+            {{ ' - Phần ' + item?.last_episode_to_air?.season_number }}
+          </span>
+        </p>
+        <p class="genres">
+          {{ Array?.from(item?.genres, (x: any) => x.name).join(' • ') }}
+        </p>
 
-            <p class="release-date">
-              Năm:
-              {{
-                item?.release_date ? item?.release_date : item?.first_air_date
-              }}
-            </p>
+        <p class="release-date">
+          Năm:
+          {{ item?.release_date ? item?.release_date : item?.first_air_date }}
+        </p>
 
-            <p v-if="type == 'movie'" class="duration-episode">
-              Thời lượng:
-              {{ item?.runtime + ' phút' || '' }}
-            </p>
+        <p v-if="type == 'movie'" class="duration-episode">
+          Thời lượng:
+          {{ item?.runtime + ' phút' || '' }}
+        </p>
 
-            <p v-if="type == 'tv'" class="duration-episode">
-              Tập mới nhất:
-              {{ 'Tập ' + item?.last_episode_to_air?.episode_number || '' }}
-            </p>
-          </div>
-          <div class="bottom">
-            <span class="views"
-              >{{ utils.viewFormatter(item?.views) }} lượt xem</span
-            >
-          </div>
-        </div>
-      </template>
-    </el-skeleton>
+        <!-- <p v-if="type == 'tv'" class="duration-episode">
+          Tập mới nhất:
+          {{ 'Tập ' + item?.last_episode_to_air?.episode_number || '' }}
+        </p> -->
+      </div>
+      <div class="bottom">
+        <span class="views"
+          >{{ utils.viewFormatter(item?.views) }} lượt xem</span
+        >
+      </div>
+    </div>
+    <!-- </template> -->
+    <!-- </el-skeleton> -->
   </NuxtLink>
 </template>
 
@@ -99,10 +97,10 @@ const props = defineProps<{
 
 const loading = ref<boolean>(false);
 
-loading.value = true;
+// loading.value = true;
 
-setTimeout(() => {
-  loading.value = false;
-}, 500);
+// setTimeout(() => {
+//   loading.value = false;
+// }, 500);
 </script>
 <style lang="scss" src="./RankCard.scss"></style>

@@ -6,6 +6,15 @@
       status="403"
     >
       <template #extra>
+        <a-button
+          @click="$router.back()"
+          type="text"
+          size="large"
+          class="default"
+        >
+          Quay lại
+        </a-button>
+
         <NuxtLink to="/login">
           <a-button class="default gradient" size="large" type="text">
             Đăng nhập ngay

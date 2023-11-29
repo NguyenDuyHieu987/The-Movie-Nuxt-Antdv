@@ -10,12 +10,16 @@
     }
 
     .ant-result-extra {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
       a {
         color: var(--text-color);
       }
 
       .ant-btn.default.gradient {
-        padding: 11px 35px;
+        padding: 11px 30px;
         border-radius: 2px;
         margin: 0px auto;
         color: var(--text-color);
