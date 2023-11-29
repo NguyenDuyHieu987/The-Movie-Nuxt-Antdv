@@ -186,34 +186,42 @@
     </div>
 
     <div class="info">
-      <p class="title">
-        {{ item?.name }}
-      </p>
+      <div class="info-box" :class="{ 'no-genres': item?.genres.length == 0 }">
+        <div class="title-wrapper">
+          <p class="title">
+            {{ item?.name }}
+          </p>
 
-      <div class="genres-wrapper">
-        <div class="genres">
-          <!-- <ClientOnly>
-            <NuxtLink
+          <p class="original-title">
+            {{ item?.original_name }}
+          </p>
+        </div>
+
+        <div class="genres-wrapper">
+          <div class="genres">
+            <!-- <ClientOnly>
+              <NuxtLink
+                class="genre-item"
+                v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
+                :index="index"
+                :key="index"
+                :to="`/discover/genre/${
+                  getGenreById(genre.id, store?.allGenres)?.short_name
+                }`"
+              >
+                {{ genre?.name }}
+              </NuxtLink>
+            </ClientOnly> -->
+
+            <div
               class="genre-item"
               v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
               :index="index"
               :key="index"
-              :to="`/discover/genre/${
-                getGenreById(genre.id, store?.allGenres)?.short_name
-              }`"
+              @click.prevent="handleClickGenreItem(genre)"
             >
               {{ genre?.name }}
-            </NuxtLink>
-          </ClientOnly> -->
-
-          <div
-            class="genre-item"
-            v-for="(genre, index) in Array.from(item?.genres, (x: genre) => x)"
-            :index="index"
-            :key="index"
-            @click.prevent="handleClickGenreItem(genre)"
-          >
-            {{ genre?.name }}
+            </div>
           </div>
         </div>
       </div>
