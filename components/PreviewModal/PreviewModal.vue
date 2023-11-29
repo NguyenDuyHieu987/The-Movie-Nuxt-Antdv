@@ -86,8 +86,8 @@
 
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
+                            width="2rem"
+                            height="2rem"
                             viewBox="0 0 24 24"
                           >
                             <path fill="currentColor" d="M8 5v14l11-7z" />
@@ -116,8 +116,8 @@
 
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
+                            width="2rem"
+                            height="2rem"
                             viewBox="0 0 24 24"
                           >
                             <path fill="currentColor" d="M8 5v14l11-7z" />
@@ -153,8 +153,8 @@
                         <svg
                           v-if="isAddToList"
                           xmlns="http://www.w3.org/2000/svg"
-                          width="1.8rem"
-                          height="1.8rem"
+                          width="2rem"
+                          height="2rem"
                           viewBox="0 0 24 24"
                         >
                           <path
@@ -166,8 +166,8 @@
                         <svg
                           v-else
                           xmlns="http://www.w3.org/2000/svg"
-                          width="1.8rem"
-                          height="1.8rem"
+                          width="2rem"
+                          height="2rem"
                           viewBox="0 0 24 24"
                         >
                           <path
@@ -208,8 +208,8 @@
 
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="1.8rem"
-                            height="1.8rem"
+                            width="2rem"
+                            height="2rem"
                             viewBox="0 0 24 24"
                           >
                             <path
@@ -262,8 +262,8 @@
                           <svg
                             class="info-icon"
                             xmlns="http://www.w3.org/2000/svg"
-                            width="1.8rem"
-                            height="1.8rem"
+                            width="2rem"
+                            height="2rem"
                             viewBox="0 0 24 24"
                           >
                             <path

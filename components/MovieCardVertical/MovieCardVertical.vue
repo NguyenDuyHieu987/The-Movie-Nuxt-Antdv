@@ -58,6 +58,167 @@
           }}
         </p>
       </div>
+
+      <div class="widget">
+        <el-tooltip
+          title="Xem ngay"
+          content="Xem ngay"
+          placement="right"
+          popper-class="popper-tooltip"
+          :hide-after="0"
+          :mouseLeaveDelay="0"
+        >
+          <NuxtLink
+            v-if="isEpisodes"
+            :to="{
+              path: `/play-tv/${item?.id}__${utils
+                .removeVietnameseTones(item?.name)
+                ?.replaceAll(/\s/g, '-')
+                .toLowerCase()}/tap-1`,
+            }"
+            class="btn-play-now"
+          >
+            <a-button
+              class="click-active"
+              shape="circle"
+              size="large"
+              type="text"
+            >
+              <template #icon>
+                <!-- <Icon name="ic:play-arrow" /> -->
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2rem"
+                  height="2rem"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </template>
+            </a-button>
+          </NuxtLink>
+          <NuxtLink
+            v-else
+            :to="{
+              path: `/play-movie/${item?.id}__${utils
+                .removeVietnameseTones(item?.name)
+                ?.replaceAll(/\s/g, '-')
+                .toLowerCase()}`,
+            }"
+            class="btn-play-now"
+          >
+            <a-button
+              class="click-active"
+              shape="circle"
+              size="large"
+              type="text"
+            >
+              <template #icon>
+                <!-- <Icon name="ci:play-arrow" /> -->
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2rem"
+                  height="2rem"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </template>
+            </a-button>
+          </NuxtLink>
+        </el-tooltip>
+
+        <el-tooltip
+          :title="!isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'"
+          :content="!isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'"
+          placement="right"
+          popper-class="popper-tooltip"
+          :hide-after="0"
+          :mouseLeaveDelay="0"
+        >
+          <a-button
+            class="click-active add-list"
+            shape="circle"
+            size="large"
+            type="text"
+            @click.prevent="handelAddToList"
+          >
+            <template #icon>
+              <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
+                        <Icon v-else name="ic:baseline-plus" /> -->
+
+              <svg
+                v-if="isAddToList"
+                xmlns="http://www.w3.org/2000/svg"
+                width="2em"
+                height="2em"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z" />
+              </svg>
+
+              <svg
+                v-else
+                xmlns="http://www.w3.org/2000/svg"
+                width="2em"
+                height="2em"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
+              </svg>
+            </template>
+          </a-button>
+        </el-tooltip>
+
+        <el-tooltip
+          title="Chia sẻ"
+          content="Chia sẻ"
+          placement="right"
+          popper-class="popper-tooltip"
+          :hide-after="0"
+          :mouseLeaveDelay="0"
+          @click.prevent
+        >
+          <ShareNetwork
+            network="facebook"
+            :url="urlShare"
+            :title="item?.name"
+            hashtags="phimhay247.site,vite"
+            style="white-space: nowrap; display: block"
+          >
+            <a-button
+              class="click-active"
+              shape="circle"
+              size="large"
+              type="text"
+              @click.prevent
+            >
+              <template #icon>
+                <!-- <Icon name="fa6-solid:share" class="fa6-solid" /> -->
+                <!-- <Icon name="mdi:share" /> -->
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2rem"
+                  height="2rem"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="m21 12l-7-7v4C7 10 4 15 3 20c2.5-3.5 6-5.1 11-5.1V19l7-7Z"
+                  />
+                </svg>
+              </template>
+            </a-button>
+          </ShareNetwork>
+        </el-tooltip>
+      </div>
     </div>
 
     <div class="info">
@@ -101,6 +262,7 @@
 import axios from 'axios';
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
+import { getItemList } from '~/services/list';
 import { getItemHistory } from '~/services/history';
 import { getGenreById } from '~/services/genres';
 import type { genre } from '~/types';
@@ -113,7 +275,6 @@ const props = defineProps<{
 const store = useStore();
 const utils = useUtils();
 const router = useRouter();
-const isEpisodes = ref<boolean>(false);
 const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
 const isAddToList = ref<boolean>(false);
@@ -130,6 +291,7 @@ const imgHeight = ref<number>(0);
 const imgWidth = ref<number>(0);
 const rectBound = ref<any>(0);
 const timeOut = ref<any>();
+const isEpisodes = computed<boolean>(() => props?.item?.media_type == 'tv');
 
 const getData = async () => {
   // loading.value = true;
@@ -141,10 +303,8 @@ const getData = async () => {
   if (props?.type || props?.item?.media_type) {
     switch (props?.type || props?.item?.media_type) {
       case 'movie':
-        isEpisodes.value = false;
         break;
       case 'tv':
-        isEpisodes.value = true;
         break;
       default:
         break;
@@ -154,20 +314,21 @@ const getData = async () => {
   if (store.isLogin) {
     if (dataMovie.value?.in_list) {
       isAddToList.value = true;
+    } else {
+      // await useAsyncData(
+      //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
+      //   () => getItemList(store?.userAccount?.id, props.item?.id)
+      // )
+      getItemList(props.item?.id, props.item?.media_type)
+        .then((response) => {
+          if (response.success == true) {
+            isAddToList.value = true;
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        });
     }
-
-    // await useAsyncData(
-    //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
-    //   () => getItemList(store?.userAccount?.id, props.item?.id)
-    // )
-    //   .then((response) => {
-    //     if (response.data.value.success == true) {
-    //       isAddToList.value = true;
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     if (axios.isCancel(e)) return;
-    //   });
 
     if (dataMovie.value?.history_progress) {
       isInHistory.value = true;
@@ -223,6 +384,29 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
     // isTeleportPreviewModal.value = false;
     clearTimeout(timeOut.value);
   });
+};
+
+const handelAddToList = (e: any) => {
+  if (!store?.isLogin) {
+    store.openRequireAuthDialog = true;
+    return;
+  }
+
+  if (!isAddToList.value) {
+    isAddToList.value = true;
+    if (!utils.handelAddItemToList(props.item?.id, props.item?.media_type)) {
+      isAddToList.value = false;
+    }
+    return;
+  } else {
+    isAddToList.value = false;
+    if (
+      !utils.handelRemoveItemFromList(props.item?.id, props.item?.media_type)
+    ) {
+      isAddToList.value = true;
+    }
+    return;
+  }
 };
 
 const handleClickGenreItem = (genreItem: genre) => {

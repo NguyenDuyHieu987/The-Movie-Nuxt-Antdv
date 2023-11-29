@@ -98,11 +98,11 @@ const props = defineProps<{
 const store = useStore();
 const utils = useUtils();
 const dataMovie = ref<any>({});
-const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const isOpenModalTrailer = ref<boolean>(false);
+const isEpisodes = computed<boolean>(() => props?.item?.media_type == 'tv');
 
 const getData = async () => {
   // loading.value = true;
@@ -114,12 +114,8 @@ const getData = async () => {
   if (props?.type || props?.item?.media_type) {
     switch (props?.type || props?.item?.media_type) {
       case 'movie':
-        isEpisodes.value = false;
-
         break;
       case 'tv':
-        isEpisodes.value = true;
-
         break;
       default:
         break;

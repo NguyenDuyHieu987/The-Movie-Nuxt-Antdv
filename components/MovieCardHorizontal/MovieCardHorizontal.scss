@@ -18,6 +18,8 @@
 
 .movie-card-item {
   &.horizontal {
+    overflow: visible;
+
     .el-skeleton.is-animated {
       position: relative;
       overflow: hidden;
@@ -84,8 +86,8 @@
 
     .info {
       position: relative;
-      // padding: 10px 8px;
-      padding: 10px 0px;
+      padding: 10px 8px;
+      // padding: 10px 0px;
       width: 100%;
 
       .title-wrapper {
@@ -140,6 +142,12 @@
         img {
           // opacity: 0.7;
         }
+      }
+
+      .info {
+        background-color: rgba(var(--dominant-backdrop-color, (8, 8, 8)), 0.6);
+        box-shadow: 0px 3px 30px
+          rgba(var(--dominant-backdrop-color, (0, 84, 112)), 0.4);
       }
     }
   }
