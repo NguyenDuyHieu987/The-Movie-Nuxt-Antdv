@@ -21,7 +21,11 @@
       </template> -->
 
     <!-- <template #default> -->
-    <div class="img-box ratio-16-9" @pointerenter="onMouseEnter">
+    <div
+      class="img-box ratio-16-9"
+      @pointerenter="onMouseEnter"
+      @pointerleave="onMouseLeave"
+    >
       <!-- <img
         v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
         loading="lazy"
@@ -216,6 +220,10 @@ const onMouseEnter = ({ target }: { target: HTMLElement | any }) => {
     // isTeleportPreviewModal.value = false;
     clearTimeout(timeOut.value);
   });
+};
+
+const onMouseLeave = () => {
+  clearTimeout(timeOut.value);
 };
 </script>
 <style lang="scss" src="./MovieCardHorizontal.scss"></style>

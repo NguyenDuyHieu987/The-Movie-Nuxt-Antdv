@@ -385,6 +385,10 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   });
 };
 
+const onMouseLeave = () => {
+  clearTimeout(timeOut.value);
+};
+
 const handelAddToList = (e: any) => {
   if (!store?.isLogin) {
     store.openRequireAuthDialog = true;
