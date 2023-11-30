@@ -557,12 +557,12 @@ const handelAddToList = () => {
 
 const scrollToTrailer = () => {
   const trailer = document.getElementById('trailer') as HTMLElement;
-  trailer.scrollIntoView({ block: 'center' });
+  trailer.scrollIntoView({ block: 'center', behavior: 'smooth' });
 };
 
 const scrollToComment = () => {
   const comment = document.getElementById('comment') as HTMLElement;
-  comment.scrollIntoView({ block: 'center' });
+  comment.scrollIntoView({ block: 'center', behavior: 'smooth' });
 };
 </script>
 
