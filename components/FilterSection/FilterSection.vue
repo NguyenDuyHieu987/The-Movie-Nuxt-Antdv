@@ -47,7 +47,8 @@
                   :to="{
                     query: {
                       ...route.query,
-                      sort_by: item.id != route.query?.sort_by ? item.id : '',
+                      sort_by:
+                        item.id != route.query?.sort_by ? item.id : undefined,
                     },
                   }"
                 >
@@ -87,7 +88,8 @@
                   :to="{
                     query: {
                       ...route.query,
-                      genre: item.id != route.query?.genre ? item.id : '',
+                      genre:
+                        item.id != route.query?.genre ? item.id : undefined,
                     },
                   }"
                 >
@@ -155,7 +157,8 @@
                   :to="{
                     query: {
                       ...route.query,
-                      year: item.name != route.query?.year ? item.name : '',
+                      year:
+                        item.name != route.query?.year ? item.name : undefined,
                     },
                   }"
                 >
@@ -228,7 +231,7 @@
                       country:
                         item.iso_639_1 != route.query?.country
                           ? item.iso_639_1
-                          : '',
+                          : undefined,
                     },
                   }"
                 >
