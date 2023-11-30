@@ -4,9 +4,12 @@ export default <RouterConfig>{
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       window.history.scrollRestoration = 'auto';
-      return savedPosition;
+      return { ...savedPosition, behavior: 'instant' };
     } else {
-      return { top: 0 };
+      return {
+        behavior: 'instant',
+        top: 0,
+      };
     }
   },
 };
