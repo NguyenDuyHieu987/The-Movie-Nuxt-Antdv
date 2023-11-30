@@ -48,11 +48,11 @@
                 message: 'Vui lòng nhập mật khẩu!',
                 trigger: ['change', 'blur'],
               },
-              // {
-              //   message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
-              //   min: 6,
-              //   trigger: ['change', 'blur'],
-              // },
+              {
+                message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
+                min: 6,
+                trigger: ['change', 'blur'],
+              },
             ]"
             has-feedback
           >
