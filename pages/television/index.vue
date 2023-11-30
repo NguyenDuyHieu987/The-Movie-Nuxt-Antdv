@@ -293,4 +293,4 @@ const { data: dataBilboard, pending } = await useAsyncData(
 getData();
 </script>
 
-<style src="./TelevisionPage.scss" lang="scss" scoped></style>
+<style src="./TelevisionPage.scss" lang="scss"></style>
