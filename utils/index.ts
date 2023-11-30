@@ -8,7 +8,7 @@ export const useUtils = () => {
     handleRemoveItemFromHistory,
     handleRemoveAllitemFromHistory,
     initFacebookSdk,
-    initGoogleSdk,
+    initGoogleGSIClient,
     cookie: customCookie(),
     localStorage: customLocalStorage(),
     dateTimeFormater: dateTimeFormater(),

@@ -48,11 +48,11 @@
                 message: 'Vui lòng nhập mật khẩu!',
                 trigger: ['change', 'blur'],
               },
-              {
-                message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
-                min: 6,
-                trigger: ['change', 'blur'],
-              },
+              // {
+              //   message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
+              //   min: 6,
+              //   trigger: ['change', 'blur'],
+              // },
             ]"
             has-feedback
           >
@@ -247,15 +247,17 @@ const disabled = computed<boolean>((): boolean => {
 
 onBeforeMount(() => {
   utils.initFacebookSdk();
+  // utils.initGoogleGSIClient();
 });
 
-onMounted(() => {
+onMounted(async () => {
   // tokenClient.value = window.google?.accounts.oauth2.initTokenClient({
   //   client_id: nuxtConfig.app.googleOauth2ClientID,
   //   scope:
   //     'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
   //   prompt: 'select_account',
   //   callback: handleGooglePopupCallback,
+  //   use_fedcm_for_prompt: true,
   // });
   // tokenClient.value = window.google?.accounts.oauth2.initCodeClient({
   //   client_id: nuxtConfig.app.googleOauth2ClientID,
@@ -266,6 +268,7 @@ onMounted(() => {
   //   redirect_uri: window.location.origin,
   //   prompt: 'select_account',
   //   callback: handleGooglePopupCallback,
+  //   use_fedcm_for_prompt: true,
   // });
 });
 
