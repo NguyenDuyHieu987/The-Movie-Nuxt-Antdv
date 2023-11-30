@@ -80,6 +80,10 @@ const onBackTop = () => {
     behavior: 'instant',
   });
 };
+
+onMounted(() => {
+  // window.history.scrollRestoration = 'auto';
+});
 </script>
 
 <style lang="scss" src="~/assets/style/app.scss"></style>

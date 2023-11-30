@@ -61,6 +61,7 @@ export default defineNuxtConfig({
       // SEO
       siteUrl: 'https://phimhay247z.org',
       siteName: 'Phimhay247',
+      titleSeparator: '-',
       siteDescription: 'Xem phim Online 24/7',
       language: 'vi',
       trailingSlash: false,
@@ -208,7 +209,8 @@ export default defineNuxtConfig({
   },
   router: {
     options: {
-      // strict: true,
+      strict: false,
+      scrollBehaviorType: 'auto',
     },
   },
   optimization: {},
