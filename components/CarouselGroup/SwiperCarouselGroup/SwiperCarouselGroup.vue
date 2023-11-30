@@ -6,7 +6,7 @@
       :modules="[
         // SwiperAutoplay,
         SwiperNavigation,
-        SwiperVirtual,
+        // SwiperVirtual,
       ]"
       :breakpoints="responsive"
       :space-between="gap || 7"

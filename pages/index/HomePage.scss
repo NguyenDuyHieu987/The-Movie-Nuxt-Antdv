@@ -1,4 +1,6 @@
 .body-content:has(.home-page) {
+  min-height: 101vh;
+
   .body-wrapper {
     max-width: 100%;
   }
