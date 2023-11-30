@@ -33,11 +33,11 @@ export default defineNuxtConfig({
           : {},
       ],
       script: [
-        {
-          src: 'https://accounts.google.com/gsi/client',
-          type: 'text/javascript',
-          async: true,
-        },
+        // {
+        //   src: 'https://accounts.google.com/gsi/client',
+        //   type: 'text/javascript',
+        //   async: true,
+        // },
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in', appear: true },

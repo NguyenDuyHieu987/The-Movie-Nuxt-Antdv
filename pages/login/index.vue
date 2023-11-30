@@ -246,7 +246,7 @@ const disabled = computed<boolean>((): boolean => {
 });
 
 onBeforeMount(() => {
-  // utils.initFacebookSdk();
+  utils.initFacebookSdk();
 });
 
 onMounted(() => {
