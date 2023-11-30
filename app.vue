@@ -83,6 +83,10 @@ useHead({
   },
 });
 
+useSeoMeta({
+  description: runtimeConfig.public.siteDescription,
+});
+
 const onBackTop = () => {
   window.scrollTo({
     top: 0,
