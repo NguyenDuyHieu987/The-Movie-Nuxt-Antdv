@@ -35,14 +35,14 @@ definePageMeta({
 });
 
 useHead({
-  title: 'Nâng cấp tài khoản thành công - Phimhay247',
+  title: 'Nâng cấp tài khoản thành công',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Nâng cấp tài khoản thành công - Phimhay247',
+  title: 'Nâng cấp tài khoản thành công',
   description: 'Nâng cấp tài khoản thành công, Thanh toán bằng Stripe',
-  ogTitle: 'Nâng cấp tài khoản thành công - Phimhay247',
+  ogTitle: 'Nâng cấp tài khoản thành công',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Nâng cấp tài khoản thành công, Thanh toán bằng Stripe',

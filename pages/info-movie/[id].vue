@@ -513,14 +513,14 @@ if (store.isLogin) {
 loading.value = false;
 
 useHead({
-  title: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',
+  title: () => 'Thông tin: ' + dataMovie.value?.name + '',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',
+  title: () => 'Thông tin: ' + dataMovie.value?.name + '',
   description: () => dataMovie.value?.overview,
-  ogTitle: () => 'Thông tin: ' + dataMovie.value?.name + ' - Phimhay247',
+  ogTitle: () => 'Thông tin: ' + dataMovie.value?.name + '',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,

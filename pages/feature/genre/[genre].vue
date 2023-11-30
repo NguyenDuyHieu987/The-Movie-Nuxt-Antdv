@@ -234,18 +234,15 @@ const responsiveHorizoltal = computed<any>((): any => ({
 }));
 
 useHead({
-  title: () =>
-    'Phim lẻ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
+  title: () => 'Phim lẻ | Thể loại: ' + genreRoute.value.name_vietsub + '',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: () =>
-    'Phim lẻ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
+  title: () => 'Phim lẻ | Thể loại: ' + genreRoute.value.name_vietsub + '',
   description: () =>
     'Phim lẻ, Phim chiếu rạp | Thể loại: ' + genreRoute.value.name_vietsub,
-  ogTitle: () =>
-    'Phim lẻ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
+  ogTitle: () => 'Phim lẻ | Thể loại: ' + genreRoute.value.name_vietsub + '',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: () =>

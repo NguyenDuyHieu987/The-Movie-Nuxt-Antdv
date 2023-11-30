@@ -71,14 +71,14 @@ const formFilter = computed<formfilter>(() => {
 });
 
 useHead({
-  title: () => 'Khám phá - Phimhay247',
+  title: () => 'Khám phá',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: () => 'Khám phá - Phimhay247',
+  title: () => 'Khám phá',
   description: () => 'Khám phá phim mới cùng Phimhay247',
-  ogTitle: () => 'Khám phá - Phimhay247',
+  ogTitle: () => 'Khám phá',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => 'Khám phá phim mới cùng Phimhay247',

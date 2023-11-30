@@ -147,14 +147,14 @@ const breakpoints = useBreakpoints({
 const responsive = breakpoints.smallerOrEqual('responsive');
 
 useHead({
-  title: 'Lịch sử xem - Phimhay247',
+  title: 'Lịch sử xem',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Lịch sử xem - Phimhay247',
+  title: 'Lịch sử xem',
   description: 'Lịch sử xem dõi của bạn',
-  ogTitle: 'Lịch sử xem - Phimhay247',
+  ogTitle: 'Lịch sử xem',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Lịch sử xem dõi của bạn',

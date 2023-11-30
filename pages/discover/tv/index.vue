@@ -73,15 +73,14 @@ const formFilter = computed<formfilter>(() => {
 });
 
 useHead({
-  title: () => 'Khám phá | Phim bộ: ' + formFilter.value.type + ' - Phimhay247',
+  title: () => 'Khám phá | Phim bộ: ' + formFilter.value.type + '',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: () => 'Khám phá | Phim bộ: ' + formFilter.value.type + ' - Phimhay247',
+  title: () => 'Khám phá | Phim bộ: ' + formFilter.value.type + '',
   description: () => 'Khám phá phim mới cùng Phimhay247',
-  ogTitle: () =>
-    'Khám phá | Phim bộ: ' + formFilter.value.type + ' - Phimhay247',
+  ogTitle: () => 'Khám phá | Phim bộ: ' + formFilter.value.type + '',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => 'Khám phá phim mới cùng Phimhay247',

@@ -194,14 +194,14 @@ definePageMeta({
 });
 
 useHead({
-  title: 'Đăng nhập - Phimhay247',
+  title: 'Đăng nhập',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Đăng nhập - Phimhay247',
+  title: 'Đăng nhập',
   description: 'Xem phim thỏa thích cùng Phimhay247',
-  ogTitle: 'Đăng nhập - Phimhay247',
+  ogTitle: 'Đăng nhập',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Xem phim thỏa thích cùng Phimhay247',

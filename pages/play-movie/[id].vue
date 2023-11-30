@@ -401,14 +401,14 @@ if (store.isLogin) {
 loading.value = false;
 
 useHead({
-  title: () => 'Xem phim: ' + dataMovie.value?.name + ' - Phimhay247',
+  title: () => 'Xem phim: ' + dataMovie.value?.name + '',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: () => 'Xem phim: ' + dataMovie.value?.name + ' - Phimhay247',
+  title: () => 'Xem phim: ' + dataMovie.value?.name + '',
   description: () => dataMovie.value?.overview,
-  ogTitle: () => 'Xem phim: ' + dataMovie.value?.name + ' - Phimhay247',
+  ogTitle: () => 'Xem phim: ' + dataMovie.value?.name + '',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,

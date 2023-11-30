@@ -168,14 +168,14 @@ import {
 } from '~/services/movieSlug';
 
 useHead({
-  title: 'Phim lẻ - Phimhay247',
+  title: 'Phim lẻ',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Phim lẻ - Phimhay247',
+  title: 'Phim lẻ',
   description: 'Phim lẻ, Phim chiếu rạp',
-  ogTitle: 'Phim lẻ - Phimhay247',
+  ogTitle: 'Phim lẻ',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Phim lẻ, Phim chiếu rạp',

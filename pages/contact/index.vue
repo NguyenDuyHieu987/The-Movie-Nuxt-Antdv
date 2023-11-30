@@ -106,14 +106,14 @@ definePageMeta({
 });
 
 useHead({
-  title: 'Liên hệ với chúng tôi - Phimhay247',
+  title: 'Liên hệ với chúng tôi',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Liên hệ với chúng tôi - Phimhay247',
+  title: 'Liên hệ với chúng tôi',
   description: 'Liên hệ với chúng tôi - Trợ giúp',
-  ogTitle: 'Liên hệ với chúng tôi - Phimhay247',
+  ogTitle: 'Liên hệ với chúng tôi',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Liên hệ với chúng tôi - Trợ giúp',

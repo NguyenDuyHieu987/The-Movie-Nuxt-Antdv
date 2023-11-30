@@ -50,14 +50,14 @@ const loading = ref<boolean>(false);
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: 'Bảng xếp hạng - Phimhay247',
+  title: 'Bảng xếp hạng',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Bảng xếp hạng - Phimhay247',
+  title: 'Bảng xếp hạng',
   description: 'Trending, bảng xếp hạng',
-  ogTitle: 'Bảng xếp hạng - Phimhay247',
+  ogTitle: 'Bảng xếp hạng',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Trending, bảng xếp hạng',

@@ -184,14 +184,14 @@ const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Emai
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: 'Đỏi mật khẩu - Phimhay247',
+  title: 'Đỏi mật khẩu',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Đỏi mật khẩu - Phimhay247',
+  title: 'Đỏi mật khẩu',
   description: 'Đỏi mật khẩu của bạn',
-  ogTitle: 'Đỏi mật khẩu - Phimhay247',
+  ogTitle: 'Đỏi mật khẩu',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Đỏi mật khẩu của bạn',

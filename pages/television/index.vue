@@ -160,14 +160,14 @@ import {
 } from '~/services/TvSlug';
 
 useHead({
-  title: 'Phim bộ - Phimhay247',
+  title: 'Phim bộ',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Phim bộ - Phimhay247',
+  title: 'Phim bộ',
   description: 'Phim bộ, Phim dài tập',
-  ogTitle: 'Phim bộ - Phimhay247',
+  ogTitle: 'Phim bộ',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Phim bộ, Phim dài tập',

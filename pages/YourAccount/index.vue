@@ -168,14 +168,14 @@ const joinSince = computed<string>(() =>
 );
 
 useHead({
-  title: 'Tài khoản - Phimhay247',
+  title: 'Tài khoản',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Tài khoản - Phimhay247',
+  title: 'Tài khoản',
   description: 'Tài khoản của bạn',
-  ogTitle: 'Tài khoản - Phimhay247',
+  ogTitle: 'Tài khoản',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Tài khoản của bạn',

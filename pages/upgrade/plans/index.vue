@@ -59,17 +59,17 @@ const selectedPlan = ref<plan>();
 const showAnimation = ref<boolean>(false);
 
 useHead({
-  title: 'Nâng cấp tài khoản - Phimhay247',
+  title: 'Nâng cấp tài khoản',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
   title: 'Nâng cấp tài khoản',
-  description: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói - Phimhay247',
+  description: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
   ogTitle: 'Nâng cấp tài khoản',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói - Phimhay247',
+  ogDescription: 'Nâng cấp tài khoản, Dịch vụ, đăng ký gói',
   ogLocale: 'vi',
 });
 

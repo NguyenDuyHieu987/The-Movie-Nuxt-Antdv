@@ -425,7 +425,7 @@ useHead({
     dataMovie.value?.name +
     ' | Tập ' +
     currentEpisode.value?.episode_number +
-    ' - Phimhay247',
+    '',
   htmlAttrs: { lang: 'vi' },
 });
 
@@ -435,14 +435,14 @@ useSeoMeta({
     dataMovie.value?.name +
     ' | Tập ' +
     currentEpisode.value?.episode_number +
-    ' - Phimhay247',
+    '',
   description: () => dataMovie.value?.overview,
   ogTitle: () =>
     'Xem phim: ' +
     dataMovie.value?.name +
     ' | Tập ' +
     currentEpisode.value?.episode_number +
-    ' - Phimhay247',
+    '',
   ogType: 'video.movie',
   // ogUrl: () => window.location.href,
   ogDescription: () => dataMovie.value?.overview,

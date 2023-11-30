@@ -226,18 +226,15 @@ const responsiveHorizoltal = computed<any>((): any => ({
 }));
 
 useHead({
-  title: () =>
-    'Phim bộ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
+  title: () => 'Phim bộ | Thể loại: ' + genreRoute.value.name_vietsub + '',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: () =>
-    'Phim bộ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
+  title: () => 'Phim bộ | Thể loại: ' + genreRoute.value.name_vietsub + '',
   description: () =>
     'Phim bộ, Phim dài tập | Thể loại: ' + genreRoute.value.name_vietsub,
-  ogTitle: () =>
-    'Phim bộ | Thể loại: ' + genreRoute.value.name_vietsub + ' - Phimhay247',
+  ogTitle: () => 'Phim bộ | Thể loại: ' + genreRoute.value.name_vietsub + '',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: () =>

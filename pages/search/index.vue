@@ -76,14 +76,14 @@ const searchQuery = computed<string>(
 );
 
 useHead({
-  title: () => 'Tìm kiếm: ' + searchQuery.value + ' - Phimhay247',
+  title: () => 'Tìm kiếm: ' + searchQuery.value + '',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: () => 'Tìm kiếm: ' + searchQuery.value + ' - Phimhay247',
+  title: () => 'Tìm kiếm: ' + searchQuery.value + '',
   description: 'Tìm kiếm phim hay vói Phimhay247',
-  ogTitle: () => 'Tìm kiếm: ' + searchQuery.value + ' - Phimhay247',
+  ogTitle: () => 'Tìm kiếm: ' + searchQuery.value + '',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Tìm kiếm phim hay vói Phimhay247',

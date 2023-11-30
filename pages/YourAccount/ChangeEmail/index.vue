@@ -156,14 +156,14 @@ const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Emai
 const internalInstance: any = getCurrentInstance();
 
 useHead({
-  title: 'Thay đỏi Email - Phimhay247',
+  title: 'Thay đỏi Email',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Thay đỏi Email - Phimhay247',
+  title: 'Thay đỏi Email',
   description: 'Đỏi Email của bạn',
-  ogTitle: 'Thay đổi Email - Phimhay247',
+  ogTitle: 'Thay đổi Email',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Đỏi Email của bạn',

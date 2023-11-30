@@ -12,14 +12,14 @@ definePageMeta({
 });
 
 useHead({
-  title: 'Trung tâm trợ giúp - Phimhay247',
+  title: 'Trung tâm trợ giúp',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Trung tâm trợ giúp - Phimhay247',
+  title: 'Trung tâm trợ giúp',
   description: 'Trung tâm trợ giúp',
-  ogTitle: 'Trung tâm trợ giúp - Phimhay247',
+  ogTitle: 'Trung tâm trợ giúp',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Trung tâm trợ giúp',

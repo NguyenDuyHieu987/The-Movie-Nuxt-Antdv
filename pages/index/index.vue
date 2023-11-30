@@ -324,14 +324,14 @@ definePageMeta({
 });
 
 useHead({
-  title: 'Xem phim Online 24/7 - Phimhay247',
+  title: 'Xem phim Online 24/7',
   htmlAttrs: { lang: 'vi' },
 });
 
 useSeoMeta({
-  title: 'Xem phim Online 24/7 - Phimhay247',
+  title: 'Xem phim Online 24/7',
   description: 'Xem phim thỏa thích cùng Phimhay247',
-  ogTitle: 'Xem phim Online 24/7 - Phimhay247',
+  ogTitle: 'Xem phim Online 24/7',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
   ogDescription: 'Xem phim thỏa thích cùng Phimhay247',

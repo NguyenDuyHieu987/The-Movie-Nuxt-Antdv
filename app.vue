@@ -73,6 +73,16 @@
 import LoadingApp from '~/components/LoadingApp/LoadingApp.server.vue';
 import RequireAuthDialog from '~/components/RequireAuthDialog/RequireAuthDialog.server.vue';
 
+const runtimeConfig = useRuntimeConfig();
+
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk
+      ? `${titleChunk} ${runtimeConfig.public.titleSeparator} ${runtimeConfig.public.siteName}`
+      : runtimeConfig.public.siteName;
+  },
+});
+
 const onBackTop = () => {
   window.scrollTo({
     top: 0,
