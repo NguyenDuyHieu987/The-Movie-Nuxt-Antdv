@@ -1,5 +1,5 @@
 .body-content:has(.home-page) {
-  min-height: 101vh;
+  min-height: calc(101vh - var(--header-height));
 
   .body-wrapper {
     max-width: 100%;
