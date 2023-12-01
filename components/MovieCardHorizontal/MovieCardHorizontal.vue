@@ -65,20 +65,28 @@
         </p>
       </div>
 
-      <div
-        v-if="item?.release_date || item?.last_air_date || item?.first_air_date"
-        class="release-date-wrapper"
-      >
-        <p class="release-date" v-if="!isEpisodes">
-          {{ item?.release_date?.slice(0, 4) }}
-        </p>
-        <p v-else class="release-date">
-          {{
-            item?.last_air_date?.slice(0, 4)
-              ? item?.last_air_date?.slice(0, 4)
-              : item?.first_air_date?.slice(0, 4)
-          }}
-        </p>
+      <div class="right">
+        <div
+          v-if="
+            item?.release_date || item?.last_air_date || item?.first_air_date
+          "
+          class="release-date-wrapper"
+        >
+          <p class="release-date" v-if="!isEpisodes">
+            {{ item?.release_date?.slice(0, 4) }}
+          </p>
+          <p v-else class="release-date">
+            {{
+              item?.last_air_date?.slice(0, 4)
+                ? item?.last_air_date?.slice(0, 4)
+                : item?.first_air_date?.slice(0, 4)
+            }}
+          </p>
+        </div>
+
+        <div class="vote-average">
+          <span>{{ dataMovie?.vote_average?.toFixed(2) }}</span>
+        </div>
       </div>
     </div>
     <!-- </template>

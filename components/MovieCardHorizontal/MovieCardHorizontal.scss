@@ -129,6 +129,10 @@
       .title-wrapper {
         width: 100%;
 
+        .title {
+          // max-width: 90%;
+        }
+
         .original-title {
           margin-top: 3px;
           font-size: 0.9em;
@@ -137,21 +141,33 @@
         }
       }
 
-      .title {
-        // max-width: 90%;
-      }
-
-      .release-date-wrapper {
+      .right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         position: absolute;
         right: 0;
         bottom: 7px;
         padding: 3px 8px;
 
-        .release-date {
+        .release-date-wrapper {
+          display: flex;
+
+          .release-date {
+            position: relative;
+            font-size: 0.7vw;
+            z-index: 1;
+            font-weight: 500;
+          }
+        }
+
+        .vote-average {
           position: relative;
-          font-size: 0.7vw;
-          z-index: 1;
+          display: none;
+          font-size: 1.6rem;
           font-weight: 500;
+          z-index: 1;
+          transition: font-size 0s;
         }
       }
 
@@ -184,6 +200,16 @@
         background-color: rgba(var(--dominant-backdrop-color, (8, 8, 8)), 0.6);
         box-shadow: 0px 3px 30px
           rgba(var(--dominant-backdrop-color, (0, 84, 112)), 0.4);
+
+        .right {
+          .release-date-wrapper {
+            display: none;
+          }
+
+          .vote-average {
+            display: block;
+          }
+        }
       }
     }
   }
@@ -192,11 +218,20 @@
 @media only screen and (max-width: 1500px) {
   .movie-card-item.horizontal {
     .info {
-      .release-date-wrapper {
-        padding: 4.5px 5px;
+      font-size: 1.5rem;
 
-        .release-date {
-          font-size: 1.3rem;
+      .title-wrapper {
+        .title {
+        }
+      }
+
+      .right {
+        .release-date-wrapper {
+          padding: 4.5px 5px;
+
+          .release-date {
+            font-size: 1.3rem;
+          }
         }
       }
     }
