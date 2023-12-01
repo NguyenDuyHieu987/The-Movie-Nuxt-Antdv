@@ -54,6 +54,7 @@
                   :src="videoSrc"
                   autoplay
                   preload="metadata"
+                  @loadstart="onLoadStartVideo"
                   @waiting="onWaitingVideo"
                   @playing="onPLayingVideo"
                 ></video>
@@ -776,6 +777,10 @@ const handelAddToList = (e: any) => {
 };
 
 const getPopupContainer = () => document.querySelector('.preview-modal');
+
+const onLoadStartVideo = () => {
+  videoStates.isLoading = true;
+};
 
 const onWaitingVideo = (e: any) => {
   videoStates.isLoading = true;
