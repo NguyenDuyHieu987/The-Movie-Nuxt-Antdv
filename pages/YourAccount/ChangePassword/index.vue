@@ -289,8 +289,10 @@ const handleSubmit = () => {
 
   AccountConfirm(
     {
-      oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
-      newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),
+      // oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
+      // newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),
+      oldPassword: formChangePassword.oldPassword,
+      newPassword: formChangePassword.confirmNewPassword,
       logOutAllDevice: formChangePassword.logOutAllDevice,
     },
     'change-password'
@@ -441,8 +443,10 @@ const handleResendVerifyEmail = () => {
 
   AccountConfirm(
     {
-      oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
-      newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),
+      // oldPassword: utils.encryptPassword(formChangePassword.oldPassword),
+      // newPassword: utils.encryptPassword(formChangePassword.confirmNewPassword),
+      oldPassword: formChangePassword.oldPassword,
+      newPassword: formChangePassword.confirmNewPassword,
       logOutAllDevice: formChangePassword.logOutAllDevice,
     },
     'change-password'
