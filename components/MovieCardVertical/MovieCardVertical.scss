@@ -151,10 +151,10 @@
             flex-direction: column;
             opacity: 0;
             z-index: -1;
-            background-color: #10101025;
+            // background-color: #10101025;
 
             a:not(:first-child) {
-              border-top: 1px solid #10101040;
+              // border-top: 1px solid #10101040;
             }
 
             .ant-btn {
@@ -166,7 +166,7 @@
               transition: background-color 0s;
 
               &.add-list {
-                border-top: 1px solid #10101035;
+                // border-top: 1px solid #10101035;
               }
 
               svg {
