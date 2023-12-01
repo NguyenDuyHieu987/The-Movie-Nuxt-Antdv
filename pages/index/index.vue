@@ -7,6 +7,7 @@
         <h2 class="gradient-title-default">
           <span>Phim nổi bật</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/movie`,
               query: {
@@ -14,7 +15,7 @@
               },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -94,8 +95,11 @@
       <section class="home-section cartoon">
         <h2 class="gradient-title-default">
           <span>Hoạt hình - Anime đặc sắc</span>
-          <NuxtLink :to="{ path: `/discover/genre/hoat-hinh` }">
-            <span class="view-all">Xem tất cả</span>
+          <NuxtLink
+            class="view-all"
+            :to="{ path: `/discover/genre/hoat-hinh` }"
+          >
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -124,6 +128,7 @@
         <h2 class="gradient-title-default">
           <span>Phim bộ mới</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: {
@@ -131,7 +136,7 @@
               },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -163,6 +168,7 @@
           <span>Latest Trailers</span>
 
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/movie`,
               query: {
@@ -170,7 +176,7 @@
               },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+           Xem tất cả
           </NuxtLink>
         </h2> -->
 
@@ -194,6 +200,7 @@
               <span>Latest Trailers</span>
 
               <NuxtLink
+                class="view-all"
                 :to="{
                   path: `/discover/movie`,
                   query: {
@@ -201,7 +208,7 @@
                   },
                 }"
               >
-                <span class="view-all">Xem tất cả</span>
+                Xem tất cả
               </NuxtLink>
             </h2>
           </template>
@@ -227,6 +234,7 @@
         <h2 class="gradient-title-default">
           <span>Phim chiếu rạp mới</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/movie`,
               query: {
@@ -234,7 +242,7 @@
               },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -265,6 +273,7 @@
         <h2 class="gradient-title-default">
           <span>TV On the air</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: {
@@ -272,7 +281,7 @@
               },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 

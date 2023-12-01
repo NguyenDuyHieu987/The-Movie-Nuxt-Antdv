@@ -9,6 +9,7 @@
         <h2 class="gradient-title-default">
           <span>Now Playing</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/movie`,
               query: {
@@ -16,7 +17,7 @@
               },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -45,6 +46,7 @@
         <h2 class="gradient-title-default">
           <span>Popular</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/movie`,
               query: {
@@ -52,7 +54,7 @@
               },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -81,6 +83,7 @@
         <h2 class="gradient-title-default">
           <span>Upcomimg</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/movie`,
               query: {
@@ -88,7 +91,7 @@
               },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -117,6 +120,7 @@
         <h2 class="gradient-title-default">
           <span>Top Rated</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/movie`,
               query: {
@@ -124,7 +128,7 @@
               },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 

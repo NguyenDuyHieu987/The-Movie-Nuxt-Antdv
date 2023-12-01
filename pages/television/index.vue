@@ -9,12 +9,13 @@
         <h2 class="gradient-title-default">
           <span>Airing Today</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: { type: 'airingtoday' },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -43,12 +44,13 @@
         <h2 class="gradient-title-default">
           <span>On The Air</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: { type: 'ontheair' },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -77,12 +79,13 @@
         <h2 class="gradient-title-default">
           <span>Popular</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: { type: 'popular' },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
@@ -111,12 +114,13 @@
         <h2 class="gradient-title-default">
           <span>Top Rated</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: { type: 'toprated' },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
           </NuxtLink>
         </h2>
 
