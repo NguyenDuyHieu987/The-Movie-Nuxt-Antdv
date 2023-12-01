@@ -792,7 +792,7 @@ const onClickVolumeUp = () => {
 
 const onClickVolumeOff = () => {
   videoStates.isVolumeOff = false;
-  video.value!.muted = true;
+  video.value!.muted = false;
 };
 </script>
 
