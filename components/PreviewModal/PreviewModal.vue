@@ -8,6 +8,7 @@
           disappear: isDisappear,
           'only-left': isOnlyLeft,
           'only-right': isOnlyRight,
+          'show-video': showVideo,
         }"
         @click.prevent="onClickPreviewModal"
         :style="`--dominant-backdrop-color: ${item.dominant_backdrop_color[0]}, ${item.dominant_backdrop_color[1]},${item.dominant_backdrop_color[2]}`"
@@ -39,12 +40,23 @@
 
           <template #default>
             <div class="backdrop-box">
-              <nuxt-img
-                class="ant-image"
+              <NuxtImg
+                v-show="!showVideo"
                 :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
                 loading="lazy"
                 alt=""
               />
+
+              <div class="video-preview">
+                <video
+                  v-show="showVideo"
+                  id="video-player"
+                  ref="video"
+                  :src="videoSrc"
+                  autoplay
+                  preload="metadata"
+                ></video>
+              </div>
 
               <div
                 v-if="isInHistory"
@@ -353,6 +365,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{ setIsTeleportModal: [data: boolean] }>();
 
+const nuxtConfig = useRuntimeConfig();
 const store = useStore();
 const utils = useUtils();
 const dataMovie = ref<any>(props.dataMovie || {});
@@ -375,6 +388,16 @@ const isOnlyRight = ref<boolean>(false);
 //     emit('setIsTeleportModal', value);
 //   },
 // });
+const video = ref<HTMLVideoElement>();
+const showVideo = ref<boolean>(false);
+const videoSrc = computed<string>(
+  () =>
+    nuxtConfig.app.production_mode
+      ? `${nuxtConfig.app.serverVideoUrl}/videos` + '/feature/Transformer_5'
+      : 'http://localhost:5002/videos' + '/feature/Transformer_5'
+  // 'http://localhost:5002/videos' + '/feature/Transformer_5'
+  // + '.m3u8'
+);
 
 onMounted(() => {
   // window.addEventListener('pointermove', (e: any) => {
@@ -387,6 +410,20 @@ onMounted(() => {
   //     }, 250);
   //   }
   // });
+
+  showVideo.value = true;
+});
+
+watch(showVideo, () => {
+  if (video.value) {
+    if (showVideo.value) {
+      showVideo.value = true;
+      video.value?.play();
+    } else {
+      showVideo.value = false;
+      video.value?.pause();
+    }
+  }
 });
 
 watch(previewModal, () => {
@@ -474,12 +511,15 @@ watch(previewModal, () => {
 
     previewModal.value.style.setProperty('--top', props.style.top + 'px');
 
-    previewModal.value?.addEventListener('mouseenter', () => {
-      isTeleport.value = true;
+    previewModal.value?.addEventListener('pointerenter', () => {
+      if (!isTeleport.value) {
+        isTeleport.value = true;
+      }
     });
 
-    previewModal.value.addEventListener('mouseleave', (el: any) => {
+    previewModal.value.addEventListener('pointerleave', (el: any) => {
       isDisappear.value = true;
+      showVideo.value = false;
 
       // setTimeout(() => {
       //   isDisappear.value = false;
@@ -579,6 +619,7 @@ watch(previewModal, () => {
 
 watch(isTeleport, async () => {
   if (isTeleport.value == true) {
+    showVideo.value = true;
     dataMovie.value = props.dataMovie;
 
     if (!dataMovie.value?.id) {

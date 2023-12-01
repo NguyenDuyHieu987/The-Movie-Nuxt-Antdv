@@ -166,6 +166,15 @@
       }
     }
 
+    &.show-video {
+      .backdrop-box {
+        .percent-viewed,
+        .viewed-overlay-bar {
+          display: none;
+        }
+      }
+    }
+
     .backdrop-box {
       display: flex;
       position: relative;
@@ -173,7 +182,7 @@
       padding-bottom: 56.25%;
       overflow: hidden;
 
-      .ant-image {
+      img {
         position: absolute;
         height: 100%;
         width: 100%;
@@ -184,6 +193,14 @@
         -webkit-user-select: none;
         -ms-user-select: none;
         background-color: var(--background-content-color);
+      }
+
+      .video-preview {
+        video {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+        }
       }
 
       .percent-viewed {

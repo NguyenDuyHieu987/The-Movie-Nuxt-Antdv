@@ -12,6 +12,9 @@
             .toLowerCase()}`,
     }"
     class="movie-card-item horizontal"
+    :class="{
+      'show-video': showVideo,
+    }"
     ref="cardItem"
     :style="`--dominant-backdrop-color: ${item.dominant_backdrop_color[0]}, ${item.dominant_backdrop_color[1]},${item.dominant_backdrop_color[2]}`"
   >
@@ -23,8 +26,8 @@
     <!-- <template #default> -->
     <div
       class="img-box ratio-16-9"
-      @pointerenter="onMouseEnter"
-      @pointerleave="onMouseLeave"
+      @pointerenter="onMouseEnterImg"
+      @pointerleave="onMouseLeaveImg"
     >
       <!-- <img
         v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
@@ -116,6 +119,7 @@ const props = defineProps<{
   type: string | undefined;
 }>();
 
+const nuxtConfig = useRuntimeConfig();
 const store = useStore();
 const utils = useUtils();
 const router = useRouter();
@@ -136,6 +140,16 @@ const imgWidth = ref<number>(0);
 const rectBound = ref<any>(0);
 const timeOut = ref<any>();
 const isEpisodes = computed<boolean>(() => props?.item?.media_type == 'tv');
+const video = ref<HTMLVideoElement>();
+const showVideo = ref<boolean>(false);
+const videoSrc = computed<string>(
+  () =>
+    nuxtConfig.app.production_mode
+      ? `${nuxtConfig.app.serverVideoUrl}/videos` + '/feature/Transformer_5'
+      : 'http://localhost:5002/videos' + '/feature/Transformer_5'
+  // 'http://localhost:5002/videos' + '/feature/Transformer_5'
+  // + '.m3u8'
+);
 
 const getData = async () => {
   // loading.value = true;
@@ -215,7 +229,7 @@ const getData = async () => {
 
 getData();
 
-const onMouseEnter = ({ target }: { target: HTMLElement | any }) => {
+const onMouseEnterImg = ({ target }: { target: HTMLElement | any }) => {
   if (loading.value) return;
 
   const rect = target.getBoundingClientRect();
@@ -247,8 +261,22 @@ const onMouseEnter = ({ target }: { target: HTMLElement | any }) => {
   });
 };
 
-const onMouseLeave = () => {
+const onMouseLeaveImg = () => {
   clearTimeout(timeOut.value);
+};
+
+const onMouseEnterCard = ({ target }: { target: HTMLElement | any }) => {
+  if (video.value) {
+    showVideo.value = true;
+    video.value?.play();
+  }
+};
+
+const onMouseLeaveCard = () => {
+  if (video.value) {
+    showVideo.value = false;
+    video.value?.pause();
+  }
 };
 </script>
 <style lang="scss" src="./MovieCardHorizontal.scss"></style>
