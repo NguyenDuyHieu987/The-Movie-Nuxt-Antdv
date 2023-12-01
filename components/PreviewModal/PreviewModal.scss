@@ -171,6 +171,14 @@
         .viewed-overlay-bar {
           display: none;
         }
+
+        .video-preview {
+          .video-tool {
+            .volume {
+              display: flex;
+            }
+          }
+        }
       }
     }
 
@@ -199,6 +207,11 @@
         height: 100%;
         width: 100%;
 
+        video {
+          height: 100%;
+          width: 100%;
+        }
+
         .float-center {
           display: flex;
           position: absolute;
@@ -209,11 +222,6 @@
 
           .loading-video {
           }
-        }
-
-        video {
-          height: 100%;
-          width: 100%;
         }
 
         .video-tool {
@@ -234,7 +242,7 @@
           }
 
           .volume {
-            display: flex;
+            display: none;
             flex-direction: column;
           }
         }
