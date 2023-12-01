@@ -1,19 +1,18 @@
 import CryptoJS from 'crypto-js';
+// import * as argon2 from 'argon2';
 
 export function encryptPassword(password: string) {
-  // const aesjs = require('aes-js');
-  // const pbkdf2 = require('pbkdf2');
-  // var textBytes = aesjs.utils.utf8.toBytes(password);
-  // var aesCtr = new aesjs.ModeOfOperation.ctr(
-  //   pbkdf2.pbkdf2Sync(password, 'salt', 1, 256 / 8, 'sha512'),
-  //   new aesjs.Counter(24)
-  // );
-  // var encryptedBytes = aesCtr.encrypt(textBytes);
-  // var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
-  // console.log(encryptedHex);
+  const encryptedHex = CryptoJS.SHA512(password).toString();
 
-  var encryptedHex = CryptoJS.SHA512(password).toString();
-  // console.log(encryptedHex);
+  // try {
+  //   const encryptedHex1 = argon2.hash(password, {
+  //     type: argon2.argon2id,
+  //     memoryCost: 2 ** 16,
+  //     hashLength: 50,
+  //   });
+
+  //   console.log(encryptedHex1);
+  // } catch (err) {}
 
   return encryptedHex;
 }
