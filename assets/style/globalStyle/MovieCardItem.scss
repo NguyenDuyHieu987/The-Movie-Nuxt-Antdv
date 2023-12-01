@@ -27,59 +27,17 @@
     }
   }
 
-  .duration-episode-box {
-    color: inherit;
-    background-image: linear-gradient(
-      to right,
-      var(--app-background-color1),
-      var(--app-background-color2),
-      var(--app-background-color3)
-    );
-    background-size: 200% 100%;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    border-radius: 2px;
-    // padding: 3px 10px;
-    padding: 0.2vw 0.6vw;
-    box-shadow: var(--box-shadow-small);
-    left: 3px;
-    top: 3px;
-    transition: all 0.5s;
-
+  .duration-episode-wrapper {
     .duration-episode {
-      // font-size: 1.2rem;
-      font-size: 0.65vw;
+      // font-size: 1.3rem;
+      font-size: 0.7vw;
     }
   }
 
-  .release-date-box {
-    color: inherit;
-    background-image: linear-gradient(
-      to right,
-      var(--app-background-color3),
-      var(--app-background-color2),
-      var(--app-background-color1)
-    );
-    background-size: 200% 100%;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-    // padding: 3px 10px;
-    padding: 0.2vw 0.6vw;
-    box-shadow: var(--box-shadow-small);
-    right: 3px;
-    // bottom: 3px;
-    top: 3px;
-    transition: all 0.5s;
-
+  .release-date-wrapper {
     .release-date {
-      // font-size: 1.2rem;
-      font-size: 0.65vw;
+      // font-size: 1.3rem;
+      font-size: 0.7vw;
     }
   }
 

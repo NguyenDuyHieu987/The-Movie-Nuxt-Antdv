@@ -205,11 +205,13 @@
 
               <Tags tagsLabel="Lượt xem:">
                 <template #tagsInfo>
-                  <span class="text">{{
-                    dataMovie?.views
-                      ?.toString()
-                      ?.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' lượt xem'
-                  }}</span>
+                  <span class="text">
+                    {{
+                      dataMovie?.views
+                        ?.toString()
+                        ?.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' lượt xem'
+                    }}
+                  </span>
                 </template>
               </Tags>
             </div>

@@ -35,135 +35,69 @@
         alt=""
       />
 
-      <div v-show="isInHistory" class="viewed-overlay-bar">
-        <div
-          class="percent-viewed"
-          :style="{ width: percent * 100 + '%' }"
-        ></div>
-      </div>
+      <div class="info-over-image">
+        <div v-show="isInHistory" class="viewed-overlay-bar">
+          <div
+            class="percent-viewed"
+            :style="{ width: percent * 100 + '%' }"
+          ></div>
+        </div>
 
-      <div
-        v-if="item?.release_date || item?.last_air_date || item?.first_air_date"
-        class="release-date-wrapper"
-      >
-        <p class="release-date" v-if="!isEpisodes">
-          {{ item?.release_date?.slice(0, 4) }}
-        </p>
-        <p v-else class="release-date">
-          {{
-            item?.last_air_date?.slice(0, 4)
-              ? item?.last_air_date?.slice(0, 4)
-              : item?.first_air_date?.slice(0, 4)
-          }}
-        </p>
-      </div>
-
-      <div class="widget">
-        <el-tooltip
-          title="Xem ngay"
-          content="Xem ngay"
-          placement="right"
-          popper-class="popper-tooltip"
-          :hide-after="0"
-          :mouseLeaveDelay="0"
-        >
-          <a-button
-            class="click-active"
-            shape="circle"
-            size="large"
-            type="text"
-            @click.prevent="
-              navigateTo(
-                isEpisodes
-                  ? `/play-tv/${item?.id}__${utils
-                      .removeVietnameseTones(item?.name)
-                      ?.replaceAll(/\s/g, '-')
-                      .toLowerCase()}/tap-1`
-                  : `/play-movie/${item?.id}__${utils
-                      .removeVietnameseTones(item?.name)
-                      ?.replaceAll(/\s/g, '-')
-                      .toLowerCase()}`
-              )
-            "
+        <div class="left-bottom">
+          <div
+            v-if="item?.release_date || item?.first_air_date"
+            class="release-date-wrapper"
           >
-            <template #icon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2rem"
-                height="2rem"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </template>
-          </a-button>
-        </el-tooltip>
+            <span class="release-date" v-if="!isEpisodes">
+              {{ item?.release_date?.slice(0, 4) }}
+            </span>
+            <span v-else class="release-date">
+              {{ item?.first_air_date?.slice(0, 4) }}
+            </span>
+          </div>
 
-        <el-tooltip
-          :title="!isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'"
-          :content="!isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'"
-          placement="right"
-          popper-class="popper-tooltip"
-          :hide-after="0"
-          :mouseLeaveDelay="0"
-        >
-          <a-button
-            class="click-active add-list"
-            shape="circle"
-            size="large"
-            type="text"
-            @click.prevent="handelAddToList"
-          >
-            <template #icon>
-              <svg
-                v-if="isAddToList"
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z" />
-              </svg>
+          <div class="vote-average">
+            <span>{{ dataMovie?.vote_average?.toFixed(2) }}</span>
+          </div>
 
-              <svg
-                v-else
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
-              </svg>
-            </template>
-          </a-button>
-        </el-tooltip>
+          <div v-show="isEpisodes" class="lastest-episode"></div>
+        </div>
 
-        <ClientOnly>
-          <el-tooltip
-            title="Chia sẻ"
-            content="Chia sẻ"
-            placement="right"
-            popper-class="popper-tooltip"
-            :hide-after="0"
-            :mouseLeaveDelay="0"
-          >
-            <ShareNetwork
-              network="facebook"
-              :url="urlShare"
-              :title="item?.name"
-              hashtags="phimhay247.site,vite"
-              style="white-space: nowrap; display: block"
-              @click.prevent
+        <div class="right-bottom">
+          <div class="views">
+            <span>
+              {{ utils.viewFormatter(dataMovie?.views) }}
+            </span>
+            <span class="text"> {{ ' lượt xem' }}</span>
+          </div>
+
+          <div class="widget">
+            <el-tooltip
+              title="Xem ngay"
+              content="Xem ngay"
+              placement="right"
+              popper-class="popper-tooltip"
+              :hide-after="0"
+              :mouseLeaveDelay="0"
             >
               <a-button
                 class="click-active"
                 shape="circle"
                 size="large"
                 type="text"
-                @click.prevent
+                @click.prevent="
+                  navigateTo(
+                    isEpisodes
+                      ? `/play-tv/${item?.id}__${utils
+                          .removeVietnameseTones(item?.name)
+                          ?.replaceAll(/\s/g, '-')
+                          .toLowerCase()}/tap-1`
+                      : `/play-movie/${item?.id}__${utils
+                          .removeVietnameseTones(item?.name)
+                          ?.replaceAll(/\s/g, '-')
+                          .toLowerCase()}`
+                  )
+                "
               >
                 <template #icon>
                   <svg
@@ -173,16 +107,105 @@
                     viewBox="0 0 24 24"
                     fill="currentColor"
                   >
-                    <path
-                      d="m21 12l-7-7v4C7 10 4 15 3 20c2.5-3.5 6-5.1 11-5.1V19l7-7Z"
-                    />
+                    <path d="M8 5v14l11-7z" />
                   </svg>
                 </template>
               </a-button>
-            </ShareNetwork>
-          </el-tooltip>
-        </ClientOnly>
+            </el-tooltip>
+
+            <el-tooltip
+              :title="
+                !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
+              "
+              :content="
+                !isAddToList ? 'Thêm vào danh sách' : 'Xóa khỏi danh sách'
+              "
+              placement="right"
+              popper-class="popper-tooltip"
+              :hide-after="0"
+              :mouseLeaveDelay="0"
+            >
+              <a-button
+                class="click-active add-list"
+                shape="circle"
+                size="large"
+                type="text"
+                @click.prevent="handelAddToList"
+              >
+                <template #icon>
+                  <svg
+                    v-if="isAddToList"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="2em"
+                    height="2em"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"
+                    />
+                  </svg>
+
+                  <svg
+                    v-else
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="2em"
+                    height="2em"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
+                  </svg>
+                </template>
+              </a-button>
+            </el-tooltip>
+
+            <ClientOnly>
+              <el-tooltip
+                title="Chia sẻ"
+                content="Chia sẻ"
+                placement="right"
+                popper-class="popper-tooltip"
+                :hide-after="0"
+                :mouseLeaveDelay="0"
+              >
+                <ShareNetwork
+                  network="facebook"
+                  :url="urlShare"
+                  :title="item?.name"
+                  hashtags="phimhay247.site,vite"
+                  style="white-space: nowrap; display: block"
+                  @click.prevent
+                >
+                  <a-button
+                    class="click-active"
+                    shape="circle"
+                    size="large"
+                    type="text"
+                    @click.prevent
+                  >
+                    <template #icon>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="2rem"
+                        height="2rem"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="m21 12l-7-7v4C7 10 4 15 3 20c2.5-3.5 6-5.1 11-5.1V19l7-7Z"
+                        />
+                      </svg>
+                    </template>
+                  </a-button>
+                </ShareNetwork>
+              </el-tooltip>
+            </ClientOnly>
+          </div>
+        </div>
       </div>
+
+      <div class="fade-card"></div>
     </div>
 
     <div class="info">
@@ -234,6 +257,8 @@
 import axios from 'axios';
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import { getImage } from '~/services/image';
+import { getMovieById } from '~/services/movie';
+import { getTvById } from '~/services/tv';
 import { getItemList } from '~/services/list';
 import { getItemHistory } from '~/services/history';
 import { getGenreById } from '~/services/genres';
@@ -263,7 +288,7 @@ const imgHeight = ref<number>(0);
 const imgWidth = ref<number>(0);
 const rectBound = ref<any>(0);
 const timeOut = ref<any>();
-const isEpisodes = computed<boolean>(() => props?.item?.media_type == 'tv');
+const isEpisodes = computed<boolean>(() => props.item?.media_type == 'tv');
 
 const getData = async () => {
   // loading.value = true;
@@ -272,15 +297,33 @@ const getData = async () => {
   //   loading.value = false;
   // }, 500);
 
-  if (props?.type || props?.item?.media_type) {
-    switch (props?.type || props?.item?.media_type) {
-      case 'movie':
-        break;
-      case 'tv':
-        break;
-      default:
-        break;
-    }
+  switch (props?.type || props.item?.media_type) {
+    case 'movie':
+      await getMovieById(props.item.id)
+        .then((response) => {
+          dataMovie.value = response;
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+      break;
+    case 'tv':
+      await getTvById(props.item.id)
+        .then((response) => {
+          dataMovie.value = response;
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+      break;
+    default:
+      break;
   }
 
   if (store.isLogin) {
@@ -291,35 +334,35 @@ const getData = async () => {
       //   `itemlist/${store?.userAccount?.id}/${props.item?.id}`,
       //   () => getItemList(store?.userAccount?.id, props.item?.id)
       // )
-      getItemList(props.item?.id, props.item?.media_type)
-        .then((response) => {
-          if (response.success == true) {
-            isAddToList.value = true;
-          }
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        });
+      // getItemList(props.item?.id, props.item?.media_type)
+      //   .then((response) => {
+      //     if (response.success == true) {
+      //       isAddToList.value = true;
+      //     }
+      //   })
+      //   .catch((e) => {
+      //     if (axios.isCancel(e)) return;
+      //   });
     }
 
     if (dataMovie.value?.history_progress) {
       isInHistory.value = true;
-      percent.value = dataMovie.value?.history_progress?.percent;
+      percent.value = dataMovie.value?.history_progress.percent;
     } else {
       // useAsyncData(
       //   `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
       //   () => getItemHistory(props.item?.id, props.item?.media_type)
       // )
-      getItemHistory(props.item?.id, props.item?.media_type)
-        .then((response) => {
-          if (response.success == true) {
-            isInHistory.value = true;
-            percent.value = response?.result?.percent;
-          }
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        });
+      // getItemHistory(props.item?.id, props.item?.media_type)
+      //   .then((response) => {
+      //     if (response.success == true) {
+      //       isInHistory.value = true;
+      //       percent.value = response.result?.percent;
+      //     }
+      //   })
+      //   .catch((e) => {
+      //     if (axios.isCancel(e)) return;
+      //   });
     }
   }
 };

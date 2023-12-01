@@ -337,6 +337,7 @@ import gsap from 'gsap';
 const props = defineProps<{
   isTeleportPreviewModal: boolean;
   item: any;
+  dataMovie?: any;
   style: {
     left: number;
     top: number;
@@ -354,7 +355,7 @@ const emit = defineEmits<{ setIsTeleportModal: [data: boolean] }>();
 
 const store = useStore();
 const utils = useUtils();
-const dataMovie = ref<any>({});
+const dataMovie = ref<any>(props.dataMovie || {});
 // const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
 const isAddToList = ref<boolean>(false);
@@ -578,6 +579,8 @@ watch(previewModal, () => {
 
 watch(isTeleport, async () => {
   if (isTeleport.value == true) {
+    dataMovie.value = props.dataMovie;
+
     if (!dataMovie.value?.id) {
       loading.value = true;
       if (props.isEpisodes) {
@@ -614,6 +617,17 @@ watch(isTeleport, async () => {
           });
       }
 
+      if (store.isLogin) {
+        if (dataMovie.value?.in_list) {
+          isAddToList.value = true;
+        }
+
+        if (dataMovie.value?.history_progress) {
+          isInHistory.value = true;
+          percent.value = dataMovie.value?.history_progress?.percent;
+        }
+      }
+    } else {
       if (store.isLogin) {
         if (dataMovie.value?.in_list) {
           isAddToList.value = true;

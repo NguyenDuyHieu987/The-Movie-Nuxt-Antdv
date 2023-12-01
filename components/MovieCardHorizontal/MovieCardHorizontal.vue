@@ -45,6 +45,10 @@
           :style="{ width: percent * 100 + '%' }"
         ></div>
       </div>
+
+      <div v-show="isEpisodes" class="lastest-episode"></div>
+
+      <div class="fade-card"></div>
     </div>
 
     <div class="info">
@@ -81,6 +85,7 @@
       :isTeleportPreviewModal="isTeleportPreviewModal"
       v-model:isTeleport="isTeleportPreviewModal"
       :item="item"
+      :dataMovie="dataMovie"
       :style="{
         left: left,
         top: top,
@@ -101,6 +106,8 @@
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
 import axios from 'axios';
 import { getImage } from '~/services/image';
+import { getMovieById } from '~/services/movie';
+import { getTvById } from '~/services/tv';
 import { getItemHistory } from '~/services/history';
 import PreviewModal from '~/components/PreviewModal/PreviewModal.vue';
 
@@ -137,15 +144,33 @@ const getData = async () => {
   //   loading.value = false;
   // }, 500);
 
-  if (props?.type || props?.item?.media_type) {
-    switch (props?.type || props?.item?.media_type) {
-      case 'movie':
-        break;
-      case 'tv':
-        break;
-      default:
-        break;
-    }
+  switch (props?.type || props?.item?.media_type) {
+    case 'movie':
+      await getMovieById(props.item.id)
+        .then((response) => {
+          dataMovie.value = response;
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+      break;
+    case 'tv':
+      await getTvById(props.item.id)
+        .then((response) => {
+          dataMovie.value = response;
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+      break;
+    default:
+      break;
   }
 
   if (store.isLogin) {
@@ -174,16 +199,16 @@ const getData = async () => {
       //   `itemhistory/${store?.userAccount?.id}/${props.item?.id}`,
       //   () => getItemHistory(props.item?.id, props.item?.media_type)
       // )
-      getItemHistory(props.item?.id, props.item?.media_type)
-        .then((response) => {
-          if (response.success == true) {
-            isInHistory.value = true;
-            percent.value = response?.result?.percent;
-          }
-        })
-        .catch((e) => {
-          if (axios.isCancel(e)) return;
-        });
+      // getItemHistory(props.item?.id, props.item?.media_type)
+      //   .then((response) => {
+      //     if (response.success == true) {
+      //       isInHistory.value = true;
+      //       percent.value = response?.result?.percent;
+      //     }
+      //   })
+      //   .catch((e) => {
+      //     if (axios.isCancel(e)) return;
+      //   });
     }
   }
 };
