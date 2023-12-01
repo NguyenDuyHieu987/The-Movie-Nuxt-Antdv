@@ -54,7 +54,15 @@
                   :src="videoSrc"
                   autoplay
                   preload="metadata"
+                  @waiting="onWaitingVideo"
+                  @playing="onPLayingVideo"
                 ></video>
+
+                <div class="float-center">
+                  <div class="loading-video" v-show="videoStates.isLoading">
+                    <LoadingSpinner :width="25" />
+                  </div>
+                </div>
 
                 <div class="video-tool">
                   <div class="volume">
@@ -373,11 +381,12 @@
 <script setup lang="ts">
 import axios from 'axios';
 // import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+import gsap from 'gsap';
 import { getImage } from '~/services/image';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
-import gsap from 'gsap';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const props = defineProps<{
   isTeleportPreviewModal: boolean;
@@ -432,6 +441,7 @@ const videoSrc = computed<string>(
   // + '.m3u8'
 );
 const videoStates = reactive({
+  isLoading: false,
   isVolumeOff: false,
 });
 
@@ -767,13 +777,22 @@ const handelAddToList = (e: any) => {
 
 const getPopupContainer = () => document.querySelector('.preview-modal');
 
+const onWaitingVideo = (e: any) => {
+  videoStates.isLoading = true;
+};
+
+const onPLayingVideo = (e: any) => {
+  videoStates.isLoading = false;
+};
+
 const onClickVolumeUp = () => {
   videoStates.isVolumeOff = true;
   video.value!.muted = true;
 };
+
 const onClickVolumeOff = () => {
   videoStates.isVolumeOff = false;
-  video.value!.muted = false;
+  video.value!.muted = true;
 };
 </script>
 
