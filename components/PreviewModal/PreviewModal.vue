@@ -71,8 +71,8 @@
                       v-show="!videoStates.isVolumeOff"
                       name="ic:baseline-volume-up"
                       xmlns="http://www.w3.org/2000/svg"
-                      width="2rem"
-                      height="2rem"
+                      width="1.8rem"
+                      height="1.8rem"
                       viewBox="0 0 24 24"
                       @click="onClickVolumeUp"
                     >
@@ -86,8 +86,8 @@
                       v-show="videoStates.isVolumeOff"
                       name="ic:baseline-volume-off"
                       xmlns="http://www.w3.org/2000/svg"
-                      width="2rem"
-                      height="2rem"
+                      width="1.8rem"
+                      height="1.8rem"
                       viewBox="0 0 24 24"
                       @click="onClickVolumeOff"
                     >
@@ -105,6 +105,7 @@
                 class="percent-viewed"
                 :style="{ width: percent * 100 + '%' }"
               ></div>
+
               <div v-if="isInHistory" class="viewed-overlay-bar"></div>
             </div>
 
