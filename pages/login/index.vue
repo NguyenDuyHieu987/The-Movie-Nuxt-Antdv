@@ -278,7 +278,6 @@ const handleLogin = () => {
   LogIn({
     email: formLogin.username,
     password: utils.encryptPassword(formLogin.password),
-    // password: md5(formLogin.password),
   })
     .then((response) => {
       if (response?.isLogin == true) {

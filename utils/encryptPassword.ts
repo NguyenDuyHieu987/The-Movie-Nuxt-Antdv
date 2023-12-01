@@ -2,7 +2,7 @@ import CryptoJS from 'crypto-js';
 // import * as argon2 from 'argon2';
 
 export function encryptPassword(password: string) {
-  const encryptedHex = CryptoJS.SHA512(password).toString();
+  // const encryptedHex = CryptoJS.SHA512(password).toString();
 
   // try {
   //   const encryptedHex1 = argon2.hash(password, {
@@ -14,5 +14,5 @@ export function encryptPassword(password: string) {
   //   console.log(encryptedHex1);
   // } catch (err) {}
 
-  return encryptedHex;
+  return password;
 }
