@@ -1,5 +1,12 @@
 <template>
-  <div class="movie-card-item-suggest">
+  <div
+    class="movie-card-item-suggest"
+    :class="{
+      'show-video': showVideo,
+    }"
+    @pointerenter="onMouseEnter"
+    @pointerleave="onMouseLeave"
+  >
     <!-- <el-skeleton :loading="loading" animated>
       <template #template>
         <div class="img-box ratio-16-9">
@@ -29,11 +36,31 @@
 
     <div class="img-box ratio-16-9" @click="onClickPlay">
       <NuxtImg
+        v-show="!showVideo"
         :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
         format="avif"
         loading="lazy"
         alt=""
       />
+
+      <div class="video-preview">
+        <video
+          v-show="showVideo"
+          id="video-player"
+          ref="video"
+          :src="videoSrc"
+          preload="metadata"
+          @loadstart="onLoadStartVideo"
+          @waiting="onWaitingVideo"
+          @playing="onPLayingVideo"
+        ></video>
+
+        <div class="float-center">
+          <div class="loading-video" v-show="videoStates.isLoading">
+            <LoadingSpinner :width="25" />
+          </div>
+        </div>
+      </div>
 
       <div v-show="isInHistory" class="viewed-overlay-bar">
         <div
@@ -43,8 +70,6 @@
       </div>
 
       <div class="play-icon">
-        <!-- <Icon name="ci:play-arrow" class="play" /> -->
-
         <svg
           class="play"
           xmlns="http://www.w3.org/2000/svg"
@@ -159,21 +184,36 @@ import axios from 'axios';
 import { getImage } from '~/services/image';
 import { getItemHistory } from '~/services/history';
 import { getItemList } from '~/services/list';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const props = defineProps<{
   item: any;
   type: string;
 }>();
 
+const nuxtConfig = useRuntimeConfig();
 const utils = useUtils();
 const store = useStore();
 const dataMovie = ref<any>({});
 const loading = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
-const isOpenModalTrailer = ref<boolean>(false);
 const isAddToList = ref<boolean>(false);
 const isEpisodes = computed<boolean>(() => props?.item?.media_type == 'tv');
+const video = ref<HTMLVideoElement>();
+const showVideo = ref<boolean>(false);
+const videoSrc = computed<string>(
+  () =>
+    nuxtConfig.app.production_mode
+      ? `${nuxtConfig.app.serverVideoUrl}/videos` + '/feature/Transformer_5'
+      : 'http://localhost:5002/videos' + '/feature/Transformer_5'
+  // 'http://localhost:5002/videos' + '/feature/Transformer_5'
+  // + '.m3u8'
+);
+const videoStates = reactive({
+  isLoading: false,
+  isVolumeOff: false,
+});
 
 const getData = async () => {
   loading.value = true;
@@ -257,6 +297,20 @@ const handelAddToList = (e: any) => {
   }
 };
 
+const onMouseEnter = () => {
+  if (video.value!.paused && !showVideo.value) {
+    showVideo.value = true;
+    video.value!.play();
+  }
+};
+
+const onMouseLeave = () => {
+  if (!video.value!.paused && showVideo.value) {
+    showVideo.value = false;
+    video.value!.pause();
+  }
+};
+
 const onClickPlay = () => {
   navigateTo({
     path: isEpisodes.value
@@ -269,6 +323,18 @@ const onClickPlay = () => {
           ?.replaceAll(/\s/g, '-')
           .toLowerCase()}`,
   });
+};
+
+const onLoadStartVideo = () => {
+  videoStates.isLoading = true;
+};
+
+const onWaitingVideo = (e: any) => {
+  videoStates.isLoading = true;
+};
+
+const onPLayingVideo = (e: any) => {
+  videoStates.isLoading = false;
 };
 </script>
 <style lang="scss" src="./MovieCardSuggest.scss"></style>
