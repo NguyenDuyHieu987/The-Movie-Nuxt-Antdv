@@ -240,11 +240,11 @@ const rules: Record<string, Rule[]> = {
       message: 'Vui lòng nhập mật khẩu mới!',
       trigger: ['change', 'blur'],
     },
-    {
-      message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
-      min: 6,
-      trigger: ['change', 'blur'],
-    },
+    // {
+    //   message: 'Mật khẩu phải có ít nhất 6 ký tụ!',
+    //   min: 6,
+    //   trigger: ['change', 'blur'],
+    // },
     {
       validator: checkNewPassword,
       trigger: ['change', 'blur'],

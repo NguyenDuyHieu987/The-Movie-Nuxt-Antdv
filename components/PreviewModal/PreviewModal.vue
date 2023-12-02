@@ -466,10 +466,10 @@ watch(showVideo, () => {
   if (video.value) {
     if (showVideo.value) {
       showVideo.value = true;
-      video.value?.play();
+      video.value!.play();
     } else {
       showVideo.value = false;
-      video.value?.pause();
+      video.value!.pause();
     }
   }
 });
