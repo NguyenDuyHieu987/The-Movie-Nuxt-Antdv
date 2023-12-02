@@ -271,6 +271,7 @@ import RatingMovie from '~/components/RatingMovie/RatingMovie.vue';
 import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
 import Comment from '~/components/Comment/Comment.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
+import _ from 'lodash';
 
 const store = useStore();
 const utils = useUtils();
@@ -449,7 +450,7 @@ const updateHistory = () => {
 };
 
 onBeforeRouteLeave(() => {
-  updateHistory();
+  // updateHistory();
 });
 
 const onPLayVideoPlayer = (e: any) => {
@@ -457,24 +458,19 @@ const onPLayVideoPlayer = (e: any) => {
   isPlayVideo.value = true;
 };
 
+const throttleUpdateHistory = _.throttle(updateHistory, 1000);
+
 const onTimeUpdateVideoPlayer = (e: any) => {
   if (e?.seconds > 0) {
     historyProgress.value.percent = e.percent;
 
     if (e.seconds > seconds.value && e.percent > percent.value) {
-      if (seconds.value > e.duration - 6) {
-        seconds.value = e.seconds;
-        percent.value = e.percent;
+      seconds.value = e.seconds;
+      percent.value = e.percent;
 
-        // updateHistory();
-      } else {
-        setTimeout(() => {
-          seconds.value = e.seconds;
-          percent.value = e.percent;
+      throttleUpdateHistory();
 
-          // updateHistory();
-        }, 5000);
-      }
+      // updateHistory();
 
       if (seconds.value > e.duration / 2) {
         if (isUpdateView.value == true) {
