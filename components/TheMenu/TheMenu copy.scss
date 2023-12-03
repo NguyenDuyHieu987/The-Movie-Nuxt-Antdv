@@ -12,8 +12,8 @@
 
   .ant-menu-item.ant-menu-item-selected,
   .ant-menu-submenu-open {
-    // background-color: var(--hover-regular-color) !important;
-    background-color: var(--menu-item-background-color) !important;
+    // background: var(--hover-regular-color) !important;
+    background: var(--menu-item-background-color) !important;
 
     .ant-menu-inline.ant-menu-sub,
     .ant-menu-sub {

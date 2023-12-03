@@ -58,9 +58,6 @@
   --app-background-color7: #004298;
   --app-background-color8: #0069a5;
 
-  --menu-item-background-color: #4e4e4e4a;
-  --menu-inline-submenu-background-color: #12121265;
-
   --btn-background-color-gray: #1e1e1e;
   --btn-background-color-gray1: #252525;
   --btn-background-color-gray-hover: #1b1b1b;
@@ -78,10 +75,17 @@
   --border-regular-btn: #5a5a5a;
   --border-regular-light: #ffffff4d;
   --border-dropdown: #787878;
-
-  --menu-item-height: 48px;
-  --menu-text-color: #eaeaea;
+  --menu-item-height: 47px;
+  --menu-text-color: #cccccc;
   --menu-active-text-color: #fff;
+  // --menu-item-background-color: #0000005a;
+  --menu-item-background-color: linear-gradient(
+    to right,
+    var(--background-content-color) 0,
+    #10101050 70%,
+    #08080800 100%
+  );
+  --menu-inline-submenu-background-color: #12121265;
 
   --breadcrumb-background-color: #080808;
   --footer-background-color: #080808;

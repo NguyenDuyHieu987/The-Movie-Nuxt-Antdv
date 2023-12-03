@@ -43,7 +43,8 @@
       user-select: none;
 
       &:hover {
-        background-color: var(--el-menu-hover-bg-color) !important;
+        background: var(--el-menu-hover-bg-color) !important;
+        color: var(--menu-active-text-color);
       }
     }
 
@@ -64,7 +65,8 @@
 
     &.is-opened {
       .el-sub-menu__title {
-        background-color: var(--el-menu-hover-bg-color) !important;
+        background: var(--el-menu-hover-bg-color) !important;
+        color: var(--menu-active-text-color);
       }
 
       .el-menu.el-menu--inline {
@@ -72,7 +74,7 @@
     }
 
     .el-menu.el-menu--inline {
-      background-color: #6a6a6a32;
+      background: #6a6a6a32;
       padding: 5px 0px;
       padding-left: 15px;
       --el-menu-hover-bg-color: #00000029 !important;
@@ -90,7 +92,7 @@
         }
 
         &.is-active {
-          background-color: var(--el-menu-hover-bg-color);
+          background: var(--el-menu-hover-bg-color);
         }
       }
     }
@@ -125,9 +127,18 @@
       color: var(--menu-text-color);
     }
 
+    &:hover {
+      background: var(--el-menu-hover-bg-color) !important;
+      color: var(--menu-active-text-color);
+
+      a {
+        color: var(--menu-active-text-color);
+      }
+    }
+
     &.is-active {
       color: var(--menu-active-text-color);
-      background-color: var(--el-menu-hover-bg-color);
+      background: var(--el-menu-hover-bg-color);
 
       a {
         color: var(--menu-active-text-color);
