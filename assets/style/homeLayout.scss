@@ -32,7 +32,9 @@
   &.expand,
   &.fixed {
     margin-left: 0px;
+  }
 
+  &.expand {
     .ant-layout-sider.sider-home {
       &::before {
         width: var(--sider-collapsed-width);

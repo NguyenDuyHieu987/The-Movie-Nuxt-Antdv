@@ -34,6 +34,11 @@
     margin-left: 0px;
     margin-top: 0px;
 
+    &.expand,
+    &.fixed {
+      margin-left: 0px;
+    }
+
     header.header-bar,
     .header-page-type-movie,
     .header-home-breadcrumb {
@@ -86,10 +91,7 @@
       margin-left: var(--sider-width);
     }
 
-    &.expand,
-    &.fixed {
-      margin-left: 0px;
-
+    &.expand {
       .ant-layout-sider.sider-bar {
         &::before {
           width: var(--sider-collapsed-width);
