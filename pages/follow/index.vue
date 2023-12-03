@@ -15,7 +15,8 @@
             :deleteAll="removeAllFollowList"
           />
           <!-- :disabled="loading" -->
-          <Teleport to="#topic-follow-column-teleport">
+          <!-- <Teleport to="#topic-follow-column-teleport"> -->
+          <section id="topic-follow-column-teleport">
             <TopicColumn
               v-model:dataColumn="dataList"
               v-model:valueInput="valueInput"
@@ -26,7 +27,8 @@
               :searchRow="searchFollow"
               :deleteAll="removeAllFollowList"
             />
-          </Teleport>
+          </section>
+          <!-- </Teleport> -->
 
           <section class="follow-main-content" ref="followContent">
             <div class="padding-content horizontal">

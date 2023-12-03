@@ -12,10 +12,10 @@
       <SiderHome />
       <Drawer />
 
-      <section
+      <!-- <section
         v-show="isLogin && $route.path == '/follow'"
         id="topic-follow-column-teleport"
-      ></section>
+      ></section> -->
 
       <main class="main-content">
         <!-- <BreadCrumb /> -->
@@ -25,10 +25,10 @@
         <Footer />
       </main>
 
-      <section
+      <!-- <section
         v-show="isLogin && $route.path == '/history'"
         id="topic-history-column-teleport"
-      ></section>
+      ></section> -->
     </div>
   </div>
 </template>

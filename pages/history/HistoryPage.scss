@@ -1,10 +1,20 @@
 .history {
+  position: relative;
+  --history-sidebar-width: 341px;
+
   .history-container {
+    position: relative;
+
+    & > div {
+      position: relative;
+    }
+
     .history-main-content {
       position: relative;
       z-index: 1;
       padding-top: 20px;
       overflow: hidden;
+      margin-right: var(--history-sidebar-width);
 
       .gradient-title-default {
         margin-top: 0px;
@@ -29,7 +39,7 @@
             position: fixed;
             z-index: 1;
             top: var(--header-height);
-            background-color: #101010e6;
+            background-color: #080808e6;
             // background-color: red;
             transition: background-color 0.25s;
             transition-delay: 0.3s;
@@ -89,13 +99,15 @@
 }
 
 #topic-history-column-teleport {
-  position: relative;
+  position: fixed;
   flex: auto;
   background-color: var(--background-content-color);
   padding: 15px 0px 0px 0px;
   max-width: 341px;
   // margin-left: 3px;
-  z-index: 1;
+  height: 100%;
+  z-index: 2;
+  right: 0;
 }
 
 .body-content:has(.history .history-container) {
@@ -132,6 +144,7 @@
       .history-main-content {
         width: 100%;
         margin-top: 20px;
+        margin-right: 0px;
       }
     }
   }

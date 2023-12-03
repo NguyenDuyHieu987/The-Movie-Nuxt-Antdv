@@ -15,7 +15,9 @@
             :deleteAll="removeAllHistoryList"
           />
           <!-- :disabled="loading" -->
-          <Teleport to="#topic-history-column-teleport">
+
+          <!-- <Teleport to="#topic-history-column-teleport"> -->
+          <section id="topic-history-column-teleport">
             <TopicColumn
               v-model:dataColumn="dataHistory"
               v-model:valueInput="valueInput"
@@ -26,7 +28,8 @@
               :searchRow="searchHistoryEvent"
               :deleteAll="removeAllHistoryList"
             />
-          </Teleport>
+          </section>
+          <!-- </Teleport> -->
 
           <section class="history-main-content" ref="historyContent">
             <div class="padding-content horizontal">

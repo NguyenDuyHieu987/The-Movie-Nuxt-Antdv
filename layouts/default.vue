@@ -13,23 +13,25 @@
       <Sider />
       <Drawer />
 
-      <section
+      <!-- <section
         v-show="isLogin && $route.path == '/follow'"
         id="topic-follow-column-teleport"
-      ></section>
+      ></section> -->
 
       <main class="main-content">
         <!-- <BreadCrumb /> -->
         <div class="container">
           <slot />
         </div>
-        <Footer />
+        <Footer
+          v-show="$route.path != '/follow' && $route.path != '/history'"
+        />
       </main>
 
-      <section
+      <!-- <section
         v-show="isLogin && $route.path == '/history'"
         id="topic-history-column-teleport"
-      ></section>
+      ></section> -->
     </div>
   </div>
 </template>
