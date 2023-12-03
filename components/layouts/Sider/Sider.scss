@@ -47,7 +47,7 @@
     max-width: var(--sider-width) !important;
     min-width: var(--sider-width) !important;
     width: var(--sider-width) !important;
-    background: var(--background-content-color) !important;
+    background: var(--background-content-color);
 
     .ant-layout-sider-trigger {
       width: var(--sider-width) !important;

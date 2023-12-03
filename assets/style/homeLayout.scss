@@ -36,6 +36,12 @@
 
   &.expand {
     .ant-layout-sider.sider-home {
+      &.open-fixed {
+        &::before {
+          width: var(--sider-width);
+        }
+      }
+
       &::before {
         width: var(--sider-collapsed-width);
       }

@@ -93,6 +93,12 @@
 
     &.expand {
       .ant-layout-sider.sider-bar {
+        &.open-fixed {
+          &::before {
+            width: var(--sider-width);
+          }
+        }
+
         &::before {
           width: var(--sider-collapsed-width);
         }
