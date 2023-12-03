@@ -1,10 +1,7 @@
 .history {
-  position: relative;
-  --history-sidebar-width: 341px;
+  --history-sidebar-width: 340px;
 
   .history-container {
-    position: relative;
-
     & > div {
       position: relative;
     }
@@ -103,8 +100,7 @@
   flex: auto;
   background-color: var(--background-content-color);
   padding: 15px 0px 0px 0px;
-  max-width: 341px;
-  // margin-left: 3px;
+  max-width: 340px;
   height: 100%;
   z-index: 2;
   right: 0;

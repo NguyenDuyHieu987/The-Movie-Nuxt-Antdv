@@ -14,6 +14,7 @@
             :searchRow="searchFollow"
             :deleteAll="removeAllFollowList"
           />
+
           <!-- :disabled="loading" -->
           <!-- <Teleport to="#topic-follow-column-teleport"> -->
           <section id="topic-follow-column-teleport">

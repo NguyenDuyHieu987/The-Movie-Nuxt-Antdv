@@ -14,8 +14,8 @@
             :searchRow="searchHistoryEvent"
             :deleteAll="removeAllHistoryList"
           />
-          <!-- :disabled="loading" -->
 
+          <!-- :disabled="loading" -->
           <!-- <Teleport to="#topic-history-column-teleport"> -->
           <section id="topic-history-column-teleport">
             <TopicColumn
