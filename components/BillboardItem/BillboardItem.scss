@@ -1,10 +1,8 @@
 .body-content {
   &.expand {
-    .el-carousel {
-      .billboard-item {
-        .billboard-item-body {
-          left: var(--padding-home);
-        }
+    .billboard-item {
+      .billboard-item-body {
+        left: var(--padding-home);
       }
     }
   }
