@@ -32,7 +32,7 @@
   .el-sub-menu {
     margin-top: 3px;
     margin-left: 3px;
-    transition: all 0.15s;
+    transition: all 0s;
 
     .el-sub-menu__icon-arrow {
       right: 5px;
@@ -51,6 +51,7 @@
     .el-sub-menu__title {
       border-top-left-radius: 50px;
       border-bottom-left-radius: 50px;
+      transition: color 0s;
 
       .el-icon:not(.el-sub-menu__icon-arrow) {
         margin-right: 10px;
@@ -103,7 +104,7 @@
     margin-left: 3px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-    transition: all 0.15s;
+    transition: all 0s;
     user-select: none;
 
     .el-icon {
@@ -125,6 +126,7 @@
 
     a {
       color: var(--menu-text-color);
+      transition: color 0s;
     }
 
     &:hover {
