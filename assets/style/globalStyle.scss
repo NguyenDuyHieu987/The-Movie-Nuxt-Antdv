@@ -15,10 +15,16 @@
   --text-danger-color: #b90016;
   --text-placeholder-color: #ababab;
 
-  --header-background: linear-gradient(to bottom, #080808 0, #08080800 100%);
+  --header-background: linear-gradient(
+    to bottom,
+    var(--background-content-color) 0,
+    #10101050 70%,
+    #08080800 100%
+  );
   --header-background-scrolled: #080808e6;
 
   --search-background: #0a0a0a41;
+  --border-search-color: var(--border-regular-light);
   --search-focus-background: #121212;
   --search-focus-border-color: #5c5c5c;
 
@@ -91,7 +97,7 @@
 
   --header-height: 65px;
   --header-home-height: 60px;
-  --sider-width: 240px;
+  --sider-width: 220px;
   --sider-collapsed-width: 75px;
   --drawer-width: 240px;
   --max-width-app: 2200px;

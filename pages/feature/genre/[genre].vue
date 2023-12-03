@@ -174,6 +174,11 @@ import { getGenreById } from '~/services/genres';
 import { FilterMovieSlug } from '~/services/movieSlug';
 import type { genre, formfilter } from '~/types';
 
+definePageMeta({
+  // layout: 'home',
+  name: 'home-feature-genre',
+});
+
 const store = useStore();
 const route = useRoute();
 const nowPlayings = ref<any>([]);

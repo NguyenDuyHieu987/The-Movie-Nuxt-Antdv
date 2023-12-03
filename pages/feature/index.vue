@@ -1,6 +1,9 @@
 <template>
   <div class="home-page feature">
-    <HeaderHome title="Phim lẻ" viewAllLink="/discover/movie?type=all" />
+    <HeaderPageMovieType
+      title="Phim lẻ"
+      viewAllLink="/discover/movie?type=all"
+    />
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
@@ -161,7 +164,7 @@ import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
 import SwiperCarouselGroup from '~/components/CarouselGroup/SwiperCarouselGroup/SwiperCarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.server.vue';
+import HeaderPageMovieType from '~/components/layouts/HeaderPageMovieType/HeaderPageMovieType.server.vue';
 import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';
 import {
   getMovies,
@@ -170,6 +173,11 @@ import {
   getPopular,
   getTopRated,
 } from '~/services/movieSlug';
+
+definePageMeta({
+  // layout: 'home',
+  name: 'home-feature',
+});
 
 useHead({
   title: 'Phim lẻ',

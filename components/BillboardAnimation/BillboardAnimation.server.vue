@@ -1,12 +1,15 @@
 <template>
   <div class="billboard-animation-container">
-    <div class="overlay-backdrop">
-      <NuxtImg
-        :src="getImage(currenImage, 'backdrop', 'w-1200')"
+    <div
+      class="overlay-backdrop"
+      :style="`--dominant-backdrop-color: ${currenActiveItem.dominant_backdrop_color[0]}, ${currenActiveItem.dominant_backdrop_color[1]},${currenActiveItem.dominant_backdrop_color[2]}`"
+    >
+      <!-- <NuxtImg
+        :src="getImage(currenActiveItem?.backdrop_path, 'backdrop', 'w-1200')"
         format="avif"
         loading="lazy"
         alt=""
-      />
+      /> -->
     </div>
 
     <div class="variant-backdrop"></div>
@@ -111,7 +114,7 @@ const billboard = ref();
 const prevItemCarousel = ref<string>('');
 const nextItemCarousel = ref<string>('');
 const dataModel = defineModel<any[]>('data');
-const currenImage = ref<string>(dataModel.value![0]?.backdrop_path);
+const currenActiveItem = ref<any>(dataModel.value![0]);
 const loading = ref<boolean>(false);
 
 watch(dataModel, () => {
@@ -127,7 +130,7 @@ onMounted(() => {
 });
 
 const handleChangeCarouel = (activeIndex: number) => {
-  currenImage.value = dataModel.value![activeIndex]?.backdrop_path;
+  currenActiveItem.value = dataModel.value![activeIndex];
 
   if (activeIndex == dataModel.value!?.length - 1) {
     prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;

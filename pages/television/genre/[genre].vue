@@ -166,6 +166,11 @@ import { getGenreById } from '~/services/genres';
 import { FilterTvSlug } from '~/services/TvSlug';
 import type { genre, formfilter } from '~/types';
 
+definePageMeta({
+  // layout: 'home',
+  name: 'home-television-genre',
+});
+
 const store = useStore();
 const route = useRoute();
 const airingTodays = ref<any>([]);

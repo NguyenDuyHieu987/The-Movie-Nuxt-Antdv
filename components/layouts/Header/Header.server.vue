@@ -86,11 +86,11 @@
               <Notification />
             </li>
 
-            <li class="menu-item account" v-if="isLogin">
+            <li class="menu-item account">
               <DropdownAccount />
             </li>
 
-            <li v-else class="menu-item login-header">
+            <!-- <li v-else class="menu-item login-header">
               <NuxtLink to="/login">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@
                 </svg>
                 <span> Đăng Nhập</span>
               </NuxtLink>
-            </li>
+            </li> -->
           </ul>
         </template>
       </el-skeleton>
@@ -143,31 +143,49 @@ const valueInput = ref<string>(route.query?.q);
 onMounted(() => {
   isShowSearch.value = true;
 
-  const header: HTMLElement | null =
-    document.querySelector('header.header-bar');
-  var lastScrollTop = 0;
+  let lastScrollTop = 0;
 
   window.addEventListener('scroll', () => {
-    var st = window.scrollY || document.documentElement.scrollTop;
+    const billboardItem: HTMLElement | null = document.querySelector(
+      '.billboard-animation-container'
+    );
 
-    if (st > lastScrollTop) {
-      // downscroll code
-      if (window.scrollY >= 65) {
-        store.headerScrolled = true;
-        // header!.style.background = '#101010e6';
-      } else if (window.scrollY == 0) {
-        store.headerScrolled = false;
-        // header!.style.background =
-        //   'linear-gradient(to bottom, #101010 0%, #10101000 100%)';
+    const st = window.scrollY || document.documentElement.scrollTop;
+
+    if (route.meta.name?.includes('home')) {
+      if (st > lastScrollTop) {
+        // downscroll code
+        if (window.scrollY >= billboardItem!.offsetHeight) {
+          console.log(billboardItem!.offsetHeight);
+          store.headerScrolled = true;
+        } else if (window.scrollY == 0) {
+          store.headerScrolled = false;
+        }
+      } else if (st < lastScrollTop) {
+        // upscroll code
+        if (
+          window.scrollY <= billboardItem!.offsetHeight ||
+          window.scrollY == 0
+        ) {
+          store.headerScrolled = false;
+        }
       }
-    } else if (st < lastScrollTop) {
-      // upscroll code
-      if (window.scrollY == 0) {
-        store.headerScrolled = false;
-        // header!.style.background =
-        //   'linear-gradient(to bottom, #101010 0%, #10101000 100%)';
+    } else {
+      if (st > lastScrollTop) {
+        // downscroll code
+        if (window.scrollY >= 65) {
+          store.headerScrolled = true;
+        } else if (window.scrollY == 0) {
+          store.headerScrolled = false;
+        }
+      } else if (st < lastScrollTop) {
+        // upscroll code
+        if (window.scrollY == 0) {
+          store.headerScrolled = false;
+        }
       }
     }
+
     lastScrollTop = st <= 0 ? 0 : st;
   });
 });

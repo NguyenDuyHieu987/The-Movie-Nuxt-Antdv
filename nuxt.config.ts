@@ -4,6 +4,7 @@ import { isProduction } from 'std-env';
 import svgLoader from 'vite-svg-loader';
 // import resolveAntDVComponents from './utils/autoImportsAntdv';
 import { version } from 'ant-design-vue';
+import type { NuxtPage } from 'nuxt/schema';
 
 const antdVersion: number = +version.split('.')[0];
 
@@ -189,7 +190,24 @@ export default defineNuxtConfig({
     url: 'https://phimhay247z.org',
   },
   plugins: [],
-  hooks: {},
+  hooks: {
+    'pages:extend': function (pages) {
+      function removePagesMatching(pattern: RegExp, pages: NuxtPage[] = []) {
+        const pagesToRemove = [];
+        for (const page of pages) {
+          if (page.file && pattern.test(page.file)) {
+            pagesToRemove.push(page);
+          } else {
+            removePagesMatching(pattern, page.children);
+          }
+        }
+        for (const page of pagesToRemove) {
+          pages.splice(pages.indexOf(page), 1);
+        }
+      }
+      removePagesMatching(/\/components\//, pages);
+    },
+  },
   build: {
     // analyze: true,
   },

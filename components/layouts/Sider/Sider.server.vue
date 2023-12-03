@@ -4,7 +4,7 @@
     width="var(--sider-width)"
     collapsedWidth="var(--sider-collapsed-width)"
     class="sider-bar"
-    :class="{ 'open-fixed': openSiderBarFixed }"
+    :class="{ 'open-fixed': openSiderBarFixed, scrolled: siderScrolled }"
     collapsible
     :defaultCollapsed="true"
     @collapse="handleCollapse"
@@ -109,6 +109,7 @@ import { useBreakpoints } from '@vueuse/core';
 const store = useStore();
 const { collapsed, isLogin, userAccount, openSiderBarFixed } =
   storeToRefs<any>(store);
+const siderScrolled = ref<boolean>(false);
 
 const breakpoints = useBreakpoints({
   desktop: 1300,
@@ -149,15 +150,15 @@ onMounted(() => {
   const menu: HTMLElement | null = document.querySelector(
     '.sider-bar .ant-layout-sider-children'
   );
-  const sider_header = document.querySelector('.sider-header') as HTMLElement;
+  const sider_header = document.querySelector(
+    '.sider-bar .sider-header'
+  ) as HTMLElement;
 
   menu!.addEventListener('scroll', (e: any) => {
     if (e.target.scrollTop > 0) {
-      // if (store.isLogin) {
-      sider_header.style.backgroundColor = 'var(--background-content-color)';
-      // }
+      siderScrolled.value = true;
     } else {
-      sider_header.style.backgroundColor = 'transparent';
+      siderScrolled.value = false;
     }
   });
 

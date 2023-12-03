@@ -1,6 +1,6 @@
 <template>
   <div class="home-page televison">
-    <HeaderHome title="Phim bộ" />
+    <HeaderPageMovieType title="Phim bộ" />
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
@@ -129,7 +129,7 @@ import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
 import SwiperCarouselGroup from '~/components/CarouselGroup/SwiperCarouselGroup/SwiperCarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.server.vue';
+import HeaderPageMovieType from '~/components/layouts/HeaderPageMovieType/HeaderPageMovieType.server.vue';
 import {
   getTvs,
   getTvAiringToday,

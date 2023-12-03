@@ -1,87 +1,227 @@
 <template>
-  <div class="header-home" :class="{ scrolled: store.headerScrolled }">
-    <div class="header-home-wrapper">
-      <div class="left">
-        <h1 class="header-home-title">{{ title }}</h1>
+  <header class="header-home" :class="{ scrolled: headerScrolled }">
+    <div class="left-header">
+      <button class="menu-btn mobile" @click="store.setOpendrawer()">
+        <MenuOutlined />
+      </button>
 
-        <el-dropdown
-          trigger="hover"
-          popper-class="header-home-genre"
-          placement="bottom-start"
-          :show-timeout="0"
-          :tabindex="-1"
-        >
-          <span class="el-dropdown-link genre" aria-label="dropdown-genre">
-            {{ genreDropdownTitle }}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.2rem"
-              height="1.2rem"
-              viewBox="0 0 1024 1024"
-            >
-              <path
-                d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-              />
-            </svg>
-          </span>
-
-          <template #dropdown>
-            <el-dropdown-menu class="dropdown-genre">
-              <el-dropdown-item
-                v-for="(item, index) in genres"
-                :index="index"
-                :key="index.toString()"
-                @click="handleSelectGenre(item)"
-              >
-                <NuxtLink
-                  :to="{
-                    path: `${route.path}/genre/${item.id}`,
-                    // params: {
-                    //   slug: 'genre',
-                    //   genre: item.id,
-                    // },
-                  }"
-                >
-                  <span>{{ item.name_vietsub }}</span>
-                </NuxtLink>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
-
-      <div class="right">
-        <NuxtLink :to="viewAllLink"> Tất cả nội dung </NuxtLink>
+      <div class="logo">
+        <NuxtLink :to="{ path: '/' }">
+          <nuxt-img
+            :src="getImage('logo.png', 'logo', 'w-45')"
+            alt=""
+            :height="30"
+            :width="30"
+            preload
+          />
+          <span> PhimHay247 </span>
+        </NuxtLink>
       </div>
     </div>
-  </div>
+
+    <a-input-search
+      v-model:value="valueInput"
+      class="search-header"
+      placeholder="Nhập tên phim để tìm kiếm..."
+      size="large"
+      allowClear
+      bordered
+      :loading="loadingSearch"
+      @change="handleChangeInput(valueInput)"
+      @search="handleSearch"
+    >
+      <template #enterButton>
+        <el-tooltip
+          content="Tìm kiếm"
+          effect="dark"
+          placement="bottom"
+          popper-class="popper-tooltip"
+          :offset="22"
+        >
+          <svg
+            class="fa-magnifying-glass"
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.8rem"
+            height="1.8rem"
+            viewBox="0 0 512 512"
+          >
+            <path
+              fill="currentColor"
+              d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
+            />
+          </svg>
+        </el-tooltip>
+      </template>
+    </a-input-search>
+
+    <div class="right-header">
+      <el-skeleton :loading="loadingUser" animated>
+        <template #template>
+          <el-skeleton-item
+            class="menu-item skeleton"
+            variant="button"
+            v-for="(item, index) in 2"
+            :index="index"
+            :key="index"
+          />
+        </template>
+
+        <template #default>
+          <ul class="menu-header">
+            <li class="menu-item search-mobile">
+              <SearchMobile
+                v-model:valueInput="valueInput"
+                v-model:loading="loadingSearch"
+                @change="handleChangeInput(valueInput)"
+                @search="handleSearch"
+              />
+            </li>
+
+            <li
+              v-if="isLogin"
+              class="menu-item notification"
+              :show-timeout="0"
+              :hide-timeout="0"
+            >
+              <Notification />
+            </li>
+
+            <li class="menu-item account">
+              <DropdownAccount />
+            </li>
+
+            <!-- <li v-else class="menu-item login-header">
+              <NuxtLink to="/login">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2.3rem"
+                  height="2.3rem"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zM7.35 18.5C8.66 17.56 10.26 17 12 17s3.34.56 4.65 1.5c-1.31.94-2.91 1.5-4.65 1.5s-3.34-.56-4.65-1.5zm10.79-1.38a9.947 9.947 0 0 0-12.28 0A7.957 7.957 0 0 1 4 12c0-4.42 3.58-8 8-8s8 3.58 8 8c0 1.95-.7 3.73-1.86 5.12z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 6c-1.93 0-3.5 1.57-3.5 3.5S10.07 13 12 13s3.5-1.57 3.5-3.5S13.93 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z"
+                  />
+                </svg>
+                <span> Đăng Nhập</span>
+              </NuxtLink>
+            </li> -->
+          </ul>
+        </template>
+      </el-skeleton>
+    </div>
+  </header>
 </template>
 
 <script setup lang="ts">
-import type { genre } from '~/types';
-import { getGenreById } from '~/services/genres';
-
-defineProps<{
-  title: string;
-  viewAllLink?: string;
-}>();
-
-const emits = defineEmits<{
-  genSelected: [genSelected: genre];
-}>();
+import axios from 'axios';
+import { getDaTaSearch } from '~/services/search';
+import { getImage } from '~/services/image';
+import DropdownAccount from '../Header/DropdownAcount/DropdownAcount.server.vue';
+import Notification from '../Header/Notification/Notification.server.vue';
+import SearchMobile from '../Header/SearchMobile/SearchMobile.server.vue';
+// import SearchCard from '~/components/SearchCard/SearchCard.vue';
+import { storeToRefs } from 'pinia';
+import { MenuOutlined } from '@ant-design/icons-vue';
+import console from 'console';
 
 const store = useStore();
+const { isLogin, loadingUser } = storeToRefs<any>(store);
+const router = useRouter();
 const route = useRoute();
-const genres = ref<genre[]>(store.allGenres);
-const genreDropdownTitle = ref<string>(
-  route.query?.genre
-    ? getGenreById(route.query?.genre, store.allGenres)!.name_vietsub
-    : 'Thể loại'
-);
+const dataSearch = ref<any[]>([]);
+const page = ref<number>(1);
+const loadingSearch = ref<boolean>(false);
+const isOpenAutoComplete = ref<boolean>(true);
+const isShowSearch = ref<boolean>(false);
+const headerScrolled = ref<boolean>(false);
+const debounce = ref<any>();
+const valueInput = ref<string>(route.query?.q);
 
-const handleSelectGenre = (item: genre) => {
-  genreDropdownTitle.value = item.name_vietsub;
-  emits('genSelected', item);
+onMounted(() => {
+  isShowSearch.value = true;
+
+  let lastScrollTop = 0;
+
+  window.addEventListener('scroll', () => {
+    const billboardItem: HTMLElement | null = document.querySelector(
+      '.billboard-animation-container'
+    );
+
+    const st = window.scrollY || document.documentElement.scrollTop;
+
+    if (st > lastScrollTop) {
+      // downscroll code
+      if (window.scrollY >= billboardItem!.offsetHeight) {
+        headerScrolled.value = true;
+      } else if (window.scrollY == 0) {
+        headerScrolled.value = false;
+      }
+    } else if (st < lastScrollTop) {
+      // upscroll code
+      if (
+        window.scrollY <= billboardItem!.offsetHeight ||
+        window.scrollY == 0
+      ) {
+        headerScrolled.value = false;
+      }
+    }
+
+    lastScrollTop = st <= 0 ? 0 : st;
+  });
+});
+
+watchEffect(() => {
+  valueInput.value = route.query?.q;
+});
+
+const handleChangeInput = (query: string) => {
+  if (query.length > 0) {
+    // loadingSearch.value = true;
+
+    // const url = new URL(location);
+    // url.searchParams.set('q', query);
+    // window.history.pushState({}, null, url);
+
+    clearTimeout(debounce.value);
+    debounce.value = setTimeout(async () => {
+      // await useAsyncData(`search/all/${query}`, () =>
+      //   getDaTaSearch(query, page.value)
+      // )
+      //   .then((response) => {
+      //     dataSearch.value = response.data.value.data?.results;
+      //     loadingSearch.value = false;
+      //   })
+      //   .catch((e) => {
+      //     loadingSearch.value = false;
+      //     if (axios.isCancel(e)) return;
+      //   });
+
+      navigateTo(
+        `/search?q=${query?.replaceAll(' ', '+').toLowerCase()}`
+        // query: { q: query?.replaceAll(' ', '+').toLowerCase() },
+      );
+    }, 700);
+  } else if (query.length == 0) {
+    navigateTo({ path: '/' });
+    dataSearch.value = [];
+  }
+};
+
+const handleSearch = (value: string) => {
+  if (value.length > 0) {
+    navigateTo(
+      `/search?q=${value?.replaceAll(' ', '+').toLowerCase()}`
+      // query: { q: value?.replaceAll(' ', '+').toLowerCase() },
+    );
+
+    // valueInput.value = '';
+    isOpenAutoComplete.value = false;
+  }
 };
 </script>
 

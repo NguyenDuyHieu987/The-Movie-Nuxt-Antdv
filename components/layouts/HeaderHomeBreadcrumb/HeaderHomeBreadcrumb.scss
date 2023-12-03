@@ -6,6 +6,8 @@
 
 .header-home-breadcrumb {
   position: fixed;
+  top: var(--header-height);
+  left: var(--sider-width);
   width: calc(100% - var(--sider-width));
   height: var(--header-home-height);
   // padding: 5px 20px;

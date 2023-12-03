@@ -1,6 +1,6 @@
 <template>
   <div class="home-page televison">
-    <HeaderHome title="Phim bộ" viewAllLink="/discover/tv?type=all" />
+    <HeaderPageMovieType title="Phim bộ" viewAllLink="/discover/tv?type=all" />
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
@@ -153,7 +153,7 @@ import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
 import SwiperCarouselGroup from '~/components/CarouselGroup/SwiperCarouselGroup/SwiperCarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import HeaderHome from '~/components/layouts/HeaderHome/HeaderHome.server.vue';
+import HeaderPageMovieType from '~/components/layouts/HeaderPageMovieType/HeaderPageMovieType.server.vue';
 import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';
 import {
   getTvs,
@@ -162,6 +162,11 @@ import {
   getTvPopular,
   getTvTopRated,
 } from '~/services/TvSlug';
+
+definePageMeta({
+  // layout: 'home',
+  name: 'home-television',
+});
 
 useHead({
   title: 'Phim bộ',

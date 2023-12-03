@@ -1,10 +1,11 @@
 <template>
   <div
     class="body-content"
-    :class="[
-      collapsed || openSiderBarFixed ? 'expand' : '',
-      openSiderBarFixed ? 'fixed' : '',
-    ]"
+    :class="{
+      expand: collapsed || openSiderBarFixed,
+      fixed: openSiderBarFixed,
+      home: $route.meta.name?.includes('home'),
+    }"
   >
     <Header />
 
