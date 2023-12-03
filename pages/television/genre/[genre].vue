@@ -20,12 +20,23 @@
         <h2 class="gradient-title-default">
           <span>Airing Today</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: { type: 'airingtoday' },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.2rem"
+              height="1.2rem"
+              viewBox="0 0 320 512"
+            >
+              <path
+                d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256L73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+              />
+            </svg>
           </NuxtLink>
         </h2>
 
@@ -54,12 +65,23 @@
         <h2 class="gradient-title-default">
           <span>On The Air</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: { type: 'ontheair' },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.2rem"
+              height="1.2rem"
+              viewBox="0 0 320 512"
+            >
+              <path
+                d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256L73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+              />
+            </svg>
           </NuxtLink>
         </h2>
 
@@ -88,12 +110,23 @@
         <h2 class="gradient-title-default">
           <span>Popular</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: { type: 'popular' },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.2rem"
+              height="1.2rem"
+              viewBox="0 0 320 512"
+            >
+              <path
+                d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256L73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+              />
+            </svg>
           </NuxtLink>
         </h2>
 
@@ -122,12 +155,23 @@
         <h2 class="gradient-title-default">
           <span>Top Rated</span>
           <NuxtLink
+            class="view-all"
             :to="{
               path: `/discover/tv`,
               query: { type: 'toprated' },
             }"
           >
-            <span class="view-all">Xem tất cả</span>
+            Xem tất cả
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.2rem"
+              height="1.2rem"
+              viewBox="0 0 320 512"
+            >
+              <path
+                d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256L73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+              />
+            </svg>
           </NuxtLink>
         </h2>
 

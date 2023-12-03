@@ -61,7 +61,7 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
-      font-size: 1.44vw;
+      font-size: 1.5vw;
 
       &:hover {
         .view-all {
@@ -71,7 +71,10 @@
       }
 
       .view-all {
+        display: flex;
+        align-items: center;
         position: absolute;
+        gap: 5px;
         right: -100%;
         font-size: 0.6em;
         color: inherit;
