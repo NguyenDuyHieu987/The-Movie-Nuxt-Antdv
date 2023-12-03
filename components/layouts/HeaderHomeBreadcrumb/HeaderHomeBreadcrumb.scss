@@ -1,5 +1,6 @@
 .body-content.expand {
   .header-home-breadcrumb {
+    left: var(--sider-collapsed-width);
     width: calc(100% - var(--sider-collapsed-width));
   }
 }
