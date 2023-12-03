@@ -18,6 +18,7 @@
 
     .el-dropdown-menu__item {
       position: relative;
+      border: none;
 
       &:has(.your-account) {
         &:first-child {
