@@ -74,6 +74,7 @@
 
       .el-carousel__item {
         display: block !important;
+        width: 100%;
         transform: translate(0px) scale(1) !important;
         transition: opacity 0.5s;
         opacity: 0;
@@ -174,7 +175,7 @@
     position: absolute;
     // bottom: 20%;
     bottom: 150px;
-    right: 5%;
+    right: var(--padding-home);
     z-index: 2;
     display: flex;
     // gap: 10px;
@@ -210,9 +211,9 @@
       }
 
       svg {
-        font-size: 1.4vw;
-        width: 1.4vw;
-        height: 1.4vw;
+        font-size: 1.5vw;
+        width: 1.5vw;
+        height: 1.5vw;
       }
     }
   }
@@ -234,10 +235,15 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      user-select: none;
 
       .img-box {
         position: relative;
         display: flex;
+
+        img {
+          background-color: var(--background-content-color);
+        }
       }
 
       .info {

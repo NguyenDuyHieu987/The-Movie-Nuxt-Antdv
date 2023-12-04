@@ -82,8 +82,8 @@
             <!-- <Icon name="fa6-solid:chevron-left"/> -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="2.2rem"
-              height="2.2rem"
+              width="2.5rem"
+              height="2.5rem"
               viewBox="0 0 320 512"
             >
               <path
@@ -114,8 +114,8 @@
             <!-- <Icon name="fa6-solid:chevron-right"/> -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="2.2rem"
-              height="2.2rem"
+              width="2.5rem"
+              height="2.5rem"
               viewBox="0 0 320 512"
             >
               <path
