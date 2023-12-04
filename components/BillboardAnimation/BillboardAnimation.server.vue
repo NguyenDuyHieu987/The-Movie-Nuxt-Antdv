@@ -141,7 +141,7 @@
       :initial-slide="0"
       :slides-to-show="5"
       :slides-to-scroll="5"
-      :speed="100"
+      :speed="200"
       :draggable="true"
       :swipe="true"
       :touch-move="true"

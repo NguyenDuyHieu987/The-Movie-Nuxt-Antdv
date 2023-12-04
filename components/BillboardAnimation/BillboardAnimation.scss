@@ -227,6 +227,12 @@
     min-width: 500px;
     user-select: none;
 
+    .slick-slider,
+    .slick-list {
+      position: relative;
+      width: 100%;
+    }
+
     .slick-track {
       display: flex;
       gap: 10px;
