@@ -287,6 +287,7 @@
         margin-top: 5px;
         color: var(--text-color-gray);
         // transition: all 0.15s;
+        font-size: 0.8vw;
 
         .title {
           display: -webkit-box;
@@ -315,6 +316,7 @@
 
     .slick-arrow {
       &.slick-disabled {
+        display: none !important;
         opacity: 0.7;
 
         svg {
@@ -345,6 +347,14 @@
           font-size: 2.2rem;
           width: 2.2rem;
           height: 2.2rem;
+        }
+      }
+    }
+
+    .carousel-preview-list {
+      .carousel-preview-item {
+        .info {
+          font-size: 1.4rem;
         }
       }
     }
