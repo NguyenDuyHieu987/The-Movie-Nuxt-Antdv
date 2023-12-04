@@ -129,6 +129,7 @@
     </div>
 
     <a-carousel
+      ref="billboardPreview"
       class="carousel-preview-list"
       :class="{ loaded: loading }"
       :arrows="true"
@@ -144,7 +145,6 @@
       :draggable="true"
       :swipe="true"
       :touch-move="true"
-      :before-change="handleBeforeChangeCarouel"
     >
       <div
         v-for="(item, index) in dataModel"
@@ -152,9 +152,9 @@
         :index="index"
         class="carousel-preview-item"
         :class="{
-          active: billboard?.innerSlider.currentSlide || 0 == index,
+          active: (billboard?.innerSlider.currentSlide || 0) == index,
         }"
-        @click="handleClickItemPreviewCarousel(index)"
+        @click="billboard!.goTo(index)"
       >
         <div class="img-box ratio-2-3">
           <NuxtImg
@@ -207,6 +207,7 @@ import { getImage } from '~/services/image';
 import BillboardItem from '~/components/BillboardItem/BillboardItem.vue';
 
 const billboard = ref();
+const billboardPreview = ref();
 // const data = ref<any[]>([]);
 const dataModel = defineModel<any[]>('data');
 const prevItemCarousel = ref<string>(
@@ -225,27 +226,16 @@ watch(dataModel, () => {
 });
 
 onMounted(() => {
-  console.log(billboard.value.innerSlider);
+  // console.log(billboard.value.innerSlider);
   loading.value = true;
+});
 
-  // billboard.value.innerSlider.changeSlide = () => {
-  //   console.log(billboard.value.innerSlider.currentSlide);
-
-  //   const activeIndex = billboard.value.innerSlider.currentSlide;
-  //   currenActiveItem.value = dataModel.value![activeIndex];
-
-  //   if (activeIndex == dataModel.value!?.length - 1) {
-  //     prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
-  //     nextItemCarousel.value = dataModel.value![0]?.name;
-  //   } else if (activeIndex == 0) {
-  //     prevItemCarousel.value =
-  //       dataModel.value![dataModel.value!?.length - 1]?.name;
-  //     nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
-  //   } else {
-  //     prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
-  //     nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
-  //   }
-  // };
+watchEffect(() => {
+  if (billboard.value?.innerSlider.currentSlide) {
+    const activeIndex = billboard.value.innerSlider.currentSlide;
+    billboardPreview.value?.goTo(activeIndex);
+    handleChangeCarouel(activeIndex);
+  }
 });
 
 const handleChangeCarouel = (activeIndex: number) => {
@@ -262,14 +252,6 @@ const handleChangeCarouel = (activeIndex: number) => {
     prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
     nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
   }
-};
-
-const handleBeforeChangeCarouel = (activeIndex: number) => {
-  console.log(billboard.value.innerSlider.currentSlide);
-};
-
-const handleClickItemPreviewCarousel = (activeIndex: number) => {
-  billboard.value.goTo(activeIndex);
 };
 </script>
 <style lang="scss" src="./BillboardAnimation.scss"></style>
