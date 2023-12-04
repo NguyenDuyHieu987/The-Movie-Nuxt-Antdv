@@ -244,10 +244,14 @@
       flex-direction: column;
       user-select: none;
       cursor: pointer;
+      opacity: 0.9;
 
       &.active {
+        opacity: 1;
+
         .img-box {
           &::before {
+            background-color: transparent;
             opacity: 0;
             z-index: -1;
           }
