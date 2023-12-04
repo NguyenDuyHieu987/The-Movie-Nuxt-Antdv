@@ -231,7 +231,7 @@ onMounted(() => {
 });
 
 watchEffect(() => {
-  if (billboard.value?.innerSlider.currentSlide) {
+  if (billboard.value?.innerSlider) {
     const activeIndex = billboard.value.innerSlider.currentSlide;
     billboardPreview.value?.goTo(activeIndex);
     handleChangeCarouel(activeIndex);
