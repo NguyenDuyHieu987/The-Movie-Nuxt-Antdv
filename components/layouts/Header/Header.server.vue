@@ -156,7 +156,6 @@ onMounted(() => {
       if (st > lastScrollTop) {
         // downscroll code
         if (window.scrollY >= billboardItem!.offsetHeight) {
-          console.log(billboardItem!.offsetHeight);
           store.headerScrolled = true;
         } else if (window.scrollY == 0) {
           store.headerScrolled = false;

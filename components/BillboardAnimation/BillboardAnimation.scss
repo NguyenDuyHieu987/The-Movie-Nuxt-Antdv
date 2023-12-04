@@ -211,9 +211,9 @@
       }
 
       svg {
-        font-size: 1.5vw;
-        width: 1.5vw;
-        height: 1.5vw;
+        font-size: 1.4vw;
+        width: 1.4vw;
+        height: 1.4vw;
       }
     }
   }
@@ -239,9 +239,35 @@
       user-select: none;
       cursor: pointer;
 
+      &.active {
+        .img-box {
+          &::before {
+            opacity: 0;
+            z-index: -1;
+          }
+        }
+
+        .info {
+          color: var(--text-color);
+        }
+      }
+
       .img-box {
         position: relative;
         display: flex;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          background-color: #0808087a;
+          opacity: 1;
+          z-index: 1;
+          // transition: all 0.15s;
+        }
 
         img {
           background-color: var(--background-content-color);
@@ -251,6 +277,8 @@
       .info {
         display: flex;
         margin-top: 5px;
+        color: var(--text-color-gray);
+        // transition: all 0.15s;
 
         .title {
           display: -webkit-box;
@@ -278,22 +306,22 @@
       .el-carousel__container {
       }
 
-      .carousel-arrow {
-        .ant-btn {
-          height: 42px;
-          width: 42px;
-
-          svg {
-            font-size: 2.2rem;
-            width: 2.2rem;
-            height: 2.2rem;
-          }
-        }
+      .el-carousel__indicators {
+        display: none;
       }
     }
 
-    .el-carousel__indicators {
-      display: none;
+    .carousel-arrow {
+      .ant-btn {
+        height: 42px;
+        width: 42px;
+
+        svg {
+          font-size: 2.2rem;
+          width: 2.2rem;
+          height: 2.2rem;
+        }
+      }
     }
   }
 }

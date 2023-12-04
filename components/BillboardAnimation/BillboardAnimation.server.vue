@@ -2,7 +2,7 @@
   <div class="billboard-animation-container">
     <div
       class="overlay-backdrop"
-      :style="`--dominant-backdrop-color: ${currenActiveItem.dominant_backdrop_color[0]}, ${currenActiveItem.dominant_backdrop_color[1]},${currenActiveItem.dominant_backdrop_color[2]}`"
+      :style="`--dominant-backdrop-color: ${currenActiveItem?.dominant_backdrop_color[0]}, ${currenActiveItem?.dominant_backdrop_color[1]},${currenActiveItem?.dominant_backdrop_color[2]}`"
     >
       <!-- <NuxtImg
         :src="getImage(currenActiveItem?.backdrop_path, 'backdrop', 'w-1200')"
@@ -44,6 +44,7 @@
       :arrows="false"
       infinite
       :autoplay="true"
+      :autoplay-speed="7000"
       :pause-on-hover="true"
       effect="fade"
       :fade="true"
@@ -143,12 +144,17 @@
       :draggable="true"
       :swipe="true"
       :touch-move="true"
+      :before-change="handleBeforeChangeCarouel"
     >
       <div
         v-for="(item, index) in dataModel"
         :key="item.id"
         :index="index"
         class="carousel-preview-item"
+        :class="{
+          active: billboard?.innerSlider.currentSlide || 0 == index,
+        }"
+        @click="handleClickItemPreviewCarousel(index)"
       >
         <div class="img-box ratio-2-3">
           <NuxtImg
@@ -202,9 +208,11 @@ import BillboardItem from '~/components/BillboardItem/BillboardItem.vue';
 
 const billboard = ref();
 // const data = ref<any[]>([]);
-const prevItemCarousel = ref<string>('');
-const nextItemCarousel = ref<string>('');
 const dataModel = defineModel<any[]>('data');
+const prevItemCarousel = ref<string>(
+  dataModel.value![dataModel.value!?.length - 1]?.name
+);
+const nextItemCarousel = ref<string>(dataModel.value![1]?.name);
 const currenActiveItem = ref<any>(dataModel.value![0]);
 const loading = ref<boolean>(false);
 
@@ -217,7 +225,27 @@ watch(dataModel, () => {
 });
 
 onMounted(() => {
+  console.log(billboard.value.innerSlider);
   loading.value = true;
+
+  // billboard.value.innerSlider.changeSlide = () => {
+  //   console.log(billboard.value.innerSlider.currentSlide);
+
+  //   const activeIndex = billboard.value.innerSlider.currentSlide;
+  //   currenActiveItem.value = dataModel.value![activeIndex];
+
+  //   if (activeIndex == dataModel.value!?.length - 1) {
+  //     prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
+  //     nextItemCarousel.value = dataModel.value![0]?.name;
+  //   } else if (activeIndex == 0) {
+  //     prevItemCarousel.value =
+  //       dataModel.value![dataModel.value!?.length - 1]?.name;
+  //     nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
+  //   } else {
+  //     prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
+  //     nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
+  //   }
+  // };
 });
 
 const handleChangeCarouel = (activeIndex: number) => {
@@ -236,20 +264,12 @@ const handleChangeCarouel = (activeIndex: number) => {
   }
 };
 
-const handleBeforeChangeCarouel = (activeIndex: number, to: number) => {
-  currenActiveItem.value = dataModel.value![activeIndex];
+const handleBeforeChangeCarouel = (activeIndex: number) => {
+  console.log(billboard.value.innerSlider.currentSlide);
+};
 
-  if (activeIndex == dataModel.value!?.length - 1) {
-    prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
-    nextItemCarousel.value = dataModel.value![0]?.name;
-  } else if (activeIndex == 0) {
-    prevItemCarousel.value =
-      dataModel.value![dataModel.value!?.length - 1]?.name;
-    nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
-  } else {
-    prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
-    nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
-  }
+const handleClickItemPreviewCarousel = (activeIndex: number) => {
+  billboard.value.goTo(activeIndex);
 };
 </script>
 <style lang="scss" src="./BillboardAnimation.scss"></style>
