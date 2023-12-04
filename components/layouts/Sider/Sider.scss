@@ -24,8 +24,8 @@
   transition: all 0s;
 
   ::-webkit-scrollbar {
+    width: 12px;
     background-color: transparent;
-    // width: 9px;
   }
 
   ::-webkit-scrollbar-thumb {
