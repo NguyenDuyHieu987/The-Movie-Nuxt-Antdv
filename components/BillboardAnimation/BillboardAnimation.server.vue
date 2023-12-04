@@ -145,7 +145,7 @@
       :draggable="true"
       :swipe="true"
       :touch-move="true"
-      :focus-on-select="true"
+      :focus-on-select="false"
     >
       <div
         v-for="(item, index) in dataModel"
