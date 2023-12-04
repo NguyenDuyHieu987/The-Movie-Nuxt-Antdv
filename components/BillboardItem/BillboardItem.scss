@@ -33,7 +33,7 @@
   .billboard-item-body {
     position: absolute;
     left: var(--padding-home);
-    bottom: 28%;
+    bottom: 30%;
     z-index: 2;
     width: 100%;
     text-shadow: 1px 1px 2px #101010;
@@ -101,7 +101,7 @@
         margin-top: 5px;
         // font-size: 3.5rem;
         font-size: 2vw;
-        font-weight: 500;
+        font-weight: 600;
         max-width: 50%;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;

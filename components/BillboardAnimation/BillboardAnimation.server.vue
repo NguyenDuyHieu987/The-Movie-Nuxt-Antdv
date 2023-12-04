@@ -41,7 +41,6 @@
       ref="billboard"
       class="billboard-slide"
       :class="{ loaded: loading }"
-      :speed="500"
       :arrows="false"
       infinite
       :autoplay="true"
@@ -49,6 +48,7 @@
       effect="fade"
       :fade="true"
       :dots="false"
+      :speed="500"
       :initial-slide="0"
     >
       <div
@@ -131,14 +131,15 @@
       class="carousel-preview-list"
       :class="{ loaded: loading }"
       :arrows="true"
-      infinite
+      :infinite="false"
       :autoplay="false"
       :pause-on-hover="true"
       effect="scrollx"
       :dots="false"
       :initial-slide="0"
       :slides-to-show="5"
-      :slides-to-scroll="1"
+      :slides-to-scroll="5"
+      :speed="100"
       :draggable="true"
       :swipe="true"
       :touch-move="true"
