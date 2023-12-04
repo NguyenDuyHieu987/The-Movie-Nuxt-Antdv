@@ -84,7 +84,7 @@ export default defineNuxtConfig({
     restoreState: true,
     headNext: true,
     asyncContext: true,
-    inlineSSRStyles: false,
+    // inlineSSRStyles: false,
     defaults: {
       useAsyncData: {
         deep: true,
