@@ -154,8 +154,11 @@
     }
 
     .slick-slide {
-      width: 100% !important;
+      position: absolute;
       left: 0 !important;
+      top: 0;
+      width: 100% !important;
+      min-height: auto;
 
       &.slick-active {
         // opacity: 1 !important;
@@ -284,6 +287,10 @@
 
 @media only screen and (max-width: 1300px) {
   .billboard-animation-container {
+    .carousel-arrow {
+      bottom: 0;
+    }
+
     .carousel-preview-list {
       display: none;
     }
