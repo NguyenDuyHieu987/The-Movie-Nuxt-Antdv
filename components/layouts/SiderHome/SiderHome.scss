@@ -244,8 +244,8 @@
   .ant-layout-sider.sider-home {
     --sider-width: 0px;
     --sider-collapsed-width: 0px;
-    // overflow: hidden;
     border: none;
+    overflow: hidden;
 
     .ant-layout-footer {
       .trigger-collapse {
