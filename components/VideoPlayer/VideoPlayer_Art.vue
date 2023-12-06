@@ -1,5 +1,7 @@
 <template>
-  <div class="video-player"></div>
+  <div class="video-player-wrapper">
+    <div class="video-player"></div>
+  </div>
 </template>
 
 <script setup lang="ts">

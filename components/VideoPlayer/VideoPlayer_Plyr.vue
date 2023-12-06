@@ -1,23 +1,25 @@
 <template>
-  <div
-    class="video-player"
-    :style="{ '--plyr-color-main': 'var(--app-background-color)' }"
-  >
-    <video
-      id="video-player"
-      ref="video"
-      :src="videoSrc"
-      :poster="backdrop"
-      preload="metadata"
-      autoplay
-      muted
-      controls
-      data-not-lazy
-      @timeupdate="onTimeUpdateVideo"
-      @play="onPlayVideo"
+  <div class="video-player-wrapper">
+    <div
+      class="video-player"
+      :style="{ '--plyr-color-main': 'var(--app-background-color)' }"
     >
-      <source :data-src="videoSrc" ref="srcVideo" type="video/mp4" />
-    </video>
+      <video
+        id="video-player"
+        ref="video"
+        :src="videoSrc"
+        :poster="backdrop"
+        preload="metadata"
+        autoplay
+        muted
+        controls
+        data-not-lazy
+        @timeupdate="onTimeUpdateVideo"
+        @play="onPlayVideo"
+      >
+        <source :data-src="videoSrc" ref="srcVideo" type="video/mp4" />
+      </video>
+    </div>
   </div>
 </template>
 
