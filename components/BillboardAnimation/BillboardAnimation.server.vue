@@ -40,7 +40,6 @@
     <a-carousel
       ref="billboard"
       class="billboard-slide"
-      :class="{ loaded: loading }"
       :arrows="false"
       infinite
       :autoplay="true"
@@ -131,7 +130,6 @@
     <a-carousel
       ref="billboardPreview"
       class="carousel-preview-list"
-      :class="{ loaded: loading }"
       :arrows="true"
       :infinite="false"
       :autoplay="false"

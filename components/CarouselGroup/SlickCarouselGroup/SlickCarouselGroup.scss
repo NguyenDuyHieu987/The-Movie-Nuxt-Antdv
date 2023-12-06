@@ -1,7 +1,7 @@
 .body-content:has(.home-page) {
   .home-page {
     .home-content {
-      .carousel-group {
+      .carousel-slick {
         .swiper-button-prev,
         .swiper-button-next {
           width: var(--padding-home);
@@ -21,7 +21,7 @@
   &.expand {
     .home-page {
       .home-content {
-        .carousel-group {
+        .carousel-slick {
           .swiper-button-prev,
           .swiper-button-next {
             width: var(--padding-home);
@@ -40,7 +40,7 @@
   }
 }
 
-.carousel-group {
+.carousel-slick {
   overflow: visible;
   position: relative;
 
@@ -153,7 +153,7 @@
   .body-content:has(.home-page) {
     .home-page {
       .home-content {
-        .carousel-group {
+        .carousel-slick {
           .swiper-button-prev,
           .swiper-button-next {
             width: 30px;
@@ -165,7 +165,7 @@
     &.expand {
       .home-page {
         .home-content {
-          .carousel-group {
+          .carousel-slick {
             .swiper-button-prev,
             .swiper-button-next {
               width: 30px;
@@ -181,7 +181,7 @@
   .body-content:has(.home-page) {
     .home-page {
       .home-content {
-        .carousel-group {
+        .carousel-slick {
           .swiper-button-prev,
           .swiper-button-next {
             width: 30px;
@@ -193,7 +193,7 @@
     &.expand {
       .home-page {
         .home-content {
-          .carousel-group {
+          .carousel-slick {
             .swiper-button-prev,
             .swiper-button-next {
               width: 30px;

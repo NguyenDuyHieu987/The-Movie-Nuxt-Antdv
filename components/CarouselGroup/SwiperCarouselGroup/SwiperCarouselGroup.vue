@@ -1,7 +1,7 @@
 <template>
   <div class="carousel-container">
     <Swiper
-      class="carousel-group"
+      class="carousel-swiper"
       :class="cardMode || 'horizontal'"
       :modules="[
         // SwiperAutoplay,

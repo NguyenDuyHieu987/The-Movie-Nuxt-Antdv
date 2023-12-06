@@ -1,62 +1,54 @@
 <template>
   <div class="carousel-container">
-    <Swiper
-      class="carousel-group"
-      :class="cardMode || 'horizontal'"
-      :modules="[
-        // SwiperAutoplay,
-        SwiperNavigation,
-        // SwiperVirtual,
-      ]"
-      :breakpoints="responsive"
-      :space-between="gap || 7"
-      :rewind="true"
-      :speed="500"
-      effect="creative"
-      :navigation="{
-        prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next',
-      }"
-      :autoplay="{
-        delay: 10000,
-        pauseOnMouseEnter: true,
-        reverseDirection: true,
-      }"
+    <a-carousel
+      class="carousel-slick"
+      ref="carouselSlick"
+      :arrows="true"
+      :infinite="false"
+      :autoplay="false"
+      :pause-on-hover="true"
+      effect="scrollx"
+      :dots="false"
+      :initial-slide="0"
+      :slides-to-show="5"
+      :slides-to-scroll="5"
+      :speed="200"
+      :draggable="true"
+      :swipe="true"
+      :touch-move="true"
+      :focus-on-select="false"
     >
       <slot name="content" />
 
-      <div class="swiper-button-prev">
-        <!-- <Icon name="bi:chevron-left"/> -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="3.5rem"
-          height="3.5rem"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-          />
-        </svg>
-      </div>
-      <div class="swiper-button-next">
-        <!-- <Icon name="bi:chevron-right"/> -->
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="3.5rem"
-          height="3.5rem"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8L4.646 2.354a.5.5 0 0 1 0-.708z"
-          />
-        </svg>
-      </div>
-    </Swiper>
+      <template #prevArrow>
+        <div class="slick-arrow prev">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="3.5rem"
+            height="3.5rem"
+            viewBox="0 0 320 512"
+          >
+            <path
+              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256L246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+            />
+          </svg>
+        </div>
+      </template>
+      <template #nextArrow>
+        <div class="slick-arrow next">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="3.5rem"
+            height="3.5rem"
+            viewBox="0 0 320 512"
+          >
+            <path
+              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256L73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+            />
+          </svg>
+        </div>
+      </template>
+    </a-carousel>
   </div>
 </template>
 
