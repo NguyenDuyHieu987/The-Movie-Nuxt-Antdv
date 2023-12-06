@@ -99,8 +99,8 @@
               <div class="swiper-button-prev">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="3.5rem"
-                  height="3.5rem"
+                  width="2.8rem"
+                  height="2.8rem"
                   viewBox="0 0 16 16"
                 >
                   <path
@@ -113,8 +113,8 @@
               <div class="swiper-button-next">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="3.5rem"
-                  height="3.5rem"
+                  width="2.8rem"
+                  height="2.8rem"
                   viewBox="0 0 16 16"
                 >
                   <path
@@ -168,8 +168,8 @@
               <div class="swiper-button-prev">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="3.5rem"
-                  height="3.5rem"
+                  width="2.8rem"
+                  height="2.8rem"
                   viewBox="0 0 16 16"
                 >
                   <path
@@ -182,8 +182,8 @@
               <div class="swiper-button-next">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="3.5rem"
-                  height="3.5rem"
+                  width="2.8rem"
+                  height="2.8rem"
                   viewBox="0 0 16 16"
                 >
                   <path

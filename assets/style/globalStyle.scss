@@ -18,7 +18,7 @@
   --header-background: linear-gradient(
     to bottom,
     var(--background-content-color) 0,
-    #10101050 70%,
+    #08080850 70%,
     #08080800 100%
   );
   --header-background-scrolled: #080808e6;
@@ -83,13 +83,13 @@
   --menu-item-background-color: linear-gradient(
     to right,
     #08080880 0,
-    #10101050 70%,
+    #08080850 70%,
     #08080800 100%
   );
   --menu-inline-submenu-background-color: #12121265;
 
-  --breadcrumb-background-color: #080808;
-  --footer-background-color: #080808;
+  --breadcrumb-background-color: var(--background-content-color);
+  --footer-background-color: var(--background-content-color);
 
   --box-shadow-small: 0 3px 10px rgba(0, 0, 0, 0.8);
   --box-shadow-small1: 0 1px 10px rgba(0, 0, 0, 0.8);

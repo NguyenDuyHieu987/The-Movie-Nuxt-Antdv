@@ -86,7 +86,7 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
     transition: all 0.15s;
 
     &.enable {
-      background: linear-gradient(90deg, #101010 0%, #10101000 100%);
+      background: linear-gradient(90deg, #080808 0%, #08080800 100%);
     }
   }
 
@@ -97,7 +97,7 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
     height: 100%;
     width: 50px;
     z-index: 1;
-    background: linear-gradient(90deg, #10101000 0%, #101010 100%);
+    background: linear-gradient(90deg, #08080800 0%, #080808 100%);
     transition: all 0.15s;
 
     &.disabled {

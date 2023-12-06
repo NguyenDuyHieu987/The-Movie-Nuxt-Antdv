@@ -348,16 +348,16 @@ onMounted(() => {
     if (st > lastScrollTop) {
       // downscroll code
       if (window.scrollY >= 65) {
-        header!.style.background = '#101010e6';
+        header!.style.background = '#080808e6';
       } else if (window.scrollY == 0) {
         header!.style.background =
-          'linear-gradient(to bottom, #101010 0, #10101000 100%)';
+          'linear-gradient(to bottom, #080808 0, #08080800 100%)';
       }
     } else if (st < lastScrollTop) {
       // upscroll code
       if (window.scrollY == 0) {
         header!.style.background =
-          'linear-gradient(to bottom, #101010 0, #10101000 100%)';
+          'linear-gradient(to bottom, #080808 0, #08080800 100%)';
       }
     }
     lastScrollTop = st <= 0 ? 0 : st;

@@ -143,7 +143,7 @@ video::-webkit-media-controls {
           height: auto;
           padding: 5px 15px;
           // background-color: #070707bd;
-          background-color: #101010cb;
+          background-color: #080808cb;
           font-size: 1.4rem;
 
           & + .ant-btn {
@@ -194,7 +194,7 @@ video::-webkit-media-controls {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #10101081;
+      background-color: #08080881;
       transition: all 0.15s;
       height: 50px;
       width: 50px;
@@ -254,7 +254,7 @@ video::-webkit-media-controls {
 
     .timeline-container {
       width: 160px;
-      background-color: #101010;
+      background-color: #080808;
 
       .img-box {
         height: 90px;
@@ -279,7 +279,7 @@ video::-webkit-media-controls {
       font-size: 1.4rem;
       text-align: center;
       margin-top: 7px;
-      text-shadow: 1px 2px 3px #101010;
+      text-shadow: 1px 2px 3px var(--background-content-color);
     }
   }
 
@@ -1103,7 +1103,7 @@ video::-webkit-media-controls {
         padding: 2px 8px;
         border-radius: 6px;
         text-align: center;
-        background-color: #101010;
+        background-color: var(--background-content-color);
       }
     }
   }

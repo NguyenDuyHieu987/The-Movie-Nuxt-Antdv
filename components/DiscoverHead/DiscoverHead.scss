@@ -52,7 +52,14 @@
 
     .swiper-button-prev,
     .swiper-button-next {
+      display: flex;
+      width: 30px;
       color: var(--text-color);
+
+      svg {
+        width: 2.8rem;
+        height: 2.8rem;
+      }
 
       &.swiper-button-disabled {
         display: none;
@@ -60,13 +67,25 @@
     }
 
     .swiper-button-prev {
+      justify-content: flex-start;
       left: -8px;
-      background-image: linear-gradient(to right, #101010 0%, #10101000 100%);
+      background-image: linear-gradient(
+        to right,
+        #080808 0%,
+        #08080850 70%,
+        #08080800 100%
+      );
     }
 
     .swiper-button-next {
-      right: -7px;
-      background-image: linear-gradient(to left, #101010 0%, #10101000);
+      justify-content: flex-end;
+      right: -8px;
+      background-image: linear-gradient(
+        to left,
+        #080808 0%,
+        #08080850 70%,
+        #08080800 100%
+      );
     }
   }
 }
