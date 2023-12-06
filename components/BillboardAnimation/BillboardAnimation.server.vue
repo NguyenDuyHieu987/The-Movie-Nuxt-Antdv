@@ -1,22 +1,23 @@
 <template>
   <div class="billboard-animation-container">
-    <div
-      class="overlay-backdrop"
-      :style="`--dominant-backdrop-color: ${currenActiveItem?.dominant_backdrop_color[0]}, ${currenActiveItem?.dominant_backdrop_color[1]},${currenActiveItem?.dominant_backdrop_color[2]}`"
-    >
-      <NuxtImg
-        :src="getImage(currenActiveItem?.backdrop_path, 'backdrop', 'w-1200')"
-        format="avif"
-        loading="lazy"
-        alt=""
-      />
-    </div>
-
     <div class="variant-backdrop"></div>
 
-    <!-- <el-carousel
+    <div class="billboard-carousel-wrapper">
+      <div
+        class="overlay-backdrop"
+        :style="`--dominant-backdrop-color: ${currenActiveItem?.dominant_backdrop_color[0]}, ${currenActiveItem?.dominant_backdrop_color[1]},${currenActiveItem?.dominant_backdrop_color[2]}`"
+      >
+        <NuxtImg
+          :src="getImage(currenActiveItem?.backdrop_path, 'backdrop', 'w-1200')"
+          format="avif"
+          loading="lazy"
+          alt=""
+        />
+      </div>
+
+      <!-- <el-carousel
       ref="billboard"
-      class="billboard-slide"
+      class="billboard-carousel"
       :class="{ loaded: loading }"
       :interval="7000"
       loop
@@ -37,29 +38,30 @@
       </el-carousel-item>
     </el-carousel> -->
 
-    <a-carousel
-      ref="billboard"
-      class="billboard-slide"
-      :arrows="false"
-      infinite
-      :autoplay="true"
-      :autoplay-speed="7000"
-      :pause-on-hover="true"
-      effect="fade"
-      :fade="true"
-      :dots="false"
-      :speed="500"
-      :initial-slide="0"
-    >
-      <div
-        class="billboard-slide-item"
-        v-for="(item, index) in dataModel"
-        :key="item.id"
-        :index="index"
+      <a-carousel
+        ref="billboard"
+        class="billboard-carousel"
+        :arrows="false"
+        infinite
+        :autoplay="true"
+        :autoplay-speed="7000"
+        :pause-on-hover="true"
+        effect="fade"
+        :fade="true"
+        :dots="false"
+        :speed="500"
+        :initial-slide="0"
       >
-        <BillboardItem :item="item" />
-      </div>
-    </a-carousel>
+        <div
+          class="billboard-slide-item"
+          v-for="(item, index) in dataModel"
+          :key="item.id"
+          :index="index"
+        >
+          <BillboardItem :item="item" />
+        </div>
+      </a-carousel>
+    </div>
 
     <div class="carousel-arrow" v-show="dataModel?.length">
       <el-tooltip
