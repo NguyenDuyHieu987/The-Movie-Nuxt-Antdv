@@ -424,8 +424,6 @@ useSeoMeta({
 
 const updateHistory = () => {
   if (isPlayVideo.value == true && store.isLogin) {
-    console.log(seconds.value, percent.value, duration.value);
-
     if (
       seconds.value > 0 &&
       percent.value > 0 &&
