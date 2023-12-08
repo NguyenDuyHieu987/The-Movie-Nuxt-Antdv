@@ -1109,7 +1109,7 @@ const onTimeUpdateVideo = (e: any) => {
   emits('onTimeUpdate', {
     seconds: video.value!.currentTime,
     percent: video.value!.currentTime / video.value!.duration,
-    duration: video.value?.duration,
+    duration: video.value!.duration,
   });
 };
 

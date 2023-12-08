@@ -7,8 +7,8 @@
             v-if="dataRow[0]?.media_type == 'tv' && dataRow[0]?.movie_id"
             class="img-box ratio-16-9"
             :to="{
-              path: `/play-tv/${dataRow[0]?.movie_id}/${dataRow[0]?.name
-                ?.replace(/\s/g, '+')
+              path: `/play-tv/${dataRow[0]?.movie_id}__${dataRow[0]?.name
+                ?.replaceAll(/\s/g, '-')
                 .toLowerCase()}/ep-1`,
             }"
           >
@@ -39,8 +39,8 @@
             "
             class="img-box"
             :to="{
-              path: `/play-movie/${dataRow[0]?.movie_id}/${dataRow[0]?.name
-                ?.replace(/\s/g, '+')
+              path: `/play-movie/${dataRow[0]?.movie_id}__${dataRow[0]?.name
+                ?.replaceAll(/\s/g, '-')
                 .toLowerCase()}`,
             }"
           >

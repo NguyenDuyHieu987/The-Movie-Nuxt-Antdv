@@ -504,22 +504,28 @@ const onPLayVideoPlayer = (e: any) => {
 const throttleUpdateHistory = _.throttle(updateHistory, 1000);
 
 const onTimeUpdateVideoPlayer = (e: any) => {
-  if (e?.seconds > 0) {
-    historyProgress.value.percent = e.percent;
+  if (!isPlayVideo.value) {
+    isPlayVideo.value = true;
+  }
 
-    if (e.seconds > seconds.value && e.percent > percent.value) {
-      seconds.value = e.seconds;
-      percent.value = e.percent;
+  historyProgress.value.percent = e.percent;
 
-      throttleUpdateHistory();
+  if (e.seconds > seconds.value && e.percent > percent.value) {
+    seconds.value = e.seconds;
+    percent.value = e.percent;
 
-      // updateHistory();
+    if (duration.value != e.duration) {
+      duration.value = e.duration;
+    }
 
-      if (seconds.value > e.duration / 2) {
-        if (isUpdateView.value == true) {
-          UpdateView(movieId.value, 'tv');
-          isUpdateView.value = false;
-        }
+    throttleUpdateHistory();
+
+    // updateHistory();
+
+    if (seconds.value > e.duration / 2) {
+      if (isUpdateView.value == true) {
+        UpdateView(movieId.value, 'tv');
+        isUpdateView.value = false;
       }
     }
   }
