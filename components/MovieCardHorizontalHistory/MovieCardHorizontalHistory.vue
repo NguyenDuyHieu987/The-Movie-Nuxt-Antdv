@@ -163,6 +163,7 @@
               circle
               size="large"
               text
+              @click.prevent
             >
               <template #icon>
                 <!-- <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" /> -->
