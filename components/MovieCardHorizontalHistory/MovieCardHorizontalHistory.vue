@@ -33,7 +33,7 @@
               .removeVietnameseTones(item?.name)
               ?.replaceAll(/\s/g, '-')
               .toLowerCase()}`
-          : `/info-movie/${item?.movie_id}_${utils
+          : `/info-movie/${item?.movie_id}__${utils
               .removeVietnameseTones(item?.name)
               ?.replaceAll(/\s/g, '-')
               .toLowerCase()}`,
