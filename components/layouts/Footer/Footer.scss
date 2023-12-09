@@ -121,8 +121,12 @@ footer.footer {
             color: inherit;
             transition: opacity color 0.25s;
 
+            .support-icon {
+              display: flex;
+              width: 30px;
+            }
+
             svg {
-              margin-right: 3px;
             }
           }
         }

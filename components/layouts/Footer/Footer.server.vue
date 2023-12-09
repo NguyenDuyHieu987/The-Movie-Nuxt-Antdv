@@ -50,39 +50,43 @@
               target="blank"
               to="https://www.facebook.com/nguyen.d.hieu.355"
             >
-              <svg
-                class="fa-facebook-f"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1.6rem"
-                height="1.6rem"
-                viewBox="0 0 320 512"
-                fill="currentColor"
-              >
-                <path
-                  d="m279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-                />
-              </svg>
+              <div class="support-icon">
+                <svg
+                  class="fa-facebook-f"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.6rem"
+                  height="1.6rem"
+                  viewBox="0 0 320 512"
+                  fill="currentColor"
+                >
+                  <path
+                    d="m279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+                  />
+                </svg>
+              </div>
 
-              Facebook: Hiếu Duy Nguyễn
+              Hiếu Duy Nguyễn
             </NuxtLink>
             <NuxtLink
               class="email click-active"
               to="mailto:vaicut6941@gmail.com"
             >
-              <svg
-                class="email-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="2rem"
-                height="2rem"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"
-                />
-              </svg>
+              <div class="support-icon">
+                <svg
+                  class="email-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2rem"
+                  height="2rem"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5l8-5v10zm-8-7L4 6h16l-8 5z"
+                  />
+                </svg>
+              </div>
 
-              Email: duyhieu631015@gmail.com
+              duyhieu631015@gmail.com
             </NuxtLink>
           </div>
         </div>
