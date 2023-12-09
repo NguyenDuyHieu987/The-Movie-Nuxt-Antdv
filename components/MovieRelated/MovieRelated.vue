@@ -150,9 +150,9 @@ loadingSimilar.value = true;
 loadingRecommend.value = true;
 
 // useAsyncData(`similar/${props?.dataMovie.media_type}/${props?.dataMovie.id}/1`, () =>
-//   getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, 1, 12)
+//   getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, 1, 20)
 // )
-getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, 1, 12)
+getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, 1, 20)
   .then((response) => {
     dataSimilar.value = response?.results;
   })
@@ -164,9 +164,9 @@ getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, 1, 12)
   });
 
 // useAsyncData(`trending/all/${randomRecommend.value}`, () =>
-//   getTrending(randomRecommend.value, 12)
+//   getTrending(randomRecommend.value, 20)
 // )
-getTrending(randomRecommend.value, 12)
+getTrending(randomRecommend.value, 20)
   .then((response) => {
     dataRecommend.value = response?.results;
   })

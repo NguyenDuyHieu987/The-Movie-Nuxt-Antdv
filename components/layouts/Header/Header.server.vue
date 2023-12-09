@@ -155,7 +155,7 @@ onMounted(() => {
     if (route.meta.name?.includes('home')) {
       if (st > lastScrollTop) {
         // downscroll code
-        if (window.scrollY >= billboardItem!.offsetHeight) {
+        if (window.scrollY >= billboardItem!?.offsetHeight) {
           store.headerScrolled = true;
         } else if (window.scrollY == 0) {
           store.headerScrolled = false;
@@ -163,7 +163,7 @@ onMounted(() => {
       } else if (st < lastScrollTop) {
         // upscroll code
         if (
-          window.scrollY <= billboardItem!.offsetHeight ||
+          window.scrollY <= billboardItem!?.offsetHeight ||
           window.scrollY == 0
         ) {
           store.headerScrolled = false;

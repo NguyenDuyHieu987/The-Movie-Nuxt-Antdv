@@ -660,7 +660,7 @@ const getData = async () => {
   // await useAsyncData('recommend/get/1', () =>
   //   getMyRecommend(skipRecommend.value)
   // )
-  getMyRecommend(skipRecommend.value)
+  getMyRecommend(skipRecommend.value, 20)
     .then((response) => {
       recommends.value = response?.results;
       skipRecommend.value++;
