@@ -8,9 +8,9 @@ import * as AntDV from 'ant-design-vue';
 // import axios from 'axios';
 import svgLoader from 'vite-svg-loader';
 import type { genre, country, year } from './types';
-import GENRES from './constants/data/Genres';
-import COUNTRIES from './constants/data/Country';
-import YEARS from './constants/data/Years';
+import GENRES from './constants/data/Genres.json';
+import COUNTRIES from './constants/data/Country.json';
+import YEARS from './constants/data/Years.json';
 
 const discoverGenres = async () => {
   // const response = await axios.get('http://localhost:5000/genre/all');

@@ -1,6 +1,6 @@
 import { makeRequest } from './makeRequest';
-import ALLGENRES from '../constants/data/Genres';
-import ALLCOUNTRIES from '@/constants/data/Country';
+import ALLGENRES from '../constants/data/Genres.json';
+import ALLCOUNTRIES from '@/constants/data/Country.json';
 import { getGenreByShortName, getGenreByName } from './genres';
 import { getCountryByShortName } from './country';
 import type { country, genre, formfilter, typeMovie, typeTv } from '@/types';
