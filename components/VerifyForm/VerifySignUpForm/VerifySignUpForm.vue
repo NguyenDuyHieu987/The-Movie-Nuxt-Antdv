@@ -5,7 +5,7 @@
     :class="{ active: isShowForm }"
   >
     <div v-if="isShowForm" class="verify-signup-container">
-      <a-button
+      <!-- <a-button
         class="back-btn click-active"
         type="text"
         @click="handleClickBack"
@@ -24,8 +24,8 @@
             />
           </svg>
         </template>
-        <!-- <span> Quay lại</span> -->
-      </a-button>
+        <span> Quay lại</span>
+      </a-button> -->
 
       <a-form
         :model="formVerify"
