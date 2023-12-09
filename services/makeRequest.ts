@@ -24,7 +24,7 @@ export async function makeRequest(
   const api = axios.create({
     baseURL: nuxtConfig.app.production_mode
       ? nuxtConfig.app.apiGateway
-      : 'http://localhost:5000',
+      : 'http://127.0.0.1:5000',
     // baseURL: 'http://localhost:5000',
     withCredentials: true,
   });

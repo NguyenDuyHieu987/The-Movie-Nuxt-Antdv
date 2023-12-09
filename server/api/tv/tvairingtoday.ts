@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const { page } = getQuery(event);
 
   const response = await axios.get(
-    `${API_CONTENT_SERVICE_URL}/tv/airingtoday?page=${page}&api=hieu987`
+    `${API_CONTENT_SERVICE_URL}/tv/airingtoday?page=${page}`
   );
   return response.data;
 });

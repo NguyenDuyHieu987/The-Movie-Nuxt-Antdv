@@ -96,7 +96,7 @@ export function getMoviesByYear(
 ) {
   const url = /^\d+$/.test(year)
     ? `/discover/all?sort_by=${sort_by}&primary_release_date_gte=${year}-01-01&primary_release_date_lte=${year}-12-30&page=${page}&limit=${limit}`
-    : `/discover/all?sort_by=${sort_by}&api=hieu987&primary_release_date_lte=${year.slice(
+    : `/discover/all?sort_by=${sort_by}&primary_release_date_lte=${year.slice(
         -4
       )}-01-01&page=${page}&limit=${limit}`;
 

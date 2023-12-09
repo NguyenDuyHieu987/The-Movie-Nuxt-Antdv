@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const { userId }: any = event.context.params;
 
   const response = await axios.get(
-    `${API_CONTENT_SERVICE_URL}/recommend/${userId}/getrecommend?skip=${skip}&api=hieu987`
+    `${API_CONTENT_SERVICE_URL}/recommend/${userId}/getrecommend?skip=${skip}`
   );
   return response.data;
 });

@@ -6,19 +6,19 @@ export function getTvs(page: number = 1) {
 }
 
 export function getTvAiringToday(page: number = 1) {
-  return makeRequest(`/tv/airingtoday?page=${page}&api=hieu987`);
+  return makeRequest(`/tv/airingtoday?page=${page}`);
 }
 
 export function getTvOntheAir(page: number = 1) {
-  return makeRequest(`/tv/ontheair?page=${page}&api=hieu987`);
+  return makeRequest(`/tv/ontheair?page=${page}`);
 }
 
 export function getTvPopular(page: number = 1) {
-  return makeRequest(`/tv/popular?page=${page}&api=hieu987`);
+  return makeRequest(`/tv/popular?page=${page}`);
 }
 
 export function getTvTopRated(page: number = 1) {
-  return makeRequest(`/tv/toprated?page=${page}&api=hieu987`);
+  return makeRequest(`/tv/toprated?page=${page}`);
 }
 
 export function FilterTvSlug(formFilter: formfilter) {
