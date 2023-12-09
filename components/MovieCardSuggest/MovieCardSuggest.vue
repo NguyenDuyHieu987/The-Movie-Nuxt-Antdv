@@ -38,6 +38,7 @@
       <NuxtImg
         v-show="!showVideo"
         :src="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
+        placeholder="/imgs/loading-img-16-9.webp"
         format="avif"
         loading="lazy"
         alt=""

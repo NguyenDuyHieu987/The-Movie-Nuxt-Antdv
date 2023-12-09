@@ -322,6 +322,11 @@
     }
 
     .slick-arrow {
+      svg {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+
       &.slick-disabled {
         display: none !important;
         opacity: 0.7;

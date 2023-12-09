@@ -46,8 +46,8 @@
           }"
         >
           <NuxtImg
-            class="ant-image"
             :src="getImage(topicImage, 'backdrop', 'h-300')"
+            placeholder="/imgs/loading-img-16-9.webp"
             format="avif"
             loading="lazy"
             alt=""
@@ -72,6 +72,7 @@
         <div v-if="!dataColumn?.length" class="img-box">
           <NuxtImg
             :src="getImage('topic1.jpg', 'misc', 'h-300')"
+            placeholder="/imgs/loading-img-16-9.webp"
             format="avif"
             loading="lazy"
             alt=""

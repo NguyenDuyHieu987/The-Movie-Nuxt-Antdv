@@ -10,6 +10,8 @@
       ]"
       :breakpoints="responsive"
       :space-between="gap || 7"
+      :slides-per-view="5"
+      :slides-per-group="5"
       :rewind="true"
       :speed="500"
       effect="creative"
@@ -27,6 +29,7 @@
 
       <div class="swiper-button-prev">
         <!-- <Icon name="bi:chevron-left"/> -->
+
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="3.5rem"
