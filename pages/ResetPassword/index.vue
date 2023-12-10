@@ -236,6 +236,8 @@ const handleSubmit = () => {
         });
 
         isDisabledForm.value = true;
+
+        window.localStorage.removeItem('forgot_password');
       } else {
         ElNotification.error({
           title: 'Thất bại!',

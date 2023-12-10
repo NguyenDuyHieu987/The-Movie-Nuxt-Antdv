@@ -175,6 +175,8 @@ const handleSubmit = () => {
           response.headers.get('Authorization'),
           24
         );
+
+        window.localStorage.removeItem('change_email');
       } else {
         ElNotification.error({
           title: 'Thất bại!',
