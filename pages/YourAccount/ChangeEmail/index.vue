@@ -479,7 +479,7 @@ const handleResendVerifyEmail = () => {
 
 const getForgotPasswordLocalStr = async () => {
   const forgot_password =
-    utils.localStorage.getWithExpiry_ExpRemain('chg_email_token');
+    utils.localStorage.getWithExpiry_ExpRemain('change_email');
   const isExpireForm = forgot_password == null;
 
   if (!isExpireForm) {
@@ -551,7 +551,7 @@ const handleSubmitChangeEmail = () => {
         changeEmailLocalStr.exp_after = +response.exp_offset;
 
         utils.localStorage.setWithExpiry(
-          'chg_email_token',
+          'change_email',
           {
             email: formChangeEmail.newEmail,
             exp_after: +response.exp_offset,

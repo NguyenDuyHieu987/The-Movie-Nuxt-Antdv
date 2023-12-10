@@ -169,6 +169,12 @@ const handleSubmit = () => {
               style: 'color: green',
             }),
         });
+
+        utils.localStorage.setWithExpiry(
+          'user_token',
+          response.headers.get('Authorization'),
+          24
+        );
       } else {
         ElNotification.error({
           title: 'Thất bại!',
