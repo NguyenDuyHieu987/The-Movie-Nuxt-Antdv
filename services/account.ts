@@ -70,6 +70,7 @@ export function ChangeEmail(params: {
   return makeRequest(`/account/change-email`, {
     method: 'POST',
     data: bodyFormData,
+    getResponseHeaders: true,
   });
 }
 
