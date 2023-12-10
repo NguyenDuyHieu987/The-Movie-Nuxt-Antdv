@@ -93,7 +93,7 @@ export function ResetPassword(params: {
   newPassword: string;
 }) {
   const bodyFormData = new FormData();
-  bodyFormData.append('new_assword', params.newPassword);
+  bodyFormData.append('new_password', params.newPassword);
 
   return makeRequest(`/account/reset-password`, {
     method: 'POST',
