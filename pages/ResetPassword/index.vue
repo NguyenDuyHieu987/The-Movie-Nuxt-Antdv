@@ -240,6 +240,8 @@ const handleSubmit = () => {
         isDisabledForm.value = true;
 
         window.localStorage.removeItem('forgot_password');
+
+        navigateTo('/login');
       } else {
         ElNotification.error({
           title: 'Thất bại!',

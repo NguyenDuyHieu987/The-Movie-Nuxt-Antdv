@@ -185,6 +185,8 @@ const handleSubmit = () => {
         );
 
         window.localStorage.removeItem('change_email');
+
+        navigateTo('/YourAccount');
       } else {
         ElNotification.error({
           title: 'Thất bại!',
