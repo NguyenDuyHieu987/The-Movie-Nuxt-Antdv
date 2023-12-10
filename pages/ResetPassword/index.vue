@@ -234,6 +234,8 @@ const handleSubmit = () => {
               style: 'color: green',
             }),
         });
+
+        isDisabledForm.value = true;
       } else {
         ElNotification.error({
           title: 'Thất bại!',
@@ -248,7 +250,7 @@ const handleSubmit = () => {
     .catch((e) => {
       ElNotification.error({
         title: 'Thất bại!',
-        message: 'Đặt lại mật khẩu thất bại.',
+        message: 'Some thing went wrong.',
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',

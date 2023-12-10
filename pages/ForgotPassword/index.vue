@@ -187,6 +187,8 @@ const onChangeEmail = () => {
 };
 
 const handleSubmit = () => {
+  if (loadingForgotPassword.value) return;
+
   checkSendedEmail();
 
   loadingForgotPassword.value = true;

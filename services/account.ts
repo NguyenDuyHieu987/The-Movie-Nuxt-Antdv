@@ -6,6 +6,8 @@ export function AccountConfirm(
         oldPassword: string;
         newPassword: string;
         logOutAllDevice: boolean;
+        email: string;
+        newEmail: string;
       }
     | any,
   type: string
@@ -19,8 +21,10 @@ export function AccountConfirm(
       bodyFormData.append('logout_all_device', params.logOutAllDevice);
       break;
     case 'email':
+      bodyFormData.append('email', params.email);
       break;
     case 'change-email':
+      bodyFormData.append('new_email', params.newEmail);
       break;
   }
 
@@ -52,9 +56,16 @@ export function VerifyEmail(params: { otp: string; vrfEmailToken: string }) {
   });
 }
 
-export function ChangeEmail(newEmail: string) {
+export function VerifyChangeEmail(chgEmailToken: string) {
+  return makeRequest(`/account/change-email?token=${chgEmailToken}`);
+}
+
+export function ChangeEmail(params: {
+  chgEmailToken: string;
+  newEmail: string;
+}) {
   const bodyFormData = new FormData();
-  bodyFormData.append('new_email', newEmail);
+  bodyFormData.append('new_email', params.newEmail);
 
   return makeRequest(`/account/change-email`, {
     method: 'POST',

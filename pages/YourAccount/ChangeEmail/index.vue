@@ -115,38 +115,33 @@
               <div v-show="isChangeEmailForm" class="form-change-email-wrapper">
                 <div class="changeEmail-header">
                   <h1>Thay đổi Email của bạn</h1>
-                  <p>
+                  <p
+                    class="note"
+                    :class="{
+                      'is-sended':
+                        changeEmailLocalStr.exp_after > 0 &&
+                        changeEmailLocalStr.email == formChangeEmail.newEmail,
+                    }"
+                  >
                     {{ noteChangeEmail }}
                   </p>
                 </div>
 
                 <a-form
                   :model="formChangeEmail"
+                  :rules="rules"
                   name="change-email-form"
                   class="form-change-email"
                   :class="{ disabled: loadingVerifyEmail }"
                   @finish="handleSubmitChangeEmail"
                   hideRequiredMark
                 >
-                  <a-form-item
-                    label="Email"
-                    name="email"
-                    :rules="[
-                      {
-                        required: true,
-                        message:
-                          'Vui lòng nhập đúng định dạng email (vd: example@gmail.com)!',
-                        pattern: new RegExp(
-                          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-                        ),
-                        trigger: ['change', 'blur'],
-                      },
-                    ]"
-                  >
+                  <a-form-item label="Email" name="newEmail">
                     <a-input
                       v-model:value="formChangeEmail.newEmail"
                       placeholder="Nhập email mới bạn muốn thay đổi..."
                       allowClear
+                      @change="onChangeNewEmail"
                     >
                     </a-input>
                   </a-form-item>
@@ -158,7 +153,7 @@
                       html-type="submit"
                       size="large"
                       :loading="loadingChangeEmail"
-                      :disabled="disabled"
+                      :disabled="isActionFormChangeEmail || disabled"
                     >
                       Thay đổi email
                     </a-button>
@@ -182,6 +177,7 @@ import RequireAuth from '~/components/RequireAuth/RequireAuth.server.vue';
 import { AccountConfirm, VerifyEmail, ChangeEmail } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
+import type { Rule } from 'ant-design-vue/es/form';
 
 definePageMeta({
   layout: 'service',
@@ -226,7 +222,13 @@ const changeEmailLocalStr = reactive<{
   exp_after: 0,
 });
 const disabled = computed<boolean>((): boolean => {
-  return !formChangeEmail.newEmail;
+  return !(
+    formChangeEmail.newEmail &&
+    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+      formChangeEmail.newEmail
+    ) &&
+    formChangeEmail.newEmail != store.userAccount?.email
+  );
 });
 const internalInstance: any = getCurrentInstance();
 
@@ -237,11 +239,11 @@ useHead({
 
 useSeoMeta({
   title: 'Thay đỏi Email',
-  description: 'Đỏi Email của bạn',
+  description: 'Thay đỏi Email của bạn',
   ogTitle: 'Thay đổi Email',
   ogType: 'video.movie',
   // ogUrl: window.location.href,
-  ogDescription: 'Đỏi Email của bạn',
+  ogDescription: 'Thay đỏi Email của bạn',
   ogLocale: 'vi',
 });
 
@@ -251,12 +253,40 @@ onBeforeMount(() => {
   });
 });
 
+const checkConfirmNewEmail = async (_rule: any, value: string) => {
+  if (value == store.userAccount?.email) {
+    return Promise.reject('Email mới không được trùng với email cũ!');
+  } else {
+    return Promise.resolve();
+  }
+};
+
+const rules: Record<string, Rule[]> = {
+  newEmail: [
+    {
+      required: true,
+      message: 'Vui lòng nhập lại email mới!',
+      trigger: ['change', 'blur'],
+    },
+    {
+      required: true,
+      message: 'Vui lòng nhập đúng định dạng email (vd: example@gmail.com)!',
+      pattern: new RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/),
+      trigger: ['change', 'blur'],
+    },
+    {
+      validator: checkConfirmNewEmail,
+      trigger: ['change', 'blur'],
+    },
+  ],
+};
+
 const handleSubmitVerifyEmail = () => {
   if (loadingVerifyEmail.value) return;
 
   if (
-    otpExpOffset.value > 0 ||
-    utils.cookie.getCookie('verify_your_email') != null
+    // otpExpOffset.value > 0 ||
+    utils.cookie.getCookie('vrf_email_token') != null
   ) {
     showAnimation.value = false;
 
@@ -333,6 +363,8 @@ const handleSubmitVerifyEmail = () => {
 };
 
 const handleVerify = (formVerify: any) => {
+  if (loadingVerify.value) return;
+
   loadingVerify.value = true;
 
   VerifyEmail({
@@ -342,15 +374,6 @@ const handleVerify = (formVerify: any) => {
     .then((response) => {
       // console.log(response);
       if (response?.success == true) {
-        ElNotification.success({
-          title: 'Thành công!',
-          message: 'Thay đổi email thành công.',
-          icon: () =>
-            h(CheckCircleFilled, {
-              style: 'color: green',
-            }),
-        });
-
         showAnimation.value = false;
 
         setTimeout(() => {
@@ -404,6 +427,8 @@ const handleVerify = (formVerify: any) => {
 };
 
 const handleResendVerifyEmail = () => {
+  if (loadingResend.value) return;
+
   loadingResend.value = true;
 
   AccountConfirm({ email: store.userAccount?.email }, 'email')
@@ -454,7 +479,7 @@ const handleResendVerifyEmail = () => {
 
 const getForgotPasswordLocalStr = async () => {
   const forgot_password =
-    utils.localStorage.getWithExpiry_ExpRemain('forgot_password');
+    utils.localStorage.getWithExpiry_ExpRemain('chg_email_token');
   const isExpireForm = forgot_password == null;
 
   if (!isExpireForm) {
@@ -495,13 +520,19 @@ const checkSendedEmail = () => {
   }
 };
 
+const onChangeNewEmail = () => {
+  checkSendedEmail();
+};
+
 const handleSubmitChangeEmail = () => {
   if (loadingChangeEmail.value) return;
+
+  checkSendedEmail();
 
   loadingChangeEmail.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  ChangeEmail(formChangeEmail.newEmail)
+  AccountConfirm({ newEmail: formChangeEmail.newEmail }, 'change-email')
     .then((response) => {
       // console.log(response);
 
@@ -520,7 +551,7 @@ const handleSubmitChangeEmail = () => {
         changeEmailLocalStr.exp_after = +response.exp_offset;
 
         utils.localStorage.setWithExpiry(
-          'change_email',
+          'chg_email_token',
           {
             email: formChangeEmail.newEmail,
             exp_after: +response.exp_offset,
@@ -574,7 +605,7 @@ const handleSubmitChangeEmail = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loadingVerifyEmail.value = false;
+      loadingChangeEmail.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };

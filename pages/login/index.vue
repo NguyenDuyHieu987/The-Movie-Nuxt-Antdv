@@ -272,6 +272,8 @@ onMounted(async () => {
 });
 
 const handleLogin = () => {
+  if (loadingLogin.value) return;
+
   loadingLogin.value = true;
 
   LogIn({

@@ -267,6 +267,8 @@ const reset = () => {
 };
 
 const handleSubmit = () => {
+  if (loadingChangePassword.value) return;
+
   if (
     // otpExpOffset.value > 0 ||
     utils.cookie.getCookie('chg_pwd_token') != null
@@ -360,6 +362,8 @@ const handleSubmit = () => {
 };
 
 const handleVerify = (formVerify: { otp: string; token: string }) => {
+  if (loadingVerify.value) return;
+
   loadingVerify.value = true;
 
   ChangePassword({
@@ -434,6 +438,8 @@ const handleVerify = (formVerify: { otp: string; token: string }) => {
 };
 
 const handleResendVerifyEmail = () => {
+  if (loadingResend.value) return;
+
   loadingResend.value = true;
 
   AccountConfirm(

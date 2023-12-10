@@ -1,25 +1,33 @@
-.reset-password {
+.change-email {
   font-size: 1.6rem;
 
-  .center-page {
+  .center-page,
+  .change-page {
     // max-width: var(--max-width-change-page);
     max-width: 500px;
     margin: 0px auto;
   }
 
-  .resetPass-container {
+  .change-email-container {
     padding-top: 20px;
 
-    .resetPass-header {
+    .changeEmail-header {
       margin-bottom: 20px;
 
       h1 {
         margin-bottom: 10px;
       }
+
+      .note {
+        &.is-sended {
+          color: #f1ac09;
+        }
+      }
     }
 
-    .form-change-password {
+    .form-change-email {
       max-width: 500px;
+      margin: 0px auto;
 
       .ant-row.ant-form-item {
         &.logout-all-device {
@@ -46,11 +54,11 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .reset-password {
+  .change-email {
     font-size: 1.5rem;
 
-    .resetPass-container {
-      .resetPass-header {
+    .change-email-container {
+      .changePass-header {
         h1 {
           font-size: 2.7rem;
         }

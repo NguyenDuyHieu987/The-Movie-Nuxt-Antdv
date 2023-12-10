@@ -330,6 +330,8 @@ const rules: Record<string, Rule[]> = {
 // console.log(pbkdf2.pbkdf2Sync('123', 'salt', 1, 256 / 8, 'sha512'));
 
 const handleSignUp = (e: any) => {
+  if (loadingSignUp.value) return;
+
   if (
     // otpExpOffset.value > 0 ||
     utils.cookie.getCookie('vrf_signup_token') != null
@@ -432,6 +434,8 @@ const handleSignUp = (e: any) => {
 };
 
 const handleResendVerifyEmail = () => {
+  if (loadingResend.value) return;
+
   loadingResend.value = true;
 
   verifySignUp(
@@ -511,6 +515,8 @@ const handleResendVerifyEmail = () => {
 };
 
 const handleVerify = (formVerify: { otp: string; token: string }) => {
+  if (loadingVerify.value) return;
+
   loadingVerify.value = true;
 
   signUp({
