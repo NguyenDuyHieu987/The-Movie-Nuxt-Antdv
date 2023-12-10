@@ -181,7 +181,7 @@ definePageMeta({
       );
 
       if (
-        !plans.value.some(
+        !plans.value?.some(
           (item: plan) => item.order == Number(to.query?.planorder)
         )
       )
