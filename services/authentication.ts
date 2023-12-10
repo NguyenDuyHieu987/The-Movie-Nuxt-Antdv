@@ -42,18 +42,7 @@ export function getUserToken(params: any) {
   const headers = { Authorization: `Bearer ${params.user_token}` };
 
   return makeRequest(`/auth/getuser`, {
-    // method: 'POST',
     headers: headers,
-  });
-}
-
-export function forgotPassword(params: any, type: string) {
-  const bodyFormData = new FormData();
-  bodyFormData.append('email', params.email);
-
-  return makeRequest(`auth/forgot-password/${type}`, {
-    method: 'POST',
-    data: bodyFormData,
   });
 }
 
@@ -66,35 +55,34 @@ export function verifySignUp(params: any, type: string) {
   bodyFormData.append('full_name', params.full_name);
   bodyFormData.append('avatar', params.avatar);
 
-  return makeRequest(`auth/verify-signup/${type}`, {
+  return makeRequest(`/auth/verify-signup/${type}`, {
     method: 'POST',
     data: bodyFormData,
     getResponseHeaders: true,
   });
 }
 
-// const signUp = async (params) {
-//   const bodyFormData = new FormData();
-//   bodyFormData.append('id', params.id);
-//   bodyFormData.append('username', params.username);
-//   bodyFormData.append('email', params.email);
-//   bodyFormData.append('password', params.password);
-//   bodyFormData.append('full_name', params.full_name);
-//   bodyFormData.append('avatar', params.avatar);
-
-//   return  axios.post(`/auth/signup`, bodyFormData);
-// };
-
-export function signUp(params: any) {
+export function signUp(params: { otp: string; vrfSignupToken: string }) {
   const bodyFormData = new FormData();
   bodyFormData.append('otp', params.otp);
 
-  const headers = { Authorization: `Bearer ${params.jwtVerifyEmail}` };
+  const headers = { Authorization: `Bearer ${params.vrfSignupToken}` };
 
   return makeRequest(`/auth/signup`, {
     method: 'POST',
-    headers: headers,
+    // headers: headers,
     data: bodyFormData,
+  });
+}
+
+export function forgotPassword(params: any, type: string) {
+  const bodyFormData = new FormData();
+  bodyFormData.append('email', params.email);
+
+  return makeRequest(`/auth/forgot-password/${type}`, {
+    method: 'POST',
+    data: bodyFormData,
+    getResponseHeaders: true,
   });
 }
 

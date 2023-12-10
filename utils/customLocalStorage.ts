@@ -64,8 +64,6 @@ export function getWithExpiry_ExpRemain(key: any) {
     const nowTime = date.getTime();
 
     if (nowTime >= item.expiry) {
-      //   if (now.getDate() > item.expiry) {
-
       // If the item is expired, delete the item from storage
       // else return null
 

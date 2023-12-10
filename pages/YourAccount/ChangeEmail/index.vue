@@ -93,7 +93,7 @@
               <VerifyPinOTPForm
                 v-model:isShowForm="isChangeEmail"
                 :email="store.userAccount?.email"
-                :jwtVerifyEmail="jwtVerifyEmail"
+                :token="vrfEmailToken"
                 v-model:otpExpOffset="otpExpOffset"
                 v-model:loadingResend="loadingResend"
                 v-model:disabled_countdown="disabled_countdown"
@@ -114,7 +114,7 @@
             </div>
           </Transition>
         </div>
-        <RequireAuth v-if="!isLogin" />
+        <RequireAuth v-else />
       </div>
     </div>
   </div>
@@ -148,7 +148,8 @@ const formChangeEmail = reactive<{
 const showAnimation = ref<boolean>(false);
 const loadingVerify = ref<boolean>(false);
 const isChangeEmail = ref<boolean>(false);
-const jwtVerifyEmail = ref<string>('');
+const vrfEmailToken = ref<string>('');
+const chgEmailToken = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
 const otpExpOffset = ref<number>(0);
@@ -211,14 +212,8 @@ const handleSubmit = () => {
           duration: 7000,
         });
 
-        jwtVerifyEmail.value = response.headers.get('Authorization');
+        vrfEmailToken.value = utils.cookie.getCookie('vrf_email_token')!;
         otpExpOffset.value = response.exp_offset;
-
-        // router.push({
-        //   query: {
-        //     token: jwtVerifyEmail.value,
-        //   },
-        // });
 
         showAnimation.value = false;
 
@@ -268,7 +263,7 @@ const handleVerify = (formVerify: any) => {
 
   VerifyEmail({
     otp: formVerify.otp,
-    jwtVerifyEmail: jwtVerifyEmail.value,
+    vrfEmailToken: vrfEmailToken.value,
   })
     .then((response) => {
       // console.log(response);
@@ -348,12 +343,12 @@ const handleResendVerifyEmail = () => {
 
         disabled_countdown.value = true;
 
-        jwtVerifyEmail.value = response.headers.get('Authorization');
+        vrfEmailToken.value = utils.cookie.getCookie('vrf_email_token')!;
         otpExpOffset.value = response.exp_offset;
 
         // router.push({
         //   query: {
-        //     token: jwtVerifyEmail.value,
+        //     token: chgEmailToken.value,
         //   },
         // });
       } else if (response?.isWrongPassword == true) {

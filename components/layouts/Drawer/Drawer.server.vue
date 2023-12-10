@@ -6,7 +6,7 @@
     :closable="false"
     width="var(--drawer-width)"
     :autofocus="false"
-    force-render
+    :force-render="false"
   >
     <template #title>
       <svg

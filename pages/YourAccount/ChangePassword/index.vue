@@ -103,6 +103,7 @@
                       html-type="submit"
                       size="large"
                       :loading="loadingChangePassword"
+                      :disabled="disabled"
                     >
                       Đổi mật khẩu
                     </a-button>
@@ -113,7 +114,7 @@
               <VerifyPinOTPForm
                 v-model:isShowForm="isChangePassword"
                 :email="store.userAccount?.email"
-                :jwtVerifyEmail="jwtVerifyEmail"
+                :token="chgPwdToken"
                 v-model:otpExpOffset="otpExpOffset"
                 v-model:loadingResend="loadingResend"
                 v-model:disabled_countdown="disabled_countdown"
@@ -134,7 +135,7 @@
             </div>
           </Transition>
         </div>
-        <RequireAuth v-if="!isLogin" />
+        <RequireAuth v-else />
       </div>
     </div>
   </div>
@@ -176,7 +177,7 @@ const formChangePassword = reactive<{
 const showAnimation = ref<boolean>(false);
 const loadingVerify = ref<boolean>(false);
 const isChangePassword = ref<boolean>(false);
-const jwtVerifyEmail = ref<string>('');
+const chgPwdToken = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
 const otpExpOffset = ref<number>(0);
@@ -206,14 +207,11 @@ onBeforeMount(() => {
 
 const disabled = computed<boolean>((): boolean => {
   return !(
-    (
-      formChangePassword.oldPassword &&
-      formChangePassword.newPassword &&
-      formChangePassword.confirmNewPassword
-    )
-    // &&
-    // formChangePassword.oldPassword != formChangePassword.newPassword &&
-    // formChangePassword.newPassword == formChangePassword.confirmNewPassword
+    formChangePassword.oldPassword &&
+    formChangePassword.newPassword &&
+    formChangePassword.confirmNewPassword &&
+    formChangePassword.oldPassword != formChangePassword.newPassword &&
+    formChangePassword.newPassword == formChangePassword.confirmNewPassword
   );
 });
 
@@ -271,8 +269,8 @@ const reset = () => {
 
 const handleSubmit = () => {
   if (
-    otpExpOffset.value > 0 ||
-    utils.cookie.getCookie('verify_change_password_token') != null
+    // otpExpOffset.value > 0 ||
+    utils.cookie.getCookie('chg_pwd_token') != null
   ) {
     showAnimation.value = false;
 
@@ -311,12 +309,12 @@ const handleSubmit = () => {
           duration: 7000,
         });
 
-        jwtVerifyEmail.value = response.headers.get('Authorization');
+        chgPwdToken.value = utils.cookie.getCookie('chg_pwd_token')!;
         otpExpOffset.value = response.exp_offset;
 
         // router.push({
         //   query: {
-        //     token: jwtVerifyEmail.value,
+        //     token: chgPwdToken.value,
         //   },
         // });
         showAnimation.value = false;
@@ -362,12 +360,12 @@ const handleSubmit = () => {
     });
 };
 
-const handleVerify = (formVerify: any) => {
+const handleVerify = (formVerify: { otp: string; token: string }) => {
   loadingVerify.value = true;
 
   ChangePassword({
     otp: formVerify.otp,
-    jwtVerifyEmail: jwtVerifyEmail.value,
+    chgPwdToken: chgPwdToken.value,
   })
     .then((response) => {
       // console.log(response);
@@ -382,8 +380,6 @@ const handleVerify = (formVerify: any) => {
         });
 
         if (response?.logout_all_device) {
-          console.log(response.headers.get('Authorization'));
-
           utils.localStorage.setWithExpiry(
             'user_token',
             response.headers.get('Authorization'),
@@ -469,14 +465,8 @@ const handleResendVerifyEmail = () => {
 
         disabled_countdown.value = true;
 
-        jwtVerifyEmail.value = response.headers.get('Authorization');
+        chgPwdToken.value = utils.cookie.getCookie('chg_pwd_token')!;
         otpExpOffset.value = response.exp_offset;
-
-        // router.push({
-        //   query: {
-        //     token: jwtVerifyEmail.value,
-        //   },
-        // });
       } else if (response?.isWrongPassword == true) {
         ElNotification.error({
           title: 'Thất bại!',

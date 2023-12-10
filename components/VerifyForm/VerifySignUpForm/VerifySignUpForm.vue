@@ -170,7 +170,7 @@ const props = defineProps({
   email: {
     type: String,
   },
-  jwtVerifyEmail: {
+  token: {
     type: String,
   },
   otpExpOffset: {
@@ -180,7 +180,7 @@ const props = defineProps({
 });
 
 const emits = defineEmits<{
-  onVerify: [form: any];
+  onVerify: [params: any];
   onResend: [];
   onClickBack: [];
 }>();
@@ -298,7 +298,7 @@ const handleVerify = () => {
   emits('onVerify', {
     // otp: formVerify.otp,
     otp: formVerify.pin.join(''),
-    user_token: props.jwtVerifyEmail,
+    user_token: props.token,
   });
 };
 

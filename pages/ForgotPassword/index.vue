@@ -28,8 +28,17 @@
           hideRequiredMark
         >
           <div class="forgotPass-header">
-            <h1>Quên mật khẩu của bạn</h1>
-            <p>{{ noteForgotPassword }}</p>
+            <h1>Quên mật khẩu của bạn?</h1>
+            <p
+              class="note"
+              :class="{
+                'is-sended':
+                  forgotPasswordLocalStr.exp_after > 0 &&
+                  forgotPasswordLocalStr.email == formForgotPassword.email,
+              }"
+            >
+              {{ noteForgotPassword }}
+            </p>
           </div>
 
           <a-form-item
@@ -50,8 +59,8 @@
             <a-input
               v-model:value="formForgotPassword.email"
               placeholder="Nhập email của bạn..."
-              :disabled="isActionForm"
               allowClear
+              @change="onChangeEmail"
             >
               <!-- <template #prefix>
                 <svg
@@ -75,7 +84,7 @@
               html-type="submit"
               size="large"
               :loading="loadingForgotPassword"
-              :disabled="isActionForm"
+              :disabled="isActionForm || disabled"
             >
               Đặt lại mật khẩu
             </a-button>
@@ -116,8 +125,13 @@ const forgotPasswordLocalStr = reactive<{
   exp_after: 0,
 });
 const noteForgotPassword = ref<string>(
-  'Hãy nhập Email mà bạn muốn khôi phục mật khẩu.'
+  'Hãy nhập Email của tài khoản mà bạn muốn khôi phục mật khẩu.'
 );
+const disabled = computed<boolean>((): boolean => {
+  return !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+    formForgotPassword.email
+  );
+});
 const internalInstance: any = getCurrentInstance();
 
 useHead({
@@ -140,9 +154,8 @@ const reset = () => {
 };
 
 const getForgotPasswordLocalStr = async () => {
-  const forgot_password = await utils.localStorage.getWithExpiry_ExpRemain(
-    'forgot_password'
-  );
+  const forgot_password =
+    utils.localStorage.getWithExpiry_ExpRemain('forgot_password');
   const isExpireForm = forgot_password == null;
 
   if (!isExpireForm) {
@@ -154,7 +167,7 @@ const getForgotPasswordLocalStr = async () => {
   }
 };
 
-const handleSubmit = () => {
+const checkSendedEmail = () => {
   getForgotPasswordLocalStr();
 
   if (
@@ -174,8 +187,25 @@ const handleSubmit = () => {
         forgotPasswordLocalStr.exp_after
       )} giây nữa.`;
     }
+    isActionForm.value = true;
     return;
+  } else {
+    isActionForm.value = false;
+    noteForgotPassword.value =
+      'Hãy nhập Email của tài khoản mà bạn muốn khôi phục mật khẩu.';
   }
+};
+
+onBeforeMount(() => {
+  getForgotPasswordLocalStr();
+});
+
+const onChangeEmail = () => {
+  checkSendedEmail();
+};
+
+const handleSubmit = () => {
+  checkSendedEmail();
 
   loadingForgotPassword.value = true;
 
@@ -186,7 +216,7 @@ const handleSubmit = () => {
     'email'
   )
     .then((response) => {
-      // console.log(response);
+      // console.log(response.headers['set-cookie']);
 
       if (response?.isSended === true) {
         ElNotification.success({
@@ -208,12 +238,14 @@ const handleSubmit = () => {
             email: formForgotPassword.email,
             exp_after: +response.exp_offset,
           },
-          +response.exp_offset / (24 * 60 * 60)
+          +response.exp_offset / (60 * 60)
         );
 
         noteForgotPassword.value = `Chúng tôi đã gửi email kèm hướng dẫn đặt lại mật khẩu đến ${
           formForgotPassword.email
         }. Email này sẽ hết hiệu lực sau ${response.exp_offset / 60} phút.`;
+
+        isActionForm.value = true;
       } else if (response?.isEmailExist == true) {
         ElNotification.error({
           title: 'Thất bại!',

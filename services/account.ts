@@ -1,6 +1,15 @@
 import { makeRequest } from './makeRequest';
 
-export function AccountConfirm(params: any, type: string) {
+export function AccountConfirm(
+  params:
+    | {
+        oldPassword: string;
+        newPassword: string;
+        logOutAllDevice: boolean;
+      }
+    | any,
+  type: string
+) {
   const bodyFormData = new FormData();
 
   switch (type) {
@@ -22,66 +31,60 @@ export function AccountConfirm(params: any, type: string) {
   });
 }
 
-export function ChangePassword(params: {
-  otp: string;
-  jwtVerifyEmail: string;
-}) {
-  const headers = {
-    Authorization: `Bearer ${params.jwtVerifyEmail}`,
-  };
-
+export function ChangePassword(params: { otp: string; chgPwdToken: string }) {
   const bodyFormData = new FormData();
   bodyFormData.append('otp', params.otp);
 
   return makeRequest(`/account/change-password`, {
     method: 'POST',
-    // headers: headers,
     data: bodyFormData,
     getResponseHeaders: true,
   });
 }
 
-export function VerifyEmail(params: { otp: string; jwtVerifyEmail: string }) {
-  const headers = {
-    Authorization: `Bearer ${params.jwtVerifyEmail}`,
-  };
-
+export function VerifyEmail(params: { otp: string; vrfEmailToken: string }) {
   const bodyFormData = new FormData();
   bodyFormData.append('otp', params.otp);
 
   return makeRequest(`/account/verify-email`, {
     method: 'POST',
-    // headers: headers,
     data: bodyFormData,
   });
 }
 
-export function ChangeEmail(params: any) {
-  const headers = {
-    Authorization: `Bearer ${params.jwtVerifyEmail}`,
-  };
-
+export function ChangeEmail(newEmail: string) {
   const bodyFormData = new FormData();
-  bodyFormData.append('new_email', params.newEmail);
+  bodyFormData.append('new_email', newEmail);
 
   return makeRequest(`/account/change-email`, {
     method: 'POST',
-    // headers: headers,
     data: bodyFormData,
   });
 }
 
 export function ChangeFullname(params: { jwtVerifyFullname: string }) {
-  const headers = {
-    Authorization: `Bearer ${params.jwtVerifyFullname}`,
-  };
-
   const bodyFormData = new FormData();
   bodyFormData.append('new_fullname', params.jwtVerifyFullname);
 
   return makeRequest(`/account/change-fullname`, {
     method: 'POST',
-    // headers: headers,
+    data: bodyFormData,
+  });
+}
+
+export function VerifyResetPassword(rstPwdToken: string) {
+  return makeRequest(`/account/reset-password?token=${rstPwdToken}`);
+}
+
+export function ResetPassword(params: {
+  rstPwdToken: string;
+  newPassword: string;
+}) {
+  const bodyFormData = new FormData();
+  bodyFormData.append('new_assword', params.newPassword);
+
+  return makeRequest(`/account/reset-password`, {
+    method: 'POST',
     data: bodyFormData,
   });
 }

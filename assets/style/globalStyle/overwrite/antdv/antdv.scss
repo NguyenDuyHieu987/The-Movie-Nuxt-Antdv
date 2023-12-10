@@ -256,6 +256,12 @@
   }
 }
 
+.ant-input {
+  &.ant-input-disabled {
+    background-color: var(--input-background-color-disabled) !important;
+  }
+}
+
 [ant-click-animating-without-extra-node]:after {
   content: none;
 }
@@ -511,6 +517,7 @@
         font-size: inherit;
 
         .ant-input {
+          padding: 8px 11px;
         }
 
         .ant-input-affix-wrapper {
@@ -548,10 +555,11 @@
 
       .ant-input-affix-wrapper {
         background-color: transparent;
-        padding: 7px 11px;
+        padding: 8px 11px;
         box-shadow: none;
 
         input {
+          padding: 0px !important;
           font-size: 1.5rem;
           line-height: var(--line-height-regular);
         }

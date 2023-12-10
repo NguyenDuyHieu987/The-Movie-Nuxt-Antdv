@@ -195,7 +195,7 @@
         <VerifySignUpForm
           v-model:isShowForm="isSignUp"
           :email="formSignup.email"
-          :jwtVerifyEmail="jwtVerifyEmail"
+          :token="vrfSignupToken"
           v-model:otpExpOffset="otpExpOffset"
           v-model:loadingResend="loadingResend"
           v-model:disabled_countdown="disabled_countdown"
@@ -260,7 +260,7 @@ const route = useRoute();
 const loadingSignUp = ref<boolean>(false);
 const loadingVerify = ref<boolean>(false);
 const isSignUp = ref<boolean>(false);
-const jwtVerifyEmail = ref<string>('');
+const vrfSignupToken = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
 const otpExpOffset = ref<number>(0);
@@ -331,7 +331,10 @@ const rules: Record<string, Rule[]> = {
 // console.log(pbkdf2.pbkdf2Sync('123', 'salt', 1, 256 / 8, 'sha512'));
 
 const handleSignUp = (e: any) => {
-  if (otpExpOffset.value > 0) {
+  if (
+    // otpExpOffset.value > 0 ||
+    utils.cookie.getCookie('vrf_signup_token') != null
+  ) {
     showAnimation.value = false;
 
     setTimeout(() => {
@@ -382,14 +385,9 @@ const handleSignUp = (e: any) => {
           duration: 7000,
         });
 
-        jwtVerifyEmail.value = response.headers.get('Authorization');
+        // vrfSignupToken.value = response.headers.get('Authorization');
+        vrfSignupToken.value = utils.cookie.getCookie('vrf_signup_token')!;
         otpExpOffset.value = response.exp_offset;
-
-        // router.push({
-        //   query: {
-        //     token: jwtVerifyEmail.value,
-        //   },
-        // });
 
         showAnimation.value = false;
 
@@ -465,14 +463,9 @@ const handleResendVerifyEmail = () => {
 
         disabled_countdown.value = true;
 
-        jwtVerifyEmail.value = response.headers.get('Authorization');
+        // vrfSignupToken.value = response.headers.get('Authorization');
+        vrfSignupToken.value = utils.cookie.getCookie('vrf_signup_token')!;
         otpExpOffset.value = response.exp_offset;
-
-        // router.push({
-        //   query: {
-        //     token: jwtVerifyEmail.value,
-        //   },
-        // });
       } else if (response?.isInValidEmail == true) {
         ElNotification.error({
           title: 'Thất bại!',
@@ -518,12 +511,12 @@ const handleResendVerifyEmail = () => {
     });
 };
 
-const handleVerify = (formVerify: any) => {
+const handleVerify = (formVerify: { otp: string; token: string }) => {
   loadingVerify.value = true;
 
   signUp({
     otp: formVerify.otp,
-    jwtVerifyEmail: jwtVerifyEmail.value,
+    vrfSignupToken: vrfSignupToken.value,
   })
     .then((response) => {
       // console.log(response);

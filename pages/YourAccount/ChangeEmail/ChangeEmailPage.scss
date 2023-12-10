@@ -62,7 +62,8 @@
         &.email {
           user-select: none;
 
-          .ant-form-item-control-input-content {
+          .ant-form-item-control-input-content .ant-input {
+            padding: 8px 11px;
           }
         }
       }
