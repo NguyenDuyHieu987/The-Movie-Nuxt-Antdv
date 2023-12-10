@@ -72,6 +72,7 @@ export function signUp(params: { otp: string; vrfSignupToken: string }) {
     method: 'POST',
     // headers: headers,
     data: bodyFormData,
+    getResponseHeaders: true,
   });
 }
 
