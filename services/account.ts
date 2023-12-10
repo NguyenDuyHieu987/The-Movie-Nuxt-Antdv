@@ -98,5 +98,6 @@ export function ResetPassword(params: {
   return makeRequest(`/account/reset-password`, {
     method: 'POST',
     data: bodyFormData,
+    getResponseHeaders: true,
   });
 }
