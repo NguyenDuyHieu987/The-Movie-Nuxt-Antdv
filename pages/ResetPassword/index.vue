@@ -152,6 +152,7 @@ await VerifyResetPassword(rstPwdToken.value)
       formResetPassword.email = response?.result.email;
     } else {
       isDisabledForm.value = true;
+
       ElNotification.error({
         title: 'Thất bại!',
         message: 'Some thing went wrong.',
@@ -164,6 +165,7 @@ await VerifyResetPassword(rstPwdToken.value)
   })
   .catch((e) => {
     isDisabledForm.value = true;
+
     ElNotification.error({
       title: 'Thất bại!',
       message: 'Some thing went wrong.',

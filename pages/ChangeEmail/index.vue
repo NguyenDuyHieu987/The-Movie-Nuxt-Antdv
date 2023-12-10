@@ -43,7 +43,7 @@
                   html-type="submit"
                   size="large"
                   :loading="loadingChangeEmail"
-                  :disabled="disabled"
+                  :disabled="isDisabledForm || disabled"
                 >
                   Thay đổi email
                 </a-button>
@@ -87,7 +87,7 @@ const formChangeEmail = reactive<{
 const showAnimation = ref<boolean>(false);
 const isShowVerifyOTPForm = ref<boolean>(false);
 const chgEmailToken = computed<string>(() => route.query?.token);
-
+const isDisabledForm = ref<boolean>(false);
 const disabled = computed<boolean>((): boolean => {
   return !(
     formChangeEmail.newEmail &&
@@ -120,6 +120,8 @@ await VerifyChangeEmail(chgEmailToken.value)
       formChangeEmail.oldEmail = response?.result.old_email;
       formChangeEmail.newEmail = response?.result.new_email;
     } else {
+      isDisabledForm.value = true;
+
       ElNotification.error({
         title: 'Thất bại!',
         message: 'Some thing went wrong.',
@@ -131,6 +133,8 @@ await VerifyChangeEmail(chgEmailToken.value)
     }
   })
   .catch((e) => {
+    isDisabledForm.value = true;
+
     ElNotification.error({
       title: 'Thất bại!',
       message: 'Some thing went wrong.',
@@ -169,6 +173,8 @@ const handleSubmit = () => {
               style: 'color: green',
             }),
         });
+
+        isDisabledForm.value = true;
 
         utils.localStorage.setWithExpiry(
           'user_token',
