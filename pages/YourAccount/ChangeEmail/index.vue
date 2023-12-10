@@ -2,10 +2,10 @@
   <div class="service-page change-email padding-content">
     <div class="change-page">
       <div v-if="!store.loadingUser">
-        <div v-if="isLogin" class="email-container">
+        <div v-if="isLogin" class="change-email-container">
           <Transition appear name="slide-left">
             <div v-show="showAnimation">
-              <div v-if="!isChangeEmail">
+              <div v-show="!isShowVerifyOTPForm && !isChangeEmailForm">
                 <a-button class="back-page-btn click-active" type="text">
                   <template #icon>
                     <svg
@@ -24,7 +24,7 @@
                   <NuxtLink to="/YourAccount"> Tài khoản</NuxtLink>
                 </a-button>
 
-                <div class="changeEmail-header">
+                <div class="verifyEmail-header">
                   <div class="note">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -45,11 +45,11 @@
                 </div>
 
                 <a-form
-                  :model="formChangeEmail"
-                  name="change-email-form"
-                  class="form-change-email"
-                  :class="{ disabled: loadingChangeEmail }"
-                  @finish="handleSubmit"
+                  :model="formVerifyEmail"
+                  name="verify-email-form"
+                  class="form-verify-email"
+                  :class="{ disabled: loadingVerifyEmail }"
+                  @finish="handleSubmitVerifyEmail"
                   hideRequiredMark
                 >
                   <a-form-item class="email" name="email">
@@ -91,7 +91,7 @@
               </div>
 
               <VerifyPinOTPForm
-                v-model:isShowForm="isChangeEmail"
+                v-model:isShowForm="isShowVerifyOTPForm"
                 :email="store.userAccount?.email"
                 :token="vrfEmailToken"
                 v-model:otpExpOffset="otpExpOffset"
@@ -111,6 +111,60 @@
                   </p>
                 </template>
               </VerifyPinOTPForm>
+
+              <div v-show="isChangeEmailForm" class="form-change-email-wrapper">
+                <div class="changeEmail-header">
+                  <h1>Thay đổi Email của bạn</h1>
+                  <p>
+                    {{ noteChangeEmail }}
+                  </p>
+                </div>
+
+                <a-form
+                  :model="formChangeEmail"
+                  name="change-email-form"
+                  class="form-change-email"
+                  :class="{ disabled: loadingVerifyEmail }"
+                  @finish="handleSubmitChangeEmail"
+                  hideRequiredMark
+                >
+                  <a-form-item
+                    label="Email"
+                    name="email"
+                    :rules="[
+                      {
+                        required: true,
+                        message:
+                          'Vui lòng nhập đúng định dạng email (vd: example@gmail.com)!',
+                        pattern: new RegExp(
+                          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+                        ),
+                        trigger: ['change', 'blur'],
+                      },
+                    ]"
+                  >
+                    <a-input
+                      v-model:value="formChangeEmail.newEmail"
+                      placeholder="Nhập email mới bạn muốn thay đổi..."
+                      allowClear
+                    >
+                    </a-input>
+                  </a-form-item>
+
+                  <a-form-item class="submit" name="submit">
+                    <a-button
+                      class="submit-form-button submit-btn click-active"
+                      type="primary"
+                      html-type="submit"
+                      size="large"
+                      :loading="loadingChangeEmail"
+                      :disabled="disabled"
+                    >
+                      Thay đổi email
+                    </a-button>
+                  </a-form-item>
+                </a-form>
+              </div>
             </div>
           </Transition>
         </div>
@@ -125,7 +179,7 @@ import axios from 'axios';
 import { ElNotification } from 'element-plus';
 import VerifyPinOTPForm from '~/components/VerifyForm/VerifyPinOTPForm/VerifyPinOTPForm.vue';
 import RequireAuth from '~/components/RequireAuth/RequireAuth.server.vue';
-import { AccountConfirm, VerifyEmail } from '~/services/account';
+import { AccountConfirm, VerifyEmail, ChangeEmail } from '~/services/account';
 import { storeToRefs } from 'pinia';
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
 
@@ -139,21 +193,41 @@ definePageMeta({
 const store = useStore();
 const utils = useUtils();
 const { isLogin } = storeToRefs<any>(store);
+const loadingVerifyEmail = ref<boolean>(false);
 const loadingChangeEmail = ref<boolean>(false);
-const formChangeEmail = reactive<{
+const formVerifyEmail = reactive<{
   email: string | undefined;
 }>({
   email: store.userAccount?.email,
 });
+const formChangeEmail = reactive<{
+  newEmail: string;
+}>({
+  newEmail: '',
+});
 const showAnimation = ref<boolean>(false);
 const loadingVerify = ref<boolean>(false);
-const isChangeEmail = ref<boolean>(false);
+const isShowVerifyOTPForm = ref<boolean>(false);
+const isChangeEmailForm = ref<boolean>(false);
 const vrfEmailToken = ref<string>('');
-const chgEmailToken = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
+const isActionFormChangeEmail = ref<boolean>(false);
 const otpExpOffset = ref<number>(0);
 const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Email: ');
+const noteChangeEmail = ref<string>(
+  'Hãy nhập chính xác Email mới mà bạn muốn thay đổi. Tránh trường hợp nhầm lẫn xảy ra.'
+);
+const changeEmailLocalStr = reactive<{
+  email: string;
+  exp_after: number;
+}>({
+  email: '',
+  exp_after: 0,
+});
+const disabled = computed<boolean>((): boolean => {
+  return !formChangeEmail.newEmail;
+});
 const internalInstance: any = getCurrentInstance();
 
 useHead({
@@ -177,8 +251,8 @@ onBeforeMount(() => {
   });
 });
 
-const handleSubmit = () => {
-  if (loadingChangeEmail.value) return;
+const handleSubmitVerifyEmail = () => {
+  if (loadingVerifyEmail.value) return;
 
   if (
     otpExpOffset.value > 0 ||
@@ -188,13 +262,13 @@ const handleSubmit = () => {
 
     setTimeout(() => {
       showAnimation.value = true;
-      isChangeEmail.value = true;
+      isShowVerifyOTPForm.value = true;
     }, 300);
 
     return;
   }
 
-  loadingChangeEmail.value = true;
+  loadingVerifyEmail.value = true;
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   AccountConfirm({ email: store.userAccount?.email }, 'email')
@@ -219,7 +293,7 @@ const handleSubmit = () => {
 
         setTimeout(() => {
           showAnimation.value = true;
-          isChangeEmail.value = true;
+          isShowVerifyOTPForm.value = true;
         }, 300);
       } else if (response?.isWrongPassword == true) {
         ElNotification.error({
@@ -254,7 +328,7 @@ const handleSubmit = () => {
     })
     .finally(() => {
       internalInstance.appContext.config.globalProperties.$Progress.finish();
-      loadingChangeEmail.value = false;
+      loadingVerifyEmail.value = false;
     });
 };
 
@@ -277,7 +351,13 @@ const handleVerify = (formVerify: any) => {
             }),
         });
 
-        navigateTo({ path: '/YourAccount' });
+        showAnimation.value = false;
+
+        setTimeout(() => {
+          showAnimation.value = true;
+          isShowVerifyOTPForm.value = false;
+          isChangeEmailForm.value = true;
+        }, 300);
       } else if (response?.isInvalidOTP == true) {
         ElNotification.error({
           title: 'Thất bại!',
@@ -345,16 +425,127 @@ const handleResendVerifyEmail = () => {
 
         vrfEmailToken.value = utils.cookie.getCookie('vrf_email_token')!;
         otpExpOffset.value = response.exp_offset;
-
-        // router.push({
-        //   query: {
-        //     token: chgEmailToken.value,
-        //   },
-        // });
-      } else if (response?.isWrongPassword == true) {
+      } else {
         ElNotification.error({
           title: 'Thất bại!',
-          message: 'Sai mật khẩu.',
+          message: 'Gửi Email thất bại.',
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      }
+    })
+    .catch((e) => {
+      ElNotification.error({
+        title: 'Thất bại!',
+        message: 'Some thing went wrong.',
+        icon: () =>
+          h(CloseCircleFilled, {
+            style: 'color: red',
+          }),
+      });
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingResend.value = false;
+    });
+};
+
+const getForgotPasswordLocalStr = async () => {
+  const forgot_password =
+    utils.localStorage.getWithExpiry_ExpRemain('forgot_password');
+  const isExpireForm = forgot_password == null;
+
+  if (!isExpireForm) {
+    changeEmailLocalStr.email = forgot_password.email;
+    changeEmailLocalStr.exp_after = forgot_password.exp_after;
+  } else {
+    changeEmailLocalStr.email = '';
+    changeEmailLocalStr.exp_after = 0;
+  }
+};
+
+const checkSendedEmail = () => {
+  getForgotPasswordLocalStr();
+
+  if (
+    changeEmailLocalStr.exp_after > 0 &&
+    changeEmailLocalStr.email == formChangeEmail.newEmail
+  ) {
+    if (changeEmailLocalStr.exp_after > 60) {
+      noteChangeEmail.value = `Chúng tôi đã gửi email kèm hướng dẫn đặt lại mật khẩu đến ${
+        formChangeEmail.newEmail
+      }. Vui lòng thử lại sau ${Math.round(
+        changeEmailLocalStr.exp_after / 60
+      )} phút nữa.`;
+    } else {
+      noteChangeEmail.value = `Chúng tôi đã gửi email kèm hướng dẫn đặt lại mật khẩu đến ${
+        formChangeEmail.newEmail
+      }. Vui lòng thử lại sau ${Math.round(
+        changeEmailLocalStr.exp_after
+      )} giây nữa.`;
+    }
+    isActionFormChangeEmail.value = true;
+    return;
+  } else {
+    isActionFormChangeEmail.value = false;
+    noteChangeEmail.value =
+      'Hãy nhập Email của tài khoản mà bạn muốn khôi phục mật khẩu.';
+  }
+};
+
+const handleSubmitChangeEmail = () => {
+  if (loadingChangeEmail.value) return;
+
+  loadingChangeEmail.value = true;
+  internalInstance.appContext.config.globalProperties.$Progress.start();
+
+  ChangeEmail(formChangeEmail.newEmail)
+    .then((response) => {
+      // console.log(response);
+
+      if (response?.isSended === true) {
+        ElNotification.success({
+          title: 'Thành công!',
+          message: `Gửi Email thành công.`,
+          icon: () =>
+            h(CheckCircleFilled, {
+              style: 'color: green',
+            }),
+          duration: 7000,
+        });
+
+        changeEmailLocalStr.email = formChangeEmail.newEmail;
+        changeEmailLocalStr.exp_after = +response.exp_offset;
+
+        utils.localStorage.setWithExpiry(
+          'change_email',
+          {
+            email: formChangeEmail.newEmail,
+            exp_after: +response.exp_offset,
+          },
+          +response.exp_offset / (60 * 60)
+        );
+
+        noteChangeEmail.value = `Chúng tôi đã gửi email kèm hướng dẫn thay đổi email đến ${
+          formChangeEmail.newEmail
+        }. Email này sẽ hết hiệu lực sau ${response.exp_offset / 60} phút.`;
+
+        isActionFormChangeEmail.value = true;
+      } else if (response?.isEmailExist == true) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Email đã được đăng ký.',
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      } else if (response?.isInValidEmail == true) {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Email không tồn tại.',
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -383,7 +574,8 @@ const handleResendVerifyEmail = () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loadingResend.value = false;
+      loadingVerifyEmail.value = false;
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };
 
@@ -392,7 +584,7 @@ const handleClickBack = () => {
 
   setTimeout(() => {
     showAnimation.value = true;
-    isChangeEmail.value = false;
+    isShowVerifyOTPForm.value = false;
   }, 300);
 };
 </script>

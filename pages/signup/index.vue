@@ -2,7 +2,7 @@
   <div class="signup">
     <Transition name="slide-left">
       <div class="signup-container" v-show="showAnimation">
-        <div v-if="!isSignUp" class="signup-form-container">
+        <div v-show="!isShowVerifyOTPForm" class="signup-form-container">
           <a-form
             :model="formSignup"
             :rules="rules"
@@ -193,7 +193,7 @@
         </div>
 
         <VerifySignUpForm
-          v-model:isShowForm="isSignUp"
+          v-model:isShowForm="isShowVerifyOTPForm"
           :email="formSignup.email"
           :token="vrfSignupToken"
           v-model:otpExpOffset="otpExpOffset"
@@ -259,22 +259,12 @@ const router = useRouter();
 const route = useRoute();
 const loadingSignUp = ref<boolean>(false);
 const loadingVerify = ref<boolean>(false);
-const isSignUp = ref<boolean>(false);
+const isShowVerifyOTPForm = ref<boolean>(false);
 const vrfSignupToken = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
 const otpExpOffset = ref<number>(0);
 const showAnimation = ref<boolean>(true);
-const internalInstance: any = getCurrentInstance();
-
-const reset = () => {
-  formSignup.fullname = '';
-  formSignup.username = '';
-  formSignup.password = '';
-  formSignup.confirmPass = '';
-  formSignup.email = '';
-};
-
 const disabled = computed<boolean>((): boolean => {
   return !(
     formSignup.fullname &&
@@ -286,6 +276,15 @@ const disabled = computed<boolean>((): boolean => {
     formSignup.password == formSignup.confirmPass
   );
 });
+const internalInstance: any = getCurrentInstance();
+
+const reset = () => {
+  formSignup.fullname = '';
+  formSignup.username = '';
+  formSignup.password = '';
+  formSignup.confirmPass = '';
+  formSignup.email = '';
+};
 
 const checkSpecialCharacters = async (_rule: Rule, value: string) => {
   if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(value)) {
@@ -339,7 +338,7 @@ const handleSignUp = (e: any) => {
 
     setTimeout(() => {
       showAnimation.value = true;
-      isSignUp.value = true;
+      isShowVerifyOTPForm.value = true;
     }, 300);
 
     return;
@@ -393,7 +392,7 @@ const handleSignUp = (e: any) => {
 
         setTimeout(() => {
           showAnimation.value = true;
-          isSignUp.value = true;
+          isShowVerifyOTPForm.value = true;
         }, 300);
       } else if (response?.isEmailExist == true) {
         ElNotification.error({
@@ -520,7 +519,7 @@ const handleVerify = (formVerify: { otp: string; token: string }) => {
   })
     .then((response) => {
       // console.log(response);
-      if (response?.isSignUp == true) {
+      if (response?.isShowVerifyOTPForm == true) {
         ElNotification.success({
           title: 'Thành công!',
           message: 'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
@@ -582,7 +581,7 @@ const handleClickBack = () => {
 
   setTimeout(() => {
     showAnimation.value = true;
-    isSignUp.value = false;
+    isShowVerifyOTPForm.value = false;
   }, 300);
 };
 </script>

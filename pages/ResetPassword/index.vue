@@ -121,6 +121,13 @@ const showAnimation = ref<boolean>(false);
 const isActionForm = ref<boolean>(false);
 const isDisabledForm = ref<boolean>(false);
 const rstPwdToken = computed<string>(() => route.query?.token);
+const disabled = computed<boolean>((): boolean => {
+  return !(
+    formResetPassword.newPassword &&
+    formResetPassword.confirmNewPassword &&
+    formResetPassword.newPassword == formResetPassword.confirmNewPassword
+  );
+});
 const internalInstance: any = getCurrentInstance();
 
 useHead({
@@ -174,14 +181,6 @@ onBeforeMount(() => {
   });
 });
 
-const disabled = computed<boolean>((): boolean => {
-  return !(
-    formResetPassword.newPassword &&
-    formResetPassword.confirmNewPassword &&
-    formResetPassword.newPassword == formResetPassword.confirmNewPassword
-  );
-});
-
 const checkConfirmNewPassword = async (_rule: any, value: string) => {
   if (value !== formResetPassword.newPassword) {
     return Promise.reject('Mật khẩu mới nhập lại không khớp!');
@@ -218,6 +217,7 @@ const rules: Record<string, Rule[]> = {
 
 const handleSubmit = () => {
   loadingResetPassword.value = true;
+  internalInstance.appContext.config.globalProperties.$Progress.start();
 
   ResetPassword({
     rstPwdToken: rstPwdToken.value,
@@ -258,6 +258,7 @@ const handleSubmit = () => {
     })
     .finally(() => {
       loadingResetPassword.value = false;
+      internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
 };
 </script>

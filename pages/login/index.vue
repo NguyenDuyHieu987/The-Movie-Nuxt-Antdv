@@ -231,19 +231,18 @@ const urlBack = computed(() =>
       : router.options.history.state.back
     : '/'
 );
-
-const reset = () => {
-  formLogin.username = '';
-  formLogin.password = '';
-  formLogin.rememberMe = false;
-};
-
 const disabled = computed<boolean>((): boolean => {
   return !(
     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formLogin.username) &&
     formLogin.password
   );
 });
+
+const reset = () => {
+  formLogin.username = '';
+  formLogin.password = '';
+  formLogin.rememberMe = false;
+};
 
 onBeforeMount(() => {
   utils.initFacebookSdk();

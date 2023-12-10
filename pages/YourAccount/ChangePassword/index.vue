@@ -5,7 +5,7 @@
         <div v-if="isLogin" class="changePass-container">
           <Transition appear name="slide-left">
             <div v-show="showAnimation">
-              <div v-if="!isChangePassword" class="changePass-wrapper">
+              <div v-show="!isShowVerifyOTPForm" class="changePass-wrapper">
                 <a-button class="back-page-btn click-active" type="text">
                   <template #icon>
                     <svg
@@ -112,7 +112,7 @@
               </div>
 
               <VerifyPinOTPForm
-                v-model:isShowForm="isChangePassword"
+                v-model:isShowForm="isShowVerifyOTPForm"
                 :email="store.userAccount?.email"
                 :token="chgPwdToken"
                 v-model:otpExpOffset="otpExpOffset"
@@ -176,12 +176,21 @@ const formChangePassword = reactive<{
 });
 const showAnimation = ref<boolean>(false);
 const loadingVerify = ref<boolean>(false);
-const isChangePassword = ref<boolean>(false);
+const isShowVerifyOTPForm = ref<boolean>(false);
 const chgPwdToken = ref<string>('');
 const disabled_countdown = ref<boolean>(true);
 const loadingResend = ref<boolean>(false);
 const otpExpOffset = ref<number>(0);
 const titleVerify = ref<string>('Mã xác nhận đã được gửi đến Email: ');
+const disabled = computed<boolean>((): boolean => {
+  return !(
+    formChangePassword.oldPassword &&
+    formChangePassword.newPassword &&
+    formChangePassword.confirmNewPassword &&
+    formChangePassword.oldPassword != formChangePassword.newPassword &&
+    formChangePassword.newPassword == formChangePassword.confirmNewPassword
+  );
+});
 const internalInstance: any = getCurrentInstance();
 
 useHead({
@@ -203,16 +212,6 @@ onBeforeMount(() => {
   setTimeout(() => {
     showAnimation.value = true;
   });
-});
-
-const disabled = computed<boolean>((): boolean => {
-  return !(
-    formChangePassword.oldPassword &&
-    formChangePassword.newPassword &&
-    formChangePassword.confirmNewPassword &&
-    formChangePassword.oldPassword != formChangePassword.newPassword &&
-    formChangePassword.newPassword == formChangePassword.confirmNewPassword
-  );
 });
 
 const checkNewPassword = async (_rule: any, value: string) => {
@@ -276,7 +275,7 @@ const handleSubmit = () => {
 
     setTimeout(() => {
       showAnimation.value = true;
-      isChangePassword.value = true;
+      isShowVerifyOTPForm.value = true;
     }, 300);
 
     return;
@@ -321,7 +320,7 @@ const handleSubmit = () => {
 
         setTimeout(() => {
           showAnimation.value = true;
-          isChangePassword.value = true;
+          isShowVerifyOTPForm.value = true;
         }, 300);
       } else if (response?.isWrongPassword == true) {
         ElNotification.error({
@@ -508,7 +507,7 @@ const handleClickBack = () => {
 
   setTimeout(() => {
     showAnimation.value = true;
-    isChangePassword.value = false;
+    isShowVerifyOTPForm.value = false;
   }, 300);
 };
 </script>

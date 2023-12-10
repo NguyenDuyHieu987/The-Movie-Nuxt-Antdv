@@ -75,9 +75,9 @@ export function signUp(params: { otp: string; vrfSignupToken: string }) {
   });
 }
 
-export function forgotPassword(params: any, type: string) {
+export function forgotPassword(email: string, type: string) {
   const bodyFormData = new FormData();
-  bodyFormData.append('email', params.email);
+  bodyFormData.append('email', email);
 
   return makeRequest(`/auth/forgot-password/${type}`, {
     method: 'POST',

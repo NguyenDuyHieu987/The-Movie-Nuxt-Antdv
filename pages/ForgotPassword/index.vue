@@ -2,24 +2,6 @@
   <div class="forgot-password center-page">
     <div class="forgot-password-container">
       <div class="form-forgot-password-container">
-        <!-- <a-button class="back-page-btn click-active" type="text">
-            <template #icon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2rem"
-                height="2rem"
-                role="img"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8l8 8l1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </template>
-            <NuxtLink to="/login"> Đăng nhập</NuxtLink>
-          </a-button> -->
-
         <a-form
           :model="formForgotPassword"
           name="forgot-password-form"
@@ -209,12 +191,7 @@ const handleSubmit = () => {
 
   loadingForgotPassword.value = true;
 
-  forgotPassword(
-    {
-      email: formForgotPassword.email,
-    },
-    'email'
-  )
+  forgotPassword(formForgotPassword.email, 'email')
     .then((response) => {
       // console.log(response.headers['set-cookie']);
 
@@ -246,7 +223,7 @@ const handleSubmit = () => {
         }. Email này sẽ hết hiệu lực sau ${response.exp_offset / 60} phút.`;
 
         isActionForm.value = true;
-      } else if (response?.isEmailExist == true) {
+      } else if (response?.isEmailExist == false) {
         ElNotification.error({
           title: 'Thất bại!',
           message: 'Email chưa được đăng ký.',
