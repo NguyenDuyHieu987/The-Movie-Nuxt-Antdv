@@ -69,6 +69,9 @@ export function ChangeEmail(params: {
 
   return makeRequest(`/account/change-email`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
     data: bodyFormData,
     getResponseHeaders: true,
   });
@@ -97,6 +100,9 @@ export function ResetPassword(params: {
 
   return makeRequest(`/account/reset-password`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
     data: bodyFormData,
   });
 }
