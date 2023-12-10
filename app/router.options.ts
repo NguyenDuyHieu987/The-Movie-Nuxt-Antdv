@@ -7,8 +7,8 @@ export default <RouterConfig>{
       return { ...savedPosition, behavior: 'instant' };
     } else {
       return {
-        behavior: 'instant',
-        top: 0,
+        // behavior: 'instant',
+        // top: 0,
       };
     }
   },

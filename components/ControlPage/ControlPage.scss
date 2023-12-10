@@ -4,32 +4,85 @@
   margin-top: 30px;
 
   .el-pagination {
-    .btn-prev {
-      background-color: transparent;
-    }
+    display: flex;
+    flex-direction: row;
+    font-size: 1.6rem;
 
+    .btn-prev,
     .btn-next {
-      background-color: transparent;
+      display: inline-flex;
+      background-color: #1b1b1b;
+      border: none;
+      height: 40px;
+      width: 48px;
+      line-height: 40px;
+      margin: 0px;
+
+      &:disabled {
+        background-color: transparent;
+      }
+
+      i {
+        height: 1.2em;
+        width: 1.2em;
+
+        svg {
+          height: 100%;
+          width: 100%;
+        }
+      }
     }
 
     .el-pager {
-      li.number {
-        background-color: transparent;
+      background-color: #1b1b1b;
 
-        &.is-active {
-          background-color: rgb(46, 46, 46);
+      li {
+        display: inline-flex;
+        background-color: transparent;
+        border: none;
+        height: 40px;
+        width: 48px;
+        line-height: 40px;
+        border-radius: 0px;
+        margin: 0px;
+        color: inherit;
+        transition: all 0s;
+
+        &:hover {
+          color: inherit;
+        }
+
+        &.number {
+          &.is-active {
+            width: 44px;
+            background-color: var(--app-background-color);
+            // color: var(--link-text-color);
+            color: #fff;
+            font-weight: normal;
+            border-radius: 2px;
+          }
         }
       }
     }
   }
 
   .pagination {
+    display: flex;
+    flex-direction: row;
     font-size: 1.6rem;
 
     .ant-pagination-prev,
     .ant-pagination-next {
-      background-color: transparent;
-      border: none;
+      margin: 0px;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+      }
 
       .ant-pagination-item-link {
         background-color: transparent;
@@ -37,43 +90,73 @@
         color: inherit;
 
         &:hover {
-          color: #fff;
+          color: inherit;
         }
       }
 
       &.ant-pagination-disabled {
-        display: none;
+        // display: none;
+        background-color: transparent;
       }
     }
 
-    .ant-pagination-item {
-      background-color: transparent;
+    li {
+      display: inline-flex;
+      background-color: #1b1b1b;
       border: none;
+      height: auto;
+      width: auto;
+      margin: 0;
+      padding: 0px 4px;
+      border-radius: 0px;
+      transition: all 0s;
 
       a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
         color: inherit;
+        text-align: center;
+        transition: all 0s;
 
         &:hover {
-          color: #fff;
+          color: inherit;
         }
       }
 
       &.ant-pagination-item-active {
-        background-color: var(--btn-backgroud-color-gray);
+        background-color: var(--app-background-color);
+        // color: var(--link-text-color);
+        color: #fff;
+        padding: 0px 2px;
+        border-radius: 2px;
+        font-weight: normal;
 
         a {
-          color: var(--link-text-color);
         }
       }
     }
+
     .ant-pagination-jump-prev,
     .ant-pagination-jump-next {
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+
+      .anticon {
+      }
+
       svg {
-        color: inherit;
+        fill: inherit;
       }
 
       .ant-pagination-item-ellipsis {
-        color: var(--text-color-gray);
+        left: -50%;
+        color: inherit;
+        transition: all 0s;
       }
     }
   }

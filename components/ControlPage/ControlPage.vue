@@ -9,17 +9,18 @@
       :responsive="true"
       @change="onChangePage"
     />
-
     <!-- :show-total="(total) => `Tổng ${total}`" -->
 
     <!-- <el-pagination
       :current-page="page"
       background
-      layout="prev, pager, next, total"
-      :total="total"
+      layout="prev, pager, next"
+      :total="total || 100"
+      :page-size="pageSize"
       :pager-count="5"
       @current-change="onChangePage"
     /> -->
+    <!-- layout="prev, pager, next, total" -->
   </div>
 </template>
 
