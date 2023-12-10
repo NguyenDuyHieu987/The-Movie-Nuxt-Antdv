@@ -147,10 +147,8 @@ onBeforeMount(() => {
 
         store.userAccount = response?.result;
         utils.localStorage.setWithExpiry(
-          'user_account',
-          {
-            user_token: response.headers.get('Authorization'),
-          },
+          'user_token',
+          response.headers.get('Authorization'),
           24
         );
         navigateTo({ path: '/' });
@@ -158,10 +156,8 @@ onBeforeMount(() => {
       } else if (response.isLogin == true) {
         store.userAccount = response?.result;
         utils.localStorage.setWithExpiry(
-          'user_account',
-          {
-            user_token: response.headers.get('Authorization'),
-          },
+          'user_token',
+          response.headers.get('Authorization'),
           24
         );
         navigateTo({ path: '/' });

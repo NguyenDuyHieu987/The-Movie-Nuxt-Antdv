@@ -469,7 +469,7 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
           });
           store.userAccount = response?.result;
           utils.localStorage.setWithExpiry(
-            'user_account',
+            'user_token',
             {
               user_token: response.headers.get('Authorization'),
             },
@@ -480,7 +480,7 @@ const handleGooglePopupCallback = (googleOauthResponse: any) => {
         } else if (response.isLogin == true) {
           store.userAccount = response?.result;
           utils.localStorage.setWithExpiry(
-            'user_account',
+            'user_token',
             {
               user_token: response.headers.get('Authorization'),
             },
