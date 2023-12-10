@@ -333,7 +333,7 @@ const handleSignUp = (e: any) => {
   if (loadingSignUp.value) return;
 
   if (
-    // otpExpOffset.value > 0 ||
+    otpExpOffset.value > 0 ||
     utils.cookie.getCookie('vrf_signup_token') != null
   ) {
     showAnimation.value = false;

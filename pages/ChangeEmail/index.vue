@@ -176,6 +176,8 @@ const handleSubmit = () => {
 
         isDisabledForm.value = true;
 
+        store.userAccount!.email = formChangeEmail.newEmail;
+
         utils.localStorage.setWithExpiry(
           'user_token',
           response.headers.get('Authorization'),

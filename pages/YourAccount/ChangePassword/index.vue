@@ -270,7 +270,7 @@ const handleSubmit = () => {
   if (loadingChangePassword.value) return;
 
   if (
-    // otpExpOffset.value > 0 ||
+    otpExpOffset.value > 0 ||
     utils.cookie.getCookie('chg_pwd_token') != null
   ) {
     showAnimation.value = false;

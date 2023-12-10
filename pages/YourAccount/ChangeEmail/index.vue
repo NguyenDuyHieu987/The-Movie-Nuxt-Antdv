@@ -285,7 +285,7 @@ const handleSubmitVerifyEmail = () => {
   if (loadingVerifyEmail.value) return;
 
   if (
-    // otpExpOffset.value > 0 ||
+    otpExpOffset.value > 0 ||
     utils.cookie.getCookie('vrf_email_token') != null
   ) {
     showAnimation.value = false;
