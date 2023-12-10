@@ -525,7 +525,7 @@ const handleVerify = (formVerify: { otp: string; token: string }) => {
   })
     .then((response) => {
       // console.log(response);
-      if (response?.isShowVerifyOTPForm == true) {
+      if (response?.isSignUp == true) {
         ElNotification.success({
           title: 'Thành công!',
           message: 'Bạn đã đăng ký thành công tài khoản tại Phimhay247.',
