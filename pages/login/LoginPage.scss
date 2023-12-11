@@ -78,10 +78,14 @@
         }
 
         .forgot-password-btn {
-          user-select: none;
           float: right;
-          color: var(--app-background-color) !important;
+          color: var(--link-text-color);
           transition: all 0.15s;
+          user-select: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
 
         .login-form-button {
