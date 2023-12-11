@@ -47,7 +47,10 @@
               :responsive="responsiveHorizoltal"
             >
               <template #content>
-                <SwiperSlide v-for="(item, index) in airingTodays">
+                <SwiperSlide
+                  v-for="(item, index) in airingTodays"
+                  :virtual-index="index"
+                >
                   <MovieCardHorizontal
                     :item="item"
                     :index="index"
@@ -92,7 +95,10 @@
               :responsive="responsiveHorizoltal"
             >
               <template #content>
-                <SwiperSlide v-for="(item, index) in onTheAirs">
+                <SwiperSlide
+                  v-for="(item, index) in onTheAirs"
+                  :virtual-index="index"
+                >
                   <MovieCardHorizontal
                     :item="item"
                     :index="index"
@@ -137,7 +143,10 @@
               :responsive="responsiveHorizoltal"
             >
               <template #content>
-                <SwiperSlide v-for="(item, index) in populars">
+                <SwiperSlide
+                  v-for="(item, index) in populars"
+                  :virtual-index="index"
+                >
                   <MovieCardHorizontal
                     :item="item"
                     :index="index"
@@ -182,7 +191,10 @@
               :responsive="responsiveHorizoltal"
             >
               <template #content>
-                <SwiperSlide v-for="(item, index) in topRateds">
+                <SwiperSlide
+                  v-for="(item, index) in topRateds"
+                  :virtual-index="index"
+                >
                   <MovieCardHorizontal
                     :item="item"
                     :index="index"

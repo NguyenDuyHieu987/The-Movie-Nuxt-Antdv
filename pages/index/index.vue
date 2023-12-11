@@ -36,7 +36,10 @@
               :responsive="responsiveHorizoltal"
             >
               <template #content>
-                <SwiperSlide v-for="(item, index) in nowPlayings">
+                <SwiperSlide
+                  v-for="(item, index) in nowPlayings"
+                  :virtual-index="index"
+                >
                   <MovieCardHorizontal
                     :item="item"
                     :index="index"
@@ -130,7 +133,10 @@
               :responsive="responsiveHorizoltal"
             >
               <template #content>
-                <SwiperSlide v-for="(item, index) in cartoons">
+                <SwiperSlide
+                  v-for="(item, index) in cartoons"
+                  :virtual-index="index"
+                >
                   <MovieCardHorizontal
                     :item="item"
                     :index="index"
@@ -179,7 +185,10 @@
               :gap="15"
             >
               <template #content>
-                <SwiperSlide v-for="(item, index) in tvAiringTodays">
+                <SwiperSlide
+                  v-for="(item, index) in tvAiringTodays"
+                  :virtual-index="index"
+                >
                   <MovieCardVertical
                     :index="index"
                     :key="item.id"
@@ -315,7 +324,10 @@
               :gap="15"
             >
               <template #content>
-                <SwiperSlide v-for="(item, index) in topRateds">
+                <SwiperSlide
+                  v-for="(item, index) in topRateds"
+                  :virtual-index="index"
+                >
                   <MovieCardVertical
                     :item="item"
                     :index="index"
@@ -362,7 +374,10 @@
               :responsive="responsiveHorizoltal"
             >
               <template #content>
-                <SwiperSlide v-for="(item, index) in tvOnTheAirs">
+                <SwiperSlide
+                  v-for="(item, index) in tvOnTheAirs"
+                  :virtual-index="index"
+                >
                   <MovieCardHorizontal
                     :item="item"
                     :index="index"
