@@ -139,6 +139,7 @@ export default defineNuxtConfig({
       prefix: Math.floor(Math.random() * 10000),
       current: 0,
     },
+    appendTo: ['#append-to'],
   },
   pinia: {
     storesDirs: ['./stores/**'],
@@ -324,17 +325,14 @@ export default defineNuxtConfig({
   },
   generate: {
     routes: [
-      // '/',
+      '/',
       '/feature',
       '/television',
       '/search',
       '/discover',
-      // '/follow',
-      // '/history',
       '/ranking',
       '/upgrade/plans',
       '/upgrade/PaymentPicker',
-      // '/YourAccount',
       '/login',
       '/signup',
       '/ForgotPassword',

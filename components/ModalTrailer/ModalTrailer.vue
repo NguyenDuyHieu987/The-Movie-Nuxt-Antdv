@@ -1,7 +1,8 @@
 <template>
-  <!-- <Teleport v-if="isOpenModalTrailer" to="body"> -->
-  <div class="modal-trailer-wrapper">
-    <!-- <a-modal
+  <!-- :disabled="!isOpenModalTrailer"  -->
+  <Teleport to="#append-to">
+    <div class="modal-trailer-wrapper">
+      <!-- <a-modal
       v-model:visible="isTeleport"
       class="modal-trailer"
       :width="1300"
@@ -75,48 +76,48 @@
       </template>
     </a-modal> -->
 
-    <el-dialog
-      v-model="isTeleport"
-      class="modal-trailer"
-      :width="1300"
-      align-center
-      center
-      append-to-body
-      :show-close="false"
-    >
-      <template #header>
-        <h3 class="title">
-          <strong v-if="isEpisodes">
-            {{ item?.name }}
-            <!-- {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }} -->
-          </strong>
-          <strong v-else>
-            {{ item?.name }}
-          </strong>
-        </h3>
+      <el-dialog
+        v-model="isTeleport"
+        class="modal-trailer"
+        :width="1300"
+        align-center
+        center
+        append-to="#append-elementPlus"
+        :show-close="false"
+      >
+        <template #header>
+          <h3 class="title">
+            <strong v-if="isEpisodes">
+              {{ item?.name }}
+              <!-- {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }} -->
+            </strong>
+            <strong v-else>
+              {{ item?.name }}
+            </strong>
+          </h3>
 
-        <CloseBtn @click="isTeleport = false" />
-      </template>
+          <CloseBtn @click="isTeleport = false" />
+        </template>
 
-      <!-- Math.floor(Math.random() * dataMovie?.videos?.length)
+        <!-- Math.floor(Math.random() * dataMovie?.videos?.length)
         : 'https://www.youtube.com/embed/ndl1W4ltcmg' -->
-      <iframe
-        height="100%"
-        width="100%"
-        :src="`https://www.youtube.com/embed/${
-          dataVideos[0]?.key || 'ndl1W4ltcmg'
-        }`"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+        <iframe
+          height="100%"
+          width="100%"
+          :src="`https://www.youtube.com/embed/${
+            dataVideos[0]?.key || 'ndl1W4ltcmg'
+          }`"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media;
             gyroscope; picture-in-picture"
-        allowFullScreen
-        frameBorder="{0}"
-      />
+          allowFullScreen
+          frameBorder="{0}"
+        />
 
-      <template #footer>
-        <div class="content">
-          <div class="info">
-            <!-- <h3 class="title">
+        <template #footer>
+          <div class="content">
+            <div class="info">
+              <!-- <h3 class="title">
               <strong v-if="isEpisodes">
                 {{ item?.name }}
               </strong>
@@ -125,51 +126,51 @@
               </strong>
             </h3> -->
 
-            <p class="overview">
-              <span>Nội dung: </span>
-              {{
-                item?.overview ||
-                'Sorry! This movie has not been updated overview content.'
-              }}
-            </p>
+              <p class="overview">
+                <span>Nội dung: </span>
+                {{
+                  item?.overview ||
+                  'Sorry! This movie has not been updated overview content.'
+                }}
+              </p>
+            </div>
+            <div class="action">
+              <a-button
+                class="default"
+                size="large"
+                type="text"
+                @click="isTeleport = false"
+              >
+                Đóng
+              </a-button>
+              <NuxtLink
+                v-if="isEpisodes"
+                :to="{
+                  path: `/play-tv/${item?.id}__${item?.name
+                    ?.replace(/\s/g, '-')
+                    .toLowerCase()}/tap-1`,
+                }"
+                class="btn-play-now"
+              >
+                Xem ngay
+              </NuxtLink>
+              <NuxtLink
+                v-else-if="!isEpisodes"
+                :to="{
+                  path: `/play-movie/${item?.id}__${item?.name
+                    ?.replace(/\s/g, '-')
+                    .toLowerCase()}`,
+                }"
+                class="btn-play-now"
+              >
+                Xem ngay
+              </NuxtLink>
+            </div>
           </div>
-          <div class="action">
-            <a-button
-              class="default"
-              size="large"
-              type="text"
-              @click="isTeleport = false"
-            >
-              Đóng
-            </a-button>
-            <NuxtLink
-              v-if="isEpisodes"
-              :to="{
-                path: `/play-tv/${item?.id}__${item?.name
-                  ?.replace(/\s/g, '-')
-                  .toLowerCase()}/tap-1`,
-              }"
-              class="btn-play-now"
-            >
-              Xem ngay
-            </NuxtLink>
-            <NuxtLink
-              v-else-if="!isEpisodes"
-              :to="{
-                path: `/play-movie/${item?.id}__${item?.name
-                  ?.replace(/\s/g, '-')
-                  .toLowerCase()}`,
-              }"
-              class="btn-play-now"
-            >
-              Xem ngay
-            </NuxtLink>
-          </div>
-        </div>
-      </template>
-    </el-dialog>
-  </div>
-  <!-- </Teleport> -->
+        </template>
+      </el-dialog>
+    </div>
+  </Teleport>
 </template>
 
 <script setup lang="ts">

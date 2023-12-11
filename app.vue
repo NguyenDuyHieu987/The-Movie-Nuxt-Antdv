@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <div id="append-to"></div>
+
     <!-- <a-config-provider
       :theme="{
         token: {
