@@ -315,6 +315,8 @@ const handleClickSaveRowItem = (e: any) => {
             }),
         });
 
+        rowItemLabel!.innerText = newFullName;
+
         store.userAccount!.full_name = newFullName;
 
         utils.localStorage.setWithExpiry(
@@ -323,6 +325,8 @@ const handleClickSaveRowItem = (e: any) => {
           24
         );
       } else {
+        rowItemLabel!.innerText = store.userAccount!.full_name;
+
         ElNotification.error({
           title: 'Thất bại!',
           message: 'Thay đổi họ và tên thất bại.',
@@ -334,6 +338,8 @@ const handleClickSaveRowItem = (e: any) => {
       }
     })
     .catch((e) => {
+      rowItemLabel!.innerText = store.userAccount!.full_name;
+
       ElNotification.error({
         title: 'Thất bại!',
         message: 'Some thing went wrong.',
@@ -347,7 +353,6 @@ const handleClickSaveRowItem = (e: any) => {
     .finally(() => {
       isFullNameditable.value = false;
       rowItemLabel?.setAttribute('contenteditable', 'false');
-      rowItemLabel!.innerText = newFullName;
 
       loadingEditRowItem.value = false;
     });
