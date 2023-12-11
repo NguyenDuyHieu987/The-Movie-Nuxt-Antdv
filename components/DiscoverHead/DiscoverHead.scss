@@ -27,70 +27,29 @@
     width: 100%;
     font-size: 1.4rem;
 
-    .swiper-slide {
-      display: flex;
-      width: auto;
-      border-radius: 7px;
-      background-color: #2020205d;
+    .swiper-wrapper {
+      .swiper-slide {
+        display: flex;
+        width: auto;
+        border-radius: 7px;
+        background-color: #2020205d;
 
-      &.active {
-        background-color: #e3e3e3;
+        &.active {
+          background-color: #e3e3e3;
+
+          a {
+            font-weight: 500;
+            // color: var(--app-background-color);
+            color: var(--text-color-invert);
+          }
+        }
 
         a {
-          font-weight: 500;
-          // color: var(--app-background-color);
-          color: var(--text-color-invert);
+          padding: 9px 18px;
+          color: inherit;
+          line-height: normal;
         }
       }
-
-      a {
-        padding: 9px 18px;
-        color: inherit;
-        line-height: normal;
-      }
-    }
-
-    .swiper-button-prev,
-    .swiper-button-next {
-      display: flex;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 30px;
-      color: var(--text-color);
-      z-index: 1;
-      cursor: pointer;
-
-      svg {
-        width: 2.8rem;
-        height: 2.8rem;
-      }
-
-      &.swiper-button-disabled {
-        display: none;
-      }
-    }
-
-    .swiper-button-prev {
-      left: -8px;
-      justify-content: flex-start;
-      background-image: linear-gradient(
-        to right,
-        #080808 0%,
-        #08080850 70%,
-        #08080800 100%
-      );
-    }
-
-    .swiper-button-next {
-      right: -8px;
-      justify-content: flex-end;
-      background-image: linear-gradient(
-        to left,
-        #080808 0%,
-        #08080850 70%,
-        #08080800 100%
-      );
     }
   }
 }
