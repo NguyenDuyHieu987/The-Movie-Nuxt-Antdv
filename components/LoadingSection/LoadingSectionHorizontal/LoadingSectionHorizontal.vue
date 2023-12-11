@@ -1,5 +1,5 @@
 <template>
-  <el-skeleton class="loading-section-horizontal" :loading="loading" animated>
+  <el-skeleton class="loading-section-horizontal" :loading="true" animated>
     <template #template>
       <div
         class="img-box"
@@ -8,7 +8,7 @@
         :key="index"
         :item="item"
       >
-        <el-skeleton-item class="skeleton-img ratio-16-9" />
+        <el-skeleton-item class="skeleton-img ratio-16-9" variant="image" />
       </div>
     </template>
     <template #default> <slot name="content" /> </template>

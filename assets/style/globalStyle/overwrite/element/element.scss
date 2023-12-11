@@ -21,8 +21,8 @@
 }
 
 .el-skeleton.is-animated {
-  --el-skeleton-color: rgba(40, 40, 40) !important;
-  --el-skeleton-to-color: rgba(32, 32, 32) !important;
+  --el-skeleton-color: #f0f2f5 !important;
+  --el-skeleton-to-color: #e6e8eb !important;
 
   .el-skeleton__item {
     animation-duration: 2s !important;
