@@ -356,7 +356,7 @@ getData();
 
 const handleRemoveFromList = async () => {
   if (
-    await utils.handelRemoveItemFromList(
+    await utils.handleRemoveItemFromList(
       props.item?.movie_id,
       props.item?.media_type
     )

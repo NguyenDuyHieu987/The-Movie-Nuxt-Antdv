@@ -27,6 +27,7 @@ export default defineStore('store', () => {
   const breadCrumbValue = ref<string>('');
   const loadingApp = ref<boolean>(false);
   const loadingUser = ref<boolean>(true);
+  const dataSearchHistory = ref<any[]>([]);
   const allGenres = ref<genre[]>([]);
   const allCountries = ref<country[]>([]);
   const allYears = ref<year[]>([]);
@@ -169,6 +170,7 @@ export default defineStore('store', () => {
     loadingApp,
     loadingUser,
     loadingAppInstance,
+    dataSearchHistory,
     allGenres,
     allCountries,
     allYears,

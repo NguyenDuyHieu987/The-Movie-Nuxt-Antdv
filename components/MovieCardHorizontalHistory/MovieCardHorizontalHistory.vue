@@ -225,7 +225,7 @@
                       <span>Đến trang xem phim</span>
                     </NuxtLink>
                   </el-dropdown-item>
-                  <el-dropdown-item key="add-list" @click="handelAddToList">
+                  <el-dropdown-item key="add-list" @click="handleAddToList">
                     <!-- <Icon
                             class="icon-material"
                             v-if="isAddToList"
@@ -475,11 +475,11 @@ const getData = async () => {
 
 getData();
 
-const handelAddToList = () => {
+const handleAddToList = () => {
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (
-      !utils.handelAddItemToList(dataMovie.value?.id, props.item.media_type)
+      !utils.handleAddItemToList(dataMovie.value?.id, props.item.media_type)
     ) {
       isAddToList.value = false;
     }
@@ -487,7 +487,7 @@ const handelAddToList = () => {
   } else {
     isAddToList.value = false;
     if (
-      !utils.handelRemoveItemFromList(
+      !utils.handleRemoveItemFromList(
         props.item?.movie_id,
         props.item?.media_type
       )

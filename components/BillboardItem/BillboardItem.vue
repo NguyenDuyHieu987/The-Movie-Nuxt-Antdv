@@ -184,7 +184,7 @@
           </a-button>
         </NuxtLink>
 
-        <div class="action-btn" @click="handelAddToList">
+        <div class="action-btn" @click="handleAddToList">
           <a-button size="large" type="text" class="add modern">
             <template #icon>
               <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
@@ -257,7 +257,7 @@ if (store.isLogin) {
     });
 }
 
-const handelAddToList = () => {
+const handleAddToList = () => {
   if (!store?.isLogin) {
     store.openRequireAuthDialog = true;
     return;
@@ -265,14 +265,14 @@ const handelAddToList = () => {
 
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (!utils.handelAddItemToList(props.item?.id, props.item?.media_type)) {
+    if (!utils.handleAddItemToList(props.item?.id, props.item?.media_type)) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
     if (
-      !utils.handelRemoveItemFromList(props.item?.id, props.item?.media_type)
+      !utils.handleRemoveItemFromList(props.item?.id, props.item?.media_type)
     ) {
       isAddToList.value = true;
     }

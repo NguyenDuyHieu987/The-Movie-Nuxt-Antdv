@@ -9,7 +9,7 @@ export function getHistory(
 
   if (!store.isLogin) return new Promise(() => {});
 
-  return makeRequest(`/history/get/${type}?skip=${skip}&limit=${limit}`);
+  return makeRequest(`/history/get-all/${type}?skip=${skip}&limit=${limit}`);
 }
 
 export function searchHistory(query: string, type: string = 'all') {
@@ -17,7 +17,7 @@ export function searchHistory(query: string, type: string = 'all') {
 }
 
 export function getItemHistory(movieId: string, media_type: string) {
-  return makeRequest(`/history/getitem/${media_type}/${movieId}`);
+  return makeRequest(`/history/get/${media_type}/${movieId}`);
 }
 
 export function add_update_History(params: any) {
@@ -28,7 +28,7 @@ export function add_update_History(params: any) {
   bodyFormData.append('percent', params.percent.toFixed(3));
   bodyFormData.append('seconds', params.seconds);
 
-  return makeRequest(`/history/additem`, {
+  return makeRequest(`/history/add`, {
     method: 'POST',
     data: bodyFormData,
   });
@@ -40,14 +40,14 @@ export function removeItemHistory(params: any) {
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
 
-  return makeRequest(`/history/removeitem`, {
+  return makeRequest(`/history/remove`, {
     method: 'DELETE',
     data: bodyFormData,
   });
 }
 
 export function removeAllItemHistory() {
-  return makeRequest(`/history/removeallitem`, {
+  return makeRequest(`/history/clear`, {
     method: 'DELETE',
   });
 }

@@ -217,7 +217,7 @@
                           <span>Đến trang xem phim</span>
                         </NuxtLink>
                       </a-menu-item>
-                      <a-menu-item key="add-list" @click="handelAddToList">
+                      <a-menu-item key="add-list" @click="handleAddToList">
                         <template #icon>
                           <!-- <Icon
                             class="icon-material"
@@ -469,11 +469,11 @@ const getData = async () => {
 onBeforeMount(() => {});
 getData();
 
-const handelAddToList = () => {
+const handleAddToList = () => {
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (
-      !utils.handelAddItemToList(dataMovie.value?.id, props.item.media_type)
+      !utils.handleAddItemToList(dataMovie.value?.id, props.item.media_type)
     ) {
       isAddToList.value = false;
     }
@@ -481,7 +481,7 @@ const handelAddToList = () => {
   } else {
     isAddToList.value = false;
     if (
-      !utils.handelRemoveItemFromList(
+      !utils.handleRemoveItemFromList(
         props.item?.movie_id,
         props.item?.media_type
       )

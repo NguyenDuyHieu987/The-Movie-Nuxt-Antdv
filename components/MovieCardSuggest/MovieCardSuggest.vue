@@ -132,7 +132,7 @@
             shape="circle"
             size="large"
             type="text"
-            @click.prevent="handelAddToList"
+            @click.prevent="handleAddToList"
           >
             <template #icon>
               <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
@@ -276,21 +276,21 @@ const getData = async () => {
 
 getData();
 
-const handelAddToList = (e: any) => {
+const handleAddToList = (e: any) => {
   if (!store?.isLogin) {
     store.openRequireAuthDialog = true;
     return;
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (!utils.handelAddItemToList(props.item?.id, props.item.media_type)) {
+    if (!utils.handleAddItemToList(props.item?.id, props.item.media_type)) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
     if (
-      !utils.handelRemoveItemFromList(props.item?.id, props.item?.media_type)
+      !utils.handleRemoveItemFromList(props.item?.id, props.item?.media_type)
     ) {
       isAddToList.value = true;
     }

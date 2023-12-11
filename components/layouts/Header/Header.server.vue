@@ -55,9 +55,15 @@
           </el-tooltip>
         </template>
       </a-input-search>
-      <div class="search-dropdown" :class="{ show: isFocusSearchInput }">
-        <div class="search-dropdown-container">hiếu</div>
-      </div>
+
+      <SearchDropdown
+        v-model:dataSearch="dataSearch"
+        v-model:dataSearchTopSearch="dataTopSearch"
+        v-model:dataSearchHistory="dataSearchHistory"
+        v-model:isShowSearchResults="isShowSearchResults"
+        v-model:isFocusSearchInput="isFocusSearchInput"
+        :searchQuery="valueInput"
+      />
     </div>
 
     <div class="right-header">
@@ -125,11 +131,12 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getDaTaSearch } from '~/services/search';
+import { getDaTaSearch, getDaTaSearchHistory } from '~/services/search';
 import { getImage } from '~/services/image';
-import DropdownAccount from './DropdownAcount/DropdownAcount.server.vue';
-import Notification from './Notification/Notification.server.vue';
-import SearchMobile from './SearchMobile/SearchMobile.server.vue';
+import DropdownAccount from './DropdownAcount/DropdownAcount.vue';
+import SearchDropdown from './SearchDropdown/SearchDropdown.vue';
+import Notification from './Notification/Notification.vue';
+import SearchMobile from './SearchMobile/SearchMobile.vue';
 // import SearchCard from '~/components/SearchCard/SearchCard.vue';
 import { storeToRefs } from 'pinia';
 import { MenuOutlined } from '@ant-design/icons-vue';
@@ -139,13 +146,35 @@ const { isLogin, loadingUser } = storeToRefs<any>(store);
 const router = useRouter();
 const route = useRoute();
 const dataSearch = ref<any[]>([]);
+const dataSearchHistory = ref<any[]>([]);
+const dataTopSearch = ref<any[]>([]);
 const page = ref<number>(1);
 const loadingSearch = ref<boolean>(false);
-const isOpenAutoComplete = ref<boolean>(true);
+const loadingSearchHistory = ref<boolean>(false);
+const loadingTopSearch = ref<boolean>(false);
+const isShowSearchResults = ref<boolean>(false);
 const isShowSearch = ref<boolean>(false);
 const debounce = ref<any>();
 const valueInput = ref<string>(route.query?.q);
 const isFocusSearchInput = ref<boolean>(false);
+
+const getData = async () => {
+  if (store.isLogin) {
+    await getDaTaSearchHistory(1, 10)
+      .then((response) => {
+        dataSearchHistory.value = response?.results;
+        store.dataSearchHistory = response?.results;
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {
+        loadingSearchHistory.value = false;
+      });
+  }
+};
+
+getData();
 
 onMounted(() => {
   isShowSearch.value = true;
@@ -201,35 +230,43 @@ watchEffect(() => {
 });
 
 const handleChangeInput = (query: string) => {
-  if (query.length > 0) {
+  if (query?.length > 0) {
     // loadingSearch.value = true;
-
-    // const url = new URL(location);
-    // url.searchParams.set('q', query);
-    // window.history.pushState({}, null, url);
 
     clearTimeout(debounce.value);
     debounce.value = setTimeout(async () => {
-      // await useAsyncData(`search/all/${query}`, () =>
-      //   getDaTaSearch(query, page.value)
-      // )
-      //   .then((response) => {
-      //     dataSearch.value = response.data.value.data?.results;
-      //     loadingSearch.value = false;
-      //   })
-      //   .catch((e) => {
-      //     loadingSearch.value = false;
-      //     if (axios.isCancel(e)) return;
-      //   });
+      await useAsyncData(`cache/search/all/${query}/${page.value}/10`, () =>
+        getDaTaSearch(query, page.value, 10)
+      )
+        .then((response) => {
+          dataSearch.value = response.data.value?.results;
 
-      navigateTo(
-        `/search?q=${query?.replaceAll(' ', '+').toLowerCase()}`
-        // query: { q: query?.replaceAll(' ', '+').toLowerCase() },
-      );
-    }, 700);
-  } else if (query.length == 0) {
-    navigateTo({ path: '/' });
+          if (
+            dataSearch.value.length > 0 &&
+            document.activeElement &&
+            isFocusSearchInput.value == false
+          ) {
+            isFocusSearchInput.value = true;
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loadingSearch.value = false;
+          isShowSearchResults.value = true;
+        });
+
+      // navigateTo(
+      //   `/search?q=${query?.replaceAll(' ', '+').toLowerCase()}`
+      //   // query: { q: query?.replaceAll(' ', '+').toLowerCase() },
+      // );
+    }, 50);
+    // }, 700);
+  } else {
+    // navigateTo({ path: '/' });
     dataSearch.value = [];
+    isShowSearchResults.value = false;
   }
 };
 
@@ -241,15 +278,34 @@ const handleSearch = (value: string) => {
     );
 
     // valueInput.value = '';
-    isOpenAutoComplete.value = false;
+    isFocusSearchInput.value = false;
   }
 };
 
-const handleFoucusSearchInput = () => {
+const handleFoucusSearchInput = async (e: any) => {
   isFocusSearchInput.value = true;
+
+  if (valueInput.value.length > 0 && dataSearch.value.length == 0) {
+    // loadingSearch.value = true;
+
+    await useAsyncData(
+      `cache/search/all/${valueInput.value}/${page.value}/10`,
+      () => getDaTaSearch(valueInput.value, page.value, 10)
+    )
+      .then((response) => {
+        dataSearch.value = response.data.value?.results;
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {
+        loadingSearch.value = false;
+        isShowSearchResults.value = true;
+      });
+  }
 };
 
-const handleBlurSearchInput = () => {
+const handleBlurSearchInput = (e: any) => {
   isFocusSearchInput.value = false;
 };
 </script>

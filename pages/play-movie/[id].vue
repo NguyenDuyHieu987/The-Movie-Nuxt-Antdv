@@ -86,7 +86,7 @@
 
             <div class="action">
               <div class="left">
-                <div class="action-btn" @click="handelAddToList">
+                <div class="action-btn" @click="handleAddToList">
                   <a-button type="text" class="modern add">
                     <template #icon>
                       <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
@@ -488,20 +488,20 @@ const onTimeUpdateVideoPlayer = (e: any) => {
   }
 };
 
-const handelAddToList = () => {
+const handleAddToList = () => {
   if (!store?.isLogin) {
     store.openRequireAuthDialog = true;
     return;
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (!utils.handelAddItemToList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handleAddItemToList(dataMovie.value?.id, 'movie')) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handleRemoveItemFromList(dataMovie.value?.id, 'movie')) {
       isAddToList.value = true;
     }
     return;

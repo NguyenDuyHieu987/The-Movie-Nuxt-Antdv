@@ -173,7 +173,7 @@
                       shape="circle"
                       size="large"
                       type="text"
-                      @click.prevent="handelAddToList"
+                      @click.prevent="handleAddToList"
                     >
                       <template #icon>
                         <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
@@ -749,7 +749,7 @@ const onClickPreviewModal = (e: any) => {
   }
 };
 
-const handelAddToList = (e: any) => {
+const handleAddToList = (e: any) => {
   if (!store?.isLogin) {
     store.openRequireAuthDialog = true;
     return;
@@ -758,7 +758,7 @@ const handelAddToList = (e: any) => {
   if (!isAddToList.value) {
     isAddToList.value = true;
     if (
-      !utils.handelAddItemToList(dataMovie.value?.id, props.item?.media_type)
+      !utils.handleAddItemToList(dataMovie.value?.id, props.item?.media_type)
     ) {
       isAddToList.value = false;
     }
@@ -766,7 +766,7 @@ const handelAddToList = (e: any) => {
   } else {
     isAddToList.value = false;
     if (
-      !utils.handelRemoveItemFromList(
+      !utils.handleRemoveItemFromList(
         dataMovie.value?.id,
         props.item?.media_type
       )

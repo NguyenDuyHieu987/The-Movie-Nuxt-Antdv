@@ -45,7 +45,7 @@
       <ControlPage
         v-if="searchData?.length"
         :page="page"
-        :total="totalPage"
+        :total="total"
         :pageSize="pageSize"
         :onChangePage="onChangePage"
       />
@@ -57,7 +57,7 @@
 import axios from 'axios';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
-import { getDaTaSearch } from '~/services/search';
+import { getDaTaSearch, addSearchHistory } from '~/services/search';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const store = useStore();
@@ -69,7 +69,7 @@ const searchDataTv = ref<any[]>([]);
 const activeTabSearch = ref<string>('all');
 const loading = ref<boolean>(false);
 const page = ref<number>(+route.query?.page || 1);
-const totalPage = ref<number>(100);
+const total = ref<number>(100);
 const pageSize = ref<number>(20);
 const internalInstance: any = getCurrentInstance();
 const searchQuery = computed<string>(
@@ -91,40 +91,53 @@ useSeoMeta({
   ogLocale: 'vi',
 });
 
-const getData = async () => {
-  // loading.value = true;
-
-  internalInstance.appContext.config.globalProperties.$Progress.start();
-
-  await useAsyncData(`search/all/${searchQuery.value}/${page.value}`, () =>
-    getDaTaSearch(searchQuery.value, page.value)
-  )
-    .then((response) => {
-      searchData.value = response.data.value?.results;
-      totalPage.value = response.data.value?.total;
-      pageSize.value = response.data.value?.page_size;
-      searchDataMovie.value = response.data.value?.movie;
-      searchDataTv.value = response.data.value?.tv;
-    })
-    .catch((e) => {
-      if (axios.isCancel(e)) return;
-    })
-    .finally(() => {
-      loading.value = false;
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
-    });
+const addSearchHistoryD = async () => {
+  if (store.isLogin && total.value > 0 && searchQuery.value.length > 0) {
+    await addSearchHistory(searchQuery.value)
+      .then((response) => {
+        if (response?.added) {
+          store.dataSearchHistory.unshift(response?.result);
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+  }
 };
 
-// getData();
+const getData = async () => {
+  if (searchQuery.value.length > 0) {
+    // loading.value = true;
+    internalInstance.appContext.config.globalProperties.$Progress.start();
+
+    await useAsyncData(`search/all/${searchQuery.value}/${page.value}`, () =>
+      getDaTaSearch(searchQuery.value, page.value)
+    )
+      .then((response) => {
+        searchData.value = response.data.value?.results;
+        total.value = response.data.value?.total;
+        pageSize.value = response.data.value?.page_size;
+        searchDataMovie.value = response.data.value?.movie;
+        searchDataTv.value = response.data.value?.tv;
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      })
+      .finally(() => {
+        loading.value = false;
+        internalInstance.appContext.config.globalProperties.$Progress.finish();
+      });
+  }
+};
 
 loading.value = true;
 
 const { data: searchDataCache, pending } = await useAsyncData(
-  `cache/search/all/${route.params.genre}/${page.value}`,
+  `cache/search/all/${searchQuery.value}/${page.value}/20`,
   () => getDaTaSearch(searchQuery.value, page.value),
   {
     // transform: (data: any) => {
-    //   totalPage.value = data?.total;
+    //   total.value = data?.total;
     //   pageSize.value = data?.page_size;
     //   searchDataMovie.value = data?.movie;
     //   searchDataTv.value = data?.tv;
@@ -137,7 +150,7 @@ const { data: searchDataCache, pending } = await useAsyncData(
 
 searchData.value = searchDataCache.value?.results;
 
-totalPage.value = searchDataCache.value?.total;
+total.value = searchDataCache.value?.total;
 pageSize.value = searchDataCache.value?.page_size;
 searchDataMovie.value = searchDataCache.value?.movie;
 searchDataTv.value = searchDataCache.value?.tv;
@@ -147,8 +160,14 @@ watch(
   () => route.query?.q,
   () => {
     getData();
+
+    addSearchHistoryD();
   }
 );
+
+onMounted(() => {
+  addSearchHistoryD();
+});
 
 const handleChangeType = (activeKey: any) => {
   switch (activeKey?.target?.value ? activeKey?.target?.value : activeKey) {

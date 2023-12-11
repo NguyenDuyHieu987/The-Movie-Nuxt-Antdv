@@ -89,7 +89,7 @@
                       </a-button>
                     </NuxtLink>
 
-                    <div class="action-btn" @click="handelAddToList">
+                    <div class="action-btn" @click="handleAddToList">
                       <a-button size="large" type="text" class="add modern">
                         <template #icon>
                           <!-- <Icon v-if="isAddToList" name="ic:baseline-check" />
@@ -535,20 +535,20 @@ useSeoMeta({
   ogLocale: 'vi',
 });
 
-const handelAddToList = () => {
+const handleAddToList = () => {
   if (!store.isLogin) {
     store.openRequireAuthDialog = true;
     return;
   }
   if (!isAddToList.value) {
     isAddToList.value = true;
-    if (!utils.handelAddItemToList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handleAddItemToList(dataMovie.value?.id, 'movie')) {
       isAddToList.value = false;
     }
     return;
   } else {
     isAddToList.value = false;
-    if (!utils.handelRemoveItemFromList(dataMovie.value?.id, 'movie')) {
+    if (!utils.handleRemoveItemFromList(dataMovie.value?.id, 'movie')) {
       isAddToList.value = true;
     }
     return;
