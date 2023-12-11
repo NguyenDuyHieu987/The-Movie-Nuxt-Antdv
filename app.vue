@@ -101,9 +101,6 @@ onMounted(() => {
     const windowWidth: number = screen.availWidth;
     const windowHeight: number = screen.availHeight;
 
-    console.log(screen.availWidth);
-    console.log(screen.availHeight);
-
     const bodyStyle = document.body.style as any;
 
     if (windowWidth <= 1000) {
