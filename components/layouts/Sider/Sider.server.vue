@@ -11,10 +11,7 @@
   >
     <header class="sider-header">
       <div class="user-header" v-if="isLogin">
-        <div
-          class="user-image-container"
-          v-if="!collapsed || openSiderBarFixed"
-        >
+        <div class="avatar-box" v-if="!collapsed || openSiderBarFixed">
           <NuxtImg
             class="avatar"
             :src="
@@ -45,7 +42,7 @@
             popper-class="popper-tooltip"
             placement="right"
           >
-            <div class="user-name-container">
+            <div class="user-name-text">
               <h4>
                 {{ userAccount?.username?.slice(0, 2).toUpperCase() }}
               </h4>

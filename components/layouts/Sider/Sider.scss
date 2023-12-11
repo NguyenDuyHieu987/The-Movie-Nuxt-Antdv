@@ -99,14 +99,14 @@
       justify-content: center;
       gap: 10px;
 
-      .user-image-container {
+      .avatar-box {
+        display: flex;
+        align-items: center;
+        justify-self: center;
         height: 35px;
         width: 35px;
         border-radius: 50%;
         overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-self: center;
 
         img {
           width: 100%;
@@ -115,7 +115,7 @@
         }
       }
 
-      .user-name-container {
+      .user-name-text {
         height: 35px;
         width: 35px;
         border-radius: 50%;

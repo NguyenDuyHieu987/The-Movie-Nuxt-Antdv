@@ -16,23 +16,39 @@
                 <div class="account-grid-row info-account">
                   <div class="row-label">
                     <span>Thông tin tài khoản</span>
-                    <Teleport to="#bottom-zone" :disabled="!responesive">
-                      <!-- <a-button
-                        class="delete-account-btn"
-                        type="text"
-                        @click="deleteAccount"
-                      >
-                        Xóa tài khoản
-                      </a-button> -->
 
-                      <a-button
-                        class="switch-account-btn click-active"
-                        type="text"
-                        @click="navigateTo('/login')"
-                      >
-                        Chuyển tài khoản
-                      </a-button>
-                    </Teleport>
+                    <div class="avatar-box">
+                      <NuxtImg
+                        class="avatar"
+                        :src="
+                          !isNaN(+userAccount?.avatar)
+                            ? getImage(
+                                `account${userAccount?.avatar}.jpg`,
+                                'user_avatar',
+                                'w-100'
+                              )
+                            : userAccount?.avatar
+                        "
+                        loading="lazy"
+                        alt=""
+                        preload
+                      />
+
+                      <div class="updload-avatar">
+                        <svg
+                          class="updload-avatar-icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="2rem"
+                          height="2rem"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M9 16h6v-6h4l-7-7l-7 7h4v6zm3-10.17L14.17 8H13v6h-2V8H9.83L12 5.83zM5 18h14v2H5z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                   <div class="row-content">
                     <div class="row-content-item username">
@@ -155,13 +171,35 @@
               </section>
 
               <div id="bottom-zone" class="bottom-zone">
-                <a-button
-                  class="logout-btn click-active"
-                  type="text"
-                  @click="handleLogout"
-                >
-                  <span>Đăng xuất</span>
-                </a-button>
+                <div class="left">
+                  <!-- <Teleport to="#bottom-zone" :disabled="!responesive"> -->
+                  <!-- <a-button
+                          class="delete-account-btn"
+                          type="text"
+                          @click="deleteAccount"
+                        >
+                          Xóa tài khoản
+                        </a-button> -->
+
+                  <a-button
+                    class="switch-account-btn click-active"
+                    type="text"
+                    @click="navigateTo('/login')"
+                  >
+                    Chuyển tài khoản
+                  </a-button>
+                  <!-- </Teleport> -->
+                </div>
+
+                <div class="right">
+                  <a-button
+                    class="logout-btn click-active"
+                    type="text"
+                    @click="handleLogout"
+                  >
+                    <span>Đăng xuất</span>
+                  </a-button>
+                </div>
               </div>
             </div>
           </Transition>
@@ -179,6 +217,7 @@ import RequireAuth from '~/components/RequireAuth/RequireAuth.server.vue';
 import { storeToRefs } from 'pinia';
 import { useBreakpoints } from '@vueuse/core';
 import { ChangeFullname } from '~/services/account';
+import { getImage } from '~/services/image';
 import {
   CheckCircleFilled,
   CloseCircleFilled,

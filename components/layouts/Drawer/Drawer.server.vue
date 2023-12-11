@@ -29,7 +29,7 @@
     </template>
 
     <header class="user-header">
-      <div class="user-image-container" v-if="!collapsed && isLogin">
+      <div class="avatar-box" v-if="!collapsed && isLogin">
         <NuxtImg
           class="avatar"
           :src="
@@ -47,7 +47,7 @@
         />
       </div>
 
-      <h4>
+      <h4 class="user-name-text">
         {{ userAccount?.username }}
       </h4>
     </header>
@@ -87,7 +87,7 @@
       </template>
 
       <header class="user-header">
-        <div class="user-image-container" v-if="!collapsed && isLogin">
+        <div class="avatar-box" v-if="!collapsed && isLogin">
           <nuxt-img
             class="avatar"
             :src="
