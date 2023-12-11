@@ -9,6 +9,7 @@
         // SwiperVirtual,
 
         Navigation,
+        Virtual,
       ]"
       :breakpoints="responsive"
       :space-between="gap || 7"
@@ -16,6 +17,7 @@
       :slides-per-group="5"
       :rewind="true"
       :speed="500"
+      :virtual="true"
       effect="creative"
       :navigation="{
         prevEl: '.swiper-button-prev',
@@ -66,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { Navigation } from 'swiper/modules';
+import { Navigation, Virtual } from 'swiper/modules';
 
 defineProps<{
   data: any[];
