@@ -781,8 +781,13 @@ svg {
   .swiper-button-next {
     display: flex;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    // top: 50%;
+    // transform: translateY(-50%);
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    height: 100%;
     width: 30px;
     color: var(--text-color);
     z-index: 1;
