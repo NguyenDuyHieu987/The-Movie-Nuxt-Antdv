@@ -97,6 +97,53 @@ const onBackTop = () => {
 
 onMounted(() => {
   // window.history.scrollRestoration = 'auto';
+  screen.orientation.addEventListener('change', () => {
+    const windowWidth: number = screen.availWidth;
+    const windowHeight: number = screen.availHeight;
+
+    console.log(screen.availWidth);
+    console.log(screen.availHeight);
+
+    const bodyStyle = document.body.style as any;
+
+    if (windowWidth <= 1000) {
+      const zoomLevel = windowWidth / windowHeight;
+
+      bodyStyle.zoom = zoomLevel;
+    } else {
+      bodyStyle.zoom = 1;
+    }
+  });
+
+  window.addEventListener('orientationchange', (e: any) => {
+    // // Lấy kích thước của cửa sổ trình duyệt
+    const windowWidth: number = screen.availWidth;
+    const windowHeight: number = screen.availHeight;
+
+    const bodyStyle = document.body.style as any;
+
+    if (windowWidth <= 1000) {
+      // // Tính toán tỉ lệ zoom tương ứng (có thể điều chỉnh theo ý muốn)
+      // Ví dụ: zoom nhỏ khi chiều rộng cửa sổ dưới 1000px
+
+      const zoomLevel = windowWidth / windowHeight;
+
+      bodyStyle.zoom = zoomLevel;
+    } else {
+      bodyStyle.zoom = 1;
+    }
+  });
+
+  // new ResizeObserver((entries) => {
+  //   console.log(entries);
+  //   for (const entry of entries) {
+  //     console.log(
+  //       'Kích thước đã thay đổi:',
+  //       entry.target.clientWidth,
+  //       entry.target.clientHeight
+  //     );
+  //   }
+  // }).observe(document.body);
 });
 </script>
 
