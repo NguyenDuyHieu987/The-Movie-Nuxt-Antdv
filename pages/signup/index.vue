@@ -225,7 +225,7 @@ import VerifySignUpForm from '~/components/VerifyForm/VerifySignUpForm/VerifySig
 definePageMeta({
   layout: 'auth',
   pageTransition: {
-    name: 'slide-left',
+    name: 'slide-top',
   },
 });
 

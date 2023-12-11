@@ -3,21 +3,21 @@
     <div class="center-page">
       <div v-if="!store.loadingUser">
         <div v-if="isLogin" class="your-account-container">
-          <!-- <Transition appear name="slide-bottom">
-            <div v-show="showAnimation"> -->
-          <div class="your-account-header">
-            <h1>Tài khoản của bạn</h1>
-            <div class="join-since">
-              <span>{{ 'Tham gia từ ' + joinSince }} </span>
-            </div>
-          </div>
+          <Transition appear name="slide-bottom">
+            <div v-show="showAnimation">
+              <div class="your-account-header">
+                <h1>Tài khoản của bạn</h1>
+                <div class="join-since">
+                  <span>{{ 'Tham gia từ ' + joinSince }} </span>
+                </div>
+              </div>
 
-          <section class="account-grid">
-            <div class="account-grid-row info-account">
-              <div class="row-label">
-                <span>Thông tin tài khoản</span>
-                <Teleport to="#bottom-zone" :disabled="!responesive">
-                  <!-- <a-button
+              <section class="account-grid">
+                <div class="account-grid-row info-account">
+                  <div class="row-label">
+                    <span>Thông tin tài khoản</span>
+                    <Teleport to="#bottom-zone" :disabled="!responesive">
+                      <!-- <a-button
                         class="delete-account-btn"
                         type="text"
                         @click="deleteAccount"
@@ -25,114 +25,146 @@
                         Xóa tài khoản
                       </a-button> -->
 
-                  <a-button
-                    class="switch-account-btn click-active"
-                    type="text"
-                    @click="navigateTo('/login')"
-                  >
-                    Chuyển tài khoản
-                  </a-button>
-                </Teleport>
-              </div>
-              <div class="row-content">
-                <div class="row-content-item">
-                  <div class="left">
-                    <span class="label">Tài khoản: </span>
-                    <span> {{ userAccount?.username }}</span>
+                      <a-button
+                        class="switch-account-btn click-active"
+                        type="text"
+                        @click="navigateTo('/login')"
+                      >
+                        Chuyển tài khoản
+                      </a-button>
+                    </Teleport>
                   </div>
-                </div>
+                  <div class="row-content">
+                    <div class="row-content-item username">
+                      <div class="left">
+                        <span class="label">Tài khoản: </span>
+                        <span> {{ userAccount?.username }}</span>
+                      </div>
+                    </div>
 
-                <div class="row-content-item">
-                  <div class="left">
-                    <span class="label">Họ và tên: </span>
-                    <span> {{ userAccount?.full_name }}</span>
-                  </div>
-                </div>
+                    <div class="row-content-item full-name">
+                      <div class="left">
+                        <span class="label">Họ và tên: </span>
+                        <span> {{ userAccount?.full_name }}</span>
 
-                <div class="row-content-item">
-                  <div class="left">
-                    <span class="label">Email: </span>
-                    <span>{{ userAccount?.email }}</span>
-                  </div>
-                  <div v-if="userAccount?.auth_type == 'email'" class="right">
-                    <NuxtLink
-                      class="click-active"
-                      to="/YourAccount/ChangeEmail"
+                        <svg
+                          v-if="!isFullNameditable"
+                          @click="handleClickEditRowItem"
+                          class="edit-icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1.7rem"
+                          height="1.7rem"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="m14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
+                          />
+                        </svg>
+
+                        <svg
+                          v-else
+                          @click="handleClickSaveRowItem"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1.7rem"
+                          height="1.7rem"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+
+                    <div class="row-content-item">
+                      <div class="left">
+                        <span class="label">Email: </span>
+                        <span>{{ userAccount?.email }}</span>
+                      </div>
+                      <div
+                        v-if="userAccount?.auth_type == 'email'"
+                        class="right"
+                      >
+                        <NuxtLink
+                          class="click-active"
+                          to="/YourAccount/ChangeEmail"
+                        >
+                          Thay đổi email
+                        </NuxtLink>
+                      </div>
+                    </div>
+
+                    <div
+                      v-if="userAccount?.auth_type == 'email'"
+                      class="row-content-item password"
                     >
-                      Thay đổi email
-                    </NuxtLink>
+                      <div class="left">
+                        <span class="label">Mật khẩu: </span>
+                        <span>**********</span>
+                      </div>
+                      <div class="right">
+                        <NuxtLink
+                          class="click-active"
+                          to="/YourAccount/ChangePassword"
+                        >
+                          Thay đổi mật khẩu
+                        </NuxtLink>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div
-                  v-if="userAccount?.auth_type == 'email'"
-                  class="row-content-item password"
+                <div class="account-grid-row">
+                  <div class="row-label">Thông tin gói dịch vụ</div>
+                  <div class="row-content">
+                    <div class="row-content-item">
+                      <div class="left">
+                        <span>Miên phí</span>
+                      </div>
+                      <div class="right">
+                        <a-button
+                          class="upgrade-btn click-active"
+                          type="text"
+                          @click="navigateTo('/upgrade/plans')"
+                        >
+                          Nâng cấp
+                        </a-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="account-grid-row">
+                  <div class="row-label">Lịch sử giao dịch</div>
+                  <div class="row-content">
+                    <div class="row-content-item">
+                      <div class="left">
+                        <span>Không có giao dịch nào gần đây</span>
+                      </div>
+
+                      <div class="right">
+                        <NuxtLink class="click-active" to="/YourAccount/bills">
+                          Xem thêm
+                        </NuxtLink>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <div id="bottom-zone" class="bottom-zone">
+                <a-button
+                  class="logout-btn click-active"
+                  type="text"
+                  @click="handleLogout"
                 >
-                  <div class="left">
-                    <span class="label">Mật khẩu: </span>
-                    <span>**********</span>
-                  </div>
-                  <div class="right">
-                    <NuxtLink
-                      class="click-active"
-                      to="/YourAccount/ChangePassword"
-                    >
-                      Thay đổi mật khẩu
-                    </NuxtLink>
-                  </div>
-                </div>
+                  <span>Đăng xuất</span>
+                </a-button>
               </div>
             </div>
-
-            <div class="account-grid-row">
-              <div class="row-label">Thông tin gói dịch vụ</div>
-              <div class="row-content">
-                <div class="row-content-item">
-                  <div class="left">
-                    <span>Miên phí</span>
-                  </div>
-                  <div class="right">
-                    <a-button
-                      class="upgrade-btn click-active"
-                      type="text"
-                      @click="navigateTo('/upgrade/plans')"
-                    >
-                      Nâng cấp
-                    </a-button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="account-grid-row">
-              <div class="row-label">Lịch sử giao dịch</div>
-              <div class="row-content">
-                <div class="row-content-item">
-                  <div class="left">
-                    <span>Không có hóa đơn nào gần đây</span>
-                  </div>
-
-                  <div class="right">
-                    <NuxtLink class="click-active" to="/YourAccount/bills">
-                      Xem thêm
-                    </NuxtLink>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <div id="bottom-zone" class="bottom-zone">
-            <a-button
-              class="logout-btn click-active"
-              type="text"
-              @click="handleLogout"
-            >
-              <span>Đăng xuất</span>
-            </a-button>
-          </div>
-          <!-- </div>
-          </Transition> -->
+          </Transition>
         </div>
 
         <RequireAuth v-else />
@@ -142,9 +174,16 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
 import RequireAuth from '~/components/RequireAuth/RequireAuth.server.vue';
 import { storeToRefs } from 'pinia';
 import { useBreakpoints } from '@vueuse/core';
+import { ChangeFullname } from '~/services/account';
+import {
+  CheckCircleFilled,
+  CloseCircleFilled,
+  QuestionCircleOutlined,
+} from '@ant-design/icons-vue';
 
 definePageMeta({
   layout: 'service',
@@ -160,6 +199,8 @@ const breakPoints = useBreakpoints({
   responesive: 650,
 });
 const showAnimation = ref<boolean>(false);
+const isFullNameditable = ref<boolean>(false);
+const loadingEditRowItem = ref<boolean>(false);
 
 const responesive = breakPoints.smallerOrEqual('responesive');
 
@@ -203,6 +244,113 @@ const deleteAccount = () => {
 
 const handleLogout = () => {
   store.logOut();
+};
+
+const handleClickEditRowItem = (e: any) => {
+  const rowItem: HTMLElement = e.target?.closest('.row-content-item');
+  const rowItemLabel: HTMLElement | null = rowItem?.querySelector(
+    '.row-content-item span+span'
+  );
+
+  const isContenteditable = rowItemLabel?.getAttribute('contenteditable');
+
+  if (isContenteditable == null || isContenteditable == 'false') {
+    rowItemLabel?.setAttribute('contenteditable', 'true');
+    rowItemLabel?.focus();
+    isFullNameditable.value = true;
+  } else {
+    rowItemLabel?.setAttribute('contenteditable', 'false');
+    isFullNameditable.value = false;
+  }
+};
+
+const handleClickSaveRowItem = (e: any) => {
+  const rowItem: HTMLElement = e.target?.closest('.row-content-item');
+  const rowItemLabel: HTMLElement | null = rowItem?.querySelector(
+    '.row-content-item span+span'
+  );
+
+  if (loadingEditRowItem.value) return;
+
+  const newFullName: string | undefined = rowItemLabel?.innerText.trim();
+
+  if (!newFullName || newFullName.length == 0) {
+    ElNotification.error({
+      title: 'Thông báo!',
+      message: 'Họ và tên không được bỏ trống.',
+      icon: () =>
+        h(QuestionCircleOutlined, {
+          style: 'color: #f1ac09',
+        }),
+    });
+
+    rowItemLabel!.innerText = store.userAccount!.full_name;
+
+    isFullNameditable.value = false;
+    rowItemLabel?.setAttribute('contenteditable', 'false');
+
+    return;
+  }
+
+  if (newFullName == store.userAccount!.full_name) {
+    isFullNameditable.value = false;
+    rowItemLabel?.setAttribute('contenteditable', 'false');
+    rowItemLabel!.innerText = newFullName;
+
+    return;
+  }
+
+  loadingEditRowItem.value = true;
+
+  ChangeFullname(newFullName)
+    .then((response) => {
+      // console.log(response);
+      if (response?.success == true) {
+        ElNotification.success({
+          title: 'Thành công!',
+          message: 'Thay đổi họ và tên thành công.',
+          icon: () =>
+            h(CheckCircleFilled, {
+              style: 'color: green',
+            }),
+        });
+
+        store.userAccount!.full_name = newFullName;
+
+        utils.localStorage.setWithExpiry(
+          'user_token',
+          response.headers.get('Authorization'),
+          24
+        );
+      } else {
+        ElNotification.error({
+          title: 'Thất bại!',
+          message: 'Thay đổi họ và tên thất bại.',
+          icon: () =>
+            h(CloseCircleFilled, {
+              style: 'color: red',
+            }),
+        });
+      }
+    })
+    .catch((e) => {
+      ElNotification.error({
+        title: 'Thất bại!',
+        message: 'Some thing went wrong.',
+        icon: () =>
+          h(CloseCircleFilled, {
+            style: 'color: red',
+          }),
+      });
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      isFullNameditable.value = false;
+      rowItemLabel?.setAttribute('contenteditable', 'false');
+      rowItemLabel!.innerText = newFullName;
+
+      loadingEditRowItem.value = false;
+    });
 };
 </script>
 

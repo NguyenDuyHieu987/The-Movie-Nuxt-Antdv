@@ -74,13 +74,14 @@ export function ChangeEmail(params: {
   });
 }
 
-export function ChangeFullname(params: { jwtVerifyFullname: string }) {
+export function ChangeFullname(newfullName: string) {
   const bodyFormData = new FormData();
-  bodyFormData.append('new_fullname', params.jwtVerifyFullname);
+  bodyFormData.append('new_full_name', newfullName);
 
   return makeRequest(`/account/change-fullname`, {
     method: 'POST',
     data: bodyFormData,
+    getResponseHeaders: true,
   });
 }
 

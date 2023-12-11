@@ -189,7 +189,7 @@ import {
 definePageMeta({
   layout: 'auth',
   pageTransition: {
-    name: 'slide-left',
+    name: 'slide-top',
   },
 });
 

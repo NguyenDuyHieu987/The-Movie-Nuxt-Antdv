@@ -105,11 +105,43 @@
             }
 
             .left {
+              display: flex;
+              align-items: center;
+
               span.label {
                 display: inline-block;
                 width: 85px;
                 color: var(--text-color-gray);
                 cursor: default;
+
+                & + span[contenteditable='true'] {
+                  padding: 0px 5px;
+                }
+              }
+
+              svg {
+                fill: var(--link-text-color);
+                cursor: pointer;
+                margin-left: 10px;
+                width: 1.7rem;
+                height: 1.7rem;
+                transition: opacity 0.15s;
+
+                &.edit-icon {
+                  opacity: 0;
+                }
+
+                &:active {
+                  opacity: 0.8 !important;
+                }
+              }
+
+              &:hover {
+                svg {
+                  &.edit-icon {
+                    opacity: 1;
+                  }
+                }
               }
             }
 
