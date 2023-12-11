@@ -223,7 +223,7 @@
 
   .carousel-preview-list {
     position: absolute;
-    bottom: -5%;
+    bottom: -3%;
     right: var(--padding-home);
     z-index: 2;
     width: 30%;
@@ -291,6 +291,7 @@
 
       .info {
         display: flex;
+        justify-content: center;
         margin-top: 5px;
         color: var(--text-color-gray);
         font-size: 0.8vw;

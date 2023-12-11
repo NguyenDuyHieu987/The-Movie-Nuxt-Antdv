@@ -41,8 +41,9 @@
         khóa: ${searchQuery}`"
       />
 
+      <!-- && activeTabSearch == 'all' -->
       <ControlPage
-        v-if="searchData?.length && activeTabSearch == 'all'"
+        v-if="searchData?.length"
         :page="page"
         :total="totalPage"
         :pageSize="pageSize"
