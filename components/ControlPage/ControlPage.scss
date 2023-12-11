@@ -75,14 +75,18 @@
     .ant-pagination-prev,
     .ant-pagination-next {
       margin: 0px;
+      font-size: 1.3rem;
 
       button {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 40px;
-        width: 40px;
+        width: 50px;
         line-height: 40px;
+        background-color: transparent;
+        border: none;
+        outline: none;
       }
 
       .ant-pagination-item-link {
@@ -124,7 +128,8 @@
         transition: all 0s;
 
         &:hover {
-          color: inherit;
+          // color: inherit;
+          color: var(--link-text-color);
         }
       }
 
@@ -135,6 +140,12 @@
         padding: 0px 2px;
         border-radius: 2px;
         font-weight: normal;
+
+        &:hover {
+          a {
+            color: inherit;
+          }
+        }
 
         a {
         }

@@ -28,6 +28,7 @@
       :loading="loadingSearch"
       @change="handleChangeInput(valueInput)"
       @search="handleSearch"
+      @focus="handleFoucusSearchInput"
     >
       <template #enterButton>
         <el-tooltip
@@ -236,6 +237,8 @@ const handleSearch = (value: string) => {
     isOpenAutoComplete.value = false;
   }
 };
+
+const handleFoucusSearchInput = () => {};
 </script>
 
 <style lang="scss" src="./Header.scss"></style>

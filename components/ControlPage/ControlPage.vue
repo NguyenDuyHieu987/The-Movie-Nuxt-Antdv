@@ -8,7 +8,13 @@
       :showSizeChanger="false"
       :responsive="true"
       @change="onChangePage"
-    />
+    >
+      <template #itemRender="{ type, originalElement }">
+        <button v-if="type === 'prev'">Trước</button>
+        <button v-else-if="type === 'next'">Sau</button>
+        <component :is="originalElement" v-else></component>
+      </template>
+    </a-pagination>
     <!-- :show-total="(total) => `Tổng ${total}`" -->
 
     <!-- <el-pagination
