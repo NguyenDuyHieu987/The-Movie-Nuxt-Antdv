@@ -8,7 +8,8 @@
         :key="index"
         :item="item"
       >
-        <el-skeleton-item class="skeleton-img ratio-2-3" variant="image" />
+        <!-- variant="image" -->
+        <el-skeleton-item class="skeleton-img ratio-2-3" />
       </div>
     </template>
     <template #default> <slot name="content" /> </template>

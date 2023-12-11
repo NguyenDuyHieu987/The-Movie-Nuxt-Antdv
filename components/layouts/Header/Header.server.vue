@@ -18,41 +18,47 @@
       </div>
     </div>
 
-    <a-input-search
-      v-model:value="valueInput"
-      class="search-header"
-      placeholder="Nhập tên phim để tìm kiếm..."
-      size="large"
-      allowClear
-      bordered
-      :loading="loadingSearch"
-      @change="handleChangeInput(valueInput)"
-      @search="handleSearch"
-      @focus="handleFoucusSearchInput"
-    >
-      <template #enterButton>
-        <el-tooltip
-          content="Tìm kiếm"
-          effect="dark"
-          placement="bottom"
-          popper-class="popper-tooltip"
-          :offset="22"
-        >
-          <svg
-            class="fa-magnifying-glass"
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.8rem"
-            height="1.8rem"
-            viewBox="0 0 512 512"
+    <div class="search-header-box">
+      <a-input-search
+        v-model:value="valueInput"
+        class="search-header"
+        placeholder="Nhập tên phim để tìm kiếm..."
+        size="large"
+        allowClear
+        bordered
+        :loading="loadingSearch"
+        @change="handleChangeInput(valueInput)"
+        @search="handleSearch"
+        @focus="handleFoucusSearchInput"
+        @blur="handleBlurSearchInput"
+      >
+        <template #enterButton>
+          <el-tooltip
+            content="Tìm kiếm"
+            effect="dark"
+            placement="bottom"
+            popper-class="popper-tooltip"
+            :offset="22"
           >
-            <path
-              fill="currentColor"
-              d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
-            />
-          </svg>
-        </el-tooltip>
-      </template>
-    </a-input-search>
+            <svg
+              class="fa-magnifying-glass"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.8rem"
+              height="1.8rem"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="currentColor"
+                d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288z"
+              />
+            </svg>
+          </el-tooltip>
+        </template>
+      </a-input-search>
+      <div class="search-dropdown" :class="{ show: isFocusSearchInput }">
+        <div class="search-dropdown-container">hiếu</div>
+      </div>
+    </div>
 
     <div class="right-header">
       <el-skeleton :loading="loadingUser" animated>
@@ -139,6 +145,7 @@ const isOpenAutoComplete = ref<boolean>(true);
 const isShowSearch = ref<boolean>(false);
 const debounce = ref<any>();
 const valueInput = ref<string>(route.query?.q);
+const isFocusSearchInput = ref<boolean>(false);
 
 onMounted(() => {
   isShowSearch.value = true;
@@ -238,7 +245,13 @@ const handleSearch = (value: string) => {
   }
 };
 
-const handleFoucusSearchInput = () => {};
+const handleFoucusSearchInput = () => {
+  isFocusSearchInput.value = true;
+};
+
+const handleBlurSearchInput = () => {
+  isFocusSearchInput.value = false;
+};
 </script>
 
 <style lang="scss" src="./Header.scss"></style>

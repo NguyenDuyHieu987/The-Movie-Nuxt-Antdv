@@ -1,6 +1,6 @@
 <template>
   <div class="suggest">
-    <div class="similar-section">
+    <section class="similar-section">
       <h2 class="gradient-title-default" v-show="dataSimilar?.length">
         <span>Phim tương tự</span>
       </h2>
@@ -17,9 +17,9 @@
           </SwiperSlide>
         </template>
       </SwiperCarouselGroup>
-    </div>
+    </section>
 
-    <div class="recommend-section">
+    <section class="recommend-section">
       <h2 class="gradient-title-default" v-show="dataRecommend?.length">
         <span>Có thể bạn quan tâm</span>
       </h2>
@@ -36,7 +36,7 @@
           </SwiperSlide>
         </template>
       </SwiperCarouselGroup>
-    </div>
+    </section>
   </div>
 </template>
 
