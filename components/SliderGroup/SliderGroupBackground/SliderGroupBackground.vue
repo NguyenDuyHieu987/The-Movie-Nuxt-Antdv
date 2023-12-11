@@ -12,7 +12,12 @@
       <!-- <Swiper
         class="slider-group-background-list"
         ref="slider"
-        :modules="[SwiperFreeMode, SwiperScrollbar]"
+        :modules="[
+          // SwiperFreeMode,
+          // SwiperScrollbar,
+          Scrollbar,
+          FreeMode,
+        ]"
         :speed="500"
         :slides-per-view="'auto'"
         :space-between="15"
@@ -57,8 +62,9 @@
 </template>
 
 <script setup lang="ts">
+// import { Scrollbar, FreeMode } from 'swiper/modules';
+// import 'swiper/css/scrollbar';
 import { getImage } from '~/services/image';
-import 'swiper/css/scrollbar';
 
 const props = defineProps<{
   data: any[];

@@ -61,7 +61,13 @@
             <div class="filter-label">Thể loại</div>
             <Swiper
               class="filter-options"
-              :modules="[SwiperFreeMode, SwiperNavigation]"
+              :modules="[
+                //  SwiperFreeMode,
+                //  SwiperNavigation
+
+                Navigation,
+                FreeMode,
+              ]"
               :speed="500"
               :slides-per-view="'auto'"
               :slidesPerGroup="5"
@@ -130,7 +136,13 @@
             <div class="filter-label">Năm</div>
             <Swiper
               class="filter-options"
-              :modules="[SwiperFreeMode, SwiperNavigation]"
+              :modules="[
+                //  SwiperFreeMode,
+                //  SwiperNavigation
+
+                Navigation,
+                FreeMode,
+              ]"
               :speed="500"
               :slides-per-view="'auto'"
               :slidesPerGroup="5"
@@ -199,7 +211,13 @@
             <div class="filter-label">Quốc gia</div>
             <Swiper
               class="filter-options"
-              :modules="[SwiperFreeMode, SwiperNavigation]"
+              :modules="[
+                //  SwiperFreeMode,
+                //  SwiperNavigation
+
+                Navigation,
+                FreeMode,
+              ]"
               :slidesPerGroup="5"
               :speed="500"
               :slides-per-view="'auto'"
@@ -290,6 +308,7 @@
 <script setup lang="ts">
 import { getAllSortBy } from '~/services/sortby';
 import { CaretRightFilled } from '@ant-design/icons-vue';
+import { Navigation, FreeMode } from 'swiper/modules';
 import type { genre, country, year, sortby, formfilter } from '@/types';
 
 const props = defineProps<{

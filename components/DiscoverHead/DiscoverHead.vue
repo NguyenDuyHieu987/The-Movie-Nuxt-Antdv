@@ -3,7 +3,13 @@
     <div class="discover-head-wrapper">
       <Swiper
         class="filter-swiper genres"
-        :modules="[SwiperFreeMode, SwiperNavigation]"
+        :modules="[
+          // SwiperFreeMode,
+          // SwiperNavigation,
+
+          Navigation,
+          FreeMode,
+        ]"
         :speed="500"
         :slides-per-view="'auto'"
         :slidesPerGroup="5"
@@ -51,6 +57,8 @@
 </template>
 
 <script setup lang="ts">
+import { Navigation, FreeMode } from 'swiper/modules';
+
 const isFixed = ref<boolean>(false);
 
 onMounted(() => {

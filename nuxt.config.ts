@@ -145,6 +145,7 @@ export default defineNuxtConfig({
   },
   swiper: {
     // modules: ['navigation', 'virtual', 'free-mode', 'scrollbar', 'autoplay'],
+    modules: [],
     styleLang: 'css',
   },
   gtag: {

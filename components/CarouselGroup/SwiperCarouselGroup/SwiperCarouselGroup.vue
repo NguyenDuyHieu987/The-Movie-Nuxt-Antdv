@@ -5,8 +5,10 @@
       :class="cardMode || 'horizontal'"
       :modules="[
         // SwiperAutoplay,
-        SwiperNavigation,
+        // SwiperNavigation,
         // SwiperVirtual,
+
+        Navigation,
       ]"
       :breakpoints="responsive"
       :space-between="gap || 7"
@@ -64,6 +66,8 @@
 </template>
 
 <script setup lang="ts">
+import { Navigation } from 'swiper/modules';
+
 defineProps<{
   data: any[];
   responsive: any;
