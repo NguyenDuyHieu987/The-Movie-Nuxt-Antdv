@@ -278,7 +278,7 @@ const getData = async () => {
   // await nextTick();
 
   // await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
-  getTvAiringToday(1)
+  await getTvAiringToday(1)
     .then((response) => {
       airingTodays.value = response?.results.slice(0, 12);
     })
@@ -290,7 +290,7 @@ const getData = async () => {
     });
 
   // await useAsyncData(`tv/ontheair/1`, () => getTvOntheAir(2))
-  getTvOntheAir(2)
+  await getTvOntheAir(2)
     .then((response) => {
       onTheAirs.value = response?.results.slice(0, 12);
     })
@@ -302,7 +302,7 @@ const getData = async () => {
     });
 
   // await useAsyncData('tv/popular/1', () => getTvPopular(3))
-  getTvPopular(3)
+  await getTvPopular(3)
     .then((response) => {
       populars.value = response?.results.slice(0, 12);
     })
@@ -314,7 +314,7 @@ const getData = async () => {
     });
 
   // await useAsyncData('tv/toprated/1', () => getTvTopRated(4))
-  getTvTopRated(4)
+  await getTvTopRated(4)
     .then((response) => {
       topRateds.value = response?.results.slice(0, 12);
     })

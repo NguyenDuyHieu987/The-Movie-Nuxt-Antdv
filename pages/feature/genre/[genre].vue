@@ -328,7 +328,7 @@ const getData = async () => {
   //       type: 'nowplaying',
   //     })
   // )
-  FilterMovieSlug({
+  await FilterMovieSlug({
     ...formFilter.value,
     type: 'nowplaying',
   })
@@ -353,7 +353,7 @@ const getData = async () => {
   //       type: 'popular',
   //     })
   // )
-  FilterMovieSlug({
+  await FilterMovieSlug({
     ...formFilter.value,
     type: 'popular',
   })
@@ -378,7 +378,7 @@ const getData = async () => {
   //       type: 'upcoming',
   //     })
   // )
-  FilterMovieSlug({
+  await FilterMovieSlug({
     ...formFilter.value,
     type: 'upcoming',
   })
@@ -403,7 +403,7 @@ const getData = async () => {
   //       type: 'toprated',
   //     })
   // )
-  FilterMovieSlug({
+  await FilterMovieSlug({
     ...formFilter.value,
     type: 'toprated',
   })

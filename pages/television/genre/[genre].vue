@@ -316,7 +316,7 @@ const getData = async () => {
   //   }}`,
   //   () => FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
   // )
-  FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
+  await FilterTvSlug({ ...formFilter.value, type: 'airingtoday' })
     .then((response) => {
       airingTodays.value = response?.results.slice(0, 12);
     })
@@ -334,7 +334,7 @@ const getData = async () => {
   //   }}`,
   //   () => FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
   // )
-  FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
+  await FilterTvSlug({ ...formFilter.value, type: 'ontheair' })
     .then((response) => {
       onTheAirs.value = response?.results.slice(0, 12);
     })
@@ -352,7 +352,7 @@ const getData = async () => {
   //   }}`,
   //   () => FilterTvSlug({ ...formFilter.value, type: 'popular' })
   // )
-  FilterTvSlug({ ...formFilter.value, type: 'popular' })
+  await FilterTvSlug({ ...formFilter.value, type: 'popular' })
     .then((response) => {
       populars.value = response?.results.slice(0, 12);
     })
@@ -370,7 +370,7 @@ const getData = async () => {
   //   }}`,
   //   () => FilterTvSlug({ ...formFilter.value, type: 'toprated' })
   // )
-  FilterTvSlug({ ...formFilter.value, type: 'toprated' })
+  await FilterTvSlug({ ...formFilter.value, type: 'toprated' })
     .then((response) => {
       topRateds.value = response?.results.slice(0, 12);
     })

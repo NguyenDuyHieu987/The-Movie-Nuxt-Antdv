@@ -474,51 +474,6 @@ const responsiveHorizoltal = computed<any>((): any => ({
   },
 }));
 
-// const responsiveVertical = computed<any>((): any => ({
-//   0: {
-//     slidesPerView: 2,
-//     slidesPerGroup: 2,
-//   },
-//   500: {
-//     slidesPerView: 3,
-//     slidesPerGroup: 3,
-//   },
-//   600: {
-//     slidesPerView: 4,
-//     slidesPerGroup: 4,
-//   },
-//   800: {
-//     slidesPerView: 5,
-//     slidesPerGroup: 5,
-//   },
-//   900: {
-//     slidesPerView: 4,
-//     slidesPerGroup: 4,
-//     spaceBetween: 3,
-//   },
-//   1100: {
-//     slidesPerView: 5,
-//     slidesPerGroup: 5,
-//   },
-//   1300: {
-//     slidesPerView: 6,
-//     slidesPerGroup: 6,
-//   },
-//   1550: {
-//     slidesPerView: 7,
-//     slidesPerGroup: 7,
-//     spaceBetween: 5,
-//   },
-//   1700: {
-//     slidesPerView: 8,
-//     slidesPerGroup: 8,
-//   },
-//   2000: {
-//     slidesPerView: 9,
-//     slidesPerGroup: 9,
-//   },
-// }));
-
 const responsiveVertical = computed<any>((): any => ({
   0: {
     slidesPerView: 2,
@@ -584,7 +539,7 @@ const getData = async () => {
   //   });
 
   // await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
-  getNowPlaying(1)
+  await getNowPlaying(1)
     .then((response) => {
       nowPlayings.value = response?.results.slice(0, 12);
     })
@@ -598,7 +553,7 @@ const getData = async () => {
   // await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
   //   getMoviesByGenres('hoat-hinh', 'views_desc', 1)
   // )
-  getMoviesByGenres('hoat-hinh', 'views_desc', 1)
+  await getMoviesByGenres('hoat-hinh', 'views_desc', 1)
     .then((response) => {
       cartoons.value = response?.results.slice(0, 12);
     })
@@ -610,7 +565,7 @@ const getData = async () => {
     });
 
   // await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
-  getTvAiringToday(1)
+  await getTvAiringToday(1)
     .then((response) => {
       tvAiringTodays.value = response?.results.slice(0, 12);
     })
@@ -622,7 +577,7 @@ const getData = async () => {
     });
 
   // await useAsyncData('movie/upcoming/1', () => getUpComing(1))
-  getUpComing(1)
+  await getUpComing(1)
     .then((response) => {
       upComings.value = response?.results.slice(0, 15);
     })
@@ -634,7 +589,7 @@ const getData = async () => {
     });
 
   // await useAsyncData('movie/toprated/1', () => getTopRated(1))
-  getTopRated(1)
+  await getTopRated(1)
     .then((response) => {
       topRateds.value = response?.results.slice(0, 12);
     })
@@ -646,7 +601,7 @@ const getData = async () => {
     });
 
   // await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
-  getTvOntheAir(1)
+  await getTvOntheAir(1)
     .then((response) => {
       tvOnTheAirs.value = response?.results.slice(0, 12);
     })
@@ -660,7 +615,7 @@ const getData = async () => {
   // await useAsyncData('recommend/get/1', () =>
   //   getMyRecommend(skipRecommend.value)
   // )
-  getMyRecommend(skipRecommend.value, 20)
+  await getMyRecommend(skipRecommend.value, 20)
     .then((response) => {
       recommends.value = response?.results;
       skipRecommend.value++;
