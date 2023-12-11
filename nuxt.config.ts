@@ -23,6 +23,14 @@ export default defineNuxtConfig({
         {
           charset: 'utf-8',
         },
+        {
+          'http-equiv': 'X-UA-Compatible',
+          content: 'IE=Edge,chrome=1',
+        },
+        {
+          'http-equiv': 'content-type',
+          content: 'text/html;charset=utf-8',
+        },
         { name: 'color-scheme', content: 'only dark' },
       ],
       link: [

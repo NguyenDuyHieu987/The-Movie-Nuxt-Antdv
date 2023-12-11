@@ -7,12 +7,11 @@
 
       <div class="logo">
         <NuxtLink :to="{ path: '/' }">
-          <nuxt-img
+          <NuxtImg
             :src="getImage('logo.png', 'logo', 'w-45')"
             alt=""
             :height="30"
             :width="30"
-            preload
           />
           <span> PhimHay247 </span>
         </NuxtLink>
