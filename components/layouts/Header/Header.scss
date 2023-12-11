@@ -136,31 +136,55 @@ header.header-bar {
         background: var(--search-focus-background);
 
         .ant-input-affix-wrapper {
-          border-color: var(--search-focus-border-color);
+          // border-color: var(--search-focus-border-color);
+          color: var(--menu-active-text-color);
+
+          .ant-input {
+            &::placeholder {
+              color: var(--menu-active-text-color);
+            }
+          }
+
+          .anticon svg {
+            color: var(--menu-active-text-color);
+          }
         }
 
         .ant-input-group-addon {
           .ant-input-search-button {
             border-color: var(--search-focus-border-color);
+
+            svg {
+              color: var(--menu-active-text-color);
+            }
           }
         }
       }
 
       .ant-input-affix-wrapper {
-        border: 1px solid var(--border-search-color);
+        background: transparent;
         height: var(--search-height);
         padding-left: 18px;
-        // border-right: none;
-        transition: all 0s;
+        color: var(--menu-text-color);
+        // border: 1px solid var(--border-search-color);
+        border: none;
         border-top-left-radius: calc(var(--search-height) / 2);
         border-bottom-left-radius: calc(var(--search-height) / 2);
-        background: transparent;
         cursor: auto;
+        transition: all 0s;
 
         .ant-input {
           color: inherit;
           background: transparent;
           font-size: 1.5rem;
+
+          &::placeholder {
+            color: var(--menu-text-color);
+          }
+        }
+
+        .anticon svg {
+          color: var(--menu-text-color);
         }
       }
 
@@ -174,7 +198,8 @@ header.header-bar {
           display: flex;
           align-items: center;
           background: transparent;
-          border: 1px solid var(--border-search-color);
+          // border: 1px solid var(--border-search-color);
+          border: none;
           transition: color 0.15s;
           height: var(--search-height);
           border-radius: 0 calc(var(--search-height) / 2)
@@ -185,8 +210,9 @@ header.header-bar {
           line-height: 0;
 
           svg {
-            color: inherit;
+            // color: inherit;
             // color: var(--app-background-color);
+            color: var(--menu-text-color);
             font-size: 1.8rem;
             width: 1.8rem;
             height: 1.8rem;
@@ -302,7 +328,6 @@ header.header-bar {
                   font-size: 2.2rem;
                   width: 2.2rem;
                   height: 2.2rem;
-                  color: inherit;
                 }
               }
 
