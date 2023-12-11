@@ -58,6 +58,7 @@
 
 <script setup lang="ts">
 import { Navigation, FreeMode } from 'swiper/modules';
+import 'swiper/css/pagination';
 
 const isFixed = ref<boolean>(false);
 

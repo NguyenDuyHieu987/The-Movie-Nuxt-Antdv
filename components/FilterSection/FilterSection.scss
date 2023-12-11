@@ -45,8 +45,13 @@
           .swiper-button-prev,
           .swiper-button-next {
             display: flex;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             width: 30px;
             color: var(--text-color);
+            z-index: 1;
+            cursor: pointer;
 
             svg {
               width: 2.8rem;
@@ -59,8 +64,8 @@
           }
 
           .swiper-button-prev {
-            justify-content: flex-start;
             left: -8px;
+            justify-content: flex-start;
             background-image: linear-gradient(
               to right,
               #191919 0%,
@@ -70,8 +75,8 @@
           }
 
           .swiper-button-next {
-            justify-content: flex-end;
             right: -8px;
+            justify-content: flex-end;
             background-image: linear-gradient(
               to left,
               #191919 0%,
