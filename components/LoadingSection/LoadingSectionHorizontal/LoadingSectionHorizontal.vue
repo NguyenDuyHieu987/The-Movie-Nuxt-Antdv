@@ -1,5 +1,5 @@
 <template>
-  <el-skeleton class="loading-section-horizontal" :loading="true" animated>
+  <el-skeleton class="loading-section-horizontal" :loading="loading" animated>
     <template #template>
       <div
         class="img-box"
