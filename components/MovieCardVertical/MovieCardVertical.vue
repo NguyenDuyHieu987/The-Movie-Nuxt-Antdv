@@ -23,7 +23,7 @@
     <!-- <template #default> -->
     <div class="img-box ratio-2-3">
       <!-- <img
-        v-lazy="getImage(item?.poster_path, 'poster')"
+        v-lazy="getImage(item?.poster_path, 'poster', 'w-250')"
         loading="lazy"
         alt=""
       /> -->

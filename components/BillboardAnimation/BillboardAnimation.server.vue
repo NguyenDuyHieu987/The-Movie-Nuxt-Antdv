@@ -155,7 +155,7 @@
         :class="{
           active: (billboard?.innerSlider.currentSlide || 0) == index,
         }"
-        @click="billboard!.goTo(index)"
+        @click="handleChangeBillboardActiveItem(index)"
       >
         <div class="img-box ratio-2-3">
           <NuxtImg
@@ -256,6 +256,10 @@ const handleChangeCarouel = (activeIndex: number) => {
     prevItemCarousel.value = dataModel.value![activeIndex - 1]?.name;
     nextItemCarousel.value = dataModel.value![activeIndex + 1]?.name;
   }
+};
+
+const handleChangeBillboardActiveItem = (index: number) => {
+  billboard.value!.goTo(index);
 };
 </script>
 <style lang="scss" src="./BillboardAnimation.scss"></style>
