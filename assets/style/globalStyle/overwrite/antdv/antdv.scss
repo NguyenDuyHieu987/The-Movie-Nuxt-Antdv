@@ -19,6 +19,20 @@
   }
 }
 
+.ant-carousel {
+  color: inherit;
+  font-variant: inherit;
+  font-feature-settings: inherit;
+  line-height: inherit;
+  font-size: inherit;
+
+  .slick-slider,
+  .slick-list,
+  .slick-slide {
+    min-height: auto;
+  }
+}
+
 .ant-skeleton-element .ant-skeleton-image {
   width: 100%;
   height: 100%;
