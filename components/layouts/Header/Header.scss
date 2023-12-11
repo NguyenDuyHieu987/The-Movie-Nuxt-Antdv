@@ -14,12 +14,6 @@ header.header-bar {
   transition: background-color 0.2s ease;
   transition-delay: 0.2s;
 
-  .anticon {
-    svg {
-      fill: var(--text-color);
-    }
-  }
-
   &.scrolled {
     background: var(--header-background-scrolled);
   }
@@ -33,6 +27,12 @@ header.header-bar {
     display: flex;
     align-items: center;
     gap: 20px;
+
+    .anticon {
+      svg {
+        fill: var(--text-color);
+      }
+    }
 
     .menu-btn {
       // padding: 16px 20px;
@@ -258,6 +258,18 @@ header.header-bar {
           user-select: none;
           cursor: pointer;
           outline: none;
+
+          svg {
+            color: var(--menu-text-color);
+            fill: var(--menu-text-color);
+          }
+
+          &[aria-expanded='true'] {
+            svg {
+              color: var(--menu-active-text-color);
+              fill: var(--menu-active-text-color);
+            }
+          }
 
           &.notification {
             &[aria-expanded='true'] {

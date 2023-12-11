@@ -15,12 +15,6 @@ header.header-bar {
   transition: background-color 0.25s;
   transition-delay: 0.3s;
 
-  .anticon {
-    svg {
-      fill: var(--text-color);
-    }
-  }
-
   &:has(.menu-btn.desktop) {
     padding-left: var(--padding-home);
     padding-right: calc(var(--padding-home) - 20px);
@@ -30,6 +24,12 @@ header.header-bar {
     display: flex;
     align-items: center;
     gap: 20px;
+
+    .anticon {
+      svg {
+        fill: var(--text-color);
+      }
+    }
 
     .menu-btn {
       // padding: 16px 20px;
