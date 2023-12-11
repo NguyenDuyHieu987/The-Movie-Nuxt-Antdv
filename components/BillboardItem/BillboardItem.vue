@@ -1,5 +1,6 @@
 <template>
   <div class="billboard-item">
+    <div class="left-mask"></div>
     <div class="img-wrapper ratio-16-9">
       <NuxtImg
         :src="

@@ -15,12 +15,7 @@
   --text-danger-color: #b90016;
   --text-placeholder-color: #ababab;
 
-  --header-background: linear-gradient(
-    to bottom,
-    var(--background-content-color) 0,
-    #08080850 70%,
-    #08080800 100%
-  );
+  --header-background: linear-gradient(to bottom, #080808cc 0%, #08080800 100%);
   --header-background-scrolled: #080808e6;
 
   --search-height: 40px;
