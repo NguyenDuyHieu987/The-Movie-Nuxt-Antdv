@@ -301,6 +301,7 @@ const handleChangeInput = (query: string) => {
     clearTimeout(debounce.value);
 
     // navigateTo({ path: '/' });
+
     dataSearch.value = [];
     isShowSearchResults.value = false;
   }
