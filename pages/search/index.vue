@@ -57,7 +57,7 @@
 import axios from 'axios';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
-import { getDaTaSearch, addSearchHistory } from '~/services/search';
+import { getDaTaSearch, addSearch, addSearchHistory } from '~/services/search';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const store = useStore();
@@ -103,6 +103,15 @@ const addSearchHistoryD = async () => {
         if (axios.isCancel(e)) return;
       });
   }
+
+  await addSearch({ query: searchQuery.value })
+    .then((response) => {
+      if (response?.added) {
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
 };
 
 const getData = async () => {

@@ -20,13 +20,20 @@ export function getItemHistory(movieId: string, media_type: string) {
   return makeRequest(`/history/get/${media_type}/${movieId}`);
 }
 
-export function add_update_History(params: any) {
+export function add_update_History(params: {
+  movie_id: string;
+  media_type: string;
+  episode?: any;
+  duration: number;
+  percent: number;
+  seconds: number;
+}) {
   const bodyFormData = new FormData();
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
-  bodyFormData.append('duration', params.duration);
+  bodyFormData.append('duration', params.duration.toString());
   bodyFormData.append('percent', params.percent.toFixed(3));
-  bodyFormData.append('seconds', params.seconds);
+  bodyFormData.append('seconds', params.seconds.toString());
 
   return makeRequest(`/history/add`, {
     method: 'POST',
@@ -34,9 +41,13 @@ export function add_update_History(params: any) {
   });
 }
 
-export function removeItemHistory(params: any) {
+export function removeItemHistory(params: {
+  id?: string;
+  movie_id: string;
+  media_type: string;
+}) {
   const bodyFormData = new FormData();
-  bodyFormData.append('id', params?.id || null);
+  bodyFormData.append('id', params.id!);
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
 

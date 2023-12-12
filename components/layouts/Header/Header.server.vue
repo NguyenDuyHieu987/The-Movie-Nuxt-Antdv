@@ -58,7 +58,7 @@
 
       <SearchDropdown
         v-model:dataSearch="dataSearch"
-        v-model:dataSearchTopSearch="dataTopSearch"
+        v-model:dataTopSearch="dataTopSearch"
         v-model:dataSearchHistory="dataSearchHistory"
         v-model:isShowSearchResults="isShowSearchResults"
         v-model:isFocusSearchInput="isFocusSearchInput"
@@ -131,7 +131,12 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getDaTaSearch, getDaTaSearchHistory } from '~/services/search';
+import {
+  getDaTaSearch,
+  getDaTaTopSearch,
+  getDaTaSearchHistory,
+  getDaTaSearchInHistory,
+} from '~/services/search';
 import { getImage } from '~/services/image';
 import DropdownAccount from './DropdownAcount/DropdownAcount.vue';
 import SearchDropdown from './SearchDropdown/SearchDropdown.vue';
@@ -146,8 +151,10 @@ const { isLogin, loadingUser } = storeToRefs<any>(store);
 const router = useRouter();
 const route = useRoute();
 const dataSearch = ref<any[]>([]);
-const dataSearchHistory = ref<any[]>([]);
 const dataTopSearch = ref<any[]>([]);
+const dataSearchHistory = ref<any[]>([]);
+const dataSearchInHistory = ref<any[]>([]);
+const dataSearchInTopSearch = ref<any[]>([]);
 const page = ref<number>(1);
 const loadingSearch = ref<boolean>(false);
 const loadingSearchHistory = ref<boolean>(false);
@@ -172,6 +179,17 @@ const getData = async () => {
         loadingSearchHistory.value = false;
       });
   }
+
+  await getDaTaTopSearch(1, 10)
+    .then((response) => {
+      dataTopSearch.value = response?.results;
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {
+      loadingTopSearch.value = false;
+    });
 };
 
 getData();
@@ -235,11 +253,27 @@ const handleChangeInput = (query: string) => {
 
     clearTimeout(debounce.value);
     debounce.value = setTimeout(async () => {
+      if (store.isLogin) {
+        await getDaTaSearchInHistory(query, 1, 10)
+          .then((response) => {
+            dataSearchInHistory.value = response?.results;
+          })
+          .catch((e) => {
+            if (axios.isCancel(e)) return;
+          })
+          .finally(() => {});
+      }
+
       await useAsyncData(`cache/search/all/${query}/${page.value}/10`, () =>
         getDaTaSearch(query, page.value, 10)
       )
         .then((response) => {
-          dataSearch.value = response.data.value?.results;
+          // dataSearch.value = response.data.value?.results;
+
+          dataSearch.value = [
+            ...dataSearchInHistory.value,
+            ...response.data.value?.results,
+          ];
 
           if (
             dataSearch.value.length > 0 &&
@@ -264,6 +298,8 @@ const handleChangeInput = (query: string) => {
     }, 50);
     // }, 700);
   } else {
+    clearTimeout(debounce.value);
+
     // navigateTo({ path: '/' });
     dataSearch.value = [];
     isShowSearchResults.value = false;
@@ -285,7 +321,7 @@ const handleSearch = (value: string) => {
 const handleFoucusSearchInput = async (e: any) => {
   isFocusSearchInput.value = true;
 
-  if (valueInput.value.length > 0 && dataSearch.value.length == 0) {
+  if (valueInput.value?.length > 0 && dataSearch.value.length == 0) {
     // loadingSearch.value = true;
 
     await useAsyncData(

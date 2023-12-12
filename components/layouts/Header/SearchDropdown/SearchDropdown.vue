@@ -11,9 +11,9 @@
           class="search-results"
         >
           <div class="search-results-list">
-            <div class="search-dropdown-header results">
+            <div class="search-dropdown-header search-results">
               <div class="left">Kết quả tìm kiếm</div>
-              <div class="right click-active" @click="handleClearSearchHistory">
+              <div class="right click-active">
                 <NuxtLink
                   class="view-all"
                   :to="`/search?q=${searchQuery
@@ -37,14 +37,28 @@
             </div>
 
             <div
-              v-for="(item, index) in dataSearchResults"
+              v-for="(item, index) in dataSearch"
               :key="index"
               :index="index"
               class="search-results-item"
+              @click="(e) => handleClickSearchResultsItem(e, item)"
             >
-              <p class="search-query-suggested">{{ item?.name }}</p>
+              <div class="search-query-suggested">
+                <span v-if="item?.type == 'history' && item?.query"
+                  >{{ item?.query }}
+                </span>
+                <span v-else> {{ item?.name }}</span>
+              </div>
 
-              <span class="remove-search-history">Xóa</span>
+              <span
+                v-if="item?.type == 'history' && item?.query"
+                class="remove-search-history"
+                @click.prevent="
+                  handleRemoveSearchHistoryInSearchResults(item?.id)
+                "
+              >
+                Xóa
+              </span>
             </div>
           </div>
         </div>
@@ -69,6 +83,8 @@
               :key="index"
               :index="index"
               class="search-history-item"
+              @click="(e) => handleClickSearchHistoryItem(e, item)"
+              :title="item?.query"
             >
               <p class="search-query">{{ item?.query }}</p>
 
@@ -88,7 +104,54 @@
             </div>
           </div>
         </div>
-        <div v-if="dataTopSearch?.length" class="top-search"></div>
+        <div
+          v-if="dataTopSearch?.length && !isShowSearchResults"
+          class="top-search"
+        >
+          <div class="search-dropdown-header top-search">
+            <div class="left">Tìm kiếm phố biến</div>
+            <div class="right click-active">
+              <NuxtLink
+                class="view-all"
+                :to="`/search?q=${searchQuery
+                  ?.replaceAll(' ', '+')
+                  .toLowerCase()}`"
+              >
+                Tất cả
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.2rem"
+                  height="1.2rem"
+                  viewBox="0 0 320 512"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256L73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+                  />
+                </svg>
+              </NuxtLink>
+            </div>
+          </div>
+
+          <div class="top-search-list">
+            <div
+              v-for="(item, index) in dataTopSearch"
+              :key="index"
+              :index="index"
+              class="top-search-item"
+              @click="(e) => handleClickTopSearchItem(e, item)"
+              :title="item?.name"
+            >
+              <span
+                class="rank-top-search"
+                :style="{ '--rank-opacity': Math.abs(index - 10) / 10 }"
+              >
+                {{ index + 1 }}
+              </span>
+              <p class="search-query">{{ item?.name || item?.query }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -97,7 +160,11 @@
 <script setup lang="ts">
 import axios from 'axios';
 import _ from 'lodash';
-import { removeSearchHistory, clearSearchHistory } from '~/services/search';
+import {
+  removeSearchHistory,
+  clearSearchHistory,
+  addSearch,
+} from '~/services/search';
 
 const store = useStore();
 
@@ -114,61 +181,6 @@ const isShowSearchResults = defineModel('isShowSearchResults', {
 const isFocusSearchInput = defineModel('isFocusSearchInput', {
   type: Boolean,
   default: false,
-});
-const dataSearchResults = ref<any[]>([]);
-const searchResultsSimilarHistory = ref<any[]>([]);
-
-function areStringsSimilar(
-  str1: string,
-  str2: { name: string; original_name: string }
-) {
-  console.log(str1, str2);
-
-  console.log(
-    _.includes(str1, str2.name) ||
-      _.includes(str2.name, str1) ||
-      _.includes(str1, str2.original_name) ||
-      _.includes(str2.original_name, str1)
-  );
-
-  return (
-    _.includes(str1, str2.name) ||
-    _.includes(str2.name, str1) ||
-    _.includes(str1, str2.original_name) ||
-    _.includes(str2.original_name, str1)
-  );
-}
-
-watch(dataSearch, () => {
-  if (dataSearch.value!?.length > 0) {
-    dataSearchResults.value = dataSearch.value!;
-
-    // searchResultsSimilarHistory.value = dataSearch.value!.filter((item) =>
-    //   dataSearchHistory.value!.some((item1) =>
-    //     areStringsSimilar(item1?.query, item)
-    //   )
-    // );
-
-    // // searchResultsSimilarHistory.value = searchResultsSimilarHistory.value.map(
-    // //   (item) => dataSearchHistory.value!.find((item1) => true)
-    // // );
-
-    // console.log(searchResultsSimilarHistory.value);
-
-    // const sortedArray = [
-    //   ...searchResultsSimilarHistory.value,
-    //   ...dataSearch.value!.filter(
-    //     (item) =>
-    //       !dataSearchHistory.value!.some((item1) =>
-    //         areStringsSimilar(item1?.query, item)
-    //       )
-    //   ),
-    // ];
-
-    // dataSearchResults.value = sortedArray;
-  } else {
-    dataSearchResults.value = [];
-  }
 });
 
 const handleMouseDownSearchDropdown = (e: any) => {
@@ -193,6 +205,20 @@ const handleRemoveSearchHistory = async (id: string) => {
     });
 };
 
+const handleRemoveSearchHistoryInSearchResults = async (id: string) => {
+  await removeSearchHistory(id)
+    .then((response) => {
+      if (response?.success) {
+        dataSearch.value = _.reject(dataSearch.value, (x) => {
+          return x?.type == 'history' && x.id === id;
+        });
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+};
+
 const handleClearSearchHistory = async () => {
   await clearSearchHistory()
     .then((response) => {
@@ -204,6 +230,64 @@ const handleClearSearchHistory = async () => {
     .catch((e) => {
       if (axios.isCancel(e)) return;
     });
+};
+
+const handleClickSearchResultsItem = async (e: any, item: any) => {
+  if (e.target?.closest('.remove-search-history')) {
+    e.preventDefault();
+    return;
+  }
+
+  if (item?.type == 'history' && item?.query) {
+    navigateTo(`/search?q=${item?.query?.replaceAll(' ', '+').toLowerCase()}`);
+  } else {
+    addSearch({
+      movie_id: item?.id,
+      media_type: item?.media_type,
+      query: item?.name,
+    })
+      .then((response) => {
+        if (response?.added) {
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+
+    navigateTo(`/search?q=${item?.name?.replaceAll(' ', '+').toLowerCase()}`);
+
+    isFocusSearchInput.value = false;
+  }
+};
+
+const handleClickTopSearchItem = (e: any, item: any) => {
+  addSearch({
+    movie_id: item?.id,
+    media_type: item?.media_type,
+    query: item?.name,
+  })
+    .then((response) => {
+      if (response?.added) {
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  navigateTo(`/search?q=${item?.name?.replaceAll(' ', '+').toLowerCase()}`);
+
+  isFocusSearchInput.value = false;
+};
+
+const handleClickSearchHistoryItem = (e: any, item: any) => {
+  if (e.target?.closest('.search-history-item .remove-icon')) {
+    e.preventDefault();
+    return;
+  }
+
+  navigateTo(`/search?q=${item?.query?.replaceAll(' ', '+').toLowerCase()}`);
+
+  isFocusSearchInput.value = false;
 };
 </script>
 
