@@ -1,6 +1,6 @@
 <template>
   <el-dropdown
-    trigger="hover"
+    trigger="click"
     popper-class="header notification"
     placement="bottom-start"
     :show-timeout="0"
