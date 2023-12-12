@@ -19,6 +19,7 @@
                   :to="`/search?q=${searchQuery
                     ?.replaceAll(' ', '+')
                     .toLowerCase()}`"
+                  @click="isFocusSearchInput = false"
                 >
                   Tất cả
                   <svg
@@ -114,7 +115,11 @@
           <div class="search-dropdown-header top-search">
             <div class="left">Tìm kiếm phố biến</div>
             <div class="right click-active">
-              <NuxtLink class="view-all" to="/ranking?type=search">
+              <NuxtLink
+                class="view-all"
+                to="/ranking?type=search"
+                @click="isFocusSearchInput = false"
+              >
                 Tất cả
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -163,11 +168,12 @@ import {
   addSearch,
 } from '~/services/search';
 
-const store = useStore();
-
 const props = defineProps<{
   searchQuery: string;
 }>();
+
+const store = useStore();
+const route = useRoute();
 const dataSearch = defineModel<any[]>('dataSearch');
 const dataTopSearch = defineModel<any[]>('dataTopSearch');
 const dataSearchHistory = defineModel<any[]>('dataSearchHistory');
