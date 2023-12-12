@@ -25,7 +25,7 @@
 
     &::-webkit-scrollbar,
     &::-webkit-scrollbar-thumb {
-      display: none;
+      // display: none;
     }
 
     .search-dropdown-wrapper {
@@ -70,6 +70,9 @@
       }
 
       .search-results {
+        max-height: 70vh;
+        overflow-y: scroll;
+
         .search-dropdown-header {
           padding: var(--padding-search-dropdown);
           padding-bottom: 0px;
@@ -130,13 +133,8 @@
 
       .search-history {
         padding: var(--padding-search-dropdown);
-        max-height: 250px;
+        max-height: 20vh;
         overflow-y: scroll;
-
-        &::-webkit-scrollbar,
-        &::-webkit-scrollbar-thumb {
-          display: none;
-        }
 
         .search-history-list {
           display: flex;
@@ -195,6 +193,9 @@
       }
 
       .top-search {
+        max-height: 70vh;
+        overflow-y: scroll;
+
         .search-dropdown-header {
           padding: var(--padding-search-dropdown);
           padding-bottom: 0px;
