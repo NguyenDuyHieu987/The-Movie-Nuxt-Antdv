@@ -177,12 +177,10 @@ const route = useRoute();
 const dataSearch = defineModel<any[]>('dataSearch');
 const dataTopSearch = defineModel<any[]>('dataTopSearch');
 const dataSearchHistory = defineModel<any[]>('dataSearchHistory');
-const isShowSearchResults = defineModel('isShowSearchResults', {
-  type: Boolean,
+const isShowSearchResults = defineModel<boolean>('isShowSearchResults', {
   default: false,
 });
-const isFocusSearchInput = defineModel('isFocusSearchInput', {
-  type: Boolean,
+const isFocusSearchInput = defineModel<boolean>('isFocusSearchInput', {
   default: false,
 });
 
