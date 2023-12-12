@@ -120,7 +120,7 @@ const getData = async () => {
     internalInstance.appContext.config.globalProperties.$Progress.start();
 
     await useAsyncData(
-      `cache/search/all/${searchQuery.value}/${page.value}`,
+      `cache/search/all/${searchQuery.value}/${page.value}/20`,
       () => getDaTaSearch(searchQuery.value, page.value)
     )
       .then((response) => {
