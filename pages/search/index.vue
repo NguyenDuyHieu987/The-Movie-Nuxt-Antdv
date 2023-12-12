@@ -119,8 +119,9 @@ const getData = async () => {
     // loading.value = true;
     internalInstance.appContext.config.globalProperties.$Progress.start();
 
-    await useAsyncData(`search/all/${searchQuery.value}/${page.value}`, () =>
-      getDaTaSearch(searchQuery.value, page.value)
+    await useAsyncData(
+      `cache/search/all/${searchQuery.value}/${page.value}`,
+      () => getDaTaSearch(searchQuery.value, page.value)
     )
       .then((response) => {
         searchData.value = response.data.value?.results;
