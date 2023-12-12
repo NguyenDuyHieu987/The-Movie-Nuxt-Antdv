@@ -41,6 +41,9 @@
               :key="index"
               :index="index"
               class="search-results-item"
+              :class="{
+                'searched-history': item?.type == 'history' && item?.query,
+              }"
               @click="(e) => handleClickSearchResultsItem(e, item)"
             >
               <div class="search-query-suggested">

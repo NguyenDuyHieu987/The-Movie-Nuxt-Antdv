@@ -92,6 +92,10 @@
             cursor: pointer;
             transform: all 0.15s;
 
+            &.searched-history {
+              background-color: #252525;
+            }
+
             .search-query-suggested {
               width: 100%;
             }
@@ -110,7 +114,10 @@
             }
 
             &:hover {
-              background-color: #2e2e2eb6;
+              background-color: #202020ed;
+
+              .search-query-suggested {
+              }
 
               .remove-search-history {
                 z-index: 1;
