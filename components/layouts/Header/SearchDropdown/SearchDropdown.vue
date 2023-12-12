@@ -209,6 +209,14 @@ const handleRemoveSearchHistoryInSearchResults = async (id: string) => {
         dataSearch.value = _.reject(dataSearch.value, (x) => {
           return x?.type == 'history' && x.id === id;
         });
+
+        dataSearchHistory.value = _.reject(dataSearchHistory.value, (x) => {
+          return x.id === id;
+        });
+
+        store.dataSearchHistory = _.reject(store.dataSearchHistory, (x) => {
+          return x.id === id;
+        });
       }
     })
     .catch((e) => {
@@ -252,9 +260,9 @@ const handleClickSearchResultsItem = async (e: any, item: any) => {
       });
 
     navigateTo(`/search?q=${item?.name?.replaceAll(' ', '+').toLowerCase()}`);
-
-    isFocusSearchInput.value = false;
   }
+
+  isFocusSearchInput.value = false;
 };
 
 const handleClickTopSearchItem = (e: any, item: any) => {
