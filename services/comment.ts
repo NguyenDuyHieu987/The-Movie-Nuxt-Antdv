@@ -24,7 +24,6 @@ export function getCommentByMovidId_ParentId(
 }
 
 export function CommentMovie(params: {
-  id: string;
   content: string;
   commentType: string;
   parentId?: string;

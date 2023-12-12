@@ -264,14 +264,15 @@ const onSubmit = () => {
       CommentMovie({
         // content: content.value,
         content: formattedComment.value,
-        movieId: props.movieId,
-        parentId: props.commentType == 'children' && props.parent?.id,
+        movieId: props.movieId!,
+        parentId:
+          props.commentType == 'children' ? props.parent?.id : undefined,
         replyTo:
-          props.commentType == 'children' && props?.replyTo?.length
+          props.commentType == 'children' && props.replyTo?.length
             ? props.replyTo
-            : null,
-        movieType: props.movieType,
-        commentType: props.commentType,
+            : undefined,
+        movieType: props.movieType!,
+        commentType: props.commentType!,
       })
         .then((response) => {
           if (response?.success) {
@@ -298,9 +299,9 @@ const onSubmit = () => {
       break;
     case 'edit':
       EditComment({
-        id: props.comment?.id,
-        movieId: props.movieId,
-        movieType: props.movieType,
+        id: props.comment!?.id,
+        movieId: props.movieId!,
+        movieType: props.movieType!,
         commentType: props.commentType,
         // content: content.value,
         content: formattedComment.value,

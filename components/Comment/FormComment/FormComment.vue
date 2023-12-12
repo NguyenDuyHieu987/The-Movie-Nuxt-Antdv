@@ -336,13 +336,14 @@ const onSubmit = () => {
       CommentMovie({
         // content: content.value,
         content: sanitizedHtmlComment.value,
-        movieId: props.movieId,
-        parentId: props.commentType == 'children' && props.parent?.id,
+        movieId: props.movieId!,
+        parentId:
+          props.commentType == 'children' ? props.parent?.id : undefined,
         replyTo:
           props.commentType == 'children' && props?.replyTo
             ? props.replyTo.id
-            : null,
-        movieType: props.movieType,
+            : undefined,
+        movieType: props.movieType!,
         commentType: props.commentType,
       })
         .then((response) => {
@@ -370,10 +371,10 @@ const onSubmit = () => {
       break;
     case 'edit':
       EditComment({
-        id: props.comment?.id,
-        movieId: props.movieId,
-        movieType: props.movieType,
-        commentType: props.commentType,
+        id: props.comment!?.id,
+        movieId: props.movieId!,
+        movieType: props.movieType!,
+        commentType: props.commentType!,
         // content: content.value,
         content: sanitizedHtmlComment.value,
       })

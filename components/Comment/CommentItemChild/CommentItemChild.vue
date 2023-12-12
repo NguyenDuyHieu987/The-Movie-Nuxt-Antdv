@@ -237,10 +237,10 @@ const handleSuccessEditComment = (data: string) => {
 
 const handleRemoveComment = () => {
   DeleteComment({
-    id: props.item?.id,
-    movieId: props.item?.movie_id,
-    parentId: props.parent?.id,
-    movieType: props.item?.movie_type,
+    id: props.item!?.id,
+    movieId: props.item!?.movie_id,
+    parentId: props.parent!?.id,
+    movieType: props.item!?.movie_type,
     commentType: 'children',
   })
     .then((response) => {
