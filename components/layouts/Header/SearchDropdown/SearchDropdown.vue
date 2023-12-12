@@ -111,12 +111,7 @@
           <div class="search-dropdown-header top-search">
             <div class="left">Tìm kiếm phố biến</div>
             <div class="right click-active">
-              <NuxtLink
-                class="view-all"
-                :to="`/search?q=${searchQuery
-                  ?.replaceAll(' ', '+')
-                  .toLowerCase()}`"
-              >
+              <NuxtLink class="view-all" to="/ranking?type=search">
                 Tất cả
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +135,6 @@
               :index="index"
               class="top-search-item"
               @click="(e) => handleClickTopSearchItem(e, item)"
-              :title="item?.name"
             >
               <span
                 class="rank-top-search"

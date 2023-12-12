@@ -7,10 +7,11 @@
   background-color: #181818f0;
   opacity: 0;
   z-index: -1;
-  border-radius: 15px;
+  border-radius: var(--border-radius-search-dropdown);
   overflow: hidden;
   transition: all 0.15s;
 
+  --border-radius-search-dropdown: 15px;
   --padding-search-dropdown: 10px 15px;
 
   &.show {
@@ -196,10 +197,20 @@
             align-items: center;
             flex-direction: row;
             flex-wrap: nowrap;
-            gap: 3px;
             max-height: 41px;
             cursor: pointer;
             transform: all 0.15s;
+
+            &:first-child {
+              &:hover {
+                background-color: #3e3e3e;
+              }
+
+              .rank-top-search {
+                border-top-right-radius: var(--border-radius-search-dropdown);
+                overflow: hidden;
+              }
+            }
 
             & + .top-search-item {
               margin-top: 1px;
@@ -217,10 +228,13 @@
               width: 100%;
               max-height: inherit;
               padding: var(--padding-search-dropdown);
+              padding-left: 15px;
             }
 
             &:hover {
-              background-color: #2e2e2eb6;
+              .search-query {
+                background-color: #3e3e3e;
+              }
 
               .remove-search-history {
                 z-index: 1;
