@@ -180,9 +180,11 @@ const getData = async () => {
       });
   }
 
-  await getDaTaTopSearch(1, 10)
+  await useAsyncData(`cache/search/top-search/1/10`, () =>
+    getDaTaTopSearch(1, 10)
+  )
     .then((response) => {
-      dataTopSearch.value = response?.results;
+      dataTopSearch.value = response.data.value?.results;
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
