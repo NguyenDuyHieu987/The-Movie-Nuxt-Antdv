@@ -231,6 +231,24 @@
               margin-top: 1px;
             }
 
+            &:nth-child(1) {
+              .rank-top-search {
+                color: #e81624;
+              }
+            }
+
+            &:nth-child(2) {
+              .rank-top-search {
+                color: #f68f00;
+              }
+            }
+
+            &:nth-child(3) {
+              .rank-top-search {
+                color: #f6e200;
+              }
+            }
+
             .rank-top-search {
               max-height: inherit;
               background-color: rgba(0, 113, 193, calc(var(--rank-opacity, 1)));
