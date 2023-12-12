@@ -42,8 +42,8 @@ export function addSearch(params: {
   query: string;
 }) {
   const bodyFormData = new FormData();
-  bodyFormData.append('movie_id', params.movie_id!);
-  bodyFormData.append('media_type', params.media_type!);
+  params?.movie_id && bodyFormData.append('movie_id', params.movie_id!);
+  params?.media_type && bodyFormData.append('media_type', params.media_type!);
   bodyFormData.append('query', params.query);
 
   return makeRequest(`/search/add-search`, {

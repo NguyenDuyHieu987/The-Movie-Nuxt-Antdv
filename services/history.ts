@@ -31,6 +31,7 @@ export function add_update_History(params: {
   const bodyFormData = new FormData();
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
+  params?.episode && bodyFormData.append('episode', params.episode);
   bodyFormData.append('duration', params.duration.toString());
   bodyFormData.append('percent', params.percent.toFixed(3));
   bodyFormData.append('seconds', params.seconds.toString());
@@ -47,7 +48,7 @@ export function removeItemHistory(params: {
   media_type: string;
 }) {
   const bodyFormData = new FormData();
-  bodyFormData.append('id', params.id!);
+  params?.id && bodyFormData.append('id', params.id!);
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
 

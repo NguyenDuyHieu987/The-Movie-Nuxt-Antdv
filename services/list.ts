@@ -37,7 +37,7 @@ export function removeItemList(params: {
   media_type: string;
 }) {
   const bodyFormData = new FormData();
-  bodyFormData.append('id', params.id!);
+  params?.id && bodyFormData.append('id', params.id!);
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);
 

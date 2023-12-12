@@ -23,7 +23,15 @@ export function getCommentByMovidId_ParentId(
   );
 }
 
-export function CommentMovie(params: any) {
+export function CommentMovie(params: {
+  id: string;
+  content: string;
+  commentType: string;
+  parentId?: string;
+  replyTo?: string;
+  movieId: string;
+  movieType: string;
+}) {
   const bodyFormData = new FormData();
   bodyFormData.append('content', params.content);
   params?.parentId && bodyFormData.append('parent_id', params.parentId);
@@ -36,7 +44,13 @@ export function CommentMovie(params: any) {
   });
 }
 
-export function EditComment(params: any) {
+export function EditComment(params: {
+  id: string;
+  content: string;
+  commentType: string;
+  movieType: string;
+  movieId: string;
+}) {
   const bodyFormData = new FormData();
   bodyFormData.append('id', params.id);
   bodyFormData.append('type', params.commentType);
@@ -48,7 +62,13 @@ export function EditComment(params: any) {
   });
 }
 
-export function DeleteComment(params: any) {
+export function DeleteComment(params: {
+  id: string;
+  parentId?: string;
+  commentType: string;
+  movieId: string;
+  movieType: string;
+}) {
   const bodyFormData = new FormData();
   bodyFormData.append('id', params.id);
   params?.parentId && bodyFormData.append('parent_id', params.parentId);
