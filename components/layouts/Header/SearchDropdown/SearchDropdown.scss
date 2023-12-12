@@ -123,6 +123,13 @@
 
       .search-history {
         padding: var(--padding-search-dropdown);
+        max-height: 250px;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-thumb {
+          display: none;
+        }
 
         .search-history-list {
           display: flex;
