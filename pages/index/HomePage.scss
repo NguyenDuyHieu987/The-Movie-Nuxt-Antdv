@@ -32,8 +32,12 @@
     &:hover {
       .gradient-title-default {
         .view-all {
-          transition: all 0.5s;
           right: 0;
+          transition: all 0.5s;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -44,8 +48,8 @@
       &:hover {
         .gradient-title-default {
           .view-all {
-            transition: all 0.5s;
             right: 16px;
+            transition: all 0.5s;
           }
         }
       }
