@@ -169,7 +169,7 @@ import {
 } from '~/services/search';
 
 const props = defineProps<{
-  searchQuery: string;
+  searchQuery?: string;
 }>();
 
 const store = useStore();
