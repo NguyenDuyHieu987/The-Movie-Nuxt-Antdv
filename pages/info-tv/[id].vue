@@ -342,6 +342,7 @@
           gyroscope; picture-in-picture"
             allowFullScreen
             frameBorder="{0}"
+            v-lazy-load
           />
         </div>
 

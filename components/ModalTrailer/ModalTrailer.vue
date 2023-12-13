@@ -1,6 +1,5 @@
 <template>
-  <!-- :disabled="!isOpenModalTrailer"  -->
-  <Teleport to="#append-to">
+  <Teleport :disabled="!isOpenModalTrailer" to="#append-to">
     <div class="modal-trailer-wrapper">
       <!-- <a-modal
       v-model:visible="isTeleport"
@@ -112,6 +111,7 @@
             gyroscope; picture-in-picture"
           allowFullScreen
           frameBorder="{0}"
+          v-lazy-load
         />
 
         <template #footer>
