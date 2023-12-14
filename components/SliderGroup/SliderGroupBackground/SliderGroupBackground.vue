@@ -41,7 +41,7 @@
         @pointermove="onPointerMoveSlider"
         @pointerup="onPointerUpSlider"
         @scroll="onScollSlider"
-        @mouseover="onMouseOverSlider"
+        @pointerover="onPointerOverSlider"
       >
         <slot name="content" />
       </div>
@@ -71,7 +71,7 @@ const props = defineProps<{
 }>();
 
 const store = useStore();
-const slider = ref();
+const slider = ref<HTMLDivElement>();
 const sliderState = reactive({
   isScrubbing: false,
   isDragging: false,
@@ -108,6 +108,12 @@ onMounted(() => {
   window.addEventListener('pointerup', onPointerUpSlider);
 });
 
+onUnmounted(() => {
+  window.removeEventListener('pointerup', onPointerMoveSlider);
+  window.removeEventListener('pointerup', onPointerDownSlider);
+  window.removeEventListener('pointerup', onPointerUpSlider);
+});
+
 const onPointerDownSlider = (e: any) => {
   if (e.target.closest('.slider-item')) {
     e.preventDefault();
@@ -117,21 +123,32 @@ const onPointerDownSlider = (e: any) => {
 
 const onPointerMoveSlider = (e: any) => {
   if (sliderState.isScrubbing) {
+    e.preventDefault();
     sliderState.isDragging = true;
 
-    slider.value.scrollLeft -= e.movementX;
-    handleArrows(slider.value.scrollLeft);
+    slider.value!.scrollLeft -= e.movementX;
+    handleArrows(slider.value!?.scrollLeft);
   }
 };
 
 const onPointerUpSlider = (e: any) => {
-  e.preventDefault();
+  if (sliderState.isDragging && sliderState.isScrubbing) {
+    const svgTag = e.target.closest('svg') as HTMLOrSVGElement;
+
+    const linkTag = e.target.closest('a') as HTMLLinkElement;
+
+    linkTag.addEventListener('pointerup', (e1: any) => {
+      e1.preventDefault();
+    });
+  }
+
   sliderState.isScrubbing = false;
   sliderState.isDragging = false;
 };
 
 const handleArrows = (scrollVal: number) => {
-  let maxScrollableWidth = slider.value.scrollWidth - slider.value.clientWidth;
+  let maxScrollableWidth =
+    slider.value!.scrollWidth - slider.value!.clientWidth;
 
   sliderState.isStartScroll = scrollVal <= 0;
 
@@ -145,10 +162,10 @@ const handleArrows = (scrollVal: number) => {
 };
 
 const onScollSlider = (e: any) => {
-  handleArrows(slider.value.scrollLeft);
+  handleArrows(slider.value!.scrollLeft);
 };
 
-const onMouseOverSlider = (e: any) => {
+const onPointerOverSlider = (e: any) => {
   if (e.target.closest('.slider-item')) {
     const sliderItem = e.target.closest('.slider-item');
 
