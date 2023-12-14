@@ -51,6 +51,8 @@
           ref="video"
           :src="videoSrc"
           preload="metadata"
+          autoplay
+          muted
           @loadstart="onLoadStartVideo"
           @waiting="onWaitingVideo"
           @playing="onPLayingVideo"
