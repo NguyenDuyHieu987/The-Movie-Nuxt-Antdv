@@ -138,7 +138,7 @@ const onPointerUpSlider = (e: any) => {
     const linkTag = e.target.closest('a') as HTMLLinkElement;
 
     linkTag.addEventListener('pointerup', (e1: any) => {
-      e1.preventDefault();
+      // e1.preventDefault();
     });
   }
 
