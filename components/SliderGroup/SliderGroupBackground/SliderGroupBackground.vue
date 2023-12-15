@@ -131,15 +131,15 @@ const onPointerMoveSlider = (e: any) => {
 };
 
 const onPointerUpSlider = (e: any) => {
-  if (sliderState.isDragging && sliderState.isScrubbing) {
-    const svgTag = e.target.closest('svg') as HTMLOrSVGElement;
+  // if (sliderState.isDragging && sliderState.isScrubbing) {
+  //   const svgTag = e.target.closest('svg') as HTMLOrSVGElement;
 
-    const linkTag = e.target.closest('a') as HTMLLinkElement;
+  //   const linkTag = e.target.closest('a') as HTMLLinkElement;
 
-    linkTag.addEventListener('pointerup', (e1: any) => {
-      // e1.preventDefault();
-    });
-  }
+  //   linkTag?.addEventListener('pointerup', (e1: any) => {
+  //     e1.preventDefault();
+  //   });
+  // }
 
   sliderState.isScrubbing = false;
   sliderState.isDragging = false;

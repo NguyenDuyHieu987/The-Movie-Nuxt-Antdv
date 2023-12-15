@@ -75,12 +75,12 @@
     <!-- </template>
     </el-skeleton> -->
 
-    <!-- <ModalTrailer
+    <ModalTrailer
       :isOpenModalTrailer="isOpenModalTrailer"
       :item="item"
       :isEpisodes="isEpisodes"
       @setIsTeleportModal="(data: boolean)=>isOpenModalTrailer = data"
-    /> -->
+    />
   </div>
 </template>
 
