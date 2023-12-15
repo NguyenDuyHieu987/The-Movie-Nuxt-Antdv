@@ -289,7 +289,7 @@ const imgHeight = ref<number>(0);
 const imgWidth = ref<number>(0);
 const rectBound = ref<any>(0);
 const timeOut = ref<any>();
-const isEpisodes = computed<boolean>(() => props.item?.media_type == 'tv');
+const isEpisodes = computed<boolean>(() => props?.item?.media_type == 'tv');
 
 const getData = async () => {
   // loading.value = true;
@@ -298,7 +298,7 @@ const getData = async () => {
   //   loading.value = false;
   // }, 500);
 
-  switch (props?.type || props.item?.media_type) {
+  switch (props?.type || props?.item?.media_type) {
     case 'movie':
       await getMovieById(props.item.id)
         .then((response) => {
