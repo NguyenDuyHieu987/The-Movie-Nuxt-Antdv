@@ -109,8 +109,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  window.removeEventListener('pointerup', onPointerMoveSlider);
-  window.removeEventListener('pointerup', onPointerDownSlider);
+  window.removeEventListener('pointermove', onPointerMoveSlider);
   window.removeEventListener('pointerup', onPointerUpSlider);
 });
 
