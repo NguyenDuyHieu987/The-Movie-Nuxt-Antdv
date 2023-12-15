@@ -266,7 +266,7 @@ const handleChangeInput = (query: string) => {
           .finally(() => {});
       }
 
-      await useAsyncData(`cache/search/all/${query}/${page.value}/10`, () =>
+      await useAsyncData(`search/all/${query}/${page.value}/10`, () =>
         getDaTaSearch(query, page.value, 10)
       )
         .then((response) => {
@@ -327,9 +327,8 @@ const handleFoucusSearchInput = async (e: any) => {
   if (valueInput.value?.length > 0 && dataSearch.value.length == 0) {
     // loadingSearch.value = true;
 
-    await useAsyncData(
-      `cache/search/all/${valueInput.value}/${page.value}/10`,
-      () => getDaTaSearch(valueInput.value, page.value, 10)
+    await useAsyncData(`search/all/${valueInput.value}/${page.value}/10`, () =>
+      getDaTaSearch(valueInput.value, page.value, 10)
     )
       .then((response) => {
         dataSearch.value = response.data.value?.results;
