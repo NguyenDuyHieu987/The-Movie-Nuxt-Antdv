@@ -169,7 +169,7 @@ const getData = async () => {
 
   switch (props?.type || props?.item?.media_type) {
     case 'movie':
-      await getMovieById(props.item.id)
+      await getMovieById(props.item?.movie_id)
         .then((response) => {
           dataMovie.value = response;
         })
@@ -181,7 +181,7 @@ const getData = async () => {
         });
       break;
     case 'tv':
-      await getTvById(props.item.id)
+      await getTvById(props.item?.movie_id)
         .then((response) => {
           dataMovie.value = response;
         })

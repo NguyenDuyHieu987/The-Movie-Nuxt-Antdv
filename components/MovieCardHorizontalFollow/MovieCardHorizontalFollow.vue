@@ -269,7 +269,6 @@ const utils = useUtils();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
-const loadingImg = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const urlShare = computed<string>((): string => window.location.href);
@@ -293,43 +292,37 @@ onMounted(() => {
 const getData = async () => {
   loading.value = true;
 
-  if (props?.type || props?.item?.media_type) {
-    switch (props?.type || props?.item?.media_type) {
-      case 'movie':
-        isEpisodes.value = false;
-        // useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
-        //   getMovieById(props.item?.movie_id)
-        // )
-        getMovieById(props.item?.movie_id)
-          .then((response) => {
-            dataMovie.value = response;
-
-            loading.value = false;
-          })
-          .catch((e) => {
-            loading.value = false;
-            if (axios.isCancel(e)) return;
-          });
-        break;
-      case 'tv':
-        isEpisodes.value = true;
-        // useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
-        //   getTvById(props.item?.movie_id)
-        // )
-        getTvById(props.item?.movie_id)
-          .then((response) => {
-            dataMovie.value = response;
-
-            loading.value = false;
-          })
-          .catch((e) => {
-            loading.value = false;
-            if (axios.isCancel(e)) return;
-          });
-        break;
-      default:
-        break;
-    }
+  switch (props?.type || props?.item?.media_type) {
+    case 'movie':
+      isEpisodes.value = false;
+      // useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
+      //   getMovieById(props.item?.movie_id)
+      // )
+      await getMovieById(props.item?.movie_id)
+        .then((response) => {
+          dataMovie.value = response;
+        })
+        .catch((e) => {
+          loading.value = false;
+          if (axios.isCancel(e)) return;
+        });
+      break;
+    case 'tv':
+      isEpisodes.value = true;
+      // useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
+      //   getTvById(props.item?.movie_id)
+      // )
+      await getTvById(props.item?.movie_id)
+        .then((response) => {
+          dataMovie.value = response;
+        })
+        .catch((e) => {
+          loading.value = false;
+          if (axios.isCancel(e)) return;
+        });
+      break;
+    default:
+      break;
   }
 
   if (dataMovie.value?.history_progress) {

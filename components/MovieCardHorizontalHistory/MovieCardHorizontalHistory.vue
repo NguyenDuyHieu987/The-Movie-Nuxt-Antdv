@@ -416,43 +416,37 @@ const getData = async () => {
       utils.dateTimeFormater.format(props.item?.created_at, 'LL');
   }
 
-  if (props?.type || props?.item?.media_type) {
-    switch (props?.type || props?.item?.media_type) {
-      case 'movie':
-        isEpisodes.value = false;
-        // useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
-        //   getMovieById(props.item?.movie_id)
-        // )
-        getMovieById(props.item?.movie_id)
-          .then((response) => {
-            dataMovie.value = response;
-
-            loading.value = false;
-          })
-          .catch((e) => {
-            loading.value = false;
-            if (axios.isCancel(e)) return;
-          });
-        break;
-      case 'tv':
-        isEpisodes.value = true;
-        // useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
-        //   getTvById(props.item?.movie_id)
-        // )
-        getTvById(props.item?.movie_id)
-          .then((response) => {
-            dataMovie.value = response;
-
-            loading.value = false;
-          })
-          .catch((e) => {
-            loading.value = false;
-            if (axios.isCancel(e)) return;
-          });
-        break;
-      default:
-        break;
-    }
+  switch (props?.type || props?.item?.media_type) {
+    case 'movie':
+      isEpisodes.value = false;
+      // useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
+      //   getMovieById(props.item?.movie_id)
+      // )
+      getMovieById(props.item?.movie_id)
+        .then((response) => {
+          dataMovie.value = response;
+        })
+        .catch((e) => {
+          loading.value = false;
+          if (axios.isCancel(e)) return;
+        });
+      break;
+    case 'tv':
+      isEpisodes.value = true;
+      // useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
+      //   getTvById(props.item?.movie_id)
+      // )
+      getTvById(props.item?.movie_id)
+        .then((response) => {
+          dataMovie.value = response;
+        })
+        .catch((e) => {
+          loading.value = false;
+          if (axios.isCancel(e)) return;
+        });
+      break;
+    default:
+      break;
   }
 
   if (dataMovie.value?.in_list) {
