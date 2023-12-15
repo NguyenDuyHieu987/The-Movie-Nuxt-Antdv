@@ -112,15 +112,13 @@ const getData = async () => {
   //   loading.value = false;
   // }, 500);
 
-  if (props?.type || props?.item?.media_type) {
-    switch (props?.type || props?.item?.media_type) {
-      case 'movie':
-        break;
-      case 'tv':
-        break;
-      default:
-        break;
-    }
+  switch (props?.type || props?.item?.media_type) {
+    case 'movie':
+      break;
+    case 'tv':
+      break;
+    default:
+      break;
   }
 
   if (store.isLogin) {
