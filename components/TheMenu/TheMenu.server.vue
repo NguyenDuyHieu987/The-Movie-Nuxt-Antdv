@@ -408,7 +408,7 @@
       </template>
     </el-menu-item>
 
-    <el-menu-item index="/ranking">
+    <el-menu-item index="/ranks">
       <el-icon>
         <!-- <font-awesome-icon icon="fa-solid fa-ranking-star" /> -->
         <!-- <Icon name="fa6-solid:ranking-star" /> -->
@@ -424,7 +424,7 @@
         </svg>
       </el-icon>
       <template #title>
-        <NuxtLink to="/ranking"> Xếp hạng</NuxtLink>
+        <NuxtLink to="/ranks"> Xếp hạng</NuxtLink>
       </template>
     </el-menu-item>
 

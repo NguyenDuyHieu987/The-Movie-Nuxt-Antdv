@@ -353,7 +353,7 @@
         </svg>
       </template>
       <div>
-        <NuxtLink to="/ranking"> Xếp hạng</NuxtLink>
+        <NuxtLink to="/ranks"> Xếp hạng</NuxtLink>
       </div>
     </a-menu-item>
 

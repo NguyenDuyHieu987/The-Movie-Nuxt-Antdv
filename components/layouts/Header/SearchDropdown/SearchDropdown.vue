@@ -117,7 +117,7 @@
             <div class="right click-active">
               <NuxtLink
                 class="view-all"
-                to="/ranking?type=hot-search"
+                to="/ranks?type=hot-search"
                 @click="isFocusSearchInput = false"
               >
                 Tất cả

@@ -250,7 +250,11 @@
             }
 
             .rank-top-search {
+              display: flex;
+              justify-content: center;
               max-height: inherit;
+              width: 40px;
+              max-width: 40px;
               background-color: rgba(0, 113, 193, calc(var(--rank-opacity, 1)));
               padding: var(--padding-search-dropdown);
               font-size: 1.2em;

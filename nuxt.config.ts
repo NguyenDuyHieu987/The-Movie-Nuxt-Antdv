@@ -330,7 +330,7 @@ export default defineNuxtConfig({
       '/television',
       '/search',
       '/discover',
-      '/ranking',
+      '/ranks',
       '/upgrade/plans',
       '/upgrade/PaymentPicker',
       '/login',
@@ -347,7 +347,7 @@ export default defineNuxtConfig({
     '/television/**': { isr: true },
     '/discover/**': { isr: true },
     '/search/**': { isr: true },
-    '/ranking/**': { isr: true },
+    '/ranks/**': { isr: true },
     '/login': {
       isr: true,
       prerender: true,

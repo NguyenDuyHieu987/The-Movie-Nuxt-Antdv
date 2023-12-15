@@ -126,4 +126,4 @@ const onChangePage = async (pageSelected: number) => {
 };
 </script>
 
-<style lang="scss" src="./RankingPage.scss"></style>
+<style lang="scss" src="./RankPage.scss"></style>
