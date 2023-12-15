@@ -91,7 +91,7 @@
           </div>
         </div>
       </div>
-      <p class="copyright">© Copyright by 2022 Phimhay247 All Right Reserved</p>
+      <p class="copyright">© Copyright by 2024 Phimhay247 All Right Reserved</p>
     </div>
   </footer>
 </template>
