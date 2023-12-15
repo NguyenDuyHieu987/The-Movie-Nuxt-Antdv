@@ -1,5 +1,5 @@
 <template>
-  <Teleport :disabled="!isOpenModalTrailer" to="#append-to">
+  <Teleport :disabled="!isTeleport" to="#append-to">
     <div class="modal-trailer-wrapper">
       <!-- <a-modal
       v-model:visible="isTeleport"
@@ -81,7 +81,7 @@
         :width="1300"
         align-center
         center
-        append-to="#append-elementPlus"
+        append-to="#append-to"
         :show-close="false"
       >
         <template #header>
@@ -186,20 +186,10 @@ const props = defineProps<{
   isEpisodes: boolean;
 }>();
 
-const emit = defineEmits<{ setIsTeleportModal: [data: boolean] }>();
-
 const dataMovie = ref<any>({});
 const dataVideos = ref<any[]>([]);
 const loading = ref<boolean>(false);
-
-const isTeleport = computed<boolean>({
-  get() {
-    return props.isOpenModalTrailer;
-  },
-  set(value: boolean) {
-    emit('setIsTeleportModal', value);
-  },
-});
+const isTeleport = defineModel<boolean>('isTeleport', { default: false });
 
 watch(isTeleport, async () => {
   if (props.isOpenModalTrailer == true) {

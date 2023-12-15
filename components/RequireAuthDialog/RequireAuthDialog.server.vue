@@ -1,50 +1,47 @@
 <template>
   <!-- :disabled="!store.openRequireAuthDialog"  -->
-  <Teleport to="#append-to">
-    <div class="require-auth">
-      <el-dialog
-        class="require-auth-dialog"
-        v-model="store.openRequireAuthDialog"
-        :width="600"
-        align-center
-        center
-        append-to="#append-elementPlus"
-        :show-close="false"
-      >
-        <template #header>
-          <CloseBtn
-            class="transparent"
-            @click="store.setCloseRequireAuthDialog()"
-          />
-        </template>
+  <!-- <Teleport to="#append-to"> -->
+  <div class="require-auth">
+    <el-dialog
+      class="require-auth-dialog"
+      v-model="store.openRequireAuthDialog"
+      :width="600"
+      align-center
+      center
+      append-to="#append-to"
+      :show-close="false"
+    >
+      <template #header>
+        <CloseBtn
+          class="transparent"
+          @click="store.setCloseRequireAuthDialog()"
+        />
+      </template>
 
-        <a-result
-          title="Bạn cần đăng nhập để sử dụng chức năng này"
-          status="403"
+      <a-result title="Bạn cần đăng nhập để sử dụng chức năng này" status="403">
+      </a-result>
+
+      <template #footer>
+        <NuxtLink
+          :to="{ path: '/signup' }"
+          @click="store.setCloseRequireAuthDialog()"
         >
-        </a-result>
+          <a-button type="text" size="large" class="default">
+            Đăng ký
+          </a-button>
+        </NuxtLink>
+        <NuxtLink
+          :to="{ path: '/login' }"
+          @click="store.setCloseRequireAuthDialog()"
+        >
+          <a-button type="text" size="large" class="default gradient">
+            Đăng nhập
+          </a-button>
+        </NuxtLink>
+      </template>
+    </el-dialog>
 
-        <template #footer>
-          <NuxtLink
-            :to="{ path: '/signup' }"
-            @click="store.setCloseRequireAuthDialog()"
-          >
-            <a-button type="text" size="large" class="default">
-              Đăng ký
-            </a-button>
-          </NuxtLink>
-          <NuxtLink
-            :to="{ path: '/login' }"
-            @click="store.setCloseRequireAuthDialog()"
-          >
-            <a-button type="text" size="large" class="default gradient">
-              Đăng nhập
-            </a-button>
-          </NuxtLink>
-        </template>
-      </el-dialog>
-
-      <!-- <a-modal
+    <!-- <a-modal
         class="require-auth-dialog"
         v-model:visible="store.openRequireAuthDialog"
         :width="600"
@@ -80,8 +77,8 @@
           </NuxtLink>
         </template>
       </a-modal> -->
-    </div>
-  </Teleport>
+  </div>
+  <!-- </Teleport> -->
 </template>
 
 <script setup lang="ts">

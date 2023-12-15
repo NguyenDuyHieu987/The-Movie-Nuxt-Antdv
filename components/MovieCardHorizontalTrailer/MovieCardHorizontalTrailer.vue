@@ -76,10 +76,10 @@
     </el-skeleton> -->
 
     <ModalTrailer
+      v-model:isTeleport="isOpenModalTrailer"
       :isOpenModalTrailer="isOpenModalTrailer"
       :item="item"
       :isEpisodes="isEpisodes"
-      @setIsTeleportModal="(data: boolean)=>isOpenModalTrailer = data"
     />
   </div>
 </template>
