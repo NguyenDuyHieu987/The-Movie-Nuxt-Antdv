@@ -553,8 +553,8 @@ const getData = async () => {
   //     if (axios.isCancel(e)) return;
   //   });
 
-  // await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
-  await getNowPlaying(1)
+  // useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
+  getNowPlaying(1)
     .then((response) => {
       nowPlayings.value = response?.results.slice(0, 12);
     })
@@ -565,10 +565,10 @@ const getData = async () => {
       loadingNowPlaying.value = false;
     });
 
-  // await useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
+  // useAsyncData(`genres/hoat-hinh/views_desc/1`, () =>
   //   getMoviesByGenres('hoat-hinh', 'views_desc', 1)
   // )
-  await getMoviesByGenres('hoat-hinh', 'views_desc', 1)
+  getMoviesByGenres('hoat-hinh', 'views_desc', 1)
     .then((response) => {
       cartoons.value = response?.results.slice(0, 12);
     })
@@ -579,8 +579,8 @@ const getData = async () => {
       loadingCartoon.value = false;
     });
 
-  // await useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
-  await getTvAiringToday(1)
+  // useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
+  getTvAiringToday(1)
     .then((response) => {
       tvAiringTodays.value = response?.results.slice(0, 12);
     })
@@ -591,8 +591,8 @@ const getData = async () => {
       loadingTvAiringToday.value = false;
     });
 
-  // await useAsyncData('movie/upcoming/1', () => getUpComing(1))
-  await getUpComing(1)
+  // useAsyncData('movie/upcoming/1', () => getUpComing(1))
+  getUpComing(1)
     .then((response) => {
       upComings.value = response?.results.slice(0, 15);
     })
@@ -603,8 +603,8 @@ const getData = async () => {
       loadingUpComing.value = false;
     });
 
-  // await useAsyncData('movie/toprated/1', () => getTopRated(1))
-  await getTopRated(1)
+  // useAsyncData('movie/toprated/1', () => getTopRated(1))
+  getTopRated(1)
     .then((response) => {
       topRateds.value = response?.results.slice(0, 12);
     })
@@ -615,8 +615,8 @@ const getData = async () => {
       loadingTopRated.value = false;
     });
 
-  // await useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
-  await getTvOntheAir(1)
+  // useAsyncData('tv/ontheair/1', () => getTvOntheAir(1))
+  getTvOntheAir(1)
     .then((response) => {
       tvOnTheAirs.value = response?.results.slice(0, 12);
     })
@@ -627,10 +627,10 @@ const getData = async () => {
       loadingTvOnTheAir.value = false;
     });
 
-  // await useAsyncData('recommend/get/1', () =>
+  // useAsyncData('recommend/get/1', () =>
   //   getMyRecommend(skipRecommend.value)
   // )
-  await getMyRecommend(skipRecommend.value, 20)
+  getMyRecommend(skipRecommend.value, 20)
     .then((response) => {
       recommends.value = response?.results;
       skipRecommend.value++;

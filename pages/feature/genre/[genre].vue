@@ -329,7 +329,7 @@ const getData = async () => {
 
   formFilter.value.genre = route.params.genre;
 
-  // await useAsyncData(
+  // useAsyncData(
   //   `discover/movie/nowplaying/${{
   //     ...formFilter.value,
   //     type: 'nowplaying',
@@ -340,7 +340,7 @@ const getData = async () => {
   //       type: 'nowplaying',
   //     })
   // )
-  await FilterMovieSlug({
+  FilterMovieSlug({
     ...formFilter.value,
     type: 'nowplaying',
   })
@@ -354,7 +354,7 @@ const getData = async () => {
       loadingNowPlaying.value = false;
     });
 
-  // await useAsyncData(
+  // useAsyncData(
   //   `discover/movie/popular/${{
   //     ...formFilter.value,
   //     type: 'popular',
@@ -365,7 +365,7 @@ const getData = async () => {
   //       type: 'popular',
   //     })
   // )
-  await FilterMovieSlug({
+  FilterMovieSlug({
     ...formFilter.value,
     type: 'popular',
   })
@@ -379,7 +379,7 @@ const getData = async () => {
       loadingPopular.value = false;
     });
 
-  // await useAsyncData(
+  // useAsyncData(
   //   `discover/movie/upcoming/${{
   //     ...formFilter.value,
   //     type: 'upcoming',
@@ -390,7 +390,7 @@ const getData = async () => {
   //       type: 'upcoming',
   //     })
   // )
-  await FilterMovieSlug({
+  FilterMovieSlug({
     ...formFilter.value,
     type: 'upcoming',
   })
@@ -404,7 +404,7 @@ const getData = async () => {
       loadingUpComing.value = false;
     });
 
-  // await useAsyncData(
+  // useAsyncData(
   //   `discover/movie/toprated/${{
   //     ...formFilter.value,
   //     type: 'toprated',
@@ -415,7 +415,7 @@ const getData = async () => {
   //       type: 'toprated',
   //     })
   // )
-  await FilterMovieSlug({
+  FilterMovieSlug({
     ...formFilter.value,
     type: 'toprated',
   })

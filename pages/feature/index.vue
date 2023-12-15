@@ -300,8 +300,8 @@ const getData = async () => {
 
   // await nextTick();
 
-  // await useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
-  await getNowPlaying(1)
+  // useAsyncData('movie/nowplaying/1', () => getNowPlaying(1))
+  getNowPlaying(1)
     .then((response) => {
       nowPlayings.value = response?.results.slice(0, 12);
     })
@@ -312,8 +312,8 @@ const getData = async () => {
       loadingNowPlaying.value = false;
     });
 
-  // await useAsyncData(`movie/popular/1`, () => getPopular(2))
-  await getPopular(2)
+  // useAsyncData(`movie/popular/1`, () => getPopular(2))
+  getPopular(2)
     .then((response) => {
       populars.value = response?.results.slice(0, 12);
     })
@@ -324,8 +324,8 @@ const getData = async () => {
       loadingPopular.value = false;
     });
 
-  // await useAsyncData('movie/upcoming/1', () => getUpComing(3))
-  await getUpComing(3)
+  // useAsyncData('movie/upcoming/1', () => getUpComing(3))
+  getUpComing(3)
     .then((response) => {
       upComings.value = response?.results.slice(0, 12);
     })
