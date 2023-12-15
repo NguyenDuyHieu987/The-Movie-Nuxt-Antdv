@@ -237,7 +237,7 @@
                 :index="index"
                 :key="item.id"
                 :item="item"
-                :type="item.me_type"
+                :type="item.media_type"
               />
             </section>
           </template>
@@ -280,7 +280,7 @@
                     :index="index"
                     :key="item.id"
                     :item="item"
-                    :type="item.me_type"
+                    :type="item.media_type"
                   />
                 </div>
               </template>
@@ -332,7 +332,7 @@
                     :item="item"
                     :index="index"
                     :key="item.id"
-                    :type="item.me_type"
+                    :type="item.media_type"
                   />
                 </SwiperSlide>
               </template>
