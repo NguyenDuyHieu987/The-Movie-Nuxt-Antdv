@@ -1,5 +1,5 @@
 <template>
-  <Teleport to="#__nuxt" v-if="isTeleportPreviewModal">
+  <Teleport v-if="isTeleportPreviewModal" to="#__nuxt">
     <div class="preview-overlay">
       <div
         ref="previewModal"
