@@ -1,6 +1,6 @@
 <template>
   <div class="home-page televison genre-page">
-    <HeaderHomeBreadcrumb>
+    <HeaderPageGenreType>
       <template #label>
         <NuxtLink
           :to="{
@@ -10,7 +10,7 @@
           Phim bộ
         </NuxtLink>
       </template>
-    </HeaderHomeBreadcrumb>
+    </HeaderPageGenreType>
 
     <BillboardAnimation v-model:data="dataBilboard" />
 
@@ -216,7 +216,7 @@ import axios from 'axios';
 import BillboardAnimation from '~/components/BillboardAnimation/BillboardAnimation.server.vue';
 import SwiperCarouselGroup from '~/components/CarouselGroup/SwiperCarouselGroup/SwiperCarouselGroup.vue';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
-import HeaderHomeBreadcrumb from '~/components/layouts/HeaderHomeBreadcrumb/HeaderHomeBreadcrumb.server.vue';
+import HeaderPageGenreType from '~/components/layouts/HeaderPageGenreType/HeaderPageGenreType.server.vue';
 import LoadingSectionHorizontal from '~/components/LoadingSection/LoadingSectionHorizontal/LoadingSectionHorizontal.vue';
 import { getGenreById } from '~/services/genres';
 import { FilterTvSlug } from '~/services/TvSlug';

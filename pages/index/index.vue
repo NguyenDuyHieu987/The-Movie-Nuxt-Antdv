@@ -413,7 +413,7 @@ import { getMyRecommend } from '~/services/recommend';
 import { getTvAiringToday, getTvOntheAir } from '~/services/TvSlug';
 
 definePageMeta({
-  // layout: 'home',
+  layout: 'home',
   name: 'home',
   keepalive: true,
   key: (route) => route.fullPath,
