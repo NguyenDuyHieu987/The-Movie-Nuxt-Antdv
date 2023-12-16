@@ -4,7 +4,7 @@
     :class="{
       expand: collapsed || openSiderBarFixed,
       fixed: openSiderBarFixed,
-      home: $route.meta.name?.includes('home'),
+      home: route.meta.name?.includes('home'),
     }"
   >
     <Header />
@@ -45,7 +45,25 @@ import Footer from '~/components/layouts/Footer/Footer.server.vue';
 import { storeToRefs } from 'pinia';
 
 const store = useStore();
+const route = useRoute();
+const router = useRouter();
 const { collapsed, isLogin, openSiderBarFixed } = storeToRefs(store);
+const isHomeLayout = ref<boolean>(false);
+
+// let promise = Promise.resolve();
+
+// router.afterEach(async (to: any, from: any) => {
+//   isHomeLayout.value = to.name?.includes('home');
+
+//   if (isHomeLayout.value) {
+//     // promise = new Promise((resolve) => {
+//     //   router.afterEach(() => resolve());
+//     // });
+//     // await promise;
+//   }
+
+//   console.log(to);
+// });
 </script>
 
 <style lang="scss" src="~/assets/style/defaultLayout.scss"></style>
