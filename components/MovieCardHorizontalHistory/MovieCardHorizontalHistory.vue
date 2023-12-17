@@ -127,11 +127,10 @@
             :teleported="true"
             :mouseLeaveDelay="0"
           >
-            <el-button
-              class="remove-btn click-active"
-              circle
+            <a-button
+              class="viewmore-btn click-active"
               size="large"
-              text
+              type="text"
               @click.prevent="handleRemoveFromHistory"
             >
               <template #icon>
@@ -149,7 +148,7 @@
                   />
                 </svg>
               </template>
-            </el-button>
+            </a-button>
           </el-tooltip>
 
           <el-dropdown
