@@ -1,45 +1,51 @@
 <template>
   <section class="suggested">
-    <h2 class="suggested-title title-default">
-      <span>Có thể muốn xem</span>
-    </h2>
+    <div class="suggested-container">
+      <h2 class="suggested-title title-default">
+        <span>Có thể muốn xem</span>
+      </h2>
 
-    <el-skeleton
-      class="movie-group-suggested-skeleton"
-      :loading="loading"
-      animated
-    >
-      <template #template>
-        <div
-          class="movie-card-item-suggested"
-          v-for="(item, index) in 5"
-          :index="index"
-          :key="index"
-          :item="item"
-        >
-          <div class="img-box">
-            <el-skeleton-item class="skeleton-img ratio-16-9" />
-          </div>
-          <div class="content-skeleton">
-            <el-skeleton-item variant="text" style="width: 50%" />
-            <el-skeleton-item variant="text" style="width: 65%" />
-            <el-skeleton-item variant="text" />
-          </div>
-        </div>
-      </template>
-
-      <template #default>
-        <div class="suggested-list">
-          <MovieCardSuggested
-            v-for="(item, index) in dataSuggested"
+      <el-skeleton
+        class="movie-group-suggested-skeleton"
+        :loading="loading"
+        animated
+      >
+        <template #template>
+          <div
+            class="movie-card-item-suggested"
+            v-for="(item, index) in 5"
             :index="index"
             :key="index"
             :item="item"
-            :type="item.media_type"
-          />
-        </div>
-      </template>
-    </el-skeleton>
+          >
+            <div class="img-box">
+              <el-skeleton-item class="skeleton-img ratio-16-9" />
+            </div>
+            <div class="content-skeleton">
+              <el-skeleton-item variant="text" style="width: 50%" />
+              <el-skeleton-item variant="text" style="width: 65%" />
+              <el-skeleton-item variant="text" />
+            </div>
+          </div>
+        </template>
+
+        <template #default>
+          <div class="suggested-list">
+            <MovieCardSuggested
+              v-for="(item, index) in dataSuggested"
+              :index="index"
+              :key="index"
+              :item="item"
+              :type="item.media_type"
+            />
+          </div>
+
+          <div v-show="loadMore" class="loading-suggested">
+            <LoadingSpinner :width="35" />
+          </div>
+        </template>
+      </el-skeleton>
+    </div>
   </section>
 </template>
 
@@ -48,6 +54,7 @@ import axios from 'axios';
 import { getSimilar } from '~/services/similar';
 import { getTrending } from '~/services/trending';
 import MovieCardSuggested from '~/components/MovieCardSuggested/MovieCardSuggested.vue';
+import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const props = defineProps<{
   dataMovie: any;
@@ -56,6 +63,40 @@ const props = defineProps<{
 const dataSuggested = ref<any[]>([]);
 const page = ref<number>(1);
 const loading = ref<boolean>(false);
+const loadMore = ref<boolean>(false);
+
+onMounted(() => {
+  window.onscroll = async () => {
+    if (dataSuggested.value?.length == 0) {
+      return;
+    }
+
+    const scrollHeight = Math.round(window.scrollY + window.innerHeight);
+
+    if (scrollHeight == document.documentElement.scrollHeight) {
+      loadMore.value = true;
+
+      await getSimilar(
+        props?.dataMovie.media_type,
+        props?.dataMovie.id,
+        page.value,
+        20
+      )
+        .then((response) => {
+          if (response?.results?.length > 0) {
+            dataSuggested.value = dataSuggested.value.concat(response?.results);
+            page.value++;
+          }
+        })
+        .catch((e) => {
+          if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loadMore.value = false;
+        });
+    }
+  };
+});
 
 loading.value = true;
 

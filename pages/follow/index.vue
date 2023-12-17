@@ -184,8 +184,6 @@ onMounted(() => {
       }
     }
 
-    // console.log(window.scrollY + window.innerHeight);
-    // console.log(document.documentElement.scrollHeight);
     const scrollHeight = Math.round(window.scrollY + window.innerHeight);
 
     if (
