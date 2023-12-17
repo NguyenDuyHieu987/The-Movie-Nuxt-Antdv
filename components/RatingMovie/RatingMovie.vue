@@ -56,6 +56,7 @@
 import { ElNotification } from 'element-plus';
 import axios from 'axios';
 import { rating } from '~/services/rating';
+import { addRankRate } from '~/services/ranks';
 
 const props = defineProps<{
   dataMovie: any;
@@ -98,7 +99,11 @@ const handleRating = (value: number) => {
     return;
   }
 
-  rating(props.dataMovie?.id, props.dataMovie?.media_type, value)
+  rating({
+    movie_id: props.dataMovie?.id,
+    media_type: props.dataMovie?.media_type,
+    value: value,
+  })
     .then((response) => {
       if (response?.success == true) {
         ElNotification({
@@ -124,6 +129,19 @@ const handleRating = (value: number) => {
         duration: 3000,
         showClose: false,
       });
+      if (axios.isCancel(e)) return;
+    });
+
+  addRankRate({
+    movie_id: props.dataMovie?.id,
+    media_type: props.dataMovie?.media_type,
+    rate_value: value,
+  })
+    .then((response) => {
+      if (response?.success) {
+      }
+    })
+    .catch((e) => {
       if (axios.isCancel(e)) return;
     });
 };

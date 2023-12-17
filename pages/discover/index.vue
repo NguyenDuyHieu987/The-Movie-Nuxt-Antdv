@@ -124,11 +124,11 @@ const {
   }
 );
 
-loading.value = false;
 dataDiscover.value = dataDiscoverCache.value.results;
 
 totalPage.value = dataDiscoverCache.value?.total;
 pageSize.value = dataDiscoverCache.value?.page_size;
+loading.value = false;
 
 watch(
   formFilter,

@@ -4,11 +4,15 @@ export function getRating(moveId: string, type: string) {
   return makeRequest(`/rating/get/${type}/${moveId}`);
 }
 
-export function rating(moveid: string, type: string, value: number) {
+export function rating(params: {
+  movie_id: string;
+  media_type: string;
+  value: number;
+}) {
   const bodyFormData = new FormData();
-  bodyFormData.append('value', value.toString());
+  bodyFormData.append('value', params.value.toString());
 
-  return makeRequest(`/rating/${type}/${moveid}`, {
+  return makeRequest(`/rating/${params.media_type}/${params.movie_id}`, {
     method: 'POST',
     data: bodyFormData,
   });
