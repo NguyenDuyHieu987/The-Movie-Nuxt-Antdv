@@ -62,7 +62,7 @@
         v-model:dataSearchHistory="dataSearchHistory"
         v-model:isShowSearchResults="isShowSearchResults"
         v-model:isFocusSearchInput="isFocusSearchInput"
-        :searchQuery="valueInput"
+        v-model:valueInput="valueInput"
       />
     </div>
 

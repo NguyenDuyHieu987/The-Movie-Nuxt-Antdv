@@ -16,7 +16,7 @@
               <div class="right click-active">
                 <NuxtLink
                   class="view-all"
-                  :to="`/search?q=${searchQuery
+                  :to="`/search?q=${valueInput
                     ?.replaceAll(' ', '+')
                     .toLowerCase()}`"
                   @click="isFocusSearchInput = false"
@@ -168,9 +168,7 @@ import {
   addSearch,
 } from '~/services/search';
 
-const props = defineProps<{
-  searchQuery?: string;
-}>();
+const props = defineProps<{}>();
 
 const store = useStore();
 const route = useRoute();
@@ -183,6 +181,7 @@ const isShowSearchResults = defineModel<boolean>('isShowSearchResults', {
 const isFocusSearchInput = defineModel<boolean>('isFocusSearchInput', {
   default: false,
 });
+const valueInput = defineModel<string>('valueInput', { default: '' });
 
 const handleMouseDownSearchDropdown = (e: any) => {
   e.preventDefault();
@@ -283,6 +282,8 @@ const handleClickTopSearchItem = (e: any, item: any) => {
       if (axios.isCancel(e)) return;
     });
 
+  valueInput.value = item?.name;
+
   navigateTo(`/search?q=${item?.name?.replaceAll(' ', '+').toLowerCase()}`);
 
   isFocusSearchInput.value = false;
@@ -293,6 +294,8 @@ const handleClickSearchHistoryItem = (e: any, item: any) => {
     e.preventDefault();
     return;
   }
+
+  valueInput.value = item?.query;
 
   navigateTo(`/search?q=${item?.query?.replaceAll(' ', '+').toLowerCase()}`);
 
