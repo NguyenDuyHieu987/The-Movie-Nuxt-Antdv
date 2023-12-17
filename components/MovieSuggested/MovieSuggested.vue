@@ -80,7 +80,7 @@ onMounted(() => {
         props?.dataMovie.media_type,
         props?.dataMovie.id,
         page.value,
-        20
+        15
       )
         .then((response) => {
           if (response?.results?.length > 0) {
@@ -100,7 +100,7 @@ onMounted(() => {
 
 loading.value = true;
 
-getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, page.value, 20)
+getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, page.value, 15)
   .then((response) => {
     dataSuggested.value = response?.results;
   })
