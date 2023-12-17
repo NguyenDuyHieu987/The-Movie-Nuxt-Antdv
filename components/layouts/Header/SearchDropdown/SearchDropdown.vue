@@ -167,6 +167,7 @@ import {
   clearSearchHistory,
   addSearch,
 } from '~/services/search';
+import { addRankSearch } from '~/services/ranks';
 
 const props = defineProps<{}>();
 
@@ -247,6 +248,8 @@ const handleClickSearchResultsItem = async (e: any, item: any) => {
   }
 
   if (item?.type == 'history' && item?.query) {
+    valueInput.value = item?.query;
+
     navigateTo(`/search?q=${item?.query?.replaceAll(' ', '+').toLowerCase()}`);
   } else {
     addSearch({
@@ -262,6 +265,21 @@ const handleClickSearchResultsItem = async (e: any, item: any) => {
         if (axios.isCancel(e)) return;
       });
 
+    addRankSearch({
+      movie_id: item?.id,
+      media_type: item?.media_type,
+      query: item?.name,
+    })
+      .then((response) => {
+        if (response?.success) {
+        }
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+      });
+
+    valueInput.value = item?.name;
+
     navigateTo(`/search?q=${item?.name?.replaceAll(' ', '+').toLowerCase()}`);
   }
 
@@ -270,12 +288,25 @@ const handleClickSearchResultsItem = async (e: any, item: any) => {
 
 const handleClickTopSearchItem = (e: any, item: any) => {
   addSearch({
-    movie_id: item?.id,
+    movie_id: item?.movie_id,
     media_type: item?.media_type,
     query: item?.name,
   })
     .then((response) => {
       if (response?.added) {
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  addRankSearch({
+    movie_id: item?.movie_id,
+    media_type: item?.media_type,
+    query: item?.name,
+  })
+    .then((response) => {
+      if (response?.success) {
       }
     })
     .catch((e) => {

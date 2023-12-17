@@ -58,6 +58,7 @@ import axios from 'axios';
 import MovieCardHorizontal from '~/components/MovieCardHorizontal/MovieCardHorizontal.vue';
 import ControlPage from '~/components/ControlPage/ControlPage.vue';
 import { getDaTaSearch, addSearch, addSearchHistory } from '~/services/search';
+import { addRankSearch } from '~/services/ranks';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const store = useStore();
@@ -93,7 +94,7 @@ useSeoMeta({
 
 const addSearchHistoryD = async () => {
   if (store.isLogin && total.value > 0 && searchQuery.value.length > 0) {
-    await addSearchHistory(searchQuery.value)
+    addSearchHistory(searchQuery.value)
       .then((response) => {
         if (response?.added) {
           store.dataSearchHistory.unshift(response?.result);
@@ -104,9 +105,18 @@ const addSearchHistoryD = async () => {
       });
   }
 
-  await addSearch({ query: searchQuery.value })
+  addSearch({ query: searchQuery.value })
     .then((response) => {
       if (response?.added) {
+      }
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    });
+
+  addRankSearch({ query: searchQuery.value })
+    .then((response) => {
+      if (response?.success) {
       }
     })
     .catch((e) => {
