@@ -251,11 +251,17 @@ const handleChangeEpisode = (item: any) => {
 
   emit('changeEpisode', item);
 
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth',
-  });
+  const videoPlayer = document
+    .getElementById('video-player')
+    ?.closest('.video-player');
+
+  videoPlayer!?.scrollIntoView({ block: 'end' });
+
+  // window.scrollTo({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: 'smooth',
+  // });
 };
 </script>
 
