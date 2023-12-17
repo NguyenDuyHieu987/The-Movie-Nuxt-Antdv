@@ -14,7 +14,7 @@ export function getRankPlay(page: number = 1, limit: number = 10) {
   return makeRequest(`/ranks/hot-play?page=${page}&limit=${limit}`);
 }
 
-export function addRankplay(params: { movie_id: string; media_type: string }) {
+export function addRankPlay(params: { movie_id: string; media_type: string }) {
   const bodyFormData = new FormData();
   bodyFormData.append('movie_id', params.movie_id);
   bodyFormData.append('media_type', params.media_type);

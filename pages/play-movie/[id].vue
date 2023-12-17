@@ -263,6 +263,7 @@ import { UpdateView } from '~/services/updateView';
 import { getGenreById } from '~/services/genres';
 import { getCountryByOriginalLanguage } from '~/services/country';
 import { getRating } from '~/services/rating';
+import { addRankPlay } from '~/services/ranks';
 import BackPage from '~/components/BackPage/BackPage.vue';
 import HistoryProgressBar from '~/components/HistoryProgressBar/HistoryProgressBar.vue';
 import VideoPlayer from '~/components/VideoPlayer/VideoPlayer.vue';
@@ -482,7 +483,27 @@ const onTimeUpdateVideoPlayer = (e: any) => {
 
     if (seconds.value > e.duration / 2) {
       if (isUpdateView.value == true) {
-        UpdateView(movieId.value, 'movie');
+        UpdateView(movieId.value, 'movie')
+          .then((response) => {
+            if (response?.success) {
+            }
+          })
+          .catch((e) => {
+            if (axios.isCancel(e)) return;
+          });
+
+        addRankPlay({
+          movie_id: dataMovie.value?.id,
+          media_type: dataMovie.value?.id,
+        })
+          .then((response) => {
+            if (response?.success) {
+            }
+          })
+          .catch((e) => {
+            if (axios.isCancel(e)) return;
+          });
+
         isUpdateView.value = false;
       }
     }
