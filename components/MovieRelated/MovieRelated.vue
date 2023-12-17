@@ -9,13 +9,13 @@
       </h2>
 
       <el-skeleton
-        class="movie-group-suggest-skeleton"
+        class="movie-group-related-skeleton"
         :loading="loadingSimilar"
         animated
       >
         <template #template>
           <div
-            class="movie-card-item-suggest"
+            class="movie-card-item-related"
             v-for="(item, index) in 10"
             :index="index"
             :key="index"
@@ -72,7 +72,7 @@
       </h2>
 
       <el-skeleton
-        class="movie-group-suggest-skeleton"
+        class="movie-group-related-skeleton"
         :loading="loadingRecommend"
         animated
       >
@@ -140,8 +140,8 @@ const props = defineProps<{
   type?: string;
 }>();
 
-// const dataSimilar = ref<any[]>([]);
-// const dataRecommend = ref<any[]>([]);
+const dataSimilar = ref<any[]>([]);
+const dataRecommend = ref<any[]>([]);
 const pageSimilar = ref<number>(1);
 const pageRecommend = ref<number>(Math.floor(Math.random() * 50) + 1);
 const viewMore = ref<boolean>(false);
@@ -151,68 +151,68 @@ const loadingRecommend = ref<boolean>(false);
 loadingSimilar.value = true;
 loadingRecommend.value = true;
 
-// getSimilar(
-//   props?.dataMovie.media_type,
-//   props?.dataMovie.id,
-//   pageSimilar.value,
-//   20
-// )
-//   .then((response) => {
-//     dataSimilar.value = response?.results;
-//   })
-//   .catch((e) => {
-//     if (axios.isCancel(e)) return;
-//   })
-//   .finally(() => {
-//     loadingSimilar.value = false;
-//   });
+getSimilar(
+  props?.dataMovie.media_type,
+  props?.dataMovie.id,
+  pageSimilar.value,
+  20
+)
+  .then((response) => {
+    dataSimilar.value = response?.results;
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  })
+  .finally(() => {
+    loadingSimilar.value = false;
+  });
 
-// getTrending(pageRecommend.value, 20)
-//   .then((response) => {
-//     dataRecommend.value = response?.results;
-//   })
-//   .catch((e) => {
-//     if (axios.isCancel(e)) return;
-//   })
-//   .finally(() => {
-//     loadingRecommend.value = false;
-//   });
+getTrending(pageRecommend.value, 20)
+  .then((response) => {
+    dataRecommend.value = response?.results;
+  })
+  .catch((e) => {
+    if (axios.isCancel(e)) return;
+  })
+  .finally(() => {
+    loadingRecommend.value = false;
+  });
 
-const { data: dataSimilar } = await useAsyncData(
-  `similar/${props?.dataMovie.media_type}/${props?.dataMovie.id}/${pageSimilar.value}`,
-  () =>
-    getSimilar(
-      props?.dataMovie.media_type,
-      props?.dataMovie.id,
-      pageSimilar.value,
-      12
-    ),
-  {
-    // lazy: true,
-    // immediate: false,
-    // server: false,
-    transform: (data: any) => {
-      return data.results;
-    },
-  }
-);
+// const { data: dataSimilar } = await useAsyncData(
+//   `similar/${props?.dataMovie.media_type}/${props?.dataMovie.id}/${pageSimilar.value}`,
+//   () =>
+//     getSimilar(
+//       props?.dataMovie.media_type,
+//       props?.dataMovie.id,
+//       pageSimilar.value,
+//       12
+//     ),
+//   {
+//     // lazy: true,
+//     // immediate: false,
+//     // server: false,
+//     transform: (data: any) => {
+//       return data.results;
+//     },
+//   }
+// );
 
-loadingSimilar.value = false;
+// loadingSimilar.value = false;
 
-const { data: dataRecommend } = await useAsyncData(
-  `trending/all/${pageRecommend.value}`,
-  () => getTrending(pageRecommend.value, 12),
-  {
-    // lazy: true,
-    // immediate: false,
-    // server: false,
-    transform: (data: any) => {
-      return data.results;
-    },
-  }
-);
+// const { data: dataRecommend } = await useAsyncData(
+//   `trending/all/${pageRecommend.value}`,
+//   () => getTrending(pageRecommend.value, 12),
+//   {
+//     // lazy: true,
+//     // immediate: false,
+//     // server: false,
+//     transform: (data: any) => {
+//       return data.results;
+//     },
+//   }
+// );
 
-loadingRecommend.value = false;
+// loadingRecommend.value = false;
 </script>
 
 <style lang="scss" src="./MovieRelated.scss"></style>

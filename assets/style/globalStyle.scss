@@ -692,6 +692,7 @@ svg {
       padding: 0px;
 
       .el-dropdown-menu__item {
+        position: relative;
         border: none;
         padding: 10px 20px;
         font-size: 1.45rem;
@@ -700,6 +701,20 @@ svg {
         span,
         a {
           color: inherit;
+        }
+
+        .social-share {
+          a {
+            &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              z-index: 1;
+            }
+          }
         }
       }
 

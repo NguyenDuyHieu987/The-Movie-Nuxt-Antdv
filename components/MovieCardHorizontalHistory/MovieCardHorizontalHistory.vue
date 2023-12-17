@@ -272,7 +272,7 @@
                       />
                     </svg>
 
-                    <span>
+                    <span class="social-share">
                       <ShareNetwork
                         network="facebook"
                         :url="urlShare"
@@ -340,10 +340,21 @@ const utils = useUtils();
 const dataMovie = ref<any>({});
 const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
-const urlShare = computed<string>((): string => window.location.href);
+const urlShare = computed<string>(
+  (): string =>
+    window.location.origin +
+    (isEpisodes
+      ? `/info-tv/${props.item?.id}__${utils
+          .removeVietnameseTones(props.item?.name)
+          ?.replaceAll(/\s/g, '-')
+          .toLowerCase()}`
+      : `/info-movie/${props.item?.id}__${utils
+          .removeVietnameseTones(props.item?.name)
+          ?.replaceAll(/\s/g, '-')
+          .toLowerCase()}`)
+);
 const percent = ref<number>(0);
 const isAddToList = ref<boolean>(false);
-const differenceDate = ref<number>(0);
 const timeLine = ref<string>('');
 
 onMounted(() => {});

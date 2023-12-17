@@ -1,5 +1,19 @@
 <template>
   <section class="suggested">
+    <el-skeleton
+      class="movie-group-suggested-skeleton"
+      :loading="loading"
+      animated
+    >
+      <template #template> </template>
+
+      <template #default> </template>
+    </el-skeleton>
+
+    <h2 class="suggested-title title-default">
+      <span>Có thể bạn quan tâm</span>
+    </h2>
+
     <div class="suggested-list">
       <MovieCardSuggested
         v-for="(item, index) in dataSimilar"

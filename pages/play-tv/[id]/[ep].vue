@@ -249,16 +249,20 @@
           </div>
         </div>
 
-        <ListEpisodes
-          :dataMovie="dataMovie"
-          @changeUrlCode="(data: string) => getUrlCode(data)"
-          @changeEpisode="(data: any) =>getCurrentEpisode(data)"
-        />
-
         <div class="related-content">
-          <!-- <MovieSuggested :dataMovie="dataMovie"  /> -->
+          <div class="left">
+            <ListEpisodes
+              :dataMovie="dataMovie"
+              @changeUrlCode="(data: string) => getUrlCode(data)"
+              @changeEpisode="(data: any) =>getCurrentEpisode(data)"
+            />
 
-          <Comment :dataMovie="dataMovie" />
+            <Comment :dataMovie="dataMovie" />
+          </div>
+
+          <div class="right">
+            <MovieSuggested :dataMovie="dataMovie" />
+          </div>
         </div>
       </div>
     </div>

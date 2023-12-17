@@ -150,16 +150,34 @@
         }
       }
 
-      .list-episodes {
-        margin-top: 10px;
-      }
-
       .related-content {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
         position: relative;
         z-index: 1;
-        margin-top: 20px;
+        margin-top: 30px;
 
-        .comment {
+        & > .left {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+
+          .list-episodes {
+          }
+
+          .comment {
+            width: 100%;
+
+            .comment-title {
+            }
+          }
+        }
+
+        & > .right {
+          width: 40%;
+          min-width: 500px;
+          max-width: 500px;
         }
       }
     }
@@ -235,6 +253,18 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .play-tv {
+    .play-container {
+      .movie-content {
+        .related-content {
+          flex-direction: column;
         }
       }
     }

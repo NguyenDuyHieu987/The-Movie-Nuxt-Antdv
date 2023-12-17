@@ -166,6 +166,49 @@
                     Đến trang xem phim
                   </NuxtLink>
                 </el-dropdown-item>
+                <el-dropdown-item key="add-list" @click="handleAddToList">
+                  <!-- <Icon
+                            class="icon-material"
+                            v-if="isAddToList"
+                            name="ic:twotone-playlist-add-check"
+                          />
+                          <Icon
+                            class="icon-material"
+                            v-else
+                            name="ic:twotone-playlist-add"
+                          /> -->
+
+                  <svg
+                    class="icon-material"
+                    v-if="isAddToList"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M3 10h11v2H3zm0-4h11v2H3zm0 8h7v2H3zm17.59-2.07l-4.25 4.24l-2.12-2.12l-1.41 1.41L16.34 19L22 13.34z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="icon-material"
+                    v-else
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M14 10H3v2h11v-2zm0-4H3v2h11V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM3 16h7v-2H3v2z"
+                    />
+                  </svg>
+
+                  <span v-if="isAddToList">Xóa khỏi Danh sách phát</span>
+                  <span v-else>Thêm vào Danh sách phát</span>
+                </el-dropdown-item>
                 <el-dropdown-item key="share">
                   <!-- <Icon name="ph:share-fat-bold"  /> -->
 
@@ -182,7 +225,7 @@
                     />
                   </svg>
 
-                  <span>
+                  <span class="social-share">
                     <ShareNetwork
                       network="facebook"
                       :url="urlShare"
@@ -246,7 +289,20 @@ const isEpisodes = ref<boolean>(false);
 const loading = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
-const urlShare = computed<string>((): string => window.location.href);
+const urlShare = computed<string>(
+  (): string =>
+    window.location.origin +
+    (isEpisodes
+      ? `/info-tv/${props.item?.id}__${utils
+          .removeVietnameseTones(props.item?.name)
+          ?.replaceAll(/\s/g, '-')
+          .toLowerCase()}`
+      : `/info-movie/${props.item?.id}__${utils
+          .removeVietnameseTones(props.item?.name)
+          ?.replaceAll(/\s/g, '-')
+          .toLowerCase()}`)
+);
+const isAddToList = ref<boolean>(false);
 
 onMounted(() => {});
 
@@ -311,5 +367,28 @@ const getData = async () => {
 };
 
 getData();
+
+const handleAddToList = () => {
+  if (!isAddToList.value) {
+    isAddToList.value = true;
+    if (
+      !utils.handleAddItemToList(dataMovie.value?.id, props.item.media_type)
+    ) {
+      isAddToList.value = false;
+    }
+    return;
+  } else {
+    isAddToList.value = false;
+    if (
+      !utils.handleRemoveItemFromList(
+        props.item?.movie_id,
+        props.item?.media_type
+      )
+    ) {
+      isAddToList.value = true;
+    }
+    return;
+  }
+};
 </script>
 <style lang="scss" src="./MovieCardSuggested.scss"></style>

@@ -419,7 +419,19 @@ const isAddToList = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const previewModal = ref<any>(null);
-const urlShare = computed<string>((): string => window.location.href);
+const urlShare = computed<string>(
+  (): string =>
+    window.location.origin +
+    (props.isEpisodes
+      ? `/info-tv/${props.item?.id}__${utils
+          .removeVietnameseTones(props.item?.name)
+          ?.replaceAll(/\s/g, '-')
+          .toLowerCase()}`
+      : `/info-movie/${props.item?.id}__${utils
+          .removeVietnameseTones(props.item?.name)
+          ?.replaceAll(/\s/g, '-')
+          .toLowerCase()}`)
+);
 const isTeleport = defineModel<boolean>('isTeleport');
 const isDisappear = ref<boolean>(false);
 const isOnlyLeft = ref<boolean>(false);

@@ -7,7 +7,7 @@
     // margin-top: 15px;
   }
 
-  .el-skeleton.is-animated.movie-group-suggest-skeleton {
+  .el-skeleton.is-animated.movie-group-related-skeleton {
     position: relative;
     display: flex;
     gap: 20px;
@@ -15,7 +15,7 @@
     background-color: var(--background-content-color);
     flex-wrap: wrap;
 
-    .movie-card-item-suggest {
+    .movie-card-item-related {
     }
 
     .ing-box {
@@ -98,8 +98,8 @@
   .movie-related {
     margin-top: 0px;
 
-    .movie-group.suggest,
-    .el-skeleton.is-animated.movie-group-suggest-skeleton {
+    .movie-group.related,
+    .el-skeleton.is-animated.movie-group-related-skeleton {
       gap: 15px;
     }
   }
@@ -107,8 +107,8 @@
 
 @media only screen and (max-width: 900px) {
   .movie-related {
-    .movie-group.suggest,
-    .el-skeleton.is-animated.movie-group-suggest-skeleton {
+    .movie-group.related,
+    .el-skeleton.is-animated.movie-group-related-skeleton {
       gap: 10px;
     }
   }
