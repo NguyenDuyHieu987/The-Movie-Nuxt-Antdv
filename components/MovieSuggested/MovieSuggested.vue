@@ -2,7 +2,7 @@
   <section class="suggested">
     <div class="suggested-container">
       <h2 class="suggested-title title-default">
-        <span>Có thể muốn xem</span>
+        <span>Có thể bạn muốn xem</span>
       </h2>
 
       <el-skeleton
