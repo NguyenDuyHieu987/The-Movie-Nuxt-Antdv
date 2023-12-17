@@ -494,7 +494,7 @@ const onTimeUpdateVideoPlayer = (e: any) => {
 
         addRankPlay({
           movie_id: dataMovie.value?.id,
-          media_type: dataMovie.value?.id,
+          media_type: dataMovie.value?.media_type,
         })
           .then((response) => {
             if (response?.success) {
