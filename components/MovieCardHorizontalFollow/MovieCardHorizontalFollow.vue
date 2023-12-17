@@ -157,7 +157,7 @@
                     </svg>
 
                     <NuxtLink
-                      v-if="isEpisodes && !loading"
+                      v-if="isEpisodes"
                       :to="{
                         path: `/play-tv/${item?.movie_id}__${utils
                           .removeVietnameseTones(item?.name)
@@ -166,10 +166,10 @@
                       }"
                       class="btn-play-now"
                     >
-                      <span> Đến trang xem phim </span>
+                      Đến trang xem phim
                     </NuxtLink>
                     <NuxtLink
-                      v-else-if="!isEpisodes && !loading"
+                      v-else
                       :to="{
                         path: `/play-movie/${item?.movie_id}__${utils
                           .removeVietnameseTones(item?.name)
@@ -178,7 +178,7 @@
                       }"
                       class="btn-play-now"
                     >
-                      <span>Đến trang xem phim</span>
+                      Đến trang xem phim
                     </NuxtLink>
                   </el-dropdown-item>
                   <el-dropdown-item key="share">
@@ -212,7 +212,7 @@
                   </el-dropdown-item>
                 </div>
 
-                <hr />
+                <div class="separate"></div>
 
                 <div class="danger-zone">
                   <el-dropdown-item
@@ -298,7 +298,7 @@ const getData = async () => {
       // useAsyncData(`movie/short/${props.item?.movie_id}`, () =>
       //   getMovieById(props.item?.movie_id)
       // )
-      await getMovieById(props.item?.movie_id)
+      getMovieById(props.item?.movie_id)
         .then((response) => {
           dataMovie.value = response;
         })
@@ -312,7 +312,7 @@ const getData = async () => {
       // useAsyncData(`tv/short/${props.item?.movie_id}`, () =>
       //   getTvById(props.item?.movie_id)
       // )
-      await getTvById(props.item?.movie_id)
+      getTvById(props.item?.movie_id)
         .then((response) => {
           dataMovie.value = response;
         })

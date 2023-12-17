@@ -163,13 +163,9 @@ const videoSrc = computed<string>(
 const getData = async () => {
   // loading.value = true;
 
-  // setTimeout(() => {
-  //   loading.value = false;
-  // }, 500);
-
   switch (props?.type || props?.item?.media_type) {
     case 'movie':
-      await getMovieById(props.item.id)
+      getMovieById(props.item.id)
         .then((response) => {
           dataMovie.value = response;
         })
@@ -181,7 +177,7 @@ const getData = async () => {
         });
       break;
     case 'tv':
-      await getTvById(props.item.id)
+      getTvById(props.item.id)
         .then((response) => {
           dataMovie.value = response;
         })

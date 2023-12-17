@@ -14,9 +14,6 @@
     box-shadow: 0 0 6px #008ddfad;
   }
 
-  & + .comment-item-child {
-  }
-
   .comment-item-child-container {
     display: flex;
     width: 100%;
@@ -99,11 +96,17 @@
 
   .more-actions {
     .ant-btn {
+      height: 32px;
+      width: 32px;
       background-color: transparent;
       border: none;
       opacity: 0;
 
       &:focus {
+        opacity: 1;
+      }
+
+      &[aria-expanded='true'] {
         opacity: 1;
       }
 
@@ -120,16 +123,13 @@
   }
 }
 
-.ant-dropdown.dropdown-item-viewmore {
-  .ant-dropdown-menu {
+.el-dropdown__popper.dropdown-item-viewmore {
+  .el-dropdown-menu {
     .main-action {
     }
 
-    hr {
-    }
-
     .danger-zone {
-      .ant-dropdown-menu-item {
+      .el-dropdown-menu__item {
         &.remove-item {
           color: var(--text-danger-color);
 
@@ -140,8 +140,5 @@
         }
       }
     }
-  }
-
-  .ant-dropdown-menu-item {
   }
 }

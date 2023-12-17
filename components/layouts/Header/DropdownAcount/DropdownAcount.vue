@@ -36,9 +36,9 @@
       <el-dropdown-menu class="dropdown-account">
         <el-dropdown-item v-if="isLogin">
           <NuxtLink class="your-account" to="/YourAccount">
-            <span>Tài khoản</span>
+            <span class="account-username">Tài khoản</span>
             <br />
-            <span style="font-size: 1.2rem">
+            <span class="account-email">
               {{ userAccount?.email }}
             </span>
           </NuxtLink>
@@ -55,7 +55,7 @@
         </el-dropdown-item>
 
         <el-dropdown-item v-else @click="handleLogout">
-          <span> Đăng xuất</span>
+          <span>Đăng xuất</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>

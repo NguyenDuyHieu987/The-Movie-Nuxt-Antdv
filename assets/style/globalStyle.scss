@@ -487,7 +487,6 @@ svg {
   }
 
   &:not(.ant-btn-circle) {
-    height: auto;
     border-radius: 1px;
   }
 
@@ -551,6 +550,15 @@ svg {
       font-size: 1.8rem;
       // margin-right: 0.4vw;
       // font-size: 1.1vw;
+    }
+  }
+
+  &.ant-btn-icon-only {
+    height: 35px;
+    width: 35px;
+
+    svg {
+      margin-right: 0px;
     }
   }
 
@@ -696,15 +704,15 @@ svg {
       }
 
       .main-action {
-        padding: 7px 0px;
+        padding: 3px 0px;
       }
 
-      hr {
-        border-top: 1px solid #7e7e7e00;
+      .separate {
+        border-top: 1px solid var(--border-regular);
       }
 
       .danger-zone {
-        padding: 7px 0px;
+        padding: 3px 0px;
 
         .el-dropdown-menu__item {
           &.remove-item {

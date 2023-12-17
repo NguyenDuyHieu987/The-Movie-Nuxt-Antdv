@@ -216,7 +216,7 @@ import {
 } from '~/services/TvSlug';
 
 definePageMeta({
-  layout: 'home',
+  // layout: 'home',
   name: 'home-television',
 });
 

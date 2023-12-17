@@ -231,7 +231,7 @@ import { FilterMovieSlug } from '~/services/movieSlug';
 import type { genre, formfilter } from '~/types';
 
 definePageMeta({
-  layout: 'home',
+  // layout: 'home',
   name: 'home-feature-genre',
 });
 

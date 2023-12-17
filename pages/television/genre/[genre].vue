@@ -223,7 +223,7 @@ import { FilterTvSlug } from '~/services/TvSlug';
 import type { genre, formfilter } from '~/types';
 
 definePageMeta({
-  layout: 'home',
+  // layout: 'home',
   name: 'home-television-genre',
 });
 

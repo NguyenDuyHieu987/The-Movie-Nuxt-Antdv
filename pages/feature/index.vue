@@ -227,7 +227,7 @@ import {
 } from '~/services/movieSlug';
 
 definePageMeta({
-  layout: 'home',
+  // layout: 'home',
   name: 'home-feature',
 });
 

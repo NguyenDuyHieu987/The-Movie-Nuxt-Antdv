@@ -78,17 +78,18 @@
           </div>
 
           <div class="more-actions">
-            <a-dropdown
+            <el-dropdown
               v-if="userAccount?.id == item?.user_id"
-              :trigger="['click']"
-              placement="bottomRight"
-              overlayClassName="dropdown-item-viewmore"
-              class="dropdown-item-viewmore"
+              trigger="click"
+              popper-class="dropdown-item-viewmore"
+              placement="bottom-end"
+              :show-timeout="0"
             >
-              <a-button size="large" type="text" class="more-actions-btn">
+              <a-button
+                class="el-dropdown-link comment"
+                aria-label="dropdown-comment"
+              >
                 <template #icon>
-                  <!-- <Icon name="fa6-solid:ellipsis-vertical" /> -->
-
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="2rem"
@@ -102,10 +103,10 @@
                 </template>
               </a-button>
 
-              <template #overlay>
-                <a-menu>
+              <template #dropdown>
+                <el-dropdown-menu class="dropdown-item-viewmore">
                   <div class="main-action">
-                    <a-menu-item
+                    <el-dropdown-item
                       key="edit-comment"
                       class="edit-item"
                       @click="handleEditComment"
@@ -126,13 +127,13 @@
                         </svg>
                       </template>
                       <span>Chỉnh sửa</span>
-                    </a-menu-item>
+                    </el-dropdown-item>
                   </div>
 
-                  <hr />
+                  <div class="separate"></div>
 
                   <div class="danger-zone">
-                    <a-menu-item
+                    <el-dropdown-item
                       key="remove-comment"
                       class="remove-item"
                       @click="handleRemoveComment"
@@ -152,11 +153,11 @@
                         </svg>
                       </template>
                       <span>Xóa bình luận</span>
-                    </a-menu-item>
+                    </el-dropdown-item>
                   </div>
-                </a-menu>
+                </el-dropdown-menu>
               </template>
-            </a-dropdown>
+            </el-dropdown>
           </div>
         </div>
 

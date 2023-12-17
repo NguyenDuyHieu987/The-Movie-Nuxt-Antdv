@@ -201,7 +201,7 @@
                     </svg>
 
                     <NuxtLink
-                      v-if="isEpisodes && !loading"
+                      v-if="isEpisodes"
                       :to="{
                         path: `/play-tv/${item?.movie_id}__${utils
                           .removeVietnameseTones(item?.name)
@@ -213,7 +213,7 @@
                       <span> Đến trang xem phim </span>
                     </NuxtLink>
                     <NuxtLink
-                      v-else-if="!isEpisodes && !loading"
+                      v-else
                       :to="{
                         path: `/play-movie/${item?.movie_id}__${utils
                           .removeVietnameseTones(item?.name)
@@ -298,7 +298,7 @@
                   </el-dropdown-item>
                 </div>
 
-                <hr />
+                <div class="separate"></div>
 
                 <div class="danger-zone">
                   <el-dropdown-item
