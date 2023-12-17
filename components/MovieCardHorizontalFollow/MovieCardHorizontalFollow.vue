@@ -57,14 +57,8 @@
       </div>
 
       <div class="info">
-        <h2 class="title">
-          <span>
-            {{ item?.name }}
-          </span>
-
-          <!-- <span v-if="isEpisodes">
-                {{ ' - Phần ' + dataMovie?.season?.season_number }}
-              </span> -->
+        <h2 class="title" :title="item?.name">
+          {{ item?.name }}
         </h2>
 
         <!-- <p v-if="isEpisodes" class="duration-episode">

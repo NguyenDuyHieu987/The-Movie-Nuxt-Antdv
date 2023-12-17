@@ -65,7 +65,7 @@
     </NuxtLink>
 
     <div class="info">
-      <p class="title">
+      <p class="title" :title="item?.name">
         {{ item?.name }}
       </p>
       <p class="original-title">

@@ -98,13 +98,9 @@
               ?.replaceAll(/\s/g, '-')
               .toLowerCase()}`,
       }"
-      :title="item?.name"
     >
-      <p class="title">
+      <p class="title" :title="item?.name">
         {{ item?.name }}
-        <!-- <span v-if="isEpisodes">
-              {{ ' - Phần ' + dataMovie?.last_episode_to_air?.season_number }}
-            </span> -->
       </p>
       <div class="middle">
         <div class="left">

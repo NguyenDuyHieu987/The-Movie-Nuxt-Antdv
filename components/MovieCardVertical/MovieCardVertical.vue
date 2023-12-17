@@ -209,14 +209,14 @@
       <div class="fade-card"></div>
     </div>
 
-    <div class="info" :title="item?.name">
+    <div class="info">
       <div class="info-box" :class="{ 'no-genres': item?.genres.length == 0 }">
         <div class="title-wrapper">
-          <p class="title">
+          <p class="title" :title="item?.name">
             {{ item?.name }}
           </p>
 
-          <p class="original-title">
+          <p class="original-title" :title="item?.original_name">
             {{ item?.original_name }}
           </p>
         </div>
