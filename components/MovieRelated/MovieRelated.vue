@@ -78,7 +78,7 @@
       >
         <template #template>
           <div
-            class="movie-card-item-suggest"
+            class="movie-card-item-related"
             v-for="(item, index) in 10"
             :index="index"
             :key="index"
