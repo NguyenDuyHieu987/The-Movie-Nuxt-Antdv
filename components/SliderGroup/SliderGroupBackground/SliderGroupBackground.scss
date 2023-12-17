@@ -18,7 +18,7 @@ body:has(.slider-group .slider-group-wrapper.dragging) {
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: all 0.5s;
+    transition: all 0.3s;
 
     &::before {
       content: '';
