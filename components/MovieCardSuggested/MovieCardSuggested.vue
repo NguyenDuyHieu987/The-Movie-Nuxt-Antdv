@@ -15,8 +15,8 @@
   >
     <!-- <el-skeleton :loading="loading" animated>
       <template #template>
-        <div class="img-box ratio-16-9">
-          <el-skeleton-item class="skeleton-img" />
+        <div class="img-box">
+          <el-skeleton-item class="skeleton-img ratio-16-9" />
         </div>
         <div class="content-skeleton">
           <el-skeleton-item variant="text" style="width: 40%" />
