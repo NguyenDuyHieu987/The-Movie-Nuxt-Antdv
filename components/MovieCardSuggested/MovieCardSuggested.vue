@@ -109,7 +109,6 @@
             @click.prevent
           >
             <template #icon>
-              <!-- <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" /> -->
               <!-- <Icon name="fa6-solid:ellipsis-vertical" /> -->
 
               <svg
