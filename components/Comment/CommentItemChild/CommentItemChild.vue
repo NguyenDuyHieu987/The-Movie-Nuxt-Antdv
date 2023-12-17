@@ -72,7 +72,7 @@
         <el-dropdown
           v-if="userAccount?.id == item?.user_id"
           trigger="click"
-          popper-class="dropdown-item-viewmore"
+          popper-class="dropdown-viewmore"
           placement="bottom-end"
           :show-timeout="0"
         >
@@ -95,7 +95,7 @@
           </a-button>
 
           <template #dropdown>
-            <el-dropdown-menu class="dropdown-item-viewmore">
+            <el-dropdown-menu class="dropdown-viewmore">
               <div class="main-action">
                 <el-dropdown-item
                   key="edit-comment"

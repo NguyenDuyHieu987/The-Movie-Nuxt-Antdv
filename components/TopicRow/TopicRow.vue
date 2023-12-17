@@ -111,18 +111,17 @@
               <span> Cập nhật hôm nay </span>
             </p>
 
-            <a-dropdown
-              :trigger="['click']"
-              placement="bottomRight"
-              overlayClassName="dropdown-viewmore"
+            <el-dropdown
+              trigger="click"
+              placement="bottom-end"
+              popper-class="dropdown-viewmore"
               class="dropdown-viewmore"
-              destroyPopupOnHide
+              :show-timeout="0"
             >
-              <el-button
+              <a-button
                 class="viewmore-btn click-active"
-                circle
                 size="large"
-                @click.prevent=""
+                type="text"
               >
                 <template #icon>
                   <!-- <Icon name="fa6-solid:ellipsis-vertical" /> -->
@@ -138,11 +137,11 @@
                     <circle cx="256" cy="96" r="48" fill="currentColor" />
                   </svg>
                 </template>
-              </el-button>
+              </a-button>
 
-              <template #overlay>
-                <a-menu class="dropdown-viewmore">
-                  <a-menu-item key="info-list">
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item key="info">
                     <template #icon>
                       <!-- <InfoCircleOutlined /> -->
 
@@ -166,10 +165,10 @@
                       </svg>
                     </template>
                     <span>Thông tin chi tiết</span>
-                  </a-menu-item>
-                </a-menu>
+                  </el-dropdown-item>
+                </el-dropdown-menu>
               </template>
-            </a-dropdown>
+            </el-dropdown>
           </div>
         </div>
       </div>

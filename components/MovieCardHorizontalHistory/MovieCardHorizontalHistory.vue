@@ -155,20 +155,17 @@
           <el-dropdown
             trigger="click"
             placement="bottom-end"
-            popper-class="dropdown-item-viewmore"
-            class="dropdown-item-viewmore"
+            popper-class="dropdown-viewmore"
+            class="dropdown-viewmore"
             :show-timeout="0"
           >
-            <el-button
+            <a-button
               class="viewmore-btn click-active"
-              circle
               size="large"
-              text
+              type="text"
               @click.prevent
             >
               <template #icon>
-                <!-- <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" /> -->
-
                 <!-- <Icon name="fa6-solid:ellipsis-vertical" /> -->
 
                 <svg
@@ -182,7 +179,7 @@
                   <circle cx="256" cy="96" r="48" fill="currentColor" />
                 </svg>
               </template>
-            </el-button>
+            </a-button>
 
             <template #dropdown>
               <el-dropdown-menu>

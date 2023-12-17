@@ -111,26 +111,14 @@
           font-size: 1.5rem;
         }
 
-        .viewmore-btn {
-          background: transparent;
+        .el-dropdown.dropdown-viewmore {
           position: absolute;
-          right: -10px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: inherit;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: inherit;
-          border: none;
-          height: auto;
-          width: auto;
-          padding: 5px;
-          transition: all 0.15s;
+          top: 0;
+          right: 0;
+        }
 
-          &.el-button {
-            font-size: 1.76rem;
-          }
+        .viewmore-btn {
+          transition: all 0s;
         }
       }
 
