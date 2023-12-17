@@ -15,6 +15,7 @@
         pause: !videoStates.isPlayVideo || videoStates.isEndedVideo,
         'full-screen': videoStates.isFullScreen,
       }"
+      @click="handleClickVideoPlayer"
     >
       <video
         id="video-player"
@@ -758,7 +759,7 @@ const videoSrc = computed<string>(
   // + '.m3u8'
 );
 const blobVideoSrc = ref<string>('');
-const videoPlayer = ref();
+const videoPlayer = ref<HTMLElement>();
 const video = ref<HTMLVideoElement>();
 const overlayProgress = ref();
 const progressBar = ref();
@@ -1421,7 +1422,7 @@ const drawTimeLine = (e: any) => {
 
 const onClickFullScreen = () => {
   videoStates.isFullScreen = true;
-  videoPlayer.value.requestFullscreen();
+  videoPlayer.value!.requestFullscreen();
 };
 
 const onClickFullScreenExit = () => {
@@ -1536,12 +1537,16 @@ const onKeyDownVideo = (e: any) => {
       } else {
         videoStates.isFullScreen = true;
         window.screen.orientation.lock('landscape');
-        videoPlayer.value.requestFullscreen();
+        videoPlayer.value!.requestFullscreen();
       }
       break;
     default:
       break;
   }
+};
+
+const handleClickVideoPlayer = () => {
+  videoPlayer.value!.scrollIntoView({ block: 'end' });
 };
 </script>
 
