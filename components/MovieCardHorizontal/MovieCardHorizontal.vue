@@ -55,7 +55,7 @@
       <div class="fade-card"></div>
     </div>
 
-    <div class="info">
+    <div class="info" :title="item?.name">
       <div class="title-wrapper">
         <p class="title">
           {{ item?.name }}

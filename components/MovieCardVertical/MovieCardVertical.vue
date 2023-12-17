@@ -209,7 +209,7 @@
       <div class="fade-card"></div>
     </div>
 
-    <div class="info">
+    <div class="info" :title="item?.name">
       <div class="info-box" :class="{ 'no-genres': item?.genres.length == 0 }">
         <div class="title-wrapper">
           <p class="title">

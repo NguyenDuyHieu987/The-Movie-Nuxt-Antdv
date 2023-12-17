@@ -98,6 +98,7 @@
               ?.replaceAll(/\s/g, '-')
               .toLowerCase()}`,
       }"
+      :title="item?.name"
     >
       <p class="title">
         {{ item?.name }}

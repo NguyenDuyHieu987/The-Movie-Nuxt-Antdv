@@ -156,6 +156,7 @@
           active: (billboard?.innerSlider.currentSlide || 0) == index,
         }"
         @click="handleChangeBillboardActiveItem(index)"
+        :title="item?.name"
       >
         <div class="img-box ratio-2-3">
           <NuxtImg
