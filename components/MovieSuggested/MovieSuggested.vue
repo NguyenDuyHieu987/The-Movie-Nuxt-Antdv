@@ -1,7 +1,7 @@
 <template>
   <section class="suggested">
     <h2 class="suggested-title title-default">
-      <span>Có thể bạn quan tâm</span>
+      <span>Có thể muốn xem</span>
     </h2>
 
     <el-skeleton
