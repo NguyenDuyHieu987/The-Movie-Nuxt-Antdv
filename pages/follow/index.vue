@@ -107,7 +107,9 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-// import { ElSkeleton, ElSkeletonItem } from 'element-plus';
+import { useBreakpoints } from '@vueuse/core';
+import gsap from 'gsap';
+// import scrollBottom from 'scroll-bottom';
 import MovieCardHorizontalFollow from '~/components/MovieCardHorizontalFollow/MovieCardHorizontalFollow.vue';
 import RequireAuth from '~/components/RequireAuth/RequireAuth.server.vue';
 import SortTab from '~/components/SortTab/SortTab.vue';
@@ -116,9 +118,6 @@ import TopicColumn from '~/components/TopicColumn/TopicColumn.vue';
 import { getList, searchList } from '~/services/list';
 import _ from 'lodash';
 import { storeToRefs } from 'pinia';
-// import scrollBottom from 'scroll-bottom';
-import { useBreakpoints } from '@vueuse/core';
-import gsap from 'gsap';
 
 definePageMeta({
   // requireAuth: true,

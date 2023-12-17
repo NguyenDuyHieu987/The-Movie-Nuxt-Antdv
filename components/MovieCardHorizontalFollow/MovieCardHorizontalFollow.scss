@@ -148,7 +148,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       color: inherit;
-      max-width: 90%;
+      max-width: 100%;
       font-size: 1.8rem;
     }
 
@@ -160,7 +160,16 @@
       color: inherit;
       display: flex;
       flex-direction: row;
-      gap: 10px;
+
+      .year {
+        &::after {
+          content: '\2022';
+          color: inherit;
+          display: inline-block;
+          margin: 0px 10px;
+          font-size: 1.5rem;
+        }
+      }
     }
 
     .overview {

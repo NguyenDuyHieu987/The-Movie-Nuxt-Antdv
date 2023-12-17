@@ -77,12 +77,10 @@
 
         <div class="year-views">
           <p class="year" v-if="!isEpisodes">
-            Năm:
             {{ dataMovie?.release_date?.slice(0, 4) }}
           </p>
 
           <p class="year" v-else>
-            Năm:
             {{
               dataMovie?.last_air_date?.slice(0, 4)
                 ? dataMovie?.last_air_date?.slice(0, 4)
@@ -241,13 +239,10 @@
 </template>
 
 <script setup lang="ts">
-// import axios from 'axios';
-// import { ElButton, ElSkeleton, ElSkeletonItem } from 'element-plus';
+import axios from 'axios';
 import { getImage } from '~/services/image';
 import { getMovieById } from '~/services/movie';
 import { getTvById } from '~/services/tv';
-import axios from 'axios';
-// import disableScroll from 'disable-scroll';
 
 const props = defineProps<{
   item: any;
@@ -265,21 +260,7 @@ const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const urlShare = computed<string>((): string => window.location.href);
 
-onMounted(() => {
-  // const ant_btn = document.querySelectorAll('.action .viewmore-btn');
-  // ant_btn?.forEach((btn) => {
-  //   btn?.addEventListener('click', () => {
-  //     if (btn?.classList.contains('ant-dropdown-open')) {
-  //       disableScroll.on();
-  //     } else {
-  //       disableScroll.off();
-  //     }
-  //   });
-  //   btn?.addEventListener('blur', () => {
-  //     disableScroll.off();
-  //   });
-  // });
-});
+onMounted(() => {});
 
 const getData = async () => {
   loading.value = true;
@@ -295,8 +276,10 @@ const getData = async () => {
           dataMovie.value = response;
         })
         .catch((e) => {
-          loading.value = false;
           if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
         });
       break;
     case 'tv':
@@ -309,8 +292,10 @@ const getData = async () => {
           dataMovie.value = response;
         })
         .catch((e) => {
-          loading.value = false;
           if (axios.isCancel(e)) return;
+        })
+        .finally(() => {
+          loading.value = false;
         });
       break;
     default:

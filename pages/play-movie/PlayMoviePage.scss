@@ -150,11 +150,30 @@
       }
 
       .related-content {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
         position: relative;
         z-index: 1;
-        margin-top: 20px;
+        margin-top: 30px;
 
-        .comment {
+        & > .left {
+          display: flex;
+          flex-grow: 1;
+
+          .comment {
+            width: 100%;
+
+            .comment-title {
+              margin-top: 0px;
+            }
+          }
+        }
+
+        & > .right {
+          width: 40%;
+          min-width: 500px;
+          max-width: 500px;
         }
       }
     }

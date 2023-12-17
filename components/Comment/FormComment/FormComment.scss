@@ -45,7 +45,6 @@
 
       &:has(#contenteditable-root:focus) {
         &::before {
-          transition: all 0.2s;
           width: 100%;
         }
       }
@@ -60,7 +59,7 @@
         height: 1px;
         width: 0%;
         background-color: var(--app-background-color);
-        transition: all 0.15s;
+        transition: all 0.1s;
       }
 
       #contenteditable-root {

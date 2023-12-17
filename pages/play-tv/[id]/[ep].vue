@@ -256,7 +256,7 @@
         />
 
         <div class="related-content">
-          <!-- <MovieRelated :movieId="dataMovie?.id" type="tv" /> -->
+          <!-- <MovieSuggested :dataMovie="dataMovie"  /> -->
 
           <Comment :dataMovie="dataMovie" />
         </div>
@@ -267,6 +267,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
+import _ from 'lodash';
 import { getImage, getServerImage } from '~/services/image';
 import { getTvById } from '~/services/tv';
 import { getItemList } from '~/services/list';
@@ -282,11 +283,10 @@ import Tags from '~/components/Tags/Tags.server.vue';
 import Overview from '~/components/Overview/Overview.server.vue';
 import Interaction from '~/components/Interaction/Interaction.vue';
 import RatingMovie from '~/components/RatingMovie/RatingMovie.vue';
-import MovieRelated from '~/components/MovieRelated/MovieRelated.vue';
+import MovieSuggested from '~/components/MovieSuggested/MovieSuggested.vue';
 import Comment from '~/components/Comment/Comment.vue';
 import ListEpisodes from '~/components/ListEpisodes/ListEpisodes.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
-import _ from 'lodash';
 
 const utils = useUtils();
 const store = useStore();
