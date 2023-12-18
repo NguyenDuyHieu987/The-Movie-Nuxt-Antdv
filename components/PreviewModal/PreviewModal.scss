@@ -30,22 +30,22 @@
     }
 
     &.disappear {
-      // animation: preview-modal-disappear 0.25s;
+      // animation: preview-modal-disappear 0.3s;
 
       .bottom-content {
-        transition: all 0.25s;
+        transition: all 0.3s;
         opacity: 0;
       }
     }
 
     &.only-left {
       left: var(--left-only);
-      animation: preview-modal-appear-only-left 0.25s;
+      animation: preview-modal-appear-only-left 0.3s;
     }
 
     &.only-right {
       right: var(--right-only);
-      animation: preview-modal-appear-only-right 0.25s;
+      animation: preview-modal-appear-only-right 0.3s;
     }
 
     @keyframes preview-modal-appear {
