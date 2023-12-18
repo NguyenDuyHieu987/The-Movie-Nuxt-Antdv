@@ -9,7 +9,7 @@ export function getRanking(page: number = 1, limit: number = 10) {
 
 export function filterRanks(formfilterRank: formfilterRank) {
   return makeRequest(
-    `/ranks/filter/${formfilterRank.type}/${formfilterRank.sortBy}?with_genres=${formfilterRank.genre}&with_original_language=${formfilterRank.country}&page=${formfilterRank.page}&limit=${formfilterRank.limit}`
+    `/ranks/filter/${formfilterRank.type}/${formfilterRank.sortBy}?media_type=${formfilterRank.mediaType}&with_genres=${formfilterRank.genre}&with_original_language=${formfilterRank.country}&page=${formfilterRank.page}&limit=${formfilterRank.limit}`
   );
 }
 

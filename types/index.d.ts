@@ -42,6 +42,7 @@ export declare type rankSort = 'day' | 'week' | 'month' | 'year' | 'all';
 export declare interface formfilterRank {
   type: rankType;
   sortBy: rankSort;
+  mediaType: 'movie' | 'tv' | 'all';
   genre: string | number;
   country: string;
   page?: number = 1;

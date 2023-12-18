@@ -64,21 +64,21 @@
       <div class="rank-section-list">
         <RankSection
           class="movie"
-          :ranksData="ranksData"
+          :ranksData="ranksMovie"
           rankSectionTitle="Phim lẻ"
           viewAllPath="/ranks"
         />
 
         <RankSection
           class="movie"
-          :ranksData="ranksData"
+          :ranksData="ranksTV"
           rankSectionTitle="Phim bộ"
           viewAllPath="/ranks"
         />
 
         <RankSection
           class="movie"
-          :ranksData="ranksData"
+          :ranksData="ranksAnimation"
           rankSectionTitle="Phim hoạt hình"
           viewAllPath="/ranks"
         />
@@ -106,9 +106,9 @@ const ranksHorror = ref<any[]>([]);
 const ranksDrama = ref<any[]>([]);
 const ranksScienceFiction = ref<any[]>([]);
 const ranksEN = ref<any[]>([]);
-const ranksJapan = ref<any[]>([]);
 const ranksChina = ref<any[]>([]);
-const pageTrending = ref<number>(+route?.query?.page || 1);
+const ranksJapan = ref<any[]>([]);
+const pageRank = ref<number>(+route?.query?.page || 1);
 const pageSize = ref<number>(20);
 const loading = ref<boolean>(false);
 const typeRankList = ref<
@@ -121,11 +121,11 @@ const typeRankList = ref<
   { label: 'D/S tìm kiếm nhiều', value: 'hot-search' },
   { label: 'D/S đánh giá cao', value: 'high-rate' },
 ]);
-
 const formFilterRank = computed<formfilterRank>(() => {
   return {
     type: route.query?.type || 'hot-play',
     sortBy: route.query?.sort_by || 'day',
+    mediaType: 'all',
     genre: route.query?.genre || '',
     country: route.query?.country || '',
   };
@@ -162,7 +162,7 @@ const compareRanks = (ranks: any): any[] => {
     const rankCompared: any[] = ranks?.results.map((item: any, index: any) => {
       step = 0;
 
-      ranks?.prev_results.find((item1: any, index1: any) => {
+      const itemRank = ranks?.prev_results.find((item1: any, index1: any) => {
         if (item?.movie_id == item1?.movie_id) {
           step = index1 - index;
 
@@ -178,6 +178,7 @@ const compareRanks = (ranks: any): any[] => {
         ...item,
         step: step,
         step_text: step_text,
+        new: itemRank ? false : true,
       };
     });
 
@@ -193,7 +194,7 @@ const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(
-    `ranks/filter/${formFilterRank.value}/day/${pageTrending.value}/10`,
+    `ranks/filter/${formFilterRank.value}/day/${pageRank.value}/10`,
     () => filterRanks(formFilterRank.value)
   )
     .then((response) => {
@@ -211,8 +212,8 @@ const getData = async () => {
 
 loading.value = true;
 
-const { data: rankingsCache, pending } = await useAsyncData(
-  `cache/ranks/filter/${formFilterRank.value}/day/${pageTrending.value}/10`,
+const { data: ranksDataCache, pending } = await useAsyncData(
+  `cache/ranks/filter/${formFilterRank.value}/day/${pageRank.value}/10`,
   () => filterRanks(formFilterRank.value),
   {
     // transform: (data: any) => {
@@ -225,10 +226,128 @@ const { data: rankingsCache, pending } = await useAsyncData(
   }
 );
 
-ranksData.value = compareRanks(rankingsCache.value);
-
-pageSize.value = rankingsCache.value?.page_size;
+ranksData.value = compareRanks(ranksDataCache.value);
 loading.value = false;
+
+// Phim lẻ
+
+const { data: ranksMovieCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    mediaType: 'movie',
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, mediaType: 'movie' })
+);
+
+ranksMovie.value = compareRanks(ranksMovieCache.value);
+
+// Phim bộ
+
+const { data: ranksTVCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    mediaType: 'tv',
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, mediaType: 'tv' })
+);
+
+ranksTV.value = compareRanks(ranksTVCache.value);
+
+// Hoạt hình
+
+const { data: ranksAnimationCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    genre: 16,
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, genre: 16 })
+);
+
+ranksAnimation.value = compareRanks(ranksAnimationCache.value);
+
+// Hành động
+
+const { data: ranksActionCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    genre: 28,
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, genre: 28 })
+);
+
+ranksAction.value = compareRanks(ranksActionCache.value);
+
+// Kinh dị
+
+const { data: ranksHorrorCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    genre: 27,
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, genre: 27 })
+);
+
+ranksHorror.value = compareRanks(ranksHorrorCache.value);
+
+// Drama
+
+const { data: ranksDramaCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    genre: 18,
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, genre: 18 })
+);
+
+ranksDrama.value = compareRanks(ranksDramaCache.value);
+
+// Khoa học viễn tưởng
+
+const { data: ranksScienceFictionCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    genre: 18,
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, genre: 18 })
+);
+
+ranksScienceFiction.value = compareRanks(ranksScienceFictionCache.value);
+
+// Âu Mỹ
+
+const { data: ranksENCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    country: 'en',
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, country: 'en' })
+);
+
+ranksEN.value = compareRanks(ranksENCache.value);
+
+// Trung Quốc
+
+const { data: ranksChinaCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    country: 'cn',
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, country: 'cn' })
+);
+
+ranksChina.value = compareRanks(ranksChinaCache.value);
+
+// Nhật Bản
+
+const { data: ranksJapanCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    country: 'ja',
+  }}/day/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, country: 'ja' })
+);
+
+ranksJapan.value = compareRanks(ranksJapanCache.value);
 
 watch(
   () => formFilterRank.value,

@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   box-shadow: var(--box-shadow-small);
-  min-width: 470px;
+  min-width: var(--rank-section-min-width);
+
+  --rank-section-min-width: 480px;
 
   .rank-section-header {
     display: flex;
@@ -75,6 +77,25 @@
           height: 100%;
           width: 50px;
 
+          .step-icon {
+            display: flex;
+
+            .new {
+              background-image: linear-gradient(
+                90deg,
+                var(--app-background-color7),
+                var(--app-background-color3)
+              );
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              font-family: Impact, Haettenschweiler, 'Arial Narrow Bold',
+                sans-serif;
+              font-style: italic;
+              font-size: 1.4rem;
+            }
+          }
+
           svg {
             width: 1.5rem;
             height: 1.5rem;
@@ -143,7 +164,7 @@
   &.all,
   &.main {
     width: 100%;
-    max-width: 1000px;
+    max-width: calc(2 * var(--rank-section-min-width));
     margin: 0px auto;
 
     .rank-section-body {

@@ -2,9 +2,9 @@
   <section class="rank-section" :class="{ main: main }">
     <div class="rank-section-header">
       <h3 class="rank-section-title">{{ rankSectionTitle }}</h3>
-      <NuxtLink :to="viewAllPath" class="view-all click-active"
-        >Tất cả</NuxtLink
-      >
+      <NuxtLink :to="viewAllPath" class="view-all click-active">
+        Chi tiết
+      </NuxtLink>
     </div>
 
     <div class="rank-section-body">
@@ -76,7 +76,7 @@
               </svg>
 
               <svg
-                v-else-if="item?.step == 0"
+                v-else-if="item?.step == 0 && !item?.new"
                 xmlns="http://www.w3.org/2000/svg"
                 width="1.5rem"
                 height="1.5rem"
@@ -84,6 +84,10 @@
               >
                 <path fill="currentColor" d="M20 14H4v-4h16" />
               </svg>
+
+              <span v-else-if="item?.step == 0 && item?.new" class="new">
+                new
+              </span>
             </div>
 
             <span class="step-number" v-if="item?.step != 0">
