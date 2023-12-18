@@ -17,170 +17,88 @@
     .rank-header {
       display: flex;
       flex-direction: row;
+      gap: 10px;
       margin-bottom: 50px;
 
-      .ranks-title {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 20px 15px;
-        padding-right: 40px;
-        font-size: 2.5rem;
-        border-right: 1px solid var(--border-regular);
+      .left {
+        .ranks-title {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          padding: 20px 0px;
+          padding-right: 40px;
+          font-size: 2.5rem;
+          border-right: 1px solid var(--border-regular);
+        }
       }
 
-      .rank-type {
+      .right {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+        flex-grow: 1;
 
-        .rank-type-item {
+        .rank-type {
           display: flex;
-          white-space: nowrap;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
 
-          a {
-            padding: 10px 40px;
-            font-size: 1.7rem;
-            font-weight: 500;
+          .rank-type-item {
+            display: flex;
+            white-space: nowrap;
 
-            &:hover {
+            a {
+              padding: 10px 30px;
+              font-size: 1.7rem;
+              font-weight: 500;
+
+              &:hover {
+                color: var(--app-background-color);
+              }
+            }
+
+            &.active {
               color: var(--app-background-color);
             }
           }
+        }
 
-          &.active {
-            color: var(--app-background-color);
-          }
+        .rank-sortBy {
         }
       }
     }
 
-    .rank-section {
+    .rank-section.all {
+    }
+
+    .rank-section-list {
       display: flex;
-      flex-direction: column;
-      box-shadow: var(--box-shadow-small);
+      align-items: center;
+      justify-content: center;
+      gap: var(--rank-section-gap);
+      flex-wrap: wrap;
+      margin-top: 50px;
 
-      .rank-section-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: var(--padding-rank-section);
-        background-color: var(--background-content-color1);
-        font-size: 1.7rem;
+      --rank-section-gap: 15px;
 
-        .rank-section-title {
-          font-size: inherit;
-        }
+      .rank-section {
+        width: calc((100% - (2 * var(--rank-section-gap))) / 3);
 
-        .view-all {
-          font-size: 0.8em;
-          font-weight: 500;
-          color: var(--text-color-gray);
-
-          &:hover {
-            color: var(--app-background-color);
+        .rank-section-header {
+          .rank-section-title {
           }
         }
-      }
 
-      .rank-section-body {
-        background-color: #222222;
-
-        .rank-body-list {
-          display: flex;
-          flex-direction: column;
-
-          .rank-body-item {
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            gap: 15px;
-            position: relative;
-            padding: var(--padding-rank-section);
-            padding-top: 25px;
-            padding-bottom: 25px;
-            font-weight: 500;
-            font-size: 1.8rem;
-            color: inherit;
-            background-position: center center;
-
-            &::before,
-            &::after {
-              content: '';
-              position: absolute;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              left: 0;
-              z-index: 0;
-            }
-
-            &::before {
-              background-color: #00000070;
-              opacity: 0;
-              transition: opacity 0.15s;
-            }
-
-            &::after {
-              content: '';
-              background: linear-gradient(
-                to right,
-                var(--background-content-color),
-                #00000000
-              );
-              transition: all 0.15s;
-            }
-
-            & > div {
-              position: relative;
-              z-index: 1;
-            }
-
-            &:hover {
-              .info {
-                color: var(--app-background-color);
-              }
-
-              &::before {
-                opacity: 1;
-              }
-            }
-
-            .rank-number {
-              color: var(--app-background-color);
-            }
-
-            .info {
-              text-overflow: ellipsis;
-              overflow: hidden;
-              white-space: nowrap;
-            }
-
-            .step {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              position: absolute;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              height: 100%;
-              width: 80px;
-              background: #080808e3;
+        .rank-section-body {
+          .rank-body-list {
+            .rank-body-item {
             }
           }
         }
-      }
-
-      &.all {
-        width: 100%;
-        max-width: 1000px;
-        margin: 0px auto;
       }
     }
   }

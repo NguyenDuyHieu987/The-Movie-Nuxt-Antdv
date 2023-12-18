@@ -1,76 +1,88 @@
 <template>
+  <!-- center-page -->
   <div class="ranks padding-content">
     <div class="ranks-container">
       <div class="rank-header">
-        <div class="ranks-title">
-          <span>Bảng xếp hạng</span>
+        <div class="left">
+          <div class="ranks-title">
+            <span>Bảng xếp hạng</span>
+          </div>
         </div>
 
-        <div class="rank-type">
-          <div
-            v-for="(item, index) in typeRankList"
-            :key="index"
-            :index="index"
-            class="rank-type-item click-active"
-            :class="{ active: item.value == typeRank }"
-          >
-            <NuxtLink
-              :to="{
-                query: {
-                  type: item.value,
-                },
-              }"
+        <div class="right">
+          <div class="rank-type">
+            <div
+              v-for="(item, index) in typeRankList"
+              :key="index"
+              :index="index"
+              class="rank-type-item click-active"
+              :class="{ active: item.value == formFilterRank.type }"
             >
-              {{ item.label }}
-            </NuxtLink>
+              <NuxtLink
+                :to="{
+                  query: {
+                    type: item.value,
+                  },
+                }"
+              >
+                {{ item.label }}
+              </NuxtLink>
+            </div>
+          </div>
+
+          <div class="rank-sortBy">
+            <a-select
+              v-model:value="formFilterRank.sortBy"
+              style="width: 170px"
+              @change="handleChangeType"
+              placeholder="Xắp sếp theo"
+            >
+              <a-select-option value="day" label="Ngày"> Ngày </a-select-option>
+              <a-select-option value="week" label="Tuần">
+                Tuần
+              </a-select-option>
+              <a-select-option value="month" label="Tháng">
+                Tháng
+              </a-select-option>
+              <a-select-option value="year" label="Năm"> Năm </a-select-option>
+              <a-select-option value="all" label="Tất cả">
+                Tất cả
+              </a-select-option>
+            </a-select>
           </div>
         </div>
       </div>
 
-      <section class="rank-section all">
-        <div class="rank-section-header">
-          <h3 class="rank-section-title">Xem nhiều</h3>
-          <NuxtLink to="/" class="view-all click-active">Tất cả</NuxtLink>
-        </div>
-        <div class="rank-section-body">
-          <div class="rank-body-list">
-            <NuxtLink
-              v-for="(item, index) in ranksData"
-              :key="index"
-              :index="index"
-              :to="{
-                path:
-                  item?.media_type == 'tv'
-                    ? `/info-tv/${item?.id}__${utils
-                        .removeVietnameseTones(item?.name)
-                        ?.replaceAll(/\s/g, '-')
-                        .toLowerCase()}`
-                    : `/info-movie/${item?.id}__${utils
-                        .removeVietnameseTones(item?.name)
-                        ?.replaceAll(/\s/g, '-')
-                        .toLowerCase()}`,
-              }"
-              class="rank-body-item"
-              :style="{
-                backgroundImage:
-                  'url(' +
-                  getImage(item?.backdrop_path, 'backdrop', 'w-1000') +
-                  ')',
-              }"
-            >
-              <div class="rank-number">{{ index + 1 }}</div>
+      <RankSection
+        class="all"
+        :ranksData="ranksData"
+        :rankSectionTitle="rankSectionTitle"
+        viewAllPath="/ranks"
+        main
+      />
 
-              <div class="info">{{ item?.name }}</div>
+      <div class="rank-section-list">
+        <RankSection
+          class="movie"
+          :ranksData="ranksData"
+          rankSectionTitle="Phim lẻ"
+          viewAllPath="/ranks"
+        />
 
-              <div class="step">
-                <div class="step-icon">
-                  {{ item?.step }}
-                </div>
-              </div>
-            </NuxtLink>
-          </div>
-        </div>
-      </section>
+        <RankSection
+          class="movie"
+          :ranksData="ranksData"
+          rankSectionTitle="Phim bộ"
+          viewAllPath="/ranks"
+        />
+
+        <RankSection
+          class="movie"
+          :ranksData="ranksData"
+          rankSectionTitle="Phim hoạt hình"
+          viewAllPath="/ranks"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -79,7 +91,8 @@
 import axios from 'axios';
 import { filterRanks, getRankPlay } from '~/services/ranks';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
-import { getImage } from '~/services/image';
+import RankSection from '~/components/RankSection/RankSection.vue';
+import type { formfilterRank, rankType, rankSort } from '~/types';
 
 const utils = useUtils();
 const router = useRouter();
@@ -104,12 +117,26 @@ const typeRankList = ref<
     label: string;
   }[]
 >([
-  { label: 'Danh sách xem nhiều', value: 'hot-play' },
-  { label: 'Danh sách tìm kiếm nhiều', value: 'hot-search' },
-  { label: 'Danh sách đánh giá cao', value: 'high-rate' },
+  { label: 'D/S xem nhiều', value: 'hot-play' },
+  { label: 'D/S tìm kiếm nhiều', value: 'hot-search' },
+  { label: 'D/S đánh giá cao', value: 'high-rate' },
 ]);
-const typeRank = computed<string | 'hot-play' | 'hot-search' | 'high-rate'>(
-  () => route.query?.type
+
+const formFilterRank = computed<formfilterRank>(() => {
+  return {
+    type: route.query?.type || 'hot-play',
+    sortBy: route.query?.sort_by || 'day',
+    genre: route.query?.genre || '',
+    country: route.query?.country || '',
+  };
+});
+const rankSectionTitle = computed<string>(
+  () =>
+    [
+      { title: 'Xem nhiều', value: 'hot-play' },
+      { title: 'Tìm kiếm nhiều', value: 'hot-search' },
+      { title: 'Đánh giá cao', value: 'high-rate' },
+    ].find((item) => item.value == formFilterRank.value.type)?.title!
 );
 const internalInstance: any = getCurrentInstance();
 
@@ -137,16 +164,20 @@ const compareRanks = (ranks: any): any[] => {
 
       ranks?.prev_results.find((item1: any, index1: any) => {
         if (item?.movie_id == item1?.movie_id) {
-          step = index - index1;
+          step = index1 - index;
+
           return true;
         } else {
-          false;
+          return false;
         }
       });
+
+      const step_text = step >= 0 ? `+${step}` : `-${Math.abs(step)}`;
 
       return {
         ...item,
         step: step,
+        step_text: step_text,
       };
     });
 
@@ -162,8 +193,8 @@ const getData = async () => {
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
   await useAsyncData(
-    `ranks/${typeRank.value}/day/${pageTrending.value}/10`,
-    () => filterRanks(typeRank.value, 'day', pageTrending.value)
+    `ranks/filter/${formFilterRank.value}/day/${pageTrending.value}/10`,
+    () => filterRanks(formFilterRank.value)
   )
     .then((response) => {
       ranksData.value = compareRanks(response.data.value);
@@ -181,8 +212,8 @@ const getData = async () => {
 loading.value = true;
 
 const { data: rankingsCache, pending } = await useAsyncData(
-  `cache/ranks/${typeRank.value}/day/${pageTrending.value}/10`,
-  () => filterRanks(typeRank.value, 'day', pageTrending.value),
+  `cache/ranks/filter/${formFilterRank.value}/day/${pageTrending.value}/10`,
+  () => filterRanks(formFilterRank.value),
   {
     // transform: (data: any) => {
     //   totalPage.value = data?.total;
@@ -200,13 +231,19 @@ pageSize.value = rankingsCache.value?.page_size;
 loading.value = false;
 
 watch(
-  () => route.query,
+  () => formFilterRank.value,
   () => {
-    if (typeRank.value) {
-      getData();
-    }
+    getData();
   }
 );
+
+const handleChangeType = (activeKey: any) => {
+  router.push({
+    query: {
+      sort_by: activeKey,
+    },
+  });
+};
 </script>
 
 <style lang="scss" src="./RankPage.scss"></style>

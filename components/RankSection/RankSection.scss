@@ -1,0 +1,218 @@
+.rank-section {
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--box-shadow-small);
+  min-width: 470px;
+
+  .rank-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: var(--padding-rank-section);
+    background-color: var(--background-content-color1);
+    font-size: 1.7rem;
+
+    .rank-section-title {
+      font-size: inherit;
+      color: var(--text-color-gray1);
+    }
+
+    .view-all {
+      font-size: 0.8em;
+      font-weight: 500;
+      color: var(--text-color-gray);
+
+      &:hover {
+        color: var(--app-background-color);
+      }
+    }
+  }
+
+  .rank-section-body {
+    background-color: #222222;
+
+    .rank-body-list {
+      display: flex;
+      flex-direction: column;
+
+      .rank-body-item {
+        display: flex;
+        position: relative;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 15px;
+        padding: var(--padding-rank-section);
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-weight: 500;
+        color: inherit;
+
+        & > div {
+          position: relative;
+          z-index: 1;
+        }
+
+        .rank-number {
+          color: var(--app-background-color);
+        }
+
+        .info {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        .step {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          height: 100%;
+          width: 50px;
+
+          svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: inherit;
+          }
+
+          .step-number {
+            position: absolute;
+            color: inherit;
+            font-size: 1.2rem;
+          }
+
+          &.up {
+            color: green;
+
+            .step-number {
+              top: 0;
+
+              transform: translate(50%, 20%);
+            }
+          }
+
+          &.down {
+            color: red;
+            fill: red;
+
+            .step-number {
+              bottom: 0;
+
+              transform: translate(50%, -50%);
+            }
+          }
+
+          &.balance {
+            color: gray;
+          }
+        }
+
+        &:nth-child(1) {
+          .rank-number {
+            color: #e81624;
+          }
+        }
+
+        &:nth-child(2) {
+          .rank-number {
+            color: #f68f00;
+          }
+        }
+
+        &:nth-child(3) {
+          .rank-number {
+            color: #f6e200;
+          }
+        }
+
+        &:hover {
+          .info {
+            color: var(--app-background-color);
+          }
+        }
+      }
+    }
+  }
+
+  &.all,
+  &.main {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0px auto;
+
+    .rank-section-body {
+      background-color: transparent;
+
+      .rank-body-list {
+        gap: 1.5px;
+
+        .rank-body-item {
+          padding-top: 25px;
+          padding-bottom: 25px;
+          font-size: 1.8rem;
+          background-position: center center;
+
+          &::before,
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+          }
+
+          &::before {
+            background-color: #00000070;
+            opacity: 0;
+            transition: opacity 0.15s;
+          }
+
+          &::after {
+            content: '';
+            background: linear-gradient(
+              to right,
+              var(--background-content-color),
+              #00000000
+            );
+            transition: all 0.15s;
+          }
+
+          &:hover {
+            &::before {
+              opacity: 1;
+            }
+          }
+
+          .step {
+            width: 60px;
+            background: #080808;
+
+            &.up {
+              .step-number {
+                top: 0;
+
+                transform: translate(50%, 80%);
+              }
+            }
+
+            &.down {
+              .step-number {
+                bottom: 0;
+
+                transform: translate(50%, -100%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

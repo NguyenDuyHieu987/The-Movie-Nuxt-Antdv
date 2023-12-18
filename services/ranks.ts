@@ -1,5 +1,5 @@
 import { makeRequest } from './makeRequest';
-import type { rankSort } from '~/types';
+import type { formfilterRank, rankSort } from '~/types';
 
 export function getRanking(page: number = 1, limit: number = 10) {
   return makeRequest(
@@ -7,14 +7,9 @@ export function getRanking(page: number = 1, limit: number = 10) {
   );
 }
 
-export function filterRanks(
-  type: string = 'hot-play',
-  sort: rankSort = 'day',
-  page: number = 1,
-  limit: number = 10
-) {
+export function filterRanks(formfilterRank: formfilterRank) {
   return makeRequest(
-    `/ranks/filter/${type}/${sort}?page=${page}&limit=${limit}`
+    `/ranks/filter/${formfilterRank.type}/${formfilterRank.sortBy}?with_genres=${formfilterRank.genre}&with_original_language=${formfilterRank.country}&page=${formfilterRank.page}&limit=${formfilterRank.limit}`
   );
 }
 

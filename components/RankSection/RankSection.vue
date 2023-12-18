@@ -1,0 +1,120 @@
+<template>
+  <section class="rank-section" :class="{ main: main }">
+    <div class="rank-section-header">
+      <h3 class="rank-section-title">{{ rankSectionTitle }}</h3>
+      <NuxtLink :to="viewAllPath" class="view-all click-active"
+        >Tất cả</NuxtLink
+      >
+    </div>
+
+    <div class="rank-section-body">
+      <div class="rank-body-list">
+        <NuxtLink
+          v-for="(item, index) in ranksData"
+          :key="index"
+          :index="index"
+          :to="{
+            path:
+              item?.media_type == 'tv'
+                ? `/info-tv/${item?.movie_id}__${utils
+                    .removeVietnameseTones(item?.name)
+                    ?.replaceAll(/\s/g, '-')
+                    .toLowerCase()}`
+                : `/info-movie/${item?.movie_id}__${utils
+                    .removeVietnameseTones(item?.name)
+                    ?.replaceAll(/\s/g, '-')
+                    .toLowerCase()}`,
+          }"
+          class="rank-body-item"
+          :style="
+            main
+              ? {
+                  backgroundImage:
+                    'url(' +
+                    getImage(item?.backdrop_path, 'backdrop', 'w-1000') +
+                    ')',
+                }
+              : {}
+          "
+        >
+          <div class="rank-number">{{ index + 1 }}</div>
+
+          <div class="info">{{ item?.name }}</div>
+
+          <div
+            class="step"
+            :class="{
+              up: item?.step > 0,
+              down: item?.step < 0,
+              balance: item?.step == 0,
+            }"
+          >
+            <div class="step-icon">
+              <svg
+                v-if="item?.step > 0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.5rem"
+                height="1.5rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="m4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8l-8 8z"
+                />
+              </svg>
+
+              <svg
+                v-else-if="item?.step < 0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.5rem"
+                height="1.5rem"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8l8-8z"
+                />
+              </svg>
+
+              <svg
+                v-else-if="item?.step == 0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.5rem"
+                height="1.5rem"
+                viewBox="0 0 24 24"
+              >
+                <path fill="currentColor" d="M20 14H4v-4h16" />
+              </svg>
+            </div>
+
+            <span class="step-number" v-if="item?.step != 0">
+              {{ item?.step_text }}
+            </span>
+          </div>
+        </NuxtLink>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+import { getImage } from '~/services/image';
+
+const props = withDefaults(
+  defineProps<{
+    rankSectionTitle: string;
+    ranksData: any;
+    viewAllPath: string;
+    main: boolean;
+  }>(),
+  {
+    ranksData: [],
+    viewAllPath: '/ranks',
+    main: false,
+  }
+);
+
+const utils = useUtils();
+const activeTab = ref<string>('day');
+</script>
+
+<style lang="scss" src="./RankSection.scss"></style>

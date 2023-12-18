@@ -35,16 +35,27 @@ export declare type typeTv =
   | 'popular'
   | 'toprated';
 
+export declare type rankType = string | 'hot-play' | 'hot-search' | 'high-rate';
+
 export declare type rankSort = 'day' | 'week' | 'month' | 'year' | 'all';
+
+export declare interface formfilterRank {
+  type: rankType;
+  sortBy: rankSort;
+  genre: string | number;
+  country: string;
+  page?: number = 1;
+  limit?: number = 10;
+}
 
 export declare interface formfilter {
   type: string;
   sortBy?: string;
-  genre: string | string;
+  genre: string | number;
   year: string;
   country: string;
-  page?: number | 1;
-  limit?: number | 20;
+  page?: number = 1;
+  limit?: number = 20;
 }
 
 export declare interface plan {

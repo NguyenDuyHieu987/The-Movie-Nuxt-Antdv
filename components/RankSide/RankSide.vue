@@ -62,7 +62,7 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import RankCard from '~/components/RankCard/RankCard.vue';
+import RankCard from '~/components/RankSide/RankCard/RankCard.vue';
 import { getRanking } from '~/services/ranks';
 
 interface tab {

@@ -173,6 +173,7 @@ total.value = searchDataCache.value?.total;
 pageSize.value = searchDataCache.value?.page_size;
 searchDataMovie.value = searchDataCache.value?.movie;
 searchDataTv.value = searchDataCache.value?.tv;
+
 loading.value = false;
 
 watch(
