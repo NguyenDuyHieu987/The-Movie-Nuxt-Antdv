@@ -191,30 +191,36 @@
           }
 
           &::before {
-            background-color: #00000070;
-            opacity: 0;
-            transition: opacity 0.15s;
-          }
-
-          &::after {
             content: '';
             background: linear-gradient(
               to right,
               var(--background-content-color),
               #00000000
             );
-            transition: all 0.15s;
+          }
+
+          &::after {
+            // background-color: #00000070;
+            // opacity: 0;
+            // transition: opacity 0.15s;
+            left: auto;
+            right: 0;
+            width: 40%;
+            background: linear-gradient(
+              to left,
+              var(--background-content-color),
+              #00000000 50%
+            );
           }
 
           &:hover {
-            &::before {
+            &::after {
               opacity: 1;
             }
           }
 
           .step {
             width: 60px;
-            background: #080808;
 
             &.up {
               .step-number {

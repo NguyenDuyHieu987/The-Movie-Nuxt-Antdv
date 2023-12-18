@@ -86,7 +86,7 @@
               </svg>
 
               <span v-else-if="item?.step == 0 && item?.new" class="new">
-                new
+                New
               </span>
             </div>
 
@@ -108,7 +108,7 @@ const props = withDefaults(
     rankSectionTitle: string;
     ranksData: any;
     viewAllPath: string;
-    main: boolean;
+    main?: boolean;
   }>(),
   {
     ranksData: [],
