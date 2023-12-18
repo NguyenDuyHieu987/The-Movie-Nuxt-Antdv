@@ -6,7 +6,8 @@
           v-if="dataColumn[0]?.media_type == 'tv' && dataColumn[0]?.movie_id"
           class="img-box ratio-16-9"
           :to="{
-            path: `/play-tv/${dataColumn[0]?.movie_id}__${dataColumn[0]?.name
+            path: `/play-tv/${dataColumn[0]?.movie_id}__${utils
+              .removeVietnameseTones(dataColumn[0]?.name)
               ?.replaceAll(/\s/g, '-')
               .toLowerCase()}/ep-1`,
           }"
@@ -40,7 +41,8 @@
           "
           class="img-box"
           :to="{
-            path: `/play-movie/${dataColumn[0]?.movie_id}__${dataColumn[0]?.name
+            path: `/play-movie/${dataColumn[0]?.movie_id}__${utils
+              .removeVietnameseTones(dataColumn[0]?.name)
               ?.replaceAll(/\s/g, '-')
               .toLowerCase()}`,
           }"
@@ -242,6 +244,7 @@ const props = defineProps<{
 }>();
 
 const store = useStore();
+const utils = useUtils();
 const topicColumn = ref();
 const valueSearch = defineModel<string>('valueInput');
 const dataColumn = defineModel<any>('dataColumn');
