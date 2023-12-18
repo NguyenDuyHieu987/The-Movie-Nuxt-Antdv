@@ -1,6 +1,9 @@
 <template>
-  <section class="rank-section" :class="{ main: main }">
-    <!-- v-show="ranksData?.length" -->
+  <section
+    v-show="ranksData?.length"
+    class="rank-section"
+    :class="{ main: main }"
+  >
     <div class="rank-section-header">
       <h3 class="rank-section-title">{{ rankSectionTitle }}</h3>
       <NuxtLink :to="viewAllPath" class="view-all click-active">

@@ -330,7 +330,6 @@ export default defineNuxtConfig({
       '/television',
       '/ranks',
       '/upgrade/plans',
-      '/upgrade/PaymentPicker',
       '/login',
       '/signup',
       '/ForgotPassword',
