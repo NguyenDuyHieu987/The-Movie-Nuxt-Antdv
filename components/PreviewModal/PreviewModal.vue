@@ -48,7 +48,7 @@
               />
 
               <div class="video-preview">
-                <!-- <video
+                <video
                   v-show="showVideo"
                   id="video-player"
                   ref="video"
@@ -58,7 +58,7 @@
                   @loadstart="onLoadStartVideo"
                   @waiting="onWaitingVideo"
                   @playing="onPLayingVideo"
-                ></video> -->
+                ></video>
 
                 <div class="float-center">
                   <div class="loading-video" v-show="videoStates.isLoading">
