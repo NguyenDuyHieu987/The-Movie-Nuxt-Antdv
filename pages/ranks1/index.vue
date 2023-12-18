@@ -298,23 +298,23 @@ loading.value = false;
 // ranksMovie.value = compareRanks(ranksMovieCache.value);
 // // ranksTV.value = ranksMovieCache.value!;
 
-// // Phim bộ
+// Phim bộ
 
-// const { data: ranksTVCache } = await useAsyncData(
-//   `cache/ranks/filter/${{
-//     ...formFilterRank.value,
-//     mediaType: 'tv',
-//   }}/${pageRank.value}/10`,
-//   () => filterRanks({ ...formFilterRank.value, mediaType: 'tv' }),
-//   {
-//     // transform: (data: any) => {
-//     //   return compareRanks(data);
-//     // },
-//   }
-// );
+const { data: ranksTVCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    mediaType: 'tv',
+  }}/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, mediaType: 'tv' }),
+  {
+    // transform: (data: any) => {
+    //   return compareRanks(data);
+    // },
+  }
+);
 
-// ranksTV.value = compareRanks(ranksTVCache.value);
-// // ranksTV.value = ranksTVCache.value!;
+ranksTV.value = compareRanks(ranksTVCache.value);
+// ranksTV.value = ranksTVCache.value!;
 
 // // Hoạt hình
 

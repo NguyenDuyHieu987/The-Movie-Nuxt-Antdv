@@ -15,7 +15,6 @@
     :class="{
       'show-video': showVideo,
     }"
-    ref="cardItem"
     :style="`--dominant-backdrop-color: ${item.dominant_backdrop_color[0]}, ${item.dominant_backdrop_color[1]},${item.dominant_backdrop_color[2]}`"
   >
     <!-- <el-skeleton :loading="loading" animated class="ratio-16-9">
@@ -28,6 +27,7 @@
       class="img-box ratio-16-9"
       @pointerenter="onMouseEnterImg"
       @pointerleave="onMouseLeaveImg"
+      ref="cardItem"
     >
       <!-- <img
         v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
@@ -94,19 +94,11 @@
     </el-skeleton> -->
 
     <PreviewModal
-      :isTeleportPreviewModal="isTeleportPreviewModal"
       v-model:isTeleport="isTeleportPreviewModal"
       :item="item"
       :dataMovie="dataMovie"
-      :style="{
-        left: left,
-        top: top,
-        offsetHeight: offsetHeight,
-        offsetWidth: offsetWidth,
-        imgHeight: imgHeight,
-        imgWidth: imgWidth,
-        rectBound: rectBound,
-      }"
+      :style="stylePreviewModal"
+      v-model:style="stylePreviewModal"
       :timeOut="timeOut"
       :isEpisodes="isEpisodes"
       @setIsTeleportModal="(data : boolean) => (isTeleportPreviewModal = data)"
@@ -140,13 +132,23 @@ const percent = ref<number>(0);
 const urlShare = computed<string>((): string => window.location.href);
 const isTeleportPreviewModal = ref<boolean>(false);
 const cardItem = ref<HTMLElement>();
-const left = ref<number>(0);
-const top = ref<number>(0);
-const offsetWidth = ref<number>(0);
-const offsetHeight = ref<number>(0);
-const imgHeight = ref<number>(0);
-const imgWidth = ref<number>(0);
-const rectBound = ref<any>(0);
+const stylePreviewModal = reactive<{
+  left: number;
+  top: number;
+  offsetWidth: number;
+  offsetHeight: number;
+  imgHeight: number;
+  imgWidth: number;
+  rectBound: any;
+}>({
+  left: 0,
+  top: 0,
+  offsetWidth: 0,
+  offsetHeight: 0,
+  imgHeight: 0,
+  imgWidth: 0,
+  rectBound: null,
+});
 const timeOut = ref<any>();
 const isEpisodes = computed<boolean>(() => props?.item?.media_type == 'tv');
 const video = ref<HTMLVideoElement>();
@@ -234,6 +236,26 @@ const getData = async () => {
 
 getData();
 
+onMounted(() => {
+  const rect = cardItem.value!?.getBoundingClientRect();
+
+  const offsetX = rect.left;
+  const offsetY = window.scrollY + rect.top;
+
+  stylePreviewModal.left = offsetX + cardItem.value!.offsetWidth / 2;
+  stylePreviewModal.top = offsetY + cardItem.value!.offsetHeight / 2;
+
+  stylePreviewModal.offsetWidth = cardItem.value!.offsetWidth;
+  stylePreviewModal.offsetHeight = cardItem.value!.offsetHeight;
+
+  stylePreviewModal.imgHeight =
+    cardItem.value!.querySelector('img')!.offsetHeight;
+  stylePreviewModal.imgWidth =
+    cardItem.value!.querySelector('img')!.offsetWidth;
+
+  stylePreviewModal.rectBound = rect;
+});
+
 const onMouseEnterImg = ({ target }: { target: HTMLElement | any }) => {
   if (loading.value) return;
 
@@ -242,26 +264,22 @@ const onMouseEnterImg = ({ target }: { target: HTMLElement | any }) => {
   const offsetX = rect.left;
   const offsetY = window.scrollY + rect.top;
 
-  // left.value = offsetX + target.offsetWidth / 2 - width / 2;
-  // top.value = offsetY + target.offsetHeight / 2 - height / 2;
+  stylePreviewModal.left = offsetX + target.offsetWidth / 2;
+  stylePreviewModal.top = offsetY + target.offsetHeight / 2;
 
-  left.value = offsetX + target.offsetWidth / 2;
-  top.value = offsetY + target.offsetHeight / 2;
+  stylePreviewModal.offsetWidth = target.offsetWidth;
+  stylePreviewModal.offsetHeight = target.offsetHeight;
 
-  offsetWidth.value = target.offsetWidth;
-  offsetHeight.value = target.offsetHeight;
+  stylePreviewModal.imgHeight = target.querySelector('img')!.offsetHeight;
+  stylePreviewModal.imgWidth = target.querySelector('img')!.offsetWidth;
 
-  imgHeight.value = target.querySelector('img')!.offsetHeight;
-  imgWidth.value = target.querySelector('img')!.offsetWidth;
-
-  rectBound.value = rect;
+  stylePreviewModal.rectBound = rect;
 
   timeOut.value = setTimeout(() => {
     isTeleportPreviewModal.value = true;
   }, 700);
 
   target.addEventListener('pointerleave', () => {
-    // isTeleportPreviewModal.value = false;
     clearTimeout(timeOut.value);
   });
 };

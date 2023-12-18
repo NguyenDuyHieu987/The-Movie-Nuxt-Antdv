@@ -1,10 +1,11 @@
 <template>
-  <Teleport v-if="isTeleportPreviewModal" to="#__nuxt">
+  <Teleport v-if="isTeleport" to="#preview-modal">
     <div class="preview-overlay">
       <div
         ref="previewModal"
         class="preview-modal"
         :class="{
+          appear: isTeleport,
           disappear: isDisappear,
           'only-left': isOnlyLeft,
           'only-right': isOnlyRight,
@@ -47,7 +48,7 @@
               />
 
               <div class="video-preview">
-                <video
+                <!-- <video
                   v-show="showVideo"
                   id="video-player"
                   ref="video"
@@ -57,7 +58,7 @@
                   @loadstart="onLoadStartVideo"
                   @waiting="onWaitingVideo"
                   @playing="onPLayingVideo"
-                ></video>
+                ></video> -->
 
                 <div class="float-center">
                   <div class="loading-video" v-show="videoStates.isLoading">
@@ -391,7 +392,6 @@ import { getTvById } from '~/services/tv';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const props = defineProps<{
-  isTeleportPreviewModal: boolean;
   item: any;
   dataMovie?: any;
   style: {
@@ -418,7 +418,7 @@ const loading = ref<boolean>(false);
 const isAddToList = ref<boolean>(false);
 const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
-const previewModal = ref<any>(null);
+const previewModal = ref<HTMLElement>();
 const urlShare = computed<string>(
   (): string =>
     window.location.origin +
@@ -433,17 +433,18 @@ const urlShare = computed<string>(
           .toLowerCase()}`)
 );
 const isTeleport = defineModel<boolean>('isTeleport');
+const style = defineModel<{
+  left: number;
+  top: number;
+  offsetHeight: number;
+  offsetWidth: number;
+  imgHeight: number;
+  imgWidth: number;
+  rectBound: any;
+}>('style');
 const isDisappear = ref<boolean>(false);
 const isOnlyLeft = ref<boolean>(false);
 const isOnlyRight = ref<boolean>(false);
-// const isTeleport = computed<boolean>({
-//   get() {
-//     return props.isTeleportPreviewModal;
-//   },
-//   set(value: boolean) {
-//     emit('setIsTeleportModal', value);
-//   },
-// });
 const video = ref<HTMLVideoElement>();
 const showVideo = ref<boolean>(false);
 const videoSrc = computed<string>(
@@ -460,19 +461,177 @@ const videoStates = reactive({
 });
 
 onMounted(() => {
-  // window.addEventListener('pointermove', (e: any) => {
-  //   // if (document.querySelector('.preview-modal') == null) return;
-  //   if (isTeleport.value == true && !e.target.closest('.preview-modal')) {
-  //     isDisappear.value = true;
-  //     setTimeout(() => {
-  //       isDisappear.value = false;
-  //       isTeleport.value = false;
-  //     }, 250);
-  //   }
-  // });
-
   showVideo.value = true;
 });
+
+watch(
+  previewModal,
+  () => {
+    if (isTeleport.value == true && previewModal.value) {
+      previewModal.value.style.setProperty(
+        '--width',
+        style.value!.offsetWidth + 'px'
+      );
+      previewModal.value.style.setProperty(
+        '--height',
+        style.value!.offsetHeight + 'px'
+      );
+      previewModal.value.style.setProperty(
+        '--img-height',
+        style.value!.imgHeight + 'px'
+      );
+
+      let minRecLeft =
+        +getComputedStyle(document.documentElement)
+          .getPropertyValue('--sider-width')
+          .replace('px', '') + 45;
+
+      if (window.innerWidth < 900) {
+        minRecLeft = 15;
+      }
+
+      if (store.collapsed && window.innerWidth >= 900) {
+        +getComputedStyle(document.documentElement)
+          .getPropertyValue('--sider-width')
+          .replace('px', '') + 30;
+      }
+
+      isOnlyLeft.value = false;
+      isOnlyRight.value = false;
+
+      if (style.value!?.rectBound.left <= minRecLeft) {
+        // previewModal.value.style.setProperty(
+        //   '--left',
+        //   style.value!.rectBound.left + 'px'
+        // );
+
+        // previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
+
+        isOnlyLeft.value = true;
+
+        previewModal.value.style.setProperty(
+          '--left',
+          style.value!.rectBound.left + 'px'
+        );
+
+        previewModal.value.style.setProperty(
+          '--left-only',
+          style.value!.rectBound.left * 1.15 + 'px'
+        );
+
+        previewModal.value.style.transform =
+          'translateX(0%) translateY(-50%) scale(1.3)';
+      } else {
+        const minRectRight = window.innerWidth - style.value!?.rectBound.right;
+
+        if (minRectRight <= 45) {
+          // previewModal.value.style.right = minRectRight - 15 + 'px';
+          // previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
+
+          isOnlyRight.value = true;
+
+          previewModal.value.style.setProperty('--left', 'auto');
+
+          previewModal.value.style.setProperty(
+            '--right',
+            minRectRight - 14 + 'px'
+          );
+
+          previewModal.value.style.setProperty(
+            '--right-only',
+            minRectRight + 14 * 1.8 + 'px'
+          );
+
+          previewModal.value.style.transform =
+            'translateX(0%) translateY(-50%) scale(1.3)';
+        } else {
+          previewModal.value.style.setProperty(
+            '--left',
+            style.value!.left + 'px'
+          );
+        }
+      }
+
+      previewModal.value.style.setProperty('--top', style.value!.top + 'px');
+
+      previewModal.value.addEventListener('pointerenter', () => {
+        if (!isTeleport.value) {
+          isTeleport.value = true;
+        }
+      });
+
+      previewModal.value.addEventListener('pointerleave', (el: any) => {
+        isDisappear.value = true;
+        showVideo.value = false;
+
+        if (isOnlyLeft.value) {
+          gsap.fromTo(
+            '.preview-modal',
+            {
+              left: style.value!.rectBound.left * 1.15 + 'px',
+              transform: 'translateX(0%) translateY(-50%) scale(1.3)',
+            },
+            {
+              left: style.value!.rectBound.left + 'px',
+              transform: `translateX(0%) translateY(calc(${
+                style.value!.offsetHeight
+              }px / (-2)))
+            scale(1)`,
+              duration: 0.3,
+              onComplete: () => {
+                isDisappear.value = false;
+                isTeleport.value = false;
+              },
+            }
+          );
+          return;
+        } else if (isOnlyRight.value) {
+          const minRectRight = window.innerWidth - style.value!.rectBound.right;
+
+          gsap.fromTo(
+            '.preview-modal',
+            {
+              right: minRectRight + 14 * 1.8 + 'px',
+              transform: 'translateX(0%) translateY(-50%) scale(1.3)',
+            },
+            {
+              right: minRectRight - 14 + 'px',
+              transform: `translateX(0%) translateY(calc(${
+                style.value!.offsetHeight
+              }px / (-2)))
+            scale(1)`,
+              duration: 0.3,
+              onComplete: () => {
+                isDisappear.value = false;
+                isTeleport.value = false;
+              },
+            }
+          );
+          return;
+        }
+
+        gsap.fromTo(
+          '.preview-modal',
+          {
+            transform: 'translateX(-50%) translateY(-50%) scale(1.3)',
+          },
+          {
+            transform: `translateX(-50%) translateY(calc(${
+              style.value!.offsetHeight
+            }px / (-2)))
+            scale(1)`,
+            duration: 0.3,
+            onComplete: () => {
+              isDisappear.value = false;
+              isTeleport.value = false;
+            },
+          }
+        );
+      });
+    }
+  },
+  { deep: true }
+);
 
 watch(showVideo, () => {
   if (video.value) {
@@ -483,197 +642,6 @@ watch(showVideo, () => {
       showVideo.value = false;
       video.value!.pause();
     }
-  }
-});
-
-watch(previewModal, () => {
-  if (previewModal.value) {
-    previewModal.value.style.setProperty(
-      '--width',
-      props.style.offsetWidth + 'px'
-    );
-    previewModal.value.style.setProperty(
-      '--height',
-      props.style.offsetHeight + 'px'
-    );
-    previewModal.value.style.setProperty(
-      '--img-height',
-      props.style.imgHeight + 'px'
-    );
-
-    let minRecLeft =
-      +getComputedStyle(document.documentElement)
-        .getPropertyValue('--sider-width')
-        .replace('px', '') + 45;
-
-    if (window.innerWidth < 900) {
-      minRecLeft = 15;
-    }
-
-    if (store.collapsed && window.innerWidth >= 900) {
-      +getComputedStyle(document.documentElement)
-        .getPropertyValue('--sider-width')
-        .replace('px', '') + 30;
-    }
-
-    isOnlyLeft.value = false;
-    isOnlyRight.value = false;
-
-    if (props.style.rectBound.left <= minRecLeft) {
-      // previewModal.value.style.setProperty(
-      //   '--left',
-      //   props.style.rectBound.left + 'px'
-      // );
-
-      // previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
-
-      isOnlyLeft.value = true;
-
-      previewModal.value.style.setProperty(
-        '--left',
-        props.style.rectBound.left + 'px'
-      );
-
-      previewModal.value.style.setProperty(
-        '--left-only',
-        props.style.rectBound.left * 1.15 + 'px'
-      );
-
-      previewModal.value.style.transform =
-        'translateX(0%) translateY(-50%) scale(1.3)';
-    } else {
-      const minRectRight = window.innerWidth - props.style.rectBound.right;
-
-      if (minRectRight <= 45) {
-        // previewModal.value.style.right = minRectRight - 15 + 'px';
-        // previewModal.value.style.transform = 'translateX(0%) translateY(-50%)';
-
-        isOnlyRight.value = true;
-
-        previewModal.value.style.setProperty('--left', 'auto');
-
-        previewModal.value.style.setProperty(
-          '--right',
-          minRectRight - 14 + 'px'
-        );
-
-        previewModal.value.style.setProperty(
-          '--right-only',
-          minRectRight + 14 * 1.8 + 'px'
-        );
-
-        previewModal.value.style.transform =
-          'translateX(0%) translateY(-50%) scale(1.3)';
-      } else {
-        previewModal.value.style.setProperty('--left', props.style.left + 'px');
-      }
-    }
-
-    previewModal.value.style.setProperty('--top', props.style.top + 'px');
-
-    previewModal.value?.addEventListener('pointerenter', () => {
-      if (!isTeleport.value) {
-        isTeleport.value = true;
-      }
-    });
-
-    previewModal.value.addEventListener('pointerleave', (el: any) => {
-      isDisappear.value = true;
-      showVideo.value = false;
-
-      // setTimeout(() => {
-      //   isDisappear.value = false;
-      //   isTeleport.value = false;
-      // }, 250);
-
-      // gsap.fromTo(
-      //   '.preview-modal',
-      //   {
-      //     width: '22vw',
-      //     minWidth: 350,
-      //   },
-      //   {
-      //     width: props.style.offsetWidth,
-      //     minWidth: props.style.offsetWidth,
-      //     maxHeight: props.style.offsetHeight,
-      //     duration: 0.25,
-      //     onComplete: () => {
-      //       isDisappear.value = false;
-      //       isTeleport.value = false;
-      //     },
-      //   }
-      // );
-
-      if (isOnlyLeft.value) {
-        gsap.fromTo(
-          '.preview-modal',
-          {
-            left: props.style.rectBound.left * 1.15 + 'px',
-            // width: '17vw',
-            // minWidth: 260,
-            transform: 'translateX(0%) translateY(-50%) scale(1.3)',
-          },
-          {
-            left: props.style.rectBound.left + 'px',
-            // width: props.style.offsetWidth,
-            // minWidth: props.style.offsetWidth,
-            transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
-          scale(1)`,
-            duration: 0.2,
-            onComplete: () => {
-              isDisappear.value = false;
-              isTeleport.value = false;
-            },
-          }
-        );
-        return;
-      } else if (isOnlyRight.value) {
-        const minRectRight = window.innerWidth - props.style.rectBound.right;
-
-        gsap.fromTo(
-          '.preview-modal',
-          {
-            // width: '17vw',
-            // minWidth: 260,
-            right: minRectRight + 14 * 1.8 + 'px',
-            transform: 'translateX(0%) translateY(-50%) scale(1.3)',
-          },
-          {
-            right: minRectRight - 14 + 'px',
-            // width: props.style.offsetWidth,
-            // minWidth: props.style.offsetWidth,
-            transform: `translateX(0%) translateY(calc(${props.style.offsetHeight}px / (-2)))
-          scale(1)`,
-            duration: 0.2,
-            onComplete: () => {
-              isDisappear.value = false;
-              isTeleport.value = false;
-            },
-          }
-        );
-        return;
-      }
-
-      gsap.fromTo(
-        '.preview-modal',
-        {
-          // width: '17vw',
-          // minWidth: 260,
-          transform: 'translateX(-50%) translateY(-50%) scale(1.3)',
-        },
-        {
-          // width: props.style.offsetWidth,
-          // minWidth: props.style.offsetWidth,
-          transform: `translateX(-50%) translateY(calc(${props.style.offsetHeight}px / (-2)))
-          scale(1)`,
-          duration: 0.2,
-          onComplete: () => {
-            isDisappear.value = false;
-            isTeleport.value = false;
-          },
-        }
-      );
-    });
   }
 });
 

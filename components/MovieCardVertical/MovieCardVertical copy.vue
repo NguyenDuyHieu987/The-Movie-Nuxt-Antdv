@@ -100,18 +100,10 @@
     </el-skeleton>
 
     <PreviewModal
-      :isTeleportPreviewModal="isTeleportPreviewModal"
       v-model:isTeleport="isTeleportPreviewModal"
       :item="item"
-      :style="{
-        left: left,
-        top: top,
-        offsetHeight: offsetHeight,
-        offsetWidth: offsetWidth,
-        imgHeight: imgHeight,
-        imgWidth: imgWidth,
-        rectBound: rectBound,
-      }"
+      :style="stylePreviewModal"
+      v-model:style="stylePreviewModal"
       :timeOut="timeOut"
       :isEpisodes="isEpisodes"
       @setIsTeleportModal="(data : boolean) => (isTeleportPreviewModal = data)"
@@ -142,14 +134,24 @@ const isInHistory = ref<boolean>(false);
 const percent = ref<number>(0);
 const urlShare = computed<string>((): string => window.location.href);
 const isTeleportPreviewModal = ref<boolean>(false);
-const cardItem = ref<any>(null);
-const left = ref<number>(0);
-const top = ref<number>(0);
-const offsetWidth = ref<number>(0);
-const offsetHeight = ref<number>(0);
-const imgHeight = ref<number>(0);
-const imgWidth = ref<number>(0);
-const rectBound = ref<any>(0);
+const cardItem = ref<HTMLElement>();
+const stylePreviewModal = reactive<{
+  left: number;
+  top: number;
+  offsetWidth: number;
+  offsetHeight: number;
+  imgHeight: number;
+  imgWidth: number;
+  rectBound: any;
+}>({
+  left: 0,
+  top: 0,
+  offsetWidth: 0,
+  offsetHeight: 0,
+  imgHeight: 0,
+  imgWidth: 0,
+  rectBound: null,
+});
 const timeOut = ref<any>();
 
 const getData = async () => {
@@ -221,19 +223,19 @@ const onMouseEnter = ({ target }: { target: HTMLElement }) => {
   const offsetX = rect.left;
   const offsetY = window.scrollY + rect.top;
 
-  // left.value = offsetX + target.offsetWidth / 2 - width / 2;
-  // top.value = offsetY + target.offsetHeight / 2 - height / 2;
+  // stylePreviewModal.left = offsetX + target.offsetWidth / 2 - width / 2;
+  // stylePreviewModal.top = offsetY + target.offsetHeight / 2 - height / 2;
 
-  left.value = offsetX + target.offsetWidth / 2;
-  top.value = offsetY + target.offsetHeight / 2;
+  stylePreviewModal.left = offsetX + target.offsetWidth / 2;
+  stylePreviewModal.top = offsetY + target.offsetHeight / 2;
 
-  offsetWidth.value = target.offsetWidth;
-  offsetHeight.value = target.offsetHeight;
+  stylePreviewModal.offsetWidth = target.offsetWidth;
+  stylePreviewModal.offsetHeight = target.offsetHeight;
 
-  imgHeight.value = target.querySelector('img')!?.offsetHeight;
-  imgWidth.value = target.querySelector('img')!?.offsetWidth;
+  stylePreviewModal.imgHeight = target.querySelector('img')!?.offsetHeight;
+  stylePreviewModal.imgWidth = target.querySelector('img')!?.offsetWidth;
 
-  rectBound.value = rect;
+  stylePreviewModal.rectBound = rect;
 
   timeOut.value = setTimeout(() => {
     isTeleportPreviewModal.value = true;

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="append-to"></div>
+    <div id="preview-modal"></div>
 
     <!-- <a-config-provider
       :theme="{
