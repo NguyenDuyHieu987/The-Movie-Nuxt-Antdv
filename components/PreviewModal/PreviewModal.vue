@@ -566,7 +566,7 @@ watch(
 
         if (isOnlyLeft.value) {
           gsap.fromTo(
-            '.preview-modal',
+            el.target,
             {
               left: style.value!.rectBound.left * 1.15 + 'px',
               transform: 'translateX(0%) translateY(-50%) scale(1.3)',
@@ -589,7 +589,7 @@ watch(
           const minRectRight = window.innerWidth - style.value!.rectBound.right;
 
           gsap.fromTo(
-            '.preview-modal',
+            el.target,
             {
               right: minRectRight + 14 * 1.8 + 'px',
               transform: 'translateX(0%) translateY(-50%) scale(1.3)',
@@ -611,7 +611,7 @@ watch(
         }
 
         gsap.fromTo(
-          '.preview-modal',
+          el.target,
           {
             transform: 'translateX(-50%) translateY(-50%) scale(1.3)',
           },
