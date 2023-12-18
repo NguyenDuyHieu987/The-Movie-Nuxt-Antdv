@@ -188,8 +188,8 @@ const typeRankList = ref<
 const formFilterRank = computed<formfilterRank>(() => {
   return {
     type: route.query?.type || 'hot-play',
+    mediaType: route.query?.media_type || 'all',
     sortBy: route.query?.sort_by || 'day',
-    mediaType: 'all',
     genre: route.query?.genre || '',
     country: route.query?.country || '',
   };
@@ -280,23 +280,23 @@ pageSize.value = ranksDataCache.value?.page_size;
 
 loading.value = false;
 
-// // Phim lẻ
+// Phim lẻ
 
-// const { data: ranksMovieCache } = await useAsyncData(
-//   `cache/ranks/filter/${{
-//     ...formFilterRank.value,
-//     mediaType: 'movie',
-//   }}/${pageRank.value}/10`,
-//   () => filterRanks({ ...formFilterRank.value, mediaType: 'movie' }),
-//   {
-//     // transform: (data: any) => {
-//     //   return compareRanks(data);
-//     // },
-//   }
-// );
+const { data: ranksMovieCache } = await useAsyncData(
+  `cache/ranks/filter/${{
+    ...formFilterRank.value,
+    mediaType: 'movie',
+  }}/${pageRank.value}/10`,
+  () => filterRanks({ ...formFilterRank.value, mediaType: 'movie' }),
+  {
+    // transform: (data: any) => {
+    //   return compareRanks(data);
+    // },
+  }
+);
 
-// ranksMovie.value = compareRanks(ranksMovieCache.value);
-// // ranksTV.value = ranksMovieCache.value!;
+ranksMovie.value = compareRanks(ranksMovieCache.value);
+// ranksTV.value = ranksMovieCache.value!;
 
 // Phim bộ
 
