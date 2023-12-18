@@ -152,7 +152,7 @@ const getData = async () => {
 loading.value = true;
 
 const { data: searchDataCache, pending } = await useAsyncData(
-  `cache/search/all/${searchQuery.value}/${page.value}/20`,
+  `cache1/search/all/${searchQuery.value}/${page.value}/20`,
   () => getDaTaSearch(searchQuery.value, page.value),
   {
     // transform: (data: any) => {
