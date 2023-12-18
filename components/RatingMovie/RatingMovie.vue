@@ -112,7 +112,6 @@ const handleRating = (value: number) => {
           type: 'success',
           position: 'bottom-right',
           duration: 3000,
-          showClose: false,
         });
 
         vote_Average.value = response?.vote_average;
@@ -127,7 +126,6 @@ const handleRating = (value: number) => {
         type: 'error',
         position: 'bottom-right',
         duration: 3000,
-        showClose: false,
       });
       if (axios.isCancel(e)) return;
     });

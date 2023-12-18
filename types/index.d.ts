@@ -35,7 +35,7 @@ export declare type typeTv =
   | 'popular'
   | 'toprated';
 
-export declare type rankFilter = 'day' | 'week' | 'month' | 'year' | 'all';
+export declare type rankSort = 'day' | 'week' | 'month' | 'year' | 'all';
 
 export declare interface formfilter {
   type: string;

@@ -1,5 +1,5 @@
 import { makeRequest } from './makeRequest';
-import type { rankFilter } from '~/types';
+import type { rankSort } from '~/types';
 
 export function getRanking(page: number = 1, limit: number = 10) {
   return makeRequest(
@@ -7,28 +7,39 @@ export function getRanking(page: number = 1, limit: number = 10) {
   );
 }
 
-export function getRankSearch(
-  type: rankFilter = 'day',
+export function filterRanks(
+  type: string = 'hot-play',
+  sort: rankSort = 'day',
   page: number = 1,
   limit: number = 10
 ) {
-  return makeRequest(`/ranks/hot-search/${type}?page=${page}&limit=${limit}`);
+  return makeRequest(
+    `/ranks/filter/${type}/${sort}?page=${page}&limit=${limit}`
+  );
+}
+
+export function getRankSearch(
+  sort: rankSort = 'day',
+  page: number = 1,
+  limit: number = 10
+) {
+  return makeRequest(`/ranks/hot-search/${sort}?page=${page}&limit=${limit}`);
 }
 
 export function getRankPlay(
-  type: rankFilter = 'day',
+  sort: rankSort = 'day',
   page: number = 1,
   limit: number = 10
 ) {
-  return makeRequest(`/ranks/hot-play/${type}?page=${page}&limit=${limit}`);
+  return makeRequest(`/ranks/hot-play/${sort}?page=${page}&limit=${limit}`);
 }
 
 export function getRankHighRate(
-  type: rankFilter = 'day',
+  sort: rankSort = 'day',
   page: number = 1,
   limit: number = 10
 ) {
-  return makeRequest(`/ranks/high-rate/${type}?page=${page}&limit=${limit}`);
+  return makeRequest(`/ranks/high-rate/${sort}?page=${page}&limit=${limit}`);
 }
 
 export function addRankPlay(params: { movie_id: string; media_type: string }) {

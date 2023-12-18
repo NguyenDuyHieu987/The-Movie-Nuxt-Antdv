@@ -1,6 +1,8 @@
 .ranks {
   height: 100%;
 
+  --padding-rank-section: 10px 15px;
+
   .ranks-container {
     .ranks-title {
       display: flex;
@@ -8,7 +10,7 @@
       align-items: center;
       justify-content: center;
       padding: 30px 15px;
-      font-size: 2.7rem;
+      font-size: 2.5rem;
     }
 
     .rank-type {
@@ -19,10 +21,59 @@
       margin-bottom: 30px;
 
       .rank-type-item {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         padding: 10px 40px;
         cursor: pointer;
         transition: all 0.15s;
+
+        a {
+          color: inherit;
+          font-weight: 500;
+          transition: all 0s;
+
+          &:hover {
+            color: var(--app-background-color);
+          }
+        }
+      }
+    }
+
+    .rank-section {
+      display: flex;
+      flex-direction: column;
+
+      .rank-section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: var(--padding-rank-section);
+        background-color: var(--background-content-color2);
+        font-size: 1.7rem;
+
+        .rank-section-title {
+        }
+
+        .view-all {
+          font-size: 0.8em;
+          color: inherit;
+          cursor: pointer;
+          font-weight: 500;
+          transition: all 0s;
+
+          &:hover {
+            color: var(--app-background-color);
+          }
+        }
+      }
+
+      .rank-section-body {
+        padding: var(--padding-rank-section);
+        background-color: #222222;
+      }
+
+      &.all {
+        width: 100%;
       }
     }
   }

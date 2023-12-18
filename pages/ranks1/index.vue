@@ -10,26 +10,51 @@
           v-for="(item, index) in typeRankList"
           :key="index"
           :index="index"
-          class="rank-type-item"
+          class="rank-type-item click-active"
         >
-          <span>{{ item.label }}</span>
+          <NuxtLink
+            :to="{
+              query: {
+                type: item.value,
+              },
+            }"
+          >
+            {{ item.label }}
+          </NuxtLink>
         </div>
       </div>
 
-      <section class="rank-list">{{ ranksPlay }}</section>
+      <section class="rank-section all">
+        <div class="rank-section-header">
+          <h3 class="rank-section-title">Xem nhiều</h3>
+          <NuxtLink to="/" class="view-all click-active">Tất cả</NuxtLink>
+        </div>
+        <div class="rank-section-body">
+          {{ ranksData }}
+        </div>
+      </section>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import axios from 'axios';
-import { getRankPlay } from '~/services/ranks';
+import { filterRanks, getRankPlay } from '~/services/ranks';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
 
 const router = useRouter();
 const route = useRoute();
-const ranksPlay = ref<any[]>([]);
-const ranksSearch = ref<any[]>([]);
+const ranksData = ref<any[]>([]);
+const ranksMovie = ref<any[]>([]);
+const ranksTV = ref<any[]>([]);
+const ranksAnimation = ref<any[]>([]);
+const ranksAction = ref<any[]>([]);
+const ranksHorror = ref<any[]>([]);
+const ranksDrama = ref<any[]>([]);
+const ranksScienceFiction = ref<any[]>([]);
+const ranksEN = ref<any[]>([]);
+const ranksJapan = ref<any[]>([]);
+const ranksChina = ref<any[]>([]);
 const pageTrending = ref<number>(+route?.query?.page || 1);
 const pageSize = ref<number>(20);
 const loading = ref<boolean>(false);
@@ -39,7 +64,7 @@ const typeRankList = ref<
     label: string;
   }[]
 >([
-  { label: 'Xem nhiều nhât', value: 'hot-play' },
+  { label: 'Xem nhiều nhất', value: 'hot-play' },
   { label: 'Tìm kiếm nhiều nhất', value: 'hot-search' },
   { label: 'Đánh giá cao nhất', value: 'high-rate' },
 ]);
@@ -68,11 +93,12 @@ const getData = async () => {
 
   internalInstance.appContext.config.globalProperties.$Progress.start();
 
-  await useAsyncData(`trending/all/${pageTrending.value}`, () =>
-    getRankPlay('day', pageTrending.value)
+  await useAsyncData(
+    `ranks/${typeRank.value}/day/${pageTrending.value}/10`,
+    () => filterRanks(typeRank.value, 'day', pageTrending.value)
   )
     .then((response) => {
-      ranksPlay.value = response.data.value?.results;
+      ranksData.value = response.data.value;
       pageSize.value = response.data.value?.page_size;
     })
     .catch((e) => {
@@ -87,8 +113,8 @@ const getData = async () => {
 loading.value = true;
 
 const { data: rankingsCache, pending } = await useAsyncData(
-  `cache/ranks/hot-play/${pageTrending.value}/10`,
-  () => getRankPlay('day', pageTrending.value),
+  `cache/ranks/${typeRank.value}/day/${pageTrending.value}/10`,
+  () => filterRanks(typeRank.value, 'day', pageTrending.value),
   {
     // transform: (data: any) => {
     //   totalPage.value = data?.total;
@@ -100,10 +126,19 @@ const { data: rankingsCache, pending } = await useAsyncData(
   }
 );
 
-ranksPlay.value = rankingsCache.value.results;
+ranksData.value = rankingsCache.value;
 
 pageSize.value = rankingsCache.value?.page_size;
 loading.value = false;
+
+watch(
+  () => route.query,
+  () => {
+    if (typeRank.value) {
+      getData();
+    }
+  }
+);
 </script>
 
 <style lang="scss" src="./RankPage.scss"></style>

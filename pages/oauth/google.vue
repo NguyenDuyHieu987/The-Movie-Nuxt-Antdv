@@ -138,7 +138,7 @@ onBeforeMount(() => {
         ElNotification.success({
           title: 'Thành công!',
           message: 'Bạn đã đăng nhập bằng Google thành công tại Phimhay247.',
-          showClose: false,
+
           icon: () =>
             h(CheckCircleFilled, {
               style: 'color: green',
@@ -168,7 +168,6 @@ onBeforeMount(() => {
         ElNotification.error({
           title: 'Thất bại!',
           message: 'Some thing went wrong.',
-          showClose: false,
           icon: () =>
             h(CloseCircleFilled, {
               style: 'color: red',
@@ -182,7 +181,6 @@ onBeforeMount(() => {
       ElNotification.error({
         title: 'Thất bại!',
         message: 'Some thing went wrong.',
-        showClose: false,
         icon: () =>
           h(CloseCircleFilled, {
             style: 'color: red',

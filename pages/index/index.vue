@@ -126,15 +126,15 @@
           </NuxtLink>
         </h2>
 
-        <LoadingSectionHorizontal v-model:loading="loadingCartoon">
+        <LoadingSectionHorizontal v-model:loading="loadingAnimation">
           <template #content>
             <SwiperCarouselGroup
-              :data="cartoons"
+              :data="animations"
               :responsive="responsiveHorizoltal"
             >
               <template #content>
                 <SwiperSlide
-                  v-for="(item, index) in cartoons"
+                  v-for="(item, index) in animations"
                   :virtual-index="index"
                 >
                   <MovieCardHorizontal
@@ -440,14 +440,14 @@ const nowPlayings = ref<any>([]);
 const upComings = ref<any>([]);
 const tvAiringTodays = ref<any>([]);
 const tvOnTheAirs = ref<any>([]);
-const cartoons = ref<any>([]);
+const animations = ref<any>([]);
 const topRateds = ref<any>([]);
 const recommends = ref<any>([]);
 const loadingNowPlaying = ref<boolean>(true);
 const loadingUpComing = ref<boolean>(true);
 const loadingTvAiringToday = ref<boolean>(true);
 const loadingTvOnTheAir = ref<boolean>(true);
-const loadingCartoon = ref<boolean>(true);
+const loadingAnimation = ref<boolean>(true);
 const loadingTopRated = ref<boolean>(true);
 const loadingRecommend = ref<boolean>(true);
 const skipRecommend = ref<number>(1);
@@ -539,7 +539,7 @@ const getData = async () => {
   loadingUpComing.value = true;
   loadingTvAiringToday.value = true;
   loadingTvOnTheAir.value = true;
-  loadingCartoon.value = true;
+  loadingAnimation.value = true;
   loadingTopRated.value = true;
   loadingRecommend.value = true;
 
@@ -570,13 +570,13 @@ const getData = async () => {
   // )
   getMoviesByGenres('hoat-hinh', 'views_desc', 1)
     .then((response) => {
-      cartoons.value = response?.results.slice(0, 12);
+      animations.value = response?.results.slice(0, 12);
     })
     .catch((e) => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {
-      loadingCartoon.value = false;
+      loadingAnimation.value = false;
     });
 
   // useAsyncData('tv/airingtoday/1', () => getTvAiringToday(1))
