@@ -1,18 +1,5 @@
 <template>
-  <NuxtLink
-    class="movie-card-item-suggested"
-    :to="{
-      path: isEpisodes
-        ? `/info-tv/${item?.id}__${utils
-            .removeVietnameseTones(item?.name)
-            ?.replaceAll(/\s/g, '-')
-            .toLowerCase()}`
-        : `/info-movie/${item?.id}__${utils
-            .removeVietnameseTones(item?.name)
-            ?.replaceAll(/\s/g, '-')
-            .toLowerCase()}`,
-    }"
-  >
+  <div class="movie-card-item-suggested">
     <!-- <el-skeleton :loading="loading" animated>
       <template #template>
         <div class="img-box">
@@ -30,7 +17,7 @@
       </template>
       <template #default> -->
 
-    <div class="img-box">
+    <div class="img-box" @click="onClickPlay">
       <div class="img-wrapper ratio-16-9">
         <!-- <img
             v-lazy="getImage(item?.backdrop_path, 'backdrop', 'h-250')"
@@ -67,7 +54,20 @@
       </div>
     </div>
 
-    <div class="info">
+    <NuxtLink
+      class="info"
+      :to="{
+        path: isEpisodes
+          ? `/info-tv/${item?.id}__${utils
+              .removeVietnameseTones(item?.name)
+              ?.replaceAll(/\s/g, '-')
+              .toLowerCase()}`
+          : `/info-movie/${item?.id}__${utils
+              .removeVietnameseTones(item?.name)
+              ?.replaceAll(/\s/g, '-')
+              .toLowerCase()}`,
+      }"
+    >
       <h2 class="title" :title="item?.name">
         {{ item?.name }}
       </h2>
@@ -127,44 +127,6 @@
           <template #dropdown>
             <el-dropdown-menu>
               <div class="main-action">
-                <el-dropdown-item key="play">
-                  <!-- <Icon class="play" name="ci:play-arrow" /> -->
-
-                  <svg
-                    class="play"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                  >
-                    <path fill="currentColor" d="M8 5v14l11-7z" />
-                  </svg>
-
-                  <NuxtLink
-                    v-if="isEpisodes"
-                    :to="{
-                      path: `/play-tv/${item?.id}__${utils
-                        .removeVietnameseTones(item?.name)
-                        ?.replaceAll(/\s/g, '-')
-                        .toLowerCase()}/tap-1`,
-                    }"
-                    class="btn-play-now"
-                  >
-                    Đến trang xem phim
-                  </NuxtLink>
-                  <NuxtLink
-                    v-else
-                    :to="{
-                      path: `/play-movie/${item?.id}__${utils
-                        .removeVietnameseTones(item?.name)
-                        ?.replaceAll(/\s/g, '-')
-                        .toLowerCase()}`,
-                    }"
-                    class="btn-play-now"
-                  >
-                    Đến trang xem phim
-                  </NuxtLink>
-                </el-dropdown-item>
                 <el-dropdown-item key="add-list" @click="handleAddToList">
                   <!-- <Icon
                             class="icon-material"
@@ -263,11 +225,11 @@
           </template>
         </el-dropdown>
       </div>
-    </div>
+    </NuxtLink>
 
     <!-- </template>
     </el-skeleton> -->
-  </NuxtLink>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -388,6 +350,20 @@ const handleAddToList = () => {
     }
     return;
   }
+};
+
+const onClickPlay = () => {
+  navigateTo({
+    path: isEpisodes.value
+      ? `/play-tv/${props.item?.id}__${utils
+          .removeVietnameseTones(props.item?.name)
+          ?.replaceAll(/\s/g, '-')
+          .toLowerCase()}/tap-1`
+      : `/play-movie/${props.item?.id}__${utils
+          .removeVietnameseTones(props.item?.name)
+          ?.replaceAll(/\s/g, '-')
+          .toLowerCase()}`,
+  });
 };
 </script>
 <style lang="scss" src="./MovieCardSuggested.scss"></style>

@@ -1,27 +1,29 @@
 <template>
   <div class="ranks padding-content">
     <div class="ranks-container">
-      <h2 class="ranks-title">
-        <span>Bảng xếp hạng</span>
-      </h2>
+      <div class="rank-header">
+        <div class="ranks-title">
+          <span>Bảng xếp hạng</span>
+        </div>
 
-      <div class="rank-type">
-        <div
-          v-for="(item, index) in typeRankList"
-          :key="index"
-          :index="index"
-          class="rank-type-item click-active"
-          :class="{ active: item.value == typeRank }"
-        >
-          <NuxtLink
-            :to="{
-              query: {
-                type: item.value,
-              },
-            }"
+        <div class="rank-type">
+          <div
+            v-for="(item, index) in typeRankList"
+            :key="index"
+            :index="index"
+            class="rank-type-item click-active"
+            :class="{ active: item.value == typeRank }"
           >
-            {{ item.label }}
-          </NuxtLink>
+            <NuxtLink
+              :to="{
+                query: {
+                  type: item.value,
+                },
+              }"
+            >
+              {{ item.label }}
+            </NuxtLink>
+          </div>
         </div>
       </div>
 
@@ -59,6 +61,12 @@
               <div class="rank-number">{{ index + 1 }}</div>
 
               <div class="info">{{ item?.name }}</div>
+
+              <div class="step">
+                <div class="step-icon">
+                  {{ item?.step }}
+                </div>
+              </div>
             </NuxtLink>
           </div>
         </div>
