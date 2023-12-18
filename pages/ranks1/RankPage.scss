@@ -4,6 +4,16 @@
   --padding-rank-section: 10px 15px;
 
   .ranks-container {
+    a {
+      color: inherit;
+      transition: color 0s;
+      transition: opacity 0.15s;
+
+      &:hover {
+        color: var(--app-background-color);
+      }
+    }
+
     .ranks-title {
       display: flex;
       flex-direction: row;
@@ -18,22 +28,24 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
+      margin-top: 20px;
       margin-bottom: 30px;
 
       .rank-type-item {
-        font-size: 1.7rem;
-        padding: 10px 40px;
-        cursor: pointer;
-        transition: all 0.15s;
+        display: flex;
 
         a {
-          color: inherit;
+          padding: 10px 40px;
+          font-size: 1.7rem;
           font-weight: 500;
-          transition: all 0s;
 
           &:hover {
             color: var(--app-background-color);
           }
+        }
+
+        &.active {
+          color: var(--app-background-color);
         }
       }
     }
@@ -41,6 +53,7 @@
     .rank-section {
       display: flex;
       flex-direction: column;
+      box-shadow: var(--box-shadow-small);
 
       .rank-section-header {
         display: flex;
@@ -52,14 +65,13 @@
         font-size: 1.7rem;
 
         .rank-section-title {
+          font-size: inherit;
         }
 
         .view-all {
           font-size: 0.8em;
-          color: inherit;
-          cursor: pointer;
           font-weight: 500;
-          transition: all 0s;
+          color: var(--text-color-gray);
 
           &:hover {
             color: var(--app-background-color);
@@ -68,12 +80,50 @@
       }
 
       .rank-section-body {
-        padding: var(--padding-rank-section);
         background-color: #222222;
+
+        .rank-body-list {
+          display: flex;
+          flex-direction: column;
+
+          .rank-body-item {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 15px;
+            position: relative;
+            padding: var(--padding-rank-section);
+            padding-top: 25px;
+            padding-bottom: 25px;
+            font-weight: 500;
+            font-size: 1.8rem;
+            // color: inherit;
+            background-position: center center;
+
+            &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background-color: #00000055;
+              z-index: 0;
+            }
+
+            & > div {
+              position: relative;
+              z-index: 1;
+            }
+          }
+        }
       }
 
       &.all {
         width: 100%;
+        max-width: 1000px;
+        margin: 0px auto;
       }
     }
   }

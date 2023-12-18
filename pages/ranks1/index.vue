@@ -11,6 +11,7 @@
           :key="index"
           :index="index"
           class="rank-type-item click-active"
+          :class="{ active: item.value == typeRank }"
         >
           <NuxtLink
             :to="{
@@ -30,7 +31,36 @@
           <NuxtLink to="/" class="view-all click-active">Tất cả</NuxtLink>
         </div>
         <div class="rank-section-body">
-          {{ ranksData }}
+          <div class="rank-body-list">
+            <NuxtLink
+              v-for="(item, index) in ranksData"
+              :key="index"
+              :index="index"
+              :to="{
+                path:
+                  item?.media_type == 'tv'
+                    ? `/info-tv/${item?.id}__${utils
+                        .removeVietnameseTones(item?.name)
+                        ?.replaceAll(/\s/g, '-')
+                        .toLowerCase()}`
+                    : `/info-movie/${item?.id}__${utils
+                        .removeVietnameseTones(item?.name)
+                        ?.replaceAll(/\s/g, '-')
+                        .toLowerCase()}`,
+              }"
+              class="rank-body-item"
+              :style="{
+                backgroundImage:
+                  'url(' +
+                  getImage(item?.backdrop_path, 'backdrop', 'w-1000') +
+                  ')',
+              }"
+            >
+              <div class="rank-number">{{ index + 1 }}</div>
+
+              <div class="info">{{ item?.name }}</div>
+            </NuxtLink>
+          </div>
         </div>
       </section>
     </div>
@@ -41,7 +71,9 @@
 import axios from 'axios';
 import { filterRanks, getRankPlay } from '~/services/ranks';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
+import { getImage } from '~/services/image';
 
+const utils = useUtils();
 const router = useRouter();
 const route = useRoute();
 const ranksData = ref<any[]>([]);
@@ -64,9 +96,9 @@ const typeRankList = ref<
     label: string;
   }[]
 >([
-  { label: 'Xem nhiều nhất', value: 'hot-play' },
-  { label: 'Tìm kiếm nhiều nhất', value: 'hot-search' },
-  { label: 'Đánh giá cao nhất', value: 'high-rate' },
+  { label: 'Danh sách xem nhiều', value: 'hot-play' },
+  { label: 'Danh sách tìm kiếm nhiều', value: 'hot-search' },
+  { label: 'Danh sách đánh giá cao', value: 'high-rate' },
 ]);
 const typeRank = computed<string | 'hot-play' | 'hot-search' | 'high-rate'>(
   () => route.query?.type
@@ -88,6 +120,34 @@ useSeoMeta({
   ogLocale: 'vi',
 });
 
+const compareRanks = (ranks: any): any[] => {
+  if (ranks?.results.length > 0 && ranks?.prev_results.length) {
+    let step: number = 0;
+
+    const rankCompared: any[] = ranks?.results.map((item: any, index: any) => {
+      step = 0;
+
+      ranks?.prev_results.find((item1: any, index1: any) => {
+        if (item?.movie_id == item1?.movie_id) {
+          step = index - index1;
+          return true;
+        } else {
+          false;
+        }
+      });
+
+      return {
+        ...item,
+        step: step,
+      };
+    });
+
+    return rankCompared;
+  }
+
+  return [];
+};
+
 const getData = async () => {
   loading.value = true;
 
@@ -98,7 +158,7 @@ const getData = async () => {
     () => filterRanks(typeRank.value, 'day', pageTrending.value)
   )
     .then((response) => {
-      ranksData.value = response.data.value;
+      ranksData.value = compareRanks(response.data.value);
       pageSize.value = response.data.value?.page_size;
     })
     .catch((e) => {
@@ -126,7 +186,7 @@ const { data: rankingsCache, pending } = await useAsyncData(
   }
 );
 
-ranksData.value = rankingsCache.value;
+ranksData.value = compareRanks(rankingsCache.value);
 
 pageSize.value = rankingsCache.value?.page_size;
 loading.value = false;
