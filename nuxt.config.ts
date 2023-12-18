@@ -328,8 +328,6 @@ export default defineNuxtConfig({
       '/',
       '/feature',
       '/television',
-      // '/search',
-      // '/discover',
       '/ranks',
       '/upgrade/plans',
       '/upgrade/PaymentPicker',

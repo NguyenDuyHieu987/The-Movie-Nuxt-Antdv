@@ -6,7 +6,7 @@
         <CaretRightFilled :rotate="isActive ? 90 : 0" />
       </template>
 
-      <a-collapse-panel key="1" header="Tìm kiếm nâng cao">
+      <a-collapse-panel key="1" header="Tìm kiếm nâng cao" forceRender>
         <div class="filter-body">
           <div class="list-input-filter">
             <a-button
