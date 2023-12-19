@@ -54,7 +54,6 @@
                   ref="video"
                   :src="videoSrc"
                   autoplay
-                  preload="metadata"
                   @loadstart="onLoadStartVideo"
                   @waiting="onWaitingVideo"
                   @playing="onPLayingVideo"
@@ -759,6 +758,10 @@ const onWaitingVideo = (e: any) => {
 
 const onPLayingVideo = (e: any) => {
   videoStates.isLoading = false;
+};
+
+const onCanPlayVideo = () => {
+  video.value!.play().catch((error) => {});
 };
 
 const onClickVolumeUp = () => {

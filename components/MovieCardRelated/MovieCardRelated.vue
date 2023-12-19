@@ -50,7 +50,6 @@
           id="video-player"
           ref="video"
           :src="videoSrc"
-          preload="metadata"
           autoplay
           muted
           @loadstart="onLoadStartVideo"
@@ -333,6 +332,10 @@ const onWaitingVideo = (e: any) => {
 
 const onPLayingVideo = (e: any) => {
   videoStates.isLoading = false;
+};
+
+const onCanPlayVideo = () => {
+  video.value!.play().catch((error) => {});
 };
 </script>
 <style lang="scss" src="./MovieCardRelated.scss"></style>
