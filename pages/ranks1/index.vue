@@ -481,6 +481,7 @@ watch(
 const handleChangeType = (activeKey: any) => {
   router.push({
     query: {
+      ...route.query,
       sort_by: activeKey,
     },
   });
