@@ -985,11 +985,6 @@ const windowTouchEnd = () => {
 onMounted(() => {
   mounted.value = true;
 
-  console.log('autoplay', video.value!.autoplay);
-  console.log('muted', video.value!.muted);
-  console.log('isPlayVideo', videoStates.isPlayVideo);
-  console.log('paused', video.value!.paused);
-
   if (video.value!.autoplay) {
     video.value!.autoplay = false;
   }
