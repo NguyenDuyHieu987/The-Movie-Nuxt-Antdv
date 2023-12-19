@@ -278,7 +278,7 @@ export default defineNuxtConfig({
   fontMetrics: {},
   delayHydration: {
     debug: !isProduction,
-    mode: 'mount',
+    mode: 'init',
   },
   plugins: [
     // '@/plugins/elementPlus',

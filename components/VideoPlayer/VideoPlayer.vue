@@ -22,9 +22,6 @@
         ref="video"
         :src="videoSrc"
         :poster="backdrop"
-        preload="metadata"
-        autoplay
-        muted
         data-not-lazy
         @loadstart="onLoadStartVideo"
         @loadeddata="onLoadedDataVideo"
@@ -902,14 +899,6 @@ const initVideo = async (newVideoUrl: string) => {
   }
 };
 
-watchEffect(() => {
-  if (video.value?.paused && video.value?.autoplay) {
-    // alert(video.value?.paused);
-    video.value.muted = false;
-    video.value.play();
-  }
-});
-
 watch(
   () => props.videoUrl,
   (newVal, oldVal) => {
@@ -919,8 +908,7 @@ watch(
       video.value!.src = videoSrc.value;
       video.value!.load();
 
-      if (video.value!.paused) {
-        // video.value!.play();
+      if (videoStates.isPlayVideo == false) {
         videoStates.isPlayVideo = true;
       }
     }
@@ -997,17 +985,28 @@ const windowTouchEnd = () => {
 onMounted(() => {
   mounted.value = true;
 
-  // video.value.muted = false;
-  // video.value.autoplay = true;
-  duration.value = formatDuration(video.value!.duration)! || '00:00';
+  console.log('autoplay', video.value!.autoplay);
+  console.log('muted', video.value!.muted);
+  console.log('isPlayVideo', videoStates.isPlayVideo);
+  console.log('paused', video.value!.paused);
 
-  if (
-    video.value!.paused == false &&
-    videoStates.isPlayVideo == false &&
-    video.value!.autoplay == true
-  ) {
+  if (video.value!.autoplay) {
+    video.value!.autoplay = false;
+  }
+
+  if (video.value!.muted) {
+    video.value!.muted = false;
+  }
+
+  if (video.value!.paused == true) {
+    // video.value!.play();
+  }
+
+  if (videoStates.isPlayVideo == false) {
     videoStates.isPlayVideo = true;
   }
+
+  duration.value = formatDuration(video.value!.duration)! || '00:00';
 
   window.addEventListener('pointerup', windowPointerUp);
 
@@ -1092,12 +1091,15 @@ const onLoadStartVideo = () => {
 };
 
 const onCanPlayVideo = () => {
-  // console.log('can play video');
+  video.value!.play();
 };
 
 const onLoadedDataVideo = () => {
   // console.log('loaded start video');
-  video.value!.muted = false;
+  if (video.value!.muted) {
+    video.value!.muted = false;
+  }
+
   videoStates.isLoaded = true;
   duration.value = formatDuration(video.value!.duration)!;
 };
