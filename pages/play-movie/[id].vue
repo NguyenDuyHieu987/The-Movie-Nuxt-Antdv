@@ -338,11 +338,14 @@ const getData = async () => {
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
 
-  // window.scrollTo({
-  //   top: 0,
-  //   left: 0,
-  //   behavior: 'instant',
-  // });
+  const videoPlayer = document.getElementById(
+    'video-player'
+  ) as HTMLVideoElement;
+
+  videoPlayer.scrollIntoView({
+    block: 'end',
+    behavior: 'instant',
+  });
 });
 
 // getData();
