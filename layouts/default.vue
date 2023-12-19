@@ -48,20 +48,19 @@ const store = useStore();
 const router = useRouter();
 const { collapsed, isLogin, openSiderBarFixed } = storeToRefs(store);
 
-let promise = Promise.resolve();
+// let promise = Promise.resolve();
 
-router.beforeResolve(async (to: any, from: any, next: any) => {
-  promise = new Promise((resolve) => {
-    router.afterEach(() => resolve());
-  });
+// router.beforeResolve(async (to: any, from: any, next: any) => {
+//   promise = new Promise((resolve) => {
+//     router.afterEach(() => resolve());
+//   });
 
-  if (to.name?.includes('home')) {
-    console.log(to.name);
-    // await promise;
-  }
+//   if (to.name?.includes('home')) {
+//     // await promise;
+//   }
 
-  next();
-});
+//   next();
+// });
 </script>
 
 <style lang="scss" src="~/assets/style/defaultLayout.scss"></style>
