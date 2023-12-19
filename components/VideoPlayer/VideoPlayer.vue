@@ -994,7 +994,9 @@ onMounted(() => {
   }
 
   if (video.value!.paused == true) {
-    // video.value!.play();
+    // video.value!.addEventListener('canplay', onCanPlayVideo);
+    const event = new Event('canplay');
+    video.value!.dispatchEvent(event);
   }
 
   if (videoStates.isPlayVideo == false) {
@@ -1086,7 +1088,15 @@ const onLoadStartVideo = () => {
 };
 
 const onCanPlayVideo = () => {
-  video.value!.play();
+  video.value!.play().catch((error) => {
+    if (videoStates.isLoading) {
+      videoStates.isLoading = false;
+    }
+
+    if (videoStates.isPlayVideo) {
+      videoStates.isPlayVideo = false;
+    }
+  });
 };
 
 const onLoadedDataVideo = () => {
