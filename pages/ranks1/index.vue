@@ -235,14 +235,15 @@ const compareRanks = (ranks: any): any[] => {
     });
 
     if (rankCompared?.length == 0) {
-      return ranks?.prev_results.map((item: any, index: any) => {
-        return {
-          ...item,
-          step: 0,
-          step_text: 0,
-          new: false,
-        };
-      });
+      // return ranks?.prev_results.map((item: any, index: any) => {
+      //   return {
+      //     ...item,
+      //     step: 0,
+      //     step_text: 0,
+      //     new: false,
+      //   };
+      // });
+      return rankCompared;
     } else {
       return rankCompared;
     }
