@@ -338,8 +338,8 @@ const getData = async () => {
 onBeforeMount(() => {
   windowWidth.value = window.innerWidth;
 
-  const videoPlayer = document.getElementById(
-    'video-player'
+  const videoPlayer = document.querySelector(
+    '.video-player #video-player'
   ) as HTMLVideoElement;
 
   videoPlayer.scrollIntoView({
