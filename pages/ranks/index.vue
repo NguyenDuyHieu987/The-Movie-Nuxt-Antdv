@@ -91,7 +91,7 @@ const getData = async () => {
 loading.value = true;
 
 const { data: rankingsCache, pending } = await useAsyncData(
-  `cache/trending/all/${pageTrending.value}`,
+  `trending/all/${pageTrending.value}`,
   () => getTrending(pageTrending.value),
   {
     // transform: (data: any) => {

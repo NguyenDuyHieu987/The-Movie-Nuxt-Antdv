@@ -132,7 +132,7 @@ const getData = async () => {
 loading.value = true;
 
 const { data: dataDiscoverCache, pending } = await useAsyncData(
-  `cache/discover/genre/all/${route.params.genre}/${page.value}`,
+  `discover/genre/all/${route.params.genre}/${page.value}`,
   () => getMoviesByGenres(route.params.genre, '', page.value),
   {
     // transform: (data: any) => {

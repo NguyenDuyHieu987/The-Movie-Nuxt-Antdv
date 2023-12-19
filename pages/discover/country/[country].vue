@@ -132,7 +132,7 @@ const getData = async () => {
 loading.value = true;
 
 const { data: dataDiscoverCache, pending } = await useAsyncData(
-  `cache/discover/country/all/${route.params.country}/${page.value}`,
+  `discover/country/all/${route.params.country}/${page.value}`,
   () => getMovieByCountry(route.params.country, '', page.value),
   {
     // transform: (data: any) => {

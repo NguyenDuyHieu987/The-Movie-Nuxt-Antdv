@@ -180,9 +180,7 @@ const getData = async () => {
       });
   }
 
-  await useAsyncData(`cache/search/top-search/1/10`, () =>
-    getDaTaTopSearch(1, 10)
-  )
+  await useAsyncData(`search/top-search/1/10`, () => getDaTaTopSearch(1, 10))
     .then((response) => {
       dataTopSearch.value = response.data.value?.results;
     })

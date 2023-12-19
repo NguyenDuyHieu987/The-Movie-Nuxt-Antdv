@@ -372,7 +372,7 @@ onBeforeMount(() => {
 loading.value = true;
 
 const { data: dataMovie } = await useAsyncData(
-  `cache/tv/detail/${movieId.value}/episodes`,
+  `tv/detail/${movieId.value}/episodes`,
   () => getTvById(movieId.value, 'episodes')
 );
 
