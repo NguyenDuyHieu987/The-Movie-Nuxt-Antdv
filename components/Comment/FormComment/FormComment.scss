@@ -96,6 +96,11 @@
           content: 'Viết bình luận...';
           color: var(--text-placeholder-color);
         }
+
+        &::-webkit-scrollbar {
+          width: 12px;
+          cursor: default;
+        }
       }
     }
 

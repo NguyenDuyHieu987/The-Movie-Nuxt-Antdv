@@ -28,14 +28,16 @@
           <span v-if="isUpdated" class="updated-text"> (Đã chỉnh sửa) </span>
         </div>
 
-        <div class="content">
-          <!-- <div v-if="item?.reply_to" class="reply-to" @click="onClickReplyTo">
-            <span> @{{ commentReplyTo?.username || 'Đi tới' }} </span>
-          </div> -->
-
-          <!-- <p>{{ commentContent }}</p> -->
-          <div class="formatted-comment" v-html="sanitizedHtmlComment"></div>
-        </div>
+        <CommentContent
+          :sanitizedHtmlComment="sanitizedHtmlComment"
+          :commentContent="commentContent"
+        >
+          <template>
+            <!-- <div v-if="item?.reply_to" class="reply-to" @click="onClickReplyTo">
+              <span> @{{ commentReplyTo?.username || 'Đi tới' }} </span>
+            </div> -->
+          </template>
+        </CommentContent>
 
         <div class="actions">
           <LikeDislike :comment="item" />
@@ -163,6 +165,7 @@ import { ElNotification } from 'element-plus';
 import { DeleteComment } from '~/services/comment';
 import { getImage } from '~/services/image';
 import FormComment from '~/components/Comment/FormComment/FormComment.vue';
+import CommentContent from '~/components/Comment/CommentContent/CommentContent.vue';
 import LikeDislike from '~/components/Comment/LikeDislike/LikeDislike.vue';
 import type { commentForm } from '~/types';
 
@@ -193,7 +196,7 @@ const commentReplyTo = computed<commentForm>(() =>
     ? listReplies.value!.find((x: commentForm) => x!.id == props.item?.reply_to)
     : null
 );
-const sanitizedHtmlComment = computed(() => {
+const sanitizedHtmlComment = computed<string>(() => {
   // Sử dụng DOMPurify để loại bỏ HTML độc hại
   return DOMPurify.sanitize(commentContent.value, {
     USE_PROFILES: { html: true },

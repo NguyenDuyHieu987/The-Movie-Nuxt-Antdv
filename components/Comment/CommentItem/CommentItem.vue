@@ -34,14 +34,10 @@
                 </span>
               </div>
 
-              <div class="content">
-                <!-- <p>{{ commentContent }}</p> -->
-
-                <div
-                  class="formatted-comment"
-                  v-html="sanitizedHtmlComment"
-                ></div>
-              </div>
+              <CommentContent
+                :sanitizedHtmlComment="sanitizedHtmlComment"
+                :commentContent="commentContent"
+              />
 
               <div class="actions">
                 <LikeDislike :comment="item" />
@@ -264,6 +260,7 @@ import {
 import { getImage } from '~/services/image';
 import FormComment from '~/components/Comment/FormComment/FormComment.vue';
 import CommentItemChild from '~/components/Comment/CommentItemChild/CommentItemChild.vue';
+import CommentContent from '~/components/Comment/CommentContent/CommentContent.vue';
 import LikeDislike from '~/components/Comment/LikeDislike/LikeDislike.vue';
 import LoadingCircle from '~/components/LoadingCircle/LoadingCircle.vue';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner.vue';
@@ -290,7 +287,7 @@ const skip = ref<number>(1);
 const isLoadmoreReplies = ref<boolean>(false);
 const commentAction = ref<string>('post');
 const commentContent = ref<string>(props.item?.content || '');
-const sanitizedHtmlComment = computed(() => {
+const sanitizedHtmlComment = computed<string>(() => {
   // Sử dụng DOMPurify để loại bỏ HTML độc hại
   return DOMPurify.sanitize(commentContent.value, {
     USE_PROFILES: { html: true },
