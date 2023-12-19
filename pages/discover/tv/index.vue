@@ -90,7 +90,7 @@ useSeoMeta({
 const getData = async () => {
   // loading.value = true;
 
-  await useAsyncData(`tv/discover/${formFilter.value}`, () =>
+  await useAsyncData(`tv/discover/${JSON.stringify(formFilter.value)}`, () =>
     FilterTvSlug(formFilter.value)
   )
     .then((response) => {
@@ -113,7 +113,7 @@ const {
   pending,
   refresh,
 } = await useAsyncData(
-  `cache/tv/discover/${formFilter.value}`,
+  `tv/discover/${JSON.stringify(formFilter.value)}`,
   () => FilterTvSlug(formFilter.value),
   {
     // transform: (data: any) => {

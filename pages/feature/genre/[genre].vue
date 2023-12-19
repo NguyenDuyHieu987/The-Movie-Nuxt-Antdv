@@ -434,7 +434,7 @@ const getData = async () => {
 };
 
 const { data: dataBilboard, pending } = await useAsyncData(
-  `discover/movie/all/${formFilter.value}`,
+  `discover/movie/all/${JSON.stringify(formFilter.value)}`,
   () => FilterMovieSlug(formFilter.value),
   {
     // default: () => {

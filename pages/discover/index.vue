@@ -88,7 +88,7 @@ useSeoMeta({
 const getData = async () => {
   // loading.value = true;
 
-  await useAsyncData(`discover/${formFilter.value}`, () =>
+  await useAsyncData(`discover/${JSON.stringify(formFilter.value)}`, () =>
     FilterMovie(formFilter.value)
   )
     .then((movieResponse) => {
@@ -111,7 +111,7 @@ const {
   pending,
   refresh,
 } = await useAsyncData(
-  `cache/discover/${formFilter.value}`,
+  `discover/${JSON.stringify(formFilter.value)}`,
   () => FilterMovie(formFilter.value),
   {
     // transform: (data: any) => {

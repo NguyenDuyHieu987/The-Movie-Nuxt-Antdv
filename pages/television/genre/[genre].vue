@@ -398,7 +398,7 @@ const getData = async () => {
 };
 
 const { data: dataBilboard, pending } = await useAsyncData(
-  `discover/tv/all/${formFilter.value}`,
+  `discover/tv/all/${JSON.stringify(formFilter.value)}`,
   () => FilterTvSlug(formFilter.value),
   {
     // default: () => {

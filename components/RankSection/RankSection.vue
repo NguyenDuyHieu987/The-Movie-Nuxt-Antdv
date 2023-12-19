@@ -123,6 +123,39 @@ const props = withDefaults(
 
 const utils = useUtils();
 const activeTab = ref<string>('day');
+
+const compareRanks = (ranks: any): any[] => {
+  if (ranks?.results.length > 0 || ranks?.prev_results.length) {
+    let step: number = 0;
+
+    const rankCompared: any[] = ranks?.results.map((item: any, index: any) => {
+      step = 0;
+
+      const itemRank = ranks?.prev_results.find((item1: any, index1: any) => {
+        if (item?.movie_id == item1?.movie_id) {
+          step = index1 - index;
+
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      const step_text = step >= 0 ? `+${step}` : `-${Math.abs(step)}`;
+
+      return {
+        ...item,
+        step: step,
+        step_text: step_text,
+        new: itemRank ? false : true,
+      };
+    });
+
+    return rankCompared;
+  }
+
+  return [];
+};
 </script>
 
 <style lang="scss" src="./RankSection.scss"></style>
