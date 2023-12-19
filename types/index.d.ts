@@ -35,7 +35,7 @@ export declare type typeTv =
   | 'popular'
   | 'toprated';
 
-export declare type rankType = string | 'hot-play' | 'hot-search' | 'high-rate';
+export declare type rankType = 'hot-play' | 'hot-search' | 'high-rate';
 
 export declare type rankSort = 'day' | 'week' | 'month' | 'year' | 'all';
 

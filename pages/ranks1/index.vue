@@ -268,12 +268,218 @@ const getData = async () => {
       loading.value = false;
       internalInstance.appContext.config.globalProperties.$Progress.finish();
     });
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      mediaType: 'movie',
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, mediaType: 'movie' })
+  )
+    .then((response) => {
+      ranksMovie.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      mediaType: 'tv',
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, mediaType: 'tv' })
+  )
+    .then((response) => {
+      ranksTV.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
+
+  // Hoạt hình
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      genre: 16,
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, genre: 16 }),
+    {
+      // transform: (data: any) => {
+      //   return compareRanks(data);
+      // },
+    }
+  )
+    .then((response) => {
+      ranksAnimation.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
+
+  // Hành động
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      genre: 28,
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, genre: 28 }),
+    {
+      // transform: (data: any) => {
+      //   return compareRanks(data);
+      // },
+    }
+  )
+    .then((response) => {
+      ranksAction.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
+
+  // Kinh dị
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      genre: 27,
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, genre: 27 }),
+    {
+      // transform: (data: any) => {
+      //   return compareRanks(data);
+      // },
+    }
+  )
+    .then((response) => {
+      ranksHorror.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
+
+  // Drama
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      genre: 18,
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, genre: 18 }),
+    {
+      // transform: (data: any) => {
+      //   return compareRanks(data);
+      // },
+    }
+  )
+    .then((response) => {
+      ranksDrama.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
+
+  // Khoa học viễn tưởng
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      genre: 18,
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, genre: 18 }),
+    {
+      // transform: (data: any) => {
+      //   return compareRanks(data);
+      // },
+    }
+  )
+    .then((response) => {
+      ranksScienceFiction.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
+
+  // Âu Mỹ
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      country: 'en',
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, country: 'en' }),
+    {
+      // transform: (data: any) => {
+      //   return compareRanks(data);
+      // },
+    }
+  )
+    .then((response) => {
+      ranksEN.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
+
+  // Trung Quốc
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      country: 'cn',
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, country: 'cn' }),
+    {
+      // transform: (data: any) => {
+      //   return compareRanks(data);
+      // },
+    }
+  )
+    .then((response) => {
+      ranksChina.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
+
+  // Nhật Bản
+
+  await useAsyncData(
+    `ranks/filter/${JSON.stringify({
+      ...formFilterRank.value,
+      country: 'ja',
+    })}`,
+    () => filterRanks({ ...formFilterRank.value, country: 'ja' }),
+    {
+      // transform: (data: any) => {
+      //   return compareRanks(data);
+      // },
+    }
+  )
+    .then((response) => {
+      ranksJapan.value = compareRanks(response.data.value);
+    })
+    .catch((e) => {
+      if (axios.isCancel(e)) return;
+    })
+    .finally(() => {});
 };
 
 loading.value = true;
 
 const { data: ranksDataCache, pending } = await useAsyncData(
-  `ranks/filter/${JSON.stringify(formFilterRank.value)}/${pageRank.value}/10`,
+  `ranks/filter/${JSON.stringify(formFilterRank.value)}`,
   () => filterRanks(formFilterRank.value),
   {
     // transform: (data: any) => {
