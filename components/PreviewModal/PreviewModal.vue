@@ -652,13 +652,14 @@ watch(isTeleport, async () => {
 
     if (!dataMovie.value?.id) {
       loading.value = true;
+
       if (props.isEpisodes) {
-        // await useAsyncData(`tv/short/${props.item?.id}`, () =>
+        // useAsyncData(`tv/short/${props.item?.id}`, () =>
         //   getTvById(props.item?.id)
         // )
-        await getTvById(props.item?.id)
-          .then((tvResponse) => {
-            dataMovie.value = tvResponse;
+        getTvById(props.item?.id)
+          .then((response) => {
+            dataMovie.value = response;
           })
           .catch((e) => {
             if (axios.isCancel(e)) return;
@@ -669,12 +670,12 @@ watch(isTeleport, async () => {
             }, 500);
           });
       } else {
-        // await useAsyncData(`movie/short/${props.item?.id}`, () =>
+        // useAsyncData(`movie/short/${props.item?.id}`, () =>
         //   getMovieById(props.item?.id)
         // )
-        await getMovieById(props.item?.id)
-          .then((movieRespone) => {
-            dataMovie.value = movieRespone;
+        getMovieById(props.item?.id)
+          .then((response) => {
+            dataMovie.value = response;
           })
           .catch((e) => {
             if (axios.isCancel(e)) return;
@@ -685,27 +686,16 @@ watch(isTeleport, async () => {
             }, 500);
           });
       }
+    }
 
-      if (store.isLogin) {
-        if (dataMovie.value?.in_list) {
-          isAddToList.value = true;
-        }
-
-        if (dataMovie.value?.history_progress) {
-          isInHistory.value = true;
-          percent.value = dataMovie.value?.history_progress?.percent;
-        }
+    if (store.isLogin) {
+      if (dataMovie.value?.in_list) {
+        isAddToList.value = true;
       }
-    } else {
-      if (store.isLogin) {
-        if (dataMovie.value?.in_list) {
-          isAddToList.value = true;
-        }
 
-        if (dataMovie.value?.history_progress) {
-          isInHistory.value = true;
-          percent.value = dataMovie.value?.history_progress?.percent;
-        }
+      if (dataMovie.value?.history_progress) {
+        isInHistory.value = true;
+        percent.value = dataMovie.value?.history_progress?.percent;
       }
     }
   }
