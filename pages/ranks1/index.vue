@@ -231,6 +231,7 @@ const compareRanks = (ranks: any): any[] => {
         step: step,
         step_text: step_text,
         new: itemRank ? false : true,
+        // disabled: formFilterRank.value.sortBy == 'all',
       };
     });
 

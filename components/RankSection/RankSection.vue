@@ -53,7 +53,7 @@
               balance: item?.step == 0,
             }"
           >
-            <div class="step-icon">
+            <div class="step-icon" v-show="$route.query?.sort_by != 'all'">
               <svg
                 v-if="item?.step > 0"
                 xmlns="http://www.w3.org/2000/svg"
