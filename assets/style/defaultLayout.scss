@@ -28,7 +28,8 @@
     margin-left: var(--sider-collapsed-width);
   }
 
-  &.home {
+  // &.home
+  &:has(.home-page) {
     margin-left: 0px;
     margin-top: 0px;
     min-height: calc(101vh - var(--header-height));

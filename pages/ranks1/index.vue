@@ -57,7 +57,7 @@
           class="all"
           :ranksData="ranksData"
           :rankSectionTitle="rankSectionTitle"
-          viewAllPath="/ranks"
+          viewAllPath="/ranks1/detail"
           main
         />
 
@@ -66,70 +66,70 @@
             class="movie"
             :ranksData="ranksMovie"
             rankSectionTitle="Phim lẻ"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
 
           <RankSection
             class="tv"
             :ranksData="ranksTV"
             rankSectionTitle="Phim bộ"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
 
           <RankSection
             class="animation"
             :ranksData="ranksAnimation"
             rankSectionTitle="Hoạt hình"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
 
           <RankSection
             class="action"
             :ranksData="ranksAction"
             rankSectionTitle="Hành động"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
 
           <RankSection
             class="horror"
             :ranksData="ranksHorror"
             rankSectionTitle="Kinh dị"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
 
           <RankSection
             class="drama"
             :ranksData="ranksDrama"
             rankSectionTitle="Drama"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
 
           <RankSection
             class="science-fiction"
             :ranksData="ranksScienceFiction"
             rankSectionTitle="Khoa học viễn tưởng"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
 
           <RankSection
             class="us-uk"
             :ranksData="ranksEN"
             rankSectionTitle="Âu Mỹ"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
 
           <RankSection
             class="china"
             :ranksData="ranksChina"
             rankSectionTitle="Trung quốc"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
 
           <RankSection
             class="japan"
             :ranksData="ranksJapan"
             rankSectionTitle="Nhật bản"
-            viewAllPath="/ranks"
+            viewAllPath="/ranks1/detail"
           />
         </div>
       </div>
