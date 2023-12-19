@@ -994,7 +994,6 @@ onMounted(() => {
   }
 
   if (video.value!.paused == true) {
-    // video.value!.addEventListener('canplay', onCanPlayVideo);
     const event = new Event('canplay');
     video.value!.dispatchEvent(event);
   }
