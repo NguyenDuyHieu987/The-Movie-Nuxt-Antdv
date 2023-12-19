@@ -2,7 +2,7 @@
   <div class="ranks padding-content">
     <!-- center-page -->
     <div class="ranks-container">
-      <div class="rank-header">
+      <div class="ranks-header">
         <div class="left">
           <div class="ranks-title">
             <span>Bảng xếp hạng</span>
@@ -53,85 +53,89 @@
         </div>
       </div>
 
-      <RankSection
-        class="all"
-        :ranksData="ranksData"
-        :rankSectionTitle="rankSectionTitle"
-        viewAllPath="/ranks"
-        main
-      />
-
-      <div class="rank-section-list">
+      <div v-if="!loading" class="ranks-body">
         <RankSection
-          class="movie"
-          :ranksData="ranksMovie"
-          rankSectionTitle="Phim lẻ"
+          class="all"
+          :ranksData="ranksData"
+          :rankSectionTitle="rankSectionTitle"
           viewAllPath="/ranks"
+          main
         />
 
-        <RankSection
-          class="tv"
-          :ranksData="ranksTV"
-          rankSectionTitle="Phim bộ"
-          viewAllPath="/ranks"
-        />
+        <div class="rank-section-list">
+          <RankSection
+            class="movie"
+            :ranksData="ranksMovie"
+            rankSectionTitle="Phim lẻ"
+            viewAllPath="/ranks"
+          />
 
-        <RankSection
-          class="animation"
-          :ranksData="ranksAnimation"
-          rankSectionTitle="Hoạt hình"
-          viewAllPath="/ranks"
-        />
+          <RankSection
+            class="tv"
+            :ranksData="ranksTV"
+            rankSectionTitle="Phim bộ"
+            viewAllPath="/ranks"
+          />
 
-        <RankSection
-          class="action"
-          :ranksData="ranksAction"
-          rankSectionTitle="Hành động"
-          viewAllPath="/ranks"
-        />
+          <RankSection
+            class="animation"
+            :ranksData="ranksAnimation"
+            rankSectionTitle="Hoạt hình"
+            viewAllPath="/ranks"
+          />
 
-        <RankSection
-          class="horror"
-          :ranksData="ranksHorror"
-          rankSectionTitle="Kinh dị"
-          viewAllPath="/ranks"
-        />
+          <RankSection
+            class="action"
+            :ranksData="ranksAction"
+            rankSectionTitle="Hành động"
+            viewAllPath="/ranks"
+          />
 
-        <RankSection
-          class="drama"
-          :ranksData="ranksDrama"
-          rankSectionTitle="Drama"
-          viewAllPath="/ranks"
-        />
+          <RankSection
+            class="horror"
+            :ranksData="ranksHorror"
+            rankSectionTitle="Kinh dị"
+            viewAllPath="/ranks"
+          />
 
-        <RankSection
-          class="science-fiction"
-          :ranksData="ranksScienceFiction"
-          rankSectionTitle="Khoa học viễn tưởng"
-          viewAllPath="/ranks"
-        />
+          <RankSection
+            class="drama"
+            :ranksData="ranksDrama"
+            rankSectionTitle="Drama"
+            viewAllPath="/ranks"
+          />
 
-        <RankSection
-          class="us-uk"
-          :ranksData="ranksEN"
-          rankSectionTitle="Âu Mỹ"
-          viewAllPath="/ranks"
-        />
+          <RankSection
+            class="science-fiction"
+            :ranksData="ranksScienceFiction"
+            rankSectionTitle="Khoa học viễn tưởng"
+            viewAllPath="/ranks"
+          />
 
-        <RankSection
-          class="china"
-          :ranksData="ranksChina"
-          rankSectionTitle="Trung quốc"
-          viewAllPath="/ranks"
-        />
+          <RankSection
+            class="us-uk"
+            :ranksData="ranksEN"
+            rankSectionTitle="Âu Mỹ"
+            viewAllPath="/ranks"
+          />
 
-        <RankSection
-          class="japan"
-          :ranksData="ranksJapan"
-          rankSectionTitle="Nhật bản"
-          viewAllPath="/ranks"
-        />
+          <RankSection
+            class="china"
+            :ranksData="ranksChina"
+            rankSectionTitle="Trung quốc"
+            viewAllPath="/ranks"
+          />
+
+          <RankSection
+            class="japan"
+            :ranksData="ranksJapan"
+            rankSectionTitle="Nhật bản"
+            viewAllPath="/ranks"
+          />
+        </div>
       </div>
+
+      <LoadingSpinner v-else :width="40" class="loading-page" />
     </div>
   </div>
 </template>
@@ -264,10 +268,7 @@ const getData = async () => {
     .catch((e) => {
       if (axios.isCancel(e)) return;
     })
-    .finally(() => {
-      loading.value = false;
-      internalInstance.appContext.config.globalProperties.$Progress.finish();
-    });
+    .finally(() => {});
 
   await useAsyncData(
     `ranks/filter/${JSON.stringify({
@@ -474,6 +475,9 @@ const getData = async () => {
       if (axios.isCancel(e)) return;
     })
     .finally(() => {});
+
+  loading.value = false;
+  internalInstance.appContext.config.globalProperties.$Progress.finish();
 };
 
 loading.value = true;

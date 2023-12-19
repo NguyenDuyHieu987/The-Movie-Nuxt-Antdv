@@ -4,6 +4,8 @@
   --padding-rank-section: 10px 15px;
 
   .ranks-container {
+    height: 100%;
+
     a {
       color: inherit;
       transition: color 0s;
@@ -14,7 +16,7 @@
       }
     }
 
-    .rank-header {
+    .ranks-header {
       display: flex;
       flex-direction: row;
       gap: 10px;
@@ -72,33 +74,39 @@
       }
     }
 
-    .rank-section.all {
-    }
+    .ranks-body {
+      .rank-section.all {
+      }
 
-    .rank-section-list {
-      display: flex;
-      justify-content: center;
-      gap: var(--rank-section-gap);
-      flex-wrap: wrap;
-      margin-top: 50px;
+      .rank-section-list {
+        display: flex;
+        justify-content: center;
+        gap: var(--rank-section-gap);
+        flex-wrap: wrap;
+        margin-top: 50px;
 
-      --rank-section-gap: 15px;
+        --rank-section-gap: 15px;
 
-      .rank-section {
-        width: calc((100% - (2 * var(--rank-section-gap))) / 3);
+        .rank-section {
+          width: calc((100% - (2 * var(--rank-section-gap))) / 3);
 
-        .rank-section-header {
-          .rank-section-title {
+          .rank-section-header {
+            .rank-section-title {
+            }
           }
-        }
 
-        .rank-section-body {
-          .rank-body-list {
-            .rank-body-item {
+          .rank-section-body {
+            .rank-body-list {
+              .rank-body-item {
+              }
             }
           }
         }
       }
+    }
+
+    .loading-spinner.loading-page {
+      height: 70%;
     }
   }
 }
