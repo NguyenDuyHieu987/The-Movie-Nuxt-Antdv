@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div class="ranks padding-content center-page"></div>
 </template>
 
 <script setup lang="ts"></script>

@@ -1,6 +1,5 @@
 <template>
   <div class="ranks padding-content">
-    <!-- center-page -->
     <div class="ranks-container">
       <div class="ranks-header">
         <div class="left">
