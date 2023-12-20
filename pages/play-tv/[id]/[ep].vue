@@ -364,7 +364,7 @@ onBeforeMount(() => {
     '.video-player #video-player'
   ) as HTMLVideoElement;
 
-  videoPlayer.scrollIntoView({
+  videoPlayer?.scrollIntoView({
     block: 'end',
     behavior: 'instant',
   });
