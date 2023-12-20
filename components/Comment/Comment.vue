@@ -82,7 +82,7 @@ onMounted(() => {
         skip.value
       )
         .then((response) => {
-          if (response?.results?.length > 0) {
+          if (response?.results.length > 0) {
             commentsList.value = commentsList.value.concat(response?.results);
             skip.value++;
           }

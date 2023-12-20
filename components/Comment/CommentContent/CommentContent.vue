@@ -8,7 +8,7 @@
     ref="commentContentEl"
   >
     <div class="comment-content-box">
-      <slot name="replyTo"></slot>
+      <slot name="replyTo" />
 
       <!-- <p>{{ commentContent }}</p> -->
 

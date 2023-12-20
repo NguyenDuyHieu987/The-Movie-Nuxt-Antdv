@@ -37,7 +37,7 @@
               <CommentContent
                 :sanitizedHtmlComment="sanitizedHtmlComment"
                 :commentContent="commentContent"
-              />
+              ></CommentContent>
 
               <div class="actions">
                 <LikeDislike :comment="item" />

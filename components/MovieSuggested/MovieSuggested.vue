@@ -83,7 +83,7 @@ onMounted(() => {
         15
       )
         .then((response) => {
-          if (response?.results?.length > 0) {
+          if (response?.results.length > 0) {
             dataSuggested.value = dataSuggested.value.concat(response?.results);
             page.value++;
           }
