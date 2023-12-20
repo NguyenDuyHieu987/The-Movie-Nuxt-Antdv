@@ -242,7 +242,7 @@
         </div>
 
         <div class="related-content">
-          <div class="left"><Comment :dataMovie="dataMovie" /></div>
+          <!-- <div class="left"><Comment :dataMovie="dataMovie" /></div> -->
           <div class="right">
             <MovieSuggested :dataMovie="dataMovie" />
           </div>
