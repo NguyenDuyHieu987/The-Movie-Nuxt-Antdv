@@ -32,11 +32,11 @@
           :sanitizedHtmlComment="sanitizedHtmlComment"
           :commentContent="commentContent"
         >
-          <template #replyTo>
-            <!-- <div v-if="item?.reply_to" class="reply-to" @click="onClickReplyTo">
+          <!-- <template #replyTo>
+            <div v-if="item?.reply_to" class="reply-to" @click="onClickReplyTo">
               <span> @{{ commentReplyTo?.username || 'Đi tới' }} </span>
-            </div> -->
-          </template>
+            </div>
+          </template> -->
         </CommentContent>
 
         <div class="actions">
