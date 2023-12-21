@@ -348,6 +348,10 @@ onMounted(() => {
     block: 'end',
     behavior: 'instant',
   });
+
+  if (window.innerWidth < 1300) {
+    store.collapsed = true;
+  }
 });
 
 // getData();
