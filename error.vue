@@ -5,7 +5,7 @@
         <a-result
           class="error-page"
           status="404"
-          :title="`${error.statusCode} Not Found`"
+          :title="`${error.statusCode} ${error.statusMessage}`"
         >
           <template #subTitle>
             <h3>Ops!, Không thể tìm thấy trang này.</h3>
@@ -31,12 +31,16 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
-defineProps(['error']);
+const props = defineProps<{ error: any }>();
+
 useHead({
-  title: 'Error - 404 Not Found',
+  title: `Lỗi - ${props.error.statusCode}`,
   htmlAttrs: { lang: 'vi' },
 });
+
+console.log(props);
 </script>
 
-<style lang="scss" src="~/assets/style/error404Page.scss"></style>
+<style lang="scss" src="~/assets/style/errorPage.scss"></style>
