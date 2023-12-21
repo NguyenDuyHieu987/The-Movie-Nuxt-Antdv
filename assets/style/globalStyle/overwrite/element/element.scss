@@ -161,6 +161,20 @@
   }
 }
 
+.el-popper,
+.el-popper.is-dark {
+  border-radius: 1px;
+  background-color: var(--background-dropdown-color) !important;
+  font-size: 1.2rem;
+  line-height: inherit;
+
+  .el-popper__arrow {
+    &::before {
+      background-color: #191919 !important;
+    }
+  }
+}
+
 #el-popper-container-1024 {
   .el-popper {
     border-radius: 1px;

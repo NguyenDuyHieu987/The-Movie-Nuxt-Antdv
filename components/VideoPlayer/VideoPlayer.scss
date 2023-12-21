@@ -518,7 +518,8 @@ video::-webkit-media-controls {
               height: 2.7rem;
             }
 
-            &:hover {
+            &:hover,
+            &:has(.volume-slider.changing) {
               gap: 10px;
 
               .volume-slider {

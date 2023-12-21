@@ -344,7 +344,10 @@
 
                 <el-slider
                   class="volume-slider"
-                  :class="{ muted: videoStates.isVolumeOff }"
+                  :class="{
+                    muted: videoStates.isVolumeOff,
+                    changing: videoStates.isChangingVolume,
+                  }"
                   :debounce="0"
                   v-model="volume"
                   @input="onChangeVolume(volume)"
@@ -780,6 +783,7 @@ const videoStates = reactive({
   isPlayVideo: true,
   isScrubbingProgressBar: false,
   isFullScreen: false,
+  isChangingVolume: false,
   isVolumeOff: false,
   isEndedVideo: false,
   isMouseMoveOverlayProgress: false,
@@ -827,7 +831,8 @@ const duration = ref<string>('00:00');
 // const duration = computed<string>(
 //   () => formatDuration(video.value?.duration) || '00:00'
 // );
-const timeOut = ref<any>();
+const timeOutShowControls = ref<any>();
+const timeOutVolumeChange = ref<any>();
 const mounted = ref<boolean>(false);
 let startByte: number = 0;
 const chunkSize: number = 1024 * 1024; // 1 MB
@@ -1146,9 +1151,9 @@ const onProgressVideo = (e: any) => {
 const onMouseMoveVideo = () => {
   if (videoStates.isPlayVideo && !videoStates.isEndedVideo) {
     videoStates.isHideControls = false;
-    clearTimeout(timeOut.value);
+    clearTimeout(timeOutShowControls.value);
 
-    timeOut.value = setTimeout(() => {
+    timeOutShowControls.value = setTimeout(() => {
       videoStates.isHideControls = true;
     }, 5000);
   }
@@ -1156,7 +1161,7 @@ const onMouseMoveVideo = () => {
 
 const onMouseLeaveVideo = () => {
   if (videoStates.isLoaded) {
-    clearTimeout(timeOut.value);
+    clearTimeout(timeOutShowControls.value);
     videoStates.isHideControls = false;
     videoStates.isShowControls = false;
   }
@@ -1248,15 +1253,15 @@ const onClickVideo = (e: any) => {
   if (videoStates.isPlayVideo) {
     pauseVideo();
     // hide controls
-    clearTimeout(timeOut.value);
+    clearTimeout(timeOutShowControls.value);
     videoStates.isHideControls = false;
   } else {
     playVideo();
     // hide controls
     videoStates.isHideControls = false;
-    clearTimeout(timeOut.value);
+    clearTimeout(timeOutShowControls.value);
 
-    timeOut.value = setTimeout(() => {
+    timeOutShowControls.value = setTimeout(() => {
       videoStates.isHideControls = true;
     }, 5000);
   }
@@ -1447,12 +1452,21 @@ const onClickVolumeOff = () => {
 };
 
 const onChangeVolume = (value: number) => {
+  videoStates.isShowControls = true;
+  videoStates.isChangingVolume = true;
+
   volume.value = value;
   video.value!.volume = value / 100;
 
   if (volume.value > 0 && video.value!.muted) {
     video.value!.muted = false;
   }
+
+  clearTimeout(timeOutVolumeChange.value);
+
+  timeOutVolumeChange.value = setTimeout(() => {
+    videoStates.isChangingVolume = false;
+  }, 5000);
 };
 
 watch(volume, (newVal, oldVal) => {
@@ -1504,9 +1518,9 @@ const onKeyDownVideo = (e: any) => {
   // show controls
   if ([32, 37, 39].includes(e.keyCode)) {
     videoStates.isShowControls = true;
-    clearTimeout(timeOut.value);
+    clearTimeout(timeOutShowControls.value);
 
-    timeOut.value = setTimeout(() => {
+    timeOutShowControls.value = setTimeout(() => {
       videoStates.isShowControls = false;
     }, 5000);
   }
