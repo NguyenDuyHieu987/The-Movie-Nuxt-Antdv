@@ -39,8 +39,6 @@ useHead({
   title: `Lỗi - ${props.error.statusCode}`,
   htmlAttrs: { lang: 'vi' },
 });
-
-console.log(props);
 </script>
 
 <style lang="scss" src="~/assets/style/errorPage.scss"></style>
