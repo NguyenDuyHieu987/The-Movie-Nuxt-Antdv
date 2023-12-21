@@ -4,12 +4,16 @@
       <NuxtLayout>
         <a-result
           class="error-page"
-          status="404"
+          :status="error.statusCode"
           :title="`${error.statusCode} ${error.statusMessage}`"
         >
-          <template #subTitle>
+          <template v-if="error.statusCode == 404" #subTitle>
             <h3>Ops!, Không thể tìm thấy trang này.</h3>
           </template>
+          <template v-else #subTitle>
+            <h3>Ops!, It looks like something broke.</h3>
+          </template>
+
           <template #extra>
             <a-button
               @click="$router.back()"
