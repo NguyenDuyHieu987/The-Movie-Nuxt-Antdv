@@ -48,17 +48,17 @@
               <SortTab @onChangeTab="handleChangeTab" />
             </div>
 
-            <Transition name="slide-right">
+            <Transition name="slide-bottom">
               <TransitionGroup
                 v-show="showData"
                 tag="div"
                 class="movie-history padding-content horizontal"
                 :duration="0.3"
-                @beforeEnter="beforeEnter"
+              >
+                <!-- @beforeEnter="beforeEnter"
                 @enter="enter"
                 @beforeLeave="beforeLeave"
-                @leave="leave"
-              >
+                @leave="leave" -->
                 <MovieCardHorizontalHistory
                   v-for="(item, index) in dataHistory"
                   :index="index"
@@ -326,7 +326,7 @@ const handleChangeTab = async (value: string) => {
 
   setTimeout(() => {
     showData.value = true;
-  }, 350);
+  }, 300);
 
   switch (value) {
     case 'all':

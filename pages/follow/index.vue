@@ -48,17 +48,17 @@
               <SortTab @onChangeTab="handleChangeTab" />
             </div>
 
-            <Transition name="slide-left">
+            <Transition name="slide-bottom">
               <TransitionGroup
                 v-show="showData"
                 tag="div"
                 class="movie-follow padding-content horizontal"
                 :duration="0.3"
-                @beforeEnter="beforeEnter"
+              >
+                <!-- @beforeEnter="beforeEnter"
                 @enter="enter"
                 @beforeLeave="beforeLeave"
-                @leave="leave"
-              >
+                @leave="leave" -->
                 <MovieCardHorizontalFollow
                   v-for="(item, index) in dataList"
                   :index="index"
@@ -109,6 +109,7 @@
 import axios from 'axios';
 import { useBreakpoints } from '@vueuse/core';
 import gsap from 'gsap';
+import _ from 'lodash';
 // import scrollBottom from 'scroll-bottom';
 import MovieCardHorizontalFollow from '~/components/MovieCardHorizontalFollow/MovieCardHorizontalFollow.vue';
 import RequireAuth from '~/components/RequireAuth/RequireAuth.server.vue';
@@ -116,7 +117,6 @@ import SortTab from '~/components/SortTab/SortTab.vue';
 import TopicRow from '~/components/TopicRow/TopicRow.vue';
 import TopicColumn from '~/components/TopicColumn/TopicColumn.vue';
 import { getList, searchList } from '~/services/list';
-import _ from 'lodash';
 import { storeToRefs } from 'pinia';
 
 definePageMeta({
@@ -329,7 +329,7 @@ const handleChangeTab = async (value: string) => {
 
   setTimeout(() => {
     showData.value = true;
-  }, 350);
+  }, 300);
 
   switch (value) {
     case 'all':
