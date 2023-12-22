@@ -103,6 +103,7 @@ loading.value = true;
 getSimilar(props?.dataMovie.media_type, props?.dataMovie.id, page.value, 15)
   .then((response) => {
     dataSuggested.value = response?.results;
+    page.value = 2;
   })
   .catch((e) => {
     if (axios.isCancel(e)) return;
