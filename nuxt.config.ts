@@ -313,9 +313,7 @@ export default defineNuxtConfig({
         driver: 'redis',
       },
     },
-    output: {
-      // dir: 'D:\\MyWebsite\\Phimhay247\\.output',
-    },
+    output: {},
   },
   generate: {
     routes: [
