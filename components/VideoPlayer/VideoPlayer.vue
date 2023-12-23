@@ -750,6 +750,7 @@ const emits = defineEmits<{
 }>();
 
 const nuxtConfig = useRuntimeConfig();
+const route = useRoute();
 const videoSrc = computed<string>(
   () =>
     nuxtConfig.app.production_mode
@@ -910,6 +911,7 @@ watch(
     // initVideo(newVal);
 
     if (props.dataMovie?.media_type == 'tv') {
+      video.value!.pause();
       video.value!.src = videoSrc.value;
       video.value!.load();
 
@@ -930,6 +932,10 @@ watch(
   },
   { immediate: true }
 );
+
+onBeforeUnmount(() => {
+  video.value!.pause();
+});
 
 onBeforeRouteLeave(() => {
   video.value!.pause();

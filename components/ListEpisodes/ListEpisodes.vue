@@ -208,7 +208,7 @@ onMounted(() => {
   ) as HTMLElement;
 
   listEpisodes.value!.scrollTo({
-    top: episode.offsetTop,
+    top: episode?.offsetTop,
     behavior: 'smooth',
   });
 
