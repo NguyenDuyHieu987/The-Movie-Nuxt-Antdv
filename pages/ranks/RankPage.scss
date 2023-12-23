@@ -1,179 +1,117 @@
-.ranking {
+.ranks {
   height: 100%;
 
-  .ranking-container {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    background-color: transparent;
-    width: 100%;
+  --padding-rank-section: 10px 15px;
+
+  .ranks-container {
     height: 100%;
 
-    .ranking-body {
-      position: relative;
-      height: 100%;
-      flex-grow: 1;
+    a {
+      color: inherit;
+      transition: color 0s;
+      transition: opacity 0.15s;
+
+      &:hover {
+        color: var(--app-background-color);
+      }
     }
 
-    .gradient-title-default {
-      margin-top: 0px;
+    .ranks-header {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin-bottom: 30px;
+
+      .left {
+        .ranks-title {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          padding: 20px 0px;
+          padding-right: 40px;
+          font-size: 2.5rem;
+          border-right: 1px solid var(--border-regular);
+        }
+      }
+
+      .right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-grow: 1;
+
+        .rank-type {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+
+          .rank-type-item {
+            display: flex;
+            white-space: nowrap;
+
+            a {
+              padding: 10px 30px;
+              font-size: 1.7rem;
+              font-weight: 500;
+
+              &:hover {
+                color: var(--app-background-color);
+              }
+            }
+
+            &.active {
+              color: var(--app-background-color);
+            }
+          }
+        }
+
+        .rank-sortBy {
+        }
+      }
+    }
+
+    .ranks-body {
+      .rank-section.all {
+      }
+
+      .rank-section-list {
+        display: flex;
+        justify-content: center;
+        gap: var(--rank-section-gap);
+        flex-wrap: wrap;
+        margin-top: 50px;
+
+        --rank-section-gap: 15px;
+
+        .rank-section {
+          width: calc((100% - (2 * var(--rank-section-gap))) / 3);
+
+          .rank-section-header {
+            .rank-section-title {
+            }
+          }
+
+          .rank-section-body {
+            .rank-body-list {
+              .rank-body-item {
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .loading-spinner.loading-page {
+      height: 70%;
     }
   }
 }
 
 @media only screen and (max-width: 2000px) {
-  .body-content.expand {
-    .movie-group.vertical.ranking {
-      .movie-card-item.vertical {
-        width: calc((100% - (6 * var(--card-movie-vertical-gap))) / 7);
-      }
-    }
-  }
-
-  .movie-group.vertical.ranking {
-    .movie-card-item.vertical {
-      width: calc((100% - (5 * var(--card-movie-vertical-gap))) / 6);
-    }
-  }
-}
-
-@media only screen and (max-width: 1700px) {
-  .body-content.expand {
-    .movie-group.vertical.ranking {
-      .movie-card-item.vertical {
-        width: calc((100% - (5 * var(--card-movie-vertical-gap))) / 6);
-      }
-    }
-  }
-
-  .movie-group.vertical.ranking {
-    .movie-card-item.vertical {
-      width: calc((100% - (4 * var(--card-movie-vertical-gap))) / 5);
-    }
-  }
-}
-
-@media only screen and (max-width: 1550px) {
-  .movie-group.vertical.ranking {
-    .movie-card-item.vertical {
-      width: calc((100% - (3 * var(--card-movie-vertical-gap))) / 4);
-    }
-  }
-}
-
-@media only screen and (max-width: 1400px) {
-  .body-content.expand {
-    .movie-group.vertical.ranking {
-      .movie-card-item.vertical {
-        width: calc((100% - (4 * var(--card-movie-vertical-gap))) / 5);
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 1300px) {
-  .body-content.expand {
-    .movie-group.vertical.ranking {
-      .movie-card-item.vertical {
-        width: calc((100% - (3 * var(--card-movie-vertical-gap))) / 4);
-      }
-    }
-  }
-
-  .movie-group.vertical.ranking {
-    .movie-card-item.vertical {
-      width: calc((100% - (2 * var(--card-movie-vertical-gap))) / 3);
-    }
-  }
-}
-
-@media only screen and (max-width: 1100px) {
-  .ranking {
-    .ranking-container {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  .body-content.expand {
-    .movie-group.vertical.ranking {
-      .movie-card-item.vertical {
-        width: calc((100% - (4 * var(--card-movie-vertical-gap))) / 5);
-      }
-    }
-  }
-
-  .movie-group.vertical.ranking {
-    .movie-card-item.vertical {
-      width: calc((100% - (3 * var(--card-movie-vertical-gap))) / 4);
-    }
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .movie-group.vertical.ranking {
-    .movie-card-item.vertical {
-      width: calc((100% - (3 * var(--card-movie-vertical-gap))) / 4);
-    }
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .movie-group.vertical.ranking {
-    --card-movie-vertical-gap: 15px;
-
-    .movie-card-item.vertical {
-      width: calc((100% - (4 * var(--card-movie-vertical-gap))) / 5);
-    }
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .movie-group.vertical.ranking {
-    .movie-card-item.vertical {
-      width: calc((100% - (3 * var(--card-movie-vertical-gap))) / 4);
-    }
-  }
-
-  .body-content.expand {
-    .movie-group.vertical.ranking {
-      .movie-card-item.vertical {
-        width: calc((100% - (3 * var(--card-movie-vertical-gap))) / 4);
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .movie-group.vertical.ranking {
-    --card-movie-vertical-gap: 13px;
-
-    .movie-card-item.vertical {
-      width: calc((100% - (2 * var(--card-movie-vertical-gap))) / 3);
-    }
-  }
-
-  .body-content.expand {
-    .movie-group.vertical.ranking {
-      .movie-card-item.vertical {
-        width: calc((100% - (2 * var(--card-movie-vertical-gap))) / 3);
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .movie-group.vertical.ranking {
-    .movie-card-item.vertical {
-      width: calc((100% - (1 * var(--card-movie-vertical-gap))) / 2);
-    }
-  }
-
-  .body-content.expand {
-    .movie-group.vertical.ranking {
-      .movie-card-item.vertical {
-        width: calc((100% - (1 * var(--card-movie-vertical-gap))) / 2);
-      }
-    }
+  .ranks {
   }
 }
