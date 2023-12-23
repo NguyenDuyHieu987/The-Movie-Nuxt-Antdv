@@ -176,7 +176,6 @@
 
         & > .right {
           width: 40%;
-          min-width: 500px;
           max-width: 500px;
         }
       }
@@ -233,6 +232,21 @@
   }
 }
 
+@media only screen and (max-width: 1400px) {
+  .play-tv {
+    .play-container {
+      .movie-content {
+        .related-content {
+          & > .right {
+            width: 450px;
+            max-width: 450px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 1300px) {
   .play-tv {
     .play-container {
@@ -252,13 +266,6 @@
                 }
               }
             }
-          }
-        }
-
-        .related-content {
-          .right {
-            min-width: 400px;
-            max-width: 400px;
           }
         }
       }
