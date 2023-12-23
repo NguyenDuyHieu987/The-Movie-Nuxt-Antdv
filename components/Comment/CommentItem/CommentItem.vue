@@ -59,6 +59,7 @@
             <FormComment
               v-show="isShowFormComment"
               v-model:commentsList="listReplies"
+              v-model:commentContent="commentContent"
               :movieId="movieId"
               :movieType="movieType"
               :showActions="true"
@@ -360,7 +361,6 @@ const handleEditComment = () => {
   isShowFormComment.value = !isShowFormComment.value;
   if (isShowFormComment.value) {
     commentAction.value = 'edit';
-    commentContent.value = props.item?.content!;
   }
 };
 

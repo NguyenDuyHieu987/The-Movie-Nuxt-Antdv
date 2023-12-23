@@ -174,6 +174,7 @@ const disabledButton = ref<boolean>(true);
 const loading = ref<boolean>(false);
 const isShowEmoji = ref<boolean>(false);
 const commentsList = defineModel<commentForm[]>('commentsList');
+const commentContent = defineModel<string>('commentContent', { default: '' });
 const sanitizedHtmlComment = ref<string>(
   props.commentType == 'children' && props?.replyTo
     ? DOMPurify.sanitize(
@@ -214,7 +215,7 @@ watchEffect(() => {
         }
         break;
       case 'edit':
-        contenteditableInputField.value!.innerHTML = props.comment?.content!;
+        contenteditableInputField.value!.innerHTML = commentContent.value;
         break;
     }
 
