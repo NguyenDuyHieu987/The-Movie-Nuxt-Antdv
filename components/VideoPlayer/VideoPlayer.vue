@@ -934,11 +934,15 @@ watch(
 );
 
 onBeforeUnmount(() => {
-  video.value!.pause();
+  if (!video.value!.paused) {
+    video.value!.pause();
+  }
 });
 
 onBeforeRouteLeave(() => {
-  video.value!.pause();
+  if (!video.value!.paused) {
+    video.value!.pause();
+  }
 
   window.removeEventListener('pointerup', windowPointerUp);
   window.removeEventListener('touchend', windowTouchEnd);
