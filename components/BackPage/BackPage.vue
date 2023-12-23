@@ -24,7 +24,11 @@
 </template>
 
 <script setup lang="ts">
-const emits = defineEmits<{ onclick: [] }>();
+// const emits = defineEmits<{ onclick: [] }>();
+const emits = defineEmits<{ (e: 'onclick'): void }>();
+// const emits = defineEmits({
+//   onclick() {},
+// });
 
 const props = defineProps({ fixed: { type: Boolean, default: false } });
 
