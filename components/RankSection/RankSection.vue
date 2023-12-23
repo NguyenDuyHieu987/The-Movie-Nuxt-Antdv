@@ -46,14 +46,15 @@
           <div class="info">{{ item?.name }}</div>
 
           <div
-            class="step"
+            class="tendency"
             :class="{
               up: item?.step > 0,
               down: item?.step < 0,
-              balance: item?.step == 0,
+              balance: item?.step == 0 && !item?.new,
+              new: item?.step == 0 && item?.new,
             }"
           >
-            <div class="step-icon" v-show="$route.query?.sort_by != 'all'">
+            <div class="tendency-icon" v-show="$route.query?.sort_by != 'all'">
               <svg
                 v-if="item?.step > 0"
                 xmlns="http://www.w3.org/2000/svg"

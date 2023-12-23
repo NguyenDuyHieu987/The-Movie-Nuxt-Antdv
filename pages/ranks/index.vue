@@ -176,7 +176,7 @@ const ranksEN = ref<any[]>([]);
 const ranksChina = ref<any[]>([]);
 const ranksJapan = ref<any[]>([]);
 const pageRank = ref<number>(+route?.query?.page || 1);
-const pageSize = ref<number>(20);
+const pageSize = ref<number>(10);
 const loading = ref<boolean>(false);
 const typeRankList = ref<
   {
