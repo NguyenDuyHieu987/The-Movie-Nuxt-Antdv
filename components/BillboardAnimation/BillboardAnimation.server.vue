@@ -214,7 +214,7 @@ import BillboardItem from '~/components/BillboardItem/BillboardItem.vue';
 const billboard = ref();
 const billboardPreview = ref();
 // const data = ref<any[]>([]);
-const dataModel = defineModel<any[]>('data');
+const dataModel = defineModel<any[]>('data', { default: [] });
 const prevItemCarousel = ref<string>(
   dataModel.value![dataModel.value!?.length - 1]?.name
 );
