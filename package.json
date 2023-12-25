@@ -82,5 +82,8 @@
     "unplugin-auto-import": "^0.17.2",
     "unplugin-vue-components": "^0.26.0",
     "vue-gtag-next": "^1.14.0"
+  },
+  "engines": {
+    "node": ">=18.x"
   }
 }
